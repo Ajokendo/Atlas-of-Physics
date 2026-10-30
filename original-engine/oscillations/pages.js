@@ -35,201 +35,201 @@ const at = (k, dx = 0, dy = 0.35) => [STATIONS[k] + dx, dy, 0];
 
 export const PAGES = [
   {
-    kicker: 'Chapter 6', title: 'Oscillations', sub: 'back and forth, and back again',
+    kicker: 'Глава 6', title: 'Колебания', sub: 'движение туда и обратно',
     body: `
-      <p class="lede">An <b>oscillation</b> is motion back and forth about an <b>equilibrium</b> position. It is <b>simple harmonic motion</b> (SHM) when a <b>restoring force</b> pulls it back toward equilibrium in proportion to its displacement. Then the period never changes.</p>
+      <p class="lede"><b>Колебание</b> — это движение туда и обратно относительно положения <b>равновесия</b>. Оно является <b>гармоническим</b>, если <b>возвращающая сила</b> направлена к равновесию и пропорциональна смещению. В таком случае период не меняется.</p>
       <table class="data">
-        <tr><td>amplitude <i>A</i>: farthest from equilibrium</td><td>${f(M.A)} m</td></tr>
-        <tr><td>period <i>T</i>: time for one full cycle</td><td>${f(M.T0, 3)} s</td></tr>
-        <tr><td>frequency <i>f</i> = 1/<i>T</i>: cycles per second</td><td>${f(M.F0, 3)} Hz</td></tr>
+        <tr><td>амплитуда <i>A</i>: максимальное отклонение от равновесия</td><td>${f(M.A)} м</td></tr>
+        <tr><td>период <i>T</i>: время одного полного колебания</td><td>${f(M.T0, 3)} с</td></tr>
+        <tr><td>частота <i>f</i> = 1/<i>T</i>: число колебаний в секунду</td><td>${f(M.F0, 3)} Гц</td></tr>
       </table>
-      <div class="charts">${chart({ x0: 0, x1: 1, xlabels: ['0', '2T'], y0: -M.A, y1: M.A, ylabels: ['+A', '−A'], xlabel: 'time', ylabel: 'position x', cursors: ['x0'], label: 'Position against time: a cosine', h: 140,
+      <div class="charts">${chart({ x0: 0, x1: 1, xlabels: ['0', '2T'], y0: -M.A, y1: M.A, ylabels: ['+A', '−A'], xlabel: 'время', ylabel: 'координата x', cursors: ['x0'], label: 'Координата во времени: косинусоида', h: 140,
         series: [{ pts: sample(u => M.spring(u * T2).x, 0, 1) }], marks: [[0.5, M.A, 'T', -3, 16]] })}</div>
-      <p class="hintline">The outlines are strobe images at equal times: bunched at the ends, where the block is slow. Click the block for v and a.</p>`,
+      <p class="hintline">Контуры показывают положения через равные промежутки времени: у краёв они сгущаются, поскольку блок движется медленно. Нажмите на блок, чтобы увидеть v и a.</p>`,
     cam: { target: at('spring', -0.25, 0.3), az: -20, el: 20, dist: 7.6 }, lit: 'spring', scene: 'spring', look: {},
-    fig: 'A block on a spring, frictionless floor',
+    fig: 'Блок на пружине на поверхности без трения',
   },
   {
-    kicker: '6.1', title: 'Hooke’s law', sub: 'the restoring force',
+    kicker: '6.1', title: 'Закон Гука', sub: 'возвращающая сила',
     body: `
-      <p class="lede">Stretch or squash a spring and it pushes back, in proportion to how far its end has moved:</p>
+      <p class="lede">При растяжении или сжатии пружина действует в противоположную сторону. Модуль силы пропорционален смещению её конца:</p>
       <div class="eq"><i>F</i><sub>s</sub> = −<i>k</i>Δ<i>x</i></div>
-      <p><i>k</i> = ${M.K} N/m is the <b>spring constant</b>, the stiffness. The minus sign: the force always points <b>opposite</b> to the displacement. Weight and normal force cancel, so <i>F</i><sub>s</sub> is the net force and <i>a</i> = −(<i>k</i>/<i>m</i>)<i>x</i> (red).</p>
+      <p><i>k</i> = ${M.K} Н/м — это <b>жёсткость пружины</b>. Знак минус означает, что сила всегда направлена <b>противоположно</b> смещению. Сила тяжести и реакция опоры компенсируются, поэтому <i>F</i><sub>s</sub> является равнодействующей, а <i>a</i> = −(<i>k</i>/<i>m</i>)<i>x</i> (красная стрелка).</p>
       <table class="data">
-        <tr><th>where</th><th>force, accel.</th><th>speed</th></tr>
-        <tr><td><i>x</i> = ±<i>A</i></td><td>${f(M.FMAX, 1)} N, ${f(M.AMAX, 1)} m/s²: max</td><td>0</td></tr>
-        <tr><td><i>x</i> = 0</td><td>0</td><td>${f(M.VMAX, 1)} m/s: max</td></tr>
+        <tr><th>положение</th><th>сила, ускорение</th><th>скорость</th></tr>
+        <tr><td><i>x</i> = ±<i>A</i></td><td>${f(M.FMAX, 1)} Н, ${f(M.AMAX, 1)} м/с²: максимум</td><td>0</td></tr>
+        <tr><td><i>x</i> = 0</td><td>0</td><td>${f(M.VMAX, 1)} м/с: максимум</td></tr>
       </table>
-      <div class="charts">${chart({ x0: -M.A, x1: M.A, y0: -M.FMAX, y1: M.FMAX, xlabel: 'displacement x (m)', ylabel: 'F (N)', cursors: ['Fx'], label: 'Spring force against displacement: a line of slope −k', h: 130,
-        series: [{ pts: [[-M.A, M.FMAX], [M.A, -M.FMAX]], tag: [0.12, -2.4, 'slope −k'] }] })}</div>
-      <p class="hintline">Click the block for its free-body diagram.</p>`,
+      <div class="charts">${chart({ x0: -M.A, x1: M.A, y0: -M.FMAX, y1: M.FMAX, xlabel: 'смещение x (м)', ylabel: 'F (Н)', cursors: ['Fx'], label: 'Зависимость силы пружины от смещения: наклон прямой равен −k', h: 130,
+        series: [{ pts: [[-M.A, M.FMAX], [M.A, -M.FMAX]], tag: [0.12, -2.4, 'наклон −k'] }] })}</div>
+      <p class="hintline">Нажмите на блок, чтобы увидеть диаграмму сил.</p>`,
     cam: { target: at('hooke', -0.2, 0.3), az: -16, el: 14, dist: 7.8 }, lit: 'hooke', scene: 'hooke', look: {},
-    fig: 'Force always toward x = 0',
+    fig: 'Сила всегда направлена к x = 0',
   },
   {
-    kicker: '6.2', title: 'x, v and a', sub: 'a cosine and its slopes',
+    kicker: '6.2', title: 'x, v и a', sub: 'косинусоида и её производные',
     body: `
-      <p class="lede">A paper strip slides out from under the block, so the block draws its own position against time: a cosine.</p>
+      <p class="lede">Бумажная лента движется под блоком, и блок сам записывает зависимость своей координаты от времени — косинусоиду.</p>
       <table class="data eqs">
-        <tr><td><i>x</i> = <i>A</i> cos 2π<i>ft</i></td><td>±<i>A</i> at the ends</td></tr>
-        <tr><td><i>v</i> = −2π<i>fA</i> sin 2π<i>ft</i></td><td>max ${f(M.VMAX)} m/s at <i>x</i> = 0</td></tr>
+        <tr><td><i>x</i> = <i>A</i> cos 2π<i>ft</i></td><td>±<i>A</i> в крайних точках</td></tr>
+        <tr><td><i>v</i> = −2π<i>fA</i> sin 2π<i>ft</i></td><td>максимум ${f(M.VMAX)} м/с при <i>x</i> = 0</td></tr>
         <tr><td><i>a</i> = −4π²<i>f</i>²<i>A</i> cos 2π<i>ft</i></td><td>max ${f(M.AMAX)} m/s² at ±<i>A</i></td></tr>
       </table>
-      <p>Each graph is the slope of the one above: cos → −sin → −cos. And <i>a</i> is <i>x</i> flipped and scaled.</p>
+      <p>Каждый следующий график показывает наклон предыдущего: cos → −sin → −cos. Ускорение <i>a</i> — это перевёрнутая и масштабированная координата <i>x</i>.</p>
       <div class="charts">
-        ${chart({ x0: 0, x1: 1, xlabels: ['', ''], y0: -1, y1: 1, ylabels: ['+A', '−A'], xlabel: '', ylabel: 'x', cursors: ['tx'], label: 'Position: cosine', h: 78, series: [{ pts: sample(u => Math.cos(2 * Math.PI * 2 * u), 0, 1) }] })}
-        ${chart({ x0: 0, x1: 1, xlabels: ['', ''], y0: -1, y1: 1, ylabels: ['+max', '−max'], xlabel: '', ylabel: 'v', cursors: ['tv'], label: 'Velocity: negative sine', h: 78, series: [{ pts: sample(u => -Math.sin(2 * Math.PI * 2 * u), 0, 1) }] })}
-        ${chart({ x0: 0, x1: 1, xlabels: ['0', '2T'], y0: -1, y1: 1, ylabels: ['+max', '−max'], xlabel: 'time', ylabel: 'a', cursors: ['ta'], label: 'Acceleration: negative cosine', h: 88, series: [{ pts: sample(u => -Math.cos(2 * Math.PI * 2 * u), 0, 1) }] })}
+        ${chart({ x0: 0, x1: 1, xlabels: ['', ''], y0: -1, y1: 1, ylabels: ['+A', '−A'], xlabel: '', ylabel: 'x', cursors: ['tx'], label: 'Координата: косинусоида', h: 78, series: [{ pts: sample(u => Math.cos(2 * Math.PI * 2 * u), 0, 1) }] })}
+        ${chart({ x0: 0, x1: 1, xlabels: ['', ''], y0: -1, y1: 1, ylabels: ['+max', '−max'], xlabel: '', ylabel: 'v', cursors: ['tv'], label: 'Скорость: минус синусоида', h: 78, series: [{ pts: sample(u => -Math.sin(2 * Math.PI * 2 * u), 0, 1) }] })}
+        ${chart({ x0: 0, x1: 1, xlabels: ['0', '2T'], y0: -1, y1: 1, ylabels: ['+max', '−max'], xlabel: 'time', ylabel: 'a', cursors: ['ta'], label: 'Ускорение: минус косинусоида', h: 88, series: [{ pts: sample(u => -Math.cos(2 * Math.PI * 2 * u), 0, 1) }] })}
       </div>
-      <p class="hintline">Click the trace for its slope at the pen: the velocity.</p>`,
+      <p class="hintline">Нажмите на линию записи, чтобы увидеть её наклон в точке пера — скорость.</p>`,
     cam: { target: [STATIONS.trace - 0.1, 0, 1.45], az: -10, el: 52, dist: 11 }, lit: 'trace', scene: 'trace', look: {},
-    fig: 'The block draws x against t',
+    fig: 'Блок записывает координату x во времени t',
   },
   {
-    kicker: '6.3', title: 'Energy', sub: 'traded, never lost',
+    kicker: '6.3', title: 'Энергия', sub: 'переходит из одной формы в другую, но сохраняется',
     body: `
-      <p class="lede">With no friction the total stays put. It just moves between the block’s motion and the spring:</p>
+      <p class="lede">При отсутствии трения полная энергия сохраняется. Она лишь переходит между движением блока и деформацией пружины:</p>
       <div class="eq">½<i>kA</i>² = ½<i>mv</i>² + ½<i>kx</i>²</div>
-      <p>At ±<i>A</i> it is all in the spring, ½<i>kA</i>² = ${f(M.E)} J. At <i>x</i> = 0 it is all kinetic, so ½<i>mv</i><sub>max</sub>² = ½<i>kA</i>² and <i>v</i><sub>max</sub> = √(<i>k</i>/<i>m</i>)·<i>A</i> = ${f(M.VMAX)} m/s. The shares are equal at <i>x</i> = <i>A</i>√2/2 = ${f(M.X_HALF, 3)} m, not halfway.</p>
-      <div class="charts">${chart({ x0: -M.A, x1: M.A, y0: 0, y1: M.E, xlabel: 'position x (m)', ylabel: 'energy (J)', cursors: ['U', 'K'], label: 'Kinetic and spring energy against position', h: 140,
+      <p>При ±<i>A</i> вся энергия запасена в пружине: ½<i>kA</i>² = ${f(M.E)} Дж. При <i>x</i> = 0 вся энергия кинетическая, поэтому ½<i>mv</i><sub>max</sub>² = ½<i>kA</i>² и <i>v</i><sub>max</sub> = √(<i>k</i>/<i>m</i>)·<i>A</i> = ${f(M.VMAX)} м/с. Кинетическая и потенциальная энергии равны при <i>x</i> = <i>A</i>√2/2 = ${f(M.X_HALF, 3)} м, а не на половине амплитуды.</p>
+      <div class="charts">${chart({ x0: -M.A, x1: M.A, y0: 0, y1: M.E, xlabel: 'координата x (м)', ylabel: 'энергия (Дж)', cursors: ['U', 'K'], label: 'Кинетическая и потенциальная энергия пружины в зависимости от координаты', h: 140,
         series: [{ pts: sample(x => 0.5 * M.K * x * x, -M.A, M.A), tag: [0.27, 0.32, 'U'] }, { pts: sample(x => M.E - 0.5 * M.K * x * x, -M.A, M.A), tag: [-0.06, 1.72, 'K'] }],
         marks: [[M.X_HALF, M.E / 2, 'K = U', 8, 4]] })}</div>
-      <p>The spring energy is the work done stretching it: the triangle under <i>F</i> = <i>kx</i>, ½(<i>kx</i>)<i>x</i>.</p>
-      <p class="hintline">Click to lift the kinetic part off the stack.</p>`,
+      <p>Энергия пружины равна работе, затраченной на её растяжение: это площадь треугольника под графиком <i>F</i> = <i>kx</i>, то есть ½(<i>kx</i>)<i>x</i>.</p>
+      <p class="hintline">Нажмите, чтобы отделить столбец кинетической энергии от общей диаграммы.</p>`,
     cam: { target: at('energy', 0.95, 0.6), az: -10, el: 14, dist: 12 }, lit: 'energy', scene: 'energy', look: {},
-    fig: 'Kinetic and spring energy',
+    fig: 'Кинетическая энергия и энергия пружины',
   },
   {
-    kicker: '6.4', title: 'A hanging spring', sub: 'gravity moves the middle, not the beat',
+    kicker: '6.4', title: 'Вертикальная пружина', sub: 'сила тяжести смещает равновесие, но не меняет период',
     body: `
-      <p class="lede">Hang the same block from the same spring. It sags until the spring holds its weight, <i>kd</i> = <i>mg</i>:</p>
-      <div class="eq"><i>d</i> = <i>mg</i>/<i>k</i> = ${f(M.D, 3)} m</div>
-      <p>That is the new equilibrium. Measure <i>y</i> from there and gravity drops out: <i>k</i>(<i>d</i> − <i>y</i>) − <i>mg</i> = −<i>ky</i>. Hooke’s law again, so it bobs with the same period as on the floor, ${f(M.T0, 3)} s.</p>
+      <p class="lede">Подвесим тот же блок на ту же пружину. Она растянется до тех пор, пока сила упругости не уравновесит вес: <i>kd</i> = <i>mg</i>.</p>
+      <div class="eq"><i>d</i> = <i>mg</i>/<i>k</i> = ${f(M.D, 3)} м</div>
+      <p>Это новое положение равновесия. Если отсчитывать <i>y</i> от него, сила тяжести сокращается: <i>k</i>(<i>d</i> − <i>y</i>) − <i>mg</i> = −<i>ky</i>. Снова получаем закон Гука, поэтому период колебаний такой же, как на горизонтальной поверхности: ${f(M.T0, 3)} с.</p>
       <table class="data">
-        <tr><th>where</th><th>spring</th><th>weight</th><th>net (red)</th></tr>
-        <tr><td>top</td><td>${f(M.K * (M.D - M.HANG.A))} N</td><td>${f(M.WEIGHT)} N</td><td>${f(M.K * M.HANG.A)} N ↓</td></tr>
-        <tr><td>equilibrium</td><td>${f(M.WEIGHT)} N</td><td>${f(M.WEIGHT)} N</td><td>0</td></tr>
-        <tr><td>bottom</td><td>${f(M.K * (M.D + M.HANG.A))} N</td><td>${f(M.WEIGHT)} N</td><td>${f(M.K * M.HANG.A)} N ↑</td></tr>
+        <tr><th>положение</th><th>сила упругости</th><th>вес</th><th>равнодействующая (красная)</th></tr>
+        <tr><td>верхняя точка</td><td>${f(M.K * (M.D - M.HANG.A))} Н</td><td>${f(M.WEIGHT)} Н</td><td>${f(M.K * M.HANG.A)} Н ↓</td></tr>
+        <tr><td>равновесие</td><td>${f(M.WEIGHT)} N</td><td>${f(M.WEIGHT)} N</td><td>0</td></tr>
+        <tr><td>нижняя точка</td><td>${f(M.K * (M.D + M.HANG.A))} N</td><td>${f(M.WEIGHT)} N</td><td>${f(M.K * M.HANG.A)} Н ↑</td></tr>
       </table>
-      <p class="hintline">Click the block for its free-body diagram.</p>`,
+      <p class="hintline">Нажмите на блок, чтобы увидеть диаграмму сил.</p>`,
     cam: { target: at('hang', 0.1, 1.9), az: -14, el: 6, dist: 9 }, lit: 'hang', scene: 'hang', look: {},
-    fig: 'The block on a vertical spring',
+    fig: 'Блок на вертикальной пружине',
   },
   {
-    kicker: '6.5', title: 'The pendulum', sub: 'SHM, if the swing is small',
+    kicker: '6.5', title: 'Маятник', sub: 'гармонические колебания при малой амплитуде',
     body: `
-      <p class="lede">The string pulls along itself, so only gravity pulls the bob back along its arc:</p>
+      <p class="lede">Натяжение нити направлено вдоль неё, поэтому возвращающую силу вдоль дуги создаёт только сила тяжести:</p>
       <div class="eq"><i>F</i> = −<i>mg</i> sin θ</div>
-      <p>Not quite proportional to θ. But below about 10°, sin θ ≈ θ (in radians), so <i>F</i> ≈ −<i>mg</i>θ and it is SHM with</p>
-      <div class="eq"><i>T</i> = 2π√(<i>L</i>/<i>g</i>) = ${f(M.P_T, 3)} s</div>
-      <p>At ±${deg(M.PEND.th0)}° the true period is just ${f(100 * (M.periodExact(M.PEND.L, M.PEND.th0) / M.P_T - 1), 2)}% longer. At the bottom there is no restoring force and the bob is fastest: ½<i>mv</i>² = <i>mg</i>Δ<i>y</i> gives ${f(M.vmaxPendulum(M.PEND.L, M.PEND.th0), 3)} m/s.</p>
-      <div class="charts">${chart({ x0: 0, x1: 60, y0: 0, y1: 1.05, ylabels: ['mg', '0'], xlabel: 'angle θ (°)', ylabel: 'restoring force', cursors: ['th'], label: 'mg sin theta against mg theta', h: 120,
+      <p>Сила не совсем пропорциональна θ. Но при углах меньше примерно 10° sin θ ≈ θ (в радианах), поэтому <i>F</i> ≈ −<i>mg</i>θ и движение становится гармоническим с периодом</p>
+      <div class="eq"><i>T</i> = 2π√(<i>L</i>/<i>g</i>) = ${f(M.P_T, 3)} с</div>
+      <p>При амплитуде ±${deg(M.PEND.th0)}° точный период всего на ${f(100 * (M.periodExact(M.PEND.L, M.PEND.th0) / M.P_T - 1), 2)}% больше. В нижней точке возвращающая сила вдоль дуги равна нулю, а скорость максимальна: из ½<i>mv</i>² = <i>mg</i>Δ<i>y</i> получаем ${f(M.vmaxPendulum(M.PEND.L, M.PEND.th0), 3)} м/с.</p>
+      <div class="charts">${chart({ x0: 0, x1: 60, y0: 0, y1: 1.05, ylabels: ['mg', '0'], xlabel: 'угол θ (°)', ylabel: 'возвращающая сила', cursors: ['th'], label: 'Сравнение mg sin θ и mgθ', h: 120,
         series: [{ pts: sample(d => Math.sin(d * M.DEG), 0, 60), tag: [46, Math.sin(46 * M.DEG) - 0.24, 'mg sin θ'] }, { cls: 'trend', pts: sample(d => d * M.DEG, 0, 60), tag: [40, 40 * M.DEG + 0.04, 'mgθ'] }, { cls: 'grid', pts: [[10, 0], [10, 1.05]] }],
         marks: [[10, Math.sin(10 * M.DEG), '10°', 6, 16]] })}</div>
-      <p class="hintline">Arrows: ${(P_SCALE * 100).toFixed(0)} cm per newton. Click the bob to split its weight.</p>`,
+      <p class="hintline">Масштаб стрелок: ${(P_SCALE * 100).toFixed(0)} см на ньютон. Нажмите на маятник, чтобы разложить силу тяжести на составляющие.</p>`,
     cam: { target: at('pendulum', 0, 2.05), az: -12, el: 5, dist: 9.5 }, lit: 'pendulum', scene: 'pendulum', look: {},
-    fig: `A ${M.PEND.L.toFixed(1)} m pendulum, ±${deg(M.PEND.th0)}°`,
+    fig: `Маятник длиной ${M.PEND.L.toFixed(1)} м, амплитуда ±${deg(M.PEND.th0)}°`,
   },
   {
-    kicker: '6.6', title: 'Double the period', sub: 'mind the square root',
+    kicker: '6.6', title: 'Удвоение периода', sub: 'не забудьте про квадратный корень',
     body: `
-      <p class="lede">The period goes as the <i>square root</i> of <i>m</i>, 1/<i>k</i> or <i>L</i>. To double it, quadruple them.</p>
+      <p class="lede">Период пропорционален <i>квадратному корню</i> из <i>m</i>, 1/<i>k</i> или <i>L</i>. Чтобы удвоить период, нужно увеличить соответствующую величину в четыре раза.</p>
       <table class="data cols">
-        <tr><th>mass on a spring</th><th>pendulum</th></tr>
+        <tr><th>груз на пружине</th><th>маятник</th></tr>
         <tr><td><i>T</i> = 2π√(<i>m</i>/<i>k</i>)</td><td><i>T</i> = 2π√(<i>L</i>/<i>g</i>)</td></tr>
         <tr><td>2<i>T</i>: 4<i>m</i> or ¼<i>k</i></td><td>2<i>T</i>: 4<i>L</i></td></tr>
-        <tr><td>${f(M.periodSpring(M.DOUBLE.m, M.K))} s → ${f(M.periodSpring(M.DOUBLE.m4, M.K))} s</td><td>${f(M.periodPendulum(M.DOUBLE.L))} s → ${f(M.periodPendulum(M.DOUBLE.L4))} s</td></tr>
+        <tr><td>${f(M.periodSpring(M.DOUBLE.m, M.K))} с → ${f(M.periodSpring(M.DOUBLE.m4, M.K))} с</td><td>${f(M.periodPendulum(M.DOUBLE.L))} с → ${f(M.periodPendulum(M.DOUBLE.L4))} с</td></tr>
       </table>
-      <p><b>With numbers.</b> 8 kg on 2 N/m: <i>T</i> = 2π√(8/2) = 4π s. For 8π s, 8π = 2π√(<i>m</i>/2) gives <i>m</i> = 32 kg: four times.</p>
-      <p><b>With proportions.</b> <i>T</i> ∝ √<i>m</i>, so 2<i>T</i> ∝ √(<u>&nbsp;?&nbsp;</u><i>m</i>): the square root of what is 2? Four. With <i>k</i> below the line, 2 = √(1/<i>x</i>) gives ¼. Scale only what you change; 2π and ½ ride along.</p>
-      <div class="charts">${chart({ x0: 0, x1: 4, y0: 0, y1: 3.5, xlabel: 'mass on the 16 N/m spring (kg)', ylabel: 'period (s)', label: 'Period against mass: a square root', h: 120,
-        series: [{ pts: sample(m => M.periodSpring(m, M.K), 0, 4) }], marks: [[1, M.periodSpring(1, M.K), 'm: 1.57 s', 6, 14], [4, M.periodSpring(4, M.K), '4m: 3.14 s', -64, 16]] })}</div>
-      <p class="hintline">Click either pair to count their cycles.</p>`,
+      <p><b>Числовой пример.</b> Груз массой 8 кг на пружине жёсткостью 2 Н/м: <i>T</i> = 2π√(8/2) = 4π с. Чтобы получить период 8π с, из 8π = 2π√(<i>m</i>/2) находим <i>m</i> = 32 кг — в четыре раза больше.</p>
+      <p><b>Через пропорции.</b> <i>T</i> ∝ √<i>m</i>, поэтому 2<i>T</i> ∝ √(<u>&nbsp;?&nbsp;</u><i>m</i>): под каким корнем нужно получить 2? Четыре. Если уменьшаем <i>k</i>, то 2 = √(1/<i>x</i>) даёт ¼. Изменяйте только нужный параметр: множители 2π и ½ остаются неизменными.</p>
+      <div class="charts">${chart({ x0: 0, x1: 4, y0: 0, y1: 3.5, xlabel: 'масса груза на пружине 16 Н/м (кг)', ylabel: 'период (с)', label: 'Зависимость периода от массы: квадратный корень', h: 120,
+        series: [{ pts: sample(m => M.periodSpring(m, M.K), 0, 4) }], marks: [[1, M.periodSpring(1, M.K), 'm: 1,57 с', 6, 14], [4, M.periodSpring(4, M.K), '4m: 3,14 с', -64, 16]] })}</div>
+      <p class="hintline">Нажмите на любую пару, чтобы сравнить число колебаний.</p>`,
     cam: { target: at('double', -0.45, 1.6), az: -12, el: 10, dist: 16.5 }, lit: 'springs4', scene: 'double', look: {},
-    fig: '4× mass, 4× length: 2× period',
+    fig: 'Масса и длина в 4 раза больше: период в 2 раза больше',
   },
   {
-    kicker: '6.7', title: 'What it ignores', sub: 'amplitude, and a pendulum’s mass',
+    kicker: '6.7', title: 'Что не влияет на период', sub: 'амплитуда и масса маятника',
     body: `
-      <p class="lede">Amplitude does <b>not</b> change the period. It isn’t in either formula.</p>
-      <p>The far block starts twice as far out. Twice the force, twice the acceleration, twice the distance in the same time: the two stay in step.</p>
-      <p>Nor does a pendulum’s <b>mass</b>: <i>ma</i> = −<i>mg</i> sin θ, and the <i>m</i> cancels, as it does in free fall. The ${f(M.IGNORE.m2, 0)} kg bob keeps time with the ${f(M.IGNORE.m1, 0)} kg one.</p>
+      <p class="lede">Амплитуда <b>не</b> влияет на период малых гармонических колебаний: её нет ни в одной из формул.</p>
+      <p>Второй блок начинает движение с вдвое большим отклонением. Сила, ускорение и перемещение у него вдвое больше в каждый момент времени, поэтому оба блока колеблются синхронно.</p>
+      <p>Не влияет и <b>масса</b> маятника: из <i>ma</i> = −<i>mg</i> sin θ масса <i>m</i> сокращается, как и при свободном падении. Маятники массой ${f(M.IGNORE.m2, 0)} кг и ${f(M.IGNORE.m1, 0)} кг имеют одинаковый период.</p>
       <table class="data">
-        <tr><th>change</th><th>period</th></tr>
-        <tr><td>mass on a spring <i>m</i></td><td><i>T</i> ∝ √<i>m</i></td></tr>
-        <tr><td>spring constant <i>k</i></td><td><i>T</i> ∝ 1/√<i>k</i></td></tr>
-        <tr><td>pendulum length <i>L</i></td><td><i>T</i> ∝ √<i>L</i></td></tr>
-        <tr><td>pendulum mass</td><td>no change</td></tr>
-        <tr><td>amplitude (small, for a pendulum)</td><td>no change</td></tr>
+        <tr><th>изменяемая величина</th><th>период</th></tr>
+        <tr><td>масса груза на пружине <i>m</i></td><td><i>T</i> ∝ √<i>m</i></td></tr>
+        <tr><td>жёсткость пружины <i>k</i></td><td><i>T</i> ∝ 1/√<i>k</i></td></tr>
+        <tr><td>длина маятника <i>L</i></td><td><i>T</i> ∝ √<i>L</i></td></tr>
+        <tr><td>масса маятника</td><td>не влияет</td></tr>
+        <tr><td>амплитуда (малая, для маятника)</td><td>не влияет</td></tr>
       </table>`,
     cam: { target: at('ignore', -0.6, 1.2), az: -12, el: 11, dist: 13.5 }, lit: 'amp', scene: 'ignore', look: {},
-    fig: 'Two amplitudes, two masses, one period each',
+    fig: 'Две амплитуды, две массы, одинаковый период',
   },
 
   {
-    kicker: '6.8 · AP Physics C', title: 'The SHM equation', sub: 'why the answer is a cosine',
+    kicker: '6.8 · AP Physics C', title: 'Уравнение гармонических колебаний', sub: 'почему решением является косинусоида',
     body: `
-      <p class="lede">Put Hooke’s law into Σ<i>F</i> = <i>ma</i> and you get an equation for <i>x</i>(<i>t</i>):</p>
+      <p class="lede">Подставив закон Гука в Σ<i>F</i> = <i>ma</i>, получим дифференциальное уравнение для <i>x</i>(<i>t</i>):</p>
       <div class="eq">d²<i>x</i>/d<i>t</i>² = −(<i>k</i>/<i>m</i>) <i>x</i></div>
-      <p>Try <i>x</i> = <i>A</i> cos(ω<i>t</i> + φ): twice differentiated, it is −<i>A</i>ω² cos(ω<i>t</i> + φ) = −ω²<i>x</i>. That fits for any <i>A</i> and φ if ω = √(<i>k</i>/<i>m</i>) = ${f(M.W, 1)} rad/s. <i>A</i> and φ come from the start, <i>x</i><sub>0</sub> = <i>A</i> cos φ and <i>v</i><sub>0</sub> = −<i>A</i>ω sin φ:</p>
+      <p>Проверим функцию <i>x</i> = <i>A</i> cos(ω<i>t</i> + φ): её вторая производная равна −<i>A</i>ω² cos(ω<i>t</i> + φ) = −ω²<i>x</i>. Она удовлетворяет уравнению при любых <i>A</i> и φ, если ω = √(<i>k</i>/<i>m</i>) = ${f(M.W, 1)} рад/с. Значения <i>A</i> и φ определяются начальными условиями: <i>x</i><sub>0</sub> = <i>A</i> cos φ и <i>v</i><sub>0</sub> = −<i>A</i>ω sin φ:</p>
       <div class="eq"><i>A</i> = √(<i>x</i><sub>0</sub>² + (<i>v</i><sub>0</sub>/ω)²) &nbsp; tan φ = −<i>v</i><sub>0</sub>/ω<i>x</i><sub>0</sub></div>
       <table class="data">
-        <tr><th>start</th><th><i>x</i><sub>0</sub>, <i>v</i><sub>0</sub></th><th><i>A</i></th><th>φ</th></tr>
-        ${M.STARTS.map((st, i) => `<tr><td>${i ? 'pushed' : 'let go'}</td><td>${f(st.x0)} m, ${f(st.v0, 1)} m/s</td><td>${f(st.A)} m</td><td>${f(st.phi / M.DEG, 1)}°</td></tr>`).join('')}
+        <tr><th>условие запуска</th><th><i>x</i><sub>0</sub>, <i>v</i><sub>0</sub></th><th><i>A</i></th><th>φ</th></tr>
+        ${M.STARTS.map((st, i) => `<tr><td>${i ? 'толчок' : 'отпущен'}</td><td>${f(st.x0)} м, ${f(st.v0, 1)} м/с</td><td>${f(st.A)} м</td><td>${f(st.phi / M.DEG, 1)}°</td></tr>`).join('')}
       </table>
-      <div class="charts">${chart({ x0: 0, x1: 1, xlabels: ['0', '2T'], y0: -0.55, y1: 0.55, ylabels: ['0.5 m', '−0.5'], xlabel: 'time', ylabel: 'x', cursors: ['st0', 'st1'], label: 'Position against time for the two starts: same period, different amplitude and phase', h: 112,
+      <div class="charts">${chart({ x0: 0, x1: 1, xlabels: ['0', '2T'], y0: -0.55, y1: 0.55, ylabels: ['0.5 m', '−0.5'], xlabel: 'время', ylabel: 'x', cursors: ['st0', 'st1'], label: 'Координата во времени для двух начальных условий: одинаковый период, разные амплитуда и фаза', h: 112,
         series: [{ cls: 'trend', pts: sample(u => M.start(0, u * T2).x, 0, 1, 160) }, { pts: sample(u => M.start(1, u * T2).x, 0, 1, 160) }] })}</div>
-      <p class="hintline">Dashed: let go. Solid: pushed. Click either block.</p>`,
+      <p class="hintline">Пунктир: блок отпущен. Сплошная линия: блок получил толчок. Нажмите на любой блок.</p>`,
     cam: { target: at('ode', 0.05, 0.45), az: -8, el: 16, dist: 16.5 }, lit: 'starts', scene: 'ode', look: {},
-    fig: 'One equation, two starts',
+    fig: 'Одно уравнение, два варианта запуска',
   },
   {
-    kicker: '6.9 · AP Physics C', title: 'Physical pendulums', sub: 'a rigid body on a pivot',
+    kicker: '6.9 · AP Physics C', title: 'Физические маятники', sub: 'твёрдое тело на оси вращения',
     body: `
-      <p class="lede">The weight of a rigid body acts at its centre of mass, a distance <i>d</i> below the pivot, and twists it back:</p>
+      <p class="lede">Сила тяжести твёрдого тела приложена к его центру масс, расположенному на расстоянии <i>d</i> ниже оси подвеса, и создаёт возвращающий момент:</p>
       <div class="eq">τ = −<i>mgd</i> sin θ ≈ −<i>mgd</i> θ</div>
-      <p><i>I</i>α = τ gives d²θ/d<i>t</i>² = −(<i>mgd</i>/<i>I</i>)θ: SHM, with ω = √(<i>mgd</i>/<i>I</i>) and</p>
+      <p>Из <i>I</i>α = τ получаем d²θ/d<i>t</i>² = −(<i>mgd</i>/<i>I</i>)θ: это гармонические колебания с ω = √(<i>mgd</i>/<i>I</i>) и периодом</p>
       <div class="eq"><i>T</i> = 2π√(<i>I</i>/<i>mgd</i>)</div>
-      <p><i>I</i> is about the pivot: <i>I</i> = <i>I</i><sub>cm</sub> + <i>md</i>² (parallel axes).</p>
+      <p><i>I</i> — момент инерции относительно оси подвеса: <i>I</i> = <i>I</i><sub>cm</sub> + <i>md</i>² (теорема Штейнера).</p>
       <table class="data">
         <tr><th></th><th><i>I</i></th><th><i>d</i></th><th><i>T</i></th></tr>
-        <tr><td>bob, string <i>L</i></td><td><i>mL</i>²</td><td><i>L</i></td><td>2π√(<i>L</i>/<i>g</i>) = ${f(M.periodPendulum(M.ROD.L))} s</td></tr>
-        <tr><td>rod <i>L</i>, by its end</td><td>⅓<i>mL</i>²</td><td><i>L</i>/2</td><td>2π√(2<i>L</i>/3<i>g</i>) = ${f(M.ROD.T)} s</td></tr>
-        <tr><td>hoop on a nail</td><td>2<i>mR</i>²</td><td><i>R</i></td><td>2π√(2<i>R</i>/<i>g</i>) = ${f(M.HOOP.T)} s</td></tr>
+        <tr><td>груз на нити длиной <i>L</i></td><td><i>mL</i>²</td><td><i>L</i></td><td>2π√(<i>L</i>/<i>g</i>) = ${f(M.periodPendulum(M.ROD.L))} с</td></tr>
+        <tr><td>стержень длиной <i>L</i>, подвешенный за конец</td><td>⅓<i>mL</i>²</td><td><i>L</i>/2</td><td>2π√(2<i>L</i>/3<i>g</i>) = ${f(M.ROD.T)} с</td></tr>
+        <tr><td>обруч на гвозде</td><td>2<i>mR</i>²</td><td><i>R</i></td><td>2π√(2<i>R</i>/<i>g</i>) = ${f(M.HOOP.T)} с</td></tr>
       </table>
-      <div class="charts">${chart({ x0: -5, x1: 0, xlabels: ['5 s ago', 'now'], y0: -9, y1: 9, ylabels: ['+8°', '−8°'], xlabel: 'time', ylabel: 'θ', cursors: ['rodNow', 'strNow'], label: 'Angle against time for the rod and a simple pendulum of the same length: the rod has the shorter period', h: 104,
+      <div class="charts">${chart({ x0: -5, x1: 0, xlabels: ['5 s ago', 'now'], y0: -9, y1: 9, ylabels: ['+8°', '−8°'], xlabel: 'время', ylabel: 'θ', cursors: ['rodNow', 'strNow'], label: 'Угол отклонения стержня и простого маятника одинаковой длины во времени: период стержня меньше', h: 104,
         series: [{ cls: 'trend', live: 'strTh', fn: t => sample(u => M.pendulum(t + u, M.ROD.L, M.ROD.th0).th / M.DEG, -5, 0, 160) }, { live: 'rodTh', fn: t => sample(u => M.physical(M.ROD, t + u).th / M.DEG, -5, 0, 160) }] })}</div>
-      <p class="hintline">Solid: the rod. Dashed: the string. Click the rod.</p>`,
+      <p class="hintline">Сплошная линия: стержень. Пунктир: маятник на нити. Нажмите на стержень.</p>`,
     cam: { target: at('physical', 0.1, 2.1), az: -8, el: 6, dist: 11.5 }, lit: 'rod', scene: 'physical', look: {},
-    fig: 'A string, a rod and a hoop, each on a pivot',
+    fig: 'Нить, стержень и обруч на осях подвеса',
   },
   {
-    kicker: '6.10 · AP Physics C', title: 'The torsion pendulum', sub: 'a twist, and a twist back',
+    kicker: '6.10 · AP Physics C', title: 'Крутильный маятник', sub: 'закручивание и обратное вращение',
     body: `
-      <p class="lede">Hang a disc from a wire and turn it. The wire twists back in proportion to the angle, Hooke’s law for turning:</p>
+      <p class="lede">Подвесим диск на проволоке и повернём его. Проволока создаёт возвращающий момент, пропорциональный углу закручивания. Это аналог закона Гука для вращения:</p>
       <div class="eq">τ = −κθ &nbsp;⇒&nbsp; <i>T</i> = 2π√(<i>I</i>/κ)</div>
-      <p>since <i>I</i>α = −κθ is the spring’s equation with <i>m</i> → <i>I</i> and <i>k</i> → κ, the wire’s <b>torsion constant</b>, ${M.TORS.kappa} N·m/rad. The ${f(M.TORS.M, 1)} kg disc of radius ${f(M.TORS.R)} m has <i>I</i> = ½<i>MR</i>² = ${f(M.TORS.I, 3)} kg·m², so <i>T</i> = ${f(M.TORS.T, 2)} s.</p>
-      <p>No small-angle step this time: the torque stays proportional to θ however far the wire is twisted (within its limit). At ${(M.TORS.th0 / M.DEG).toFixed(0)}° or at 5°, the period is the same.</p>
-      <div class="charts">${chart({ x0: -60, x1: 60, y0: -0.3, y1: 0.3, ylabels: ['0.3 N·m', '−0.3'], xlabels: ['−60°', '60°'], xlabel: 'twist θ', ylabel: 'τ', cursors: ['tq'], label: 'Torque against twist angle: a straight line of slope minus kappa', h: 120,
+      <p>Уравнение <i>I</i>α = −κθ аналогично уравнению пружины, если заменить <i>m</i> на <i>I</i>, а <i>k</i> на κ — <b>коэффициент крутильной жёсткости</b> проволоки, равный ${M.TORS.kappa} Н·м/рад. Диск массой ${f(M.TORS.M, 1)} кг и радиусом ${f(M.TORS.R)} м имеет <i>I</i> = ½<i>MR</i>² = ${f(M.TORS.I, 3)} кг·м², поэтому <i>T</i> = ${f(M.TORS.T, 2)} с.</p>
+      <p>Здесь не требуется приближение малых углов: в пределах упругости проволоки момент силы пропорционален θ при любом угле закручивания. Период одинаков при ${(M.TORS.th0 / M.DEG).toFixed(0)}° и при 5°.</p>
+      <div class="charts">${chart({ x0: -60, x1: 60, y0: -0.3, y1: 0.3, ylabels: ['0,3 Н·м', '−0,3'], xlabels: ['−60°', '60°'], xlabel: 'угол закручивания θ', ylabel: 'τ', cursors: ['tq'], label: 'Момент силы в зависимости от угла закручивания: наклон прямой равен −κ', h: 120,
         series: [{ pts: [[-60, M.TORS.kappa * 60 * M.DEG], [60, -M.TORS.kappa * 60 * M.DEG]], tag: [12, -0.08, 'slope −κ'] }] })}</div>
-      <p class="hintline">Click the disc for the wire’s torque on it.</p>`,
+      <p class="hintline">Нажмите на диск, чтобы увидеть момент силы со стороны проволоки.</p>`,
     cam: { target: at('torsion', 0.1, 1.9), az: -14, el: 22, dist: 5.9 }, lit: 'disc', scene: 'torsion', look: {},
-    fig: 'A disc twisting on a wire',
+    fig: 'Диск, закручивающий проволоку',
   },
   {
-    kicker: '6.11', title: 'Everyday oscillators', sub: 'a car, a swing',
+    kicker: '6.11', title: 'Колебания в повседневной жизни', sub: 'автомобиль и качели',
     body: `
-      <p class="lede">Anything with a restoring force that grows with displacement oscillates.</p>
-      <p><b>A car on its springs.</b> ${M.CAR.m} kg on four springs, ${(M.CAR.k / 1000).toFixed(0)} kN/m together. It sags ${f(100 * M.CAR.d, 1)} cm under its weight; push it down and it bounces with <i>T</i> = 2π√(<i>m</i>/<i>k</i>) = ${f(M.CAR.T)} s. (Real shock absorbers damp this out in a cycle or two; here they’re off.)</p>
-      <p><b>A swing.</b> A child on a ${f(M.SWING.L, 1)} m swing is a pendulum: <i>T</i> = 2π√(<i>L</i>/<i>g</i>) = ${f(M.SWING.T)} s, small pushes or big, light child or heavy. That is why you push in rhythm.</p>
+      <p class="lede">Любая система, в которой возвращающая сила возрастает со смещением, может совершать колебания.</p>
+      <p><b>Автомобиль на пружинах подвески.</b> Масса ${M.CAR.m} кг опирается на четыре пружины общей жёсткостью ${(M.CAR.k / 1000).toFixed(0)} кН/м. Под действием веса кузов проседает на ${f(100 * M.CAR.d, 1)} см. Если нажать на него и отпустить, он будет колебаться с периодом <i>T</i> = 2π√(<i>m</i>/<i>k</i>) = ${f(M.CAR.T)} с. (Настоящие амортизаторы гасят колебания за один-два цикла; здесь они отключены.)</p>
+      <p><b>Качели.</b> Ребёнок на качелях длиной ${f(M.SWING.L, 1)} м — это маятник: <i>T</i> = 2π√(<i>L</i>/<i>g</i>) = ${f(M.SWING.T)} с. Период не зависит от массы ребёнка и при малых колебаниях почти не зависит от амплитуды. Поэтому качели удобно раскачивать в такт.</p>
       <table class="data cols">
-        <tr><th>mass on a spring</th><th>pendulum</th></tr>
-        <tr><td>restoring −<i>kx</i></td><td>restoring −<i>mg</i> sin θ</td></tr>
-        <tr><td>always SHM</td><td>SHM for small θ</td></tr>
+        <tr><th>груз на пружине</th><th>маятник</th></tr>
+        <tr><td>возвращающая сила −<i>kx</i></td><td>возвращающая сила −<i>mg</i> sin θ</td></tr>
+        <tr><td>всегда гармонические</td><td>гармонические при малых θ</td></tr>
         <tr><td>½<i>kA</i>² = ½<i>mv</i><sub>max</sub>²</td><td><i>mg</i>Δ<i>y</i> = ½<i>mv</i><sub>max</sub>²</td></tr>
       </table>`,
     cam: { target: at('life', -1.4, 1.4), az: -12, el: 8, dist: 19.5 }, lit: 'car', scene: 'life', look: {},
-    fig: 'A car bouncing, a child swinging',
+    fig: 'Колебания автомобиля и качелей',
   },
 ];
 
