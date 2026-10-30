@@ -30,15 +30,15 @@ const samples = (a, b, n, fn) => Array.from({ length: n + 1 }, (_, i) => { const
 // collision pages: momentum of each cart and the total, against time
 export const COLL_T = { y0: -3, y1: 7 };
 const momChart = (c, key, tags) => chart({
-  x0: 0, x1: c.run, ...COLL_T, xlabel: 'время (с)', ylabel: 'импульс (кг·м/с)', cursors: [key], label: 'Momentum of each cart and the total against time',
+  x0: 0, x1: c.run, ...COLL_T, xlabel: 'время (с)', ylabel: 'импульс (кг·м/с)', cursors: [key], label: 'Импульс каждой тележки и полный импульс во времени',
   series: [
     { pts: [[0, c.m1 * c.u1], [c.tc, c.m1 * c.u1], [c.tc, c.m1 * c.v1], [c.run, c.m1 * c.v1]], tag: [tags[0][0], tags[0][1], 'p₁'] },
     { pts: [[0, c.m2 * c.u2], [c.tc, c.m2 * c.u2], [c.tc, c.m2 * c.v2], [c.run, c.m2 * c.v2]], tag: [tags[1][0], tags[1][1], 'p₂'] },
-    { cls: 'total', pts: [[0, c.m1 * c.u1 + c.m2 * c.u2], [c.run, c.m1 * c.u1 + c.m2 * c.u2]], tag: [c.run - 0.03, c.m1 * c.u1 + c.m2 * c.u2, 'P, total', 1] },
+    { cls: 'total', pts: [[0, c.m1 * c.u1 + c.m2 * c.u2], [c.run, c.m1 * c.u1 + c.m2 * c.u2]], tag: [c.run - 0.03, c.m1 * c.u1 + c.m2 * c.u2, 'полный P', 1] },
   ] });
 const collTable = c => { const K0 = M.ke(c.m1, c.u1) + M.ke(c.m2, c.u2), K1 = M.ke(c.m1, c.v1) + M.ke(c.m2, c.v2); return `
   <table class="data">
-    <tr><th>кг·м/с, Дж</th><th><i>p</i>₁</th><th><i>p</i>₂</th><th><i>P</i> total</th><th><i>KE</i></th></tr>
+    <tr><th>кг·м/с, Дж</th><th><i>p</i>₁</th><th><i>p</i>₂</th><th>полный <i>P</i></th><th>КЭ</th></tr>
     <tr><td>до столкновения</td><td>${f(c.m1 * c.u1, 1)}</td><td>${f(c.m2 * c.u2, 1)}</td><td>${f(c.m1 * c.u1 + c.m2 * c.u2, 1)}</td><td>${f(K0)}</td></tr>
     <tr><td>после столкновения</td><td>${f(c.m1 * c.v1, 1)}</td><td>${f(c.m2 * c.v2, 1)}</td><td>${f(c.m1 * c.v1 + c.m2 * c.v2, 1)}</td><td>${f(K1)}</td></tr>
   </table>`; };
@@ -52,7 +52,7 @@ export const BULLET = ((0.01 + 2.0) / 0.01) * Math.sqrt(2 * M.G * Pd.L * (1 - Ma
 const vecSketch = (() => {
   const s = 0.0016, ox = 190, oy = 128, ax = ox + C.px * s, ay = oy - C.py * s;
   const head = (x1, y1, x2, y2, cls) => { const a = Math.atan2(y2 - y1, x2 - x1), L = 9; return `<line class="${cls}" x1="${x1}" y1="${y1}" x2="${x2 - 6 * Math.cos(a)}" y2="${y2 - 6 * Math.sin(a)}"/><path class="${cls}h" d="M${x2},${y2}L${x2 - L * Math.cos(a - 0.4)},${y2 - L * Math.sin(a - 0.4)}L${x2 - L * Math.cos(a + 0.4)},${y2 - L * Math.sin(a + 0.4)}Z"/>`; };
-  return `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Momentum vectors added tip to tail">
+  return `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Векторы импульса, сложенные последовательно">
     ${head(ox, oy, ax, oy, 'vk')}${head(ax, oy, ax, ay, 'vk')}${head(ox, oy, ax, ay, 'vb')}
     <text class="lab" x="${ox - 4}" y="${oy + 6}" text-anchor="end">p_car ${k(C.px)}</text>
     <text class="lab" x="${ax + 8}" y="${(oy + ay) / 2}">p_truck ${k(C.py)}</text>
@@ -64,10 +64,10 @@ const vecSketch = (() => {
 const shellChart = chart({
   x0: 0, x1: 14, y0: 0, y1: 5, xlabel: 'координата x (м)', ylabel: 'высота (м)', cursors: ['shell'], label: 'Траектории снаряда, двух его половин и центра масс',
   series: [
-    { cls: 'trend', pts: samples(0, Sh.run, 40, t => 0).map(([t]) => M.shell(t).cm), tag: [Sh.R * 0.62, Sh.H * 0.55, 'centre of mass'] },
+    { cls: 'trend', pts: samples(0, Sh.run, 40, t => 0).map(([t]) => M.shell(t).cm), tag: [Sh.R * 0.62, Sh.H * 0.55, 'центр масс'] },
     { pts: samples(0, Sh.ta, 20, t => 0).map(([t]) => M.shell(t).cm) },
-    { pts: samples(Sh.ta, Sh.run, 20, t => 0).map(([t]) => M.shell(t).a), tag: [Sh.R / 2 - 0.15, 0.9, 'rear half', 1] },
-    { pts: samples(Sh.ta, Sh.run, 20, t => 0).map(([t]) => M.shell(t).b), tag: [10.3, 3.0, 'front half'] },
+    { pts: samples(Sh.ta, Sh.run, 20, t => 0).map(([t]) => M.shell(t).a), tag: [Sh.R / 2 - 0.15, 0.9, 'задняя половина', 1] },
+    { pts: samples(Sh.ta, Sh.run, 20, t => 0).map(([t]) => M.shell(t).b), tag: [10.3, 3.0, 'передняя половина'] },
   ],
   marks: [[Sh.R / 2, 0, 'R/2'], [Sh.R, 0, 'R'], [1.5 * Sh.R, 0, '3R/2']],
 });
@@ -78,8 +78,8 @@ const Rd = M.ROD, Tr = M.TRI, Se = M.SEMI, Ll = M.ELL, Ho = M.HOLE;
 const rodChart = chart({
   x0: 0, x1: Rd.L, y0: 0, y1: 3, xlabel: 'координата x вдоль стержня (м)', ylabel: 'λ (кг/м) и x·λ (кг)', cursors: ['rodL', 'rodM'], label: 'Линейная плотность и её момент вдоль стержня; отмечена точка равновесия',
   series: [
-    { fill: true, pts: samples(0, Rd.L, 40, x => x * M.lam('N', x)), tag: [0.95, 1.25, 'x·λ: area = ∫x dm', 1] },
-    { pts: samples(0, Rd.L, 2, x => M.lam('N', x)), tag: [1.97, 1.02, 'λ: area = M', 1] },
+    { fill: true, pts: samples(0, Rd.L, 40, x => x * M.lam('N', x)), tag: [0.95, 1.25, 'x·λ: площадь = ∫x dm', 1] },
+    { pts: samples(0, Rd.L, 2, x => M.lam('N', x)), tag: [1.97, 1.02, 'λ: площадь = M', 1] },
     { cls: 'trend', pts: [[Rd.xN, 0], [Rd.xN, 3]] },
   ],
   marks: [[Rd.xN, 2.92, 'x_cm = 2L/3']] });
@@ -89,7 +89,7 @@ const stripChart = chart({
   series: [
     { pts: NS.map(n => [n, M.stripSum(M.triW, Tr.h, n) / Tr.ucm]), tag: [11.8, 1.44, 'upper: triangle', 1] },
     { pts: NS.map(n => [n, M.stripSum(M.semiW, Se.R, n) / Se.ucm]), tag: [11.8, 1.36, 'lower: semicircle', 1] },
-    { cls: 'trend', pts: [[1, 1], [12, 1]], tag: [11.8, 1.0, 'the integral', 1] },
+    { cls: 'trend', pts: [[1, 1], [12, 1]], tag: [11.8, 1.0, 'интеграл', 1] },
   ],
   });
 const xy = c => `(${f(c[0])}, ${f(c[1])})`;
@@ -109,7 +109,7 @@ export const PAGES = [
       <p>Однако кинетическая энергия у них разная: <i>K</i> = <i>p</i>²/2<i>m</i>, поэтому у более лёгкого тела она больше. Изменение импульса равно Δ<i>p</i> = <i>m</i>Δ<i>v</i>.</p>
       <div class="charts">${chart({ x0: 0, x1: 5, y0: 0, y1: 4, xlabel: 'скорость (м/с)', ylabel: 'импульс (кг·м/с)', label: 'Зависимость импульса от скорости для масс 0,5 и 2 кг',
         series: [{ pts: [[0, 0], [2, 4]], tag: [1.75, 3.0, '2.0 kg', 1] }, { pts: [[0, 0], [5, 2.5]], tag: [4.1, 2.05, '0.5 kg'] }, { cls: 'trend', pts: [[0, 2], [5, 2]] }],
-        marks: [[M.CART.v, 2, 'cart'], [M.BALL.v, 2, 'ball']] })}</div>
+        marks: [[M.CART.v, 2, 'тележка'], [M.BALL.v, 2, 'шар']] })}</div>
       <p class="hintline">Масштаб стрелок импульса: ${cm(P_SCALE)} на кг·м/с. Нажмите, чтобы сложить скорости.</p>`,
     cam: { target: [STATIONS.mom + 0.3, 0.4, 0], az: -14, el: 16, dist: 16 }, lit: 'mom', scene: 'mom', look: {},
     fig: 'Одинаковый p при разных m и v',
@@ -308,13 +308,13 @@ export const PLATES = {
   crash: { text: `Импульс автомобиля направлен на восток, грузовика — на север. При последовательном сложении векторы образуют прямоугольный треугольник; синяя гипотенуза — полный импульс обломков, движущихся под углом ${C.angle.toFixed(1)}° к востоку в сторону севера.`,
     facts: () => [['импульс автомобиля (восток)', `${k(C.px)} кг·м/с`], ['импульс грузовика (север)', `${k(C.py)} кг·м/с`], ['полный импульс P', `${k(C.P)} кг·м/с`], ['v′ = P/(m₁+m₂)', `${f(C.v)} м/с`], ['направление', `${C.angle.toFixed(1)}° к востоку в сторону севера`], ['кинетическая энергия', `${k(C.K0 / 1000)} кДж → ${k(C.K1 / 1000)} кДж`]] },
   shell: { text: `Сила тяжести — внешняя сила, изменяющая траекторию всех частей, поэтому вертикальная составляющая импульса продолжает меняться. Взрыв — внутреннее взаимодействие: в момент разрыва полный импульс системы (синяя стрелка) до и после одинаков; теперь весь он приходится на переднюю половину.`,
-    facts: s => { const q = M.shell(s.shell.t); return [['координата x центра масс', `${f(q.cm[0])} m`], ['до разрыва: m·vₓ', `${f(Sh.m * Sh.vx)} kg·m/s`], ['после разрыва: (m/2)·v₂′', `${f(Sh.m / 2 * Sh.v2)} kg·m/s`], ['точки приземления', `${f(Sh.R / 2)} m and ${f(1.5 * Sh.R)} m`]]; } },
+    facts: s => { const q = M.shell(s.shell.t); return [['координата x центра масс', `${f(q.cm[0])} м`], ['до разрыва: m·vₓ', `${f(Sh.m * Sh.vx)} кг·м/с`], ['после разрыва: (m/2)·v₂′', `${f(Sh.m / 2 * Sh.v2)} кг·м/с`], ['точки приземления', `${f(Sh.R / 2)} м и ${f(1.5 * Sh.R)} м`]]; } },
 
   rods: { text: `Каждый элемент показан в собственном центре масс; его вес равен d<i>m</i>·<i>g</i> (масштаб ${cm(W_SCALE)} на ньютон). У однородного стержня веса десяти элементов одинаковы. У второго стержня масса элементов возрастает с <i>x</i>: несколько более тяжёлых элементов справа уравновешивают большее число лёгких элементов слева. Моменты сил относительно опоры с обеих сторон равны.`,
     facts: () => { const sl = M.rodSlices('N'), g = M.G, L = sl.filter(q => q.x < Rd.xN).reduce((a, q) => a + (Rd.xN - q.x) * q.dm * g, 0), Rr = sl.filter(q => q.x >= Rd.xN).reduce((a, q) => a + (q.x - Rd.xN) * q.dm * g, 0);
-      return [['однородный стержень: масса элемента', `${f(M.rodSlices('U')[0].dm, 3)} kg`], ['λ₀x/L: первый и последний элементы', `${f(sl[0].dm, 3)} kg, ${f(sl.at(-1).dm, 3)} kg`], ['x_cm, однородный / λ₀x/L', `${f(Rd.xU)} m / ${f(Rd.xN)} m`], ['момент сил слева', `${f(L, 3)} N·m`], ['момент сил справа', `${f(Rr, 3)} N·m`]]; } },
+      return [['однородный стержень: масса элемента', `${f(M.rodSlices('U')[0].dm, 3)} кг`], ['λ₀x/L: первый и последний элементы', `${f(sl[0].dm, 3)} кг, ${f(sl.at(-1).dm, 3)} кг`], ['x_cm, однородный / λ₀x/L', `${f(Rd.xU)} м / ${f(Rd.xN)} м`], ['момент сил слева', `${f(L, 3)} Н·м`], ['момент сил справа', `${f(Rr, 3)} Н·м`]]; } },
   plates: { text: `Каждая пластина разделена на восемь полос; каждая полоса показана в собственном центре масс вместе с её весом (масштаб ${cm(W_PLATE)} на ньютон). Самые тяжёлые полосы находятся возле основания или диаметра, поэтому центр масс расположен ближе к этому краю, чем к противоположной вершине.`,
-    facts: () => { const t = M.plateStrips(Tr), c = M.plateStrips(Se); return [['треугольник: M = σbh/2', `${f(Tr.M)} kg`], ['треугольник: самая тяжёлая / лёгкая полоса', `${f(t[0].dm, 3)} / ${f(t.at(-1).dm, 3)} kg`], ['полукруг: M = σπR²/2', `${f(Se.M)} kg`], ['полукруг: самая тяжёлая / лёгкая полоса', `${f(c[0].dm, 3)} / ${f(c.at(-1).dm, 3)} kg`], ['сумма 8 прямоугольников: треугольник, полукруг', `${f(M.stripSum(M.triW, Tr.h, 8), 3)}, ${f(M.stripSum(M.semiW, Se.R, 8), 3)} m`], ['интегральные значения: h/3, 4R/3π', `${f(Tr.ucm, 3)}, ${f(Se.ucm, 3)} m`]]; } },
+    facts: () => { const t = M.plateStrips(Tr), c = M.plateStrips(Se); return [['треугольник: M = σbh/2', `${f(Tr.M)} кг`], ['треугольник: самая тяжёлая / лёгкая полоса', `${f(t[0].dm, 3)} / ${f(t.at(-1).dm, 3)} кг`], ['полукруг: M = σπR²/2', `${f(Se.M)} кг`], ['полукруг: самая тяжёлая / лёгкая полоса', `${f(c[0].dm, 3)} / ${f(c.at(-1).dm, 3)} кг`], ['сумма 8 прямоугольников: треугольник, полукруг', `${f(M.stripSum(M.triW, Tr.h, 8), 3)}, ${f(M.stripSum(M.semiW, Se.R, 8), 3)} м`], ['интегральные значения: h/3, 4R/3π', `${f(Tr.ucm, 3)}, ${f(Se.ucm, 3)} м`]]; } },
   parts: { text: `После разделения каждая часть фигуры представлена точечной массой в собственном центре масс (маленькие диски). Центр масс всей L-образной фигуры лежит на линии между ними, ближе к более тяжёлой части, и остаётся на месте при раздвижении частей. Удалённый круг учитывается как отрицательная масса: центр квадрата, центр отверстия и центр масс пластины лежат на одной прямой, причём центр масс смещён в сторону, противоположную отверстию.`,
-    facts: () => [['часть A', `${f(Ll.pA.m)} kg at ${xy(Ll.pA.c)} m`], ['часть B', `${f(Ll.pB.m)} kg at ${xy(Ll.pB.c)} m`], ['L-образная фигура', `${f(Ll.M)} kg at ${xy(Ll.cm)} m`], ['пластина без отверстия', `${f(Ho.mFull)} − ${f(Ho.mPlug)} = ${f(Ho.M)} kg`], ['центр масс пластины с отверстием x_cm, y_cm', `${f(Ho.cm[0], 3)}, ${f(Ho.cm[1], 3)} m`]] },
+    facts: () => [['часть A', `${f(Ll.pA.m)} kg at ${xy(Ll.pA.c)} m`], ['часть B', `${f(Ll.pB.m)} kg at ${xy(Ll.pB.c)} m`], ['L-образная фигура', `${f(Ll.M)} кг, центр масс ${xy(Ll.cm)} м`], ['пластина без отверстия', `${f(Ho.mFull)} − ${f(Ho.mPlug)} = ${f(Ho.M)} кг`], ['центр масс пластины с отверстием x_cm, y_cm', `${f(Ho.cm[0], 3)}, ${f(Ho.cm[1], 3)} м`]] },
 };
