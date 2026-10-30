@@ -209,7 +209,7 @@ export function buildWorld(E) {
   const ghostsD = Array.from({ length: 8 }, () => ghostCircle(RB));
   label('vec', 'F<sub>g</sub> = <i>mg</i>', () => tip(wD)); label('vec', 'F<sub>d</sub> = <i>bv</i>', () => tip(dD)); label('vec red', 'ΣF', () => tip(netD));
   let vNowD = 0;
-  labels.push({ cls: 'tick', html: '', at: () => ballD.position.clone().add(V(-RB - 0.12, 0, 0)), text: () => `v = ${f2(vNowD)} m/s` });
+  labels.push({ cls: 'tick', html: '', at: () => ballD.position.clone().add(V(-RB - 0.12, 0, 0)), text: () => `v = ${f2(vNowD)} м/с` });
 
   // ---------- AP C: a steel ball sinking in honey, drawn 10× life size ----------
   const XH = STATIONS.honey, HN = M.HONEY, Z10 = 10, JR = 0.32, BASE = 0.04, HTOP = BASE + HN.jarH * Z10, JH = HTOP + 0.16;
@@ -227,7 +227,7 @@ export function buildWorld(E) {
   const ghostsH = Array.from({ length: 6 }, () => ghostCircle(RH));
   label('vec', 'F<sub>g</sub>', () => tip(wH)); label('vec', 'F<sub>d</sub>', () => tip(dH)); label('vec', 'B', () => tip(bH));
   let vNowH = 0;
-  labels.push({ cls: 'tick', html: '', at: () => ballH.position.clone().add(V(-JR - 0.05, 0, 0)), text: () => `v = ${f2(vNowH * 100)} cm/s` });
+  labels.push({ cls: 'tick', html: '', at: () => ballH.position.clone().add(V(-JR - 0.05, 0, 0)), text: () => `v = ${f2(vNowH * 100)} см/с` });
 
   // ---------- per-frame ----------
   const F = n => n * F_SCALE;
