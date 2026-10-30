@@ -20,10 +20,12 @@ jobs:
           node-version: 22
       - name: Check JavaScript syntax
         run: |
-          for file in original-engine/engine/*.js original-engine/kinematics/*.js original-engine/newton/*.js; do
+          for file in original-engine/engine/*.js original-engine/kinematics/*.js original-engine/newton/*.js original-engine/circular/*.js; do
             node --input-type=module --check < "$file"
           done
       - name: Check kinematics physics invariants
         run: node original-engine/kinematics/checks.mjs
       - name: Check Newton laws physics invariants
         run: node original-engine/newton/checks.mjs
+      - name: Check circular motion physics invariants
+        run: node original-engine/circular/checks.mjs
