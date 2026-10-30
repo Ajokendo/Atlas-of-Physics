@@ -48,7 +48,7 @@ export const PAGES = [
     fig: 'Блок в состоянии покоя',
   },
   {
-    kicker: '2.1', title: 'Tension', sub: 'нить может только тянуть',
+    kicker: '2.1', title: 'Сила натяжения', sub: 'нить может только тянуть',
     body: `
       <p class="lede"><b>Сила натяжения</b> <i>T</i> направлена вдоль нити или верёвки. Нить может тянуть тело, но не может толкать его.</p>
       <p>On the left блок массой ${f(M.M1, 1)} кг подвешен на одной нити. Он находится в равновесии, поэтому <i>T</i> = <i>mg</i> = ${f(M.W1, 1)} Н.</p>
@@ -160,7 +160,7 @@ export const PAGES = [
       </table>
       <p>Проверка: (${f(BD.m, 1)} × ${f(BD.aBlock)} + ${f(BD.Mb, 1)} × ${f(BD.aBoard)}) / ${f(BD.M, 1)} = ${f(BD.aCm)} м/с². Сила трения не влияет на <i>a</i><sub>cm</sub> всей системы. Аналогичный пример — резкое вытягивание скатерти из-под посуды: именно трение увлекает посуду, но может сообщить ей ускорение не больше μ<i>g</i>.</p>
       <div class="charts">${chart({ x0: 0, x1: 1.1, y0: 0, y1: 4.5, xlabel: 'время (с)', ylabel: 'скорость (м/с)', cursor: 'board', label: 'Скорости блока, доски и центра масс во времени',
-        series: [{ pts: [[0, 0], [1.1, BD.aBoard * 1.1]], tag: [0.86, BD.aBoard * 0.86 + 0.2, 'board'] }, { cls: 'curve total', pts: [[0, 0], [1.1, BD.aCm * 1.1]], tag: [0.92, BD.aCm * 0.92 - 0.95, 'cm'] }, { pts: [[0, 0], [1.1, BD.aBlock * 1.1]], tag: [0.8, BD.aBlock * 0.8 - 0.75, 'block'] }] })}</div>
+        series: [{ pts: [[0, 0], [1.1, BD.aBoard * 1.1]], tag: [0.86, BD.aBoard * 0.86 + 0.2, 'доска'] }, { cls: 'curve total', pts: [[0, 0], [1.1, BD.aCm * 1.1]], tag: [0.92, BD.aCm * 0.92 - 0.95, 'центр масс'] }, { pts: [[0, 0], [1.1, BD.aBlock * 1.1]], tag: [0.8, BD.aBlock * 0.8 - 0.75, 'блок'] }] })}</div>
       <p class="hintline">Масштаб стрелок: ${(F_SCALE * 100).toFixed(0)} см на ньютон. Нажмите, чтобы приподнять блок и увидеть пару сил трения.</p>`,
     cam: { target: [STATIONS.board + 0.4, 0.5, 0], az: -16, el: 15, dist: 13.5 }, lit: 'board', scene: 'board', look: {},
     fig: 'Доска, которую вытягивают из-под блока',
@@ -230,7 +230,7 @@ export const PAGES = [
 export const PLATES = {
   tug: { text: `Светлая рамка обозначает систему: оба конькобежца и верёвка. Силы натяжения, действующие на A и B, являются внутренними, равны и противоположны, поэтому их сумма равна нулю. Сила тяжести каждого конькобежца компенсируется реакцией опоры льда. При нулевой равнодействующей внешних сил центр масс (диск с четырьмя секторами) не движется.`,
     facts: s => { const r = M.tug(s.tug.t), xc = M.xcm([TG.mA, TG.mB], [r.xA, r.xB]); return [['x<sub>A</sub>, v<sub>A</sub>', `${f(r.xA)} m, ${f(r.vA)} m/s`], ['x<sub>B</sub>, v<sub>B</sub>', `${f(r.xB)} m, ${f(r.vB)} m/s`], ['x<sub>cm</sub> = Σmx/Σm', `${f(Math.abs(xc) < 5e-3 ? 0 : xc)} m`], ['internal: T on A + T on B', `${TG.T} − ${TG.T} = 0 N`], ['external: ΣF<sub>ext</sub>', '0 N']]; } },
-  board: { text: `Lifted apart, the friction pair shows: the board drags the block forward, the block drags the board back, ${f(BD.f)} N each. Inside the block + board system they cancel. Only the pull F is external, so the centre of mass accelerates at F/M, between the block’s and the board’s accelerations.`,
+  board: { text: `Если раздвинуть тела, можно увидеть пару сил трения: доска тянет блок вперёд, а блок тянет доску назад с силой ${f(BD.f)} Н. В системе «блок + доска» эти силы компенсируются. Единственная внешняя горизонтальная сила — тяга F, поэтому центр масс ускоряется с ускорением F/M, промежуточным между ускорениями блока и доски.`,
     facts: s => { const t = s.board.t, r = M.board(t); return [['ΣF<sub>ext</sub> = F', `${BD.F} N`], ['M = m + M<sub>board</sub>', `${f(BD.M, 1)} kg`], ['a<sub>cm</sub> = ΣF<sub>ext</sub>/M', `${f(BD.aCm)} m/s²`], ['v<sub>block</sub>, v<sub>board</sub>', `${f(r.vBlock)}, ${f(r.vBoard)} m/s`], ['v<sub>cm</sub>', `${f(M.xcm([BD.m, BD.Mb], [r.vBlock, r.vBoard]))} m/s`]]; } },
   drag: { text: `Шар показан вместе с диаграммой сил: сила тяжести направлена вниз, сила сопротивления — вверх. Сопротивление bv растёт со скоростью, пока не сравняется с силой тяжести; равнодействующая (красная стрелка) стремится к нулю. Ускорение равно g e<sup>−t/τ</sup>: оно максимально в начале и обращается в ноль при достижении предельной скорости.`,
     facts: s => { const r = M.linDrag(s.drag.t); return [['time', `${f(s.drag.t)} s = ${f(s.drag.t / DR.tau, 1)} τ`], ['speed v', `${f(r.v)} m/s = ${(100 * r.v / DR.vt).toFixed(1)}% of v<sub>t</sub>`], ['drag bv', `${f(r.D)} N`], ['weight mg', `${f(DR.W)} N`], ['net force, a', `${f(DR.W - r.D)} N, ${f(r.a)} m/s²`]]; } },
