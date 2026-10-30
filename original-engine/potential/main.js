@@ -19,15 +19,15 @@ startBook({
   },
   readout(s, page) {
     switch (page.scene) {
-      case 'pair': { const a = M.pair(s.pair.t, 1), b = M.pair(s.pair.t, -1); return `r ${f(a.r * 100, 1)} cm\nlike U ${f(a.U * 1e6, 3)} μJ   unlike U ${f(b.U * 1e6, 3)} μJ`; }
-      case 'square': { const st = M.square(s.square.t); return `charges placed ${st.n} of 4\nU ${f(st.U * 1e6, 3)} μJ`; }
-      case 'uniform': { const r = M.uniPath(s.uniform.t); return `x ${f(r.p[0] * 100, 1)} cm along E\nV ${f(r.V)} V   U = qV ${f(r.U * 1e9)} nJ`; }
-      case 'hill': { const r = M.hillProbe(s.clock); return `r ${f(r * 100, 1)} cm   V ${f(M.Vpoint(M.HILL.Q, r), 1)} V\nE = −dV/dr ${f(M.Epoint(M.HILL.Q, r), 0)} N/C`; }
-      case 'dipole': return `P (axis, ${M.DIP.axisX * 100} cm): V ${f(M.VdipAxis(M.DIP.axisX), 1)} V\nP′ (bisector): V 0.0 V`;
-      case 'rod': { const a = M.rodProbe(s.clock); return `a ${f(a * 100, 1)} cm   V(P) ${f(M.VrodAxis(a), 1)} V\nV(P′) ${f(M.VrodBis(M.ROD.bisA), 1)} V`; }
-      case 'ring': { const z = M.axisProbe(s.clock); return `z ${f(z * 100, 1)} cm   ring ${f(M.Vring(z), 1)} V   disc ${f(M.Vdisc(z), 1)} V\narc, at its centre: ${f(M.Varc0, 1)} V`; }
-      case 'spheres': { const r = M.sphProbe(s.spheres.t); return `r ${f(r * 100, 1)} cm\nconductor V ${f(M.Vcond(r), 1)} V   insulator V ${f(M.Vins(r), 1)} V`; }
-      case 'accel': { const u = s.accel.t / M.ACC.run, p = M.accel(u, 'p'), e = M.accel(u, 'e'); return `proton  ${f(M.eV(p.K))} eV   ${f(p.v / 1000, 1)} km/s\nelectron ${f(M.eV(e.K))} eV   ${f(e.v / 1e6, 3)} × 10⁶ m/s`; }
+      case 'pair': { const a = M.pair(s.pair.t, 1), b = M.pair(s.pair.t, -1); return `r ${f(a.r * 100, 1)} см\nодноимённые U ${f(a.U * 1e6, 3)} мкДж   разноимённые U ${f(b.U * 1e6, 3)} мкДж`; }
+      case 'square': { const st = M.square(s.square.t); return `установлено зарядов: ${st.n} из 4\nU ${f(st.U * 1e6, 3)} мкДж`; }
+      case 'uniform': { const r = M.uniPath(s.uniform.t); return `x ${f(r.p[0] * 100, 1)} см вдоль E\nV ${f(r.V)} В   U = qV ${f(r.U * 1e9)} нДж`; }
+      case 'hill': { const r = M.hillProbe(s.clock); return `r ${f(r * 100, 1)} см   V ${f(M.Vpoint(M.HILL.Q, r), 1)} В\nE = −dV/dr ${f(M.Epoint(M.HILL.Q, r), 0)} Н/Кл`; }
+      case 'dipole': return `P (ось, ${M.DIP.axisX * 100} см): V ${f(M.VdipAxis(M.DIP.axisX), 1)} В\nP′ (биссектриса): V 0,0 В`;
+      case 'rod': { const a = M.rodProbe(s.clock); return `a ${f(a * 100, 1)} см   V(P) ${f(M.VrodAxis(a), 1)} В\nV(P′) ${f(M.VrodBis(M.ROD.bisA), 1)} В`; }
+      case 'ring': { const z = M.axisProbe(s.clock); return `z ${f(z * 100, 1)} см   кольцо ${f(M.Vring(z), 1)} В   диск ${f(M.Vdisc(z), 1)} В\nдуга, в центре: ${f(M.Varc0, 1)} В`; }
+      case 'spheres': { const r = M.sphProbe(s.spheres.t); return `r ${f(r * 100, 1)} см\nпроводник V ${f(M.Vcond(r), 1)} В   диэлектрик V ${f(M.Vins(r), 1)} В`; }
+      case 'accel': { const u = s.accel.t / M.ACC.run, p = M.accel(u, 'p'), e = M.accel(u, 'e'); return `протон  ${f(M.eV(p.K))} эВ   ${f(p.v / 1000, 1)} км/с\nэлектрон ${f(M.eV(e.K))} эВ   ${f(e.v / 1e6, 3)} × 10⁶ м/с`; }
     }
     return '';
   },
