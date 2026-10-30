@@ -19,19 +19,19 @@ startBook({
   },
   readout(s, page) {
     switch (page.scene) {
-      case 'tension': { const th = M.hangAngle(s.clock * M.SLOW); return `one string: T ${f(M.W1)} N\ntwo strings at ${th.toFixed(1)}°: T ${f(M.tension2(th))} N each`; }
-      case 'plane': return `lift ${f(M.PLANE.L / 1000)} kN   weight ${f(M.PLANE.W / 1000)} kN\nthrust ${f(M.PLANE.T / 1000)} kN   drag ${f(M.PLANE.D / 1000)} kN   ΣF 0`;
-      case 'car': { const c = M.car(s.car.t); return `t ${f(s.car.t)} s   v ${f(c.v)} m/s\nfriction ${f(M.CAR.F)} N   drag ${f(c.D)} N   a ${f(c.a)} m/s²`; }
-      case 'rest': return `ΣF = ${f(M.FN)} − ${f(M.W1)} = 0 N\na = 0 m/s²`;
-      case 'glide': return `v ${f(M.V_GLIDE)} m/s   ΣF 0 N\na 0 m/s²`;
-      case 'second': { const t = s.second.t; return `t ${f(t)} s\n2 kg: v ${f(M.A1 * t)} m/s   4 kg: v ${f(M.A2 * t)} m/s`; }
-      case 'friction': { const r = M.friction(s.friction.t); return `F ${f(r.F)} N   f ${f(r.f)} N (${r.kind})\nΣF ${f(r.F - r.f)} N   a ${f(r.a)} m/s²`; }
-      case 'third': { const t = s.third.t; return `t ${f(t)} s   a ${f(M.A_PAIR)} m/s²\nF_A on B ${f(M.CONTACT, 1)} N   F_B on A ${f(M.CONTACT, 1)} N`; }
-      case 'incline': { const r = M.incline(s.incline.t); return `along the slope: s ${f(r.s)} m   v ${f(r.v)} m/s\na = g sin θ = ${f(M.A_INC)} m/s²`; }
-      case 'tug': { const r = M.tug(s.tug.t); return `x_A ${f(r.xA)} m   x_B ${f(r.xB)} m\nx_cm ${f(0)} m   T ${M.TUG.T} N each`; }
-      case 'board': { const r = M.board(s.board.t); return `t ${f(s.board.t)} s   F ${M.BOARD.F} N   a_cm ${f(M.BOARD.aCm)} m/s²\nv block ${f(r.vBlock)}   board ${f(r.vBoard)}   cm ${f(M.xcm([M.BOARD.m, M.BOARD.Mb], [r.vBlock, r.vBoard]))} m/s`; }
-      case 'drag': { const r = M.linDrag(s.drag.t); return `t ${f(s.drag.t)} s   v ${f(r.v)} m/s (${(100 * r.v / M.DRAG.vt).toFixed(1)}% of v_t)\nmg ${f(M.DRAG.W)} N   bv ${f(r.D)} N`; }
-      case 'honey': { const r = M.honey(s.honey.t); return `sunk ${f(r.x * 100, 1)} cm   v ${f(r.v * 100)} cm/s\nmg ${f(M.HONEY.W * 1000, 1)} mN = bv ${f(M.HONEY.b * r.v * 1000, 1)} + B ${f(M.HONEY.B * 1000, 1)} mN`; }
+      case 'tension': { const th = M.hangAngle(s.clock * M.SLOW); return `одна нить: T ${f(M.W1)} Н\nдве нити под углом ${th.toFixed(1)}°: T ${f(M.tension2(th))} Н каждая`; }
+      case 'plane': return `подъёмная сила ${f(M.PLANE.L / 1000)} кН   сила тяжести ${f(M.PLANE.W / 1000)} кН\nтяга ${f(M.PLANE.T / 1000)} кН   сопротивление ${f(M.PLANE.D / 1000)} кН   ΣF = 0`;
+      case 'car': { const c = M.car(s.car.t); return `t ${f(s.car.t)} с   v ${f(c.v)} м/с\nтрение ${f(M.CAR.F)} Н   сопротивление ${f(c.D)} Н   a ${f(c.a)} м/с²`; }
+      case 'rest': return `ΣF = ${f(M.FN)} − ${f(M.W1)} = 0 Н\na = 0 м/с²`;
+      case 'glide': return `v ${f(M.V_GLIDE)} м/с   ΣF = 0 Н\na = 0 м/с²`;
+      case 'second': { const t = s.second.t; return `t ${f(t)} с\n2 кг: v ${f(M.A1 * t)} м/с   4 кг: v ${f(M.A2 * t)} м/с`; }
+      case 'friction': { const r = M.friction(s.friction.t); return `F ${f(r.F)} Н   f ${f(r.f)} Н (${r.kind === 'static' ? 'покой' : 'скольжение'})\nΣF ${f(r.F - r.f)} Н   a ${f(r.a)} м/с²`; }
+      case 'third': { const t = s.third.t; return `t ${f(t)} с   a ${f(M.A_PAIR)} м/с²\nF_A→B ${f(M.CONTACT, 1)} Н   F_B→A ${f(M.CONTACT, 1)} Н`; }
+      case 'incline': { const r = M.incline(s.incline.t); return `вдоль плоскости: s ${f(r.s)} м   v ${f(r.v)} м/с\na = g sin θ = ${f(M.A_INC)} м/с²`; }
+      case 'tug': { const r = M.tug(s.tug.t); return `x_A ${f(r.xA)} м   x_B ${f(r.xB)} м\nx_cm ${f(0)} м   T ${M.TUG.T} Н на каждую нить`; }
+      case 'board': { const r = M.board(s.board.t); return `t ${f(s.board.t)} с   F ${M.BOARD.F} Н   a_cm ${f(M.BOARD.aCm)} м/с²\nv блока ${f(r.vBlock)}   доски ${f(r.vBoard)}   центра масс ${f(M.xcm([M.BOARD.m, M.BOARD.Mb], [r.vBlock, r.vBoard]))} м/с`; }
+      case 'drag': { const r = M.linDrag(s.drag.t); return `t ${f(s.drag.t)} с   v ${f(r.v)} м/с (${(100 * r.v / M.DRAG.vt).toFixed(1)}% от v_t)\nmg ${f(M.DRAG.W)} Н   bv ${f(r.D)} Н`; }
+      case 'honey': { const r = M.honey(s.honey.t); return `погружение ${f(r.x * 100, 1)} см   v ${f(r.v * 100)} см/с\nmg ${f(M.HONEY.W * 1000, 1)} мН = bv ${f(M.HONEY.b * r.v * 1000, 1)} + B ${f(M.HONEY.B * 1000, 1)} мН`; }
     }
     return '';
   },
