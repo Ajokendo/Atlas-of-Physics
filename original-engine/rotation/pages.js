@@ -50,77 +50,77 @@ export const PAGES = [
   {
     kicker: 'Глава 7', title: 'Вращение', sub: 'вращательное движение',
     body: `
-      <p class="lede">Every point on a turning wheel turns through the same <b>angle</b> θ (in radians) in the same time. So we describe the whole wheel with angles: ω = Δθ/Δt in rad/s, α = Δω/Δt in rad/s².</p>
+      <p class="lede">Каждая точка вращающегося колеса за одно и то же время поворачивается на одинаковый <b>угол</b> θ (в радианах). Поэтому вращение всего колеса описывается угловыми величинами: ω = Δθ/Δt (рад/с), α = Δω/Δt (рад/с²).</p>
       <p>Положительным считается вращение против часовой стрелки. Это колесо разгоняется с угловым ускорением ${f(M.WHEEL.alpha, 1)} рад/с², а затем тормозит с таким же по модулю ускорением. При разгоне ω и α имеют <b>одинаковые знаки</b>, при торможении — <b>противоположные</b>. Уравнения кинематики применимы и здесь, если заменить x → θ, v → ω, a → α:</p>
       <table class="data eqs">
         <tr><td>ω = ω<sub>0</sub> + αt</td><td>без Δθ</td></tr>
         <tr><td>Δθ = ω<sub>0</sub>t + ½αt²</td><td>без ω</td></tr>
         <tr><td>ω² = ω<sub>0</sub>² + 2αΔθ</td><td>без t</td></tr>
       </table>
-      <div class="charts">${chart({ x0: 0, x1: 4.8, y0: 0, y1: 4, xlabel: 'time (s)', ylabel: 'ω (rad/s)', cursors: ['wheelW'], label: 'Angular velocity against time: up, then down',
+      <div class="charts">${chart({ x0: 0, x1: 4.8, y0: 0, y1: 4, xlabel: 'время (с)', ylabel: 'ω (рад/с)', cursors: ['wheelW'], label: 'Угловая скорость во времени: разгон и торможение',
         series: [{ pts: curvePts(t => M.wheel(t).w, 0, M.WHEEL.run, 48), tag: [0.5, 1.6, 'α > 0'] }, { cls: 'trend', pts: [], tag: [3.5, 2.4, 'α < 0'] }] })}</div>
-      <p class="hintline">Click the wheel to see the angle it has turned through.</p>`,
+      <p class="hintline">Нажмите на колесо, чтобы увидеть угол его поворота.</p>`,
     cam: { target: [STATIONS.wheel, 1.15, 0], az: -14, el: 6, dist: 7.2 }, lit: 'wheel', scene: 'wheel', look: {},
     fig: 'Колесо разгоняется, затем тормозит',
   },
   {
     kicker: '7.1', title: 'Два пассажира', sub: 'v = rω',
     body: `
-      <p class="lede">On a merry-go-round both riders share one ω. The one at the edge goes round a bigger circle in the same time, so she moves faster: twice the radius, twice the speed.</p>
+      <p class="lede">На карусели оба пассажира имеют одинаковую ω. Пассажир у края движется по окружности большего радиуса за то же время, поэтому его линейная скорость выше: радиус вдвое больше — скорость тоже вдвое больше.</p>
       <table class="data">
         <tr><th></th><th>линейное</th><th>угловое</th><th>связь</th></tr>
         <tr><td>перемещение</td><td>Δx</td><td>Δθ</td><td>s = rΔθ</td></tr>
         <tr><td>скорость</td><td>v</td><td>ω</td><td>v = rω</td></tr>
         <tr><td>ускорение</td><td>a<sub>t</sub></td><td>α</td><td>a<sub>t</sub> = rα</td></tr>
       </table>
-      <p>Each rider also has a centripetal acceleration a<sub>c</sub> = rω² toward the middle, from the change in direction.</p>
-      <div class="charts">${chart({ x0: 0, x1: 5, y0: 0, y1: 2.5, xlabel: 'time (s)', ylabel: 'speed v (m/s)', cursors: ['disc1', 'disc2'], label: 'Speed of the two riders against time',
-        series: [{ pts: curvePts(t => M.DISC.r2 * M.disc(t).w, 0, M.DISC.run, 50), tag: [3.3, 1.75, `r = ${M.DISC.r2} m`] }, { pts: curvePts(t => M.DISC.r1 * M.disc(t).w, 0, M.DISC.run, 50), tag: [3.75, 0.12, `r = ${M.DISC.r1} m`] }] })}</div>
-      <p class="hintline">Click to split each rider’s acceleration. v: ${cm(V_SCALE)} per m/s; a: ${cm(A_SCALE)} per m/s².</p>`,
+      <p>У каждого пассажира также есть центростремительное ускорение a<sub>c</sub> = rω², направленное к центру и обусловленное изменением направления скорости.</p>
+      <div class="charts">${chart({ x0: 0, x1: 5, y0: 0, y1: 2.5, xlabel: 'время (с)', ylabel: 'скорость v (м/с)', cursors: ['disc1', 'disc2'], label: 'Скорость двух пассажиров во времени',
+        series: [{ pts: curvePts(t => M.DISC.r2 * M.disc(t).w, 0, M.DISC.run, 50), tag: [3.3, 1.75, `r = ${M.DISC.r2} м`] }, { pts: curvePts(t => M.DISC.r1 * M.disc(t).w, 0, M.DISC.run, 50), tag: [3.75, 0.12, `r = ${M.DISC.r1} м`] }] })}</div>
+      <p class="hintline">Нажмите, чтобы разложить ускорение каждого пассажира на составляющие. Масштаб v: ${cm(V_SCALE)} на м/с; a: ${cm(A_SCALE)} на м/с².</p>`,
     cam: { target: [STATIONS.disc, 0.7, 0], az: -10, el: 42, dist: 10.5 }, lit: 'disc', scene: 'disc', look: {},
     fig: 'Два пассажира, одна угловая скорость ω',
   },
   {
     kicker: '7.2', title: 'Момент силы', sub: 'что заставляет тело вращаться',
     body: `
-      <p class="lede">A push swings a door only if it acts away from the hinge and not straight at it. Its turning effect is the <b>torque</b>, in N·m:</p>
+      <p class="lede">Толчок поворачивает дверь, только если приложен на расстоянии от петли и не направлен вдоль двери. Вращательное действие силы характеризуется <b>моментом силы</b>, измеряемым в Н·м:</p>
       <div class="eq">τ = rF sin φ = F × lever arm</div>
-      <p>r runs from the hinge to the push, φ is the angle between r and F. Only F sin φ, the part square to the door, turns it.</p>
+      <p>Вектор r направлен от петли к точке приложения силы, а φ — угол между r и F. Дверь поворачивает только составляющая F sin φ, перпендикулярная двери.</p>
       <table class="data">
         <tr><th>одинаковая сила ${f(M.DOOR.F, 0)} Н</th><th>τ (Н·м)</th></tr>
         ${D.map(c => `<tr><td>${c.name}</td><td>${f(c.tau)}</td></tr>`).join('')}
       </table>
-      <div class="charts">${chart({ x0: 0, x1: 180, y0: 0, y1: 10, xlabel: 'angle φ between r and F (°)', ylabel: 'τ (N·m)', label: 'Torque against push angle at two distances',
-        series: [{ pts: curvePts(p => M.torque(0.85, M.DOOR.F, p), 0, 180), tag: [122, 7.6, 'r = 0.85 m'] }, { pts: curvePts(p => M.torque(0.425, M.DOOR.F, p), 0, 180), tag: [118, 1.4, 'r = 0.425 m'] }],
+      <div class="charts">${chart({ x0: 0, x1: 180, y0: 0, y1: 10, xlabel: 'угол φ между r и F (°)', ylabel: 'τ (Н·м)', label: 'Зависимость момента силы от угла приложения при двух плечах',
+        series: [{ pts: curvePts(p => M.torque(0.85, M.DOOR.F, p), 0, 180), tag: [122, 7.6, 'r = 0,85 м'] }, { pts: curvePts(p => M.torque(0.425, M.DOOR.F, p), 0, 180), tag: [118, 1.4, 'r = 0,425 м'] }],
         marks: [[90, D[0].tau, '', 0, 0], [90, D[1].tau, '', 0, 0], [30, D[2].tau, '30°', -26, -6]] })}</div>
-      <p class="hintline">Click the doors to draw each lever arm. Arrows ${cm(F_LIGHT)} per newton.</p>`,
+      <p class="hintline">Нажмите на двери, чтобы показать плечо каждой силы. Масштаб стрелок: ${cm(F_LIGHT)} на ньютон.</p>`,
     cam: { target: [STATIONS.doors + 0.05, 0.6, -0.4], az: -14, el: 48, dist: 14.5 }, lit: 'doors', scene: 'doors', look: {},
     fig: 'Одинаковая сила, три момента',
   },
   {
     kicker: '7.3', title: 'Равновесие', sub: 'нет поступательного и вращательного ускорения',
     body: `
-      <p class="lede">A plank bridge, and a ${M.PLANK.m} kg crate slid slowly across it. To stay put, Σ<i>F</i> = 0 <i>and</i> Στ = 0.</p>
+      <p class="lede">На мостике лежит ящик массой ${M.PLANK.m} кг, который медленно перемещают вдоль доски. Для равновесия необходимо, чтобы Σ<i>F</i> = 0 и Στ = 0.</p>
       <p>Рассчитайте моменты относительно точки, в которой исчезает неизвестная сила: опоры A, где у <i>F</i><sub>A</sub> нулевое плечо. Против часовой стрелки — плюс, по часовой — минус:</p>
       <div class="eq">L·F<sub>B</sub> − (L/2)·Mg − x·mg = 0</div>
       <p>Затем из Σ<i>F</i> = 0 получаем <i>F</i><sub>A</sub> = (M + m)g − <i>F</i><sub>B</sub>. Чем ближе ящик к опоре, тем большую нагрузку она принимает.</p>
-      <div class="charts">${chart({ x0: 0, x1: 4, y0: 0, y1: 400, xlabel: 'crate position x from A (m)', ylabel: 'support force (N)', cursors: ['plankA', 'plankB'], label: 'Support forces against crate position',
+      <div class="charts">${chart({ x0: 0, x1: 4, y0: 0, y1: 400, xlabel: 'координата ящика x от A (м)', ylabel: 'реакция опор (Н)', cursors: ['plankA', 'plankB'], label: 'Реакции опор в зависимости от положения ящика',
         series: [{ pts: curvePts(x => M.plank(x).FA, 0, 4, 4), tag: [3.55, M.plank(3.55).FA + 4, 'F<tspan baseline-shift="sub" font-size="8">A</tspan>'] }, { pts: curvePts(x => M.plank(x).FB, 0, 4, 4), tag: [3.55, M.plank(3.55).FB - 60, 'F<tspan baseline-shift="sub" font-size="8">B</tspan>'] }] })}</div>
-      <p class="hintline">Click the plank for the torques about A. Arrows ${cm(F_HEAVY)} per newton.</p>`,
+      <p class="hintline">Нажмите на доску, чтобы увидеть моменты сил относительно A. Масштаб стрелок: ${cm(F_HEAVY)} на ньютон.</p>`,
     cam: { target: [STATIONS.plank, 1.3, 0], az: -14, el: 10, dist: 13 }, lit: 'plank', scene: 'plank', look: {},
     fig: `Доска массой ${M.PLANK.M} кг и ящик массой ${M.PLANK.m} кг`,
   },
   {
     kicker: '7.4', title: 'Лестница', sub: 'насколько низко она может наклониться?',
     body: `
-      <p class="lede">A ${M.LADDER.m} kg ladder on a rough floor against a smooth wall, which can only push straight out.</p>
+      <p class="lede">Лестница массой ${M.LADDER.m} кг опирается на шероховатый пол и гладкую стену. Стена может только толкать лестницу перпендикулярно своей поверхности.</p>
       <p>Условия сил: <i>F</i><sub>N</sub> = mg и <i>f</i><sub>s</sub> = <i>F</i><sub>w</sub>. Запишем моменты относительно нижнего конца O: две силы приложены в этой точке и не создают момента.</p>
       <div class="eq">(L sin θ)·F<sub>w</sub> = (½L cos θ)·mg</div>
-      <p>The lower the ladder, the more friction the foot needs. Friction gives at most μ<sub>s</sub>mg, so it slips below tan θ<sub>min</sub> = 1/(2μ<sub>s</sub>): ${dg(M.LADDER.thMin)}° for μ<sub>s</sub> = ${f(M.LADDER.muS)}, whatever its mass or length.</p>
-      <div class="charts">${chart({ x0: 40, x1: 85, y0: 0, y1: 120, xlabel: 'ladder angle θ (°)', ylabel: 'friction needed (N)', cursors: ['ladder'], label: 'Friction needed against ladder angle',
-        series: [{ pts: curvePts(d => Math.min(M.ladder(d * Math.PI / 180).f, 120), 41.2, 85) }, { cls: 'trend', pts: [[40, M.LADDER.muS * M.LADDER.W], [85, M.LADDER.muS * M.LADDER.W]], tag: [64, M.LADDER.muS * M.LADDER.W + 4, 'most friction can give'] }],
+      <p>Чем ниже наклонена лестница, тем больше сила трения требуется внизу. Максимальная сила трения равна μ<sub>s</sub>mg, поэтому лестница начинает скользить при tan θ меньше 1/(2μ<sub>s</sub). Минимальный угол здесь ${dg(M.LADDER.thMin)}° при μ<sub>s</sub> = ${f(M.LADDER.muS)} и не зависит от массы и длины лестницы.</p>
+      <div class="charts">${chart({ x0: 40, x1: 85, y0: 0, y1: 120, xlabel: 'угол наклона лестницы θ (°)', ylabel: 'необходимая сила трения (Н)', cursors: ['ladder'], label: 'Необходимая сила трения в зависимости от угла наклона лестницы',
+        series: [{ pts: curvePts(d => Math.min(M.ladder(d * Math.PI / 180).f, 120), 41.2, 85) }, { cls: 'trend', pts: [[40, M.LADDER.muS * M.LADDER.W], [85, M.LADDER.muS * M.LADDER.W]], tag: [64, M.LADDER.muS * M.LADDER.W + 4, 'максимальная сила трения'] }],
         marks: [[dg(M.LADDER.thMin), M.LADDER.muS * M.LADDER.W, `θ<tspan baseline-shift="sub" font-size="8">min</tspan> = ${dg(M.LADDER.thMin)}°`, -62, 22]] })}</div>
-      <p class="hintline">Click the ladder for the lever arms about O. Arrows ${cm(F_HEAVY)} per newton.</p>`,
+      <p class="hintline">Нажмите на лестницу, чтобы увидеть плечи сил относительно O. Масштаб стрелок: ${cm(F_HEAVY)} на ньютон.</p>`,
     cam: { target: [STATIONS.ladder + 0.15, 1.45, 0], az: -18, el: 8, dist: 11.5 }, lit: 'ladder', scene: 'ladder', look: {},
     fig: 'Лестница на шероховатом полу',
   },
