@@ -96,7 +96,7 @@ export function buildWorld(E) {
 
   // ---------- 1 · what SHM is: a block on a spring, strobed ----------
   const X0 = STATIONS.spring;
-  const g0 = asm('spring', root, { title: 'Block on a spring', sub: 'back and forth about equilibrium' });
+  const g0 = asm('spring', root, { title: 'Блок на пружине', sub: 'колеблется вокруг положения равновесия' });
   const o0 = oscillator(g0, X0, 0);
   marks(X0, -0.45, 0.45, M.A);
   // strobe outlines at equal time steps through half a cycle: bunched at the ends
@@ -107,7 +107,7 @@ export function buildWorld(E) {
 
   // ---------- 2 · Hooke's law ----------
   const X1 = STATIONS.hooke;
-  const g1 = asm('hooke', root, { title: 'Restoring force', sub: 'F = −kx, always toward x = 0' });
+  const g1 = asm('hooke', root, { title: 'Возвращающая сила', sub: 'F = −kx, всегда направлена к x = 0' });
   const o1 = oscillator(g1, X1, 0);
   marks(X1, -0.45, 0.45, M.A, false);
   const fs1 = force(g1), fg1 = force(g1), fn1 = force(g1), a1 = force(g1, 'red'), dx1 = thinArrow(g1, 'Displacement');
@@ -117,7 +117,7 @@ export function buildWorld(E) {
 
   // ---------- 3 · x, v, a: the block draws its own graph on a moving paper strip ----------
   const X2 = STATIONS.trace, PZ = 0.42, PLEN = 2.9;
-  const g2 = asm('trace', root, { title: 'Its graph', sub: 'position drawn against time' });
+  const g2 = asm('trace', root, { title: 'График движения', sub: 'координата в зависимости от времени' });
   const o2 = oscillator(g2, X2, 0, { floor: false });
   floorStrip(X2 - 1.39, X2 + 1.25, -0.4, 0.4);
   part(root, box(1.5, 0.012, PLEN, 0.004), { tone: 'lo', pal: 'base', pos: [X2, 0.008, PZ + PLEN / 2], name: 'Paper' });
@@ -135,7 +135,7 @@ export function buildWorld(E) {
 
   // ---------- 4 · energy: kinetic and spring potential, as bars ----------
   const X3 = STATIONS.energy, BZ = 0;
-  const g3 = asm('energy', root, { title: 'Energy in the spring', sub: 'K + U = ½kA², always' });
+  const g3 = asm('energy', root, { title: 'Энергия пружины', sub: 'K + U = ½kA² в каждый момент' });
   const o3 = oscillator(g3, X3, 0);
   marks(X3, -0.45, 0.45, M.A, false);
   const barGeo = box(0.3, 1, 0.3, 0.008).translate(0, 0.5, 0);
@@ -153,7 +153,7 @@ export function buildWorld(E) {
   // ---------- 5 · the same block hanging from a spring ----------
   const X4 = STATIONS.hang, CY = 3.0, TOPY = CY - M.HANG.L0;     // spring's free end, unstretched
   ceiling(X4, CY, 1.6);
-  const g4 = asm('hang', root, { title: 'Hanging block', sub: 'a new equilibrium, the same period' });
+  const g4 = asm('hang', root, { title: 'Подвешенный блок', sub: 'новое равновесие, прежний период' });
   const b4 = block(g4, S), coil4 = coil(g4);
   const fs4 = force(g4), fg4 = force(g4), net4 = force(g4, 'red'), d4 = thinArrow(root, 'Stretch');
   const eqEnd = TOPY - M.D;
@@ -168,7 +168,7 @@ export function buildWorld(E) {
   // ---------- 6 · the pendulum ----------
   const X5 = STATIONS.pendulum, PIV = V(X5, 3.2, 0);
   ceiling(X5, PIV.y, 1.2);
-  const g5 = asm('pendulum', root, { title: 'The pendulum', sub: 'gravity along the arc pulls it back' });
+  const g5 = asm('pendulum', root, { title: 'Маятник', sub: 'сила тяжести вдоль дуги возвращает его назад' });
   const p5 = pend(g5, PIV, M.PEND.L, 0.11);
   swingGhosts(PIV, M.PEND.L, M.PEND.th0, 0.11);
   const pf = (pal = 'ink') => arrow(g5, pal, { r: 0.016, head: 0.08, headR: 0.042, name: pal === 'red' ? 'Restoring force' : 'Forces' });
@@ -181,11 +181,11 @@ export function buildWorld(E) {
 
   // ---------- 7 · double the period: 4× the mass, 4× the length ----------
   const X6 = STATIONS.double, D = M.DOUBLE, PY6 = 3.4;
-  const g6s = asm('springs4', root, { title: 'Mass and period', sub: 'four times the mass, twice the period' });
+  const g6s = asm('springs4', root, { title: 'Масса и период', sub: 'масса в 4 раза больше, период в 2 раза больше' });
   const o6a = oscillator(g6s, X6 - 1.9, 0.6), o6b = oscillator(g6s, X6 - 1.9, -0.6, { s: S4 });
   label('tick', '<i>m</i>', () => V(o6a.b.position.x + S / 2, S + 0.14, 0.6 + S / 2)); label('tick', '4<i>m</i>', () => V(o6b.b.position.x + S4 / 2, S4 + 0.14, -0.6 + S4 / 2));
   ceiling(X6 + 1.1, PY6, 1.8);
-  const g6p = asm('pend4', root, { title: 'Length and period', sub: 'four times the length, twice the period' });
+  const g6p = asm('pend4', root, { title: 'Длина и период', sub: 'длина в 4 раза больше, период в 2 раза больше' });
   const pv6a = V(X6 + 0.6, PY6, 0), pv6b = V(X6 + 1.6, PY6, 0);
   const p6a = pend(g6p, pv6a, D.L, 0.1), p6b = pend(g6p, pv6b, D.L4, 0.1);
   swingGhosts(pv6a, D.L, D.th0, 0.1); swingGhosts(pv6b, D.L4, D.th0, 0.1);
@@ -193,11 +193,11 @@ export function buildWorld(E) {
 
   // ---------- 8 · what the period ignores: amplitude, and the pendulum's mass ----------
   const X7 = STATIONS.ignore, I = M.IGNORE, PY7 = 2.7;
-  const g7a = asm('amp', root, { title: 'Two amplitudes', sub: 'same spring, same mass, same period' });
+  const g7a = asm('amp', root, { title: 'Две амплитуды', sub: 'одинаковые пружина, масса и период' });
   const o7a = oscillator(g7a, X7 - 1.6, 0.6), o7b = oscillator(g7a, X7 - 1.6, -0.6);
   label('tick', `<i>A</i> = ${I.A1.toFixed(2)} m`, () => V(X7 - 1.6 + 1.2, 0.05, 0.6 + 0.45)); label('tick', `<i>A</i> = ${I.A2.toFixed(2)} m`, () => V(X7 - 1.6 + 1.2, 0.05, -0.6 + 0.45));
   ceiling(X7 + 0.95, PY7, 1.6);
-  const g7p = asm('bobs', root, { title: 'Two masses', sub: 'same length, same period' });
+  const g7p = asm('bobs', root, { title: 'Две массы', sub: 'одинаковая длина и период' });
   const pv7a = V(X7 + 0.5, PY7, 0), pv7b = V(X7 + 1.4, PY7, 0), r7b = 0.1 * Math.cbrt(I.m2 / I.m1);
   const p7a = pend(g7p, pv7a, I.L, 0.1, '1.0 kg bob'), p7b = pend(g7p, pv7b, I.L, r7b, '4.0 kg bob');
   swingGhosts(pv7a, I.L, I.th0, 0.1); swingGhosts(pv7b, I.L, I.th0, r7b);
@@ -206,7 +206,7 @@ export function buildWorld(E) {
 
   // ---------- 9 · the SHM equation: two blocks, same spring, started differently ----------
   const X9 = STATIONS.ode, YC9 = 1.45;
-  const g9 = asm('starts', root, { title: 'Two starts', sub: 'same ω, different A and φ' });
+  const g9 = asm('starts', root, { title: 'Два способа запуска', sub: 'одинаковая ω, разные A и φ' });
   g9.userData.focus = () => ({ target: [X9 + 0.05, 0.95, 0], radius: 2.6 });
   const ref9 = new THREE.Group(); g9.add(ref9);
   const o9 = M.STARTS.map((st, i) => {
@@ -237,12 +237,12 @@ export function buildWorld(E) {
   const X10 = STATIONS.physical, PY10 = 3.2, RD = M.ROD, HP = M.HOOP;
   ceiling(X10 - 0.1, PY10, 3.0);
   const pin = (g, at) => part(g, zAxis(cyl(0.025, 0.2, 16)), { tone: 'mid', pal: 'dark', pos: at.toArray(), name: 'Pivot' });
-  const gs10 = asm('string', root, { title: 'A simple pendulum', sub: 'all its mass at one distance' });
+  const gs10 = asm('string', root, { title: 'Математический маятник', sub: 'вся масса сосредоточена на одном расстоянии' });
   const pv10s = V(X10 - 1.1, PY10, 0), p10s = pend(gs10, pv10s, RD.L, 0.1);
   gs10.userData.focus = () => ({ target: [pv10s.x, PY10 - 0.85, 0], radius: 1.1 });
   swingGhosts(pv10s, RD.L, RD.th0, 0.1);
   label('tick', `string, <i>L</i> = ${RD.L.toFixed(1)} m`, () => pv10s.clone().add(V(-0.12, -0.9, 0)));
-  const g10 = asm('rod', root, { title: 'A swinging rod', sub: 'a physical pendulum: I about the pivot' });
+  const g10 = asm('rod', root, { title: 'Колеблющийся стержень', sub: 'физический маятник: I относительно оси подвеса' });
   g10.userData.focus = () => ({ target: [X10 - 0.05, PY10 - 0.85, 0], radius: 1.2 });
   const pv10 = V(X10 - 0.05, PY10, 0), rodArm = new THREE.Group(); rodArm.position.copy(pv10); g10.add(rodArm);
   part(rodArm, box(0.07, RD.L, 0.07, 0.02).translate(0, -RD.L / 2, 0), { tone: 'hi', name: 'Rod' });
@@ -257,7 +257,7 @@ export function buildWorld(E) {
   label('tick', `rod, <i>L</i> = ${RD.L.toFixed(1)} m`, () => pv10.clone().add(V(0.62, -1.55, 0)));
   label('axis', '2<i>L</i>/3', () => ex(g10) > 0.3 ? rodArm.localToWorld(V(-0.14, -RD.Leq, 0)) : null);
   label('axis', '<i>d</i> = <i>L</i>/2', () => ex(g10) > 0.3 ? rodArm.localToWorld(V(-0.08, -RD.d / 2, 0)) : null);
-  const g10h = asm('hoop', root, { title: 'A hoop on a nail', sub: 'I = mR² + mR² by the parallel axes' });
+  const g10h = asm('hoop', root, { title: 'Обруч на гвозде', sub: 'I = mR² + mR² по теореме Штейнера' });
   g10h.userData.focus = () => ({ target: [X10 + 1.25, PY10 - 0.5, 0], radius: 0.85 });
   const pv10h = V(X10 + 1.25, PY10 - 0.04, 0), hoopArm = new THREE.Group(); hoopArm.position.copy(pv10h); g10h.add(hoopArm);
   part(hoopArm, new THREE.TorusGeometry(HP.R, 0.022, 14, 96).translate(0, -HP.R - 0.022, 0), { tone: 'hi', name: 'Hoop' });
@@ -274,7 +274,7 @@ export function buildWorld(E) {
   // ---------- 11 · the torsion pendulum: a disc twisting on a wire ----------
   const X11 = STATIONS.torsion, TS = M.TORS, PY11 = 2.75, DY = 1.55, DH = 0.05;
   ceiling(X11, PY11, 1.0);
-  const g11 = asm('disc', root, { title: 'A disc on a wire', sub: 'twist it and it twists back: τ = −κθ' });
+  const g11 = asm('disc', root, { title: 'Диск на проволоке', sub: 'закручивается и возвращается: τ = −κθ' });
   g11.userData.focus = () => ({ target: [X11, DY + 0.15, 0], radius: 0.7 });
   part(g11, cyl(0.006, PY11 - DY - DH / 2, 8), { tone: 'hi', pal: 'ink', pos: [X11, (PY11 + DY + DH / 2) / 2, 0], name: 'Wire' });
   const disc = new THREE.Group(); disc.position.set(X11, DY, 0); g11.add(disc);
@@ -299,7 +299,7 @@ export function buildWorld(E) {
   // ---------- 12 · everyday: a car bouncing on its springs, a child on a swing ----------
   const X8 = STATIONS.life, C = M.CAR, BODY0 = 0.85;    // body's underside at equilibrium
   part(root, box(7, 0.03, 3.0, 0.01), { tone: 'lo', pal: 'board', pos: [X8 - 1.5, 0.015, 0], name: 'Road' });
-  const g8c = asm('car', root, { title: 'A car on its springs', sub: `${C.m} kg on four springs, no shock absorbers` });
+  const g8c = asm('car', root, { title: 'Автомобиль на пружинах подвески', sub: `${C.m} кг на четырёх пружинах, без амортизаторов` });
   const carBody = new THREE.Group(); g8c.add(carBody);
   part(carBody, box(4.2, 0.7, 1.7, 0.18), { tone: 'hi', pos: [0, 0.35, 0], name: 'Body' });
   part(carBody, box(2.2, 0.6, 1.5, 0.2), { tone: 'hi', pos: [-0.3, 0.98, 0], name: 'Cabin' });
@@ -313,7 +313,7 @@ export function buildWorld(E) {
   label('vec red', '<i>a</i>', () => tip(a8));
   const SW = M.SWING, PV8 = V(X8 + 1.0, 3.0, 0);
   part(root, box(0.12, 0.12, 1.2, 0.03), { tone: 'mid', pal: 'board', pos: [PV8.x, PV8.y + 0.06, 0], name: 'Branch' });
-  const g8s = asm('swing', root, { title: 'A swing', sub: `a pendulum ${SW.L.toFixed(1)} m long` });
+  const g8s = asm('swing', root, { title: 'Качели', sub: `маятник длиной ${SW.L.toFixed(1)} м` });
   const swingArm = new THREE.Group(); swingArm.position.copy(PV8); g8s.add(swingArm);
   for (const z of [-0.28, 0.28]) part(swingArm, cyl(0.01, SW.L, 8).translate(0, -SW.L / 2, z), { tone: 'hi', pal: 'ink', name: 'Ropes' });
   part(swingArm, box(0.45, 0.05, 0.7, 0.02), { tone: 'hi', pal: 'dark', pos: [0, -SW.L, 0], name: 'Seat' });
