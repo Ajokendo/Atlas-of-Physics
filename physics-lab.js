@@ -55,13 +55,40 @@ function init(root){
  }
  const resize=()=>{const w=canvas.clientWidth,h=canvas.clientHeight;if(!w||!h)return;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();};new ResizeObserver(resize).observe(canvas);
  canvas.addEventListener("pointerdown",e=>{drag=true;lastX=e.clientX;lastY=e.clientY;canvas.setPointerCapture(e.pointerId);});canvas.addEventListener("pointerup",()=>drag=false);canvas.addEventListener("pointermove",e=>{if(!drag)return;rotY+=(e.clientX-lastX)*.008;rotX+=(e.clientY-lastY)*.008;rotX=Math.max(-1.1,Math.min(1.1,rotX));lastX=e.clientX;lastY=e.clientY;});
+ const plot=root.querySelector("[data-physics-plot]"),valueOut=root.querySelector("[data-physics-value]"),labelOut=root.querySelector("[data-physics-label]"),formulaOut=root.querySelector("[data-physics-formula]");
+ const pctx=plot?.getContext("2d");
+ const calc=p=>{
+  const t=elapsed,fmt=(v,n=2)=>Number(v).toFixed(n).replace(".",",");
+  let val=0,label="",formula="",series=[];
+  const sample=fn=>Array.from({length:61},(_,i)=>fn(i/60*4));
+  switch(cfg.kind){
+   case "linear":{const v=1+7*p;val=v;label="скорость, м/с";formula="x(t) = v · t";series=sample(t=>v*t/4);break;}
+   case "force":{const F=2+18*p,m=2;val=F/m;label="ускорение, м/с²";formula="a = F / m = "+fmt(F)+" / "+fmt(m);series=sample(t=>val);break;}
+   case "circle":{const r=.5+2.5*p,v=3;val=v*v/r;label="центростремительное ускорение, м/с²";formula="aц = v² / r = 9 / "+fmt(r);series=sample(t=>r*Math.cos(t*1.4));break;}
+   case "energy":{const h=1+9*p;val=9.81*h;label="потенциальная энергия на 1 кг, Дж/кг";formula="Eп / m = g · h = 9,81 · "+fmt(h);series=sample(t=>h*(.5+.5*Math.cos(t*1.3)));break;}
+   case "collision":{const m=.5+4.5*p,v=3;val=m*v;label="импульс, кг·м/с";formula="p = m · v = "+fmt(m)+" · 3";series=sample(t=>t<2?val*(1-t/2):0);break;}
+   case "oscillation":{const A=.1+.9*p,T=2;val=A*Math.cos(2*Math.PI*t/T);label="смещение, м";formula="x(t) = A cos(2πt/T), A = "+fmt(A)+" м";series=sample(t=>A*Math.cos(2*Math.PI*t/T));break;}
+   case "rotation":{const I=.1+1.9*p,tau=2;val=tau/I;label="угловое ускорение, рад/с²";formula="α = τ / I = 2 / "+fmt(I);series=sample(t=>.5*val*(t/4)**2);break;}
+   case "fluid":{const h=.2+4.8*p;val=1000*9.81*h;label="гидростатическое давление, Па";formula="p = ρgh = 1000 · 9,81 · "+fmt(h);series=sample(t=>1000*9.81*h*t/4);break;}
+   case "charges":{const q=1+9*p;val=8.99e9*q;label="напряжённость при r = 1 м, Н/Кл";formula="E = kq/r², q = "+fmt(q)+" нКл";series=sample(t=>val/(1+t));break;}
+   case "gauss":{const q=1+9*p;val=q*1e-9/8.854e-12;label="поток поля, Н·м²/Кл";formula="Φ = q / ε₀, q = "+fmt(q)+" нКл";series=sample(t=>val);break;}
+   case "potential":{const r=.2+4.8*p;val=8.99/r;label="потенциал при q = 1 нКл, В";formula="V = kq/r = 8,99 / "+fmt(r);series=sample(t=>8.99/(r+.5*t));break;}
+   case "capacitor":{const C=1+9*p,V=12;val=C*V;label="заряд, мкКл";formula="Q = CV = "+fmt(C)+" · 12";series=sample(t=>val*(1-Math.exp(-t*1.3)));break;}
+   case "circuit":{const R=1+19*p;val=12/R;label="сила тока, А";formula="I = U / R = 12 / "+fmt(R);series=sample(t=>val);break;}
+   case "magnet":{const B=.1+1.9*p;val=2*B;label="сила Лоренца, Н (q = 1 Кл)";formula="F = qvB = 1 · 2 · "+fmt(B);series=sample(t=>val*Math.sin(t*1.5));break;}
+   case "induction":{const d=.01+.19*p;val=d/.1;label="ЭДС индукции, В";formula="|ε| = |ΔΦ| / Δt = "+fmt(d)+" / 0,1";series=sample(t=>val*Math.sin(t*1.6));break;}
+  }
+  valueOut.textContent=fmt(val,Math.abs(val)>=100?0:2)+" "+(cfg.kind==="gauss"?"×10⁻³": "");
+  labelOut.textContent=label;formulaOut.textContent=formula;
+  if(pctx){const w=plot.clientWidth||320,h=plot.clientHeight||112;plot.width=w*devicePixelRatio;plot.height=h*devicePixelRatio;pctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);pctx.clearRect(0,0,w,h);pctx.strokeStyle="#deded8";pctx.lineWidth=1;for(let j=1;j<4;j++){pctx.beginPath();pctx.moveTo(24,j*h/4);pctx.lineTo(w-5,j*h/4);pctx.stroke();}const max=Math.max(...series.map(Math.abs),1e-9);pctx.strokeStyle="#d95b43";pctx.lineWidth=2;pctx.beginPath();series.forEach((v,i)=>{const x=24+i/60*(w-30),y=h/2-v/max*(h*.38);i?pctx.lineTo(x,y):pctx.moveTo(x,y)});pctx.stroke();pctx.fillStyle="#888";pctx.font="9px monospace";pctx.fillText("t",w-12,h-5);pctx.fillText("0",5,h-5);}
+ };
  const render=()=>{requestAnimationFrame(render);const dt=Math.min(clock.getDelta(),.04);if(running)elapsed+=dt*(.35+(+speed.value)/10);const p=+phase.value/100;speedOut.textContent=(+speed.value).toFixed(1).replace(".",",")+"×";phaseOut.textContent=Math.round(p*100)+"%";
-  group.rotation.set(rotX,rotY,0);group.scale.setScalar(.75+p*.5);
-  if(object){if(cfg.kind==="linear")object.position.x=-2+((elapsed*.8)%4);if(cfg.kind==="force")object.position.x=Math.sin(elapsed*.6)*.8;if(cfg.kind==="circle"){object.position.x=1.8*Math.cos(elapsed);object.position.z=1.8*Math.sin(elapsed);}if(cfg.kind==="energy")object.position.x=-1.55+1.8*p;if(cfg.kind==="collision"){object.position.x=-2+2*p;group.children.find(o=>o.isMesh&&o.material===blue)?.position.set(2-2*p,-.7,0);}if(cfg.kind==="oscillation")object.position.x=Math.sin(elapsed*1.6)*1.2;if(cfg.kind==="rotation")object.rotation.y=elapsed;if(cfg.kind==="fluid")object.position.y=.4+Math.sin(elapsed)*.22;if(cfg.kind==="gauss")object.rotation.y=elapsed*.4;if(cfg.kind==="potential")object.position.y=-.7+Math.sin(elapsed)*.08;if(cfg.kind==="circuit")object.rotation.y=elapsed*.5;if(cfg.kind==="induction")object.position.z=Math.sin(elapsed)*.65;}
+  group.rotation.set(rotX,rotY,0);group.scale.setScalar(1);
+  if(object){if(cfg.kind==="linear")object.position.x=-2+((elapsed*(.3+p*1.8))%4);if(cfg.kind==="force")object.position.x=Math.sin(elapsed*(.2+p))*((.2+p)*.8);if(cfg.kind==="circle"){const r=.5+2.5*p;object.position.x=r*Math.cos(elapsed);object.position.z=r*Math.sin(elapsed);}if(cfg.kind==="energy")object.position.x=-1.55+1.8*p;if(cfg.kind==="collision"){object.position.x=-2+2*p;group.children.find(o=>o.isMesh&&o.material===blue)?.position.set(2-2*p,-.7,0);}if(cfg.kind==="oscillation")object.position.x=Math.sin(elapsed*(.5+p*3))* (.2+p);if(cfg.kind==="rotation")object.rotation.y=elapsed*(.3+p*2);if(cfg.kind==="fluid")object.position.y=.4+Math.sin(elapsed)*(.05+p*.3);if(cfg.kind==="gauss")object.rotation.y=elapsed*.4;if(cfg.kind==="potential")object.position.y=-.7+Math.sin(elapsed)*.08;if(cfg.kind==="circuit")object.rotation.y=elapsed*.5;if(cfg.kind==="induction")object.position.z=Math.sin(elapsed*(.3+p*3))*.65;}
   renderer.render(scene,camera);
- };render();
+ };calc(+phase.value/100);render();
  play.addEventListener("click",()=>{running=!running;play.textContent=running?"Пауза":"Продолжить";});
- speed.addEventListener("input",()=>speedOut.textContent=(+speed.value).toFixed(1).replace(".",",")+"×");phase.addEventListener("input",()=>{phaseOut.textContent=phase.value+"%";});
+ speed.addEventListener("input",()=>speedOut.textContent=(+speed.value).toFixed(1).replace(".",",")+"×");phase.addEventListener("input",()=>{phaseOut.textContent=phase.value+"%";calc(+phase.value/100);});
  const observer=new IntersectionObserver(entries=>{for(const e of entries)if(e.isIntersecting)running=true;else running=false;},{threshold:.08});observer.observe(root);
 }
 document.querySelectorAll("[data-physics-lab]").forEach(init);
