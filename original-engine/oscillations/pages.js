@@ -78,8 +78,8 @@ export const PAGES = [
       <p>Каждый следующий график показывает наклон предыдущего: cos → −sin → −cos. Ускорение <i>a</i> — это перевёрнутая и масштабированная координата <i>x</i>.</p>
       <div class="charts">
         ${chart({ x0: 0, x1: 1, xlabels: ['', ''], y0: -1, y1: 1, ylabels: ['+A', '−A'], xlabel: '', ylabel: 'x', cursors: ['tx'], label: 'Координата: косинусоида', h: 78, series: [{ pts: sample(u => Math.cos(2 * Math.PI * 2 * u), 0, 1) }] })}
-        ${chart({ x0: 0, x1: 1, xlabels: ['', ''], y0: -1, y1: 1, ylabels: ['+max', '−max'], xlabel: '', ylabel: 'v', cursors: ['tv'], label: 'Скорость: минус синусоида', h: 78, series: [{ pts: sample(u => -Math.sin(2 * Math.PI * 2 * u), 0, 1) }] })}
-        ${chart({ x0: 0, x1: 1, xlabels: ['0', '2T'], y0: -1, y1: 1, ylabels: ['+max', '−max'], xlabel: 'time', ylabel: 'a', cursors: ['ta'], label: 'Ускорение: минус косинусоида', h: 88, series: [{ pts: sample(u => -Math.cos(2 * Math.PI * 2 * u), 0, 1) }] })}
+        ${chart({ x0: 0, x1: 1, xlabels: ['', ''], y0: -1, y1: 1, ylabels: ['+максимум', '−максимум'], xlabel: '', ylabel: 'v', cursors: ['tv'], label: 'Скорость: минус синусоида', h: 78, series: [{ pts: sample(u => -Math.sin(2 * Math.PI * 2 * u), 0, 1) }] })}
+        ${chart({ x0: 0, x1: 1, xlabels: ['0', '2T'], y0: -1, y1: 1, ylabels: ['+max', '−max'], xlabel: 'время', ylabel: 'a', cursors: ['ta'], label: 'Ускорение: минус косинусоида', h: 88, series: [{ pts: sample(u => -Math.cos(2 * Math.PI * 2 * u), 0, 1) }] })}
       </div>
       <p class="hintline">Нажмите на линию записи, чтобы увидеть её наклон в точке пера — скорость.</p>`,
     cam: { target: [STATIONS.trace - 0.1, 0, 1.45], az: -10, el: 52, dist: 11 }, lit: 'trace', scene: 'trace', look: {},
@@ -108,8 +108,8 @@ export const PAGES = [
       <table class="data">
         <tr><th>положение</th><th>сила упругости</th><th>вес</th><th>равнодействующая (красная)</th></tr>
         <tr><td>верхняя точка</td><td>${f(M.K * (M.D - M.HANG.A))} Н</td><td>${f(M.WEIGHT)} Н</td><td>${f(M.K * M.HANG.A)} Н ↓</td></tr>
-        <tr><td>равновесие</td><td>${f(M.WEIGHT)} N</td><td>${f(M.WEIGHT)} N</td><td>0</td></tr>
-        <tr><td>нижняя точка</td><td>${f(M.K * (M.D + M.HANG.A))} N</td><td>${f(M.WEIGHT)} N</td><td>${f(M.K * M.HANG.A)} Н ↑</td></tr>
+        <tr><td>равновесие</td><td>${f(M.WEIGHT)} Н</td><td>${f(M.WEIGHT)} N</td><td>0</td></tr>
+        <tr><td>нижняя точка</td><td>${f(M.K * (M.D + M.HANG.A))} Н</td><td>${f(M.WEIGHT)} N</td><td>${f(M.K * M.HANG.A)} Н ↑</td></tr>
       </table>
       <p class="hintline">Нажмите на блок, чтобы увидеть диаграмму сил.</p>`,
     cam: { target: at('hang', 0.1, 1.9), az: -14, el: 6, dist: 9 }, lit: 'hang', scene: 'hang', look: {},
