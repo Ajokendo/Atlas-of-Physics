@@ -46,133 +46,133 @@ const runs = (pts, lim) => pts.reduce((out, p, i) => { if (Math.abs(p[1]) > lim 
 
 export const PAGES = [
   {
-    kicker: 'Chapter 11', title: 'Electric potential energy', sub: 'the work stored in a pair of charges',
+    kicker: 'Глава 11', title: 'Потенциальная энергия электрического взаимодействия', sub: 'работа, запасённая в системе зарядов',
     body: `
-      <p class="lede">Push a charge toward another of the same sign and you do work against the repulsion. That work is stored as <b>electric potential energy</b>.</p>
+      <p class="lede">Если перемещать заряд к другому одноимённому заряду, придётся совершить работу против силы отталкивания. Эта работа запасается в виде <b>потенциальной энергии электрического взаимодействия</b>.</p>
       <div class="eq"><i>U</i> = <i>kq</i><sub>1</sub><i>q</i><sub>2</sub> / <i>r</i></div>
-      <p><i>U</i> = 0 when the charges are infinitely far apart. Bringing +2 nC in from ${M.PAIR.r0 * 100} cm to ${M.PAIR.r1 * 100} cm of +4 nC takes ${uJ(Ulike.W)} μJ. Unlike charges pull together, so their <i>U</i> is <b>negative</b> and falls as they close. <i>U</i> is a scalar: the signs of the charges carry its sign.</p>
-      <div class="charts">${chart({ ...R.pair, zero: true, xlabel: 'separation r (cm)', ylabel: 'U (μJ)', cursors: [['pairL'], ['pairU', BLUE]], label: 'Potential energy against separation for like and unlike pairs',
-        series: [{ pts: samples(60, 10, 40, r => M.Upair(M.PAIR.q1, M.PAIR.q2, r / 100) * 1e6), tag: [24, 0.38, 'like: U > 0'] }, { color: BLUE, pts: samples(60, 10, 40, r => M.Upair(M.PAIR.q1, -M.PAIR.q2, r / 100) * 1e6), tag: [24, -0.18, 'unlike: U < 0'] }] })}</div>
-      <p class="hintline">Click for the path in steps, each adding <i>F</i>Δ<i>r</i>. 1 square = 10 cm; force ${(SC.F * 10).toFixed(1)} cm per μN.</p>`,
+      <p><i>U</i> = 0, когда заряды бесконечно удалены друг от друга. Перемещение заряда +2 нКл с расстояния ${M.PAIR.r0 * 100} см до ${M.PAIR.r1 * 100} см от заряда +4 нКл требует работы ${uJ(Ulike.W)} мкДж. Разноимённые заряды притягиваются, поэтому их <i>U</i> <b>отрицательна</b> и уменьшается по мере сближения. Потенциальная энергия — скалярная величина; её знак определяется знаками зарядов.</p>
+      <div class="charts">${chart({ ...R.pair, zero: true, xlabel: 'расстояние r (см)', ylabel: 'U (мкДж)', cursors: [['pairL'], ['pairU', BLUE]], label: 'Потенциальная энергия одноимённых и разноимённых зарядов в зависимости от расстояния',
+        series: [{ pts: samples(60, 10, 40, r => M.Upair(M.PAIR.q1, M.PAIR.q2, r / 100) * 1e6), tag: [24, 0.38, 'одноимённые: U > 0'] }, { color: BLUE, pts: samples(60, 10, 40, r => M.Upair(M.PAIR.q1, -M.PAIR.q2, r / 100) * 1e6), tag: [24, -0.18, 'разноимённые: U < 0'] }] })}</div>
+      <p class="hintline">Нажмите, чтобы увидеть путь по шагам; на каждом этапе добавляется <i>F</i>Δ<i>r</i>. 1 клетка = 10 см; масштаб силы — ${(SC.F * 10).toFixed(1)} см на мкН.</p>`,
     cam: { target: [ST.pair + 0.2, 0.3, 0], az: -12, el: 32, dist: 16 }, lit: 'pair', scene: 'pair', look: {},
-    fig: 'Like and unlike pairs, closing in',
+    fig: 'Сближение одноимённых и разноимённых зарядов',
   },
   {
-    kicker: '11.1', title: 'Assembling charges', sub: 'add up every pair',
+    kicker: '11.1', title: 'Сборка системы зарядов', sub: 'суммирование энергии каждой пары',
     body: `
-      <p class="lede">The energy of a group of charges is the work to bring them in from infinity, one at a time.</p>
+      <p class="lede">Потенциальная энергия системы зарядов равна работе, необходимой для переноса каждого заряда из бесконечности по очереди.</p>
       <table class="data">
-        <tr><td><i>q</i><sub>1</sub></td><td>nothing there yet</td><td>0</td></tr>
-        <tr><td><i>q</i><sub>2</sub></td><td><i>kq</i>²/<i>a</i></td><td>${uJ(steps[1])} μJ</td></tr>
-        <tr><td><i>q</i><sub>3</sub></td><td><i>kq</i>²/<i>a</i> + <i>kq</i>²/√2<i>a</i></td><td>${uJ(steps[2])} μJ</td></tr>
-        <tr><td><i>q</i><sub>4</sub></td><td>2<i>kq</i>²/<i>a</i> + <i>kq</i>²/√2<i>a</i></td><td>${uJ(steps[3])} μJ</td></tr>
+        <tr><td><i>q</i><sub>1</sub></td><td>система пока пуста</td><td>0</td></tr>
+        <tr><td><i>q</i><sub>2</sub></td><td><i>kq</i>²/<i>a</i></td><td>${uJ(steps[1])} мкДж</td></tr>
+        <tr><td><i>q</i><sub>3</sub></td><td><i>kq</i>²/<i>a</i> + <i>kq</i>²/√2<i>a</i></td><td>${uJ(steps[2])} мкДж</td></tr>
+        <tr><td><i>q</i><sub>4</sub></td><td>2<i>kq</i>²/<i>a</i> + <i>kq</i>²/√2<i>a</i></td><td>${uJ(steps[3])} мкДж</td></tr>
       </table>
-      <div class="eq"><i>U</i> = 4<i>kq</i>²/<i>a</i> + 2<i>kq</i>²/√2<i>a</i> = ${uJ(M.SQ.U)} μJ</div>
-      <p>Four +2 nC charges, <i>a</i> = ${M.SQ.a * 100} cm. Six pairs, in any order.</p>
-      <div class="charts">${chart({ ...R.square, xlabel: 'time (s)', ylabel: 'U of the group (μJ)', cursors: [['square']], label: 'Energy of the group as the charges arrive',
+      <div class="eq"><i>U</i> = 4<i>kq</i>²/<i>a</i> + 2<i>kq</i>²/√2<i>a</i> = ${uJ(M.SQ.U)} мкДж</div>
+      <p>Четыре заряда по +2 нКл расположены в вершинах квадрата со стороной <i>a</i> = ${M.SQ.a * 100} см. Всего получается шесть пар, порядок сборки не влияет на итоговую энергию.</p>
+      <div class="charts">${chart({ ...R.square, xlabel: 'время (с)', ylabel: 'U системы (мкДж)', cursors: [['square']], label: 'Потенциальная энергия системы по мере добавления зарядов',
         series: [{ pts: samples(240, 0, M.SQ.run, t => M.square(t).U * 1e6) }] })}</div>
-      <p class="hintline">Click the square to see its six pairs.</p>`,
+      <p class="hintline">Нажмите на квадрат, чтобы увидеть шесть пар зарядов.</p>`,
     cam: { target: [ST.square, 0.3, 0], az: -12, el: 40, dist: 15 }, lit: 'square', scene: 'square', look: {},
-    fig: 'Four charges, six pairs',
+    fig: 'Четыре заряда, шесть пар',
   },
   {
-    kicker: '11.2', title: 'Electric potential', sub: 'energy per unit charge',
+    kicker: '11.2', title: 'Электрический потенциал', sub: 'энергия на единицу заряда',
     body: `
-      <p class="lede"><b>Potential</b> <i>V</i> is potential energy per unit charge, in volts (J/C). A charge <i>q</i> placed there has <i>U</i> = <i>qV</i>.</p>
+      <p class="lede"><b>Потенциал</b> <i>V</i> — это потенциальная энергия единичного положительного заряда; измеряется в вольтах (Дж/Кл). Заряд <i>q</i>, помещённый в эту точку, обладает энергией <i>U</i> = <i>qV</i>.</p>
       <div class="eq">Δ<i>V</i> = −∫<sub>A</sub><sup>B</sup> <b><i>E</i></b> · d<b><i>s</i></b></div>
-      <p>Only the part of each step d<b><i>s</i></b> along <b><i>E</i></b> counts. With <i>E</i> = ${M.UNI.E} N/C: A → B runs across <b><i>E</i></b> and adds 0; B → C is 0.2 m along it, −${M.UNI.E} × 0.2 = <b>−10 V</b>. A → C straight gives the same. Moving <b>with</b> <b><i>E</i></b>, <i>V</i> falls. The pale sheets are <b>equipotentials</b>, at right angles to <b><i>E</i></b>. For <i>E</i> = 4<i>x</i>: −∫<sub>0</sub><sup>4</sup> 4<i>x</i> d<i>x</i> = ${M.VARY.dV} V.</p>
-      <div class="charts">${chart({ ...R.uniform, xlabel: 'distance along E (cm)', ylabel: 'V (volts)', cursors: [['uni']], label: 'Potential against distance along the field', series: [{ pts: [[0, 0], [20, -10]] }] })}</div>
-      <p class="hintline">Click to split A → C into steps d<b><i>s</i></b>. <b><i>E</i></b>: one square per 25 N/C.</p>`,
+      <p>Учитывается только составляющая каждого шага d<b><i>s</i></b> вдоль <b><i>E</i></b>. При <i>E</i> = ${M.UNI.E} Н/Кл перемещение A → B перпендикулярно полю и не меняет потенциал; B → C проходит 0,2 м вдоль поля, поэтому ΔV = −${M.UNI.E} × 0,2 = <b>−10 В</b>. Прямой путь A → C даёт тот же результат. При движении <b>по направлению</b> <b><i>E</i></b> потенциал <i>V</i> уменьшается. Светлые поверхности — <b>эквипотенциальные</b>, они перпендикулярны <b><i>E</i></b>. Для <i>E</i> = 4<i>x</i>: −∫<sub>0</sub><sup>4</sup> 4<i>x</i> d<i>x</i> = ${M.VARY.dV} В.</p>
+      <div class="charts">${chart({ ...R.uniform, xlabel: 'расстояние вдоль E (см)', ylabel: 'V (вольты)', cursors: [['uni']], label: 'Потенциал в зависимости от расстояния вдоль поля', series: [{ pts: [[0, 0], [20, -10]] }] })}</div>
+      <p class="hintline">Нажмите, чтобы разбить путь A → C на шаги d<b><i>s</i></b>. Масштаб <b><i>E</i></b>: одна клетка на 25 Н/Кл.</p>`,
     cam: { target: [ST.uniform, 0.4, 0.2], az: -18, el: 34, dist: 19 }, lit: 'uniform', scene: 'uniform', look: {},
-    fig: 'E = 50 N/C; A to C drops 10 V',
+    fig: 'E = 50 Н/Кл; потенциал A → C уменьшается на 10 В',
   },
   {
-    kicker: '11.3', title: 'The potential hill', sub: 'V = kq/r, and E = −∇V',
+    kicker: '11.3', title: 'Потенциальный рельеф', sub: 'V = kq/r, E = −∇V',
     body: `
-      <p class="lede">Around a point charge only the radial part of each step counts, <b>r̂</b> · d<b><i>s</i></b> = d<i>r</i>:</p>
+      <p class="lede">В поле точечного заряда учитывается только радиальная составляющая каждого перемещения: <b>r̂</b> · d<b><i>s</i></b> = d<i>r</i>:</p>
       <div class="eq">Δ<i>V</i> = −∫ <i>kq</i>/<i>r</i>² d<i>r</i> = <i>kq</i>(1/<i>r</i><sub>B</sub> − 1/<i>r</i><sub>A</sub>)</div>
-      <p>From infinity, <i>V</i> = <i>kq</i>/<i>r</i>, drawn as height for +1 nC. The circles are equipotentials every 30 V; they crowd in where the hill is steep. <b><i>E</i></b> points straight downhill, as big as the slope: <b><i>E</i></b> = −∇<i>V</i>, or <i>E</i> = −d<i>V</i>/d<i>r</i>.</p>
-      <div class="charts">${chart({ ...R.hill, xlabel: 'distance r (m)', ylabel: 'V (volts)', cursors: [['hill']], label: 'Potential against distance, with the tangent at the probe',
+      <p>Если отсчитывать потенциал от бесконечности, <i>V</i> = <i>kq</i>/<i>r</i>. Для заряда +1 нКл потенциал показан как высота рельефа. Окружности — эквипотенциали с шагом 30 В; они сгущаются там, где склон круче. <b><i>E</i></b> направлено вниз по склону, а его величина равна крутизне: <b><i>E</i></b> = −∇<i>V</i>, или <i>E</i> = −d<i>V</i>/d<i>r</i>.</p>
+      <div class="charts">${chart({ ...R.hill, xlabel: 'расстояние r (м)', ylabel: 'V (вольты)', cursors: [['hill']], label: 'Потенциал в зависимости от расстояния; показана касательная в точке пробного заряда',
         series: [{ pts: samples(80, 0.045, 0.4, r => M.Vpoint(M.HILL.Q, r)) }], extra: `<path class="trend" style="fill:none" data-tangent="hill" d=""/>` })}</div>
       <p class="live" id="hilllive"></p>
-      <p class="hintline">Click to lift the hill off its map. Height: one square per 60 V (rounded above 150 V); <b><i>E</i></b>: one square per kN/C.</p>`,
+      <p class="hintline">Нажмите, чтобы поднять рельеф над картой. Масштаб высоты: одна клетка на 60 В (выше 150 В значения округляются); <b><i>E</i></b>: одна клетка на кН/Кл.</p>`,
     cam: { target: [ST.hill, 0.9, 0], az: -18, el: 30, dist: 25 }, lit: 'hill', scene: 'hill', look: {},
-    fig: 'Height = potential; arrows run downhill',
+    fig: 'Высота соответствует потенциалу; стрелки направлены вниз по склону',
   },
   {
-    kicker: '11.4', title: 'The dipole', sub: 'potentials add as numbers',
+    kicker: '11.4', title: 'Электрический диполь', sub: 'потенциалы складываются алгебраически',
     body: `
-      <p class="lede">Potential is a scalar: for several charges, add each <i>kq</i>/<i>r</i> with its sign. No components.</p>
+      <p class="lede">Потенциал — скалярная величина: для нескольких зарядов складывайте значения <i>kq</i>/<i>r</i> с учётом знака каждого заряда. Разлагать их на составляющие не нужно.</p>
       <div class="eq"><i>V</i><sub>axis</sub> = −2<i>akq</i>/(<i>x</i>² − <i>a</i>²)</div>
-      <p>That is <i>kq</i>/(<i>x</i> + <i>a</i>) − <i>kq</i>/(<i>x</i> − <i>a</i>) for ±1 nC, ${2 * M.DIP.a * 100} cm apart: a hill beside a well. At P, ${M.DIP.axisX * 100} cm out, <i>V</i> = ${f(dipAxis, 1)} V. Every point of the perpendicular bisector is equally far from both, so <i>V</i> = <b>0</b> there, though <b><i>E</i></b> is not. For two like charges <i>V</i> on the bisector is not 0: it peaks at the midpoint.</p>
-      <div class="charts">${chart({ x0: -0.36, x1: 0.36, y0: -200, y1: 200, zero: true, xlabel: 'position along the axis (m)', ylabel: 'V on the axis (volts)', label: 'Potential along the dipole axis',
+      <p>Для зарядов ±1 нКл, разделённых расстоянием ${2 * M.DIP.a * 100} см, это выражение принимает вид <i>kq</i>/(<i>x</i> + <i>a</i>) − <i>kq</i>/(<i>x</i> − <i>a</i>): рядом находятся потенциальные холм и яма. В точке P на расстоянии ${M.DIP.axisX * 100} см <i>V</i> = ${f(dipAxis, 1)} В. Любая точка перпендикулярной биссектрисы равноудалена от обоих зарядов, поэтому <i>V</i> = <b>0</b>, хотя <b><i>E</i></b> не равно нулю. Для двух одноимённых зарядов потенциал на биссектрисе не равен нулю: он максимален в середине.</p>
+      <div class="charts">${chart({ x0: -0.36, x1: 0.36, y0: -200, y1: 200, zero: true, xlabel: 'координата вдоль оси (м)', ylabel: 'V на оси (вольты)', label: 'Потенциал вдоль оси диполя',
         series: runs(samples(720, -0.36, 0.36, x => M.Vdip([x, 0, 0])), 200).map(pts => ({ pts })),
-        marks: [[M.DIP.axisX, dipAxis, `P: ${f(dipAxis, 0)} V`, 6, 16]] })}</div>
-      <p class="hintline">Click for each charge’s share at P and P′. Height: one square per 60 V. Blue: field lines traced from the model.</p>`,
+        marks: [[M.DIP.axisX, dipAxis, `P: ${f(dipAxis, 0)} В`, 6, 16]] })}</div>
+      <p class="hintline">Нажмите, чтобы увидеть вклад каждого заряда в P и P′. Масштаб высоты: одна клетка на 60 В. Синим показаны силовые линии поля.</p>`,
     cam: { target: [ST.dipole, 0, 0], az: -14, el: 30, dist: 24 }, lit: 'dipole', scene: 'dipole', look: {},
-    fig: 'A hill, a well, and V = 0 between',
+    fig: 'Потенциальный холм, яма и V = 0 между ними',
   },
   {
-    kicker: '11.5', title: 'A charged rod', sub: 'add up every dq',
+    kicker: '11.5', title: 'Заряженный стержень', sub: 'суммирование вкладов dq',
     body: `
-      <p class="lede">Cut a spread-out charge into pieces d<i>q</i>, each adding <i>k</i> d<i>q</i>/<i>r</i>, and integrate.</p>
+      <p class="lede">Разделим распределённый заряд на элементы d<i>q</i>. Каждый элемент создаёт вклад <i>k</i> d<i>q</i>/<i>r</i>; сложим их интегрированием.</p>
       <table class="data eqs">
-        <tr><td>λ = <i>Q</i>/<i>L</i>, d<i>q</i> = λ d<i>x</i></td><td>${f(M.ROD.lam * 1e9, 0)} nC/m</td></tr>
-        <tr><td>P, on the axis: <i>k</i>λ ln((<i>a</i> + <i>L</i>)/<i>a</i>)</td><td>${f(rodA, 1)} V</td></tr>
-        <tr><td>P′, on the bisector: <i>k</i>λ ln[(<i>L</i> + <i>s</i>)/(−<i>L</i> + <i>s</i>)]</td><td>${f(rodB, 1)} V</td></tr>
+        <tr><td>λ = <i>Q</i>/<i>L</i>, d<i>q</i> = λ d<i>x</i></td><td>${f(M.ROD.lam * 1e9, 0)} нКл/м</td></tr>
+        <tr><td>P, on the axis: <i>k</i>λ ln((<i>a</i> + <i>L</i>)/<i>a</i>)</td><td>${f(rodA, 1)} В</td></tr>
+        <tr><td>P′, on the bisector: <i>k</i>λ ln[(<i>L</i> + <i>s</i>)/(−<i>L</i> + <i>s</i>)]</td><td>${f(rodB, 1)} В</td></tr>
       </table>
-      <p>+3 nC over ${M.ROD.L * 100} cm, values at <i>a</i> = 10 cm, with <i>s</i> = √(<i>L</i>² + 4<i>a</i>²) from ∫ d<i>x</i>/√(<i>x</i>² + <i>a</i>²) = ln(<i>x</i> + √(<i>x</i>² + <i>a</i>²)). Far away the rod acts like a point charge (dashed).</p>
-      <div class="charts">${chart({ ...R.rod, xlabel: 'distance a from the end (m)', ylabel: 'V at P (volts)', cursors: [['rod']], label: 'Potential on the rod axis against distance',
-        series: [{ pts: samples(60, 0.04, 0.4, M.VrodAxis), tag: [0.09, 175, 'rod'] }, { cls: 'trend', pts: samples(60, 0.04, 0.4, a => M.K * M.ROD.Q / (a + M.ROD.L / 2)), tag: [0.2, 95, 'kQ/(a + L/2)'] }] })}</div>
-      <p class="hintline">Click the rod to cut it into 12 pieces d<i>q</i>.</p>`,
+      <p>Заряд +3 нКл равномерно распределён по стержню длиной ${M.ROD.L * 100} см. Значения рассчитаны при <i>a</i> = 10 см, где <i>s</i> = √(<i>L</i>² + 4<i>a</i>²), используя ∫ d<i>x</i>/√(<i>x</i>² + <i>a</i>²) = ln(<i>x</i> + √(<i>x</i>² + <i>a</i>²)). На большом расстоянии стержень ведёт себя как точечный заряд (пунктир).</p>
+      <div class="charts">${chart({ ...R.rod, xlabel: 'расстояние a от конца стержня (м)', ylabel: 'V в точке P (вольты)', cursors: [['rod']], label: 'Потенциал на оси стержня в зависимости от расстояния',
+        series: [{ pts: samples(60, 0.04, 0.4, M.VrodAxis), tag: [0.09, 175, 'стержень'] }, { cls: 'trend', pts: samples(60, 0.04, 0.4, a => M.K * M.ROD.Q / (a + M.ROD.L / 2)), tag: [0.2, 95, 'kQ/(a + L/2)'] }] })}</div>
+      <p class="hintline">Нажмите на стержень, чтобы разделить его на 12 элементов d<i>q</i>.</p>`,
     cam: { target: [ST.rod - 0.5, 1.6, 0], az: -12, el: 14, dist: 15 }, lit: 'rod', scene: 'rod', look: {},
-    fig: 'λ = 10 nC/m; P slides along the axis',
+    fig: 'λ = 10 нКл/м; точка P движется вдоль оси',
   },
   {
-    kicker: '11.6', title: 'Ring, arc and disc', sub: 'when every dq is the same distance away',
+    kicker: '11.6', title: 'Кольцо, дуга и диск', sub: 'когда каждый dq равноудалён от точки',
     body: `
-      <p class="lede">At the centre of a ring or arc, every d<i>q</i> is the same distance <i>R</i> away, so <i>V</i><sub>c</sub> = (<i>k</i>/<i>R</i>)∫d<i>q</i> = <i>kQ</i>/<i>R</i>.</p>
+      <p class="lede">В центре кольца или дуги каждый элемент d<i>q</i> находится на одинаковом расстоянии <i>R</i>, поэтому <i>V</i><sub>c</sub> = (<i>k</i>/<i>R</i>)∫d<i>q</i> = <i>kQ</i>/<i>R</i>.</p>
       <table class="data eqs">
-        <tr><td>ring, on its axis</td><td><i>kQ</i>/√(<i>R</i>² + <i>z</i>²)</td></tr>
-        <tr><td>disc, d<i>q</i> = σ·2π<i>r</i> d<i>r</i></td><td>2π<i>k</i>σ(√(<i>R</i>² + <i>z</i>²) − <i>z</i>)</td></tr>
-        <tr><td>disc centre, σ = <i>Q</i>/π<i>R</i>²</td><td>2<i>kQ</i>/<i>R</i></td></tr>
+        <tr><td>кольцо, на оси</td><td><i>kQ</i>/√(<i>R</i>² + <i>z</i>²)</td></tr>
+        <tr><td>диск, d<i>q</i> = σ·2π<i>r</i> d<i>r</i></td><td>2π<i>k</i>σ(√(<i>R</i>² + <i>z</i>²) − <i>z</i>)</td></tr>
+        <tr><td>центр диска, σ = <i>Q</i>/π<i>R</i>²</td><td>2<i>kQ</i>/<i>R</i></td></tr>
       </table>
-      <p>Each +2 nC, <i>R</i> = ${M.RING.R * 100} cm. Ring and half-ring centres: ${f(M.Varc0, 1)} V. Disc centre: ${f(M.Vdisc(0), 1)} V, twice as much, since the same charge sits closer.</p>
-      <div class="charts">${chart({ ...R.ring, xlabel: 'distance z along the axis (m)', ylabel: 'V (volts)', cursors: [['ring'], ['disc', BLUE]], label: 'Potential on the axis of a ring and a disc',
-        series: [{ color: BLUE, pts: samples(60, 0, 0.25, M.Vdisc), tag: [0.1, 160, 'disc'] }, { pts: samples(60, 0, 0.25, M.Vring), tag: [0.1, 70, 'ring'] }, { cls: 'trend', pts: samples(40, 0.075, 0.25, z => M.K * M.RING.Q / z), tag: [0.17, 112, 'kQ/z'] }] })}</div>
-      <p class="hintline">Click the ring, arc or disc to break it into pieces d<i>q</i>.</p>`,
+      <p>Заряд каждого тела равен +2 нКл, радиус <i>R</i> = ${M.RING.R * 100} см. Потенциал в центре кольца и полукольца: ${f(M.Varc0, 1)} В. В центре диска: ${f(M.Vdisc(0), 1)} В — вдвое больше, поскольку тот же заряд расположен ближе к центру.</p>
+      <div class="charts">${chart({ ...R.ring, xlabel: 'расстояние z вдоль оси (м)', ylabel: 'V (вольты)', cursors: [['ring'], ['disc', BLUE]], label: 'Потенциал на оси кольца и диска',
+        series: [{ color: BLUE, pts: samples(60, 0, 0.25, M.Vdisc), tag: [0.1, 160, 'диск'] }, { pts: samples(60, 0, 0.25, M.Vring), tag: [0.1, 70, 'кольцо'] }, { cls: 'trend', pts: samples(40, 0.075, 0.25, z => M.K * M.RING.Q / z), tag: [0.17, 112, 'kQ/z'] }] })}</div>
+      <p class="hintline">Нажмите на кольцо, дугу или диск, чтобы разделить его на элементы d<i>q</i>.</p>`,
     cam: { target: [ST.ring - 1.4, 1.8, 0], az: -32, el: 12, dist: 29 }, lit: 'ring', scene: 'ring', look: {},
-    fig: 'kQ/R at the centre; P out on the axis',
+    fig: 'kQ/R в центре; точка P на оси',
   },
   {
-    kicker: '11.7', title: 'Charged spheres', sub: 'conductor and insulator',
+    kicker: '11.7', title: 'Заряженные сферы', sub: 'проводник и диэлектрик',
     body: `
-      <p class="lede">Find <b><i>E</i></b> in each region with Gauss’s law, then walk in from infinity: ∞ → <i>R</i> outside, <i>R</i> → <i>r</i> inside.</p>
-      <p>Outside, both act like a point charge, <i>V</i> = <i>kQ</i>/<i>r</i>. Inside a <b>conductor</b> <i>E</i> = 0, so <i>V</i> stays <i>kQ</i>/<i>R</i> = ${f(M.Vcond(0), 1)} V. Inside an <b>insulator</b> <i>E</i> = <i>kQr</i>/<i>R</i>³ keeps adding:</p>
+      <p class="lede">Сначала найдём <b><i>E</i></b> в каждой области с помощью закона Гаусса, затем вычислим потенциал, перемещаясь из бесконечности: снаружи от ∞ до <i>R</i>, внутри от <i>R</i> до <i>r</i>.</p>
+      <p>Снаружи обе сферы эквивалентны точечному заряду: <i>V</i> = <i>kQ</i>/<i>r</i>. Внутри <b>проводника</b> <i>E</i> = 0, поэтому <i>V</i> постоянно и равно <i>kQ</i>/<i>R</i> = ${f(M.Vcond(0), 1)} В. Внутри <b>диэлектрика</b> поле <i>E</i> = <i>kQr</i>/<i>R</i>³ продолжает вносить вклад:</p>
       <div class="eq"><i>V</i> = (<i>kQ</i>/<i>R</i>)(3/2 − <i>r</i>²/2<i>R</i>²)</div>
-      <p>3<i>kQ</i>/2<i>R</i> = ${f(M.Vins(0), 1)} V at the centre (+2 nC, <i>R</i> = ${M.SPH.R * 100} cm). <i>V</i> never jumps.</p>
-      <div class="charts">${chart({ ...R.sphV, xlabel: 'r (m)', ylabel: 'V (volts)', cursors: [['sphVc'], ['sphVi', BLUE]], label: 'Potential against r for the two spheres',
-        series: [{ color: BLUE, pts: samples(120, 0, 0.4, M.Vins), tag: [0.11, 215, 'insulator'] }, { pts: samples(120, 0, 0.4, M.Vcond), tag: [0.13, 150, 'conductor'] }] })}</div>
-      <p class="hintline">Click a sphere for <b><i>E</i></b> along the path. Sticks: one square per 150 V; <b><i>E</i></b>: one square per 2.5 kN/C.</p>`,
+      <p>3<i>kQ</i>/2<i>R</i> = ${f(M.Vins(0), 1)} В at the centre (+2 nC, <i>R</i> = ${M.SPH.R * 100} см). <i>V</i> never jumps.</p>
+      <div class="charts">${chart({ ...R.sphV, xlabel: 'r (м)', ylabel: 'V (вольты)', cursors: [['sphVc'], ['sphVi', BLUE]], label: 'Потенциал двух сфер в зависимости от радиуса r',
+        series: [{ color: BLUE, pts: samples(120, 0, 0.4, M.Vins), tag: [0.11, 215, 'диэлектрик'] }, { pts: samples(120, 0, 0.4, M.Vcond), tag: [0.13, 150, 'проводник'] }] })}</div>
+      <p class="hintline">Нажмите на сферу, чтобы увидеть <b><i>E</i></b> вдоль пути. Столбцы: одна клетка на 150 В; <b><i>E</i></b>: одна клетка на 2,5 кН/Кл.</p>`,
     cam: { target: [ST.spheres, 1.8, 0], az: -8, el: 10, dist: 27 }, lit: 'conductor', scene: 'spheres', look: {},
-    fig: 'Walking in from 40 cm',
+    fig: 'Перемещение из бесконечности к центру',
   },
   {
-    kicker: '11.8', title: 'The electron volt', sub: 'energy from a potential difference',
+    kicker: '11.8', title: 'Электрон-вольт', sub: 'энергия при прохождении разности потенциалов',
     body: `
-      <p class="lede">Let a charge go: potential energy turns into kinetic, and mechanical energy is conserved.</p>
+      <p class="lede">Отпустим заряд: потенциальная энергия превращается в кинетическую, а полная механическая энергия сохраняется.</p>
       <div class="eq"><i>qV</i><sub>0</sub> = <i>qV</i><sub>f</sub> + ½<i>mv</i>²  →  <i>v</i> = √(2<i>q</i>Δ<i>V</i>/<i>m</i>)</div>
-      <p>A proton rolls “downhill” with <b><i>E</i></b> from 7 V to 1 V; an electron goes the other way. Each gains ${M.ACC.dV} <b>eV</b> (1 eV = ${M.E_CH.toExponential(2).replace('e-', ' × 10⁻')} J, one <i>e</i> through 1 V), but the electron is ${Math.round(M.M_P / M.M_E)} times lighter:</p>
+      <p>Протон движется «вниз по склону» потенциала по направлению <b><i>E</i></b> от 7 В к 1 В; электрон движется в противоположную сторону. Каждый получает энергию ${M.ACC.dV} <b>эВ</b> (1 эВ = ${M.E_CH.toExponential(2).replace('e-', ' × 10⁻')} Дж — энергия заряда <i>e</i> при прохождении разности потенциалов 1 В), но электрон легче в ${Math.round(M.M_P / M.M_E)} раз:</p>
       <table class="data">
-        <tr><th></th><th>proton</th><th>electron</th></tr>
-        <tr><td>final speed</td><td>${f(M.ACC.vp / 1000, 1)} km/s</td><td>${f(M.ACC.ve / 1e6, 2)} × 10⁶ m/s</td></tr>
-        <tr><td>time across 6 cm</td><td>${f(M.ACC.Tp * 1e6, 2)} μs</td><td>${f(M.ACC.Te * 1e9, 0)} ns</td></tr>
+        <tr><th></th><th>протон</th><th>электрон</th></tr>
+        <tr><td>конечная скорость</td><td>${f(M.ACC.vp / 1000, 1)} км/с</td><td>${f(M.ACC.ve / 1e6, 2)} × 10⁶ м/с</td></tr>
+        <tr><td>время прохождения 6 см</td><td>${f(M.ACC.Tp * 1e6, 2)} мкс</td><td>${f(M.ACC.Te * 1e9, 0)} нс</td></tr>
       </table>
-      <div class="charts">${chart({ ...R.accel, xlabel: 'distance from the 7 V plate (cm)', ylabel: 'K (eV)', cursors: [['accP'], ['accE', BLUE]], label: 'Kinetic energy against position for the proton and the electron',
-        series: [{ pts: [[0, 0], [6, 6]], tag: [3.6, 3.0, 'proton →'] }, { color: BLUE, pts: [[6, 0], [0, 6]], tag: [0.5, 3.4, '← electron'] }] })}</div>
-      <p class="hintline">Each slowed to cross in ${M.ACC.run} s. Click for forces and strobes. 1 square = 1 cm; <b><i>E</i></b>: one square per 50 V/m.</p>`,
+      <div class="charts">${chart({ ...R.accel, xlabel: 'расстояние от пластины 7 В (см)', ylabel: 'K (эВ)', cursors: [['accP'], ['accE', BLUE]], label: 'Кинетическая энергия протона и электрона в зависимости от положения',
+        series: [{ pts: [[0, 0], [6, 6]], tag: [3.6, 3.0, 'протон →'] }, { color: BLUE, pts: [[6, 0], [0, 6]], tag: [0.5, 3.4, '← электрон'] }] })}</div>
+      <p class="hintline">Анимация замедлена так, чтобы движение заняло ${M.ACC.run} с. Нажмите, чтобы увидеть силы и стробоскопические положения. 1 клетка = 1 см; <b><i>E</i></b>: одна клетка на 50 В/м.</p>`,
     cam: { target: [ST.accel, 2.3, 0], az: -16, el: 10, dist: 21 }, lit: 'accel', scene: 'accel', look: {},
-    fig: 'Down 6 V and up 6 V: 6 eV each',
+    fig: 'Разность потенциалов 6 В: энергия каждого меняется на 6 эВ',
   },
 ];
 
