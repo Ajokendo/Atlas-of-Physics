@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f2f2ef">
+<meta name="description" content="Глава 2. Законы Ньютона: инерция, сила, масса и ускорение.">
+<title>Законы Ньютона — Атлас физики</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<style>
+.lesson{max-width:900px;margin:70px auto 100px;padding:0 24px}.back{font:11px var(--mono);text-decoration:none;color:var(--muted)}.lesson h1{font-size:clamp(54px,8vw,88px);margin:25px 0 16px}.intro{font:italic 23px/1.5 var(--serif);max-width:720px;color:#77736e}.lesson section{border-top:1px solid var(--line);padding:28px 0;margin-top:36px}.lesson h2{font-size:38px;margin:0 0 15px}.lesson h3{font:500 23px var(--serif);color:var(--ink);margin:25px 0 8px}.lesson p,.lesson li{max-width:760px}.equation{background:#e9e9e4;padding:20px 24px;margin:18px 0;font:24px var(--mono);color:var(--ink);overflow-wrap:anywhere}.note{border-left:3px solid var(--accent);padding:8px 18px;color:var(--text);margin:20px 0}.sim{background:#e9e9e4;padding:26px;margin:20px 0}.sim label{display:flex;justify-content:space-between;gap:15px;font-size:13px;margin:14px 0 5px}.sim output{font:12px var(--mono);color:var(--ink)}.sim input{width:100%;accent-color:var(--accent)}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}.stats div{border-top:1px solid #c9c9c2;padding-top:10px}.stats small{display:block;color:var(--muted);font:9px var(--mono)}.stats strong{font:25px var(--serif);color:var(--ink)}canvas{display:block;width:100%;height:220px;background:#f8f8f5;margin-top:18px}.quiz{background:var(--card);padding:22px;border:1px solid var(--line)}.answers{display:grid;gap:9px;margin-top:15px}.answers button{border:1px solid var(--line);background:transparent;padding:12px;text-align:left;font:13px var(--sans);cursor:pointer}.answers button:hover{border-color:var(--accent)}#feedback{min-height:25px;margin-top:12px;font-size:13px}.lesson footer{max-width:900px}@media(max-width:560px){.lesson{padding:0 16px;margin:45px auto 70px}.lesson h2{font-size:32px}.sim{padding:18px 14px}.stats strong{font-size:20px}.equation{font-size:18px;padding:16px}}
+</style>
+</head>
+<body>
+<header class="topbar"><a class="brand" href="../index.html">Атлас физики</a><nav><a href="../index.html#mechanics">Механика</a><a href="../index.html#em">Электричество и магнетизм</a><a href="../index.html#lab">Лаборатория</a></nav><span class="lang">RU</span></header>
+<main class="lesson">
+<a class="back" href="../index.html#mechanics">← ВСЕ ГЛАВЫ · МЕХАНИКА</a>
+<p class="eyebrow" style="margin-top:42px">ГЛАВА 02 · МЕХАНИКА</p>
+<h1>Законы Ньютона</h1>
+<p class="intro">Почему одни тела сохраняют скорость, а другие ускоряются? Ответ дают три закона Ньютона — основа классической механики.</p>
+<section>
+<h2>1. Первый закон: закон инерции</h2>
+<p>Существуют системы отсчёта, в которых тело сохраняет состояние покоя или равномерного прямолинейного движения, если равнодействующая всех сил равна нулю.</p>
+<div class="equation">ΣF = 0  ⇒  v = const</div>
+<p>Такие системы отсчёта называют инерциальными. Инерция — свойство тела сохранять свою скорость. Например, при резком торможении автобуса пассажиры наклоняются вперёд: их тела стремятся продолжить прежнее движение.</p>
+</section>
+<section>
+<h2>2. Второй закон: связь силы и ускорения</h2>
+<p>Ускорение тела прямо пропорционально равнодействующей силе и обратно пропорционально массе. Направление ускорения совпадает с направлением равнодействующей силы.</p>
+<div class="equation">ΣF = ma</div>
+<p>Сила измеряется в ньютонах (Н), масса — в килограммах (кг), ускорение — в метрах в секунду за секунду (м/с²). Один ньютон — сила, сообщающая телу массой 1 кг ускорение 1 м/с².</p>
+<div class="note"><strong>Важно:</strong> в формулу входит равнодействующая всех сил, а не обязательно одна приложенная сила. Сначала определите силы и их направления, затем найдите сумму.</div>
+<h3>Силы на горизонтальной поверхности</h3>
+<p>На брусок могут действовать сила тяжести mg вниз, реакция опоры N вверх, приложенная сила F по горизонтали и сила трения против движения. Если вертикального ускорения нет, N = mg.</p>
+</section>
+<section>
+<h2>3. Интерактивный опыт: сила и ускорение</h2>
+<p>Представим брусок на гладкой горизонтальной поверхности. Меняйте приложенную силу и массу. Модель рассчитывает ускорение, скорость и перемещение из состояния покоя. Сопротивлением движению пренебрегаем.</p>
+<div class="sim">
+<label for="force"><span>Приложенная сила F</span><output id="fout">10 Н</output></label><input id="force" type="range" min="0" max="40" step="1" value="10">
+<label for="mass"><span>Масса тела m</span><output id="mout">2 кг</output></label><input id="mass" type="range" min="1" max="10" step=".5" value="2">
+<label for="seconds"><span>Время действия силы</span><output id="tout">3,0 с</output></label><input id="seconds" type="range" min="0" max="8" step=".5" value="3">
+<div class="stats"><div><small>УСКОРЕНИЕ</small><strong id="acc">5,00 м/с²</strong></div><div><small>СКОРОСТЬ</small><strong id="vel">15,0 м/с</strong></div><div><small>ПЕРЕМЕЩЕНИЕ</small><strong id="pos">22,5 м</strong></div></div>
+<canvas id="forceplot" aria-label="Схема сил, действующих на брусок"></canvas>
+</div>
+</section>
+<section>
+<h2>4. Третий закон: действие и противодействие</h2>
+<p>При взаимодействии два тела действуют друг на друга с силами, равными по модулю и противоположными по направлению. Эти силы приложены к разным телам, поэтому они не компенсируют друг друга.</p>
+<div class="equation">F₁₂ = −F₂₁</div>
+<p>Когда человек толкает стену, стена одновременно толкает человека с такой же по модулю силой в противоположном направлении. При ходьбе нога толкает землю назад, а земля толкает человека вперёд.</p>
+</section>
+<section>
+<h2>5. Проверьте себя</h2>
+<div class="quiz"><strong>К телу массой 4 кг приложена равнодействующая сила 12 Н. Чему равно ускорение?</strong>
+<div class="answers"><button data-answer="a">А. 48 м/с²</button><button data-answer="b">Б. 3 м/с²</button><button data-answer="c">В. 8 м/с²</button></div>
+<p id="feedback" aria-live="polite"></p></div>
+</section>
+<p class="note">Алгоритм решения: нарисуйте тело и все силы, выберите оси, спроецируйте второй закон Ньютона на оси и только затем подставляйте числа.</p>
+</main>
+<footer><span>АТЛАС ФИЗИКИ</span><span>ГЛАВА 02 · ЗАКОНЫ НЬЮТОНА</span><a href="../index.html">На главную</a></footer>
+<script>
+const $=id=>document.getElementById(id),F=$("force"),m=$("mass"),t=$("seconds"),fmt=(n,d=1)=>n.toFixed(d).replace(".",",");
+function update(){const force=+F.value,mass=+m.value,time=+t.value,a=force/mass,v=a*time,x=.5*a*time*time;$("fout").textContent=fmt(force,0)+" Н";$("mout").textContent=fmt(mass,1)+" кг";$("tout").textContent=fmt(time,1)+" с";$("acc").textContent=fmt(a,2)+" м/с²";$("vel").textContent=fmt(v,1)+" м/с";$("pos").textContent=fmt(x,1)+" м";const c=$("forceplot"),w=c.clientWidth,h=c.clientHeight,dpr=window.devicePixelRatio||1;c.width=w*dpr;c.height=h*dpr;const q=c.getContext("2d");q.setTransform(dpr,0,0,dpr,0,0);q.clearRect(0,0,w,h);const cy=h*.55,bx=w*.42,by=cy-24;q.strokeStyle="#b9b9b2";q.lineWidth=1;q.beginPath();q.moveTo(12,cy+25);q.lineTo(w-12,cy+25);q.stroke();q.fillStyle="#77736e";q.fillRect(bx-30,by,60,48);q.fillStyle="#fff";q.font="12px sans-serif";q.fillText(fmt(mass,1)+" кг",bx-18,by+28);q.fillStyle="#d95b43";q.strokeStyle="#d95b43";q.lineWidth=3;q.beginPath();q.moveTo(bx+32,cy);q.lineTo(Math.min(w-28,bx+32+force*4),cy);q.stroke();q.beginPath();q.moveTo(Math.min(w-28,bx+32+force*4),cy);q.lineTo(Math.min(w-28,bx+20+force*4),cy-7);q.lineTo(Math.min(w-28,bx+20+force*4),cy+7);q.closePath();q.fill();q.font="12px monospace";q.fillText("F = "+fmt(force,0)+" Н",bx+35,cy-12);q.fillStyle="#477b9b";q.strokeStyle="#477b9b";q.beginPath();q.moveTo(bx,by-4);q.lineTo(bx,18);q.stroke();q.beginPath();q.moveTo(bx,18);q.lineTo(bx-6,29);q.lineTo(bx+6,29);q.closePath();q.fill();q.fillText("N",bx+10,25);q.strokeStyle="#77736e";q.beginPath();q.moveTo(bx,by+52);q.lineTo(bx, h-8);q.stroke();q.beginPath();q.moveTo(bx,h-8);q.lineTo(bx-6,h-20);q.lineTo(bx+6,h-20);q.closePath();q.fill();q.fillText("mg",bx+10,h-12);}
+[F,m,t].forEach(el=>el.addEventListener("input",update));window.addEventListener("resize",update);update();
+document.querySelectorAll(".answers button").forEach(b=>b.addEventListener("click",()=>{$("feedback").textContent=b.dataset.answer==="b"?"Верно! По второму закону Ньютона a = F/m = 12/4 = 3 м/с².":"Попробуйте ещё раз. Используйте второй закон Ньютона: a = F/m."; $("feedback").style.color=b.dataset.answer==="b"?"#28734a":"#b44b38";}));
+</script>
+</body></html>
