@@ -52,7 +52,7 @@ export function buildWorld(E) {
 
   // ---------- 0 · charge: three carbon atoms (a cartoon: not to scale) ----------
   const X0 = STATIONS.charge;
-  const gA = asm('atoms', root, { title: 'Three carbon atoms', sub: 'same nucleus, different electron counts' });
+  const gA = asm('atoms', root, { title: 'Три атома углерода', sub: 'одинаковое ядро, разное число электронов' });
   const atoms = M.ATOMS.map((a, k) => {
     const c = V(X0 + (k - 1) * 3.4, 0.3, 0), g = new THREE.Group(); g.position.copy(c); gA.add(g);
     // nucleus: 6 protons (red) and 6 neutrons (paper) packed in a small cluster
@@ -73,7 +73,7 @@ export function buildWorld(E) {
   // ---------- 1 · charging by induction: a negative rod and a neutral metal sphere ----------
   const X1 = STATIONS.charging, SC = V(X1 - 1.2, 0.5, 0), R1 = M.SPHERE.R * S;
   sheet(X1 - 7, X1 + 7, -2, 3);
-  const gI = asm('induce', root, { title: 'Metal sphere, charged rod', sub: 'induction: no contact needed' });
+  const gI = asm('induce', root, { title: 'Металлический шар и заряженная палочка', sub: 'электризация влиянием без контакта' });
   ball(gI, R1 * 0.995, { name: 'Metal sphere', tone: 'hi', pos: [SC.x, SC.y, SC.z] });
   const rodL = M.ROD.L * S, rodG = new THREE.Group(); gI.add(rodG);
   part(rodG, xAxis(cyl(0.11, rodL, 28)), { tone: 'hi', pal: 'base', pos: [-rodL / 2, 0, 0], name: 'Charged rod' });
@@ -99,7 +99,7 @@ export function buildWorld(E) {
 
   // polarization: a charged balloon near a wall; the wall's molecules stretch into small dipoles
   const XB = X1 + 3.6, BR = M.BALLOON.r * S, wallX = XB + 1.6;
-  const gB = asm('balloon', root, { title: 'Balloon on a wall', sub: 'polarization: an insulator’s molecules stretch' });
+  const gB = asm('balloon', root, { title: 'Воздушный шарик у стены', sub: 'поляризация молекул диэлектрика' });
   part(gB, new THREE.BoxGeometry(0.25, 4.2, 2.4), { tone: 'mid', pal: 'board', pos: [wallX + 0.125, 0.5, 0], name: 'Wall' });
   const balloonG = new THREE.Group(); gB.add(balloonG);
   const bl = ball(balloonG, 1, { name: 'Balloon', tone: 'hi' }); bl.scale.set(BR, BR * 1.18, BR);
@@ -118,7 +118,7 @@ export function buildWorld(E) {
   // ---------- 2 · Coulomb's law: two point charges ----------
   const X2 = STATIONS.coulomb, Y2 = 0.6;
   sheet(X2 - 4, X2 + 4, -2, 2.5);
-  const gC = asm('coulomb', root, { title: 'Two point charges', sub: 'equal and opposite, inverse square' });
+  const gC = asm('coulomb', root, { title: 'Два точечных заряда', sub: 'разноимённые заряды, закон обратных квадратов' });
   const c1 = charge(gC, 1, 0.26, `+${M.PAIR.q1 / M.uC} μC`), c2 = charge(gC, -1, 0.21, `−${-M.PAIR.q2 / M.uC} μC`);
   const fC1 = force(gC), fC2 = force(gC), rLine = dashed(gC);
   label('vec', 'F<sub>on 1</sub>', () => tip(fC1, 0.05) && tip(fC1, 0.05).add(V(0, 0.28, 0))); label('vec', 'F<sub>on 2</sub>', () => tip(fC2, 0.05) && tip(fC2, 0.05).add(V(0, 0.28, 0)));
@@ -135,7 +135,7 @@ export function buildWorld(E) {
   const axisPts = [LX(-0.05), Y3, 0, LX(M.LINE.D + 0.05), Y3, 0];
   for (let x = 0; x <= M.LINE.D + 1e-9; x += 0.05) axisPts.push(LX(x), Y3 - 0.06, 0, LX(x), Y3 + 0.06, 0);
   lines(root, axisPts, '#8a8a8f');
-  const gL = asm('line', root, { title: 'Three charges on a line', sub: 'where the forces balance' });
+  const gL = asm('line', root, { title: 'Три заряда на одной прямой', sub: 'точка равновесия сил' });
   const qA = charge(gL, 1, 0.24, `+${M.LINE.qA / M.uC} μC`), qB = charge(gL, 1, 0.15, `+${M.LINE.qB / M.uC} μC`);
   qA.position.set(LX(0), Y3, 0); qB.position.set(LX(M.LINE.D), Y3, 0);
   const q0 = charge(gL, 1, 0.1, null, 'Test charge');
@@ -149,7 +149,7 @@ export function buildWorld(E) {
   const X4 = STATIONS.field, CP = V(X4 - 3.7, 0.4, 0), CN = V(X4 + 3.7, 0.4, 0);
   sheet(X4 - 7.5, X4 + 7.5, -3, 3.8);
   lines(root, [X4, -3, 0, X4, 3.8, 0], '#b4b4b8');
-  const gF = asm('point', root, { title: 'Field of a point charge', sub: 'E = kQ/r², away from +, toward −' });
+  const gF = asm('point', root, { title: 'Поле точечного заряда', sub: 'E = kQ/r²: от + и к −' });
   const fieldOf = (c, sign) => {
     const qm = charge(gF, sign, 0.2, `${sign > 0 ? '+' : '−'}${M.POINT.Q / M.nC} nC`); qm.position.copy(c);
     const ln = [];
@@ -174,7 +174,7 @@ export function buildWorld(E) {
   // ---------- 5 · the electric dipole ----------
   const X5 = STATIONS.dipole, D0 = V(X5 - 1.0, -0.6, 0), DW = p => D0.clone().add(V(p[0] * S, p[1] * S, 0));
   sheet(X5 - 6, X5 + 4, -2.6, 3.4);
-  const gD = asm('dipole', root, { title: 'An electric dipole', sub: 'two opposite charges, close together' });
+  const gD = asm('dipole', root, { title: 'Электрический диполь', sub: 'два близко расположенных разноимённых заряда' });
   const dch = M.dipoleCharges();
   const dPlus = charge(gD, 1, 0.18, `+${M.DIPOLE.q / M.nC} nC`), dMinus = charge(gD, -1, 0.18, `−${M.DIPOLE.q / M.nC} nC`);
   dPlus.position.copy(DW(dch[0].at)); dMinus.position.copy(DW(dch[1].at));
@@ -194,7 +194,7 @@ export function buildWorld(E) {
   // ---------- 6 · a uniformly charged rod ----------
   const X6 = STATIONS.rod, R0 = V(X6 - 1.2, -0.4, 0), RL = M.RODE.L * S;
   sheet(X6 - 5, X6 + 5, -2, 4);
-  const gR = asm('rod', root, { title: 'A uniformly charged rod', sub: 'cut it into slices dq = λ dx' });
+  const gR = asm('rod', root, { title: 'Равномерно заряженный стержень', sub: 'разделение на элементы dq = λ dx' });
   const ns = M.RODE.slices, sliceL = RL / ns;
   for (let i = 0; i < ns; i++) {
     const cx = R0.x - RL / 2 + (i + 0.5) * sliceL, off = (i + 0.5 - ns / 2) * 0.18;
@@ -213,7 +213,7 @@ export function buildWorld(E) {
   // ---------- 7 · a ring of charge ----------
   const X7 = STATIONS.ring, C7 = V(X7 - 2.4, 0.4, 0), RR = M.RING.R * S;
   sheet(X7 - 5.5, X7 + 5.5, -2.4, 3.2);
-  const gG = asm('ring', root, { title: 'A ring of charge', sub: 'only the axial parts survive' });
+  const gG = asm('ring', root, { title: 'Заряженное кольцо', sub: 'складываются только осевые составляющие' });
   part(gG, new THREE.TorusGeometry(RR, 0.07, 16, 96).rotateY(Math.PI / 2), { tone: 'hi', name: 'Ring', pos: [C7.x, C7.y, C7.z] });
   const beads = M.ringBeads(M.RING.beads).map(b => { const m = bead(gG, 0.075, 'red', 'Charge dq'); m.position.copy(C7).add(V(b.at[0], b.at[1], b.at[2]).multiplyScalar(S)); return m; });
   lines(gG, [C7.x - 0.8, C7.y, 0, C7.x + 7.2, C7.y, 0], '#b4b4b8');
@@ -227,7 +227,7 @@ export function buildWorld(E) {
   // ---------- 8 · an electron between two charged plates ----------
   const X8 = STATIONS.plates, P8 = V(X8 - 2.4, 0.4, 0), PLL = M.PLATES.L * PL.S, GAP = M.PLATES.gap * PL.S;
   sheet(X8 - 5, X8 + 5, -1.8, 2.6);
-  const gP = asm('plates', root, { title: 'Electron between charged plates', sub: 'constant force: a parabola' });
+  const gP = asm('plates', root, { title: 'Электрон между заряженными пластинами', sub: 'постоянная сила: параболическая траектория' });
   const plate = (y, sign) => {
     part(gP, new THREE.BoxGeometry(PLL, 0.08, 1.6), { tone: 'hi', pal: 'base', pos: [P8.x + PLL / 2, y, 0], name: sign > 0 ? '+ plate' : '− plate' });
     for (let i = 0; i < 12; i++) { const b = bead(gP, 0.045, sign > 0 ? 'red' : 'blue', sign > 0 ? '+ plate' : '− plate'); b.position.set(P8.x + (i + 0.5) * PLL / 12, y + (sign > 0 ? -0.06 : 0.06), 0.8); }
