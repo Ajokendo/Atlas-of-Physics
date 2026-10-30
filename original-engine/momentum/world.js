@@ -73,7 +73,7 @@ export function buildWorld(E) {
 
   // ---------- 1 · momentum: a fast light ball and a slow heavy cart ----------
   const X0 = STATIONS.mom, START = -2.0, RB = 0.11;
-  const gM = asm('mom', root, { title: 'Same momentum', sub: 'light and fast, heavy and slow' });
+  const gM = asm('mom', root, { title: 'Одинаковый импульс', sub: 'лёгкое и быстрое, тяжёлое и медленное' });
   strip(X0 - 2.6, X0 + 2.6, -1.0, 1.0, gM);
   const ball0 = part(gM, new THREE.SphereGeometry(RB, 32, 20), { tone: 'hi', name: 'Ball · 0.5 kg' });
   const cart0 = cart(gM, M.CART.m, 'Cart · 2.0 kg');
@@ -86,7 +86,7 @@ export function buildWorld(E) {
   // ---------- 2 · impulse: a ball bounces off a wall ----------
   const X1 = STATIONS.wall, W = M.WALL;
   part(root, box(0.16, 1.3, 1.5, 0.02), { tone: 'mid', pal: 'board', pos: [X1 + 0.08, 0.67, 0], name: 'Wall' });
-  const gW = asm('wall', root, { title: 'Ball hitting a wall', sub: 'impulse = change in momentum' });
+  const gW = asm('wall', root, { title: 'Шар ударяется о стену', sub: 'импульс силы равен изменению импульса тела' });
   strip(X1 - 1.6, X1 + 0.3, -0.8, 0.8, gW);
   const ballW = part(gW, new THREE.SphereGeometry(W.r, 36, 24), { tone: 'hi', name: 'Ball · 0.5 kg' });
   const pW = pArrow(gW), fW = fArrow(gW);
@@ -98,7 +98,7 @@ export function buildWorld(E) {
   // drawn EGG_ZOOM× life size (positions, sizes and arrows all scaled together), so it can be seen
   const ER = 0.03, EK = 1.3, PH = 0.3, EGX = [-0.2, 0.2];
   const eggRoot = new THREE.Group(); eggRoot.position.x = STATIONS.eggs; eggRoot.scale.setScalar(EGG_ZOOM); root.add(eggRoot);
-  const gE = asm('eggs', eggRoot, { title: 'Two eggs dropped', sub: 'same Δp, different stopping time' });
+  const gE = asm('eggs', eggRoot, { title: 'Падение двух яиц', sub: 'одинаковое Δp, разное время остановки' });
   part(gE, box(1.0, 0.02, 0.7, 0.005), { tone: 'lo', pal: 'board', pos: [0, 0.01, 0], name: 'Surface' });
   const pillow = part(gE, box(0.26, PH, 0.24, 0.06), { tone: 'mid', pal: 'board', pos: [EGX[0], 0.02 + PH / 2, 0], name: 'Pillow' });
   const eggGeo = new THREE.SphereGeometry(ER, 28, 20);
@@ -128,15 +128,15 @@ export function buildWorld(E) {
     return { g, c, X, c1, c2, cm, p1, p2, tot, rows, plunger };
   }
   const cols = [
-    collision('stick', M.STICK, STATIONS.stick, { title: 'Carts that stick', sub: 'perfectly inelastic' }),
-    collision('bounce', M.BOUNCE, STATIONS.bounce, { title: 'Carts that bounce', sub: 'elastic' }),
-    collision('burst', M.BURST, STATIONS.burst, { title: 'Carts pushed apart', sub: 'an explosion' }),
+    collision('stick', M.STICK, STATIONS.stick, { title: 'Тележки сцепляются', sub: 'абсолютно неупругий удар' }),
+    collision('bounce', M.BOUNCE, STATIONS.bounce, { title: 'Тележки отскакивают', sub: 'упругий удар' }),
+    collision('burst', M.BURST, STATIONS.burst, { title: 'Тележки разлетаются', sub: 'внутренний взрыв' }),
   ];
 
   // ---------- 7 · ballistic pendulum ----------
   const X6 = STATIONS.pend, Pd = M.PEND, PIV = V(X6 + 0.4, 2.1, 0), BW = 0.3, BH = 0.22, CR = 0.035;
   part(root, box(1.4, 0.08, 0.5, 0.02), { tone: 'mid', pal: 'board', pos: [PIV.x, PIV.y + 0.04, 0], name: 'Ceiling' });
-  const gP = asm('pend', root, { title: 'Ballistic pendulum', sub: 'momentum, then energy' });
+  const gP = asm('pend', root, { title: 'Баллистический маятник', sub: 'сначала импульс, затем энергия' });
   const swingG = new THREE.Group(); swingG.position.copy(PIV); gP.add(swingG);
   part(swingG, new THREE.CylinderGeometry(0.008, 0.008, Pd.L - BH / 2, 8).translate(0, -(Pd.L - BH / 2) / 2, 0), { tone: 'hi', pal: 'ink', name: 'String' });
   part(swingG, box(BW, BH, 0.22, 0.02), { tone: 'hi', pos: [0, -Pd.L, 0], name: 'Block · 1.0 kg' });
@@ -166,7 +166,7 @@ export function buildWorld(E) {
   { const d = []; for (let x = -RL / 2; x < RL / 2; x += 2.4) if (Math.abs(x + 0.7) > RW / 2 + 0.4) d.push(X7 + x, 0.04, 0, X7 + x + 1.4, 0.04, 0);
     for (let z = -RL / 2; z < RL / 2; z += 2.4) if (Math.abs(z + 0.7) > RW / 2 + 0.4) d.push(X7, 0.04, z, X7, 0.04, z + 1.4);
     lines(root, d, '#9a9aa0'); }
-  const gX = asm('crash', root, { title: 'Crash at a crossroads', sub: 'momentum adds as a vector' });
+  const gX = asm('crash', root, { title: 'Столкновение на перекрёстке', sub: 'импульсы складываются как векторы' });
   const car = new THREE.Group(), truck = new THREE.Group(); gX.add(car, truck);
   part(car, box(4.2, 0.7, 1.8, 0.18), { tone: 'hi', pos: [0, 0.75, 0], name: 'Car · 1000 kg' });
   part(car, box(2.2, 0.6, 1.6, 0.2), { tone: 'hi', pos: [-0.3, 1.38, 0], name: 'Car · 1000 kg' });
@@ -189,7 +189,7 @@ export function buildWorld(E) {
 
   // ---------- 9 · a shell that bursts at the top ----------
   const S = M.SHELL, SR = 0.16;
-  const gS = asm('shell', root, { title: 'A shell bursts in flight', sub: 'the centre of mass flies on' });
+  const gS = asm('shell', root, { title: 'Снаряд разрывается в полёте', sub: 'центр масс продолжает движение' });
   strip(SH0 - 0.8, SH0 + 1.5 * S.R + 1.0, -0.7, 0.7, gS);
   const halfGeo = front => new THREE.SphereGeometry(SR, 28, 18, front ? Math.PI / 2 : -Math.PI / 2, Math.PI);
   const halfMat = shadeMat('paper').clone(); halfMat.side = THREE.DoubleSide;
@@ -214,7 +214,7 @@ export function buildWorld(E) {
 
   // 10 · two rods on knife edges
   const XR = STATIONS.rods, R = M.ROD, RS = 0.12, YR = 0.5, X0R = XR - R.L / 2, rodZ = { U: 0.55, N: -0.55 };
-  const gR = asm('rods', root, { title: 'Two rods, sliced', sub: 'x<sub>cm</sub> = (1/<i>M</i>)∫<i>x</i> d<i>m</i>' });
+  const gR = asm('rods', root, { title: 'Два стержня, разделённые на элементы', sub: 'x<sub>cm</sub> = (1/<i>M</i>)∫<i>x</i> d<i>m</i>' });
   strip(XR - 1.6, XR + 1.6, -1.1, 1.1, gR);
   gR.userData.focus = () => ({ target: [XR - 0.1, 0.55, 0], radius: 1.9 });
   const rods = ['U', 'N'].map(kind => {
@@ -233,7 +233,7 @@ export function buildWorld(E) {
 
   // 11 · a triangle and a semicircle, cut into strips, each on a pin
   const XP = STATIONS.plates, YP = 0.45, PT = 0.04, plates = [];
-  const gPl = asm('plates', root, { title: 'Plates, strip by strip', sub: 'triangle and semicircle' });
+  const gPl = asm('plates', root, { title: 'Пластины, полоска за полоской', sub: 'треугольник и полукруг' });
   strip(XP - 2.0, XP + 1.6, -1.1, 1.1, gPl);
   gPl.userData.focus = () => ({ target: [XP - 0.2, 0.5, 0], radius: 2.1 });
   for (const [S, w, x0, name] of [[M.TRI, M.triW, XP - 1.65, 'Triangle · 1.8 kg'], [M.SEMI, M.semiW, XP + 0.35, 'Semicircle · 2.0 kg']]) {
@@ -253,7 +253,7 @@ export function buildWorld(E) {
 
   // 12 · by parts and by subtraction: a plate with a hole on a pin, an L hung by a string
   const XC = STATIONS.parts, Hh = M.HOLE, HX = XC - 0.95, L2 = M.ELL;
-  const gC = asm('parts', root, { title: 'By parts, by subtraction', sub: 'add the pieces; take the hole away' });
+  const gC = asm('parts', root, { title: 'Составные тела', sub: 'складываем части и вычитаем отверстия' });
   strip(XC - 1.8, XC + 1.7, -0.85, 0.85, gC);
   gC.userData.focus = () => ({ target: [XC + 0.05, 1.25, 0], radius: 1.95 });
   const hs = Hh.s / 2, holePath = new THREE.Path(); holePath.absarc(Hh.c[0], Hh.c[1], Hh.r, 0, Math.PI * 2, true);
