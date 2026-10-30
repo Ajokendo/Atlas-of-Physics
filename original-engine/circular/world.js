@@ -290,7 +290,7 @@ export function buildWorld(E) {
   const barsN = [['blue', 'K'], ['amber', 'U'], ['paper', 'E']].map(([pal, html], i) => {
     const bx = BX + i * BG, m = part(gN, new THREE.BoxGeometry(BW, 1, BW), { tone: 'hi', pal, name: 'Energy bars' });
     const o = { m, bx, val: 0 };
-    label('vec', html, () => V(bx, OY10 + o.val * ORBIT.GJ / 1e9 + (o.val > 0 ? 0.4 : -0.5), BZ), () => `${html} <span style="font-size:14px">${f1(o.val / 1e9)} GJ</span>`);
+    label('vec', html, () => V(bx, OY10 + o.val * ORBIT.GJ / 1e9 + (o.val > 0 ? 0.4 : -0.5), BZ), () => `${html} <span style="font-size:14px">${f1(o.val / 1e9)} ГДж</span>`);
     return o;
   });
   const setBars = vals => barsN.forEach((o, i) => { o.val = vals[i]; const h = vals[i] / 1e9 * ORBIT.GJ; o.m.scale.y = Math.max(Math.abs(h), 1e-3); o.m.position.set(o.bx, OY10 + h / 2, BZ); });
