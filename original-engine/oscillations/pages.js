@@ -73,7 +73,7 @@ export const PAGES = [
       <table class="data eqs">
         <tr><td><i>x</i> = <i>A</i> cos 2π<i>ft</i></td><td>±<i>A</i> в крайних точках</td></tr>
         <tr><td><i>v</i> = −2π<i>fA</i> sin 2π<i>ft</i></td><td>максимум ${f(M.VMAX)} м/с при <i>x</i> = 0</td></tr>
-        <tr><td><i>a</i> = −4π²<i>f</i>²<i>A</i> cos 2π<i>ft</i></td><td>max ${f(M.AMAX)} m/s² at ±<i>A</i></td></tr>
+        <tr><td><i>a</i> = −4π²<i>f</i>²<i>A</i> cos 2π<i>ft</i></td><td>максимум ${f(M.AMAX)} м/с² при ±<i>A</i></td></tr>
       </table>
       <p>Каждый следующий график показывает наклон предыдущего: cos → −sin → −cos. Ускорение <i>a</i> — это перевёрнутая и масштабированная координата <i>x</i>.</p>
       <div class="charts">
