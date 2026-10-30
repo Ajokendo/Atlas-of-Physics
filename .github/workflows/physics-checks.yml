@@ -21,7 +21,7 @@ jobs:
       - name: Check JavaScript syntax
         run: |
           for file in original-engine/engine/*.js original-engine/kinematics/*.js original-engine/newton/*.js; do
-            node --check "$file"
+            node --input-type=module --check < "$file"
           done
       - name: Check kinematics physics invariants
         run: node original-engine/kinematics/checks.mjs
