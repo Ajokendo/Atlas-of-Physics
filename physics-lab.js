@@ -1,25 +1,26 @@
 import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js";
 
 const presets={
-  "01":{name:"Равномерное движение",kind:"linear",object:"Шар движется вдоль оси координат"},
-  "02":{name:"Второй закон Ньютона",kind:"force",object:"Равнодействующая силы сообщает телу ускорение"},
-  "03":{name:"Движение по окружности",kind:"circle",object:"Скорость направлена по касательной, ускорение — к центру"},
-  "04":{name:"Превращение энергии",kind:"energy",object:"Кинетическая и потенциальная энергия переходят друг в друга"},
-  "05":{name:"Столкновение тел",kind:"collision",object:"Два тела обмениваются импульсом при столкновении"},
-  "06":{name:"Гармонические колебания",kind:"oscillation",object:"Пружинный маятник совершает периодическое движение"},
-  "07":{name:"Вращательное движение",kind:"rotation",object:"Твёрдое тело вращается вокруг неподвижной оси"},
-  "08":{name:"Давление жидкости",kind:"fluid",object:"Давление возрастает с глубиной"},
-  "09":{name:"Электрическое поле",kind:"charges",object:"Силовые линии выходят из положительного заряда"},
-  "10":{name:"Закон Гаусса",kind:"gauss",object:"Замкнутая поверхность охватывает электрический заряд"},
-  "11":{name:"Электрический потенциал",kind:"potential",object:"Потенциал меняется с расстоянием от заряда"},
-  "12":{name:"Конденсатор",kind:"capacitor",object:"Электрическое поле между двумя обкладками"},
-  "13":{name:"Электрическая цепь",kind:"circuit",object:"Источник, проводники и нагрузка образуют замкнутую цепь"},
-  "14":{name:"Магнитное поле",kind:"magnet",object:"Магнитные силовые линии замыкаются вокруг магнита"},
-  "15":{name:"Электромагнитная индукция",kind:"induction",object:"Изменение магнитного потока вызывает ЭДС индукции"}
+  "01":{name:"Равномерное движение",kind:"linear",object:"Шар движется вдоль оси координат",param:"Начальная скорость v₀"},
+  "02":{name:"Второй закон Ньютона",kind:"force",object:"Равнодействующая силы сообщает телу ускорение",param:"Сила F"},
+  "03":{name:"Движение по окружности",kind:"circle",object:"Скорость направлена по касательной, ускорение — к центру",param:"Радиус r"},
+  "04":{name:"Превращение энергии",kind:"energy",object:"Кинетическая и потенциальная энергия переходят друг в друга",param:"Высота h"},
+  "05":{name:"Столкновение тел",kind:"collision",object:"Два тела обмениваются импульсом при столкновении",param:"Масса m₁"},
+  "06":{name:"Гармонические колебания",kind:"oscillation",object:"Пружинный маятник совершает периодическое движение",param:"Амплитуда A"},
+  "07":{name:"Вращательное движение",kind:"rotation",object:"Твёрдое тело вращается вокруг неподвижной оси",param:"Момент инерции I"},
+  "08":{name:"Давление жидкости",kind:"fluid",object:"Давление возрастает с глубиной",param:"Глубина h"},
+  "09":{name:"Электрическое поле",kind:"charges",object:"Силовые линии выходят из положительного заряда",param:"Заряд q"},
+  "10":{name:"Закон Гаусса",kind:"gauss",object:"Замкнутая поверхность охватывает электрический заряд",param:"Заряд q"},
+  "11":{name:"Электрический потенциал",kind:"potential",object:"Потенциал меняется с расстоянием от заряда",param:"Расстояние r"},
+  "12":{name:"Конденсатор",kind:"capacitor",object:"Электрическое поле между двумя обкладками",param:"Ёмкость C"},
+  "13":{name:"Электрическая цепь",kind:"circuit",object:"Источник, проводники и нагрузка образуют замкнутую цепь",param:"Сопротивление R"},
+  "14":{name:"Магнитное поле",kind:"magnet",object:"Магнитные силовые линии замыкаются вокруг магнита",param:"Магнитная индукция B"},
+  "15":{name:"Электромагнитная индукция",kind:"induction",object:"Изменение магнитного потока вызывает ЭДС индукции",param:"Изменение потока ΔΦ"}
 };
 
 function init(root){
  const id=root.dataset.chapter, cfg=presets[id]||presets["01"], canvas=root.querySelector("canvas"), speed=root.querySelector("[data-speed]"), speedOut=root.querySelector("[data-speed-out]"), play=root.querySelector("button"), phase=root.querySelector("[data-phase]"), phaseOut=root.querySelector("[data-phase-out]");
+ const paramName=root.querySelector("[data-phase-name]");if(paramName)paramName.textContent=cfg.param||"Параметр";
  let renderer,scene,camera,object,group,clock=new THREE.Clock(),running=true,elapsed=0,drag=false,lastX=0,lastY=0,rotX=-.28,rotY=.42;
  try{
   renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});renderer.setPixelRatio(Math.min(devicePixelRatio||1,2));renderer.setSize(canvas.clientWidth,canvas.clientHeight,false);renderer.outputColorSpace=THREE.SRGBColorSpace;
