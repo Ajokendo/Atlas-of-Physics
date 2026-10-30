@@ -103,7 +103,7 @@ export function buildWorld(E) {
 
   // ================= 1 · a bicycle wheel =================
   const XW = STATIONS.wheel, CW = V(XW, 1.1, 0);
-  const gW = asm('wheel', root, { title: 'A spinning wheel', sub: 'θ, ω and α' });
+  const gW = asm('wheel', root, { title: 'Вращающееся колесо', sub: 'θ, ω и α' });
   const wheel = new THREE.Group(); wheel.position.copy(CW); gW.add(wheel);
   part(wheel, new THREE.TorusGeometry(M.WHEEL.R, 0.045, 14, 72), { tone: 'hi', pal: 'dark', name: 'Tyre' });
   part(wheel, new THREE.TorusGeometry(M.WHEEL.R - 0.05, 0.014, 8, 72), { tone: 'mid', name: 'Rim' });
@@ -124,7 +124,7 @@ export function buildWorld(E) {
   // ================= 2 · a merry-go-round =================
   const XD = STATIONS.disc, DY = 0.45;
   part(root, cyl(0.08, DY, 16), { tone: 'mid', pal: 'dark', pos: [XD, DY / 2, 0], name: 'Post' });
-  const gD = asm('disc', root, { title: 'A merry-go-round', sub: 'same ω, different v' });
+  const gD = asm('disc', root, { title: 'Карусель', sub: 'одинаковая ω, разная v' });
   const mgr = new THREE.Group(); mgr.position.set(XD, DY, 0); gD.add(mgr);
   part(mgr, cyl(M.DISC.R, 0.08, 72), { tone: 'hi', pos: [0, 0.04, 0], name: 'Platform' });
   for (let k = 0; k < 6; k++) { const a = k / 6 * Math.PI; const s = part(mgr, box(2 * M.DISC.R - 0.1, 0.012, 0.025, 0.004), { tone: 'lo', pal: 'base', name: 'Platform', pos: [0, 0.085, 0] }); s.rotation.y = a; }
@@ -141,7 +141,7 @@ export function buildWorld(E) {
 
   // ================= 3 · three doors =================
   const XO = STATIONS.doors, DH = 2.0, PH = 1.0, hinges = [-2.0, -0.3, 1.4].map(x => V(XO + x, 0, 0));
-  const gO = asm('doors', root, { title: 'Three pushes on three doors', sub: 'τ = rF sin φ' });
+  const gO = asm('doors', root, { title: 'Три силы на трёх дверях', sub: 'τ = rF sin φ' });
   const doors = hinges.map((H, i) => {
     part(root, box(0.1, DH + 0.1, 0.1, 0.01), { tone: 'mid', pal: 'board', pos: [H.x - 0.07, (DH + 0.1) / 2, 0], name: 'Frame' });
     part(root, cyl(0.016, DH, 10), { tone: 'mid', pal: 'ink', pos: [H.x, DH / 2, 0], name: 'Hinge' });
@@ -163,7 +163,7 @@ export function buildWorld(E) {
   // ================= 4 · a plank bridge =================
   const XP = STATIONS.plank, PL = M.PLANK.L, PY = 1.0, PT = 0.12, A0 = XP - PL / 2;
   for (const x of [A0, A0 + PL]) part(root, box(0.34, PY - PT / 2, 0.8, 0.02), { tone: 'mid', pal: 'board', pos: [x, (PY - PT / 2) / 2, 0], name: 'Support' });
-  const gP = asm('plank', root, { title: 'A plank bridge', sub: 'ΣF = 0 and Στ = 0' });
+  const gP = asm('plank', root, { title: 'Мостик из доски', sub: 'ΣF = 0 и Στ = 0' });
   part(gP, box(PL + 0.2, PT, 0.7, 0.02), { tone: 'hi', pos: [XP, PY, 0], name: 'Plank' });
   const CR = 0.5, crate = part(gP, box(CR, CR, CR, 0.03), { tone: 'hi', name: 'Crate' });
   const pFA = force(gP), pFB = force(gP), pWp = force(gP), pWc = force(gP);
@@ -177,7 +177,7 @@ export function buildWorld(E) {
   // ================= 5 · a ladder against a wall =================
   const XL = STATIONS.ladder, WALLX = XL + 1.0, LL = M.LADDER.L;
   part(root, box(0.16, 3.4, 1.8, 0.01), { tone: 'mid', pal: 'board', pos: [WALLX + 0.08, 1.7, 0], name: 'Wall' });
-  const gL = asm('ladder', root, { title: 'A ladder against a wall', sub: 'the steepest it can lean' });
+  const gL = asm('ladder', root, { title: 'Лестница у стены', sub: 'предельный угол наклона' });
   const lad = new THREE.Group(); gL.add(lad);
   for (const z of [-0.22, 0.22]) part(lad, box(LL, 0.07, 0.05, 0.015), { tone: 'hi', pos: [LL / 2, 0.035, z], name: 'Ladder' });
   for (let s = 0.3; s < LL - 0.1; s += 0.3) part(lad, zAxis(cyl(0.018, 0.44, 10)), { tone: 'mid', pos: [s, 0.035, 0], name: 'Ladder' });
@@ -194,7 +194,7 @@ export function buildWorld(E) {
 
   // ================= 6 · ring, disc, sphere =================
   const XI = STATIONS.inertia, IY = 1.0, SR = M.SHAPES.R, IX = [-1.3, 0, 1.3].map(x => XI + x);
-  const gI = asm('inertia', root, { title: 'Ring, disc and sphere', sub: 'same mass, same radius, same torque' });
+  const gI = asm('inertia', root, { title: 'Кольцо, диск и шар', sub: 'одинаковые масса, радиус и момент силы' });
   const shapes = M.SHAPES.list.map((s, i) => { const g = new THREE.Group(); g.position.set(IX[i], IY, 0); gI.add(g); return g; });
   part(shapes[0], new THREE.TorusGeometry(SR, 0.04, 14, 72).rotateX(Math.PI / 2), { tone: 'hi', name: 'Ring' });
   part(shapes[0], new THREE.SphereGeometry(0.055, 14, 10), { tone: 'hi', pal: 'ink', pos: [SR, 0, 0], name: 'Ring' });
@@ -224,7 +224,7 @@ export function buildWorld(E) {
   const S0 = 0.3;   // start a little way down the slope
   { const ice = []; for (let s = 0; s < RL; s += 0.12) { const p = V(topX, topY, LANES[0]).addScaledVector(rd, s).addScaledVector(rn, 0.005); ice.push(...p.clone().add(V(0, 0, -0.25)).toArray(), ...p.clone().add(V(0.06, 0, 0.25)).toArray()); } lines(root, ice, '#c4c4c8');
     const fin = V(topX, topY, 0).addScaledVector(rd, S0 + M.RACE.len + RR).addScaledVector(rn, 0.005); lines(root, [...fin.clone().add(V(0, 0, -1.3)).toArray(), ...fin.clone().add(V(0, 0, 1.3)).toArray()], '#2c2c30'); }
-  const gR = asm('race', root, { title: 'The race', sub: 'rolling shares the energy' });
+  const gR = asm('race', root, { title: 'Соревнование', sub: 'энергия распределяется между движением и вращением' });
   const racers = M.RACE.list.map((o, i) => { const g = new THREE.Group(); gR.add(g); return g; });
   part(racers[0], box(0.36, 0.36, 0.36, 0.03), { tone: 'hi', name: 'Box' });
   part(racers[1], new THREE.SphereGeometry(RR, 32, 22), { tone: 'hi', name: 'Sphere' });
@@ -242,7 +242,7 @@ export function buildWorld(E) {
   const XWl = STATIONS.well, DRY = 3.8, DR = M.WELL.R, ROPEX = XWl + DR, BY0 = 3.05;
   for (const z of [-0.55, 0.55]) part(root, box(0.14, DRY + 0.25, 0.14, 0.02), { tone: 'mid', pal: 'board', pos: [XWl, (DRY + 0.25) / 2, z], name: 'Posts' });
   part(root, new THREE.CylinderGeometry(0.62, 0.62, 0.85, 48, 1, true), { tone: 'mid', pos: [ROPEX, 0.425, 0], name: 'Well', mat: shadeMat('board', { opacity: 0.6 }) });
-  const gWl = asm('well', root, { title: 'A bucket down a well', sub: 'τ = Iα on the drum' });
+  const gWl = asm('well', root, { title: 'Ведро в колодце', sub: 'τ = Iα для барабана' });
   const drum = new THREE.Group(); drum.position.set(XWl, DRY, 0); gWl.add(drum);
   part(drum, zAxis(cyl(DR, 0.8, 40)), { tone: 'hi', name: 'Drum' });
   part(drum, zAxis(cyl(0.03, 1.25, 12)), { tone: 'mid', pal: 'dark', name: 'Axle' });
@@ -260,7 +260,7 @@ export function buildWorld(E) {
   // ================= 9 · a skater =================
   const XS = STATIONS.skater, SH = 1.45;
   part(root, cyl(1.6, 0.02, 64), { tone: 'lo', pal: 'board', pos: [XS, 0.01, 0], name: 'Ice' });
-  const gS = asm('skater', root, { title: 'A spinning skater', sub: 'L = Iω stays the same' });
+  const gS = asm('skater', root, { title: 'Вращающаяся фигуристка', sub: 'L = Iω сохраняется' });
   const sk = new THREE.Group(); sk.position.set(XS, 0, 0); gS.add(sk);
   part(sk, cyl(0.06, 0.8, 16, 0.05), { tone: 'hi', pos: [0, 0.42, 0], name: 'Skater' });
   part(sk, cyl(0.17, 0.62, 28, 0.13), { tone: 'hi', pos: [0, 1.15, 0], name: 'Skater' });
@@ -274,7 +274,7 @@ export function buildWorld(E) {
 
   // ================= 6b · I = ∫ r² dm: two rods cut into slices, a disc built from rings =================
   const XN = STATIONS.integ, NY = 1.0, RL2 = M.ROD.L, RN = M.ROD.N, sl = RL2 / RN;
-  const gN = asm('integ', root, { title: 'Rods in slices, a disc in rings', sub: 'I = ∫ r² dm' });
+  const gN = asm('integ', root, { title: 'Стержни по элементам, диск по кольцам', sub: 'I = ∫ r² dm' });
   const NX = [XN - 2.0, XN - 0.9, XN + 1.5];
   gN.userData.focus = () => ({ target: [XN - 0.25, NY + 0.3, 0], radius: 2.4 });
   // a rod as N slices; x0 is where the axis sits along it (centre: −L/2, end: 0)
@@ -304,7 +304,7 @@ export function buildWorld(E) {
 
   // ================= 6c · parallel axes: one rod pinned at its centre, one at its end =================
   const XA = STATIONS.parallel, AY = 0.9, AX = [XA - 1.6, XA + 0.1];
-  const gA = asm('parallel', root, { title: 'Two pinned rods', sub: 'I = I<sub>cm</sub> + Md²' });
+  const gA = asm('parallel', root, { title: 'Два стержня на осях', sub: 'I = I<sub>cm</sub> + Md²' });
   gA.userData.focus = () => ({ target: [XA - 0.45, AY, 0], radius: 2.0 });
   const pRods = M.PAX.list.map((p, i) => { const g = new THREE.Group(); g.position.set(AX[i], AY, 0); gA.add(g);
     const x0 = i ? 0 : -RL2 / 2;
@@ -322,7 +322,7 @@ export function buildWorld(E) {
   // ================= 6d · work and power: a wrench on a nut =================
   const XK = STATIONS.wrench, KY = 0.16, KR = M.WRENCH.r;
   part(root, box(1.25, 0.08, 1.15, 0.02), { tone: 'mid', pal: 'board', pos: [XK + 0.05, 0.04, 0.1], name: 'Plate' });
-  const gK = asm('wrench', root, { title: 'A wrench on a nut', sub: 'W = τΔθ, P = τω' });
+  const gK = asm('wrench', root, { title: 'Гаечный ключ', sub: 'W = τΔθ, P = τω' });
   gK.userData.focus = () => ({ target: [XK + 0.1, KY, 0.15], radius: 0.6 });
   part(gK, cyl(0.022, 0.16, 16), { tone: 'mid', pal: 'dark', pos: [XK, 0.12, 0], name: 'Bolt' });
   const nut = new THREE.Group(); nut.position.set(XK, KY, 0); gK.add(nut);
@@ -342,7 +342,7 @@ export function buildWorld(E) {
   const XB = STATIONS.slip, LANE = 2.5, LX0 = XB - LANE / 2, BX0 = LX0 + 0.2, BR = M.BOWL.R, LT = 0.04;
   part(root, box(LANE, LT, 0.62, 0.01), { tone: 'mid', pal: 'board', pos: [XB, LT / 2, 0], name: 'Lane' });
   lines(root, [BX0 + M.BOWL.xStar, LT + 0.002, -0.31, BX0 + M.BOWL.xStar, LT + 0.002, 0.31], '#2c2c30');
-  const gB = asm('slip', root, { title: 'A bowling ball', sub: 'sliding, then rolling' });
+  const gB = asm('slip', root, { title: 'Шар для боулинга', sub: 'сначала скольжение, затем качение' });
   gB.userData.focus = () => ({ target: [ball.position.x, 0.15, 0], radius: 0.8 });
   const ball = new THREE.Group(); gB.add(ball);
   part(ball, new THREE.SphereGeometry(BR, 32, 22), { tone: 'hi', pal: 'dark', name: 'Ball' });
@@ -358,7 +358,7 @@ export function buildWorld(E) {
 
   // ================= 8b · angular impulse: two merry-go-rounds, two pushes =================
   const XM = STATIONS.impulse, MY = 0.45, MX = [XM - 1.5, XM + 1.5], IR = M.IMP.R;
-  const gM = asm('impulse', root, { title: 'Two pushes', sub: 'τΔt = ΔL' });
+  const gM = asm('impulse', root, { title: 'Два воздействия', sub: 'τΔt = ΔL' });
   gM.userData.focus = () => ({ target: [XM, MY, 0], radius: 3.0 });
   const mgrs = M.IMP.list.map((p, i) => {
     part(root, cyl(0.08, MY, 16), { tone: 'mid', pal: 'dark', pos: [MX[i], MY / 2, 0], name: 'Post' });
@@ -380,7 +380,7 @@ export function buildWorld(E) {
   // ================= 9b · a ball sliding past a pin, then hitting a rod pinned there =================
   const XQ = STATIONS.particle, QY = 0.12, O = V(XQ - 0.4, QY, -0.2), H = M.HIT;
   part(root, box(2.9, 0.04, 3.0, 0.01), { tone: 'lo', pal: 'board', pos: [XQ - 0.35, 0.02, 0.1], name: 'Table' });
-  const gQ = asm('particle', root, { title: 'A ball and a pinned rod', sub: 'L = r × p' });
+  const gQ = asm('particle', root, { title: 'Шар и стержень на оси', sub: 'L = r × p' });
   gQ.userData.focus = () => ({ target: [O.x + 0.05, 0.3, O.z + 0.35], radius: 1.6 });
   part(gQ, cyl(0.03, 0.2, 14), { tone: 'mid', pal: 'dark', pos: [O.x, QY, O.z], name: 'Pin' });
   const qRod = new THREE.Group(); qRod.position.copy(O); gQ.add(qRod);
