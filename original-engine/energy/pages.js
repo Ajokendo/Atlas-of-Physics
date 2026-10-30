@@ -54,156 +54,156 @@ const P0 = M.pull(M.PULL.run), XS = M.SPRING.xmax;
 
 export const PAGES = [
   {
-    kicker: 'Chapter 4', title: 'Work', sub: 'a force over a distance',
+    kicker: 'Глава 4', title: 'Работа', sub: 'действие силы на пути',
     body: `
-      <p class="lede"><b>Work</b> is energy moved into or out of an object by a force. A force does work only if the object moves while the force acts.</p>
+      <p class="lede"><b>Работа</b> — это передача энергии телу или от тела под действием силы. Сила совершает работу, только если тело перемещается во время её действия.</p>
       <div class="eq"><i>W</i> = |<i>F</i>| |Δ<i>x</i>| cos θ</div>
-      <p>θ is the angle between the force and the displacement. Work is in joules: 1 J is 1 N acting through 1 m.</p>
-      <p>A rope pulls this ${f(M.PULL.m, 1)} kg box with ${f(M.PULL.F, 0)} N at ${M.PULL.deg}° across a frictionless floor. Only <i>F</i> cos θ = ${f(M.PULL.Fx, 1)} N points along the motion. <i>F</i> sin θ = ${f(M.PULL.Fy, 1)} N pulls across it and does no work. Over ${f(P0.x)} m the rope does ${f(P0.W, 1)} J, less than the ${f(M.PULL.F * P0.x, 1)} J a level pull would.</p>
-      <div class="charts">${chart({ ...R.pull, xlabel: 'displacement Δx (m)', ylabel: 'work by the rope (J)', cursors: [['pull']], label: 'Work against displacement',
+      <p>θ — угол между силой и перемещением. Работа измеряется в джоулях: 1 Дж — работа силы 1 Н на пути 1 м.</p>
+      <p>Верёвка тянет ящик массой ${f(M.PULL.m, 1)} кг с силой ${f(M.PULL.F, 0)} Н под углом ${M.PULL.deg}° к горизонтали по полу без трения. Вдоль движения направлена только составляющая <i>F</i> cos θ = ${f(M.PULL.Fx, 1)} Н. Составляющая <i>F</i> sin θ = ${f(M.PULL.Fy, 1)} Н направлена поперёк перемещения и работы не совершает. На пути ${f(P0.x)} м верёвка совершает работу ${f(P0.W, 1)} Дж — меньше, чем ${f(M.PULL.F * P0.x, 1)} Дж при горизонтальном натяжении.</p>
+      <div class="charts">${chart({ ...R.pull, xlabel: 'перемещение Δx (м)', ylabel: 'работа верёвки (Дж)', cursors: [['pull']], label: 'Зависимость работы от перемещения',
         series: [{ cls: 'trend', pts: [[0, 0], [3.2, M.PULL.F * 3.2]], tag: [1.7, M.PULL.F * 1.7 + 3, 'θ = 0°'] }, { pts: [[0, 0], [3.2, M.PULL.Fx * 3.2]], tag: [2.45, M.PULL.Fx * 2.45 - 13, 'θ = 30°'] }] })}</div>
-      <p class="hintline">Click the box to split the pull. Arrows: ${SC.pull.F * 100} cm per newton.</p>`,
+      <p class="hintline">Нажмите на ящик, чтобы разложить силу натяжения на составляющие. Масштаб стрелок: ${SC.pull.F * 100} см на ньютон.</p>`,
     cam: { target: [ST.pull + 0.75, 0.6, 0], az: -20, el: 12, dist: 17 }, lit: 'pull', scene: 'pull', look: {},
-    fig: 'A pull at 30°',
+    fig: 'Сила тяги под углом 30°',
   },
   {
-    kicker: '4.1', title: 'Positive and negative work', sub: 'with the motion or against it',
+    kicker: '4.1', title: 'Положительная и отрицательная работа', sub: 'по направлению движения и против него',
     body: `
-      <p class="lede">A force along the motion (θ &lt; 90°) does <b>positive</b> work: the object gains kinetic energy. A force against it (θ &gt; 90°) does <b>negative</b> work: the object loses kinetic energy.</p>
-      <p>A ${f(M.TOSS.m)} kg ball thrown up at ${f(M.TOSS.v0, 1)} m/s: rising, gravity is opposite the motion (θ = 180°) and does ${f(-M.TOSS.m * M.G * M.TOSS.h, 1)} J of work by the top, where the ball stops. Falling (θ = 0°), gravity gives the ${f(M.TOSS.m * M.G * M.TOSS.h, 1)} J back. The bars add up: <i>K</i><sub>0</sub> + <i>W</i><sub>g</sub> = <i>K</i>.</p>
-      <div class="charts">${chart({ ...R.toss, zero: true, xlabel: 'time (s)', ylabel: 'energy (J)', cursors: [['tossK', BLUE], ['tossW']], label: 'Kinetic energy and work by gravity against time',
-        series: [{ color: BLUE, pts: samples(40, 0, M.TOSS.run, t => M.toss(t).K), tag: [0.02, 7.2, 'K'] }, { pts: samples(40, 0, M.TOSS.run, t => M.toss(t).Wg), tag: [0.5, -9.6, 'work by gravity'] }] })}</div>
-      <p class="hintline">Arrows: <b>v</b> ${SC.toss.v * 100} cm per m/s, <i>F</i><sub>g</sub> ${SC.toss.F * 100} cm/N. Bars: ${SC.toss.E * 100} cm/J.</p>`,
+      <p class="lede">Сила, направленная по движению (θ &lt; 90°), совершает <b>положительную</b> работу: кинетическая энергия тела увеличивается. Сила, направленная против движения (θ &gt; 90°), совершает <b>отрицательную</b> работу: кинетическая энергия уменьшается.</p>
+      <p>Мяч массой ${f(M.TOSS.m)} кг брошен вверх со скоростью ${f(M.TOSS.v0, 1)} м/с. При подъёме сила тяжести направлена против движения (θ = 180°) и к верхней точке, где мяч останавливается, совершает работу ${f(-M.TOSS.m * M.G * M.TOSS.h, 1)} Дж. При падении (θ = 0°) сила тяжести возвращает ${f(M.TOSS.m * M.G * M.TOSS.h, 1)} Дж. Энергии складываются: <i>K</i><sub>0</sub> + <i>W</i><sub>g</sub> = <i>K</i>.</p>
+      <div class="charts">${chart({ ...R.toss, zero: true, xlabel: 'время (с)', ylabel: 'энергия (Дж)', cursors: [['tossK', BLUE], ['tossW']], label: 'Кинетическая энергия и работа силы тяжести во времени',
+        series: [{ color: BLUE, pts: samples(40, 0, M.TOSS.run, t => M.toss(t).K), tag: [0.02, 7.2, 'K'] }, { pts: samples(40, 0, M.TOSS.run, t => M.toss(t).Wg), tag: [0.5, -9.6, 'работа силы тяжести'] }] })}</div>
+      <p class="hintline">Масштаб стрелок: <b>v</b> — ${SC.toss.v * 100} см на м/с, <i>F</i><sub>g</sub> — ${SC.toss.F * 100} см/Н. Столбцы энергии: ${SC.toss.E * 100} см/Дж.</p>`,
     cam: { target: [ST.toss + 0.8, 1.25, 0], az: -16, el: 7, dist: 12 }, lit: 'toss', scene: 'toss', look: {},
-    fig: 'Up against gravity, down with it',
+    fig: 'Подъём против силы тяжести, падение по её направлению',
   },
   {
-    kicker: '4.2', title: 'Forces that do no work', sub: 'at right angles to the motion',
+    kicker: '4.2', title: 'Силы, не совершающие работу', sub: 'перпендикулярные движению',
     body: `
-      <p class="lede">A force at 90° to the displacement does no work, because cos 90° = 0. It can change the direction of motion, but never the speed.</p>
-      <p>A ${f(M.WHIRL.m)} kg ball on a ${f(M.WHIRL.r, 1)} m string circles a smooth table at ${f(M.WHIRL.v, 1)} m/s. The string pulls it toward the centre with <i>T</i> = ${f(M.WHIRL.T, 1)} N, always across its velocity. Its kinetic energy stays ${f(M.WHIRL.K)} J.</p>
-      <p>A satellite in a circular orbit is the same: gravity points at the planet, across the velocity, so gravity does no work on it. So does the normal force on a level floor.</p>
-      <div class="charts">${chart({ x0: 0, x1: 180, y0: -10, y1: 10, zero: true, xlabel: 'angle θ (°)', ylabel: 'work by 10 N over 1 m (J)', label: 'Work against angle',
-        series: [{ pts: samples(60, 0, 180, d => M.work(10, 1, d)) }, { cls: 'trend', pts: [], tag: [20, 2.5, 'positive'] }, { cls: 'trend', pts: [], tag: [120, -8, 'negative'] }], marks: [[90, 0, 'zero at 90°', 8, -8]] })}</div>
-      <p class="hintline">Click the ball for earlier moments. <b>v</b>: ${SC.whirl.v * 100} cm per m/s; <i>T</i>: ${SC.whirl.F * 100} cm/N.</p>`,
+      <p class="lede">Сила, перпендикулярная перемещению (угол 90°), не совершает работы, поскольку cos 90° = 0. Она может изменить направление движения, но не модуль скорости.</p>
+      <p>Шар массой ${f(M.WHIRL.m)} кг на нити длиной ${f(M.WHIRL.r, 1)} м движется по гладкому столу со скоростью ${f(M.WHIRL.v, 1)} м/с. Нить тянет его к центру с силой <i>T</i> = ${f(M.WHIRL.T, 1)} Н, всегда перпендикулярной скорости. Кинетическая энергия остаётся равной ${f(M.WHIRL.K)} Дж.</p>
+      <p>То же происходит со спутником на круговой орбите: сила тяготения направлена к планете и перпендикулярна скорости, поэтому работы не совершает. Не совершает работу и реакция опоры при движении по горизонтальному полу.</p>
+      <div class="charts">${chart({ x0: 0, x1: 180, y0: -10, y1: 10, zero: true, xlabel: 'угол θ (°)', ylabel: 'работа силы 10 Н на пути 1 м (Дж)', label: 'Зависимость работы от угла',
+        series: [{ pts: samples(60, 0, 180, d => M.work(10, 1, d)) }, { cls: 'trend', pts: [], tag: [20, 2.5, 'положительная'] }, { cls: 'trend', pts: [], tag: [120, -8, 'отрицательная'] }], marks: [[90, 0, 'ноль при 90°', 8, -8]] })}</div>
+      <p class="hintline">Нажмите на шар, чтобы увидеть предыдущие положения. Масштаб: <b>v</b> — ${SC.whirl.v * 100} см на м/с; <i>T</i> — ${SC.whirl.F * 100} см/Н.</p>`,
     cam: { target: [ST.whirl, 0.1, 0], az: -14, el: 36, dist: 8.8 }, lit: 'whirl', scene: 'whirl', look: {},
-    fig: 'Tension across the velocity',
+    fig: 'Сила натяжения перпендикулярна скорости',
   },
   {
-    kicker: '4.3', title: 'Kinetic energy', sub: 'the work–energy theorem',
+    kicker: '4.3', title: 'Кинетическая энергия', sub: 'теорема о работе и изменении энергии',
     body: `
-      <p class="lede"><b>Kinetic energy</b> is energy of motion, <i>K</i> = ½<i>mv</i>². It is a scalar, in joules, and never negative.</p>
-      <p>The <b>work–energy theorem</b>: net work equals the change in kinetic energy.</p>
+      <p class="lede"><b>Кинетическая энергия</b> — энергия движения: <i>K</i> = ½<i>mv</i>². Это скалярная величина, измеряемая в джоулях; она не бывает отрицательной.</p>
+      <p><b>Теорема о работе и изменении кинетической энергии</b>: работа равнодействующей сил равна изменению кинетической энергии.</p>
       <div class="eq"><i>W</i><sub>net</sub> = Δ<i>K</i> = ½<i>mv</i><sub>f</sub>² − ½<i>mv</i><sub>0</sub>²</div>
-      <p>The road pushes this ${M.CAR.m} kg car forward with ${f(M.CAR.F / 1000, 1)} kN (drag ignored). After ${f(M.car(M.CAR.run).x)} m it has done ${f(M.car(M.CAR.run).Wnet / 1000)} kJ of work, and the car moves at ${f(M.car(M.CAR.run).v, 1)} m/s: ½ × ${M.CAR.m} × ${f(M.car(M.CAR.run).v, 1)}² = ${f(M.car(M.CAR.run).K / 1000)} kJ. The two bars grow together.</p>
-      <div class="charts">${chart({ ...R.car, xlabel: 'distance (m)', ylabel: 'K = W_net (kJ)', cursors: [['car', BLUE]], label: 'Kinetic energy against distance',
-        series: [{ color: BLUE, pts: [[0, 0], [8, M.CAR.F * 8 / 1000]], tag: [3.2, M.CAR.F * 3.2 / 1000 + 3, 'slope = F = 3.0 kN'] }] })}</div>
-      <p class="hintline">Click the car: weight and normal force do no work. Arrows: 25 cm per kN. Bars: 7.5 cm per kJ.</p>`,
+      <p>Дорога толкает автомобиль массой ${M.CAR.m} кг вперёд с силой ${f(M.CAR.F / 1000, 1)} кН (сопротивлением воздуха пренебрегаем). После перемещения на ${f(M.car(M.CAR.run).x)} м совершена работа ${f(M.car(M.CAR.run).Wnet / 1000)} кДж, а скорость автомобиля достигает ${f(M.car(M.CAR.run).v, 1)} м/с: ½ × ${M.CAR.m} × ${f(M.car(M.CAR.run).v, 1)}² = ${f(M.car(M.CAR.run).K / 1000)} кДж. Оба столбца энергии увеличиваются одинаково.</p>
+      <div class="charts">${chart({ ...R.car, xlabel: 'расстояние (м)', ylabel: 'K = W_net (кДж)', cursors: [['car', BLUE]], label: 'Зависимость кинетической энергии от расстояния',
+        series: [{ color: BLUE, pts: [[0, 0], [8, M.CAR.F * 8 / 1000]], tag: [3.2, M.CAR.F * 3.2 / 1000 + 3, 'наклон = F = 3,0 кН'] }] })}</div>
+      <p class="hintline">Нажмите на автомобиль: сила тяжести и реакция опоры не совершают работы. Масштаб стрелок: 25 см на кН. Столбцы: 7,5 см на кДж.</p>`,
     cam: { target: [ST.car + 4.6, 1.0, 0], az: -16, el: 12, dist: 36 }, lit: 'car', scene: 'car', look: {},
-    fig: 'Net work in, kinetic energy out',
+    fig: 'Работа равнодействующей превращается в кинетическую энергию',
   },
   {
-    kicker: '4.4', title: 'Gravitational potential energy', sub: 'energy of height',
+    kicker: '4.4', title: 'Потенциальная энергия тяжести', sub: 'энергия положения по высоте',
     body: `
-      <p class="lede"><b>Potential energy</b> is stored energy that depends on position. Near Earth’s surface</p>
+      <p class="lede"><b>Потенциальная энергия</b> — запас энергии, зависящий от положения тела. Вблизи поверхности Земли</p>
       <div class="eq"><i>U</i><sub>g</sub> = <i>mg</i>Δ<i>y</i></div>
-      <p>with Δ<i>y</i> measured from wherever you choose <i>U</i><sub>g</sub> = 0. It equals the least work needed to lift the object there against gravity.</p>
-      <p>This ${f(M.DROP.m)} kg ball is dropped from ${f(M.DROP.h, 1)} m: <i>U</i><sub>g</sub> = ${f(M.DROP.E, 1)} J, <i>K</i> = 0. As it falls <i>U</i><sub>g</sub> turns into <i>K</i>; just before landing <i>K</i> = ${f(M.DROP.E, 1)} J, so <i>v</i> = ${f(Math.sqrt(2 * M.G * M.DROP.h))} m/s. Dropped from a height, <i>U</i><sub>g0</sub> = <i>K</i><sub>f</sub>.</p>
-      <div class="charts">${chart({ ...R.drop, xlabel: 'height above the ground (m)', ylabel: 'energy (J)', cursors: [['dropU', AMBER], ['dropK', BLUE]], label: 'Potential and kinetic energy against height',
+      <p>Здесь Δ<i>y</i> отсчитывается от произвольно выбранного уровня, на котором <i>U</i><sub>g</sub> = 0. Потенциальная энергия равна минимальной работе, необходимой для подъёма тела на эту высоту против силы тяжести.</p>
+      <p>Шар массой ${f(M.DROP.m)} кг отпускают с высоты ${f(M.DROP.h, 1)} м: <i>U</i><sub>g</sub> = ${f(M.DROP.E, 1)} Дж, <i>K</i> = 0. При падении <i>U</i><sub>g</sub> превращается в <i>K</i>. Перед приземлением <i>K</i> = ${f(M.DROP.E, 1)} Дж, поэтому <i>v</i> = ${f(Math.sqrt(2 * M.G * M.DROP.h))} м/с. Таким образом, начальная потенциальная энергия превращается в конечную кинетическую: <i>U</i><sub>g0</sub> = <i>K</i><sub>f</sub>.</p>
+      <div class="charts">${chart({ ...R.drop, xlabel: 'высота над землёй (м)', ylabel: 'энергия (Дж)', cursors: [['dropU', AMBER], ['dropK', BLUE]], label: 'Потенциальная и кинетическая энергия в зависимости от высоты',
         series: [{ cls: 'trend', pts: [[0, M.DROP.E], [3, M.DROP.E]], tag: [1.25, M.DROP.E - 1, 'E'] }, { color: AMBER, pts: [[0, 0], [3, M.DROP.E]], tag: [2.2, 8.5, 'U<tspan dy="3" font-size="8">g</tspan>'] }, { color: BLUE, pts: [[0, M.DROP.E], [3, 0]], tag: [0.35, 10.0, 'K'] }] })}</div>
-      <p class="hintline">Click the ball to move the zero. Bars: ${SC.drop.E * 100} cm per joule.</p>`,
+      <p class="hintline">Нажмите на шар, чтобы изменить нулевой уровень. Масштаб столбцов: ${SC.drop.E * 100} см на джоуль.</p>`,
     cam: { target: [ST.drop + 0.7, 1.5, 0], az: -14, el: 6, dist: 14 }, lit: 'drop', scene: 'drop', look: {},
-    fig: 'Height becomes speed',
+    fig: 'Потенциальная энергия превращается в скорость',
   },
   {
-    kicker: '4.5', title: 'Spring potential energy', sub: 'Hooke’s law',
+    kicker: '4.5', title: 'Потенциальная энергия пружины', sub: 'закон Гука',
     body: `
-      <p class="lede">A spring pushes back toward its natural length, harder the further it is squashed or stretched.</p>
-      <table class="data eqs"><tr><td><i>F</i><sub>s</sub> = −<i>k</i>Δ<i>x</i></td><td>opposite Δx; <i>k</i> in N/m</td></tr><tr><td><i>U</i><sub>s</sub> = ½<i>k</i>Δ<i>x</i>²</td><td>energy stored</td></tr></table>
-      <p>With <i>k</i> = ${M.SPRING.k} N/m, the ${f(M.SPRING.m, 1)} kg block (<i>K</i> = ${f(M.SPRING.E, 1)} J) stops at Δ<i>x</i> = ${f(XS)} m: all ${f(M.SPRING.E, 1)} J is stored, then given back. Work is the <b>area under a force–displacement graph</b>; under <i>kx</i> it is a triangle, ½ · Δ<i>x</i> · <i>k</i>Δ<i>x</i>.</p>
-      <div class="charts">${chart({ ...R.spring, xlabel: 'compression Δx (m)', ylabel: 'spring force (N)', cursors: [['spring']], label: 'Spring force against compression, with the shaded area equal to the stored energy',
+      <p class="lede">Пружина стремится вернуться к естественной длине. Чем сильнее её сжали или растянули, тем больше сила упругости.</p>
+      <table class="data eqs"><tr><td><i>F</i><sub>s</sub> = −<i>k</i>Δ<i>x</i></td><td>противоположно Δx; <i>k</i> в Н/м</td></tr><tr><td><i>U</i><sub>s</sub> = ½<i>k</i>Δ<i>x</i>²</td><td>запасённая энергия</td></tr></table>
+      <p>При <i>k</i> = ${M.SPRING.k} Н/м блок массой ${f(M.SPRING.m, 1)} кг (<i>K</i> = ${f(M.SPRING.E, 1)} Дж) останавливается при Δ<i>x</i> = ${f(XS)} м: вся энергия ${f(M.SPRING.E, 1)} Дж запасается в пружине, а затем возвращается. Работа равна <b>площади под графиком силы в зависимости от перемещения</b>; для <i>kx</i> это площадь треугольника ½ · Δ<i>x</i> · <i>k</i>Δ<i>x</i>.</p>
+      <div class="charts">${chart({ ...R.spring, xlabel: 'сжатие Δx (м)', ylabel: 'сила упругости (Н)', cursors: [['spring']], label: 'Сила упругости в зависимости от сжатия; заштрихованная площадь равна запасённой энергии',
         under: `<path data-area="spring" style="fill:${BAR_COLORS.U};opacity:.45" d=""/>`, series: [{ pts: [[0, 0], [0.5, M.SPRING.k * 0.5]] }] })}</div>
       <p class="live" id="springlive"></p>
-      <p class="hintline">Frictionless. Arrows: ${SC.spring.F * 100} cm/N. Bars: ${SC.spring.E * 100} cm/J.</p>`,
+      <p class="hintline">Поверхность без трения. Масштаб стрелок: ${SC.spring.F * 100} см/Н. Столбцы: ${SC.spring.E * 100} см/Дж.</p>`,
     cam: { target: [ST.spring - 0.05, 0.6, 0], az: -14, el: 20, dist: 14 }, lit: 'spring', scene: 'spring', look: {},
-    fig: 'Squeezing a spring',
+    fig: 'Сжатие пружины',
   },
   {
-    kicker: '4.6 · AP Physics C', title: 'Work by a changing force', sub: 'the area under F(x)',
+    kicker: '4.6 · AP Physics C', title: 'Работа переменной силы', sub: 'площадь под графиком F(x)',
     body: `
-      <p class="lede">When the force changes along the way, cut the path into thin strips, add <i>F</i>Δ<i>x</i> for each, and let the strips shrink. The sum becomes the <b>area under the F(x) graph</b>:</p>
+      <p class="lede">Если сила меняется вдоль пути, разделим перемещение на узкие участки, для каждого вычислим <i>F</i>Δ<i>x</i>, а затем будем уменьшать ширину участков. Сумма стремится к <b>площади под графиком F(x)</b>:</p>
       <div class="eq"><i>W</i> = lim Σ <i>F</i>(<i>x</i><sub>i</sub>)Δ<i>x</i> = ∫ <i>F</i>(<i>x</i>) d<i>x</i></div>
-      <p>A ${f(M.PUSH.m, 1)} kg crate on a smooth floor gets <i>F</i> = <i>F</i><sub>0</sub>(1 − <i>x</i>/<i>L</i>)(1 + 2<i>x</i>/<i>L</i>), ${M.PUSH.F0} N fading to 0 at <i>L</i> = ${f(M.PUSH.L, 1)} m. Integrating, <i>W</i> = ⅚<i>F</i><sub>0</sub><i>L</i> = ${f(M.PUSH.W, 1)} J, all of it kinetic energy.</p>
-      <div class="charts">${chart({ ...R.push, xlabel: 'position x (m)', ylabel: 'push F(x) (N)', cursors: [['push']], label: 'Push against position, with the area up to the crate shaded and six strips outlined',
+      <p>На ящик массой ${f(M.PUSH.m, 1)} кг на гладком полу действует сила <i>F</i> = <i>F</i><sub>0</sub>(1 − <i>x</i>/<i>L</i>)(1 + 2<i>x</i>/<i>L</i>), которая уменьшается от ${M.PUSH.F0} Н до нуля при <i>L</i> = ${f(M.PUSH.L, 1)} м. Интегрирование даёт <i>W</i> = ⅚<i>F</i><sub>0</sub><i>L</i> = ${f(M.PUSH.W, 1)} Дж; вся эта работа переходит в кинетическую энергию.</p>
+      <div class="charts">${chart({ ...R.push, xlabel: 'координата x (м)', ylabel: 'сила F(x) (Н)', cursors: [['push']], label: 'Сила в зависимости от координаты; площадь до ящика заштрихована и разделена на шесть полос',
         under: `<path data-area="push" style="fill:#86868c;opacity:.35" d=""/>` + Array.from({ length: 6 }, (_, i) => { const dx = M.PUSH.L / 6, x = i * dx, F = M.pushF(x + dx / 2), X = v => CH.sx(v, R.push.x0, R.push.x1), Y = v => CH.sy(v, R.push.y0, R.push.y1, R.push.h); return `<rect class="trend" x="${X(x)}" y="${Y(F)}" width="${X(dx) - X(0)}" height="${Y(0) - Y(F)}"/>`; }).join(''),
         series: [{ pts: [...samples(60, 0, M.PUSH.L, M.pushF), [R.push.x1, 0]] }] })}</div>
-      <p class="hintline">6 strips (dashed) ${f(M.pushStrips(6))} J; 64 strips ${f(M.pushStrips(64), 3)} J. ${SC.push.F * 100} cm/N.</p>`,
+      <p class="hintline">6 полос (пунктир): ${f(M.pushStrips(6))} Дж; 64 полосы: ${f(M.pushStrips(64), 3)} Дж. Масштаб: ${SC.push.F * 100} см/Н.</p>`,
     cam: { target: [ST.push + 0.1, 0.8, 0], az: -12, el: 9, dist: 14.5 }, lit: 'push', scene: 'push', look: {},
-    fig: 'Work is the area under F(x)',
+    fig: 'Работа равна площади под графиком F(x)',
   },
   {
-    kicker: '4.7', title: 'Conservation of energy', sub: 'mechanical energy stays constant',
+    kicker: '4.7', title: 'Закон сохранения энергии', sub: 'механическая энергия остаётся постоянной',
     body: `
-      <p class="lede">Mechanical energy, <i>E</i> = <i>K</i> + <i>U</i><sub>g</sub> + <i>U</i><sub>s</sub>, stays the same when there is no friction or drag.</p>
+      <p class="lede">Механическая энергия <i>E</i> = <i>K</i> + <i>U</i><sub>g</sub> + <i>U</i><sub>s</sub> сохраняется, если отсутствуют трение и сопротивление среды.</p>
       <div class="eq"><i>U</i><sub>g0</sub> + <i>U</i><sub>s0</sub> + <i>K</i><sub>0</sub> = <i>U</i><sub>gf</sub> + <i>U</i><sub>sf</sub> + <i>K</i><sub>f</sub></div>
-      <p>A ${f(M.PEND.m, 1)} kg bob on a ${f(M.PEND.L, 1)} m string, let go at ${M.PEND.deg0}°. At the ends it is all <i>U</i><sub>g</sub>, ${f(M.PEND.E)} J. At the bottom it is all <i>K</i>, at ${f(Math.sqrt(2 * M.PEND.E / M.PEND.m))} m/s. The string pulls across the motion and does no work. Tip: find the zero terms first (<i>v</i> = 0 at the ends, Δ<i>y</i> = 0 at the bottom).</p>
+      <p>Маятник массой ${f(M.PEND.m, 1)} кг на нити длиной ${f(M.PEND.L, 1)} м отпускают из положения под углом ${M.PEND.deg0}°. В крайних точках энергия полностью потенциальная: <i>U</i><sub>g</sub> = ${f(M.PEND.E)} Дж. В нижней точке она полностью кинетическая, а скорость равна ${f(Math.sqrt(2 * M.PEND.E / M.PEND.m))} м/с. Натяжение нити перпендикулярно движению и работы не совершает. Совет: сначала исключите нулевые слагаемые (<i>v</i> = 0 в крайних точках, Δ<i>y</i> = 0 в нижней точке).</p>
             <div class="charts">${barChart('pend', [['K', 'K', BAR_COLORS.K], ['U', 'U<tspan dy="3" font-size="8">g</tspan>', BAR_COLORS.U], ['E', 'E', BAR_COLORS.E]], M.PEND.E)}</div>
-      <p class="hintline">Click the bob to split its weight. Arrows: ${SC.pendulum.F * 100} cm/N. Bars: ${SC.pendulum.E * 100} cm/J.</p>`,
+      <p class="hintline">Нажмите на маятник, чтобы разложить силу тяжести на составляющие. Масштаб стрелок: ${SC.pendulum.F * 100} см/Н. Столбцы: ${SC.pendulum.E * 100} см/Дж.</p>`,
     cam: { target: [ST.pendulum + 0.7, 1.8, 0], az: -10, el: 6, dist: 14 }, lit: 'pendulum', scene: 'pendulum', look: {},
-    fig: 'K and U trade places',
+    fig: 'Обмен кинетической и потенциальной энергией',
   },
   {
-    kicker: '4.8 · AP Physics C', title: 'Force from potential energy', sub: 'minus the slope of U',
+    kicker: '4.8 · AP Physics C', title: 'Сила через потенциальную энергию', sub: 'минус наклон графика U',
     body: `
-      <p class="lede">Since d<i>W</i> = <i>F</i> d<i>x</i> = −d<i>U</i>, a conservative force is <b>minus the slope</b> of <i>U</i>(<i>x</i>): it points downhill, and is zero where <i>U</i> is flat.</p>
+      <p class="lede">Поскольку d<i>W</i> = <i>F</i> d<i>x</i> = −d<i>U</i>, консервативная сила равна <b>минус производной</b> потенциальной энергии <i>U</i>(<i>x</i>): она направлена в сторону уменьшения энергии и равна нулю там, где график <i>U</i> горизонтален.</p>
       <div class="eq"><i>F</i><sub>x</sub> = −d<i>U</i>/d<i>x</i></div>
-      <p>A ${f(M.BEAD.m)} kg bead on a smooth wire, <i>x</i> measured along it: <i>U</i> = <i>mgh</i>(<i>x</i>).</p>
-      <div class="charts">${chart({ ...R.beadU, xlabel: 'x along the wire (m)', ylabel: 'U (J) and its tangent', cursors: [['beadU']], label: 'Potential energy along the wire, with the tangent at the bead',
+      <p>Бусинка массой ${f(M.BEAD.m)} кг движется по гладкой проволоке; координата <i>x</i> отсчитывается вдоль проволоки: <i>U</i> = <i>mgh</i>(<i>x</i>).</p>
+      <div class="charts">${chart({ ...R.beadU, xlabel: 'координата x вдоль проволоки (м)', ylabel: 'U (Дж) и касательная', cursors: [['beadU']], label: 'Потенциальная энергия вдоль проволоки и касательная в точке бусинки',
         under: `<line data-tangent="bead" class="curve" style="stroke:#e5484d;stroke-width:1.3"/>`,
         series: [{ cls: 'trend', pts: [[0, M.BEAD.E], [R.beadU.x1, M.BEAD.E]], tag: [5.3, M.BEAD.E - 0.55, 'E'] }, { pts: samples(120, 0, M.BEAD.len, M.beadU) }] })}
-        ${chart({ ...R.beadF, zero: true, xlabel: 'x along the wire (m)', ylabel: 'F = −dU/dx (N)', cursors: [['beadF']], label: 'Force along the wire',
-        series: [{ pts: samples(120, 0, M.BEAD.len, M.beadF) }], marks: [[M.BEAD.stable, 0, 'stable', -16, 14], [M.BEAD.unstable, 0, 'unstable', 6, -6]] })}</div>
-      <p class="hintline">Click the bead for the tangent. ${SC.bead.F * 100} cm/N.</p>`,
+        ${chart({ ...R.beadF, zero: true, xlabel: 'координата x вдоль проволоки (м)', ylabel: 'F = −dU/dx (Н)', cursors: [['beadF']], label: 'Сила вдоль проволоки',
+        series: [{ pts: samples(120, 0, M.BEAD.len, M.beadF) }], marks: [[M.BEAD.stable, 0, 'устойчивое', -16, 14], [M.BEAD.unstable, 0, 'неустойчивое', 6, -6]] })}</div>
+      <p class="hintline">Нажмите на бусинку, чтобы увидеть касательную. Масштаб: ${SC.bead.F * 100} см/Н.</p>`,
     cam: { target: [ST.bead - 0.1, 0.85, 0], az: -10, el: 8, dist: 14.5 }, lit: 'bead', scene: 'bead', look: {},
-    fig: 'Downhill on the U graph',
+    fig: 'Движение вниз по графику U',
   },
   {
-    kicker: '4.9 · AP Physics C', title: 'Energy diagrams', sub: 'turning points and equilibrium',
+    kicker: '4.9 · AP Physics C', title: 'Энергетические диаграммы', sub: 'точки поворота и равновесие',
     body: `
-      <p class="lede">Draw a line at the total energy <i>E</i>: the gap above <i>U</i>(<i>x</i>) is <i>K</i>. The particle turns back at the <b>turning points</b>, where <i>U</i> = <i>E</i>.</p>
-      <table class="data eqs"><tr><td>stable</td><td>U minimum, U″ &gt; 0: F pushes back</td></tr><tr><td>unstable</td><td>U maximum, U″ &lt; 0: F pushes away (hump)</td></tr><tr><td>neutral</td><td>U flat: no force (wire’s right end)</td></tr></table>
-      <p>A light atom bound to a heavy one, at <i>E</i> = ${f(M.BOND.E / M.EV, 1)} eV. Near the bottom a well acts as a spring, <i>k</i> = <i>U</i>″:</p>
+      <p class="lede">Проведите линию полной энергии <i>E</i>: расстояние от неё до графика <i>U</i>(<i>x</i>) равно <i>K</i>. Частица разворачивается в <b>точках поворота</b>, где <i>U</i> = <i>E</i>.</p>
+      <table class="data eqs"><tr><td>устойчивое</td><td>минимум U, U″ &gt; 0: сила возвращает к равновесию</td></tr><tr><td>неустойчивое</td><td>максимум U, U″ &lt; 0: сила удаляет от равновесия (вершина)</td></tr><tr><td>нейтральное</td><td>U постоянно: сила отсутствует (правый конец проволоки)</td></tr></table>
+      <p>Лёгкий атом связан с тяжёлым; полная энергия <i>E</i> = ${f(M.BOND.E / M.EV, 1)} эВ. Вблизи дна потенциальной ямы взаимодействие подобно пружине, <i>k</i> = <i>U</i>″:</p>
       <div class="eq">ω² = <i>U</i>″(<i>x</i><sub>0</sub>)/<i>m</i> → <i>T</i> = ${f(2 * Math.PI / M.BOND.w * 1e15, 1)} fs</div>
-      <div class="charts">${chart({ ...R.bondU, xlabel: 'separation r (nm)', ylabel: 'U (eV)', cursors: [['bondU']], zero: true, label: 'Bond potential energy with the total-energy line and turning points',
+      <div class="charts">${chart({ ...R.bondU, xlabel: 'расстояние r (нм)', ylabel: 'U (эВ)', cursors: [['bondU']], zero: true, label: 'Потенциальная энергия связи, линия полной энергии и точки поворота',
         series: [{ cls: 'trend', pts: [[R.bondU.x0, M.BOND.E / M.EV], [R.bondU.x1, M.BOND.E / M.EV]], tag: [0.315, M.BOND.E / M.EV + 0.06, 'E'] }, { pts: samples(120, 0.1355, R.bondU.x1, r => M.bondU(r * 1e-9) / M.EV) }],
-        marks: [[M.BOND.r1 * 1e9, M.BOND.E / M.EV, 'turn', -32, 4], [M.BOND.r2 * 1e9, M.BOND.E / M.EV, 'turn', 6, 14]] })}</div>
-      <p class="hintline">Drawn 0.1 nm = 1 m, <i>F</i> ${SC.bond.F * 100} cm/nN, ${(() => { const [a, e] = (1 / (M.SLOW * M.BOND.tscale)).toExponential(1).split('e+'); return `${a}×10<sup>${e}</sup>`; })()}× slower.</p>`,
+        marks: [[M.BOND.r1 * 1e9, M.BOND.E / M.EV, 'поворот', -32, 4], [M.BOND.r2 * 1e9, M.BOND.E / M.EV, 'поворот', 6, 14]] })}</div>
+      <p class="hintline">Масштаб рисунка: 0,1 нм = 1 м; <i>F</i> — ${SC.bond.F * 100} см/нН. Анимация замедлена в ${(() => { const [a, e] = (1 / (M.SLOW * M.BOND.tscale)).toExponential(1).split('e+'); return `${a}×10<sup>${e}</sup>`; })()} раза.</p>`,
     cam: { target: [ST.bond - 0.45, 1.25, 0], az: -10, el: 6, dist: 12.5 }, lit: 'bond', scene: 'bond', look: {},
-    fig: 'A particle in a well',
+    fig: 'Частица в потенциальной яме',
   },
   {
-    kicker: '4.10', title: 'When it isn’t conserved', sub: 'friction turns energy into heat',
+    kicker: '4.10', title: 'Когда механическая энергия не сохраняется', sub: 'трение превращает её в тепло',
     body: `
-      <p class="lede">Friction and drag are <b>resistive</b> forces. They point against the motion, so their work is always negative. The mechanical energy they remove becomes thermal energy.</p>
+      <p class="lede">Трение и сопротивление среды — это <b>силы сопротивления</b>. Они направлены против движения, поэтому их работа всегда отрицательна. Механическая энергия, которую они отнимают, превращается во внутреннюю (тепловую) энергию.</p>
       <div class="eq"><i>E</i><sub>mech,i</sub> = <i>E</i><sub>mech,f</sub> + |<i>W</i><sub>resistive</sub>|</div>
-      <p>The ${f(M.SLIDE.m, 1)} kg block slides onto a rough floor at ${f(M.SLIDE.v0, 1)} m/s. With μ<sub>k</sub> = ${f(M.SLIDE.mu)}, friction is <i>f</i> = μ<sub>k</sub><i>mg</i> = ${f(M.SLIDE.f)} N. It stops after ${f(M.SLIDE.d)} m: |<i>W</i><sub>f</sub>| = <i>f</i>·<i>d</i> = ${f(M.SLIDE.E, 1)} J, all of its <i>K</i>. <i>E</i><sub>mech</sub> falls to zero; the total, heat included, never changes.</p>
-      <div class="charts">${chart({ ...R.slide, xlabel: 'distance slid (m)', ylabel: 'energy (J)', cursors: [['slideK', BLUE], ['slideT', GREY]], label: 'Kinetic and thermal energy against distance',
-        series: [{ cls: 'trend', pts: [[0, M.SLIDE.E], [M.SLIDE.d, M.SLIDE.E]], tag: [0.85, M.SLIDE.E - 0.2, 'total'] }, { color: BLUE, pts: [[0, M.SLIDE.E], [M.SLIDE.d, 0]], tag: [0.2, 11.5, 'K'] }, { color: GREY, pts: [[0, 0], [M.SLIDE.d, M.SLIDE.E]], tag: [1.45, 8.0, 'thermal'] }] })}</div>
-      <p class="hintline">Click the block. Arrows: ${SC.slide.F * 100} cm/N. Bars: ${SC.slide.E * 100} cm/J.</p>`,
+      <p>Блок массой ${f(M.SLIDE.m, 1)} кг скользит по шероховатому полу со скоростью ${f(M.SLIDE.v0, 1)} м/с. При μ<sub>k</sub> = ${f(M.SLIDE.mu)} сила трения равна <i>f</i> = μ<sub>k</sub><i>mg</i> = ${f(M.SLIDE.f)} Н. Блок останавливается через ${f(M.SLIDE.d)} м: |<i>W</i><sub>f</sub>| = <i>f</i>·<i>d</i> = ${f(M.SLIDE.E, 1)} Дж — это вся его кинетическая энергия <i>K</i>. Механическая энергия <i>E</i><sub>mech</sub> уменьшается до нуля, но полная энергия, включая тепло, сохраняется.</p>
+      <div class="charts">${chart({ ...R.slide, xlabel: 'путь скольжения (м)', ylabel: 'энергия (Дж)', cursors: [['slideK', BLUE], ['slideT', GREY]], label: 'Кинетическая и тепловая энергия в зависимости от пути',
+        series: [{ cls: 'trend', pts: [[0, M.SLIDE.E], [M.SLIDE.d, M.SLIDE.E]], tag: [0.85, M.SLIDE.E - 0.2, 'полная'] }, { color: BLUE, pts: [[0, M.SLIDE.E], [M.SLIDE.d, 0]], tag: [0.2, 11.5, 'K'] }, { color: GREY, pts: [[0, 0], [M.SLIDE.d, M.SLIDE.E]], tag: [1.45, 8.0, 'тепловая'] }] })}</div>
+      <p class="hintline">Нажмите на блок. Масштаб стрелок: ${SC.slide.F * 100} см/Н. Столбцы: ${SC.slide.E * 100} см/Дж.</p>`,
     cam: { target: [ST.slide + 0.3, 0.55, 0], az: -16, el: 12, dist: 14 }, lit: 'slide', scene: 'slide', look: {},
-    fig: 'Kinetic energy becomes heat',
+    fig: 'Кинетическая энергия превращается в тепло',
   },
   {
-    kicker: '4.11', title: 'Power', sub: 'how fast work is done',
+    kicker: '4.11', title: 'Мощность', sub: 'скорость совершения работы',
     body: `
-      <p class="lede"><b>Power</b> is the rate of doing work, or of turning energy from one form into another. It is measured in watts: 1 W = 1 J/s, and 1 horsepower = ${M.HP} W.</p>
+      <p class="lede"><b>Мощность</b> — это скорость совершения работы или преобразования энергии из одной формы в другую. Она измеряется в ваттах: 1 Вт = 1 Дж/с, а 1 лошадиная сила = ${M.HP} Вт.</p>
       <div class="eq"><i>P</i> = <i>W</i>/<i>t</i> = <i>F</i>Δ<i>x</i>/<i>t</i> = <i>Fv</i></div>
-      <p>Both ${M.LIFT.m} kg crates rise ${f(M.LIFT.h, 1)} m at steady speed, so each rope pulls with <i>T</i> = <i>mg</i> = ${f(M.LIFT.W, 0)} N and does ${f(M.LIFT.work, 0)} J. The fast one takes ${f(M.LIFT.tFast, 1)} s: ${f(M.LIFT.Pfast, 0)} W. The slow one takes ${f(M.LIFT.tSlow, 1)} s: ${f(M.LIFT.Pslow, 0)} W. Same work, twice the power. Given speeds and times, <i>P</i> = Δ<i>E</i>/<i>t</i> is often quickest.</p>
-            <div class="charts">${chart({ ...R.lift, xlabel: 'time (s)', ylabel: 'work done (J)', cursors: [['liftF'], ['liftS']], label: 'Work against time, fast and slow',
-        series: [{ pts: [[0, 0], [M.LIFT.tFast, M.LIFT.work], [4.2, M.LIFT.work]], tag: [0.25, 160, 'fast: slope 98 W'] }, { cls: 'trend', pts: [[0, 0], [M.LIFT.tSlow, M.LIFT.work]], tag: [2.45, 95, 'slow: 49 W'] }] })}</div>
-      <p class="hintline">Brief start and stop ignored. Arrows: ${SC.lift.F * 100} cm per newton.</p>`,
+      <p>Оба ящика массой ${M.LIFT.m} кг поднимают на высоту ${f(M.LIFT.h, 1)} м с постоянной скоростью. Каждая верёвка натягивается с силой <i>T</i> = <i>mg</i> = ${f(M.LIFT.W, 0)} Н и совершает работу ${f(M.LIFT.work, 0)} Дж. Быстрый подъём занимает ${f(M.LIFT.tFast, 1)} с: мощность ${f(M.LIFT.Pfast, 0)} Вт. Медленный — ${f(M.LIFT.tSlow, 1)} с: мощность ${f(M.LIFT.Pslow, 0)} Вт. Работа одинакова, но мощность вдвое больше. Если известны скорость и время, часто удобнее всего использовать <i>P</i> = Δ<i>E</i>/<i>t</i>.</p>
+            <div class="charts">${chart({ ...R.lift, xlabel: 'время (с)', ylabel: 'работа (Дж)', cursors: [['liftF'], ['liftS']], label: 'Работа во времени при быстром и медленном подъёме',
+        series: [{ pts: [[0, 0], [M.LIFT.tFast, M.LIFT.work], [4.2, M.LIFT.work]], tag: [0.25, 160, 'быстро: наклон 98 Вт'] }, { cls: 'trend', pts: [[0, 0], [M.LIFT.tSlow, M.LIFT.work]], tag: [2.45, 95, 'медленно: 49 Вт'] }] })}</div>
+      <p class="hintline">Короткими начальными и конечными участками пренебрегаем. Масштаб стрелок: ${SC.lift.F * 100} см на ньютон.</p>`,
     cam: { target: [ST.lift, 1.7, 0], az: -12, el: 6, dist: 14 }, lit: 'lift', scene: 'lift', look: {},
-    fig: 'Same work, half the time',
+    fig: 'Одинаковая работа за половину времени',
   },
 ];
 
