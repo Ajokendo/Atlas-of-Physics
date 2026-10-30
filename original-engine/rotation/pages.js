@@ -234,44 +234,44 @@ export const PAGES = [
   {
     kicker: '7.12', title: 'Угловой импульс силы', sub: 'τΔt = ΔL',
     body: `
-      <p class="lede">A spinning thing carries <b>angular momentum</b> L = Iω. A torque changes it, just as a force changes p:</p>
+      <p class="lede">Вращающееся тело обладает <b>моментом импульса</b> L = Iω. Момент силы изменяет его так же, как сила изменяет линейный импульс p:</p>
       <div class="eq">Στ = ΔL/Δt, so τΔt = ΔL</div>
       <p>τΔt — это <b>угловой импульс силы</b>, равный площади под графиком τ–t. Два одинаковых диска (I = ½MR² = ${f(M.IMP.I, 0)} кг·м²) получают два воздействия на обод: A — сильное и короткое, B — слабое и длительное. Площади под графиками равны, поэтому конечные L и ω = ${f(IM[0].wf)} рад/с одинаковы.</p>
-      <div class="charts">${chart({ x0: 0, x1: 3, y0: 0, y1: 300, xlabel: 'time (s)', ylabel: 'torque τ (N·m)', cursors: ['impT0', 'impT1'], label: 'Torque against time for the two pushes: equal areas',
+      <div class="charts">${chart({ x0: 0, x1: 3, y0: 0, y1: 300, xlabel: 'время (с)', ylabel: 'момент силы τ (Н·м)', cursors: ['impT0', 'impT1'], label: 'Момент силы во времени для двух воздействий: площади равны',
         series: [{ cls: 'bar', pts: [[0, 0], [0, IM[1].tau], [IM[1].dt, IM[1].tau], [IM[1].dt, 0]], tag: [1.55, IM[1].tau - 30, `B: ${IM[1].tau} × ${IM[1].dt} = ${IM[1].J}`] }, { pts: [[0, 0], [0, IM[0].tau], [IM[0].dt, IM[0].tau], [IM[0].dt, 0], [3, 0]], tag: [0.65, IM[0].tau - 50, `A: ${IM[0].tau} × ${IM[0].dt} = ${IM[0].J}`] }] })}</div>
-      <p class="hintline">Click a merry-go-round for its lever arm. Arrows ${cm(F_HEAVY)} per newton.</p>`,
+      <p class="hintline">Нажмите на карусель, чтобы увидеть плечо силы. Масштаб стрелок: ${cm(F_HEAVY)} на ньютон.</p>`,
     cam: { target: [STATIONS.impulse, 0.5, 0.2], az: -10, el: 36, dist: 16.5 }, lit: 'impulse', scene: 'impulse', look: {},
     fig: 'Сильно и коротко, слабо и долго',
   },
   {
     kicker: '7.13', title: 'Вращение фигуриста', sub: 'момент импульса L = Iω',
     body: `
-      <p class="lede">With no outside torque, <b>angular momentum</b> L = Iω cannot change: I<sub>0</sub>ω<sub>0</sub> = I<sub>f</sub>ω<sub>f</sub>.</p>
+      <p class="lede">Если внешний момент сил отсутствует, <b>момент импульса</b> L = Iω не изменяется: I<sub>0</sub>ω<sub>0</sub> = I<sub>f</sub>ω<sub>f</sub>.</p>
       <p>Фигуристка вращается, держа в вытянутых руках грузы массой ${f(M.SKATE.m, 1)} кг, а затем поднимает руки над головой. Лёд почти не создаёт момента внешних сил. При приближении грузов к оси момент инерции I уменьшается, поэтому ω возрастает. Момент импульса L сохраняется, а K<sub>r</sub> увеличивается: фигуристка совершает работу руками.</p>
       <table class="data">
         <tr><th></th><th>руки в стороны</th><th>руки подняты</th></tr>
-        <tr><td>I (kg·m²)</td><td>${f(sk0.I)}</td><td>${f(sk1.I)}</td></tr>
+        <tr><td>I (кг·м²)</td><td>${f(sk0.I)}</td><td>${f(sk1.I)}</td></tr>
         <tr><td>ω (рад/с)</td><td>${f(sk0.w)}</td><td>${f(sk1.w)}</td></tr>
         <tr><td>L = Iω</td><td>${f(sk0.L)}</td><td>${f(sk1.L)}</td></tr>
         <tr><td>K<sub>r</sub> = ½Iω² (Дж)</td><td>${f(sk0.K)}</td><td>${f(sk1.K)}</td></tr>
       </table>
-      <div class="charts">${chart({ x0: 0, x1: +M.SKATE.run.toFixed(1), y0: 0, y1: 5, xlabel: 'time (s)', ylabel: 'ω (rad/s)', cursors: ['skater'], label: 'Skater angular velocity against time',
+      <div class="charts">${chart({ x0: 0, x1: +M.SKATE.run.toFixed(1), y0: 0, y1: 5, xlabel: 'время (с)', ylabel: 'ω (рад/с)', cursors: ['skater'], label: 'Угловая скорость фигуристки во времени',
         series: [{ pts: curvePts(t => M.skater(t).w, 0, M.SKATE.run, 120) }] })}</div>
-      <p class="hintline">Click the skater to see where the weights started.</p>`,
+      <p class="hintline">Нажмите на фигуристку, чтобы увидеть начальное положение грузов.</p>`,
     cam: { target: [STATIONS.skater, 1.3, 0], az: -16, el: 16, dist: 9.6 }, lit: 'skater', scene: 'skater', look: {},
     fig: 'Руки ближе к телу — вращение быстрее',
   },
   {
     kicker: '7.14 · AP Physics C', title: 'Момент импульса частицы', sub: 'L = r × p',
     body: `
-      <p class="lede">A ball sliding in a straight line has angular momentum about a point O:</p>
+      <p class="lede">Шар, движущийся по прямой, имеет момент импульса относительно точки O:</p>
       <div class="eq">L = r × p, |L| = mvr sin φ = mvr<sub>⊥</sub></div>
-      <p>r<sub>⊥</sub> = d is the distance from O to the line of motion. As the ball slides, r and φ change but r sin φ stays d: <b>L is constant</b> along a straight line. Then it hits a ${f(HT.M, 1)} kg rod pinned at O. The pin has no torque about O, so L about O is conserved:</p>
+      <p>r<sub>⊥</sub> = d — расстояние от O до прямой движения. По мере движения шара r и φ меняются, но r sin φ остаётся равным d, поэтому <b>L постоянно</b> при прямолинейном движении. Затем шар ударяет по стержню массой ${f(HT.M, 1)} кг, закреплённому в точке O. Реакция шарнира не создаёт момента относительно O, поэтому момент импульса сохраняется:</p>
       <div class="eq">mv<sub>0</sub>d = −mv<sub>f</sub>d + ⅓ML²ω</div>
       <p>При упругом ударе шар массой ${f(HT.m, 1)} кг отскакивает со скоростью ${f(-HT.v1)} м/с, а стержень начинает вращаться с угловой скоростью ${f(HT.w)} рад/с.</p>
-      <div class="charts">${chart({ x0: 0, x1: 2.1, y0: -0.4, y1: 1.4, zero: true, xlabel: 'time (s)', ylabel: 'L about O (kg·m²/s)', cursors: ['hitB', 'hitR', 'hitL'], label: 'Angular momentum of ball, rod and total against time',
+      <div class="charts">${chart({ x0: 0, x1: 2.1, y0: -0.4, y1: 1.4, zero: true, xlabel: 'время (с)', ylabel: 'L относительно O (кг·м²/с)', cursors: ['hitB', 'hitR', 'hitL'], label: 'Момент импульса шара, стержня и системы во времени',
         series: [{ pts: [[0, M.hit(0).Lb], [HT.tHit, M.hit(0).Lb], [HT.tHit, M.hit(9).Lb], [2.1, M.hit(9).Lb]], tag: [1.5, M.hit(9).Lb + 0.01, 'ball'] }, { cls: 'trend', pts: [[0, 0], [HT.tHit, 0], [HT.tHit, HT.I * HT.w], [2.1, HT.I * HT.w]], tag: [1.3, HT.I * HT.w + 0.02, 'rod'] }, { cls: 'curve total', pts: [[0, M.hit(0).L], [2.1, M.hit(0).L]], tag: [0.15, M.hit(0).L - 0.22, 'total'] }] })}</div>
-      <p class="hintline">Click to draw L as vectors. p: ${cm(P_SCALE)} per kg·m/s.</p>`,
+      <p class="hintline">Нажмите, чтобы показать L в виде векторов. Масштаб p: ${cm(P_SCALE)} на кг·м/с.</p>`,
     cam: { target: [STATIONS.particle - 0.4, 0.15, 0.15], az: -14, el: 52, dist: 8.5 }, lit: 'particle', scene: 'particle', look: {},
     fig: 'Шар, ось и стержень',
   },
