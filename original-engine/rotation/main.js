@@ -27,7 +27,7 @@ startBook({
       case 'plank': { const q = M.plank(M.crateX(s.clock * M.SLOW)); return `ящик при x = ${f(q.x)} м\nF_A ${f(q.FA, 1)} Н   F_B ${f(q.FB, 1)} Н   Στ = 0`; }
       case 'ladder': { const th = M.ladderAngle(s.clock * M.SLOW), q = M.ladder(th); return `θ ${dg(th)}°   F_w ${f(q.Fw, 1)} Н\nтрение ${f(q.f, 1)} Н из ${f(q.fMax, 1)} Н максимально возможных`; }
       case 'inertia': return M.SHAPES.list.map(sh => `${sh.key.padEnd(6)} ω ${f(M.shapeSpin(sh, s.inertia.t).w)} рад/с`).join('\n');
-      case 'race': return `t ${f(s.race.t)} с\n` + M.RACE.list.map(o => `${o.key} ${f(M.race(o, s.race.t).v, 1)}`).join('   ') + ' м/с';
+      case 'race': return `t ${f(s.race.t)} с\n` + M.RACE.list.map(o => `${({box: 'брусок', sphere: 'шар', disc: 'диск', ring: 'кольцо'}[o.key] || o.key)} ${f(M.race(o, s.race.t).v, 1)}`).join('   ') + ' м/с';
       case 'well': { const q = M.well(s.well.t); return `t ${f(s.well.t)} с   v ${f(q.v)} м/с\na ${f(M.WELL.a)} м/с²   T ${f(M.WELL.T)} Н`; }
       case 'skater': { const q = M.skater(s.skater.t); return `I ${f(q.I)} кг·м²   ω ${f(q.w)} рад/с\nL ${f(q.L)} кг·м²/с   K ${f(q.K)} Дж`; }
       case 'integ': { const k = M.sliceAt(s.integ.t), x = M.ROD.L * (k + 0.5) / M.ROD.N; return `элемент ${k + 1} из ${M.ROD.N}: dm = ${f(M.ROD.M / M.ROD.N, 3)} кг\nстержень, закреплённый за конец: r = ${f(x)} м   r²dm = ${f(M.ROD.M / M.ROD.N * x * x, 4)} кг·м²`; }
