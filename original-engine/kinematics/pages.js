@@ -83,7 +83,7 @@ export const PAGES = [
       <p><b>Ускоряется или замедляется?</b> Сравните знаки. Если <i>v</i> и <i>a</i> имеют разные знаки, мяч замедляется (при подъёме). Если знаки совпадают — ускоряется (при падении). В обоих случаях это ускоренное движение.</p>
       <p class="live" id="live-sign"></p>`,
     cam: { target: [0.1, 2.75, 0], az: -6, el: 5, dist: 15.5 }, lit: 'aArrow', look: { strobe: 1 },
-    fig: 'Strobe, every ' + tau.toFixed(1) + ' s',
+    fig: 'Стробоскопическая последовательность, интервал ' + tau.toFixed(1) + ' с',
   },
   {
     kicker: '1.4', title: 'Графики движения', sub: 'наклоны и площади',
@@ -98,7 +98,7 @@ export const PAGES = [
       <p>Постоянное ускорение даёт горизонтальную линию на графике <i>a</i>–<i>t</i>, прямую на графике <i>v</i>–<i>t</i> и параболу на графике <i>x</i>–<i>t</i>.</p>
       <p class="hintline">Нажмите на график, чтобы увидеть его наклон и площадь.</p>`,
     cam: { target: [-7.6, 3.0, -1.0], az: 0, el: 3, dist: 40 }, lit: 'boardX', look: { level: 1 },
-    fig: 'Положение, velocity and ускорение against время',
+    fig: 'Координата, скорость и ускорение во времени',
   },
   {
     kicker: '1.5', title: 'Кинематические уравнения', sub: 'только при постоянном ускорении',
@@ -170,7 +170,7 @@ export const PAGES = [
       <div class="eq"><i>v</i> = <i>v</i><sub>0</sub> + ∫<i>a</i> d<i>t</i> = ${f(M.PULL.a0, 1)}<i>t</i> − ${f(M.PULL.k / 2)}<i>t</i>² &nbsp;→ ${f(M.V1, 1)} m/s</div>
       <div class="eq"><i>x</i> = <i>x</i><sub>0</sub> + ∫<i>v</i> d<i>t</i> = ${f(M.PULL.a0 / 2, 1)}<i>t</i>² − ${f(M.PULL.k / 6)}<i>t</i>³ &nbsp;→ ${f(M.X1, 1)} m</div>
       <div class="charts">
-        ${kchart(KR.pa, { xlabel: 't (с)', ylabel: 'a (м/с²) · площадь = Δv', label: 'Ускорение against время, area shaded', live: AREA('pa') + CUR('pa'), series: [{ pts: samples(100, 0, 5, M.pa) }] })}
+        ${kchart(KR.pa, { xlabel: 't (с)', ylabel: 'a (м/с²) · площадь = Δv', label: 'Ускорение во времени; заштрихована площадь', live: AREA('pa') + CUR('pa'), series: [{ pts: samples(100, 0, 5, M.pa) }] })}
         ${kchart(KR.pv, { xlabel: 't (с)', ylabel: 'v (м/с) · площадь = Δx, наклон = a', label: 'Скорость against время, area shaded', live: AREA('pv') + TAN('pv') + CUR('pv'), series: [{ pts: samples(100, 0, 5, M.pv) }] })}
         ${kchart(KR.px, { xlabel: 't (с)', ylabel: 'x (м) · наклон = v', label: 'Положение against время with its tangent', live: TAN('px') + CUR('px'), series: [{ pts: samples(100, 0, 5, M.px) }] })}
       </div>
@@ -186,8 +186,8 @@ export const PAGES = [
       <p>It starts left at ${f(-M.cv(0))} m/s and turns at <i>t</i> = ${f(M.T_TURN)} s, <i>x</i> = ${f(M.cx(M.T_TURN))} m. Over 2 s: перемещение ${f(M.cx(2))} m, путь ${f(M.cdist(2))} m.</p>
       <p><b>Восстановление исходной функции</b> требует начальных условий: from <i>a</i> = 6<i>t</i>, <i>v</i> = 3<i>t</i>² + <i>C</i><sub>1</sub> and <i>x</i> = <i>t</i>³ + <i>C</i><sub>1</sub><i>t</i> + <i>C</i><sub>2</sub>; <i>v</i>(0) = −3 and <i>x</i>(0) = 0 give <i>C</i><sub>1</sub> = −3, <i>C</i><sub>2</sub> = 0.</p>
       <div class="charts">
-        ${kchart(KR.cx, { xlabel: 't (с)', ylabel: 'x (м) · наклон = v', label: 'Положение against время', live: TAN('cx') + CUR('cx'), series: [{ pts: samples(100, 0, 2, M.cx) }] })}
-        ${kchart(KR.cv, { xlabel: 't (с)', ylabel: 'v (м/с) · площадь = Δx', label: 'Скорость against время, signed area shaded', live: AREA('cv') + CUR('cv'), series: [{ pts: samples(100, 0, 2, M.cv) }] })}
+        ${kchart(KR.cx, { xlabel: 't (с)', ylabel: 'x (м) · наклон = v', label: 'Координата во времени', live: TAN('cx') + CUR('cx'), series: [{ pts: samples(100, 0, 2, M.cx) }] })}
+        ${kchart(KR.cv, { xlabel: 't (с)', ylabel: 'v (м/с) · площадь = Δx', label: 'Скорость во времени; заштрихована знаковая площадь', live: AREA('cv') + CUR('cv'), series: [{ pts: samples(100, 0, 2, M.cv) }] })}
         ${kchart(KR.ca, { xlabel: 't (с)', ylabel: 'a (м/с²) · площадь = Δv', label: 'Ускорение against время, area shaded', live: AREA('ca') + CUR('ca'), series: [{ pts: samples(100, 0, 2, M.ca) }] })}
       </div>
       <p class="hintline">Каждые 0,2 с; обратный путь показан впереди.</p>`,
@@ -199,25 +199,25 @@ export const PAGES = [
 // ---------- click a concept: what it breaks into ----------
 const sign = v => v > 1e-9 ? '+' : v < -1e-9 ? '−' : '';
 export const PLATES = {
-  ball: { text: `A мяч в свободном падении. После броска его ничто не толкает вверх: он поднимается по инерции, а сила тяжести изменяет скорость на ${M.G.toFixed(2)} м/с каждую секунду.`,
+  ball: { text: `Мяч движется в условиях свободного падения. После броска его ничто не толкает вверх: он поднимается по инерции, а сила тяжести изменяет скорость на ${M.G.toFixed(2)} м/с каждую секунду.`,
     facts: t => [['время', `${t.toFixed(2)} s`], ['координата y', `${M.y(t).toFixed(2)} m`], ['скорость v', `${sign(M.vy(t))}${Math.abs(M.vy(t)).toFixed(2)} m/s`], ['ускорение a', `−${M.G.toFixed(2)} m/s²`]] },
-  staff: { text: `The vertical line is the position axis. Its zero is the launch point. The short mark rides at the ball’s height; the black arrow is the перемещение from zero, and it returns to nothing when the ball lands, though the ball has travelled ${(2 * M.H).toFixed(2)} m.`,
+  staff: { text: `Вертикальная линия — ось координат, её нулевая отметка совпадает с точкой броска. Короткая метка показывает высоту мяча; чёрная стрелка обозначает перемещение от начала отсчёта. При приземлении перемещение становится равным нулю, хотя общий путь мяча составляет ${(2 * M.H).toFixed(2)} м.`,
     facts: t => [['координата y', `${M.y(t).toFixed(2)} m`], ['перемещение', `${sign(M.y(t))}${Math.abs(M.y(t)).toFixed(2)} m`], ['путь so far', `${M.путь(t).toFixed(2)} m`]] },
-  vArrow: { text: `The arrow’s length is the скорость and its направление is the sign of the velocity. It is drawn at a fixed scale, so twice as fast is twice as long.`,
+  vArrow: { text: `Длина стрелки соответствует модулю скорости, а её направление определяется знаком скорости. Масштаб постоянен: при удвоении скорости длина стрелки также удваивается.`,
     facts: t => [['velocity', `${sign(M.vy(t))}${Math.abs(M.vy(t)).toFixed(2)} m/s`], ['скорость', `${Math.abs(M.vy(t)).toFixed(2)} m/s`], ['направление', M.vy(t) > 1e-9 ? 'up' : M.vy(t) < -1e-9 ? 'down' : 'none, for an instant']] },
-  aArrow: { text: `The acceleration is the same at every instant, so this arrow never changes. Whether the ball скоростьs up or slows down depends on how the velocity’s sign compares with it.`,
+  aArrow: { text: `Ускорение одинаково в каждый момент времени, поэтому эта стрелка не меняется. Мяч замедляется или ускоряется в зависимости от того, совпадает ли знак скорости со знаком ускорения.`,
     facts: t => [['acceleration', `−${M.G.toFixed(2)} m/s²`], ['velocity', `${sign(M.vy(t))}${Math.abs(M.vy(t)).toFixed(2)} m/s`], ['so the ball is', M.vy(t) > 1e-9 ? 'slowing down' : M.vy(t) < -1e-9 ? 'скоростьing up' : 'at the top']] },
   boardX: { text: `Красная линия — касательная в данный момент. Её наклон (отношение изменения координаты к изменению времени) равен скорости: большой в начале, нулевой в верхней точке и большой отрицательный при приземлении.`,
     facts: t => [['наклон = v', `${sign(M.vy(t))}${Math.abs(M.vy(t)).toFixed(2)} m/s`]] },
-  boardV: { text: `A straight line, so the slope (the acceleration) is constant. The shaded area between the line and zero is the перемещение so far. Area below zero counts as negative, so by landing the two halves cancel.`,
+  boardV: { text: `Это прямая линия, поэтому её наклон (ускорение) постоянен. Заштрихованная площадь между графиком и нулевой линией равна перемещению за прошедшее время. Площадь ниже нуля считается отрицательной, поэтому к моменту приземления две части взаимно компенсируются.`,
     facts: t => [['наклон = a', `−${M.G.toFixed(2)} m/s²`], ['area = Δy', `${sign(M.areaUnderV(t))}${Math.abs(M.areaUnderV(t)).toFixed(2)} m`]] },
   boardA: { text: `Горизонтальная линия означает постоянное ускорение. Заштрихованная площадь равна изменению скорости за прошедшее время: a·t.`,
     facts: t => [['площадь = Δv', `${t > 0 ? '−' : ''}${(M.G * t).toFixed(2)} m/s`], ['v = v₀ + Δv', `${sign(M.vy(t))}${Math.abs(M.vy(t)).toFixed(2)} m/s`]] },
-  proj: { text: `Two independent motions at once: uniform sideways, free fall up and down. Each one is a one-dimensional problem with its own уравнениеs. They share only the время.`,
+  proj: { text: `Одновременно происходят два независимых движения: равномерное горизонтальное и вертикальное движение под действием силы тяжести. Каждое из них можно рассматривать как отдельную одномерную задачу. Общее для них только время.`,
     facts: t => [['x', `${M.x(t).toFixed(2)} m`], ['y', `${M.y(t).toFixed(2)} m`], ['время', `${t.toFixed(2)} s`]] },
   projV: { text: `Вектор скорости складывается из неизменной горизонтальной составляющей и вертикальной составляющей, которая ведёт себя так же, как скорость первого мяча. Сложив эти векторы по правилу треугольника, получим исходную стрелку.`,
     facts: t => [['vₓ', `${M.VX.toFixed(2)} m/s`], ['v_y', `${sign(M.vy(t))}${Math.abs(M.vy(t)).toFixed(2)} m/s`], ['скорость √(vₓ² + v_y²)', `${Math.hypot(M.VX, M.vy(t)).toFixed(2)} m/s`]] },
-  shadow: { text: `Light from straight above flattens the motion onto the floor. What is left is the horizontal motion: equal steps in equal времяs, because nothing acts sideways.`,
+  shadow: { text: `Свет, направленный строго сверху, проецирует движение на пол. Остаётся только горизонтальная составляющая: за равные промежутки времени тело проходит одинаковые расстояния, поскольку по горизонтали силы не действуют.`,
     facts: t => [['Δx so far', `${M.x(t).toFixed(2)} m`], ['step per ' + M.STROBE.toFixed(1) + ' s', `${(M.VX * M.STROBE).toFixed(2)} m`]] },
   rainRoad: { text: `Относительно дороги каждая капля падает вертикально вниз со скоростью ${M.RAIN.vr.toFixed(1)} м/с, а автомобиль движется под дождём со скоростью ${M.RAIN.vc.toFixed(1)} м/с. В этой системе отсчёта наклона нет.`,
     facts: () => [['car, v_CG', `${M.RAIN.vc.toFixed(2)} m/s forward`], ['rain, v_RG', `${M.RAIN.vr.toFixed(2)} m/s down`], ['a drop’s path', 'vertical']] },
@@ -225,19 +225,19 @@ export const PLATES = {
     facts: () => [['rain, v_RC', `${M.vlen(M.V_RC).toFixed(2)} m/s`], ['slant from vertical', `${M.RAIN_ANGLE.toFixed(1)}°`], ['road, v_GC', `${M.RAIN.vc.toFixed(2)} m/s backward`], ['car', '0 m/s']] },
   rainSum: { text: `Сложение по правилу треугольника: сначала возьмите скорость дождя относительно земли, затем прибавьте скорость земли относительно автомобиля. Вектор от начала первой стрелки до конца последней — скорость дождя относительно автомобиля.`,
     facts: () => [['forward part', `${M.V_RC[0].toFixed(2).replace('-', '−')} m/s`], ['up part', `${M.V_RC[1].toFixed(2).replace('-', '−')} m/s`], ['|v_RC|', `${M.vlen(M.V_RC).toFixed(2)} m/s`], ['tan θ = 10.0 / 7.0', `θ = ${M.RAIN_ANGLE.toFixed(1)}°`]] },
-  river: { text: `Вода движется со скоростью ${M.RIVER.vw.toFixed(1)} m/s relative to the shore. Anything floating, like these leaves or a boat, is carried along at that скорость on top of its own motion through the water.`,
+  river: { text: `Вода движется относительно берега со скоростью ${M.RIVER.vw.toFixed(1)} м/с. Любой плавающий объект — лист или лодка — переносится течением с этой скоростью, одновременно совершая собственное движение относительно воды.`,
     facts: (t, s) => [['current, v_WS', `${M.RIVER.vw.toFixed(2)} m/s по течению`], ['width', `${M.RIVER.w} m`], ['время', `${s.river.t.toFixed(1)} s`]] },
-  boatA: { text: `Pointed прямо поперёк, it reaches the far side in w/v_b = ${M.crossTime(0).toFixed(1)} с — это минимальное время переправы, однако течение сносит её на ${M.снос течением(0).toFixed(1)} m по течению. The boat points one way and moves another.`,
+  boatA: { text: `Если лодка направлена прямо поперёк реки, она достигает противоположного берега за время w/v_b = ${M.crossTime(0).toFixed(1)} с — это минимальное время переправы. Однако течение сносит её на ${M.снос течением(0).toFixed(1)} м вниз по реке. Направление лодки и направление её движения относительно берега различаются.`,
     facts: (t, s) => boatFacts(0, с.river.t) },
-  boatB: { text: `Если направить лодку на ${deg(M.AIM_UP)}° против течения, its против течения part (${M.RIVER.vb.toFixed(1)} sin θ = ${M.RIVER.vw.toFixed(1)} m/s) cancels the current. It lands прямо поперёк, but only ${M.vBS(M.AIM_UP)[1].toFixed(1)} м/с, поэтому переправа занимает ${M.crossTime(M.AIM_UP).toFixed(1)} с.`,
+  boatB: { text: `Если направить лодку на ${deg(M.AIM_UP)}° против течения, её составляющая скорости против течения (${M.RIVER.vb.toFixed(1)} sin θ = ${M.RIVER.vw.toFixed(1)} м/с) компенсирует скорость потока. Лодка достигнет противоположного берега строго напротив точки старта, но её поперечная скорость составит лишь ${M.vBS(M.AIM_UP)[1].toFixed(1)} м/с, поэтому переправа займёт ${M.crossTime(M.AIM_UP).toFixed(1)} с.`,
     facts: (t, s) => boatFacts(M.AIM_UP, с.river.t) },
-  pull: { text: `Its acceleration is not constant, so the kinematic уравнениеs of 1.5 don’t apply. Its velocity is the area under a–t so far, and its position the area under v–t. Gaps between the outlines keep growing, but by less each время, until they are equal once a = 0.`,
+  pull: { text: `Ускорение непостоянно, поэтому кинематические уравнения из раздела 1.5 здесь неприменимы. Изменение скорости равно площади под графиком a–t, а перемещение — площади под графиком v–t. Расстояния между последовательными положениями продолжают увеличиваться, но прирост постепенно уменьшается; когда a = 0, эти расстояния становятся одинаковыми.`,
     facts: (t, s) => { const u = с.pull.t; return [['время', `${u.toFixed(2)} s`], ['x = ∫v dt', `${M.px(u).toFixed(2)} m`], ['v = ∫a dt', `${M.pv(u).toFixed(2)} m/s`], ['a', `${M.pa(u).toFixed(2)} m/s²`]]; } },
-  pullA: { text: `a = ${M.PULL.a0.toFixed(1)} − ${M.PULL.k.toFixed(1)}t: наклон графика v–t, который постепенно уменьшается до нуля в момент t₁ = ${M.T1.toFixed(2)} с. Its rate of change, da/dt = −${M.PULL.k.toFixed(1)} м/с³, называется рывком.`,
+  pullA: { text: `a = ${M.PULL.a0.toFixed(1)} − ${M.PULL.k.toFixed(1)}t: наклон графика v–t, который постепенно уменьшается до нуля в момент t₁ = ${M.T1.toFixed(2)} с. Скорость изменения ускорения da/dt = −${M.PULL.k.toFixed(1)} м/с³ называется рывком.`,
     facts: (t, s) => { const u = с.pull.t; return [['a = dv/dt', `${M.pa(u).toFixed(2)} m/s²`], ['da/dt', u < M.T1 ? `−${M.PULL.k.toFixed(2)} m/s³` : '0'], ['area so far = v', `${M.pv(u).toFixed(2)} m/s`]]; } },
   bead: { text: `x = t³ − 3t. Однократное дифференцирование даёт скорость, двукратное — ускорение. В точке разворота v = 0, но a = ${M.ca(M.T_TURN).toFixed(1)} м/с²: нулевая скорость не означает нулевое ускорение.`,
     facts: (t, s) => { const u = с.cube.t, v = M.cv(u), a = M.ca(u); return [['время', `${u.toFixed(2)} s`], ['x', `${f(M.cx(u))} m`], ['v = 3t² − 3', `${f(v)} m/s`], ['a = 6t', `${f(a)} m/s²`], ['so it is', Math.abs(v) < 0.02 ? 'turning around' : v * a > 0 ? 'скоростьing up' : a === 0 ? 'a = 0, for an instant' : 'slowing down']]; } },
-  cubeLine: { text: `The black arrow is the перемещение from the start. The particle goes 2 m left and then 4 m right: the перемещение at 2 s is +2 m, but the путь travelled is 6 m.`,
+  cubeLine: { text: `Чёрная стрелка показывает перемещение от начального положения. Частица проходит 2 м влево, а затем 4 м вправо: через 2 с перемещение равно +2 м, тогда как пройденный путь составляет 6 м.`,
     facts: (t, s) => { const u = с.cube.t; return [['position x', `${f(M.cx(u))} m`], ['перемещение', `${f(M.cx(u))} m`], ['путь so far', `${M.cdist(u).toFixed(2)} m`]]; } },
 };
 function boatFacts(phi, t) {
