@@ -45,145 +45,145 @@ const inducedSeries = () => curve(0, M.INDUCE.run, t => M.induce(t).Qnet / M.nC,
 
 export const PAGES = [
   {
-    kicker: 'Chapter 9', title: 'Electric charge', sub: 'counted in electrons',
+    kicker: 'Глава 9', title: 'Электрический заряд', sub: 'счёт в электронах',
     body: `
-      <p class="lede">Atoms are built from charged parts: <b>protons</b> (+) in the nucleus, <b>electrons</b> (−) around it, and neutral neutrons. Like charges repel; opposite charges attract.</p>
+      <p class="lede">Атом состоит из заряженных частиц: <b>протонов</b> (+) в ядре, <b>электронов</b> (−) вокруг него и нейтральных нейтронов. Одноимённые заряды отталкиваются, разноимённые — притягиваются.</p>
       <table class="data">
-        <tr><th>particle</th><th>charge</th><th>mass</th></tr>
-        <tr><td>proton</td><td>+<i>e</i></td><td>${sci(M.MP)} kg</td></tr>
-        <tr><td>electron</td><td>−<i>e</i></td><td>${sci(M.ME)} kg</td></tr>
-        <tr><td>neutron</td><td>0</td><td>≈ <i>m</i><sub>p</sub></td></tr>
+        <tr><th>частица</th><th>заряд</th><th>масса</th></tr>
+        <tr><td>протон</td><td>+<i>e</i></td><td>${sci(M.MP)} кг</td></tr>
+        <tr><td>электрон</td><td>−<i>e</i></td><td>${sci(M.ME)} кг</td></tr>
+        <tr><td>нейтрон</td><td>0</td><td>≈ <i>m</i><sub>p</sub></td></tr>
       </table>
-      <div class="eq">1 <i>e</i> = ${sci(M.QE)} C</div>
-      <p>Equal numbers: <b>neutral</b>. Extra electrons: <b>negative</b>. Too few: <b>positive</b>. In charging solids only electrons move, and every charge is a whole multiple of <i>e</i>.</p>
-      <p><b>Conservation of charge:</b> charge is never made or destroyed, only moved. Rub a rod with fur and one gets +<i>q</i>, the other −<i>q</i>.</p>
-      <p class="hintline">Click the atoms to find the extra electron and the missing one.</p>`,
+      <div class="eq">1 <i>e</i> = ${sci(M.QE)} Кл</div>
+      <p>При равном числе протонов и электронов атом <b>нейтрален</b>. Избыток электронов даёт <b>отрицательный</b> заряд, недостаток — <b>положительный</b>. При электризации твёрдых тел перемещаются только электроны, а любой заряд кратен <i>e</i>.</p>
+      <p><b>Закон сохранения заряда:</b> заряд не создаётся и не исчезает, а только переносится. Если потереть палочку мехом, одна из них получит +<i>q</i>, другая −<i>q</i>.</p>
+      <p class="hintline">Нажмите на атомы, чтобы найти лишний и недостающий электрон.</p>`,
     cam: { target: at('charge', 0, 0.3), az: -14, el: 10, dist: 25 }, lit: 'atoms', scene: 'atoms', look: {},
-    fig: 'Neutral, negative, positive',
+    fig: 'Нейтральный, отрицательный и положительный заряды',
   },
   {
-    kicker: '9.1', title: 'Charging objects', sub: 'four ways to move electrons',
+    kicker: '9.1', title: 'Электризация тел', sub: 'четыре способа перемещения электронов',
     body: `
-      <p class="lede">Charging never makes charge. It moves electrons onto, off, or across an object.</p>
+      <p class="lede">При электризации заряд не возникает из ничего: электроны переходят на тело, с тела или перемещаются внутри него.</p>
       <table class="data">
-        <tr><td><b>friction</b></td><td>rub fur on PVC: electrons cross over</td></tr>
-        <tr><td><b>conduction</b></td><td>touch: spreads over a metal, stays put on an insulator</td></tr>
-        <tr><td><b>induction</b></td><td>no contact: push a metal’s electrons away, ground it</td></tr>
-        <tr><td><b>polarization</b></td><td>an insulator’s molecules stretch into dipoles</td></tr>
+        <tr><td><b>трение</b></td><td>трение меха о ПВХ: электроны переходят с одного тела на другое</td></tr>
+        <tr><td><b>контакт</b></td><td>при соприкосновении заряд распределяется по металлу, но остаётся локальным на изоляторе</td></tr>
+        <tr><td><b>влияние</b></td><td>без контакта: заряд смещает электроны в металле; заземление позволяет им уйти</td></tr>
+        <tr><td><b>поляризация</b></td><td>молекулы диэлектрика смещают положительные и отрицательные заряды, образуя диполи</td></tr>
       </table>
-      <p>The ${f(M.ROD.Q / M.nC, 0)} nC rod comes within ${cm(M.ROD.near)} cm. The sphere’s free electrons crowd to the far side; grounding lets them escape. The sphere keeps <b>+${f(M.QG / M.nC)} nC</b>, opposite to the rod.</p>
-      <div class="charts">${chart({ ...R.induce, xlabel: 'time (s)', ylabel: 'net charge on the sphere (nC)', cursor: 'induce', label: 'Net charge on the sphere through the induction cycle',
+      <p>Палочка с зарядом ${f(M.ROD.Q / M.nC, 0)} нКл приближается на расстояние ${cm(M.ROD.near)} см. Свободные электроны шара смещаются на дальнюю сторону; при заземлении они уходят. На шаре остаётся заряд <b>+${f(M.QG / M.nC)} нКл</b>, противоположный заряду палочки.</p>
+      <div class="charts">${chart({ ...R.induce, xlabel: 'время (с)', ylabel: 'заряд шара (нКл)', cursor: 'induce', label: 'Изменение заряда шара в процессе электризации влиянием',
         series: [{ pts: inducedSeries() }] })}</div>
-      <p class="hintline">Bead size is the surface charge σ. Click the sphere or the balloon.</p>`,
+      <p class="hintline">Размер бусин показывает поверхностную плотность заряда σ. Нажмите на шар или воздушный шарик.</p>`,
     cam: { target: at('charging', -0.3, 0.4), az: -8, el: 8, dist: 32 }, lit: 'induce', scene: 'induce', look: {},
-    fig: 'Induction and polarization',
+    fig: 'Электризация влиянием и поляризация',
   },
   {
-    kicker: '9.2', title: 'Coulomb’s law', sub: 'the inverse square',
+    kicker: '9.2', title: 'Закон Кулона', sub: 'обратная квадратичная зависимость',
     body: `
-      <p class="lede">The force between two point charges grows with the product of the charges and falls with the square of the distance.</p>
+      <p class="lede">Сила взаимодействия двух точечных зарядов пропорциональна произведению модулей зарядов и обратно пропорциональна квадрату расстояния между ними.</p>
       <div class="eq"><i>F</i> = <i>k</i>|<i>q</i><sub>1</sub><i>q</i><sub>2</sub>|/<i>r</i>²</div>
-      <p><i>k</i> = 1/4πε<sub>0</sub> = ${sci(M.K)} N·m²/C². Use sizes |<i>q</i>|; the signs only say attract or repel. The two forces are a third-law pair: equal, even though one charge is twice the other.</p>
-      <div class="charts">${chart({ ...R.coulomb, xlabel: 'separation r (cm)', ylabel: 'force on each (N)', cursor: 'coulomb', label: 'Force against separation, falling as one over r squared',
-        series: [{ pts: curve(15, 50, x => clip(pairF(x / 100), 4)) }], marks: [[20, pairF(0.2), `${f(pairF(0.2))} N`], [40, pairF(0.4), `${f(pairF(0.4))} N`, -46, -8]] })}</div>
-      <p><b>How strong?</b> Give two ${M.PEOPLE.m} kg people 1 m apart 1% more protons than electrons: ${sci(M.PEOPLE.q)} C each, and <i>F</i> = ${sci(M.PEOPLE.F)} N, enough to accelerate the Earth at ${f(M.PEOPLE.a, 1)} m/s².</p>
-      <p class="hintline">${S}× full size; forces ${cm(F_SCALE.coulomb)} cm per N. Click for a like pair.</p>`,
+      <p><i>k</i> = 1/4πε<sub>0</sub> = ${sci(M.K)} Н·м²/Кл². Используйте модули зарядов |<i>q</i>|: знаки определяют только притяжение или отталкивание. Силы взаимодействия равны по модулю, даже если один заряд вдвое больше другого.</p>
+      <div class="charts">${chart({ ...R.coulomb, xlabel: 'расстояние r (см)', ylabel: 'сила (Н)', cursor: 'coulomb', label: 'Зависимость силы от расстояния: обратная пропорциональность квадрату r',
+        series: [{ pts: curve(15, 50, x => clip(pairF(x / 100), 4)) }], marks: [[20, pairF(0.2), `${f(pairF(0.2))} Н`], [40, pairF(0.4), `${f(pairF(0.4))} Н`, -46, -8]] })}</div>
+      <p><b>Насколько велика сила?</b> Представим, что два человека массой ${M.PEOPLE.m} кг находятся на расстоянии 1 м друг от друга, и у каждого протонов на 1% больше, чем электронов: заряд каждого равен ${sci(M.PEOPLE.q)} Кл. Сила <i>F</i> = ${sci(M.PEOPLE.F)} Н была бы достаточной, чтобы сообщить Земле ускорение ${f(M.PEOPLE.a, 1)} м/с².</p>
+      <p class="hintline">Масштаб изображения: ${S}×; масштаб сил — ${cm(F_SCALE.coulomb)} см на Н. Нажмите, чтобы увидеть взаимодействие одноимённых зарядов.</p>`,
     cam: { target: at('coulomb', 0, 0.1), az: -12, el: 8, dist: 13 }, lit: 'coulomb', scene: 'coulomb', look: {},
-    fig: `+${M.PAIR.q1 / M.uC} μC and −${-M.PAIR.q2 / M.uC} μC`,
+    fig: `+${M.PAIR.q1 / M.uC} мкКл и −${-M.PAIR.q2 / M.uC} мкКл`,
   },
   {
-    kicker: '9.3', title: 'Net force', sub: 'and the equilibrium point',
+    kicker: '9.3', title: 'Равнодействующая сила', sub: 'точка равновесия зарядов',
     body: `
-      <p class="lede">With several charges, find each force on your charge, then add them as vectors: <b>superposition</b>.</p>
-      <p>A +${f(M.LINE.q0 / M.uC, 1)} μC test charge sits between A (+${M.LINE.qA / M.uC} μC) and B (+${M.LINE.qB / M.uC} μC), ${cm(M.LINE.D)} cm apart. Both push it. The pushes balance where</p>
+      <p class="lede">Если зарядов несколько, найдите силу от каждого из них, а затем сложите силы как векторы. Это <b>принцип суперпозиции</b>.</p>
+      <p>Пробный заряд +${f(M.LINE.q0 / M.uC, 1)} мкКл находится между зарядами A (+${M.LINE.qA / M.uC} мкКл) и B (+${M.LINE.qB / M.uC} мкКл), расстояние между которыми ${cm(M.LINE.D)} см. Оба заряда отталкивают пробный заряд. Силы уравновешиваются в точке, где</p>
       <div class="eq sm"><i>kq</i><sub>A</sub>/<i>x</i>² = <i>kq</i><sub>B</sub>/(<i>d</i> − <i>x</i>)²  →  <i>x</i> = ${cm(M.LINE.xEq)} cm</div>
-      <p>The balance point is always <b>closer to the smaller charge</b>. It need not lie between them: make B negative and it moves out past B, to ${cm(M.LINE.xEqUnlike)} cm.</p>
-      <div class="charts">${chart({ ...R.line, xlabel: 'position x (cm)', ylabel: 'net force on q₀ (N)', cursor: 'line', label: 'Net force on the test charge against position, crossing zero at the equilibrium point',
+      <p>Точка равновесия всегда расположена <b>ближе к меньшему заряду</b>. Она не обязательно находится между зарядами: если сделать B отрицательным, точка сместится за B, на расстояние ${cm(M.LINE.xEqUnlike)} см.</p>
+      <div class="charts">${chart({ ...R.line, xlabel: 'координата x (см)', ylabel: 'равнодействующая сила на q₀ (Н)', cursor: 'line', label: 'Равнодействующая сила на пробный заряд в зависимости от положения; ноль соответствует точке равновесия',
         series: [{ pts: curve(10, 40, x => Math.max(Math.min(M.lineForces(x / 100).net[0], 0.3), -0.4)) }], marks: [[M.LINE.xEq * 100, 0, `${cm(M.LINE.xEq)} cm`, 6, -8]] })}</div>
-      <p class="hintline">Forces ${f(F_SCALE.line, 0)} cm per 0.01 N. Click to park the test charge at the balance point.</p>`,
+      <p class="hintline">Масштаб сил: ${f(F_SCALE.line, 0)} см на 0,01 Н. Нажмите, чтобы установить пробный заряд в точку равновесия.</p>`,
     cam: { target: at('line', 0, 0.3), az: -10, el: 8, dist: 15.5 }, lit: 'line', scene: 'line', look: {},
-    fig: 'A test charge between A and B',
+    fig: 'Пробный заряд между A и B',
   },
   {
-    kicker: '9.4', title: 'The electric field', sub: 'force per unit charge',
+    kicker: '9.4', title: 'Электрическое поле', sub: 'сила на единицу заряда',
     body: `
-      <p class="lede">A charge changes the space around it. A small positive <b>test charge</b> <i>q</i><sub>0</sub> placed anywhere feels a force; the field is that force per coulomb.</p>
+      <p class="lede">Заряд изменяет свойства окружающего пространства. На небольшой положительный <b>пробный заряд</b> <i>q</i><sub>0</sub>, помещённый в любую точку, действует сила. Напряжённость поля равна этой силе, делённой на заряд.</p>
       <div class="eq"><b>E</b> = <b>F</b>/<i>q</i><sub>0</sub> = (<i>kQ</i>/<i>r</i>²) <b>r̂</b></div>
-      <p><b>r̂</b> points away from <i>Q</i>. For +<i>Q</i> the field points out; for −<i>Q</i>, in. Units N/C.</p>
+      <p><b>r̂</b> направлен от <i>Q</i>. Для +<i>Q</i> поле направлено наружу, для −<i>Q</i> — к заряду. Единица напряжённости — Н/Кл.</p>
       <table class="data">
-        <tr><td><b>field lines</b></td><td>direction, and strength by how closely they crowd; start on +, end on −</td></tr>
-        <tr><td><b>field vectors</b></td><td>size too: ${f(M.pointMag(M.POINT.Q, 0.1), 0)}, ${f(M.pointMag(M.POINT.Q, 0.2), 0)}, ${f(M.pointMag(M.POINT.Q, 0.3), 0)} N/C at 10, 20, 30 cm</td></tr>
+        <tr><td><b>силовые линии</b></td><td>показывают направление поля; чем они гуще, тем поле сильнее. Выходят из + и входят в −</td></tr>
+        <tr><td><b>векторы поля</b></td><td>показывают также величину: ${f(M.pointMag(M.POINT.Q, 0.1), 0)}, ${f(M.pointMag(M.POINT.Q, 0.2), 0)}, ${f(M.pointMag(M.POINT.Q, 0.3), 0)} Н/Кл на расстояниях 10, 20 и 30 см</td></tr>
       </table>
-      <div class="charts">${chart({ ...R.field, xlabel: 'distance r (cm)', ylabel: 'E (kN/C)', cursor: 'field', label: 'Field strength against distance, falling as one over r squared',
+      <div class="charts">${chart({ ...R.field, xlabel: 'расстояние r (см)', ylabel: 'E (кН/Кл)', cursor: 'field', label: 'Напряжённость поля в зависимости от расстояния: обратная пропорциональность квадрату r',
         series: [{ cls: 'curve total', pts: curve(5, 35, x => clip(M.pointMag(M.POINT.Q, x / 100) / 1000, 4)) }] })}</div>
-      <p class="hintline">Each charge drawn alone, ${S}× full size; E ${cm(E_SCALE.field * 100)} cm per 100 N/C. The +${f(M.POINT.q0 / M.nC, 1)} nC test charge’s force is drawn as long as E. Click for r̂.</p>`,
+      <p class="hintline">Каждый заряд показан отдельно, масштаб ${S}×; масштаб E — ${cm(E_SCALE.field * 100)} см на 100 Н/Кл. Стрелка силы на пробный заряд +${f(M.POINT.q0 / M.nC, 1)} нКл имеет ту же длину, что и E. Нажмите, чтобы увидеть r̂.</p>`,
     cam: { target: at('field', 0, 0.4), az: -8, el: 8, dist: 35 }, lit: 'point', scene: 'point', look: {},
-    fig: `+${M.POINT.Q / M.nC} nC and −${M.POINT.Q / M.nC} nC`,
+    fig: `+${M.POINT.Q / M.nC} нКл и −${M.POINT.Q / M.nC} нКл`,
   },
   {
-    kicker: '9.5', title: 'The electric dipole', sub: 'fields add as vectors',
+    kicker: '9.5', title: 'Электрический диполь', sub: 'поля складываются как векторы',
     body: `
-      <p class="lede">Two opposite charges ±<i>q</i>, 2<i>a</i> apart. <b>E</b> at P is the vector sum of each charge’s field.</p>
-      <p><b>On the axis</b> both fields lie along the line and the nearer charge wins:</p>
+      <p class="lede">Два противоположных заряда ±<i>q</i> расположены на расстоянии 2<i>a</i>. Напряжённость <b>E</b> в точке P — векторная сумма полей обоих зарядов.</p>
+      <p><b>На оси диполя</b> оба поля направлены вдоль одной прямой, причём сильнее поле ближайшего заряда:</p>
       <div class="eq sm"><i>E</i> = <i>kq</i>/(<i>x</i>−<i>a</i>)² − <i>kq</i>/(<i>x</i>+<i>a</i>)² = 4<i>kqax</i>/(<i>x</i>²−<i>a</i>²)²</div>
-      <p><b>On the bisector</b> the <i>y</i> parts cancel and the <i>x</i> parts add:</p>
+      <p><b>На перпендикулярной биссектрисе</b> составляющие по <i>y</i> компенсируются, а составляющие по <i>x</i> складываются:</p>
       <div class="eq sm"><i>E</i> = 2 · <i>kq</i>/(<i>a</i>²+<i>y</i>²) · cos θ = 2<i>kqa</i>/(<i>a</i>²+<i>y</i>²)<sup>3/2</sup></div>
-      <p>Far away these become 4<i>kqa</i>/<i>x</i>³ and 2<i>kqa</i>/<i>y</i>³: the two fields nearly cancel, so E falls as <b>1/<i>r</i>³</b>.</p>
-      <div class="charts">${chart({ ...R.dipole, xlabel: 'distance from the centre (cm)', ylabel: 'E (kN/C)', cursor: 'dipole', label: 'Dipole field on the axis and on the bisector against distance, with their far-field approximations',
-        series: [{ cls: 'curve total', pts: curve(20, 50, x => clip(M.dipoleAxis(x / 100) / 1000, 2)), tag: [27, 1.0, 'axis'] }, { cls: 'curve trend', pts: curve(20, 50, x => clip(4 * M.K * M.DIPOLE.q * M.DIPOLE.a / (x / 100) ** 3 / 1000, 2)) },
-          { cls: 'curve total', pts: curve(10, 50, x => clip(M.dipoleBisector(x / 100) / 1000, 2)), tag: [15.5, 0.75, 'bisector'] }, { cls: 'curve trend', pts: curve(14, 50, x => clip(2 * M.K * M.DIPOLE.q * M.DIPOLE.a / (x / 100) ** 3 / 1000, 2)) }] })}</div>
-      <p class="hintline">Dashed: 1/r³. ${S}× full size; E ${cm(E_SCALE.dipole * 100)} cm per 100 N/C. Click to split E into E₊ and E₋.</p>`,
+      <p>На больших расстояниях эти выражения приближаются к 4<i>kqa</i>/<i>x</i>³ и 2<i>kqa</i>/<i>y</i>³: поля почти компенсируются, поэтому E убывает пропорционально <b>1/<i>r</i>³</b>.</p>
+      <div class="charts">${chart({ ...R.dipole, xlabel: 'расстояние от центра (см)', ylabel: 'E (кН/Кл)', cursor: 'dipole', label: 'Поле диполя на оси и биссектрисе в зависимости от расстояния, вместе с приближениями для больших расстояний',
+        series: [{ cls: 'curve total', pts: curve(20, 50, x => clip(M.dipoleAxis(x / 100) / 1000, 2)), tag: [27, 1.0, 'ось'] }, { cls: 'curve trend', pts: curve(20, 50, x => clip(4 * M.K * M.DIPOLE.q * M.DIPOLE.a / (x / 100) ** 3 / 1000, 2)) },
+          { cls: 'curve total', pts: curve(10, 50, x => clip(M.dipoleBisector(x / 100) / 1000, 2)), tag: [15.5, 0.75, 'биссектриса'] }, { cls: 'curve trend', pts: curve(14, 50, x => clip(2 * M.K * M.DIPOLE.q * M.DIPOLE.a / (x / 100) ** 3 / 1000, 2)) }] })}</div>
+      <p class="hintline">Пунктир: 1/r³. Масштаб изображения ${S}×; E — ${cm(E_SCALE.dipole * 100)} см на 100 Н/Кл. Нажмите, чтобы разложить E на E₊ и E₋.</p>`,
     cam: { target: at('dipole', -0.6, 0.2), az: -10, el: 8, dist: 19 }, lit: 'dipole', scene: 'dipole', look: {},
-    fig: `±${M.DIPOLE.q / M.nC} nC, ${cm(2 * M.DIPOLE.a)} cm apart`,
+    fig: `±${M.DIPOLE.q / M.nC} нКл, расстояние ${cm(2 * M.DIPOLE.a)} см`,
   },
   {
-    kicker: '9.6', title: 'A charged rod', sub: 'add up the slices',
+    kicker: '9.6', title: 'Заряженный стержень', sub: 'суммирование вкладов элементов',
     body: `
-      <p class="lede">Cut the rod into slices d<i>x</i>, each holding d<i>q</i> = λ d<i>x</i> (λ = <i>Q</i>/<i>L</i> = ${f(M.RODE.lambda / M.nC, 0)} nC/m). Each slice is a point charge; integrate.</p>
-      <p><b>On the axis</b>, <i>a</i> past the end:</p>
+      <p class="lede">Разделим стержень на элементы длиной d<i>x</i>, каждый из которых несёт заряд d<i>q</i> = λ d<i>x</i>, где λ = <i>Q</i>/<i>L</i> = ${f(M.RODE.lambda / M.nC, 0)} нКл/м. Каждый элемент можно считать точечным зарядом; затем проинтегрируем их вклады.</p>
+      <p><b>На оси стержня</b>, на расстоянии <i>a</i> за его концом:</p>
       <div class="eq sm"><i>E</i> = ∫<sub><i>a</i></sub><sup><i>a</i>+<i>L</i></sup> <i>k</i>λ d<i>x</i>/<i>x</i>² = <i>k</i>λ[1/<i>a</i> − 1/(<i>a</i>+<i>L</i>)] = <i>kQ</i>/<i>a</i>(<i>a</i>+<i>L</i>)</div>
-      <p><b>On the bisector</b>, <i>a</i> above the middle, the <i>x</i> parts cancel:</p>
+      <p><b>На перпендикулярной биссектрисе</b>, на расстоянии <i>a</i> от середины, составляющие по <i>x</i> компенсируются:</p>
       <div class="eq sm"><i>E</i> = ∫ <i>k</i>λ<i>a</i> d<i>x</i>/(<i>x</i>²+<i>a</i>²)<sup>3/2</sup> = <i>kQ</i>/<i>a</i>√(<i>L</i>²/4 + <i>a</i>²)</div>
-      <p>Far away (<i>a</i> ≫ <i>L</i>) both become <i>kQ</i>/<i>a</i>², a point charge. Close to the middle (<i>a</i> ≪ <i>L</i>) it is 2<i>k</i>λ/<i>a</i>.</p>
-      <div class="charts">${chart({ ...R.rod, xlabel: 'distance a (cm)', ylabel: 'E (kN/C)', cursor: 'rod', label: 'Rod field on the axis and on the bisector against distance, with the point-charge field',
-        series: [{ cls: 'curve total', pts: curve(2, 40, x => clip(M.rodAxis(x / 100) / 1000, 4)), tag: [3.5, 1.5, 'axis'] }, { cls: 'curve total', pts: curve(3, 40, x => clip(M.rodBisector(x / 100) / 1000, 4)), tag: [13, 2.0, 'bisector'] },
+      <p>На большом расстоянии (<i>a</i> ≫ <i>L</i>) оба выражения переходят в <i>kQ</i>/<i>a</i>² — поле точечного заряда. Вблизи середины (<i>a</i> ≪ <i>L</i>) получаем 2<i>k</i>λ/<i>a</i>.</p>
+      <div class="charts">${chart({ ...R.rod, xlabel: 'расстояние a (см)', ylabel: 'E (кН/Кл)', cursor: 'rod', label: 'Поле стержня на оси и биссектрисе в зависимости от расстояния, вместе с полем точечного заряда',
+        series: [{ cls: 'curve total', pts: curve(2, 40, x => clip(M.rodAxis(x / 100) / 1000, 4)), tag: [3.5, 1.5, 'ось'] }, { cls: 'curve total', pts: curve(3, 40, x => clip(M.rodBisector(x / 100) / 1000, 4)), tag: [13, 2.0, 'биссектриса'] },
           { cls: 'curve trend', pts: curve(10, 40, x => clip(M.K * M.RODE.Q / (x / 100) ** 2 / 1000, 4)), tag: [24, 0.75, 'kQ/a²'] }] })}</div>
-      <p class="hintline">${S}× full size; E ${cm(E_SCALE.rod * 100)} cm per 100 N/C. Click to cut the rod into ${M.RODE.slices} slices.</p>`,
+      <p class="hintline">Масштаб изображения ${S}×; E — ${cm(E_SCALE.rod * 100)} см на 100 Н/Кл. Нажмите, чтобы разделить стержень на ${M.RODE.slices} элементов.</p>`,
     cam: { target: at('rod', 0, 1.0), az: -10, el: 8, dist: 21 }, lit: 'rod', scene: 'rod', look: {},
-    fig: `+${M.RODE.Q / M.nC} nC on a ${cm(M.RODE.L)} cm rod`,
+    fig: `Заряд +${M.RODE.Q / M.nC} нКл на стержне длиной ${cm(M.RODE.L)} см`,
   },
   {
-    kicker: '9.7', title: 'A ring of charge', sub: 'and a disc',
+    kicker: '9.7', title: 'Заряженное кольцо', sub: 'и диск',
     body: `
-      <p class="lede">Every piece of a ring is the same distance from a point P on its axis. The sideways parts cancel; only cos φ = <i>z</i>/√(<i>z</i>²+<i>R</i>²) of each survives.</p>
+      <p class="lede">Каждый элемент кольца находится на одинаковом расстоянии от точки P на его оси. Поперечные составляющие поля компенсируются, остаётся только осевая составляющая с cos φ = <i>z</i>/√(<i>z</i>²+<i>R</i>²).</p>
       <div class="eq sm"><i>E</i> = ∫<sub>0</sub><sup>2π</sup> <i>k</i>λ<i>R</i> d<i>θ</i> · <i>z</i>/(<i>z</i>²+<i>R</i>²)<sup>3/2</sup> = <i>kQz</i>/(<i>z</i>²+<i>R</i>²)<sup>3/2</sup></div>
-      <p>Zero at the centre, <i>kQ</i>/<i>z</i>² far away, and a peak between, at <i>z</i> = <i>R</i>/√2 = ${f(M.RING_ZMAX * 100, 1)} cm.</p>
-      <div class="charts">${chart({ ...R.ring, xlabel: 'distance along the axis z (cm)', ylabel: 'E (kN/C)', cursor: 'ring', label: 'Ring field along the axis: zero at the centre, a peak, then falling',
+      <p>В центре поле равно нулю; на большом расстоянии оно приближается к <i>kQ</i>/<i>z</i>². Между ними есть максимум при <i>z</i> = <i>R</i>/√2 = ${f(M.RING_ZMAX * 100, 1)} см.</p>
+      <div class="charts">${chart({ ...R.ring, xlabel: 'расстояние z вдоль оси (см)', ylabel: 'E (кН/Кл)', cursor: 'ring', label: 'Напряжённость поля кольца на оси: ноль в центре, максимум, затем спад',
         series: [{ cls: 'curve total', pts: curve(0, 60, x => M.ringAxis(x / 100) / 1000) }, { cls: 'curve trend', pts: curve(31, 60, x => clip(M.K * M.RING.Q / (x / 100) ** 2 / 1000, 1.5)), tag: [44, 0.55, 'kQ/z²'] }], marks: [[M.RING_ZMAX * 100, M.ringAxis(M.RING_ZMAX) / 1000, 'R/√2', 6, -6]] })}</div>
-      <p><b>A disc</b> is a stack of rings, d<i>q</i> = σ 2π<i>r</i> d<i>r</i>:</p>
+      <p><b>Диск</b> можно представить как набор концентрических колец с зарядом d<i>q</i> = σ 2π<i>r</i> d<i>r</i>:</p>
       <div class="eq sm"><i>E</i> = (σ/2ε<sub>0</sub>)(1 − <i>z</i>/√(<i>z</i>²+<i>R</i>²))</div>
-      <p>Just above its centre it is σ/2ε<sub>0</sub>, not zero: the disc has charge right under P.</p>
-      <p class="hintline">${S}× full size; E ${cm(E_SCALE.ring * 100)} cm per 100 N/C, d<i>E</i> ×2. Click for the pieces.</p>`,
+      <p>Непосредственно над центром диска поле равно σ/2ε<sub>0</sub>, а не нулю: заряд распределён по всей поверхности прямо под точкой P.</p>
+      <p class="hintline">Масштаб изображения ${S}×; E — ${cm(E_SCALE.ring * 100)} см на 100 Н/Кл, d<i>E</i> ×2. Нажмите, чтобы увидеть элементы кольца.</p>`,
     cam: { target: at('ring', -0.4, 0.5), az: -30, el: 12, dist: 20 }, lit: 'ring', scene: 'ring', look: {},
-    fig: `+${(M.RING.Q / M.nC).toFixed(0)} nC on a ring, R = ${cm(M.RING.R)} cm`,
+    fig: `Кольцо с зарядом +${(M.RING.Q / M.nC).toFixed(0)} нКл, R = ${cm(M.RING.R)} см`,
   },
   {
-    kicker: '9.8', title: 'A uniform field', sub: 'projectile motion, again',
+    kicker: '9.8', title: 'Однородное электрическое поле', sub: 'снова движение брошенного тела',
     body: `
-      <p class="lede">Between two large, oppositely charged plates the field is the same everywhere, from + to −. A charge there feels a constant force and moves like a thrown ball.</p>
+      <p class="lede">Между двумя большими разноимённо заряженными пластинами поле однородно и направлено от «плюса» к «минусу». На заряд действует постоянная сила, и он движется подобно брошенному телу.</p>
       <div class="eq"><i>F</i> = <i>qE</i> = <i>ma</i></div>
-      <p>An electron enters at ${sci(M.PLATES.v0, 1)} m/s; <i>E</i> = ${M.PLATES.E} N/C. Its force points <i>against</i> <b>E</b>, toward the + plate.</p>
+      <p>Электрон влетает со скоростью ${sci(M.PLATES.v0, 1)} м/с в поле с напряжённостью <i>E</i> = ${M.PLATES.E} Н/Кл. Сила, действующая на электрон, направлена <i>против</i> <b>E</b>, к положительной пластине.</p>
       <table class="data">
-        <tr><td><i>a</i> = <i>eE</i>/<i>m</i><sub>e</sub></td><td>${sci(M.PLATES.a)} m/s², up</td></tr>
-        <tr><td><i>t</i> = <i>L</i>/<i>v</i><sub>0</sub></td><td>${f(M.PLATES.tCross * 1e9, 1)} ns between the ${cm(M.PLATES.L)} cm plates</td></tr>
-        <tr><td><i>y</i> = ½<i>at</i>²</td><td>${f(M.PLATES.yExit * 1000, 2)} mm; leaves at ${f(M.PLATES.angle, 1)}°</td></tr>
+        <tr><td><i>a</i> = <i>eE</i>/<i>m</i><sub>e</sub></td><td>${sci(M.PLATES.a)} м/с², вверх</td></tr>
+        <tr><td><i>t</i> = <i>L</i>/<i>v</i><sub>0</sub></td><td>${f(M.PLATES.tCross * 1e9, 1)} нс между пластинами длиной ${cm(M.PLATES.L)} см</td></tr>
+        <tr><td><i>y</i> = ½<i>at</i>²</td><td>${f(M.PLATES.yExit * 1000, 2)} мм; угол вылета ${f(M.PLATES.angle, 1)}°</td></tr>
       </table>
-      <p>A proton would bend the other way, ${f(M.MP / M.ME, 0)}× less: ${f(M.PLATES.yProton * 1e6, 1)} μm.</p>
-      <div class="charts">${chart({ ...R.plates, xlabel: 'x (cm)', ylabel: 'y (mm)', cursor: 'plates', label: 'The electron path: a parabola between the plates, then a straight line',
-        series: [{ pts: curve(0, M.PLATES.run, t => [M.electron(t).x * 100, M.electron(t).y * 1000]).map(p => p[1]) }, { cls: 'curve trend', pts: [[M.PLATES.L * 100, 0], [M.PLATES.L * 100, 14]], tag: [M.PLATES.L * 100 - 3.6, 12, 'plates end'] }] })}</div>
-      <p class="hintline">Slowed ~10⁹×; ${PL.S}× full size; E ${f(PL.E * 100 * 1000, 0)} cm per kN/C. Click for v<sub>x</sub>, v<sub>y</sub>.</p>`,
+      <p>Протон отклонился бы в противоположную сторону, причём его отклонение было бы в ${f(M.MP / M.ME, 0)} раз меньше: ${f(M.PLATES.yProton * 1e6, 1)} мкм.</p>
+      <div class="charts">${chart({ ...R.plates, xlabel: 'x (см)', ylabel: 'y (мм)', cursor: 'plates', label: 'Траектория электрона: парабола между пластинами, затем прямая линия',
+        series: [{ pts: curve(0, M.PLATES.run, t => [M.electron(t).x * 100, M.electron(t).y * 1000]).map(p => p[1]) }, { cls: 'curve trend', pts: [[M.PLATES.L * 100, 0], [M.PLATES.L * 100, 14]], tag: [M.PLATES.L * 100 - 3.6, 12, 'конец пластин'] }] })}</div>
+      <p class="hintline">Анимация замедлена примерно в 10⁹ раз; масштаб изображения ${PL.S}×; E — ${f(PL.E * 100 * 1000, 0)} см на кН/Кл. Нажмите, чтобы увидеть v<sub>x</sub> и v<sub>y</sub>.</p>`,
     cam: { target: at('plates', -0.1, 0.5), az: -10, el: 5, dist: 17 }, lit: 'plates', scene: 'plates', look: {},
-    fig: 'An electron between charged plates',
+    fig: 'Электрон между заряженными пластинами',
   },
 ];
 
