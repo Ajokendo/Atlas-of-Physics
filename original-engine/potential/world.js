@@ -71,7 +71,7 @@ export function buildWorld(E) {
   // ================= 1 · a pair of charges =================
   const X0 = STATIONS.pair, Y0 = 0.4, ZL = -1.2, ZU = 1.2, x1 = X0 - 2;
   ground(X0 - 4, X0 + 4, -3, 3);
-  const gPair = asm('pair', root, { title: 'Bringing in a charge', sub: 'work in = energy stored' });
+  const gPair = asm('pair', root, { title: 'Сближение зарядов', sub: 'совершённая работа запасается как энергия' });
   const q1L = charge(gPair, 1, 0.22, '+4 nC'), q1U = charge(gPair, 1, 0.22, '+4 nC');
   q1L.position.set(x1, Y0, ZL); q1U.position.set(x1, Y0, ZU);
   const q2L = charge(gPair, 1, 0.17, '+2 nC'), q2U = charge(gPair, -1, 0.17, '−2 nC');
@@ -91,7 +91,7 @@ export function buildWorld(E) {
   // ================= 2 · four charges on a square =================
   const X1 = STATIONS.square, Y1 = 0.4;
   ground(X1 - 4, X1 + 4, -3, 3);
-  const gSq = asm('square', root, { title: 'Assembling four charges', sub: 'one at a time, from far away' });
+  const gSq = asm('square', root, { title: 'Сборка системы из четырёх зарядов', sub: 'по одному, из бесконечности' });
   const sq = [0, 1, 2, 3].map(i => charge(gSq, 1, 0.17, `q${i + 1}`));
   sq.forEach((m, i) => label('tick', `<i>q</i><sub>${i + 1}</sub>`, () => m.visible ? wp(m).add(V(-0.2, 0.35, 0)) : null));
   { const c = M.SQ.corners.map(p => [X1 + p[0] * S, 0.02, p[2] * S]), seg = [];
@@ -116,7 +116,7 @@ export function buildWorld(E) {
   // ================= 3 · a uniform field: A → C =================
   const X2 = STATIONS.uniform, ux = x => X2 - 1 + x * S, uz = z => 2 + z * S;
   ground(X2 - 4, X2 + 4, -3, 3);
-  const gUni = asm('uniform', root, { title: 'A charge crossing a uniform field', sub: 'ΔV = −∫ E · ds' });
+  const gUni = asm('uniform', root, { title: 'Заряд в однородном поле', sub: 'ΔV = −∫ E · ds' });
   // equipotential sheets every 5 cm, at right angles to E
   for (let k = 0; k <= 4; k++) {
     const x = ux(k * 0.05);
@@ -141,7 +141,7 @@ export function buildWorld(E) {
   // ================= 4 · the potential hill =================
   const X3 = STATIONS.hill, RH = M.HILL.R * S;
   ground(X3 - 5, X3 + 5, -5, 5);
-  const gHill = asm('hill', root, { title: 'The potential of a point charge', sub: 'V drawn as height' });
+  const gHill = asm('hill', root, { title: 'Потенциал точечного заряда', sub: 'потенциал показан высотой' });
   gHill.userData.minDist = 14;
   const qHill = charge(gHill, 1, 0.16, '+1 nC'); qHill.position.set(X3, 0.16, 0);
   label('tick', '+1 nC', () => V(X3 - 0.25, 0.5, 0));
@@ -173,7 +173,7 @@ export function buildWorld(E) {
   // ================= 5 · a dipole =================
   const X4 = STATIONS.dipole, DX = M.DIP.X * S, DZ = M.DIP.Z * S;
   ground(X4 - 4, X4 + 4, -3, 3);
-  const gDip = asm('dipole', root, { title: 'A dipole', sub: 'a hill beside a well' });
+  const gDip = asm('dipole', root, { title: 'Диполь', sub: 'потенциальный холм рядом с ямой' });
   gDip.userData.minDist = 14;
   const dPlus = charge(gDip, 1, 0.15, '+1 nC'), dMinus = charge(gDip, -1, 0.15, '−1 nC');
   dPlus.position.set(X4 - M.DIP.a * S, 0.0, 0); dMinus.position.set(X4 + M.DIP.a * S, 0.0, 0);
@@ -218,7 +218,7 @@ export function buildWorld(E) {
   // ================= 6 · a charged rod =================
   const X5 = STATIONS.rod, YR = 1.0, L = M.ROD.L * S, xr0 = X5 - L / 2 + 1;
   ground(X5 - 4, X5 + 4, -3, 3);
-  const gRod = asm('rod', root, { title: 'A charged rod', sub: 'λ = Q/L, dq = λ dx' });
+  const gRod = asm('rod', root, { title: 'Заряженный стержень', sub: 'λ = Q/L, dq = λ dx' });
   const NSL = 12, slices = [];
   for (let i = 0; i < NSL; i++) { const m = part(gRod, xAxis(cyl(0.09, L / NSL, 24)), { tone: 'hi', name: 'Rod' }); m.position.set(xr0 + (i + 0.5) * L / NSL, YR, 0); slices.push(m); }
   for (let i = 0; i < 5; i++) label('vec red', '+', () => V(xr0 + (i + 0.5) * L / 5, YR + 0.27, 0));
@@ -232,7 +232,7 @@ export function buildWorld(E) {
   // ================= 7 · ring, arc and disc =================
   const X6 = STATIONS.ring, YC = 1.9, xRing = X6 - 5.5, xArc = X6 - 0.5, xDisc = X6 + 2, RR = M.RING.R * S;
   ground(X6 - 8, X6 + 8, -3, 3);
-  const gRing = asm('ring', root, { title: 'A ring of charge', sub: 'every dq the same distance from P' });
+  const gRing = asm('ring', root, { title: 'Заряженное кольцо', sub: 'каждый dq равноудалён от P' });
   const NRG = 16, ringSeg = [];
   for (let i = 0; i < NRG; i++) {
     const g = new THREE.TorusGeometry(RR, 0.06, 10, 10, 2 * Math.PI / NRG).rotateZ(2 * Math.PI * i / NRG).rotateY(Math.PI / 2);
@@ -244,7 +244,7 @@ export function buildWorld(E) {
   lines(root, [xRing - 0.3, YC, 0, xRing + 2.7, YC, 0], GREY);
   const ringLines = liveLines(root, NRG, '#8a8a8f');
 
-  const gArc = asm('arc', root, { title: 'An arc of charge', sub: 'V at its centre is kQ/R' });
+  const gArc = asm('arc', root, { title: 'Заряженная дуга', sub: 'V в центре равен kQ/R' });
   const NA = 8;
   for (let i = 0; i < NA; i++) {
     const g = new THREE.TorusGeometry(RR, 0.06, 10, 10, Math.PI / NA).rotateZ(Math.PI / 2 + Math.PI * i / NA);
@@ -255,7 +255,7 @@ export function buildWorld(E) {
   label('board', 'C', () => V(xArc + 0.15, YC + 0.25, 0)); label('tick', '+2 nC', () => V(xArc - RR - 0.15, YC + 0.35, 0));
   const arcLines = liveLines(root, NA, '#8a8a8f');
 
-  const gDisc = asm('disc', root, { title: 'A disc of charge', sub: 'rings of dq = σ·2πr dr' });
+  const gDisc = asm('disc', root, { title: 'Заряженный диск', sub: 'кольца с dq = σ·2πr dr' });
   const NDR = 5, discRings = [];
   for (let i = 0; i < NDR; i++) {
     const r0 = RR * i / NDR + (i ? 0.012 : 0), r1 = RR * (i + 1) / NDR - 0.012;
@@ -300,7 +300,7 @@ export function buildWorld(E) {
   // ================= 9 · across 6 V: a proton and an electron =================
   const X8 = STATIONS.accel, YA = 2.2, D = M.ACC.d * SC.Sacc, xa0 = X8 - D / 2;
   ground(X8 - 5, X8 + 5, -3, 3);
-  const gAcc = asm('accel', root, { title: 'Proton and electron across 6 V', sub: 'each gains 6 eV' });
+  const gAcc = asm('accel', root, { title: 'Протон и электрон при разности потенциалов 6 В', sub: 'каждый получает 6 эВ' });
   for (const [x, v, s] of [[xa0, M.ACC.Vhi, 1], [xa0 + D, M.ACC.Vlo, -1]]) {
     part(root, box(0.14, 4.2, 3.0, 0.03), { tone: 'mid', pal: 'board', pos: [x - s * 0.07, YA, 0], name: 'Plate' });
     label('tick', `${v} V`, () => V(x + 0.35, YA + 2.45, -1.5));
