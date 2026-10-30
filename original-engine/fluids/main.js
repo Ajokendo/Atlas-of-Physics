@@ -5,7 +5,7 @@ import { PAGES, PLATES, CURSORS } from './pages.js';
 import * as M from './model.js';
 
 const f = (x, n = 2) => (x < -1e-9 ? '−' : '') + Math.abs(x).toFixed(n);
-const kPa = (p, n = 1) => `${f(p / 1000, n)} kPa`;
+const kPa = (p, n = 1) => `${f(p / 1000, n)} кПа`;
 
 startBook({
   no: 8, PAGES, PLATES, clock0: 0,
@@ -21,15 +21,15 @@ startBook({
   },
   readout(s, page) {
     switch (page.scene) {
-      case 'density': return `same volume ${f(M.CUBE_V * 1000, 1)} L\nmass from ${f(M.MATERIALS[0].mass)} kg to ${f(M.MATERIALS[4].mass)} kg`;
-      case 'pressure': return `W ${f(M.PERSON.W, 0)} N\nshoes ${kPa(M.P_SHOE)}   snowshoes ${kPa(M.P_SNOW, 2)}`;
-      case 'depth': { const d = M.diveDepth(s.clock); return `h ${f(d)} m   gauge ${kPa(M.gauge(d))}\nabsolute ${kPa(M.pAt(d))} = ${f(M.pAt(d) / M.P0)} atm`; }
-      case 'pascal': { const p = M.pascal(s.clock); return `ΔP ${kPa(M.PASCAL.dP, 2)}   F₁ ${M.PASCAL.F1} N   F₂ ${f(M.PASCAL.F2, 0)} N\nd₁ ${f(p.d1 * 100, 1)} cm   d₂ ${f(p.d2 * 100, 2)} cm`; }
-      case 'buoy': { const b = s.st4; return `under ${f(b.h * 100, 1)} cm   F_b ${f(b.Fb, 1)} N\nW ${f(M.BUOY.W, 1)} N   T ${f(b.T, 1)} N`; }
-      case 'float': return `wood ${f(100 * M.WOOD.draft / M.WOOD.s, 0)}% under   ice ${f(100 * M.ICE.draft / M.ICE.s, 1)}% under\nsteel ball F_N ${f(M.BALL.N, 0)} N   ship draft ${f(M.SHIP.draft * 100, 1)} cm`;
-      case 'continuity': { const A = M.PIPE1.area(s.slab6); return `Q ${f(M.FLOW.Q * 1000, 1)} L/s\ndark slice: A ${f(A, 4)} m²   v ${f(M.FLOW.Q / A)} m/s`; }
-      case 'bernoulli': return M.BERN.pts.map((p, k) => `${k + 1}: v ${f(p.v, 1)} m/s  P ${kPa(p.P)}`).join('\n');
-      case 'torricelli': { const v = M.torricelli(s.h8); return `h ${f(s.h8)} m   v ${f(v)} m/s\nrange ${f(M.jetRange(s.h8))} m`; }
+      case 'density': return `одинаковый объём ${f(M.CUBE_V * 1000, 1)} л\nмасса от ${f(M.MATERIALS[0].mass)} до ${f(M.MATERIALS[4].mass)} кг`;
+      case 'pressure': return `W ${f(M.PERSON.W, 0)} Н\nобувь ${kPa(M.P_SHOE)}   снегоступы ${kPa(M.P_SNOW, 2)}`;
+      case 'depth': { const d = M.diveDepth(s.clock); return `h ${f(d)} м   избыточное ${kPa(M.gauge(d))}\nабсолютное ${kPa(M.pAt(d))} = ${f(M.pAt(d) / M.P0)} атм`; }
+      case 'pascal': { const p = M.pascal(s.clock); return `ΔP ${kPa(M.PASCAL.dP, 2)}   F₁ ${M.PASCAL.F1} Н   F₂ ${f(M.PASCAL.F2, 0)} Н\nd₁ ${f(p.d1 * 100, 1)} см   d₂ ${f(p.d2 * 100, 2)} см`; }
+      case 'buoy': { const b = s.st4; return `погружение ${f(b.h * 100, 1)} см   F_b ${f(b.Fb, 1)} Н\nW ${f(M.BUOY.W, 1)} Н   T ${f(b.T, 1)} Н`; }
+      case 'float': return `дерево: погружено на ${f(100 * M.WOOD.draft / M.WOOD.s, 0)}%   лёд: ${f(100 * M.ICE.draft / M.ICE.s, 1)}%\nстальной шар F_N ${f(M.BALL.N, 0)} Н   осадка корабля ${f(M.SHIP.draft * 100, 1)} см`;
+      case 'continuity': { const A = M.PIPE1.area(s.slab6); return `Q ${f(M.FLOW.Q * 1000, 1)} л/с\nтёмный объём: A ${f(A, 4)} м²   v ${f(M.FLOW.Q / A)} м/с`; }
+      case 'bernoulli': return M.BERN.pts.map((p, k) => `${k + 1}: v ${f(p.v, 1)} м/с  P ${kPa(p.P)}`).join('\n');
+      case 'torricelli': { const v = M.torricelli(s.h8); return `h ${f(s.h8)} м   v ${f(v)} м/с\nдальность ${f(M.jetRange(s.h8))} м`; }
     }
     return '';
   },
