@@ -193,7 +193,7 @@ export const PAGES = [
       <p>Здесь τ = ${f(DR.tau)} с. Через время τ шар достигает 1 − 1/e = 63,2% предельной скорости; через 3τ — 95%, а через 5τ — 99,3%. Точно предельной скорости он достигает лишь асимптотически.</p>
       <div class="charts">${chart({ x0: 0, x1: 2, y0: 0, y1: 4.5, xlabel: 'время (с)', ylabel: 'скорость (м/с)', cursor: 'drag', label: 'Приближение скорости к предельной во времени',
         series: [{ cls: 'trend', pts: [[0, DR.vt], [2, DR.vt]], tag: [1.62, DR.vt, 'v<tspan dy="3" font-size="8">t</tspan>'] }, { pts: Array.from({ length: 41 }, (_, i) => [i * 0.05, M.linDrag(i * 0.05).v]) }, { cls: 'trend', pts: [[DR.tau, 0], [DR.tau, M.linDrag(DR.tau).v]] }],
-        marks: [[DR.tau, M.linDrag(DR.tau).v, `63.2% at τ = ${f(DR.tau, 1)} s`]] })}
+        marks: [[DR.tau, M.linDrag(DR.tau).v, `63,2% при τ = ${f(DR.tau, 1)} с`]] })}
         ${chart({ x0: 0, x1: 2, y0: 0, y1: 6, xlabel: 'время (с)', ylabel: 'сила (Н)', cursor: 'dragF', label: 'Сила сопротивления и сила тяжести во времени',
         series: [{ cls: 'trend', pts: [[0, DR.W], [2, DR.W]], tag: [1.2, DR.W, 'сила тяжести <tspan font-style="italic">mg</tspan>'] }, { pts: Array.from({ length: 41 }, (_, i) => [i * 0.05, M.linDrag(i * 0.05).D]), tag: [0.5, M.linDrag(0.5).D - 2.2, 'сопротивление <tspan font-style="italic">bv</tspan>'] }] })}</div>
       <p class="hintline">Масштаб стрелок: ${(DRAG_SCALE * 100).toFixed(0)} см на ньютон. Нажмите на шар, чтобы увидеть действующие на него силы.</p>`,
