@@ -35,10 +35,10 @@ function energyBars() {
       <rect x="${(150 + bw * kt).toFixed(1)}" y="${y}" width="${(bw * (1 - kt)).toFixed(1)}" height="18" fill="#8a8a8f"/>
       <text class="ax" x="${155}" y="${y + 13}">${Math.round(kt * 100)}%</text>`;
   }).join('');
-  return `<svg class="chart" viewBox="0 0 ${W} ${top + 4 * rowH + 22}" role="img" aria-label="Share of kinetic energy that is translational and rotational for each racer">
-    <text class="lab" x="150" y="14">mgh = ${f(mgh)} J at the bottom →</text>${rows}
-    <rect class="bar" x="150" y="${top + 4 * rowH + 4}" width="12" height="10"/><text class="ax" x="168" y="${top + 4 * rowH + 13}">½mv² (moving along)</text>
-    <rect x="290" y="${top + 4 * rowH + 4}" width="12" height="10" fill="#8a8a8f"/><text class="ax" x="308" y="${top + 4 * rowH + 13}">½Iω² (spinning)</text>
+  return `<svg class="chart" viewBox="0 0 ${W} ${top + 4 * rowH + 22}" role="img" aria-label="Доли поступательной и вращательной кинетической энергии для каждого тела">
+    <text class="lab" x="150" y="14">mgh = ${f(mgh)} Дж в нижней точке →</text>${rows}
+    <rect class="bar" x="150" y="${top + 4 * rowH + 4}" width="12" height="10"/><text class="ax" x="168" y="${top + 4 * rowH + 13}">½mv² (поступательное движение)</text>
+    <rect x="290" y="${top + 4 * rowH + 4}" width="12" height="10" fill="#8a8a8f"/><text class="ax" x="308" y="${top + 4 * rowH + 13}">½Iω² (вращение)</text>
   </svg>`;
 }
 
@@ -131,10 +131,10 @@ export const PAGES = [
       <p>Каждое тело имеет массу ${f(M.SHAPES.M, 1)} кг и радиус ${f(M.SHAPES.R, 1)} м. На нить, намотанную по краю, действует одинаковая сила ${f(M.SHAPES.F, 1)} Н, создающая момент τ = ${f(M.SHAPES.tau)} Н·м.</p>
       <table class="data">
         <tr><th></th><th>I = fMR²</th><th>α = τ/I</th></tr>
-        ${M.SHAPES.list.map(s => `<tr><td>${s.key}</td><td>${s.frac === '1' ? '' : s.frac}MR²</td><td>${f(s.alpha)} рад/с²</td></tr>`).join('')}
+        ${M.SHAPES.list.map(s => `<tr><td>${({ring: 'кольцо', disc: 'диск', sphere: 'шар'}[s.key] || s.key)}</td><td>${s.frac === '1' ? '' : s.frac}MR²</td><td>${f(s.alpha)} рад/с²</td></tr>`).join('')}
       </table>
       <div class="charts">${chart({ x0: 0, x1: 2.4, y0: 0, y1: 8, xlabel: 'время (с)', ylabel: 'ω (рад/с)', cursors: ['sh0', 'sh1', 'sh2'], label: 'Угловая скорость кольца, диска и шара',
-        series: M.SHAPES.list.map(s => ({ pts: [[0, 0], [2.4, s.alpha * 2.4]], tag: [1.75, s.alpha * 1.75 + (s.key === 'sphere' ? 0.5 : s.key === 'disc' ? -0.3 : 0), s.key] })) })}</div>
+        series: M.SHAPES.list.map(s => ({ pts: [[0, 0], [2.4, s.alpha * 2.4]], tag: [1.75, s.alpha * 1.75 + (s.key === 'sphere' ? 0.5 : s.key === 'disc' ? -0.3 : 0), ({ring: 'кольцо', disc: 'диск', sphere: 'шар'}[s.key] || s.key)] })) })}</div>
       <p class="hintline">Нажмите на тела, чтобы разделить диск на кольца. Масштаб стрелок: ${cm(F_SHAPES)} на ньютон.</p>`,
     cam: { target: [STATIONS.inertia, 1.15, 0], az: -10, el: 22, dist: 10.2 }, lit: 'inertia', scene: 'inertia', look: {},
     fig: 'Одинаковый момент силы, три тела',
@@ -270,7 +270,7 @@ export const PAGES = [
       <div class="eq">mv<sub>0</sub>d = −mv<sub>f</sub>d + ⅓ML²ω</div>
       <p>При упругом ударе шар массой ${f(HT.m, 1)} кг отскакивает со скоростью ${f(-HT.v1)} м/с, а стержень начинает вращаться с угловой скоростью ${f(HT.w)} рад/с.</p>
       <div class="charts">${chart({ x0: 0, x1: 2.1, y0: -0.4, y1: 1.4, zero: true, xlabel: 'время (с)', ylabel: 'L относительно O (кг·м²/с)', cursors: ['hitB', 'hitR', 'hitL'], label: 'Момент импульса шара, стержня и системы во времени',
-        series: [{ pts: [[0, M.hit(0).Lb], [HT.tHit, M.hit(0).Lb], [HT.tHit, M.hit(9).Lb], [2.1, M.hit(9).Lb]], tag: [1.5, M.hit(9).Lb + 0.01, 'ball'] }, { cls: 'trend', pts: [[0, 0], [HT.tHit, 0], [HT.tHit, HT.I * HT.w], [2.1, HT.I * HT.w]], tag: [1.3, HT.I * HT.w + 0.02, 'rod'] }, { cls: 'curve total', pts: [[0, M.hit(0).L], [2.1, M.hit(0).L]], tag: [0.15, M.hit(0).L - 0.22, 'total'] }] })}</div>
+        series: [{ pts: [[0, M.hit(0).Lb], [HT.tHit, M.hit(0).Lb], [HT.tHit, M.hit(9).Lb], [2.1, M.hit(9).Lb]], tag: [1.5, M.hit(9).Lb + 0.01, 'шар'] }, { cls: 'trend', pts: [[0, 0], [HT.tHit, 0], [HT.tHit, HT.I * HT.w], [2.1, HT.I * HT.w]], tag: [1.3, HT.I * HT.w + 0.02, 'стержень'] }, { cls: 'curve total', pts: [[0, M.hit(0).L], [2.1, M.hit(0).L]], tag: [0.15, M.hit(0).L - 0.22, 'полный момент импульса'] }] })}</div>
       <p class="hintline">Нажмите, чтобы показать L в виде векторов. Масштаб p: ${cm(P_SCALE)} на кг·м/с.</p>`,
     cam: { target: [STATIONS.particle - 0.4, 0.15, 0.15], az: -14, el: 52, dist: 8.5 }, lit: 'particle', scene: 'particle', look: {},
     fig: 'Шар, ось и стержень',
@@ -287,9 +287,9 @@ export const PLATES = {
   doors: { text: `Продлите каждую силу вдоль её <b>линии действия</b> (пунктир). <b>Плечо силы</b> r<sub>⊥</sub> — кратчайшее расстояние от петли до этой линии, измеренное перпендикулярно ей. Момент силы τ = F·r<sub>⊥</sub>. На правой двери сила раскладывается на F<sub>⊥</sub>, которая поворачивает дверь, и F<sub>∥</sub>, направленную вдоль двери к петле и не создающую вращения. Если уменьшить r вдвое или наклонить силу под углом 30° (sin 30° = ½), момент силы также уменьшится вдвое.`,
     facts: () => D.map(c => [c.name, `r⊥ = ${f(c.arm, 3)} м → τ = ${f(c.tau)} Н·м`]) },
   plank: { text: `Моменты сил рассчитываются относительно A. Момент каждой силы равен произведению её плеча на силу. Вес доски приложен в середине, на расстоянии L/2; вес ящика — на расстоянии x; сила F<sub>B</sub> — на расстоянии L. Сила F<sub>A</sub> приложена в точке опоры и момента не создаёт. Силы тяжести поворачивают доску по часовой стрелке (−), а F<sub>B</sub> — против часовой (+); их моменты компенсируются.`,
-    facts: s => { const x = M.crateX(s.clock * M.SLOW), q = M.plank(x); return [['τ of F<sub>B</sub> (+)', `${f(M.PLANK.L)} × ${f(q.FB, 1)} = ${f(M.PLANK.L * q.FB, 0)} N·m`], ['τ of plank Mg (−)', `${f(M.PLANK.L / 2)} × ${f(M.PLANK.Wp, 1)} = ${f(M.PLANK.L / 2 * M.PLANK.Wp, 0)} N·m`], ['τ of crate mg (−)', `${f(x)} × ${f(M.PLANK.Wc, 1)} = ${f(x * M.PLANK.Wc, 0)} N·m`], ['Στ about A', '0 N·m'], ['F<sub>A</sub>, F<sub>B</sub>', `${f(q.FA, 1)} N, ${f(q.FB, 1)} N`]]; } },
+    facts: s => { const x = M.crateX(s.clock * M.SLOW), q = M.plank(x); return [['τ силы F<sub>B</sub> (+)', `${f(M.PLANK.L)} × ${f(q.FB, 1)} = ${f(M.PLANK.L * q.FB, 0)} Н·м`], ['τ веса доски Mg (−)', `${f(M.PLANK.L / 2)} × ${f(M.PLANK.Wp, 1)} = ${f(M.PLANK.L / 2 * M.PLANK.Wp, 0)} Н·м`], ['τ веса ящика mg (−)', `${f(x)} × ${f(M.PLANK.Wc, 1)} = ${f(x * M.PLANK.Wc, 0)} Н·м`], ['Στ относительно A', '0 Н·м'], ['F<sub>A</sub>, F<sub>B</sub>', `${f(q.FA, 1)} Н, ${f(q.FB, 1)} Н`]]; } },
   ladder: { text: `Относительно нижней точки O момент создают только две силы. Сила стены горизонтальна, поэтому её плечо равно высоте верхнего конца лестницы L sin θ. Сила тяжести направлена вертикально, а её плечо равно горизонтальному расстоянию до середины лестницы, ½L cos θ. Реакция пола F<sub>N</sub> и сила трения f<sub>s</sub> приложены в O и момента не создают.`,
-    facts: s => { const th = M.ladderAngle(s.clock * M.SLOW), q = M.ladder(th); return [['θ', `${dg(th)}°`], ['F<sub>w</sub> × L sin θ', `${f(q.Fw * M.LADDER.L * Math.sin(th), 1)} N·m`], ['mg × ½L cos θ', `${f(M.LADDER.W * M.LADDER.L / 2 * Math.cos(th), 1)} N·m`], ['friction needed', `${f(q.f, 1)} N`], ['most available μ<sub>s</sub>F<sub>N</sub>', `${f(q.fMax, 1)} N`]]; } },
+    facts: s => { const th = M.ladderAngle(s.clock * M.SLOW), q = M.ladder(th); return [['θ', `${dg(th)}°`], ['F<sub>w</sub> × L sin θ', `${f(q.Fw * M.LADDER.L * Math.sin(th), 1)} Н·м`], ['mg × ½L cos θ', `${f(M.LADDER.W * M.LADDER.L / 2 * Math.cos(th), 1)} Н·м`], ['необходимая сила трения', `${f(q.f, 1)} Н`], ['максимум μ<sub>s</sub>F<sub>N</sub>', `${f(q.fMax, 1)} Н`]]; } },
   inertia: { text: `Диск разделяется на четыре тонких кольца одинаковой ширины. Массу каждого кольца можно считать сосредоточенной на одном радиусе, поэтому его момент инерции приблизительно равен mr². Внешние кольца содержат больше массы <i>и</i> расположены дальше от оси, поэтому их вклад больше. Суммирование даёт ½MR² — половину момента инерции тонкого кольца, у которого вся масса находится на ободе. У сплошного шара ещё большая часть массы расположена близко к оси: I = ⅖MR².`,
     facts: () => M.discAsRings(4).map((r, k) => [`кольцо ${k + 1}: ${f(r.r0, 1)}–${f(r.r1, 1)} м, ${f(r.m, 3)} кг`, `I = ${f(r.I, 4)} кг·м²`]).concat([['сумма', `${f(M.discAsRings(4).reduce((a, r) => a + r.I, 0), 4)} = ½MR²`]]) },
   race: { text: `При качении без проскальзывания точка контакта с наклонной плоскостью мгновенно покоится. Центр движется со скоростью v, а верхняя точка — со скоростью 2v: диск как будто вращается вокруг точки контакта. Поэтому ω = v/R. Брусок скользит по льду и не тратит энергию на вращение, поэтому приходит первым. Распределение энергии не зависит от массы и размера: у шара 1/(1 + ⅖) = 71% энергии приходится на ½mv².`,
