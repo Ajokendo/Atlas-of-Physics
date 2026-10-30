@@ -20,18 +20,18 @@ startBook({
   },
   readout(s, page) {
     switch (page.scene) {
-      case 'pull': { const r = M.pull(s.pull.t); return `Δx ${f(r.x)} m   v ${f(r.v)} m/s\nW = F Δx cos θ = ${f(r.W)} J   K ${f(r.K)} J`; }
-      case 'toss': { const r = M.toss(s.toss.t); return `y ${f(r.y)} m   v ${f(r.v)} m/s\nW_g ${f(r.Wg)} J   K ${f(r.K)} J`; }
-      case 'whirl': return `v ${f(M.WHIRL.v)} m/s   T ${f(M.WHIRL.T)} N   θ 90°\nW_T 0 J   K ${f(M.WHIRL.K)} J`;
-      case 'car': { const r = M.car(s.car.t); return `Δx ${f(r.x)} m   v ${f(r.v)} m/s\nW_net ${f(r.Wnet / 1000)} kJ   K ${f(r.K / 1000)} kJ`; }
-      case 'drop': { const r = M.drop(s.drop.t); return `y ${f(r.y)} m   v ${f(r.v)} m/s\nU_g ${f(r.U)} J + K ${f(r.K)} J = ${f(r.U + r.K)} J`; }
-      case 'spring': { const r = M.spring(s.spring.t); return `Δx ${f(r.x, 3)} m   F_s ${f(r.F)} N\nK ${f(r.K)} J + U_s ${f(r.U)} J = ${f(r.K + r.U)} J`; }
-      case 'pendulum': { const r = M.pendulum(s.pendulum.t); return `θ ${f(r.th * 180 / Math.PI, 1)}°   v ${f(r.v)} m/s\nK ${f(r.K)} J + U_g ${f(r.U)} J = ${f(r.K + r.U)} J`; }
-      case 'push': { const r = M.push(s.push.t); return `x ${f(r.x)} m   F ${f(r.F)} N   v ${f(r.v)} m/s\nW = ∫F dx ${f(r.W)} J   K ${f(r.K)} J`; }
-      case 'bead': { const r = M.bead(s.bead.t); return `x ${f(r.x)} m   dU/dx ${f(r.slope)} J/m   F ${f(r.F)} N\nK ${f(r.K)} J + U ${f(r.U)} J = ${f(r.K + r.U)} J`; }
-      case 'bond': { const r = M.bond(s.bond.t); return `r ${f(r.r * 1e9, 4)} nm   F ${f(r.F * 1e9)} nN\nK ${f(r.K / M.EV, 3)} eV + U ${f(r.U / M.EV, 3)} eV = ${f((r.K + r.U) / M.EV, 3)} eV`; }
-      case 'slide': { const r = M.slide(s.slide.t); return `Δx ${f(r.x)} m   v ${f(r.v)} m/s\nK ${f(r.K)} J + thermal ${f(r.Eth)} J = ${f(r.K + r.Eth)} J`; }
-      case 'lift': { const a = M.lift(s.lift.t, M.LIFT.vFast), b = M.lift(s.lift.t, M.LIFT.vSlow); return `t ${f(s.lift.t)} s\nfast W ${f(a.W, 0)} J  P ${f(a.P, 0)} W   slow W ${f(b.W, 0)} J  P ${f(b.P, 0)} W`; }
+      case 'pull': { const r = M.pull(s.pull.t); return `Δx ${f(r.x)} м   v ${f(r.v)} м/с\nW = F Δx cos θ = ${f(r.W)} Дж   K ${f(r.K)} Дж`; }
+      case 'toss': { const r = M.toss(s.toss.t); return `y ${f(r.y)} м   v ${f(r.v)} м/с\nW_g ${f(r.Wg)} Дж   K ${f(r.K)} Дж`; }
+      case 'whirl': return `v ${f(M.WHIRL.v)} м/с   T ${f(M.WHIRL.T)} Н   θ 90°\nW_T = 0 Дж   K ${f(M.WHIRL.K)} Дж`;
+      case 'car': { const r = M.car(s.car.t); return `Δx ${f(r.x)} м   v ${f(r.v)} м/с\nW_net ${f(r.Wnet / 1000)} кДж   K ${f(r.K / 1000)} кДж`; }
+      case 'drop': { const r = M.drop(s.drop.t); return `y ${f(r.y)} м   v ${f(r.v)} м/с\nU_g ${f(r.U)} Дж + K ${f(r.K)} Дж = ${f(r.U + r.K)} Дж`; }
+      case 'spring': { const r = M.spring(s.spring.t); return `Δx ${f(r.x, 3)} м   F_s ${f(r.F)} Н\nK ${f(r.K)} Дж + U_s ${f(r.U)} Дж = ${f(r.K + r.U)} Дж`; }
+      case 'pendulum': { const r = M.pendulum(s.pendulum.t); return `θ ${f(r.th * 180 / Math.PI, 1)}°   v ${f(r.v)} м/с\nK ${f(r.K)} Дж + U_g ${f(r.U)} Дж = ${f(r.K + r.U)} Дж`; }
+      case 'push': { const r = M.push(s.push.t); return `x ${f(r.x)} м   F ${f(r.F)} Н   v ${f(r.v)} м/с\nW = ∫F dx ${f(r.W)} Дж   K ${f(r.K)} Дж`; }
+      case 'bead': { const r = M.bead(s.bead.t); return `x ${f(r.x)} м   dU/dx ${f(r.slope)} Дж/м   F ${f(r.F)} Н\nK ${f(r.K)} Дж + U ${f(r.U)} Дж = ${f(r.K + r.U)} Дж`; }
+      case 'bond': { const r = M.bond(s.bond.t); return `r ${f(r.r * 1e9, 4)} нм   F ${f(r.F * 1e9)} нН\nK ${f(r.K / M.EV, 3)} эВ + U ${f(r.U / M.EV, 3)} эВ = ${f((r.K + r.U) / M.EV, 3)} эВ`; }
+      case 'slide': { const r = M.slide(s.slide.t); return `Δx ${f(r.x)} м   v ${f(r.v)} м/с\nK ${f(r.K)} Дж + тепло ${f(r.Eth)} Дж = ${f(r.K + r.Eth)} Дж`; }
+      case 'lift': { const a = M.lift(s.lift.t, M.LIFT.vFast), b = M.lift(s.lift.t, M.LIFT.vSlow); return `t ${f(s.lift.t)} с\nбыстро: W ${f(a.W, 0)} Дж, P ${f(a.P, 0)} Вт   медленно: W ${f(b.W, 0)} Дж, P ${f(b.P, 0)} Вт`; }
     }
     return '';
   },
@@ -48,7 +48,7 @@ startBook({
     const sp = M.spring(s.spring.t), Rs = R.spring, X = v => CH.sx(v, Rs.x0, Rs.x1), Y = v => CH.sy(v, Rs.y0, Rs.y1);
     put('spring', Rs, sp.x, -sp.F);
     q('path[data-area="spring"]').forEach(p => p.setAttribute('d', `M${X(0)},${Y(0)}L${X(sp.x)},${Y(0)}L${X(sp.x)},${Y(-sp.F)}Z`));
-    q('#springlive').forEach(el => { el.textContent = `shaded area ½·${f(sp.x, 3)}·${f(-sp.F, 1)} = ${f(sp.U)} J = U_s`; });
+    q('#springlive').forEach(el => { el.textContent = `заштрихованная площадь ½·${f(sp.x, 3)}·${f(-sp.F, 1)} = ${f(sp.U)} Дж = U_s`; });
     // push: the area under F(x) up to the crate is the work so far
     { const r = M.push(s.push.t), Rp = R.push, X = v => CH.sx(v, Rp.x0, Rp.x1), Y = v => CH.sy(v, Rp.y0, Rp.y1, Rp.h), xe = Math.min(r.x, M.PUSH.L);
       put('push', Rp, Math.min(r.x, Rp.x1), r.F);
@@ -66,7 +66,7 @@ startBook({
     for (const [k, v] of [['K', pe.K], ['U', pe.U], ['E', pe.K + pe.U]]) {
       const h = span * v / M.PEND.E;
       q(`rect[data-bar="pend-${k}"]`).forEach(r => { r.setAttribute('y', BARS.base - h); r.setAttribute('height', h); });
-      q(`text[data-val="pend-${k}"]`).forEach(t => { t.setAttribute('y', BARS.base - h - 6); t.textContent = `${f(v)} J`; });
+      q(`text[data-val="pend-${k}"]`).forEach(t => { t.setAttribute('y', BARS.base - h - 6); t.textContent = `${f(v)} Дж`; });
     }
   },
 });
