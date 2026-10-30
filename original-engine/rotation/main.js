@@ -21,21 +21,21 @@ startBook({
   },
   readout(s, page) {
     switch (page.scene) {
-      case 'wheel': { const q = M.wheel(s.wheel.t); return `t ${f(s.wheel.t)} s   θ ${f(q.th)} rad\nω ${f(q.w)} rad/s   α ${f(q.a)} rad/s²`; }
-      case 'disc': { const q = M.disc(s.disc.t); return `ω ${f(q.w)} rad/s   α ${f(q.a)} rad/s²\nv₁ ${f(M.DISC.r1 * q.w)} m/s   v₂ ${f(M.DISC.r2 * q.w)} m/s`; }
-      case 'doors': return M.DOOR.cases.map(c => `τ ${f(c.tau)} N·m   θ ${dg(M.door(c, s.doors.t).th).padStart(4)}°`).join('\n');
-      case 'plank': { const q = M.plank(M.crateX(s.clock * M.SLOW)); return `crate at x ${f(q.x)} m\nF_A ${f(q.FA, 1)} N   F_B ${f(q.FB, 1)} N   Στ 0`; }
-      case 'ladder': { const th = M.ladderAngle(s.clock * M.SLOW), q = M.ladder(th); return `θ ${dg(th)}°   F_w ${f(q.Fw, 1)} N\nfriction ${f(q.f, 1)} N of ${f(q.fMax, 1)} N available`; }
-      case 'inertia': return M.SHAPES.list.map(sh => `${sh.key.padEnd(6)} ω ${f(M.shapeSpin(sh, s.inertia.t).w)} rad/s`).join('\n');
-      case 'race': return `t ${f(s.race.t)} s\n` + M.RACE.list.map(o => `${o.key} ${f(M.race(o, s.race.t).v, 1)}`).join('   ') + ' m/s';
-      case 'well': { const q = M.well(s.well.t); return `t ${f(s.well.t)} s   v ${f(q.v)} m/s\na ${f(M.WELL.a)} m/s²   T ${f(M.WELL.T)} N`; }
-      case 'skater': { const q = M.skater(s.skater.t); return `I ${f(q.I)} kg·m²   ω ${f(q.w)} rad/s\nL ${f(q.L)} kg·m²/s   K ${f(q.K)} J`; }
-      case 'integ': { const k = M.sliceAt(s.integ.t), x = M.ROD.L * (k + 0.5) / M.ROD.N; return `slice ${k + 1} of ${M.ROD.N}: dm = ${f(M.ROD.M / M.ROD.N, 3)} kg\nend rod r ${f(x)} m   r²dm ${f(M.ROD.M / M.ROD.N * x * x, 4)} kg·m²`; }
-      case 'parallel': return M.PAX.list.map(p => `${p.key.padEnd(6)} I ${f(p.I)}   ω ${f(M.paxSpin(p, s.parallel.t).w)} rad/s`).join('\n');
-      case 'wrench': { const q = M.wrench(s.wrench.t); return `τ ${f(M.WRENCH.tau, 0)} N·m   Δθ ${f(q.th)} rad\nW ${f(q.W, 1)} J   P ${f(q.P, 0)} W`; }
-      case 'slip': { const q = M.bowl(s.slip.t); return `t ${f(s.slip.t)} s   ${q.slip ? 'sliding' : 'rolling'}\nv ${f(q.v)} m/s   Rω ${f(M.BOWL.R * q.w)} m/s`; }
-      case 'impulse': return M.IMP.list.map(p => { const q = M.imp(p, s.impulse.t); return `${p.key}: τ ${f(q.tau, 0).padStart(3)} N·m   L ${f(q.L, 0).padStart(3)} kg·m²/s`; }).join('\n');
-      case 'particle': { const q = M.hit(s.particle.t); return `L ball ${f(q.Lb)}   rod ${f(q.Lr)}\ntotal ${f(q.L)} kg·m²/s`; }
+      case 'wheel': { const q = M.wheel(s.wheel.t); return `t ${f(s.wheel.t)} с   θ ${f(q.th)} рад\nω ${f(q.w)} рад/с   α ${f(q.a)} рад/с²`; }
+      case 'disc': { const q = M.disc(s.disc.t); return `ω ${f(q.w)} рад/с   α ${f(q.a)} рад/с²\nv₁ ${f(M.DISC.r1 * q.w)} м/с   v₂ ${f(M.DISC.r2 * q.w)} м/с`; }
+      case 'doors': return M.DOOR.cases.map(c => `τ ${f(c.tau)} Н·м   θ ${dg(M.door(c, s.doors.t).th).padStart(4)}°`).join('\n');
+      case 'plank': { const q = M.plank(M.crateX(s.clock * M.SLOW)); return `ящик при x = ${f(q.x)} м\nF_A ${f(q.FA, 1)} Н   F_B ${f(q.FB, 1)} Н   Στ = 0`; }
+      case 'ladder': { const th = M.ladderAngle(s.clock * M.SLOW), q = M.ladder(th); return `θ ${dg(th)}°   F_w ${f(q.Fw, 1)} Н\nтрение ${f(q.f, 1)} Н из ${f(q.fMax, 1)} Н максимально возможных`; }
+      case 'inertia': return M.SHAPES.list.map(sh => `${sh.key.padEnd(6)} ω ${f(M.shapeSpin(sh, s.inertia.t).w)} рад/с`).join('\n');
+      case 'race': return `t ${f(s.race.t)} с\n` + M.RACE.list.map(o => `${o.key} ${f(M.race(o, s.race.t).v, 1)}`).join('   ') + ' м/с';
+      case 'well': { const q = M.well(s.well.t); return `t ${f(s.well.t)} с   v ${f(q.v)} м/с\na ${f(M.WELL.a)} м/с²   T ${f(M.WELL.T)} Н`; }
+      case 'skater': { const q = M.skater(s.skater.t); return `I ${f(q.I)} кг·м²   ω ${f(q.w)} рад/с\nL ${f(q.L)} кг·м²/с   K ${f(q.K)} Дж`; }
+      case 'integ': { const k = M.sliceAt(s.integ.t), x = M.ROD.L * (k + 0.5) / M.ROD.N; return `элемент ${k + 1} из ${M.ROD.N}: dm = ${f(M.ROD.M / M.ROD.N, 3)} кг\nстержень, закреплённый за конец: r = ${f(x)} м   r²dm = ${f(M.ROD.M / M.ROD.N * x * x, 4)} кг·м²`; }
+      case 'parallel': return M.PAX.list.map(p => `${p.key.padEnd(6)} I ${f(p.I)}   ω ${f(M.paxSpin(p, s.parallel.t).w)} рад/с`).join('\n');
+      case 'wrench': { const q = M.wrench(s.wrench.t); return `τ ${f(M.WRENCH.tau, 0)} Н·м   Δθ ${f(q.th)} рад\nW ${f(q.W, 1)} Дж   P ${f(q.P, 0)} Вт`; }
+      case 'slip': { const q = M.bowl(s.slip.t); return `t ${f(s.slip.t)} с   ${q.slip ? 'скользит' : 'катится без проскальзывания'}\nv ${f(q.v)} м/с   Rω ${f(M.BOWL.R * q.w)} м/с`; }
+      case 'impulse': return M.IMP.list.map(p => { const q = M.imp(p, s.impulse.t); return `${p.key}: τ ${f(q.tau, 0).padStart(3)} Н·м   L ${f(q.L, 0).padStart(3)} кг·м²/с`; }).join('\n');
+      case 'particle': { const q = M.hit(s.particle.t); return `L шара ${f(q.Lb)}   стержня ${f(q.Lr)}\nполный L ${f(q.L)} кг·м²/с`; }
     }
     return '';
   },
