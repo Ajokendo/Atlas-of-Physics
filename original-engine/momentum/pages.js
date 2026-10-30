@@ -30,7 +30,7 @@ const samples = (a, b, n, fn) => Array.from({ length: n + 1 }, (_, i) => { const
 // collision pages: momentum of each cart and the total, against time
 export const COLL_T = { y0: -3, y1: 7 };
 const momChart = (c, key, tags) => chart({
-  x0: 0, x1: c.run, ...COLL_T, xlabel: 'time (s)', ylabel: 'momentum (kg·m/s)', cursors: [key], label: 'Momentum of each cart and the total against time',
+  x0: 0, x1: c.run, ...COLL_T, xlabel: 'время (с)', ylabel: 'импульс (кг·м/с)', cursors: [key], label: 'Momentum of each cart and the total against time',
   series: [
     { pts: [[0, c.m1 * c.u1], [c.tc, c.m1 * c.u1], [c.tc, c.m1 * c.v1], [c.run, c.m1 * c.v1]], tag: [tags[0][0], tags[0][1], 'p₁'] },
     { pts: [[0, c.m2 * c.u2], [c.tc, c.m2 * c.u2], [c.tc, c.m2 * c.v2], [c.run, c.m2 * c.v2]], tag: [tags[1][0], tags[1][1], 'p₂'] },
@@ -38,9 +38,9 @@ const momChart = (c, key, tags) => chart({
   ] });
 const collTable = c => { const K0 = M.ke(c.m1, c.u1) + M.ke(c.m2, c.u2), K1 = M.ke(c.m1, c.v1) + M.ke(c.m2, c.v2); return `
   <table class="data">
-    <tr><th>kg·m/s, J</th><th><i>p</i>₁</th><th><i>p</i>₂</th><th><i>P</i> total</th><th><i>KE</i></th></tr>
-    <tr><td>before</td><td>${f(c.m1 * c.u1, 1)}</td><td>${f(c.m2 * c.u2, 1)}</td><td>${f(c.m1 * c.u1 + c.m2 * c.u2, 1)}</td><td>${f(K0)}</td></tr>
-    <tr><td>after</td><td>${f(c.m1 * c.v1, 1)}</td><td>${f(c.m2 * c.v2, 1)}</td><td>${f(c.m1 * c.v1 + c.m2 * c.v2, 1)}</td><td>${f(K1)}</td></tr>
+    <tr><th>кг·м/с, Дж</th><th><i>p</i>₁</th><th><i>p</i>₂</th><th><i>P</i> total</th><th><i>KE</i></th></tr>
+    <tr><td>до столкновения</td><td>${f(c.m1 * c.u1, 1)}</td><td>${f(c.m2 * c.u2, 1)}</td><td>${f(c.m1 * c.u1 + c.m2 * c.u2, 1)}</td><td>${f(K0)}</td></tr>
+    <tr><td>после столкновения</td><td>${f(c.m1 * c.v1, 1)}</td><td>${f(c.m2 * c.v2, 1)}</td><td>${f(c.m1 * c.v1 + c.m2 * c.v2, 1)}</td><td>${f(K1)}</td></tr>
   </table>`; };
 
 const Wl = M.WALL, Eg = M.EGG, S = M.STICK, B = M.BOUNCE, X = M.BURST, Pd = M.PEND, C = M.CRASH, Sh = M.SHELL;
@@ -62,7 +62,7 @@ const vecSketch = (() => {
 })();
 
 const shellChart = chart({
-  x0: 0, x1: 14, y0: 0, y1: 5, xlabel: 'x (m)', ylabel: 'height (m)', cursors: ['shell'], label: 'Paths of the shell, its two halves and the centre of mass',
+  x0: 0, x1: 14, y0: 0, y1: 5, xlabel: 'координата x (м)', ylabel: 'высота (м)', cursors: ['shell'], label: 'Траектории снаряда, двух его половин и центра масс',
   series: [
     { cls: 'trend', pts: samples(0, Sh.run, 40, t => 0).map(([t]) => M.shell(t).cm), tag: [Sh.R * 0.62, Sh.H * 0.55, 'centre of mass'] },
     { pts: samples(0, Sh.ta, 20, t => 0).map(([t]) => M.shell(t).cm) },
@@ -76,7 +76,7 @@ const shellChart = chart({
 // continuous bodies: λ(x) with the moment x·λ(x) shaded; strip sums converging
 const Rd = M.ROD, Tr = M.TRI, Se = M.SEMI, Ll = M.ELL, Ho = M.HOLE;
 const rodChart = chart({
-  x0: 0, x1: Rd.L, y0: 0, y1: 3, xlabel: 'x along the rod (m)', ylabel: 'λ (kg/m) and x·λ (kg)', cursors: ['rodL', 'rodM'], label: 'Linear density and its moment along the rod; the balance point is marked',
+  x0: 0, x1: Rd.L, y0: 0, y1: 3, xlabel: 'координата x вдоль стержня (м)', ylabel: 'λ (кг/м) и x·λ (кг)', cursors: ['rodL', 'rodM'], label: 'Линейная плотность и её момент вдоль стержня; отмечена точка равновесия',
   series: [
     { fill: true, pts: samples(0, Rd.L, 40, x => x * M.lam('N', x)), tag: [0.95, 1.25, 'x·λ: area = ∫x dm', 1] },
     { pts: samples(0, Rd.L, 2, x => M.lam('N', x)), tag: [1.97, 1.02, 'λ: area = M', 1] },
@@ -85,7 +85,7 @@ const rodChart = chart({
   marks: [[Rd.xN, 2.92, 'x_cm = 2L/3']] });
 const NS = Array.from({ length: 12 }, (_, i) => i + 1);
 const stripChart = chart({
-  x0: 1, x1: 12, y0: 0.95, y1: 1.55, xlabel: 'number of strips n', ylabel: 'strip sum ÷ exact', label: 'Strip-sum estimates of the centre of mass approaching the integral as n grows',
+  x0: 1, x1: 12, y0: 0.95, y1: 1.55, xlabel: 'число полос n', ylabel: 'сумма по полосам ÷ точное значение', label: 'При увеличении числа полос сумма приближается к интегральному значению центра масс',
   series: [
     { pts: NS.map(n => [n, M.stripSum(M.triW, Tr.h, n) / Tr.ucm]), tag: [11.8, 1.44, 'upper: triangle', 1] },
     { pts: NS.map(n => [n, M.stripSum(M.semiW, Se.R, n) / Se.ucm]), tag: [11.8, 1.36, 'lower: semicircle', 1] },
@@ -96,197 +96,197 @@ const xy = c => `(${f(c[0])}, ${f(c[1])})`;
 
 export const PAGES = [
   {
-    kicker: 'Chapter 5', title: 'Momentum', sub: 'how hard it is to stop',
+    kicker: 'Глава 5', title: 'Импульс тела', sub: 'насколько трудно остановить движение',
     body: `
-      <p class="lede"><b>Momentum</b> measures how hard a moving object is to stop: its mass times its velocity, a vector in kg·m/s.</p>
+      <p class="lede"><b>Импульс тела</b> характеризует, насколько трудно остановить движущееся тело: это произведение массы на скорость, векторная величина, измеряемая в кг·м/с.</p>
       <div class="eq"><i>p</i> = <i>mv</i></div>
-      <p>A light, fast ball and a heavy, slow cart can carry the same momentum:</p>
+      <p>Лёгкий быстрый шар и тяжёлая медленная тележка могут иметь одинаковый импульс:</p>
       <table class="data">
-        <tr><th></th><th>mass</th><th>velocity</th><th>momentum</th><th>KE</th></tr>
-        <tr><td>ball</td><td>${f(M.BALL.m, 1)} kg</td><td>${f(M.BALL.v, 1)} m/s</td><td>${f(M.p(M.BALL.m, M.BALL.v), 1)} kg·m/s</td><td>${f(M.ke(M.BALL.m, M.BALL.v), 1)} J</td></tr>
-        <tr><td>cart</td><td>${f(M.CART.m, 1)} kg</td><td>${f(M.CART.v, 1)} m/s</td><td>${f(M.p(M.CART.m, M.CART.v), 1)} kg·m/s</td><td>${f(M.ke(M.CART.m, M.CART.v), 1)} J</td></tr>
+        <tr><th></th><th>масса</th><th>скорость</th><th>импульс</th><th>КЭ</th></tr>
+        <tr><td>шар</td><td>${f(M.BALL.m, 1)} кг</td><td>${f(M.BALL.v, 1)} м/с</td><td>${f(M.p(M.BALL.m, M.BALL.v), 1)} кг·м/с</td><td>${f(M.ke(M.BALL.m, M.BALL.v), 1)} Дж</td></tr>
+        <tr><td>тележка</td><td>${f(M.CART.m, 1)} кг</td><td>${f(M.CART.v, 1)} м/с</td><td>${f(M.p(M.CART.m, M.CART.v), 1)} кг·м/с</td><td>${f(M.ke(M.CART.m, M.CART.v), 1)} Дж</td></tr>
       </table>
-      <p>Not the same kinetic energy, though: <i>K</i> = <i>p</i>²/2<i>m</i>, so the lighter one carries more. A change in momentum is Δ<i>p</i> = <i>m</i>Δ<i>v</i>.</p>
-      <div class="charts">${chart({ x0: 0, x1: 5, y0: 0, y1: 4, xlabel: 'velocity (m/s)', ylabel: 'momentum (kg·m/s)', label: 'Momentum against velocity for 0.5 kg and 2 kg',
+      <p>Однако кинетическая энергия у них разная: <i>K</i> = <i>p</i>²/2<i>m</i>, поэтому у более лёгкого тела она больше. Изменение импульса равно Δ<i>p</i> = <i>m</i>Δ<i>v</i>.</p>
+      <div class="charts">${chart({ x0: 0, x1: 5, y0: 0, y1: 4, xlabel: 'скорость (м/с)', ylabel: 'импульс (кг·м/с)', label: 'Зависимость импульса от скорости для масс 0,5 и 2 кг',
         series: [{ pts: [[0, 0], [2, 4]], tag: [1.75, 3.0, '2.0 kg', 1] }, { pts: [[0, 0], [5, 2.5]], tag: [4.1, 2.05, '0.5 kg'] }, { cls: 'trend', pts: [[0, 2], [5, 2]] }],
         marks: [[M.CART.v, 2, 'cart'], [M.BALL.v, 2, 'ball']] })}</div>
-      <p class="hintline">Momentum arrows: ${cm(P_SCALE)} per kg·m/s. Click to add velocities.</p>`,
+      <p class="hintline">Масштаб стрелок импульса: ${cm(P_SCALE)} на кг·м/с. Нажмите, чтобы сложить скорости.</p>`,
     cam: { target: [STATIONS.mom + 0.3, 0.4, 0], az: -14, el: 16, dist: 16 }, lit: 'mom', scene: 'mom', look: {},
-    fig: 'Same p, different m and v',
+    fig: 'Одинаковый p при разных m и v',
   },
   {
-    kicker: '5.1', title: 'Impulse', sub: 'a force over a time',
+    kicker: '5.1', title: 'Импульс силы', sub: 'сила, действующая в течение времени',
     body: `
-      <p class="lede">Push on an object for a while and its momentum changes. The push times the time is the <b>impulse</b>.</p>
+      <p class="lede">Если сила действует на тело в течение некоторого времени, его импульс изменяется. Произведение силы на время её действия называется <b>импульсом силы</b>.</p>
       <div class="eq"><i>J</i> = <i>F</i>Δ<i>t</i> = Δ<i>p</i></div>
-      <p>The ${f(Wl.m, 1)} kg ball arrives at +${f(Wl.v, 1)} m/s and leaves at −${f(Wl.v, 1)} m/s: Δ<i>p</i> = −${f(Wl.J, 1)} kg·m/s, twice its momentum, since it must stop <i>and</i> come back.</p>
-      <p>The wall’s push rises and falls over ${f(Wl.tau, 2)} s, peaking at ${f(Wl.Fpk, 0)} N. The <b>area under the force–time graph</b> is the impulse, ${f(Wl.J, 1)} N·s: the same as a steady ${f(Wl.Favg, 0)} N for ${f(Wl.tau, 2)} s. It points the way the force does, away from the wall.</p>
-      <div class="charts">${chart({ x0: 0.15, x1: 0.35, y0: 0, y1: 50, xlabel: 'time (s)', ylabel: 'wall’s push (N)', cursors: ['wall'], label: 'Force on the ball against time; the shaded area is the impulse',
-        series: [{ fill: true, pts: samples(0.15, 0.35, 80, t => -M.wall(t).F), tag: [0.287, 30, `area = ${f(Wl.J, 1)} N·s`] }] })}</div>
-      <p>AP Physics C: for a changing force the impulse is the integral <i>J</i> = ∫<i>F</i> d<i>t</i>. For this pulse:</p>
-      <div class="eq">∫<sub>0</sub><sup>τ</sup> <i>F</i><sub>pk</sub> sin(π<i>t</i>/τ) d<i>t</i> = 2<i>F</i><sub>pk</sub>τ/π = ${f(Wl.J, 1)} N·s</div>
-      <p class="hintline">${M.SLOW_HIT}× speed. Force ${cm(F_WALL)} per newton. Click to see Δp.</p>`,
+      <p>Шар массой ${f(Wl.m, 1)} кг ударяется о стену со скоростью +${f(Wl.v, 1)} м/с и отскакивает со скоростью −${f(Wl.v, 1)} м/с: Δ<i>p</i> = −${f(Wl.J, 1)} кг·м/с. Изменение вдвое больше первоначального импульса, поскольку шар должен остановиться <i>и</i> полететь обратно.</p>
+      <p>Сила со стороны стены нарастает и уменьшается в течение ${f(Wl.tau, 2)} с, достигая максимума ${f(Wl.Fpk, 0)} Н. <b>Площадь под графиком силы от времени</b> равна импульсу силы: ${f(Wl.J, 1)} Н·с. Это то же самое, что постоянная сила ${f(Wl.Favg, 0)} Н в течение ${f(Wl.tau, 2)} с. Направление импульса совпадает с направлением силы — от стены.</p>
+      <div class="charts">${chart({ x0: 0.15, x1: 0.35, y0: 0, y1: 50, xlabel: 'время (с)', ylabel: 'сила стены (Н)', cursors: ['wall'], label: 'Сила, действующая на шар, во времени; заштрихованная площадь — импульс силы',
+        series: [{ fill: true, pts: samples(0.15, 0.35, 80, t => -M.wall(t).F), tag: [0.287, 30, `площадь = ${f(Wl.J, 1)} Н·с`] }] })}</div>
+      <p>AP Physics C: при переменной силе импульс равен интегралу <i>J</i> = ∫<i>F</i> d<i>t</i>. Для данного импульса силы:</p>
+      <div class="eq">∫<sub>0</sub><sup>τ</sup> <i>F</i><sub>pk</sub> sin(π<i>t</i>/τ) d<i>t</i> = 2<i>F</i><sub>pk</sub>τ/π = ${f(Wl.J, 1)} Н·с</div>
+      <p class="hintline">Скорость анимации: ${M.SLOW_HIT}×. Масштаб силы: ${cm(F_WALL)} на ньютон. Нажмите, чтобы увидеть Δp.</p>`,
     cam: { target: [STATIONS.wall - 0.55, 0.6, 0], az: -14, el: 12, dist: 7.2 }, lit: 'wall', scene: 'wall', look: {},
-    fig: 'The wall’s push reverses the ball',
+    fig: 'Сила стены разворачивает шар',
   },
   {
-    kicker: '5.2', title: 'Less force', sub: 'the same Δp, over more time',
+    kicker: '5.2', title: 'Меньшая сила', sub: 'то же Δp за большее время',
     body: `
-      <p class="lede">Two eggs fall ${f(Eg.h * 100, 0)} cm and land at ${f(Eg.v0, 1)} m/s. Each must lose ${f(Eg.J, 2)} kg·m/s, so each needs the same impulse.</p>
-      <p>The pillow gives way and takes ${f(Eg.tauSoft, 2)} s; the floor takes ${f(Eg.tauHard, 2)} s. <i>F</i>Δ<i>t</i> is fixed, so six times less time means six times the force:</p>
+      <p class="lede">Два яйца падают с высоты ${f(Eg.h * 100, 0)} см и ударяются о поверхность со скоростью ${f(Eg.v0, 1)} м/с. Импульс каждого должен уменьшиться на ${f(Eg.J, 2)} кг·м/с, поэтому необходимый импульс силы одинаков.</p>
+      <p>Подушка сжимается, и остановка занимает ${f(Eg.tauSoft, 2)} с; на твёрдом полу — ${f(Eg.tauHard, 2)} с. Произведение <i>F</i>Δ<i>t</i> неизменно, поэтому время в шесть раз меньше означает силу в шесть раз больше:</p>
       <table class="data">
-        <tr><th></th><th>stopping time</th><th>average net force</th><th>peak</th></tr>
-        <tr><td>pillow</td><td>${f(Eg.tauSoft, 2)} s</td><td>${f(Eg.J / Eg.tauSoft)} N</td><td>${f(Math.PI * Eg.J / (2 * Eg.tauSoft))} N</td></tr>
-        <tr><td>floor</td><td>${f(Eg.tauHard, 2)} s</td><td>${f(Eg.J / Eg.tauHard)} N</td><td>${f(Math.PI * Eg.J / (2 * Eg.tauHard))} N</td></tr>
+        <tr><th></th><th>время остановки</th><th>средняя равнодействующая</th><th>максимум</th></tr>
+        <tr><td>подушка</td><td>${f(Eg.tauSoft, 2)} s</td><td>${f(Eg.J / Eg.tauSoft)} N</td><td>${f(Math.PI * Eg.J / (2 * Eg.tauSoft))} N</td></tr>
+        <tr><td>пол</td><td>${f(Eg.tauHard, 2)} s</td><td>${f(Eg.J / Eg.tauHard)} N</td><td>${f(Math.PI * Eg.J / (2 * Eg.tauHard))} N</td></tr>
       </table>
-      <div class="charts">${chart({ x0: 0, x1: 0.2, y0: 0, y1: 8, xlabel: 'time after landing (s)', ylabel: 'net force (N)', cursors: ['eggS', 'eggH'], label: 'Two force pulses with the same area',
-        series: [{ fill: true, pts: samples(0, Eg.tauSoft, 60, t => M.pulse(t, Eg.J, Eg.tauSoft, Eg.m).F).concat([[0.2, 0]]), tag: [0.075, 1.4, 'pillow'] },
-                 { fill: true, pts: samples(0, Eg.tauHard, 30, t => M.pulse(t, Eg.J, Eg.tauHard, Eg.m).F).concat([[0.2, 0]]), tag: [0.034, 5.2, 'floor: same area'] }] })}</div>
-      <p>Airbags, crumple zones and bent knees can’t change Δ<i>p</i>; they stretch Δ<i>t</i>.</p>
-      <p class="hintline">Drawn ${EGG_ZOOM}× life size at ${M.SLOW_HIT}× speed. Red: net force, ${cm(F_EGG * EGG_ZOOM)} per newton. Click to compare.</p>`,
+      <div class="charts">${chart({ x0: 0, x1: 0.2, y0: 0, y1: 8, xlabel: 'время после удара (с)', ylabel: 'равнодействующая сила (Н)', cursors: ['eggS', 'eggH'], label: 'Два импульса силы с одинаковой площадью под графиком',
+        series: [{ fill: true, pts: samples(0, Eg.tauSoft, 60, t => M.pulse(t, Eg.J, Eg.tauSoft, Eg.m).F).concat([[0.2, 0]]), tag: [0.075, 1.4, 'подушка'] },
+                 { fill: true, pts: samples(0, Eg.tauHard, 30, t => M.pulse(t, Eg.J, Eg.tauHard, Eg.m).F).concat([[0.2, 0]]), tag: [0.034, 5.2, 'пол: та же площадь'] }] })}</div>
+      <p>Подушки безопасности, зоны деформации автомобиля и сгибание коленей не могут изменить Δ<i>p</i>, но увеличивают Δ<i>t</i>.</p>
+      <p class="hintline">Масштаб изображения: ${EGG_ZOOM}× натуральной величины; скорость анимации ${M.SLOW_HIT}×. Красная стрелка — равнодействующая сила; масштаб ${cm(F_EGG * EGG_ZOOM)} на ньютон. Нажмите для сравнения.</p>`,
     cam: { target: [STATIONS.eggs, 1.05, 0], az: -10, el: 10, dist: 10.5 }, lit: 'eggs', scene: 'eggs', look: {},
-    fig: 'Same Δp, stretched out in time',
+    fig: 'То же Δp, но за большее время',
   },
   {
-    kicker: '5.3', title: 'Conservation', sub: 'carts that stick',
+    kicker: '5.3', title: 'Закон сохранения импульса', sub: 'неупругий удар: тележки слипаются',
     body: `
-      <p class="lede">Treat both carts as one <b>closed system</b>, with no net outside force. Its total momentum can’t change.</p>
-      <p>The carts give each other equal and opposite impulses: whatever one loses, the other gains.</p>
+      <p class="lede">Рассмотрим обе тележки как одну <b>замкнутую систему</b>, на которую не действует внешняя равнодействующая сила. Полный импульс системы не изменяется.</p>
+      <p>Тележки сообщают друг другу равные и противоположные импульсы силы: сколько импульса теряет одна, столько получает другая.</p>
       <div class="eq"><i>m</i>₁<i>v</i>₁ + <i>m</i>₂<i>v</i>₂ = (<i>m</i>₁ + <i>m</i>₂)<i>v</i>′</div>
-      <p>${f(S.m1, 1)} kg at ${f(S.u1, 1)} m/s meets ${f(S.m2, 1)} kg at ${f(S.u2, 1)} m/s. They stick at <i>v</i>′ = ${f(S.m1 * S.u1 + S.m2 * S.u2, 1)}/${f(S.m1 + S.m2, 1)} = ${f(S.v1, 1)} m/s. <b>Perfectly inelastic</b>: KE is lost to heat, sound and dents.</p>
+      <p>Тележка массой ${f(S.m1, 1)} кг со скоростью ${f(S.u1, 1)} м/с сталкивается с тележкой массой ${f(S.m2, 1)} кг, движущейся со скоростью ${f(S.u2, 1)} м/с. После сцепления они движутся вместе со скоростью <i>v</i>′ = ${f(S.m1 * S.u1 + S.m2 * S.u2, 1)}/${f(S.m1 + S.m2, 1)} = ${f(S.v1, 1)} м/с. Это <b>абсолютно неупругий удар</b>: часть кинетической энергии превращается в тепло, звук и деформацию.</p>
       ${collTable(S)}
       <div class="charts">${momChart(S, 'stick', [[0.05, 6.1], [0.05, -1.5]])}</div>
-      <p class="hintline">Blue: total <i>P</i>. Disc: centre of mass. Click to compare.</p>`,
+      <p class="hintline">Синий вектор: полный импульс <i>P</i>. Диск: центр масс. Нажмите для сравнения.</p>`,
     cam: { target: [STATIONS.stick - 0.4, 0.6, 0], az: -12, el: 14, dist: 17 }, lit: 'stick', scene: 'stick', look: {},
     fig: 'Δp = 0, ΔKE < 0',
   },
   {
-    kicker: '5.4', title: 'Elastic collisions', sub: 'carts that bounce',
+    kicker: '5.4', title: 'Упругие столкновения', sub: 'тележки отскакивают друг от друга',
     body: `
-      <p class="lede">If the carts bounce apart and no energy is lost, the collision is <b>elastic</b>: momentum <i>and</i> kinetic energy are conserved.</p>
-      <p>${f(B.m1, 1)} kg at ${f(B.u1, 1)} m/s hits ${f(B.m2, 1)} kg at rest. Two unknowns, two equations:</p>
+      <p class="lede">Если тележки разлетаются после столкновения и кинетическая энергия не теряется, удар называется <b>упругим</b>: сохраняются и импульс, <i>и</i> кинетическая энергия.</p>
+      <p>Тележка массой ${f(B.m1, 1)} кг со скоростью ${f(B.u1, 1)} м/с сталкивается с неподвижной тележкой массой ${f(B.m2, 1)} кг. Две неизвестные — два уравнения:</p>
       <table class="data eqs">
         <tr><td><i>m</i>₁<i>v</i>₁ + <i>m</i>₂<i>v</i>₂ = <i>m</i>₁<i>v</i>₁′ + <i>m</i>₂<i>v</i>₂′</td><td>Δ<i>p</i> = 0</td></tr>
         <tr><td>½<i>m</i>₁<i>v</i>₁² + ½<i>m</i>₂<i>v</i>₂² = ½<i>m</i>₁<i>v</i>₁′² + ½<i>m</i>₂<i>v</i>₂′²</td><td>Δ<i>KE</i> = 0</td></tr>
       </table>
-      <p>So <i>v</i>₁′ = ${f(B.v1, 1)} m/s and <i>v</i>₂′ = ${f(B.v2, 1)} m/s. Equal and opposite ${f(B.m2 * B.v2, 1)} N·s impulses: the smaller mass gets the bigger Δ<i>v</i>.</p>
+      <p>Получаем <i>v</i>₁′ = ${f(B.v1, 1)} м/с и <i>v</i>₂′ = ${f(B.v2, 1)} м/с. Импульсы силы равны по модулю и противоположны: ${f(B.m2 * B.v2, 1)} Н·с. Меньшая масса получает большее изменение скорости Δ<i>v</i>.</p>
       ${collTable(B)}
       <div class="charts">${momChart(B, 'bounce', [[0.05, 4.1], [0.05, -1.0]])}</div>`,
     cam: { target: [STATIONS.bounce - 0.5, 0.6, 0], az: -12, el: 14, dist: 17 }, lit: 'bounce', scene: 'bounce', look: {},
     fig: 'Δp = 0, ΔKE = 0',
   },
   {
-    kicker: '5.5', title: 'Explosions', sub: 'pushed apart from rest',
+    kicker: '5.5', title: 'Взрыв', sub: 'тела разлетаются из состояния покоя',
     body: `
-      <p class="lede">Two carts sit together at rest; a spring between them is released. The total momentum was zero, so it stays zero.</p>
+      <p class="lede">Две тележки покоятся рядом; между ними сжимают пружину и отпускают её. Начальный полный импульс равен нулю и остаётся нулевым.</p>
       <div class="eq">(<i>m</i>₁ + <i>m</i>₂)<i>v</i> = <i>m</i>₁<i>v</i>₁′ + <i>m</i>₂<i>v</i>₂′</div>
-      <p>With <i>v</i> = 0 the two momenta are equal and opposite, so the ${f(X.m1, 1)} kg cart moves three times as fast as the ${f(X.m2, 1)} kg one. The spring’s ${f(X.Q, 1)} J becomes kinetic energy: KE <i>increases</i>.</p>
+      <p>Поскольку начальная скорость <i>v</i> = 0, импульсы тележек равны по модулю и противоположны по направлению. Поэтому тележка массой ${f(X.m1, 1)} кг движется втрое быстрее тележки массой ${f(X.m2, 1)} кг. Энергия пружины ${f(X.Q, 1)} Дж превращается в кинетическую энергию: КЭ <i>увеличивается</i>.</p>
       ${collTable(X)}
       <table class="data">
-        <tr><th>collision</th><th>Δ<i>p</i></th><th>Δ<i>KE</i></th><th>clue</th></tr>
-        <tr><td>inelastic</td><td>0</td><td>&lt; 0</td><td>KE lost; most if they stick</td></tr>
-        <tr><td>elastic</td><td>0</td><td>0</td><td>they bounce, nothing lost</td></tr>
-        <tr><td>explosion</td><td>0</td><td>&gt; 0</td><td>start together, fly apart</td></tr>
+        <tr><th>тип взаимодействия</th><th>Δ<i>p</i></th><th>Δ<i>KE</i></th><th>особенность</th></tr>
+        <tr><td>неупругий</td><td>0</td><td>&lt; 0</td><td>потеря КЭ; максимальная при сцеплении</td></tr>
+        <tr><td>упругий</td><td>0</td><td>0</td><td>тела отскакивают, КЭ сохраняется</td></tr>
+        <tr><td>взрыв</td><td>0</td><td>&gt; 0</td><td>тела начинают вместе, затем разлетаются</td></tr>
       </table>
-      <p class="hintline">The centre of mass stays put. Click for before and after.</p>`,
+      <p class="hintline">Центр масс остаётся на месте. Нажмите, чтобы сравнить состояния до и после.</p>`,
     cam: { target: [STATIONS.burst - 0.8, 0.6, 0], az: -12, el: 14, dist: 17 }, lit: 'burst', scene: 'burst', look: {},
     fig: 'Δp = 0, ΔKE > 0',
   },
   {
-    kicker: '5.6', title: 'Ballistic pendulum', sub: 'momentum, then energy',
+    kicker: '5.6', title: 'Баллистический маятник', sub: 'сначала импульс, затем энергия',
     body: `
-      <p class="lede">A ${f(Pd.m, 1)} kg lump of clay at ${f(Pd.u, 0)} m/s sticks in a ${f(Pd.M, 1)} kg block on a ${f(Pd.L, 1)} m string, and the block swings up. Two steps, two laws:</p>
+      <p class="lede">Комок пластилина массой ${f(Pd.m, 1)} кг со скоростью ${f(Pd.u, 0)} м/с застревает в блоке массой ${f(Pd.M, 1)} кг, подвешенном на нити длиной ${f(Pd.L, 1)} м. Блок начинает подниматься. Два этапа — два закона:</p>
       <table class="data">
-        <tr><th>step</th><th>law</th><th>here</th></tr>
-        <tr><td>the hit</td><td>Δ<i>p</i> = 0: <i>mv</i> = (<i>m</i>+<i>M</i>)<i>v</i>′</td><td><i>v</i>′ = ${f(Pd.v)} m/s</td></tr>
-        <tr><td>the swing</td><td>Δ<i>E</i> = 0: ½<i>v</i>′² = <i>g</i>Δ<i>y</i></td><td>Δ<i>y</i> = ${f(Pd.dy * 100, 1)} cm</td></tr>
+        <tr><th>этап</th><th>закон</th><th>значение</th></tr>
+        <tr><td>удар</td><td>Δ<i>p</i> = 0: <i>mv</i> = (<i>m</i>+<i>M</i>)<i>v</i>′</td><td><i>v</i>′ = ${f(Pd.v)} м/с</td></tr>
+        <tr><td>подъём</td><td>Δ<i>E</i> = 0: ½<i>v</i>′² = <i>g</i>Δ<i>y</i></td><td>Δ<i>y</i> = ${f(Pd.dy * 100, 1)} см</td></tr>
       </table>
-      <p>Energy isn’t kept across the hit (${f(M.ke(Pd.m, Pd.u), 1)} J → ${f(M.ke(Pd.m + Pd.M, Pd.v))} J), and momentum isn’t kept across the swing (the string and gravity are outside forces). With Δ<i>y</i> = <i>L</i>(1 − cos θ), θ = ${deg(Pd.theta)}°:</p>
+      <p>При самом ударе механическая энергия не сохраняется (${f(M.ke(Pd.m, Pd.u), 1)} Дж → ${f(M.ke(Pd.m + Pd.M, Pd.v))} Дж), а при последующем подъёме не сохраняется импульс (натяжение нити и сила тяжести являются внешними силами). Поскольку Δ<i>y</i> = <i>L</i>(1 − cos θ), получаем θ = ${deg(Pd.theta)}°:</p>
       <div class="eq"><i>v</i> = ((<i>m</i> + <i>M</i>)/<i>m</i>) √(2<i>gL</i>(1 − cos θ))</div>
-      <div class="charts">${chart({ x0: 0, x1: 2.4, y0: 0, y1: 2, xlabel: 'time after the hit (s)', ylabel: 'energy (J)', cursors: ['pendK', 'pendU'], label: 'Kinetic and potential energy during the swing',
+      <div class="charts">${chart({ x0: 0, x1: 2.4, y0: 0, y1: 2, xlabel: 'время после удара (с)', ylabel: 'энергия (Дж)', cursors: ['pendK', 'pendU'], label: 'Кинетическая и потенциальная энергия при подъёме',
         series: [{ pts: samples(0, Pd.T, 60, t => M.pend(Pd.lead + t).K), tag: [0.1, 1.15, 'KE'] }, { pts: samples(0, Pd.T, 60, t => M.pend(Pd.lead + t).U), tag: [Pd.T / 4 - 0.12, 1.15, 'Ug'] }, { cls: 'trend', pts: [[0, M.ke(Pd.m + Pd.M, Pd.v)], [2.4, M.ke(Pd.m + Pd.M, Pd.v)]], tag: [2.36, 1.72, 'total', 1] }] })}</div>
-      <p class="hintline">Click to mark Δy, L and θ, and other ways to find v′.</p>`,
+      <p class="hintline">Нажмите, чтобы отметить Δy, L и θ, а также увидеть другие способы найти v′.</p>`,
     cam: { target: [STATIONS.pend + 0.2, 1.25, 0], az: -10, el: 8, dist: 7.4 }, lit: 'pend', scene: 'pend', look: {},
-    fig: 'The hit Δp = 0, the swing ΔE = 0',
+    fig: 'При ударе Δp = 0, при подъёме ΔE = 0',
   },
   {
-    kicker: '5.7', title: 'Two dimensions', sub: 'a crash at a crossroads',
+    kicker: '5.7', title: 'Две размерности', sub: 'столкновение на перекрёстке',
     body: `
-      <p class="lede">A ${k(C.m1)} kg car going east at ${f(C.v1, 0)} m/s and an ${k(C.m2)} kg truck going north at ${f(C.v2, 0)} m/s collide and lock together. Momentum is conserved in each direction separately.</p>
+      <p class="lede">Автомобиль массой ${k(C.m1)} кг движется на восток со скоростью ${f(C.v1, 0)} м/с, а грузовик массой ${k(C.m2)} кг — на север со скоростью ${f(C.v2, 0)} м/с. Они сталкиваются и сцепляются. Импульс сохраняется отдельно по каждой оси.</p>
       <table class="data">
-        <tr><th>east (<i>x</i>)</th><th>north (<i>y</i>)</th></tr>
+        <tr><th>восток (<i>x</i>)</th><th>север (<i>y</i>)</th></tr>
         <tr><td><i>m</i>₁<i>v</i>₁ = (<i>m</i>₁+<i>m</i>₂)<i>v</i>′<sub>x</sub></td><td><i>m</i>₂<i>v</i>₂ = (<i>m</i>₁+<i>m</i>₂)<i>v</i>′<sub>y</sub></td></tr>
         <tr><td>${k(C.px)} = ${k(C.m1 + C.m2)} <i>v</i>′<sub>x</sub></td><td>${k(C.py)} = ${k(C.m1 + C.m2)} <i>v</i>′<sub>y</sub></td></tr>
-        <tr><td><i>v</i>′<sub>x</sub> = ${f(C.vx)} m/s</td><td><i>v</i>′<sub>y</sub> = ${f(C.vy)} m/s</td></tr>
+        <tr><td><i>v</i>′<sub>x</sub> = ${f(C.vx)} м/с</td><td><i>v</i>′<sub>y</sub> = ${f(C.vy)} м/с</td></tr>
       </table>
-      <p>Add the momenta tip to tail: <i>P</i> = √(<i>p</i><sub>x</sub>² + <i>p</i><sub>y</sub>²) = ${k(C.P)} kg·m/s, so <i>v</i>′ = <i>P</i>/(<i>m</i>₁+<i>m</i>₂) = ${f(C.v)} m/s, ${C.angle.toFixed(1)}° north of east. Never add the speeds.</p>
+      <p>Сложим векторы импульса, приставляя начало одного к концу другого: <i>P</i> = √(<i>p</i><sub>x</sub>² + <i>p</i><sub>y</sub>²) = ${k(C.P)} кг·м/с. Тогда <i>v</i>′ = <i>P</i>/(<i>m</i>₁+<i>m</i>₂) = ${f(C.v)} м/с под углом ${C.angle.toFixed(1)}° к востоку в сторону севера. Складывать модули скоростей нельзя.</p>
       <div class="charts">${vecSketch}</div>
-      <p class="hintline">Arrows here: ${cm(CRASH_SCALE)} per 1000 kg·m/s. Click to add them tip to tail.</p>`,
+      <p class="hintline">Масштаб стрелок: ${cm(CRASH_SCALE)} на 1000 кг·м/с. Нажмите, чтобы сложить векторы, приставляя их друг к другу.</p>`,
     cam: { target: [STATIONS.crash + 0.5, 0, -1.5], az: -10, el: 50, dist: 58 }, lit: 'crash', scene: 'crash', look: {},
-    fig: 'p_car + p_truck = P',
+    fig: 'p автомобиля + p грузовика = P',
   },
   {
-    kicker: '5.8', title: 'Centre of mass', sub: 'it flies on as if nothing happened',
+    kicker: '5.8', title: 'Центр масс', sub: 'движется так, будто ничего не произошло',
     body: `
-      <p class="lede">The <b>centre of mass</b> is the mass-weighted average position of a system. Internal pushes can’t change how it moves: on the cart pages it glided straight through every collision.</p>
+      <p class="lede"><b>Центр масс</b> — это среднее положение системы, взвешенное по массам её частей. Внутренние силы не могут изменить его движение: на предыдущих страницах центр масс тележек продолжал двигаться прямо через все столкновения.</p>
       <div class="eq"><i>x</i><sub>cm</sub> = (<i>m</i>₁<i>x</i>₁ + <i>m</i>₂<i>x</i>₂) / (<i>m</i>₁ + <i>m</i>₂)</div>
-      <p>A ${f(Sh.m, 1)} kg shell is fired at ${f(Sh.v0, 0)} m/s, ${Sh.deg}° up, and bursts into equal halves at the top. The rear half is left at rest and drops to <i>R</i>/2. The front half takes all the momentum, <i>v</i>₂′ = ((<i>m</i>₁+<i>m</i>₂)/<i>m</i>₂)<i>v</i><sub>x</sub> = ${f(Sh.v2, 1)} m/s, and lands at 3<i>R</i>/2. The centre of mass lands at <i>R</i> = ${f(Sh.R)} m, as if it never burst.</p>
+      <p>Снаряд массой ${f(Sh.m, 1)} кг запускают со скоростью ${f(Sh.v0, 0)} м/с под углом ${Sh.deg}° к горизонту. В верхней точке он распадается на две равные части. Задняя половина останавливается и падает на расстояние <i>R</i>/2. Передняя получает весь импульс по горизонтали: <i>v</i>₂′ = ((<i>m</i>₁+<i>m</i>₂)/<i>m</i>₂)<i>v</i><sub>x</sub> = ${f(Sh.v2, 1)} м/с и приземляется на расстоянии 3<i>R</i>/2. Центр масс приземляется на расстоянии <i>R</i> = ${f(Sh.R)} м, как если бы взрыва не было.</p>
       <div class="charts">${shellChart}</div>
-      <p>Tip: the two pieces always get equal and opposite impulses, so the lighter one gets the bigger Δ<i>v</i>.</p>`,
+      <p>Обратите внимание: обе части получают равные и противоположные импульсы силы, поэтому более лёгкая часть получает большее изменение скорости Δ<i>v</i>.</p>`,
     cam: { target: [STATIONS.shell + 0.2, 2.4, 0], az: -6, el: 8, dist: 44 }, lit: 'shell', scene: 'shell', look: {},
-    fig: 'The centre of mass lands at R',
+    fig: 'Центр масс приземляется на расстоянии R',
   },
   {
-    kicker: '5.9 · AP Physics C', title: 'Solid bodies', sub: 'centre of mass by integration',
+    kicker: '5.9 · AP Physics C', title: 'Сплошные тела', sub: 'нахождение центра масс интегрированием',
     body: `
-      <p class="lede">Slice a solid rod into pieces d<i>m</i> = λ d<i>x</i> (λ: mass per metre), weight each by where it is, and integrate.</p>
+      <p class="lede">Разделим сплошной стержень на элементы массой d<i>m</i> = λ d<i>x</i>, где λ — масса единицы длины. Умножим массу каждого элемента на его координату и проинтегрируем.</p>
       <div class="eq"><i>x</i><sub>cm</sub> = (1/<i>M</i>) ∫ <i>x</i> d<i>m</i></div>
       <table class="data">
-        <tr><th>${f(Rd.L, 1)} m rod</th><th><i>M</i> = ∫λ d<i>x</i></th><th><i>x</i><sub>cm</sub></th></tr>
-        <tr><td>λ = ${f(Rd.lamU, 1)} kg/m</td><td>λ<i>L</i> = ${f(Rd.MU, 1)} kg</td><td><i>L</i>/2 = ${f(Rd.xU)} m</td></tr>
-        <tr><td>λ = λ₀<i>x</i>/<i>L</i>, λ₀ = ${f(Rd.lam0, 1)}</td><td>λ₀<i>L</i>/2 = ${f(Rd.MN, 1)} kg</td><td>2<i>L</i>/3 = ${f(Rd.xN)} m</td></tr>
+        <tr><th>стержень длиной ${f(Rd.L, 1)} м</th><th><i>M</i> = ∫λ d<i>x</i></th><th><i>x</i><sub>cm</sub></th></tr>
+        <tr><td>λ = ${f(Rd.lamU, 1)} кг/м</td><td>λ<i>L</i> = ${f(Rd.MU, 1)} кг</td><td><i>L</i>/2 = ${f(Rd.xU)} м</td></tr>
+        <tr><td>λ = λ₀<i>x</i>/<i>L</i>, λ₀ = ${f(Rd.lam0, 1)}</td><td>λ₀<i>L</i>/2 = ${f(Rd.MN, 1)} кг</td><td>2<i>L</i>/3 = ${f(Rd.xN)} м</td></tr>
       </table>
       <div class="eq">∫<i>x</i> d<i>m</i> = ∫<sub>0</sub><sup><i>L</i></sup> λ<sub>0</sub><i>x</i>²/<i>L</i> d<i>x</i> = λ<sub>0</sub><i>L</i>²/3</div>
-      <p>Divide by <i>M</i> = λ₀<i>L</i>/2: 2<i>L</i>/3, past the middle. Each rod rests on a knife edge at its <i>x</i><sub>cm</sub>, where the net torque ∫(<i>x</i> − <i>x</i><sub>cm</sub>)<i>g</i> d<i>m</i> = 0.</p>
+      <p>Разделив на <i>M</i> = λ₀<i>L</i>/2, получаем 2<i>L</i>/3 — точку за серединой стержня. Каждый стержень можно уравновесить на опоре в точке <i>x</i><sub>cm</sub>, где суммарный момент сил тяжести ∫(<i>x</i> − <i>x</i><sub>cm</sub>)<i>g</i> d<i>m</i> = 0.</p>
       <div class="charts">${rodChart}</div>
-      <p class="hintline">Darker = denser. Click to slice (${cm(W_SCALE)} per N).</p>`,
+      <p class="hintline">Чем темнее участок, тем выше плотность. Нажмите, чтобы увидеть срезы (масштаб ${cm(W_SCALE)} на Н).</p>`,
     cam: { target: [STATIONS.rods + 0.1, 0.4, 0], az: -14, el: 22, dist: 9.4 }, lit: 'rods', scene: 'rods', look: {},
-    fig: 'Balanced at x_cm',
+    fig: 'Равновесие в точке x_cm',
   },
   {
-    kicker: '5.10 · AP Physics C', title: 'Plates', sub: 'strip by strip',
+    kicker: '5.10 · AP Physics C', title: 'Пластины', sub: 'разбиение на полосы',
     body: `
-      <p class="lede">Cut a plate (σ = ${f(M.SIGMA, 1)} kg/m²) into strips parallel to an edge. A strip <i>u</i> from the edge, <i>w</i>(<i>u</i>) wide, has d<i>m</i> = σ<i>w</i> d<i>u</i>.</p>
+      <p class="lede">Разделим пластину (σ = ${f(M.SIGMA, 1)} кг/м²) на полосы, параллельные её краю. Полоса на расстоянии <i>u</i> от края и шириной <i>w</i>(<i>u</i>) имеет массу d<i>m</i> = σ<i>w</i> d<i>u</i>.</p>
       <div class="eq"><i>u</i><sub>cm</sub> = (1/<i>M</i>) ∫ <i>u</i> σ<i>w</i>(<i>u</i>) d<i>u</i></div>
       <table class="data">
-        <tr><th>plate</th><th><i>w</i>(<i>u</i>)</th><th><i>u</i><sub>cm</sub></th></tr>
-        <tr><td>triangle, <i>h</i> = ${f(Tr.h, 1)} m</td><td><i>b</i>(1 − <i>u</i>/<i>h</i>)</td><td><i>h</i>/3 = ${f(Tr.ucm)} m</td></tr>
-        <tr><td>semicircle, <i>R</i> = ${f(Se.R, 1)} m</td><td>2√(<i>R</i>² − <i>u</i>²)</td><td>4<i>R</i>/3π = ${f(Se.ucm)} m</td></tr>
+        <tr><th>пластина</th><th><i>w</i>(<i>u</i>)</th><th><i>u</i><sub>cm</sub></th></tr>
+        <tr><td>треугольник, <i>h</i> = ${f(Tr.h, 1)} м</td><td><i>b</i>(1 − <i>u</i>/<i>h</i>)</td><td><i>h</i>/3 = ${f(Tr.ucm)} м</td></tr>
+        <tr><td>полукруг, <i>R</i> = ${f(Se.R, 1)} м</td><td>2√(<i>R</i>² − <i>u</i>²)</td><td>4<i>R</i>/3π = ${f(Se.ucm)} м</td></tr>
       </table>
       <div class="eq">∫<sub>0</sub><sup><i>R</i></sup> 2<i>u</i>√(<i>R</i>² − <i>u</i>²) d<i>u</i> = 2<i>R</i>³/3</div>
-      <p>÷ area π<i>R</i>²/2 = 4<i>R</i>/3π. The triangle is last page’s rod turned sideways: from the apex its strips widen like λ₀<i>x</i>/<i>L</i>. Strip sums close in:</p>
+      <p>Деление на площадь π<i>R</i>²/2 даёт 4<i>R</i>/3π. Треугольник можно рассматривать как стержень с предыдущей страницы, повёрнутый на бок: от вершины ширина полос увеличивается по закону λ₀<i>x</i>/<i>L</i>. Суммы по полосам приближаются к точному значению:</p>
       <div class="charts">${stripChart}</div>
-      <p class="hintline">Pins at the centres of mass. Click to part the strips (${cm(W_PLATE)} per N).</p>`,
+      <p class="hintline">Опоры расположены в центрах масс. Нажмите, чтобы разделить пластину на полосы (масштаб ${cm(W_PLATE)} на Н).</p>`,
     cam: { target: [STATIONS.plates + 0.05, 0.3, 0], az: -10, el: 22, dist: 10.6 }, lit: 'plates', scene: 'plates', look: {},
     fig: 'u_cm = (1/M)∫u dm',
   },
   {
-    kicker: '5.11 · AP Physics C', title: 'Parts and holes', sub: 'add the pieces, subtract the gaps',
+    kicker: '5.11 · AP Physics C', title: 'Составные тела и отверстия', sub: 'складываем части, вычитаем пустоты',
     body: `
-      <p class="lede">For a body made of simple pieces, put each piece’s mass at its own centre of mass and add. A hole is a piece of negative mass.</p>
+      <p class="lede">Если тело состоит из простых частей, умножьте массу каждой части на координаты её центра масс и сложите результаты. Отверстие можно учитывать как часть с отрицательной массой.</p>
       <div class="eq"><i>x</i><sub>cm</sub> = (<i>m</i><sub>A</sub><i>x</i><sub>A</sub> + <i>m</i><sub>B</sub><i>x</i><sub>B</sub>)/(<i>m</i><sub>A</sub> + <i>m</i><sub>B</sub>)</div>
       <table class="data">
-        <tr><th>L, from its inside corner</th><th>mass</th><th>(<i>x</i>, <i>y</i>), m</th></tr>
-        <tr><td>arm A, ${f(Ll.A.a1 - Ll.A.a0, 1)} × ${f(Ll.A.b1 - Ll.A.b0, 1)} m</td><td>${f(Ll.pA.m)} kg</td><td>${xy(Ll.pA.c)}</td></tr>
-        <tr><td>arm B, ${f(Ll.B.a1 - Ll.B.a0, 1)} × ${f(Ll.B.b1 - Ll.B.b0, 1)} m</td><td>${f(Ll.pB.m)} kg</td><td>${xy(Ll.pB.c)}</td></tr>
-        <tr><td>the L</td><td>${f(Ll.M)} kg</td><td>${xy(Ll.cm)}</td></tr>
+        <tr><th>L-образная фигура, от внутреннего угла</th><th>масса</th><th>(<i>x</i>, <i>y</i>), м</th></tr>
+        <tr><td>часть A, ${f(Ll.A.a1 - Ll.A.a0, 1)} × ${f(Ll.A.b1 - Ll.A.b0, 1)} м</td><td>${f(Ll.pA.m)} кг</td><td>${xy(Ll.pA.c)}</td></tr>
+        <tr><td>часть B, ${f(Ll.B.a1 - Ll.B.a0, 1)} × ${f(Ll.B.b1 - Ll.B.b0, 1)} м</td><td>${f(Ll.pB.m)} кг</td><td>${xy(Ll.pB.c)}</td></tr>
+        <tr><td>вся L-образная фигура</td><td>${f(Ll.M)} кг</td><td>${xy(Ll.cm)}</td></tr>
       </table>
-      <p>That point is in the gap, not on the L. Like a ring or a boomerang, it can’t balance on a pin, but hung by a string it turns until its centre of mass is straight below the knot.</p>
+      <p>Эта точка находится в пустоте, а не внутри L-образной фигуры. Как кольцо или бумеранг, фигуру нельзя уравновесить на опоре в этой точке, но если подвесить её на нити, она повернётся так, чтобы центр масс оказался прямо под точкой подвеса.</p>
       <div class="eq"><i>x</i><sub>cm</sub> = (<i>m</i><sub>full</sub><i>x</i><sub>full</sub> − <i>m</i><sub>plug</sub><i>x</i><sub>plug</sub>)/<i>M</i></div>
-      <p>A ${f(Ho.s, 1)} m square (${f(Ho.mFull)} kg) loses a plug of radius ${f(Ho.r, 1)} m (${f(Ho.mPlug)} kg) at ${xy(Ho.c)}: <i>x</i><sub>cm</sub> = <i>y</i><sub>cm</sub> = −${f(Ho.mPlug)}×${f(Ho.c[0])}/${f(Ho.M)} = ${f(Ho.cm[0], 3)} m, ${f(Math.hypot(...Ho.cm) * 100, 1)} cm from the centre, away from the hole.</p>
-      <p class="hintline">Click to pull the L apart and lift the plug out.</p>`,
+      <p>Из квадратной пластины со стороной ${f(Ho.s, 1)} м (масса ${f(Ho.mFull)} кг) удаляют круг радиусом ${f(Ho.r, 1)} м (масса ${f(Ho.mPlug)} кг) с центром в ${xy(Ho.c)}. Получаем <i>x</i><sub>cm</sub> = <i>y</i><sub>cm</sub> = −${f(Ho.mPlug)}×${f(Ho.c[0])}/${f(Ho.M)} = ${f(Ho.cm[0], 3)} м; центр масс смещается на ${f(Math.hypot(...Ho.cm) * 100, 1)} см от центра в сторону, противоположную отверстию.</p>
+      <p class="hintline">Нажмите, чтобы разъединить L-образную фигуру и вынуть круглый фрагмент.</p>`,
     cam: { target: [STATIONS.parts + 0.05, 1.22, 0], az: -12, el: 14, dist: 10.2 }, lit: 'parts', scene: 'parts', look: {},
-    fig: 'Outside the material',
+    fig: 'За пределами материала',
   },
 ];
 
