@@ -17,17 +17,17 @@ startBook({
   state: (clock, reduced) => ({ t: reduced ? 0.3 * M.T0 : clock * M.SLOW }),
   readout({ t }, page) {
     switch (page.scene) {
-      case 'spring': case 'hooke': case 'trace': { const s = M.spring(t); return `x ${f(s.x)} m   v ${f(s.v)} m/s\nF ${f(s.F)} N   a ${f(s.a)} m/s²`; }
-      case 'energy': { const s = M.spring(t); return `K ${f(s.KE)} J   U ${f(s.U)} J\nK + U ${f(s.KE + s.U)} J`; }
-      case 'hang': { const s = M.hang(t); return `y ${f(s.y)} m   spring ${f(s.Fs)} N   weight ${f(M.WEIGHT)} N\nΣF ${f(s.net)} N   a ${f(s.a)} m/s²`; }
-      case 'pendulum': { const p = M.pendulum(t); return `θ ${f(p.th / M.DEG, 1)}°   v ${f(p.v)} m/s\nrestoring ${f(p.restoring, 3)} N   T ${f(M.P_T, 3)} s`; }
+      case 'spring': case 'hooke': case 'trace': { const s = M.spring(t); return `x ${f(s.x)} м   v ${f(s.v)} м/с\nF ${f(s.F)} Н   a ${f(s.a)} м/с²`; }
+      case 'energy': { const s = M.spring(t); return `K ${f(s.KE)} Дж   U ${f(s.U)} Дж\nK + U ${f(s.KE + s.U)} Дж`; }
+      case 'hang': { const s = M.hang(t); return `y ${f(s.y)} м   сила пружины ${f(s.Fs)} Н   сила тяжести ${f(M.WEIGHT)} Н\nΣF ${f(s.net)} Н   a ${f(s.a)} м/с²`; }
+      case 'pendulum': { const p = M.pendulum(t); return `θ ${f(p.th / M.DEG, 1)}°   v ${f(p.v)} м/с\nвозвращающая сила ${f(p.restoring, 3)} Н   T ${f(M.P_T, 3)} с`; }
       case 'double': { const a = M.periodSpring(1, M.K), b = M.periodSpring(4, M.K), c = M.periodPendulum(M.DOUBLE.L), d = M.periodPendulum(M.DOUBLE.L4);
-        return `cycles  m ${f(t / a, 1)}   4m ${f(t / b, 1)}\n        L ${f(t / c, 1)}   4L ${f(t / d, 1)}`; }
-      case 'ignore': return `springs: T ${f(M.T0, 3)} s, both   cycles ${f(t / M.T0, 1)}\npendulums: T ${f(M.periodPendulum(M.IGNORE.L), 3)} s, both   cycles ${f(t / M.periodPendulum(M.IGNORE.L), 1)}`;
-      case 'ode': { const a = M.start(0, t), b = M.start(1, t); return `let go: x ${f(a.x)} m   v ${f(a.v)} m/s\npushed: x ${f(b.x)} m   v ${f(b.v)} m/s`; }
-      case 'physical': { const r = M.physical(M.ROD, t), p = M.pendulum(t, M.ROD.L, M.ROD.th0); return `rod θ ${f(r.th / M.DEG, 1)}°   T ${f(M.ROD.T, 3)} s\nstring θ ${f(p.th / M.DEG, 1)}°   T ${f(M.periodPendulum(M.ROD.L), 3)} s`; }
-      case 'torsion': { const r = M.torsion(t); return `θ ${f(r.th / M.DEG, 1)}°   τ ${f(r.torque, 3)} N·m\nT ${f(M.TORS.T, 3)} s`; }
-      case 'life': return `car: T ${f(M.CAR.T, 2)} s   bounces ${f(t / M.CAR.T, 1)}\nswing: T ${f(M.SWING.T, 2)} s   swings ${f(t / M.SWING.T, 1)}`;
+        return `число колебаний: m ${f(t / a, 1)}   4m ${f(t / b, 1)}\n                       L ${f(t / c, 1)}   4L ${f(t / d, 1)}`; }
+      case 'ignore': return `пружины: T ${f(M.T0, 3)} с у обеих   колебаний ${f(t / M.T0, 1)}\nмаятники: T ${f(M.periodPendulum(M.IGNORE.L), 3)} с у обоих   колебаний ${f(t / M.periodPendulum(M.IGNORE.L), 1)}`;
+      case 'ode': { const a = M.start(0, t), b = M.start(1, t); return `отпущен: x ${f(a.x)} м   v ${f(a.v)} м/с\nполучил толчок: x ${f(b.x)} м   v ${f(b.v)} м/с`; }
+      case 'physical': { const r = M.physical(M.ROD, t), p = M.pendulum(t, M.ROD.L, M.ROD.th0); return `стержень: θ ${f(r.th / M.DEG, 1)}°   T ${f(M.ROD.T, 3)} с\nнить: θ ${f(p.th / M.DEG, 1)}°   T ${f(M.periodPendulum(M.ROD.L), 3)} с`; }
+      case 'torsion': { const r = M.torsion(t); return `θ ${f(r.th / M.DEG, 1)}°   τ ${f(r.torque, 3)} Н·м\nT ${f(M.TORS.T, 3)} с`; }
+      case 'life': return `автомобиль: T ${f(M.CAR.T, 2)} с   колебаний ${f(t / M.CAR.T, 1)}\nкачели: T ${f(M.SWING.T, 2)} с   колебаний ${f(t / M.SWING.T, 1)}`;
     }
     return '';
   },
