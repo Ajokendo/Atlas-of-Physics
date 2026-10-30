@@ -20,9 +20,9 @@ startBook({
       { cls: 'vec', html: 'v<sub>x</sub>', at: () => W.anchors.vx() },
       { cls: 'vec', html: 'v<sub>y</sub>', at: () => W.anchors.vy() },
       ...[0, 1, 2, 3, 4, 5].map(q => ({ cls: 'tick', html: q ? `${q} m` : '0', at: () => W.anchors.staff(q) })),
-      ...[['boardX', 'position <i>y</i> (m)'], ['boardV', 'velocity <i>v</i> (m/s)'], ['boardA', 'acceleration <i>a</i> (m/s²)']].flatMap(([k, t]) => [
+      ...[['boardX', 'координата <i>y</i> (м)'], ['boardV', 'скорость <i>v</i> (м/с)'], ['boardA', 'ускорение <i>a</i> (м/с²)']].flatMap(([k, t]) => [
         { cls: 'board', html: t, at: () => W.anchors.board(k, 'title') },
-        { cls: 'axis', html: '<i>t</i> (s)', at: () => W.anchors.board(k, 'axis') },
+        { cls: 'axis', html: '<i>t</i> (с)', at: () => W.anchors.board(k, 'axis') },
       ]),
       ...W.labels2,
     ];
@@ -44,14 +44,14 @@ startBook({
   },
   readout(s, page) {
     switch (page.scene) {
-      case 'rain': return `car ${f(M.RAIN.vc)} m/s   rain ${f(M.RAIN.vr)} m/s down\nfrom the car: ${f(M.vlen(M.V_RC))} m/s, ${f(M.RAIN_ANGLE, 1)}° from vertical`;
-      case 'river': { const t = s.river.t, [ax] = M.boatPos(0, t), [, by] = M.boatPos(M.AIM_UP, t); return `t ${f(Math.min(t, M.RIVER_RUN), 1)} s\nstraight: drift ${f(ax, 1)} m   upstream: across ${f(by, 1)} m`; }
-      case 'pull': { const t = s.pull.t; return `t ${f(t)} s   x ${f(M.px(t)).padStart(5)} m\nv ${f(M.pv(t)).padStart(5)} m/s   a ${f(M.pa(t))} m/s²`; }
-      case 'cube': { const t = s.cube.t; return `t ${f(t)} s   x ${f(M.cx(t)).padStart(5)} m\nv ${f(M.cv(t)).padStart(5)} m/s   a ${f(M.ca(t)).padStart(5)} m/s²`; }
+      case 'rain': return `автомобиль ${f(M.RAIN.vc)} м/с   дождь ${f(M.RAIN.vr)} м/с вниз\nотносительно автомобиля: ${f(M.vlen(M.V_RC))} м/с, ${f(M.RAIN_ANGLE, 1)}° от вертикали`;
+      case 'river': { const t = s.river.t, [ax] = M.boatPos(0, t), [, by] = M.boatPos(M.AIM_UP, t); return `t ${f(Math.min(t, M.RIVER_RUN), 1)} с\nпрямо поперёк: снос ${f(ax, 1)} м   против течения: переправа ${f(by, 1)} м`; }
+      case 'pull': { const t = s.pull.t; return `t ${f(t)} с   x ${f(M.px(t)).padStart(5)} м\nv ${f(M.pv(t)).padStart(5)} м/с   a ${f(M.pa(t))} м/с²`; }
+      case 'cube': { const t = s.cube.t; return `t ${f(t)} с   x ${f(M.cx(t)).padStart(5)} м\nv ${f(M.cv(t)).padStart(5)} м/с   a ${f(M.ca(t)).padStart(5)} м/с²`; }
     }
     const { t, resting } = s;
     const v = resting ? 0 : M.vy(t);
-    return `t ${t.toFixed(2)} s   y ${M.y(t).toFixed(2).padStart(5)} m\nv ${sgn(v)}${Math.abs(v).toFixed(2)} m/s   a ${resting ? ' 0.00' : '−' + M.G.toFixed(2)} m/s²`;
+    return `t ${t.toFixed(2)} с   y ${M.y(t).toFixed(2).padStart(5)} м\nv ${sgn(v)}${Math.abs(v).toFixed(2)} м/с   a ${resting ? ' 0.00' : '−' + M.G.toFixed(2)} м/с²`;
   },
   onFrame(s, sheets) {
     const { t, resting } = s;
@@ -59,8 +59,8 @@ startBook({
     const live = document.getElementById('live-sign');
     if (live) {
       const v = M.vy(t);
-      live.textContent = resting ? 'now: resting on the ground between throws' : Math.abs(v) < 0.05 ? 'now: at the top, v = 0, a = −9.80 m/s²'
-        : v > 0 ? `now: v = +${v.toFixed(2)}, a = −9.80 → opposite signs → slowing down` : `now: v = −${(-v).toFixed(2)}, a = −9.80 → same signs → speeding up`;
+      live.textContent = resting ? 'сейчас: мяч покоится на земле между бросками' : Math.abs(v) < 0.05 ? 'сейчас: верхняя точка, v = 0, a = −9,80 м/с²'
+        : v > 0 ? `сейчас: v = +${v.toFixed(2)}, a = −9,80 → знаки противоположны → замедление` : `сейчас: v = −${(-v).toFixed(2)}, a = −9,80 → знаки совпадают → ускорение`;
     }
     // live chart pieces: cursors, areas from 0 to now, tangents at now
     const cursor = (key, R, x, y) => q(`circle[data-cursor="${key}"]`).forEach(c => { c.setAttribute('cx', KC.sx(x, R)); c.setAttribute('cy', KC.sy(y, R)); });
