@@ -54,10 +54,10 @@ const vecSketch = (() => {
   const head = (x1, y1, x2, y2, cls) => { const a = Math.atan2(y2 - y1, x2 - x1), L = 9; return `<line class="${cls}" x1="${x1}" y1="${y1}" x2="${x2 - 6 * Math.cos(a)}" y2="${y2 - 6 * Math.sin(a)}"/><path class="${cls}h" d="M${x2},${y2}L${x2 - L * Math.cos(a - 0.4)},${y2 - L * Math.sin(a - 0.4)}L${x2 - L * Math.cos(a + 0.4)},${y2 - L * Math.sin(a + 0.4)}Z"/>`; };
   return `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Векторы импульса, сложенные последовательно">
     ${head(ox, oy, ax, oy, 'vk')}${head(ax, oy, ax, ay, 'vk')}${head(ox, oy, ax, ay, 'vb')}
-    <text class="lab" x="${ox - 4}" y="${oy + 6}" text-anchor="end">p_car ${k(C.px)}</text>
-    <text class="lab" x="${ax + 8}" y="${(oy + ay) / 2}">p_truck ${k(C.py)}</text>
+    <text class="lab" x="${ox - 4}" y="${oy + 6}" text-anchor="end">p автомобиля ${k(C.px)}</text>
+    <text class="lab" x="${ax + 8}" y="${(oy + ay) / 2}">p грузовика ${k(C.py)}</text>
     <text class="lab blue" x="${(ox + ax) / 2 - 8}" y="${(oy + ay) / 2 - 6}" text-anchor="end">P ${k(C.P)}</text>
-    <text class="ax" x="${W - 14}" y="20" text-anchor="end">kg·m/s · east → north ↑</text>
+    <text class="ax" x="${W - 14}" y="20" text-anchor="end">кг·м/с · восток → север ↑</text>
   </svg>`;
 })();
 
@@ -87,8 +87,8 @@ const NS = Array.from({ length: 12 }, (_, i) => i + 1);
 const stripChart = chart({
   x0: 1, x1: 12, y0: 0.95, y1: 1.55, xlabel: 'число полос n', ylabel: 'сумма по полосам ÷ точное значение', label: 'При увеличении числа полос сумма приближается к интегральному значению центра масс',
   series: [
-    { pts: NS.map(n => [n, M.stripSum(M.triW, Tr.h, n) / Tr.ucm]), tag: [11.8, 1.44, 'upper: triangle', 1] },
-    { pts: NS.map(n => [n, M.stripSum(M.semiW, Se.R, n) / Se.ucm]), tag: [11.8, 1.36, 'lower: semicircle', 1] },
+    { pts: NS.map(n => [n, M.stripSum(M.triW, Tr.h, n) / Tr.ucm]), tag: [11.8, 1.44, 'верхняя: треугольник', 1] },
+    { pts: NS.map(n => [n, M.stripSum(M.semiW, Se.R, n) / Se.ucm]), tag: [11.8, 1.36, 'нижняя: полукруг', 1] },
     { cls: 'trend', pts: [[1, 1], [12, 1]], tag: [11.8, 1.0, 'интеграл', 1] },
   ],
   });
