@@ -19,7 +19,7 @@ startBook({
       { cls: 'vec red', html: 'a', at: () => W.anchors.a() },
       { cls: 'vec', html: 'v<sub>x</sub>', at: () => W.anchors.vx() },
       { cls: 'vec', html: 'v<sub>y</sub>', at: () => W.anchors.vy() },
-      ...[0, 1, 2, 3, 4, 5].map(q => ({ cls: 'tick', html: q ? `${q} m` : '0', at: () => W.anchors.staff(q) })),
+      ...[0, 1, 2, 3, 4, 5].map(q => ({ cls: 'tick', html: q ? `${q} м` : '0', at: () => W.anchors.staff(q) })),
       ...[['boardX', 'координата <i>y</i> (м)'], ['boardV', 'скорость <i>v</i> (м/с)'], ['boardA', 'ускорение <i>a</i> (м/с²)']].flatMap(([k, t]) => [
         { cls: 'board', html: t, at: () => W.anchors.board(k, 'title') },
         { cls: 'axis', html: '<i>t</i> (с)', at: () => W.anchors.board(k, 'axis') },
