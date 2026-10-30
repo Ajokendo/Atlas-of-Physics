@@ -96,7 +96,7 @@ export function buildWorld(E) {
   // ---------- 1 · work: a box pulled by a rope at 30° ----------
   const XA = STATIONS.pull, SA = 0.6, xA0 = XA - 1.2;
   smooth(XA - 2.0, XA + 2.8);
-  const gA = asm('pull', root, { title: 'Box pulled by a rope', sub: 'only the part of F along Δx does work' });
+  const gA = asm('pull', root, { title: 'Ящик тянут верёвкой', sub: 'работу совершает только составляющая F вдоль Δx' });
   const bA = block(gA, SA, '4.0 kg box');
   const ropeA = rod(gA, 0.012, 'ink', 'Rope');
   const FA = force(gA), fgA = force(gA), fnA = force(gA), fxA = thinArrow(gA), fyA = thinArrow(gA), dxA = thinArrow(gA, 'Displacement');
@@ -107,7 +107,7 @@ export function buildWorld(E) {
 
   // ---------- 2 · the sign of work: a ball thrown up ----------
   const XB = STATIONS.toss, RB = 0.15;
-  const gB = asm('toss', root, { title: 'Ball thrown up', sub: 'gravity takes energy, then gives it back' });
+  const gB = asm('toss', root, { title: 'Мяч брошен вверх', sub: 'сила тяжести отнимает и возвращает энергию' });
   const bB = ball(gB, RB, '0.50 kg ball');
   const vB = force(gB), fgB = force(gB), dyB = thinArrow(gB, 'Displacement');
   label('vec', '<b>v</b>', () => tip(vB)); label('vec', 'F<sub>g</sub>', () => tip(fgB)); label('vec', 'Δ<i>y</i>', () => tip(dyB));
@@ -120,7 +120,7 @@ export function buildWorld(E) {
   // ---------- 3 · no work: a ball whirled on a string over a smooth table ----------
   const XC = STATIONS.whirl, RC = 0.15, R0 = M.WHIRL.r;
   smooth(XC - 1.45, XC + 1.45, -1.45, 1.45);
-  const gC = asm('whirl', root, { title: 'Ball on a string', sub: 'the pull is always sideways to the motion' });
+  const gC = asm('whirl', root, { title: 'Шар на нити', sub: 'натяжение всегда перпендикулярно движению' });
   part(gC, cyl(0.05, 0.22, 20), { tone: 'hi', pal: 'dark', pos: [XC, 0.13, 0], name: 'Peg' });
   const bC = ball(gC, RC, '0.50 kg ball'), strC = rod(gC);
   const vC = force(gC), tC = force(gC);
@@ -134,7 +134,7 @@ export function buildWorld(E) {
   const XD = STATIONS.car;
   part(root, box(16, 0.03, 3.4, 0.01), { tone: 'lo', pal: 'board', pos: [XD + 5, 0.015, 0], name: 'Road' });
   { const dashes = []; for (let x = XD - 3; x < XD + 13; x += 2) dashes.push(x, 0.035, 0, x + 1, 0.035, 0); lines(root, dashes, '#9a9aa0'); }
-  const gD = asm('car', root, { title: 'Car speeding up', sub: 'net work in, kinetic energy out' });
+  const gD = asm('car', root, { title: 'Разгон автомобиля', sub: 'работа равнодействующей увеличивает кинетическую энергию' });
   const carD = new THREE.Group(); gD.add(carD);
   part(carD, box(4.2, 0.7, 1.8, 0.18), { tone: 'hi', pos: [0, 0.75, 0], name: 'Body' });
   part(carD, box(2.2, 0.6, 1.6, 0.2), { tone: 'hi', pos: [-0.3, 1.38, 0], name: 'Cabin' });
@@ -148,7 +148,7 @@ export function buildWorld(E) {
 
   // ---------- 5 · gravitational PE: a ball dropped from 3.0 m ----------
   const XE = STATIONS.drop, RE = 0.15;
-  const gE = asm('drop', root, { title: 'Dropped ball', sub: 'height turns into speed' });
+  const gE = asm('drop', root, { title: 'Падающий шар', sub: 'высота превращается в скорость' });
   const bE = ball(gE, RE, '0.50 kg ball');
   const fgE = force(gE), vE = force(gE);
   label('vec', 'F<sub>g</sub>', () => tip(fgE)); label('vec', '<b>v</b>', () => tip(vE));
@@ -167,7 +167,7 @@ export function buildWorld(E) {
   const XF = STATIONS.spring, SF = 0.5, wallX = XF + 1.4, Lfree = 1.0, endX = wallX - Lfree;
   smooth(XF - 2.4, wallX);
   part(root, box(0.16, 1.0, 1.4, 0.02), { tone: 'mid', pal: 'board', pos: [wallX + 0.08, 0.5, 0], name: 'Wall' });
-  const gF = asm('spring', root, { title: 'Block and spring', sub: 'kinetic energy stored, then given back' });
+  const gF = asm('spring', root, { title: 'Блок и пружина', sub: 'кинетическая энергия запасается и возвращается' });
   const bF = block(gF, SF, '2.0 kg block');
   const coil = (() => { const pts = []; const turns = 9, n = 400; for (let i = 0; i <= n; i++) { const u = i / n, a = u * turns * 2 * Math.PI; pts.push(V(u, 0.11 * Math.sin(a), 0.11 * Math.cos(a))); }
     return new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 600, 0.016, 8, false); })();
@@ -195,7 +195,7 @@ export function buildWorld(E) {
   label('board', small('<i>F</i>(<i>x</i>)', 18), () => V(xP0 + 0.08, GB + 1.08, zP));
   part(root, new THREE.TubeGeometry(new THREE.CatmullRomCurve3(samplesV(80, x => V(xP0 + x, GB + M.pushF(x) * FP, zP + 0.01), 0, Lp)), 160, 0.014, 8, false), { tone: 'hi', pal: 'ink', name: 'F(x) curve' });
   const fillP = areaMesh(150, x => [xP0 + x, GB, GB + M.pushF(x) * FP], 0, Lp, zP + 0.005);
-  const gP = asm('push', root, { title: 'Crate pushed by a changing force', sub: 'the work is the area under F(x)' });
+  const gP = asm('push', root, { title: 'Ящик под действием переменной силы', sub: 'работа равна площади под графиком F(x)' });
   gP.userData.focus = () => ({ target: [xP0 + Lp / 2 + 0.55, 0.9, 0], radius: 2.7 });
   const bP = block(gP, SP, '5.0 kg crate');
   const fP = force(gP), dotP = part(gP, new THREE.SphereGeometry(0.045, 16, 10), { tone: 'hi', pal: 'ink', name: 'F(x) curve' });
@@ -221,7 +221,7 @@ export function buildWorld(E) {
     const p = wp(x); part(root, new THREE.SphereGeometry(0.03, 12, 8), { tone: 'hi', pal: 'ink', pos: p.toArray(), name: 'Equilibrium' });
     label('board', small(txt, 15), () => p.clone().add(V(dx, dy, 0)));
   }
-  const gQ = asm('bead', root, { title: 'Bead on a wavy wire', sub: 'the force is minus the slope of U' });
+  const gQ = asm('bead', root, { title: 'Бусинка на волнистой проволоке', sub: 'сила равна минус наклону графика U' });
   gQ.userData.focus = () => { const p = wp(beadState.x); return { target: [p.x, p.y - 0.1, 0], radius: 1.1 }; };
   gQ.userData.minDist = 4;
   const bQ = ball(gQ, RQ, '0.20 kg bead');
@@ -261,7 +261,7 @@ export function buildWorld(E) {
   label('board', small('turning points', 14), () => V(rx(BD.r2) + 0.1, yE + 0.15, zN));
   // the atoms sit below the board, lined up with its r axis: separation r is read straight up
   const yA = 0.32, zA = 0;
-  const gN = asm('bond', root, { title: 'Two atoms and their bond', sub: 'a particle in a potential well' });
+  const gN = asm('bond', root, { title: 'Два атома и связь между ними', sub: 'частица в потенциальной яме' });
   gN.userData.focus = () => ({ target: [(rx(rLo) + rx(rHi)) / 2 - 0.5, 1.4, 0], radius: 1.9 });
   part(gN, new THREE.SphereGeometry(0.3, 36, 22), { tone: 'hi', pal: 'dark', pos: [xN0, yA, zA], name: 'Heavy atom (held)' });
   const aN = ball(gN, 0.15, 'Light atom, 1 u');
@@ -285,7 +285,7 @@ export function buildWorld(E) {
   // ---------- 7 · conservation: a pendulum ----------
   const XG = STATIONS.pendulum, PY = 3.3, RG = 0.15;
   part(root, box(1.0, 0.08, 0.4, 0.02), { tone: 'mid', pal: 'board', pos: [XG, PY + 0.04, 0], name: 'Ceiling' });
-  const gG = asm('pendulum', root, { title: 'Pendulum', sub: 'K and U trade; their sum stays put' });
+  const gG = asm('pendulum', root, { title: 'Маятник', sub: 'K и U переходят друг в друга, их сумма постоянна' });
   const bG = ball(gG, RG, '1.0 kg bob'), strG = rod(gG);
   const tG = force(gG), fgG = force(gG), vG = force(gG), tanG = thinArrow(gG), radG = thinArrow(gG);
   label('vec', 'T', () => tip(tG)); label('vec', 'F<sub>g</sub>', () => tip(fgG)?.add(V(-0.14, 0, 0))); label('vec', '<b>v</b>', () => tip(vG));
@@ -300,7 +300,7 @@ export function buildWorld(E) {
   // ---------- 8 · non-conservative work: a block sliding to a stop ----------
   const XH = STATIONS.slide, SH = 0.5, xH0 = XH - 1.2;
   rough(XH - 1.6, XH + 1.3);
-  const gH = asm('slide', root, { title: 'Block sliding to a stop', sub: 'friction turns K into heat' });
+  const gH = asm('slide', root, { title: 'Скользящий блок', sub: 'трение превращает K в тепло' });
   const bH = block(gH, SH, '2.0 kg block');
   const fH = force(gH), fgH = force(gH), fnH = force(gH), netH = force(gH, true), dxH = thinArrow(gH, 'Displacement');
   label('vec', 'f', () => tip(fH)); label('vec', 'F<sub>g</sub>', () => tip(fgH)); label('vec', 'F<sub>N</sub>', () => tip(fnH)); label('vec red', 'ΣF', () => tip(netH)); label('vec', 'Δ<i>x</i>', () => tip(dxH));
@@ -310,7 +310,7 @@ export function buildWorld(E) {
   // ---------- 9 · power: the same crate lifted fast and slow ----------
   const XI = STATIONS.lift, SI = 0.55, CEIL = 3.4, xs = [XI - 0.85, XI + 0.85];
   part(root, box(3.0, 0.08, 0.5, 0.02), { tone: 'mid', pal: 'board', pos: [XI, CEIL + 0.04, 0], name: 'Ceiling' });
-  const gI = asm('lift', root, { title: 'Lifting a crate', sub: 'same work, different power' });
+  const gI = asm('lift', root, { title: 'Подъём ящика', sub: 'одинаковая работа, разная мощность' });
   const crates = xs.map(x => block(gI, SI, '10 kg crate'));
   const ropesI = xs.map(() => rod(gI, 0.012, 'ink', 'Rope'));
   const tI = xs.map(() => force(gI)), wI = xs.map(() => force(gI)), dyI = xs.map(() => thinArrow(gI, 'Displacement'));
