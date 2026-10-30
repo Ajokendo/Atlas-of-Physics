@@ -335,7 +335,7 @@ export function buildWorld(E) {
   label('vec', 'F', () => tip(kF));
   label('vec grey', 's = rΔθ', () => { const q = M.wrench(kNow), a = -q.th / 2; return q.th > 0.3 ? V(XK + (KR - 0.1) * Math.cos(a), KY, -(KR - 0.1) * Math.sin(a)) : null; });
   label('vec grey', 'r', () => kR.visible ? V(XK + KR / 2, KY + 0.1, 0) : null);
-  label('tick', '', () => V(XK + 0.05, KY, 0.62), () => { const q = M.wrench(kNow); return `W = τΔθ = ${q.W.toFixed(1)} J`; });
+  label('tick', '', () => V(XK + 0.05, KY, 0.62), () => { const q = M.wrench(kNow); return `W = τΔθ = ${q.W.toFixed(1)} Дж`; });
   let kNow = 0;
 
   // ================= 7b · a bowling ball launched sliding =================
