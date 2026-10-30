@@ -26,15 +26,15 @@ startBook({
   },
   readout(s, page) {
     switch (page.scene) {
-      case 'atoms': return `neutral 0   ion −1e   ion +1e\n1 e = 1.60 × 10⁻¹⁹ C`;
-      case 'induce': { const st = s.induce; return `${st.stage}\nsphere ${f(st.Qnet / M.nC)} nC   rod ${st.rod ? f(st.dTip * 100, 0) + ' cm away' : 'gone'}`; }
-      case 'coulomb': return `r ${f(s.pairR * 100, 1)} cm\nF ${f(M.coulomb(M.PAIR.q1, M.PAIR.q2, s.pairR))} N on each, attracting`;
-      case 'line': { const r = M.lineForces(s.lineX); return `x ${f(s.lineX * 100, 1)} cm   F_A ${f(r.FA[0], 3)} N   F_B ${f(r.FB[0], 3)} N\nΣF ${f(r.net[0], 3)} N`; }
-      case 'point': { const E = M.pointMag(M.POINT.Q, s.testR); return `r ${f(s.testR * 100, 1)} cm   E ${f(E, 0)} N/C\nF = q₀E = ${f(M.POINT.q0 * E * 1e9, 1)} × 10⁻⁹ N`; }
-      case 'dipole': return `axis x ${f(s.dipoleX * 100, 1)} cm: E ${f(M.dipoleAxis(s.dipoleX), 0)} N/C\nbisector y ${f(s.dipoleY * 100, 1)} cm: E ${f(M.dipoleBisector(s.dipoleY), 0)} N/C`;
-      case 'rod': return `axis a ${f(s.rodA * 100, 1)} cm: E ${f(M.rodAxis(s.rodA), 0)} N/C\nbisector a ${f(s.rodB * 100, 1)} cm: E ${f(M.rodBisector(s.rodB), 0)} N/C`;
-      case 'ring': return `z ${f(s.ringZ * 100, 1)} cm   E ${f(M.ringAxis(s.ringZ), 0)} N/C\npeak ${f(M.ringAxis(M.RING_ZMAX), 0)} N/C at ${f(M.RING_ZMAX * 100, 1)} cm`;
-      case 'plates': { const e = M.electron(s.plates.t); return `t ${f(s.plates.t * 1e9)} ns   x ${f(e.x * 100)} cm   y ${f(e.y * 1000)} mm\n${e.inside ? `a ${(M.PLATES.a / 1e14).toFixed(2)} × 10¹⁴ m/s² up` : 'past the plates: straight line'}`; }
+      case 'atoms': return `нейтральный 0   ион −1e   ион +1e\n1 e = 1,60 × 10⁻¹⁹ Кл`;
+      case 'induce': { const st = s.induce; return `${({approach:'палочка приближается', ground:'шар заземлён', remove:'палочка удалена'}[st.stage] || st.stage)}\nзаряд шара ${f(st.Qnet / M.nC)} нКл   палочка ${st.rod ? `на расстоянии ${f(st.dTip * 100, 0)} см` : 'удалена'}`; }
+      case 'coulomb': return `r ${f(s.pairR * 100, 1)} см\nF ${f(M.coulomb(M.PAIR.q1, M.PAIR.q2, s.pairR))} Н на каждый заряд, притяжение`;
+      case 'line': { const r = M.lineForces(s.lineX); return `x ${f(s.lineX * 100, 1)} см   F_A ${f(r.FA[0], 3)} Н   F_B ${f(r.FB[0], 3)} Н\nΣF ${f(r.net[0], 3)} Н`; }
+      case 'point': { const E = M.pointMag(M.POINT.Q, s.testR); return `r ${f(s.testR * 100, 1)} см   E ${f(E, 0)} Н/Кл\nF = q₀E = ${f(M.POINT.q0 * E * 1e9, 1)} × 10⁻⁹ Н`; }
+      case 'dipole': return `ось x = ${f(s.dipoleX * 100, 1)} см: E ${f(M.dipoleAxis(s.dipoleX), 0)} Н/Кл\nбиссектриса y = ${f(s.dipoleY * 100, 1)} см: E ${f(M.dipoleBisector(s.dipoleY), 0)} Н/Кл`;
+      case 'rod': return `ось a = ${f(s.rodA * 100, 1)} см: E ${f(M.rodAxis(s.rodA), 0)} Н/Кл\nбиссектриса a = ${f(s.rodB * 100, 1)} см: E ${f(M.rodBisector(s.rodB), 0)} Н/Кл`;
+      case 'ring': return `z ${f(s.ringZ * 100, 1)} см   E ${f(M.ringAxis(s.ringZ), 0)} Н/Кл\nмаксимум ${f(M.ringAxis(M.RING_ZMAX), 0)} Н/Кл при ${f(M.RING_ZMAX * 100, 1)} см`;
+      case 'plates': { const e = M.electron(s.plates.t); return `t ${f(s.plates.t * 1e9)} нс   x ${f(e.x * 100)} см   y ${f(e.y * 1000)} мм\n${e.inside ? `a ${(M.PLATES.a / 1e14).toFixed(2)} × 10¹⁴ м/с² вверх` : 'за пластинами: прямая линия'}`; }
     }
     return '';
   },
