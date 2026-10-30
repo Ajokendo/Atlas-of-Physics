@@ -18,16 +18,16 @@ startBook({
   readout(s, page) {
     const c = s.clock;
     switch (page.scene) {
-      case 'flux': { const d = M.fluxAngle(c); return `θ ${f(d, 1)}°   cos θ ${f(Math.cos(d * Math.PI / 180))}\nΦ = EA cos θ = ${f(M.flux(d), 1)} N·m²/C`; }
-      case 'gauss': { const r = rOf(c, M.POINT), E = M.pointE(r), A = 4 * Math.PI * r * r; return `r ${f(r * 100, 1)} cm   E ${f(E, 0)} N/C\nΦ = E · 4πr² = ${f(E * A, 1)} N·m²/C = q/ε₀`; }
-      case 'line': { const r = rOf(c, M.LINE), E = M.lineE(r); return `r ${f(r * 100, 1)} cm   E ${f(E, 0)} N/C\nside: Φ = E · 2πrL = ${f(E * 2 * Math.PI * r * M.LINE.L, 2)} N·m²/C   caps: 0`; }
-      case 'sheet': return `sheet: E = σ/2ε₀ = ${f(M.SHEET.E, 0)} N/C\nplate: E = σ/ε₀ = ${f(M.PLATE.E, 0)} N/C   in the metal 0`;
+      case 'flux': { const d = M.fluxAngle(c); return `θ ${f(d, 1)}°   cos θ ${f(Math.cos(d * Math.PI / 180))}\nΦ = EA cos θ = ${f(M.flux(d), 1)} Н·м²/Кл`; }
+      case 'gauss': { const r = rOf(c, M.POINT), E = M.pointE(r), A = 4 * Math.PI * r * r; return `r ${f(r * 100, 1)} см   E ${f(E, 0)} Н/Кл\nΦ = E · 4πr² = ${f(E * A, 1)} Н·м²/Кл = q/ε₀`; }
+      case 'line': { const r = rOf(c, M.LINE), E = M.lineE(r); return `r ${f(r * 100, 1)} см   E ${f(E, 0)} Н/Кл\nбоковая поверхность: Φ = E · 2πrL = ${f(E * 2 * Math.PI * r * M.LINE.L, 2)} Н·м²/Кл   крышки: 0`; }
+      case 'sheet': return `лист: E = σ/2ε₀ = ${f(M.SHEET.E, 0)} Н/Кл\nпластина: E = σ/ε₀ = ${f(M.PLATE.E, 0)} Н/Кл   внутри металла: 0`;
       case 'csphere': case 'isphere': case 'nsphere': {
         const m = { csphere: M.cSphere, isphere: M.iSphere, nsphere: M.nSphere }[page.scene], r = rOf(c, M.SPH);
-        return `r ${f(r * 100, 1)} cm   q_enc ${f(m.qenc(r) * 1e9)} nC\nE ${f(m.E(r), 0)} N/C`;
+        return `r ${f(r * 100, 1)} см   q_enc ${f(m.qenc(r) * 1e9)} нКл\nE ${f(m.E(r), 0)} Н/Кл`;
       }
-      case 'rods': { const r = rOf(c, M.ROD); return `r ${f(r * 100, 1)} cm\nmetal E ${f(M.cRod.E(r), 0)} N/C   insulator E ${f(M.iRod.E(r), 0)} N/C`; }
-      case 'cage': return `E₀ ${f(M.CAGE.E0, 0)} N/C   E in the hollow 0\nσ at the poles ±${f(M.cageSigma(1) * 1e9)} nC/m²`;
+      case 'rods': { const r = rOf(c, M.ROD); return `r ${f(r * 100, 1)} см\nпроводник E ${f(M.cRod.E(r), 0)} Н/Кл   диэлектрик E ${f(M.iRod.E(r), 0)} Н/Кл`; }
+      case 'cage': return `E₀ ${f(M.CAGE.E0, 0)} Н/Кл   E внутри полости: 0\nσ на полюсах ±${f(M.cageSigma(1) * 1e9)} нКл/м²`;
     }
     return '';
   },
