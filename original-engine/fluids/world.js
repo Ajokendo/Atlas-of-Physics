@@ -83,7 +83,7 @@ export function buildWorld(E) {
   // 0 · density: five 10 cm cubes
   const X0 = STATIONS.density, S = M.CUBE;
   part(root, box(1.3, 0.02, 0.42, 0.005), { tone: 'lo', pal: 'board', pos: [X0, 0.01, 0], name: 'Table' });
-  const g0 = asm('blocks', root, { title: 'Five cubes, one size', sub: 'same volume, different mass' });
+  const g0 = asm('blocks', root, { title: 'Пять одинаковых кубов', sub: 'одинаковый объём, разная масса' });
   g0.userData.focus = () => ({ target: [X0, 0.1, 0], radius: 0.55 }); g0.userData.minDist = 1;
   const cubeMat = { cork: shadeMat('base'), ice: shadeMat('paper', { opacity: 0.35 }), water: shadeMat('blue', { opacity: 0.45 }), al: shadeMat('paper'), iron: shadeMat('dark') };
   const wholes = [], pieces = [];
@@ -100,7 +100,7 @@ export function buildWorld(E) {
   // 1 · pressure: the same person in shoes and on snowshoes
   const X1 = STATIONS.pressure, TOP = 0.4;
   part(root, box(2.8, TOP, 1.5, 0.02), { tone: 'lo', pos: [X1, TOP / 2, 0.05], name: 'Snow', mat: shadeMat('paper', { opacity: 0.55 }) });
-  const g1 = asm('feet', root, { title: 'Shoes and snowshoes', sub: 'same weight, spread over more area' });
+  const g1 = asm('feet', root, { title: 'Обувь и снегоступы', sub: 'одинаковый вес распределён по разной площади' });
   g1.userData.focus = () => ({ target: [X1, 1.3, 0], radius: 1.75 });
   const pArrows = [];
   function person(xc, snowshoe) {
@@ -135,7 +135,7 @@ export function buildWorld(E) {
   water(root, 5, 0.02, 2.4, [X2, D, 0], 0.3);
   const ticks = []; for (let d = 0; d <= D; d += 2) { ticks.push(X2 - 2.5, D - d, 1.2, X2 - 2.75, D - d, 1.2); label('tick', `${d} m`, () => V(X2 - 2.82, D - d, 1.2)); }
   lines(root, ticks, '#6c6c72');
-  const g2 = asm('diver', root, { title: 'A diver going down', sub: 'the deeper, the more water above' });
+  const g2 = asm('diver', root, { title: 'Погружение водолаза', sub: 'чем глубже, тем больше столб воды над ним' });
   const diver = new THREE.Group(); g2.add(diver);
   const dv = (geo, pal, pos, name = 'Diver') => part(diver, geo, { tone: 'hi', pal, pos, name });
   dv(box(0.42, 0.7, 0.26, 0.08), 'paper', [0, 0, 0]);
@@ -161,7 +161,7 @@ export function buildWorld(E) {
   // =====================================================================================
   // 3 · Pascal: two pistons on one sealed column of water
   const X3 = STATIONS.pascal, PA = M.PASCAL, LX = X3 - 0.75, RX = X3 + 0.35, W0 = 0.9, YB = 0.05, TUBE = 0.06;
-  const g3 = asm('pascal', root, { title: 'Two pistons, one column of water', sub: 'the push spreads to every part' });
+  const g3 = asm('pascal', root, { title: 'Два поршня и столб воды', sub: 'давление передаётся во все стороны' });
   g3.userData.focus = () => ({ target: [X3 - 0.2, 1.05, 0], radius: 1.35 });
   const wallMat = shadeMat('paper', { opacity: 0.22 });
   for (const [x, r] of [[LX, PA.r1], [RX, PA.r2]]) {
@@ -195,7 +195,7 @@ export function buildWorld(E) {
   part(root, box(B.tankW + 0.04, 0.02, B.tankD + 0.04, 0.005), { tone: 'lo', pal: 'board', pos: [X4, 0.01, 0], name: 'Tank floor' });
   outline(root, new THREE.BoxGeometry(B.tankW, 1.4, B.tankD), [X4, 0.72, 0]);
   const tankWater = water(root, B.tankW, 1, B.tankD, [X4, 0.5, 0], 0.2);
-  const g4 = asm('cube', root, { title: 'A cube under water', sub: 'pushed harder from below than above' });
+  const g4 = asm('cube', root, { title: 'Куб под водой', sub: 'снизу давление больше, чем сверху' });
   g4.userData.focus = () => ({ target: [X4, cube.position.y, 0], radius: 0.95 }); g4.userData.minDist = 2;
   const cube = part(g4, box(BS, BS, BS, 0.01), { tone: 'hi', name: 'Aluminium cube' });
   const str4 = thinRod(g4, 0.005);
@@ -223,7 +223,7 @@ export function buildWorld(E) {
   water(root, poolX1 - poolX0, PL, 1.6, [(poolX0 + poolX1) / 2, 0.02 + PL / 2, 0], 0.2);
   outline(root, new THREE.BoxGeometry(poolX1 - poolX0, 1.0, 1.6), [(poolX0 + poolX1) / 2, 0.52, 0]);
   const L5 = 0.02 + PL;
-  const g5 = asm('float', root, { title: 'Float or sink', sub: 'F_b = W, if it can' });
+  const g5 = asm('float', root, { title: 'Плавание и погружение', sub: 'F_b = W, если тело может плавать' });
   g5.userData.focus = () => ({ target: [X5 + 0.15, 0.9, 0], radius: 2.4 });
   const floaters = [];
   const fl = (x, c, mat, name) => {
@@ -262,7 +262,7 @@ export function buildWorld(E) {
   // =====================================================================================
   // 6 · continuity: a pipe that narrows
   const X6 = STATIONS.continuity, P1 = M.PIPE1, F = M.FLOW;
-  const g6 = asm('pipe', root, { title: 'A pipe that narrows', sub: 'what goes in must come out' });
+  const g6 = asm('pipe', root, { title: 'Сужающаяся труба', sub: 'входящий объём равен выходящему' });
   g6.userData.focus = () => ({ target: [X6, PY6 + 0.5, 0], radius: 2.8 });
   const pipe6 = new THREE.Group(); pipe6.position.set(X6, PY6, 0); g6.add(pipe6);
   part(pipe6, tubeGeo(P1), { tone: 'mid', name: 'Pipe', mat: shadeMat('paper', { opacity: 0.2 }) });
@@ -283,7 +283,7 @@ export function buildWorld(E) {
   // =====================================================================================
   // 7 · Bernoulli: narrow, then up
   const X7 = STATIONS.bernoulli, P2 = M.PIPE2, BE = M.BERN;
-  const g7 = asm('bernoulli', root, { title: 'Bernoulli’s pipe', sub: 'P + ½ρv² + ρgy, the same all along' });
+  const g7 = asm('bernoulli', root, { title: 'Труба Бернулли', sub: 'P + ½ρv² + ρgy постоянно вдоль потока' });
   g7.userData.focus = () => ({ target: [X7 + 0.8, PY7 + 0.9, -0.6], radius: 4.2 });
   const pipe7 = new THREE.Group(); pipe7.position.set(X7, PY7, 0); g7.add(pipe7);
   part(pipe7, tubeGeo(P2, 1, 320), { tone: 'mid', name: 'Pipe', mat: shadeMat('paper', { opacity: 0.2 }) });
@@ -313,7 +313,7 @@ export function buildWorld(E) {
   // 8 · Torricelli: a tank on a block, draining through a hole
   const X8 = STATIONS.torricelli, TK = M.TANK, TX = X8 - 0.9, HOLE_X = TX + TK.w / 2;
   part(root, box(1.2, TK.base, 0.8, 0.02), { tone: 'mid', pal: 'paper', pos: [TX, TK.base / 2, 0], name: 'Block' });
-  const g8 = asm('tank', root, { title: 'A draining tank', sub: 'v = √(2gh), then a projectile' });
+  const g8 = asm('tank', root, { title: 'Опустошающийся бак', sub: 'v = √(2gh), затем полёт струи' });
   g8.userData.focus = () => ({ target: [X8 + 0.1, 1.1, 0], radius: 1.9 });
   part(g8, box(TK.w + 0.03, 0.02, TK.d + 0.03, 0.005), { tone: 'hi', pal: 'paper', pos: [TX, TK.base + 0.01, 0], name: 'Tank' });
   for (const [w, d, x, z] of [[TK.w, 0.012, 0, TK.d / 2], [TK.w, 0.012, 0, -TK.d / 2], [0.012, TK.d, -TK.w / 2, 0], [0.012, TK.d, TK.w / 2, 0]]) {
