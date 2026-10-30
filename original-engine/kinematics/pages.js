@@ -42,7 +42,7 @@ export const PAGES = [
   {
     kicker: 'Глава 1', title: 'Кинематика', sub: 'описание движения',
     body: `
-      <p class="lede">Кинематика describes motion with three quantities: where something is, how fast it is moving, and how that is changing. It doesn’t ask why.</p>
+      <p class="lede">Кинематика описывает движение с помощью трёх величин: положения тела, его скорости и изменения скорости. Она не рассматривает причины движения.</p>
       <p>В этой главе мы рассмотрим мяч, брошенный вертикально вверх со скоростью ${f(M.VY0)} м/с. После того как мяч покидает руку, на него действует только сила тяжести — это <b>свободное падение</b>. Это верно и при подъёме, и при падении.</p>
       <p>Мяч поднимается в течение ${f(M.T / 2)} с, достигает высоты ${f(M.H)} м и приземляется через ${f(M.T)} с после броска. Анимация показана в половинном темпе.</p>`,
     cam: { target: [-1.0, 2.7, 0], az: 22, el: 7, dist: 21 }, lit: 'ball', look: { strobe: 1, level: 1 },
@@ -51,7 +51,7 @@ export const PAGES = [
   {
     kicker: '1.1', title: 'Положение', sub: 'перемещение и путь',
     body: `
-      <p class="lede"><b>Положение</b> <i>y</i> is where the ball is, measured from an origin. Here the origin is the launch point, and up is positive.</p>
+      <p class="lede"><b>Положение</b> <i>y</i> — координата мяча относительно начала отсчёта. Здесь начало отсчёта совпадает с точкой броска, а направление вверх считается положительным.</p>
       <p><b>Перемещение</b> Δ<i>y</i> = <i>y</i><sub>f</sub> − <i>y</i><sub>0</sub> — изменение координаты. Это векторная величина: у неё есть модуль и направление (чёрная стрелка рядом с осью).</p>
       <p><b>Путь</b> — полная длина траектории. Это скалярная величина, которая не бывает отрицательной.</p>
       <table class="data">
@@ -65,7 +65,7 @@ export const PAGES = [
   {
     kicker: '1.2', title: 'Скорость', sub: 'векторная скорость и модуль скорости',
     body: `
-      <p class="lede"><b>Скорость</b> <i>v</i> = Δ<i>y</i>/Δ<i>t</i> is how fast position changes, with a направление. <b>Speed</b> is its size, with no направление.</p>
+      <p class="lede"><b>Скорость</b> <i>v</i> = Δ<i>y</i>/Δ<i>t</i> показывает, как быстро изменяется координата, и имеет направление. <b>Модуль скорости</b> — величина скорости без указания направления.</p>
       <p>Стрелка показывает скорость. В начале она равна +${f(M.VY0)} м/с, в верхней точке уменьшается до нуля, а затем направлена вниз и возрастает по модулю до −${f(M.VY0)} м/с при приземлении. Модули скоростей в начале и конце одинаковы, но направления противоположны.</p>
       <p>То же различие сохраняется для средних значений за весь полёт:</p>
       <table class="data">
@@ -78,7 +78,7 @@ export const PAGES = [
   {
     kicker: '1.3', title: 'Ускорение', sub: 'скорость изменения скорости',
     body: `
-      <p class="lede"><b>Ускорение</b> <i>a</i> = Δ<i>v</i>/Δ<i>t</i>. For this ball it is −${f(M.G)} м/с² на всём протяжении движения: при подъёме, в верхней точке и при падении. Красная стрелка не меняется.</p>
+      <p class="lede"><b>Ускорение</b> <i>a</i> = Δ<i>v</i>/Δ<i>t</i>. Для этого мяча ускорение равно −${f(M.G)} м/с² на всём протяжении движения: при подъёме, в верхней точке и при падении. Красная стрелка не меняется.</p>
       <p>Полупрозрачные изображения мяча образуют стробоскопическую последовательность с интервалом ${f(tau, 1)} с. При подъёме расстояния между изображениями уменьшаются на <i>g</i>τ² = ${f(M.G * tau * tau)} м за каждый интервал. При падении мяч проходит те же высоты в обратном порядке.</p>
       <p><b>Ускоряется или замедляется?</b> Сравните знаки. Если <i>v</i> и <i>a</i> имеют разные знаки, мяч замедляется (при подъёме). Если знаки совпадают — ускоряется (при падении). В обоих случаях это ускоренное движение.</p>
       <p class="live" id="live-sign"></p>`,
@@ -90,10 +90,10 @@ export const PAGES = [
     body: `
       <p class="lede">Три графика описывают один и тот же полёт. График координаты построен в масштабе: высота на нём соответствует реальной высоте мяча.</p>
       <ul class="rules">
-        <li>slope of <i>x</i>–<i>t</i> = velocity</li>
-        <li>slope of <i>v</i>–<i>t</i> = acceleration</li>
-        <li>area under <i>v</i>–<i>t</i> = перемещение</li>
-        <li>area under <i>a</i>–<i>t</i> = change in velocity</li>
+        <li>наклон графика <i>x</i>–<i>t</i> = скорость</li>
+        <li>наклон графика <i>v</i>–<i>t</i> = ускорение</li>
+        <li>площадь под графиком <i>v</i>–<i>t</i> = перемещение</li>
+        <li>площадь под графиком <i>a</i>–<i>t</i> = изменение скорости</li>
       </ul>
       <p>Постоянное ускорение даёт горизонтальную линию на графике <i>a</i>–<i>t</i>, прямую на графике <i>v</i>–<i>t</i> и параболу на графике <i>x</i>–<i>t</i>.</p>
       <p class="hintline">Нажмите на график, чтобы увидеть его наклон и площадь.</p>`,
@@ -103,7 +103,7 @@ export const PAGES = [
   {
     kicker: '1.5', title: 'Кинематические уравнения', sub: 'только при постоянном ускорении',
     body: `
-      <p class="lede">Five quantities describe this motion: Δ<i>y</i>, <i>v</i><sub>0</sub>, <i>v</i>, <i>a</i>, <i>t</i>. Each уравнение leaves one out, so pick the one without the quantity you don’t know and don’t need.</p>
+      <p class="lede">Движение описывают пять величин: Δ<i>y</i>, <i>v</i><sub>0</sub>, <i>v</i>, <i>a</i>, <i>t</i>. В каждом уравнении отсутствует одна из них. Выберите уравнение без той величины, которую вы не знаете и которая вам не нужна.</p>
       <table class="data eqs">
         <tr><th>уравнение</th><th>не содержит</th></tr>
         <tr><td><i>v</i> = <i>v</i><sub>0</sub> + <i>at</i></td><td>Δ<i>y</i></td></tr>
@@ -112,14 +112,14 @@ export const PAGES = [
         <tr><td>Δ<i>y</i> = ½(<i>v</i><sub>0</sub> + <i>v</i>)<i>t</i></td><td><i>a</i></td></tr>
         <tr><td>Δ<i>y</i> = <i>vt</i> − ½<i>at</i>²</td><td><i>v</i><sub>0</sub></td></tr>
       </table>
-      <p>How high does it go? At the top <i>v</i> = 0, and <i>t</i> isn’t needed: 0 = ${f(M.VY0)}² + 2(−${f(M.G)})Δ<i>y</i>, so Δ<i>y</i> = ${f(M.H)} m.</p>`,
+      <p>Какую максимальную высоту достигнет мяч? В верхней точке <i>v</i> = 0, время <i>t</i> не требуется: 0 = ${f(M.VY0)}² + 2(−${f(M.G)})Δ<i>y</i>, откуда Δ<i>y</i> = ${f(M.H)} м.</p>`,
     cam: { target: [-3.2, 3.1, -0.4], az: 20, el: 15, dist: 34 }, lit: 'ball', look: { level: 1 },
     fig: 'Один полёт — пять величин',
   },
   {
     kicker: '1.6', title: 'Движение тела, брошенного под углом', sub: 'два движения одновременно',
     body: `
-      <p class="lede">A second ball is thrown at the same время with the same upward ${f(M.VY0)} m/s, plus ${f(M.VX)} m/s sideways.</p>
+      <p class="lede">Второй мяч бросают одновременно с первым: начальная вертикальная скорость равна ${f(M.VY0)} м/с, горизонтальная — ${f(M.VX)} м/с.</p>
       <p>It stays level with the first ball the whole way and lands at the same moment. The vertical motion is free fall, and the sideways скорость doesn’t change it. Its shadow on the floor moves in equal ${f(M.VX * tau)} m steps: the horizontal motion is uniform.</p>
       <table class="data cols">
         <tr><th>горизонтальное · равномерное</th><th>вертикальное · свободное падение</th></tr>
@@ -166,7 +166,7 @@ export const PAGES = [
   {
     kicker: '1.9 · AP Physics C', title: 'Кинематика с применением анализа', sub: 'переменное ускорение',
     body: `
-      <p class="lede">The уравнениеs of 1.5 need constant <i>a</i>. This car’s <i>a</i> = ${f(M.PULL.a0, 1)} − ${f(M.PULL.k, 1)}<i>t</i> m/s² fades to zero at <i>t</i><sub>1</sub> = ${f(M.T1)} s, so integrate instead. It starts from rest at the line: <i>v</i><sub>0</sub> = 0, <i>x</i><sub>0</sub> = 0.</p>
+      <p class="lede">Уравнения из раздела 1.5 применимы при постоянном <i>a</i>. Здесь ускорение автомобиля <i>a</i> = ${f(M.PULL.a0, 1)} − ${f(M.PULL.k, 1)}<i>t</i> м/с² уменьшается до нуля в момент <i>t</i><sub>1</sub> = ${f(M.T1)} с, поэтому используем интегрирование. Автомобиль начинает движение из состояния покоя в точке отсчёта: <i>v</i><sub>0</sub> = 0, <i>x</i><sub>0</sub> = 0.</p>
       <div class="eq"><i>v</i> = <i>v</i><sub>0</sub> + ∫<i>a</i> d<i>t</i> = ${f(M.PULL.a0, 1)}<i>t</i> − ${f(M.PULL.k / 2)}<i>t</i>² &nbsp;→ ${f(M.V1, 1)} m/s</div>
       <div class="eq"><i>x</i> = <i>x</i><sub>0</sub> + ∫<i>v</i> d<i>t</i> = ${f(M.PULL.a0 / 2, 1)}<i>t</i>² − ${f(M.PULL.k / 6)}<i>t</i>³ &nbsp;→ ${f(M.X1, 1)} m</div>
       <div class="charts">
@@ -181,10 +181,10 @@ export const PAGES = [
   {
     kicker: '1.10 · AP Physics C', title: 'Движение по закону x(t)', sub: 'дифференцирование и интегрирование',
     body: `
-      <p class="lede">Given <i>x</i>(<i>t</i>), differentiate. For <i>x</i> = <i>t</i>³ − 3<i>t</i>:</p>
+      <p class="lede">Если известна функция <i>x</i>(<i>t</i>), продифференцируйте её. Для <i>x</i> = <i>t</i>³ − 3<i>t</i>:</p>
       <div class="eq"><i>v</i> = 3<i>t</i>² − 3 &nbsp;&nbsp; <i>a</i> = 6<i>t</i></div>
       <p>It starts left at ${f(-M.cv(0))} m/s and turns at <i>t</i> = ${f(M.T_TURN)} s, <i>x</i> = ${f(M.cx(M.T_TURN))} m. Over 2 s: перемещение ${f(M.cx(2))} m, путь ${f(M.cdist(2))} m.</p>
-      <p><b>Going back up</b> needs initial conditions: from <i>a</i> = 6<i>t</i>, <i>v</i> = 3<i>t</i>² + <i>C</i><sub>1</sub> and <i>x</i> = <i>t</i>³ + <i>C</i><sub>1</sub><i>t</i> + <i>C</i><sub>2</sub>; <i>v</i>(0) = −3 and <i>x</i>(0) = 0 give <i>C</i><sub>1</sub> = −3, <i>C</i><sub>2</sub> = 0.</p>
+      <p><b>Восстановление исходной функции</b> требует начальных условий: from <i>a</i> = 6<i>t</i>, <i>v</i> = 3<i>t</i>² + <i>C</i><sub>1</sub> and <i>x</i> = <i>t</i>³ + <i>C</i><sub>1</sub><i>t</i> + <i>C</i><sub>2</sub>; <i>v</i>(0) = −3 and <i>x</i>(0) = 0 give <i>C</i><sub>1</sub> = −3, <i>C</i><sub>2</sub> = 0.</p>
       <div class="charts">
         ${kchart(KR.cx, { xlabel: 't (с)', ylabel: 'x (м) · наклон = v', label: 'Положение against время', live: TAN('cx') + CUR('cx'), series: [{ pts: samples(100, 0, 2, M.cx) }] })}
         ${kchart(KR.cv, { xlabel: 't (с)', ylabel: 'v (м/с) · площадь = Δx', label: 'Скорость against время, signed area shaded', live: AREA('cv') + CUR('cv'), series: [{ pts: samples(100, 0, 2, M.cv) }] })}
