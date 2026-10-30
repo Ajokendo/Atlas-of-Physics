@@ -120,46 +120,46 @@ export const PAGES = [
     kicker: '1.6', title: 'Движение тела, брошенного под углом', sub: 'два движения одновременно',
     body: `
       <p class="lede">Второй мяч бросают одновременно с первым: начальная вертикальная скорость равна ${f(M.VY0)} м/с, горизонтальная — ${f(M.VX)} м/с.</p>
-      <p>It stays level with the first ball the whole way and lands at the same moment. The vertical motion is free fall, and the sideways скорость doesn’t change it. Its shadow on the floor moves in equal ${f(M.VX * tau)} m steps: the horizontal motion is uniform.</p>
+      <p>Весь полёт второй мяч находится на одной высоте с первым и приземляется одновременно с ним. По вертикали он движется в режиме свободного падения, а горизонтальная скорость не влияет на это движение. Его тень на полу перемещается равными шагами по ${f(M.VX * tau)} м: движение по горизонтали равномерное.</p>
       <table class="data cols">
         <tr><th>горизонтальное · равномерное</th><th>вертикальное · свободное падение</th></tr>
         <tr><td><i>v</i><sub>x</sub> = ${f(M.VX)} m/s</td><td><i>v</i><sub>0</sub> = ${f(M.VY0)} m/s, <i>v</i> = −${f(M.VY0)} m/s</td></tr>
         <tr><td>Δ<i>x</i> = <i>v</i><sub>x</sub><i>t</i> = ${f(M.RANGE, 1)} m</td><td><i>a</i> = −${f(M.G)} m/s², Δ<i>y</i> = 0</td></tr>
         <tr><td><i>t</i> = ${f(M.T)} s</td><td><i>t</i> = ${f(M.T)} s</td></tr>
       </table>
-      <p>At the top only the vertical part <i>v</i><sub>y</sub> is zero. The ball still moves sideways at ${f(M.VX)} m/s.</p>`,
+      <p>В верхней точке равна нулю только вертикальная составляющая скорости <i>v</i><sub>y</sub>. Мяч продолжает двигаться по горизонтали со скоростью ${f(M.VX)} м/с.</p>`,
     cam: { target: [4.6, 2.7, 0.6], az: -16, el: 13, dist: 33 }, lit: 'projV', look: { proj: 1, comp: 1 },
     fig: 'Одинаковая высота в каждый момент',
   },
   {
     kicker: '1.7', title: 'Системы отсчёта', sub: 'скорость зависит от наблюдателя',
     body: `
-      <p class="lede">Every velocity is measured relative to something. Rain falls ${f(M.RAIN.vr, 1)} m/s straight down relative to the road; from a car doing ${f(M.RAIN.vc, 1)} m/s it slants at ${f(M.vlen(M.V_RC))} m/s.</p>
-      <p>Write <i>v</i><sub>AB</sub> for “A relative to B” (R rain, C car, G ground). Velocities chain, inner letters matching:</p>
+      <p class="lede">Любая скорость измеряется относительно выбранной системы отсчёта. Относительно дороги дождь падает вертикально со скоростью ${f(M.RAIN.vr, 1)} м/с; для автомобиля, движущегося со скоростью ${f(M.RAIN.vc, 1)} м/с, капли движутся по наклонной траектории со скоростью ${f(M.vlen(M.V_RC))} м/с.</p>
+      <p>Обозначим <i>v</i><sub>AB</sub> скорость тела A относительно тела B (R — дождь, C — автомобиль, G — земля). Скорости складываются по цепочке, если совпадают соседние индексы:</p>
       <div class="eq"><i>v</i><sub>AC</sub> = <i>v</i><sub>AB</sub> + <i>v</i><sub>BC</sub></div>
-      <p>So <i>v</i><sub>RC</sub> = <i>v</i><sub>RG</sub> + <i>v</i><sub>GC</sub>, added tip to tail. Swapping letters flips the arrow: from the car the road moves backward, <i>v</i><sub>GC</sub> = −<i>v</i><sub>CG</sub>. The two parts are at right angles, so |<i>v</i><sub>RC</sub>| = √(${f(M.RAIN.vc, 1)}² + ${f(M.RAIN.vr, 1)}²) = ${f(M.vlen(M.V_RC))} m/s, at tan θ = ${f(M.RAIN.vc, 1)}/${f(M.RAIN.vr, 1)}, θ = ${f(M.RAIN_ANGLE, 1)}° from vertical. Faster car, more slant:</p>
-      <div class="charts">${kchart(KR.rain, { xlabel: 'скорость автомобиля (м/с)', ylabel: 'угол θ от вертикали (°)', label: 'The rain’s slant, seen from the car, against the car’s скорость',
+      <p>Следовательно, <i>v</i><sub>RC</sub> = <i>v</i><sub>RG</sub> + <i>v</i><sub>GC</sub>: складываем векторы, приставляя начало второго к концу первого. При перестановке индексов направление меняется на противоположное: с точки зрения пассажира дорога движется назад, <i>v</i><sub>GC</sub> = −<i>v</i><sub>CG</sub>. Составляющие перпендикулярны, поэтому |<i>v</i><sub>RC</sub>| = √(${f(M.RAIN.vc, 1)}² + ${f(M.RAIN.vr, 1)}²) = ${f(M.vlen(M.V_RC))} м/с; tan θ = ${f(M.RAIN.vc, 1)}/${f(M.RAIN.vr, 1)}, θ = ${f(M.RAIN_ANGLE, 1)}° от вертикали. Чем быстрее автомобиль, тем сильнее наклон дождя:</p>
+      <div class="charts">${kchart(KR.rain, { xlabel: 'скорость автомобиля (м/с)', ylabel: 'угол θ от вертикали (°)', label: 'Зависимость угла наклона дождя от скорости автомобиля',
         series: [{ pts: samples(60, 0, 30, M.rainAngleAt) }], marks: [[M.RAIN.vc, M.RAIN_ANGLE, `${f(M.RAIN_ANGLE, 1)}°`, 8, 16]] })}</div>
-      <p class="hintline">Масштаб 1:1. Длина стрелок ${(RAIN_V * 100).toFixed(0)} cm per m/s. ¼ скорость. Click the triangle for the angle.</p>`,
+      <p class="hintline">Масштаб 1:1. Длина стрелок — ${(RAIN_V * 100).toFixed(0)} см на каждый м/с. Скорость показана в масштабе ¼. Нажмите на треугольник, чтобы увидеть угол.</p>`,
     cam: { target: [ST.rain + 11, 2.3, 0], az: -8, el: 10, dist: 60 }, lit: 'rainSum', look: {}, scene: 'rain',
     fig: 'Один дождь — две системы отсчёта',
   },
   {
     kicker: '1.8', title: 'Переправа через реку', sub: 'сложение векторов скоростей',
     body: `
-      <p class="lede">A boat’s velocity relative to the shore is its velocity through the water plus the water’s velocity relative to the shore:</p>
+      <p class="lede">Скорость лодки относительно берега равна сумме скорости лодки относительно воды и скорости течения относительно берега:</p>
       <div class="eq"><i>v</i><sub>BS</sub> = <i>v</i><sub>BW</sub> + <i>v</i><sub>WS</sub></div>
-      <p>Both boats do ${f(M.RIVER.vb, 1)} m/s through water flowing at ${f(M.RIVER.vw, 1)} m/s, поперёк ${M.RIVER.w} m.</p>
+      <p>Обе лодки движутся относительно воды со скоростью ${f(M.RIVER.vb, 1)} м/с. Скорость течения равна ${f(M.RIVER.vw, 1)} м/с, ширина реки — ${M.RIVER.w} м.</p>
       <table class="data">
-        <tr><th>m/s, s, m</th><th>направлена прямо поперёк</th><th>aimed ${deg(M.AIM_UP)}° против течения</th></tr>
+        <tr><th>единицы</th><th>направлена прямо поперёк</th><th>направлена на ${deg(M.AIM_UP)}° против течения</th></tr>
         <tr><td>скорость</td><td>√(${f(M.RIVER.vb, 1)}² + ${f(M.RIVER.vw, 1)}²) = ${f(M.vlen(M.vBS(0)))}</td><td>√(${f(M.RIVER.vb, 1)}² − ${f(M.RIVER.vw, 1)}²) = ${f(M.vlen(M.vBS(M.AIM_UP)))}</td></tr>
         <tr><td>время</td><td>${M.RIVER.w}/${f(M.RIVER.vb, 1)} = ${f(M.crossTime(0), 1)} s</td><td>${M.RIVER.w}/${f(M.vBS(M.AIM_UP)[1], 1)} = ${f(M.crossTime(M.AIM_UP), 1)} s</td></tr>
         <tr><td>снос течением</td><td>${f(M.RIVER.vw, 1)} × ${f(M.crossTime(0), 1)} = ${f(M.снос течением(0), 1)} m</td><td>0 m</td></tr>
       </table>
-      <p>Only the поперёк part gets a boat over, so прямо поперёк is fastest; the current just carries it по течению. To land opposite, turn против течения until sin θ = ${f(M.RIVER.vw, 1)}/${f(M.RIVER.vb, 1)}.</p>
+      <p>Только поперечная составляющая скорости перемещает лодку к противоположному берегу, поэтому направление прямо поперёк обеспечивает самое быстрое пересечение реки; течение лишь сносит лодку вниз. Чтобы причалить напротив точки старта, направьте лодку против течения так, чтобы sin θ = ${f(M.RIVER.vw, 1)}/${f(M.RIVER.vb, 1)}.</p>
       <div class="charts">${kchart(KR.map, { xlabel: 'по течению (m)', ylabel: 'поперёк (m)', label: 'Траектории обеих лодок, вид сверху',
         live: CUR('boatA') + CUR('boatB'), series: [{ pts: [[0, 0], [M.снос течением(0), M.RIVER.w]], tag: [8.6, 12.5, 'прямо поперёк'] }, { pts: [[0, 0], [0, M.RIVER.w]], tag: [0.3, 3, 'против течения'] }] })}</div>
-      <p class="hintline">Drawn 1 m = ${(RIV.s * 100).toFixed(0)} cm. Arrows ${(RIV.v * 100).toFixed(0)} cm per m/s. Shown at ${M.RIVER.rate}× скорость.</p>`,
+      <p class="hintline">Масштаб изображения: 1 м = ${(RIV.s * 100).toFixed(0)} см. Длина стрелок — ${(RIV.v * 100).toFixed(0)} см на каждый м/с. Скорость анимации увеличена в ${M.RIVER.rate} раза.</p>`,
     cam: { target: [ST.river - 1.7, 0, 0.3], az: -4, el: 44, dist: 40 }, lit: 'boatA', look: {}, scene: 'river',
     fig: 'Направление лодки и снос течением',
   },
@@ -171,10 +171,10 @@ export const PAGES = [
       <div class="eq"><i>x</i> = <i>x</i><sub>0</sub> + ∫<i>v</i> d<i>t</i> = ${f(M.PULL.a0 / 2, 1)}<i>t</i>² − ${f(M.PULL.k / 6)}<i>t</i>³ &nbsp;→ ${f(M.X1, 1)} m</div>
       <div class="charts">
         ${kchart(KR.pa, { xlabel: 't (с)', ylabel: 'a (м/с²) · площадь = Δv', label: 'Ускорение во времени; заштрихована площадь', live: AREA('pa') + CUR('pa'), series: [{ pts: samples(100, 0, 5, M.pa) }] })}
-        ${kchart(KR.pv, { xlabel: 't (с)', ylabel: 'v (м/с) · площадь = Δx, наклон = a', label: 'Скорость against время, area shaded', live: AREA('pv') + TAN('pv') + CUR('pv'), series: [{ pts: samples(100, 0, 5, M.pv) }] })}
-        ${kchart(KR.px, { xlabel: 't (с)', ylabel: 'x (м) · наклон = v', label: 'Положение against время with its tangent', live: TAN('px') + CUR('px'), series: [{ pts: samples(100, 0, 5, M.px) }] })}
+        ${kchart(KR.pv, { xlabel: 't (с)', ylabel: 'v (м/с) · площадь = Δx, наклон = a', label: 'Скорость во времени; заштрихована площадь под графиком', live: AREA('pv') + TAN('pv') + CUR('pv'), series: [{ pts: samples(100, 0, 5, M.pv) }] })}
+        ${kchart(KR.px, { xlabel: 't (с)', ylabel: 'x (м) · наклон = v', label: 'Координата во времени с касательной', live: TAN('px') + CUR('px'), series: [{ pts: samples(100, 0, 5, M.px) }] })}
       </div>
-      <p class="hintline">Shaded = integrals, red = derivatives. 1 m drawn as ${(PULLS.s * 100).toFixed(0)} cm.</p>`,
+      <p class="hintline">Заштрихованные области соответствуют интегралам, красные линии — производным. 1 м изображён отрезком ${(PULLS.s * 100).toFixed(0)} см.</p>`,
     cam: { target: [ST.pull + 4.4, 0.3, 0], az: -8, el: 24, dist: 22 }, lit: 'pull', look: {}, scene: 'pull',
     fig: 'a = ' + M.PULL.a0.toFixed(1) + ' − ' + M.PULL.k.toFixed(1) + 't',
   },
@@ -183,12 +183,12 @@ export const PAGES = [
     body: `
       <p class="lede">Если известна функция <i>x</i>(<i>t</i>), продифференцируйте её. Для <i>x</i> = <i>t</i>³ − 3<i>t</i>:</p>
       <div class="eq"><i>v</i> = 3<i>t</i>² − 3 &nbsp;&nbsp; <i>a</i> = 6<i>t</i></div>
-      <p>It starts left at ${f(-M.cv(0))} m/s and turns at <i>t</i> = ${f(M.T_TURN)} s, <i>x</i> = ${f(M.cx(M.T_TURN))} m. Over 2 s: перемещение ${f(M.cx(2))} m, путь ${f(M.cdist(2))} m.</p>
-      <p><b>Восстановление исходной функции</b> требует начальных условий: from <i>a</i> = 6<i>t</i>, <i>v</i> = 3<i>t</i>² + <i>C</i><sub>1</sub> and <i>x</i> = <i>t</i>³ + <i>C</i><sub>1</sub><i>t</i> + <i>C</i><sub>2</sub>; <i>v</i>(0) = −3 and <i>x</i>(0) = 0 give <i>C</i><sub>1</sub> = −3, <i>C</i><sub>2</sub> = 0.</p>
+      <p>В начальный момент частица движется влево со скоростью ${f(-M.cv(0))} м/с и меняет направление при <i>t</i> = ${f(M.T_TURN)} с, когда <i>x</i> = ${f(M.cx(M.T_TURN))} м. За 2 с перемещение составляет ${f(M.cx(2))} м, а путь — ${f(M.cdist(2))} м.</p>
+      <p><b>Восстановление исходной функции</b> требует начальных условий: из <i>a</i> = 6<i>t</i> получаем <i>v</i> = 3<i>t</i>² + <i>C</i><sub>1</sub> и <i>x</i> = <i>t</i>³ + <i>C</i><sub>1</sub><i>t</i> + <i>C</i><sub>2</sub>. Условия <i>v</i>(0) = −3 и <i>x</i>(0) = 0 дают <i>C</i><sub>1</sub> = −3, <i>C</i><sub>2</sub> = 0.</p>
       <div class="charts">
         ${kchart(KR.cx, { xlabel: 't (с)', ylabel: 'x (м) · наклон = v', label: 'Координата во времени', live: TAN('cx') + CUR('cx'), series: [{ pts: samples(100, 0, 2, M.cx) }] })}
         ${kchart(KR.cv, { xlabel: 't (с)', ylabel: 'v (м/с) · площадь = Δx', label: 'Скорость во времени; заштрихована знаковая площадь', live: AREA('cv') + CUR('cv'), series: [{ pts: samples(100, 0, 2, M.cv) }] })}
-        ${kchart(KR.ca, { xlabel: 't (с)', ylabel: 'a (м/с²) · площадь = Δv', label: 'Ускорение against время, area shaded', live: AREA('ca') + CUR('ca'), series: [{ pts: samples(100, 0, 2, M.ca) }] })}
+        ${kchart(KR.ca, { xlabel: 't (с)', ylabel: 'a (м/с²) · площадь = Δv', label: 'Ускорение во времени; заштрихована площадь', live: AREA('ca') + CUR('ca'), series: [{ pts: samples(100, 0, 2, M.ca) }] })}
       </div>
       <p class="hintline">Каждые 0,2 с; обратный путь показан впереди.</p>`,
     cam: { target: [ST.cube + 0.25, 0.25, 0], az: -6, el: 28, dist: 19.5 }, lit: 'bead', look: {}, scene: 'cube',
