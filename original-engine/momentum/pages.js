@@ -204,7 +204,7 @@ export const PAGES = [
       <p>При самом ударе механическая энергия не сохраняется (${f(M.ke(Pd.m, Pd.u), 1)} Дж → ${f(M.ke(Pd.m + Pd.M, Pd.v))} Дж), а при последующем подъёме не сохраняется импульс (натяжение нити и сила тяжести являются внешними силами). Поскольку Δ<i>y</i> = <i>L</i>(1 − cos θ), получаем θ = ${deg(Pd.theta)}°:</p>
       <div class="eq"><i>v</i> = ((<i>m</i> + <i>M</i>)/<i>m</i>) √(2<i>gL</i>(1 − cos θ))</div>
       <div class="charts">${chart({ x0: 0, x1: 2.4, y0: 0, y1: 2, xlabel: 'время после удара (с)', ylabel: 'энергия (Дж)', cursors: ['pendK', 'pendU'], label: 'Кинетическая и потенциальная энергия при подъёме',
-        series: [{ pts: samples(0, Pd.T, 60, t => M.pend(Pd.lead + t).K), tag: [0.1, 1.15, 'KE'] }, { pts: samples(0, Pd.T, 60, t => M.pend(Pd.lead + t).U), tag: [Pd.T / 4 - 0.12, 1.15, 'Ug'] }, { cls: 'trend', pts: [[0, M.ke(Pd.m + Pd.M, Pd.v)], [2.4, M.ke(Pd.m + Pd.M, Pd.v)]], tag: [2.36, 1.72, 'total', 1] }] })}</div>
+        series: [{ pts: samples(0, Pd.T, 60, t => M.pend(Pd.lead + t).K), tag: [0.1, 1.15, 'КЭ'] }, { pts: samples(0, Pd.T, 60, t => M.pend(Pd.lead + t).U), tag: [Pd.T / 4 - 0.12, 1.15, 'U_g'] }, { cls: 'trend', pts: [[0, M.ke(Pd.m + Pd.M, Pd.v)], [2.4, M.ke(Pd.m + Pd.M, Pd.v)]], tag: [2.36, 1.72, 'полная энергия', 1] }] })}</div>
       <p class="hintline">Нажмите, чтобы отметить Δy, L и θ, а также увидеть другие способы найти v′.</p>`,
     cam: { target: [STATIONS.pend + 0.2, 1.25, 0], az: -10, el: 8, dist: 7.4 }, lit: 'pend', scene: 'pend', look: {},
     fig: 'При ударе Δp = 0, при подъёме ΔE = 0',
