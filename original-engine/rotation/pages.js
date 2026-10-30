@@ -48,46 +48,46 @@ const D = M.DOOR.cases, [ring, discS, sphere] = M.SHAPES.list, sk0 = M.skater(0.
 
 export const PAGES = [
   {
-    kicker: 'Chapter 7', title: 'Rotation', sub: 'turning, in the language of motion',
+    kicker: 'Глава 7', title: 'Вращение', sub: 'вращательное движение',
     body: `
       <p class="lede">Every point on a turning wheel turns through the same <b>angle</b> θ (in radians) in the same time. So we describe the whole wheel with angles: ω = Δθ/Δt in rad/s, α = Δω/Δt in rad/s².</p>
-      <p>Counter-clockwise is positive. This wheel speeds up at ${f(M.WHEEL.alpha, 1)} rad/s², then brakes at the same rate. Speeding up, ω and α have the <b>same sign</b>; slowing down, <b>opposite</b> signs. The kinematics equations carry over with x → θ, v → ω, a → α:</p>
+      <p>Положительным считается вращение против часовой стрелки. Это колесо разгоняется с угловым ускорением ${f(M.WHEEL.alpha, 1)} рад/с², а затем тормозит с таким же по модулю ускорением. При разгоне ω и α имеют <b>одинаковые знаки</b>, при торможении — <b>противоположные</b>. Уравнения кинематики применимы и здесь, если заменить x → θ, v → ω, a → α:</p>
       <table class="data eqs">
-        <tr><td>ω = ω<sub>0</sub> + αt</td><td>no Δθ</td></tr>
-        <tr><td>Δθ = ω<sub>0</sub>t + ½αt²</td><td>no ω</td></tr>
-        <tr><td>ω² = ω<sub>0</sub>² + 2αΔθ</td><td>no t</td></tr>
+        <tr><td>ω = ω<sub>0</sub> + αt</td><td>без Δθ</td></tr>
+        <tr><td>Δθ = ω<sub>0</sub>t + ½αt²</td><td>без ω</td></tr>
+        <tr><td>ω² = ω<sub>0</sub>² + 2αΔθ</td><td>без t</td></tr>
       </table>
       <div class="charts">${chart({ x0: 0, x1: 4.8, y0: 0, y1: 4, xlabel: 'time (s)', ylabel: 'ω (rad/s)', cursors: ['wheelW'], label: 'Angular velocity against time: up, then down',
         series: [{ pts: curvePts(t => M.wheel(t).w, 0, M.WHEEL.run, 48), tag: [0.5, 1.6, 'α > 0'] }, { cls: 'trend', pts: [], tag: [3.5, 2.4, 'α < 0'] }] })}</div>
       <p class="hintline">Click the wheel to see the angle it has turned through.</p>`,
     cam: { target: [STATIONS.wheel, 1.15, 0], az: -14, el: 6, dist: 7.2 }, lit: 'wheel', scene: 'wheel', look: {},
-    fig: 'A wheel spinning up, then braking',
+    fig: 'Колесо разгоняется, затем тормозит',
   },
   {
-    kicker: '7.1', title: 'Two riders', sub: 'v = rω',
+    kicker: '7.1', title: 'Два пассажира', sub: 'v = rω',
     body: `
       <p class="lede">On a merry-go-round both riders share one ω. The one at the edge goes round a bigger circle in the same time, so she moves faster: twice the radius, twice the speed.</p>
       <table class="data">
-        <tr><th></th><th>linear</th><th>angular</th><th>link</th></tr>
-        <tr><td>displacement</td><td>Δx</td><td>Δθ</td><td>s = rΔθ</td></tr>
-        <tr><td>velocity</td><td>v</td><td>ω</td><td>v = rω</td></tr>
-        <tr><td>acceleration</td><td>a<sub>t</sub></td><td>α</td><td>a<sub>t</sub> = rα</td></tr>
+        <tr><th></th><th>линейное</th><th>угловое</th><th>связь</th></tr>
+        <tr><td>перемещение</td><td>Δx</td><td>Δθ</td><td>s = rΔθ</td></tr>
+        <tr><td>скорость</td><td>v</td><td>ω</td><td>v = rω</td></tr>
+        <tr><td>ускорение</td><td>a<sub>t</sub></td><td>α</td><td>a<sub>t</sub> = rα</td></tr>
       </table>
       <p>Each rider also has a centripetal acceleration a<sub>c</sub> = rω² toward the middle, from the change in direction.</p>
       <div class="charts">${chart({ x0: 0, x1: 5, y0: 0, y1: 2.5, xlabel: 'time (s)', ylabel: 'speed v (m/s)', cursors: ['disc1', 'disc2'], label: 'Speed of the two riders against time',
         series: [{ pts: curvePts(t => M.DISC.r2 * M.disc(t).w, 0, M.DISC.run, 50), tag: [3.3, 1.75, `r = ${M.DISC.r2} m`] }, { pts: curvePts(t => M.DISC.r1 * M.disc(t).w, 0, M.DISC.run, 50), tag: [3.75, 0.12, `r = ${M.DISC.r1} m`] }] })}</div>
       <p class="hintline">Click to split each rider’s acceleration. v: ${cm(V_SCALE)} per m/s; a: ${cm(A_SCALE)} per m/s².</p>`,
     cam: { target: [STATIONS.disc, 0.7, 0], az: -10, el: 42, dist: 10.5 }, lit: 'disc', scene: 'disc', look: {},
-    fig: 'Two riders, one ω',
+    fig: 'Два пассажира, одна угловая скорость ω',
   },
   {
-    kicker: '7.2', title: 'Torque', sub: 'what makes things turn',
+    kicker: '7.2', title: 'Момент силы', sub: 'что заставляет тело вращаться',
     body: `
       <p class="lede">A push swings a door only if it acts away from the hinge and not straight at it. Its turning effect is the <b>torque</b>, in N·m:</p>
       <div class="eq">τ = rF sin φ = F × lever arm</div>
       <p>r runs from the hinge to the push, φ is the angle between r and F. Only F sin φ, the part square to the door, turns it.</p>
       <table class="data">
-        <tr><th>the same ${f(M.DOOR.F, 0)} N push</th><th>τ (N·m)</th></tr>
+        <tr><th>одинаковая сила ${f(M.DOOR.F, 0)} Н</th><th>τ (Н·м)</th></tr>
         ${D.map(c => `<tr><td>${c.name}</td><td>${f(c.tau)}</td></tr>`).join('')}
       </table>
       <div class="charts">${chart({ x0: 0, x1: 180, y0: 0, y1: 10, xlabel: 'angle φ between r and F (°)', ylabel: 'τ (N·m)', label: 'Torque against push angle at two distances',
@@ -95,26 +95,26 @@ export const PAGES = [
         marks: [[90, D[0].tau, '', 0, 0], [90, D[1].tau, '', 0, 0], [30, D[2].tau, '30°', -26, -6]] })}</div>
       <p class="hintline">Click the doors to draw each lever arm. Arrows ${cm(F_LIGHT)} per newton.</p>`,
     cam: { target: [STATIONS.doors + 0.05, 0.6, -0.4], az: -14, el: 48, dist: 14.5 }, lit: 'doors', scene: 'doors', look: {},
-    fig: 'Same push, three torques',
+    fig: 'Одинаковая сила, три момента',
   },
   {
-    kicker: '7.3', title: 'Equilibrium', sub: 'no push, no turn',
+    kicker: '7.3', title: 'Равновесие', sub: 'нет поступательного и вращательного ускорения',
     body: `
       <p class="lede">A plank bridge, and a ${M.PLANK.m} kg crate slid slowly across it. To stay put, Σ<i>F</i> = 0 <i>and</i> Στ = 0.</p>
-      <p>Take torques about the point with the most unknowns: support A, where <i>F</i><sub>A</sub> has no lever arm. Counter-clockwise +, clockwise −:</p>
+      <p>Рассчитайте моменты относительно точки, в которой исчезает неизвестная сила: опоры A, где у <i>F</i><sub>A</sub> нулевое плечо. Против часовой стрелки — плюс, по часовой — минус:</p>
       <div class="eq">L·F<sub>B</sub> − (L/2)·Mg − x·mg = 0</div>
-      <p>Then Σ<i>F</i> = 0 gives <i>F</i><sub>A</sub> = (M + m)g − <i>F</i><sub>B</sub>. The nearer the crate is to a support, the more that support holds.</p>
+      <p>Затем из Σ<i>F</i> = 0 получаем <i>F</i><sub>A</sub> = (M + m)g − <i>F</i><sub>B</sub>. Чем ближе ящик к опоре, тем большую нагрузку она принимает.</p>
       <div class="charts">${chart({ x0: 0, x1: 4, y0: 0, y1: 400, xlabel: 'crate position x from A (m)', ylabel: 'support force (N)', cursors: ['plankA', 'plankB'], label: 'Support forces against crate position',
         series: [{ pts: curvePts(x => M.plank(x).FA, 0, 4, 4), tag: [3.55, M.plank(3.55).FA + 4, 'F<tspan baseline-shift="sub" font-size="8">A</tspan>'] }, { pts: curvePts(x => M.plank(x).FB, 0, 4, 4), tag: [3.55, M.plank(3.55).FB - 60, 'F<tspan baseline-shift="sub" font-size="8">B</tspan>'] }] })}</div>
       <p class="hintline">Click the plank for the torques about A. Arrows ${cm(F_HEAVY)} per newton.</p>`,
     cam: { target: [STATIONS.plank, 1.3, 0], az: -14, el: 10, dist: 13 }, lit: 'plank', scene: 'plank', look: {},
-    fig: `A ${M.PLANK.M} kg plank, a ${M.PLANK.m} kg crate`,
+    fig: `Доска массой ${M.PLANK.M} кг и ящик массой ${M.PLANK.m} кг`,
   },
   {
-    kicker: '7.4', title: 'The ladder', sub: 'how low can it lean?',
+    kicker: '7.4', title: 'Лестница', sub: 'насколько низко она может наклониться?',
     body: `
       <p class="lede">A ${M.LADDER.m} kg ladder on a rough floor against a smooth wall, which can only push straight out.</p>
-      <p>Forces: <i>F</i><sub>N</sub> = mg and <i>f</i><sub>s</sub> = <i>F</i><sub>w</sub>. Torques about the foot O, where two forces drop out:</p>
+      <p>Условия сил: <i>F</i><sub>N</sub> = mg и <i>f</i><sub>s</sub> = <i>F</i><sub>w</sub>. Запишем моменты относительно нижнего конца O: две силы приложены в этой точке и не создают момента.</p>
       <div class="eq">(L sin θ)·F<sub>w</sub> = (½L cos θ)·mg</div>
       <p>The lower the ladder, the more friction the foot needs. Friction gives at most μ<sub>s</sub>mg, so it slips below tan θ<sub>min</sub> = 1/(2μ<sub>s</sub>): ${dg(M.LADDER.thMin)}° for μ<sub>s</sub> = ${f(M.LADDER.muS)}, whatever its mass or length.</p>
       <div class="charts">${chart({ x0: 40, x1: 85, y0: 0, y1: 120, xlabel: 'ladder angle θ (°)', ylabel: 'friction needed (N)', cursors: ['ladder'], label: 'Friction needed against ladder angle',
@@ -122,13 +122,13 @@ export const PAGES = [
         marks: [[dg(M.LADDER.thMin), M.LADDER.muS * M.LADDER.W, `θ<tspan baseline-shift="sub" font-size="8">min</tspan> = ${dg(M.LADDER.thMin)}°`, -62, 22]] })}</div>
       <p class="hintline">Click the ladder for the lever arms about O. Arrows ${cm(F_HEAVY)} per newton.</p>`,
     cam: { target: [STATIONS.ladder + 0.15, 1.45, 0], az: -18, el: 8, dist: 11.5 }, lit: 'ladder', scene: 'ladder', look: {},
-    fig: 'A ladder on a rough floor',
+    fig: 'Лестница на шероховатом полу',
   },
   {
-    kicker: '7.5', title: 'Moment of inertia', sub: 'Στ = Iα',
+    kicker: '7.5', title: 'Момент инерции', sub: 'Στ = Iα',
     body: `
       <p class="lede">Newton’s second law for turning is Στ = Iα. The <b>moment of inertia</b> I = Σmr² plays the part of mass, and mass far from the axis counts most.</p>
-      <p>Each shape has ${f(M.SHAPES.M, 1)} kg, radius ${f(M.SHAPES.R, 1)} m and the same ${f(M.SHAPES.F, 1)} N pull on a string round its edge: τ = ${f(M.SHAPES.tau)} N·m.</p>
+      <p>Каждое тело имеет массу ${f(M.SHAPES.M, 1)} кг и радиус ${f(M.SHAPES.R, 1)} м. На нить, намотанную по краю, действует одинаковая сила ${f(M.SHAPES.F, 1)} Н, создающая момент τ = ${f(M.SHAPES.tau)} Н·м.</p>
       <table class="data">
         <tr><th></th><th>I = fMR²</th><th>α = τ/I</th></tr>
         ${M.SHAPES.list.map(s => `<tr><td>${s.key}</td><td>${s.frac === '1' ? '' : s.frac}MR²</td><td>${f(s.alpha)} rad/s²</td></tr>`).join('')}
@@ -137,143 +137,143 @@ export const PAGES = [
         series: M.SHAPES.list.map(s => ({ pts: [[0, 0], [2.4, s.alpha * 2.4]], tag: [1.75, s.alpha * 1.75 + (s.key === 'sphere' ? 0.5 : s.key === 'disc' ? -0.3 : 0), s.key] })) })}</div>
       <p class="hintline">Click the shapes to cut the disc into rings. Arrows ${cm(F_SHAPES)} per newton.</p>`,
     cam: { target: [STATIONS.inertia, 1.15, 0], az: -10, el: 22, dist: 10.2 }, lit: 'inertia', scene: 'inertia', look: {},
-    fig: 'Same torque, three shapes',
+    fig: 'Одинаковый момент силы, три тела',
   },
   {
-    kicker: '7.6 · AP Physics C', title: 'Adding up I', sub: 'I = ∫ r² dm',
+    kicker: '7.6 · AP Physics C', title: 'Суммирование момента инерции', sub: 'I = ∫ r² dm',
     body: `
       <p class="lede">Cut a body into small pieces dm and add r² dm for every one: I = ∫ r² dm. The answer depends on where the axis is.</p>
-      <p>A uniform rod (${f(R0.M, 1)} kg, ${f(R0.L, 1)} m) has λ = M/L, so a slice dx has dm = λ dx. A disc is thin rings, each with dm = σ·2πr dr (σ = M/πR²):</p>
+      <p>Однородный стержень (${f(R0.M, 1)} кг, ${f(R0.L, 1)} м) имеет линейную плотность λ = M/L, поэтому элемент длиной dx имеет массу dm = λ dx. Диск можно разбить на тонкие кольца с массой dm = σ·2πr dr, где σ = M/πR²:</p>
       <table class="data">
-        <tr><td>rod, axis at the centre</td><td>∫<sub>−L/2</sub><sup>L/2</sup> λx² dx</td><td><sup>1</sup>⁄<sub>12</sub>ML²</td></tr>
-        <tr><td>rod, axis at the end</td><td>∫<sub>0</sub><sup>L</sup> λx² dx</td><td>⅓ML²</td></tr>
-        <tr><td>disc, axis at the centre</td><td>∫<sub>0</sub><sup>R</sup> r²·σ2πr dr</td><td>½MR²</td></tr>
+        <tr><td>стержень, ось через центр</td><td>∫<sub>−L/2</sub><sup>L/2</sup> λx² dx</td><td><sup>1</sup>⁄<sub>12</sub>ML²</td></tr>
+        <tr><td>стержень, ось через конец</td><td>∫<sub>0</sub><sup>L</sup> λx² dx</td><td>⅓ML²</td></tr>
+        <tr><td>диск, ось через центр</td><td>∫<sub>0</sub><sup>R</sup> r²·σ2πr dr</td><td>½MR²</td></tr>
       </table>
       <div class="charts">${chart({ x0: 0, x1: 1.2, y0: 0, y1: 1.8, xlabel: 'distance r from the axis (m)', ylabel: 'dI/dr = λr² (kg·m)', cursors: ['integE', 'integC'], label: 'Contribution to I per metre of rod against distance from the axis',
         series: [{ cls: 'bar', pts: [[0, 0], ...curvePts(r => R0.lam * r * r, 0, 1.2, 40), [1.2, 0]] }, { pts: curvePts(r => R0.lam * r * r, 0, 1.2, 40), tag: [0.25, 1.0, `end: area 0→L = ${f(R0.Iend, 2)}`] }, { cls: 'trend', pts: [[0.6, 0], [0.6, 1.8]], tag: [0.62, 0.15, `centre: 2 × (0→L/2) = ${f(R0.Icm, 2)}`] }] })}</div>
       <p class="hintline">Click to pull the slices and rings apart and compare the sum with the integral.</p>`,
     cam: { target: [STATIONS.integ - 0.3, 1.0, 0], az: -10, el: 22, dist: 14.5 }, lit: 'integ', scene: 'integ', look: {},
-    fig: 'Slices and rings',
+    fig: 'Элементы стержня и кольца диска',
   },
   {
-    kicker: '7.7 · AP Physics C', title: 'Parallel axes', sub: 'I = I<sub>cm</sub> + Md²',
+    kicker: '7.7 · AP Physics C', title: 'Теорема Штейнера', sub: 'I = I<sub>cm</sub> + Md²',
     body: `
       <p class="lede">Move the axis a distance d from the centre of mass and I grows by Md²:</p>
       <div class="eq">I = I<sub>cm</sub> + Md²</div>
-      <p>Pinned at its end, d = L/2: <sup>1</sup>⁄<sub>12</sub>ML² + M(L/2)² = ⅓ML² (a door on its hinges: ⅓MW²). So the same τ = ${f(M.PAX.tau)} N·m spins it up four times more slowly.</p>
+      <p>При закреплении за конец d = L/2: <sup>1</sup>⁄<sub>12</sub>ML² + M(L/2)² = ⅓ML² (для двери на петлях: ⅓MW²). Поэтому тот же момент τ = ${f(M.PAX.tau)} Н·м раскручивает стержень в четыре раза медленнее.</p>
       <table class="data">
-        <tr><th>pinned at</th><th>I<sub>cm</sub></th><th>Md²</th><th>I</th><th>α = τ/I</th></tr>
+        <tr><th>ось проходит через</th><th>I<sub>cm</sub></th><th>Md²</th><th>I</th><th>α = τ/I</th></tr>
         ${PX.map(p => `<tr><td>${p.key}</td><td>${f(R0.Icm)}</td><td>${f(R0.M * p.d * p.d)}</td><td>${f(p.I)}</td><td>${f(p.alpha)}</td></tr>`).join('')}
       </table>
       <div class="charts">${chart({ x0: 0, x1: 2.4, y0: 0, y1: 4.5, xlabel: 'time (s)', ylabel: 'ω (rad/s)', cursors: ['pax0', 'pax1'], label: 'Angular velocity of the two rods against time',
         series: PX.map((p, i) => ({ pts: [[0, 0], [2.4, p.alpha * 2.4]], tag: i ? [1.25, p.alpha * 1.25 + 0.15, 'pinned at the end'] : [0.75, 2.2, 'at the centre'] })) })}</div>
       <p class="hintline">Click the rods to see the distance d. Arrows ${cm(F_PAX)} per newton.</p>`,
     cam: { target: [STATIONS.parallel - 0.45, 0.8, 0.15], az: -10, el: 55, dist: 11 }, lit: 'parallel', scene: 'parallel', look: {},
-    fig: 'Same push, two axes',
+    fig: 'Одинаковый момент силы, две оси',
   },
   {
-    kicker: '7.8', title: 'Work and power', sub: 'W = τΔθ, P = τω',
+    kicker: '7.8', title: 'Работа и мощность', sub: 'W = τΔθ, P = τω',
     body: `
       <p class="lede">A ${f(WR.F, 0)} N push on a wrench ${f(WR.r, 2)} m long turns a nut. The hand moves along an arc s = rΔθ, so the work it does is</p>
       <div class="eq">W = F·s = F·rΔθ = τΔθ</div>
-      <p>the rotational twin of W = Fd. The rate of doing work is the power, the twin of P = Fv:</p>
+      <p>Это вращательный аналог формулы W = Fd. Скорость совершения работы — мощность, аналог поступательной формулы P = Fv:</p>
       <div class="eq">P = τω</div>
-      <p>Here τ = ${f(WR.tau, 0)} N·m at a steady ${f(WR.w, 1)} rad/s: P = ${f(WR.P, 0)} W, and one 120° stroke takes ${f(M.wrench(9).W, 1)} J. The thread’s friction holds ω steady, so this work becomes heat, not spin. With no friction it would go into ½Iω².</p>
+      <p>Здесь τ = ${f(WR.tau, 0)} Н·м при постоянной угловой скорости ${f(WR.w, 1)} рад/с: P = ${f(WR.P, 0)} Вт, а поворот на 120° требует работы ${f(M.wrench(9).W, 1)} Дж. Трение в резьбе удерживает ω постоянной, поэтому работа превращается в тепло, а не в кинетическую энергию вращения. Без трения она перешла бы в ½Iω².</p>
       <div class="charts">${chart({ x0: 0, x1: 2.2, y0: 0, y1: 45, xlabel: 'angle turned Δθ (rad)', ylabel: 'work W (J)', cursors: ['wrench'], label: 'Work against angle turned: a straight line of slope τ',
         series: [{ pts: [[0, 0], [WR.stroke, WR.tau * WR.stroke]], tag: [0.95, WR.tau * 0.95 + 2, `slope = τ = ${f(WR.tau, 0)} N·m`] }],
         marks: [[WR.stroke, WR.tau * WR.stroke, '120°', -36, 4]] })}</div>
       <p class="hintline">Click the wrench to see the radius and the arc. Arrow ${cm(F_WRENCH)} per newton.</p>`,
     cam: { target: [STATIONS.wrench + 0.08, 0.15, 0.12], az: -14, el: 48, dist: 3.6 }, lit: 'wrench', scene: 'wrench', look: {},
-    fig: 'A wrench on a nut',
+    fig: 'Гаечный ключ на гайке',
   },
   {
-    kicker: '7.9', title: 'Rolling', sub: 'the race down the ramp',
+    kicker: '7.9', title: 'Качение', sub: 'соревнование на наклонной плоскости',
     body: `
       <p class="lede">A sphere, a disc and a ring roll from rest down a ${dg(M.RACE.theta)}° ramp, beside a box sliding on ice. Rolling things must spend some energy on spin:</p>
       <div class="eq">mgh = ½mv² + ½Iω²</div>
-      <p>With I = fmR² and ω = v/R, v² = 2gh/(1 + f). Mass and radius cancel; the smaller the shape factor f, the faster. The box wins, then sphere, disc, ring. Rolling <i>up</i> a hill, the spin energy buys extra height.</p>
+      <p>При I = fmR² и ω = v/R получаем v² = 2gh/(1 + f). Масса и радиус сокращаются: чем меньше коэффициент формы f, тем быстрее тело. Первым приходит брусок, затем шар, диск и кольцо. При качении <i>вверх</i> энергия вращения позволяет подняться выше.</p>
       <div class="charts">${energyBars()}</div>
       <p class="hintline">Click the racers to see how a rolling disc moves. Arrows ${cm(RACE_V)} per m/s.</p>`,
     cam: { target: [STATIONS.race + 0.15, 0.6, 0], az: -14, el: 36, dist: 12.5 }, lit: 'race', scene: 'race', look: {},
-    fig: 'Box, sphere, disc, ring',
+    fig: 'Брусок, шар, диск и кольцо',
   },
   {
-    kicker: '7.10 · AP Physics C', title: 'Sliding, then rolling', sub: 'a bowling ball',
+    kicker: '7.10 · AP Physics C', title: 'Скольжение, затем качение', sub: 'боулингный шар',
     body: `
       <p class="lede">A bowling ball leaves the hand at ${f(B.v0, 1)} m/s with no spin. Its bottom skids, so kinetic friction μ<sub>k</sub>mg acts backward: it slows the ball and, acting at R, spins it up.</p>
       <table class="data cols">
-        <tr><th>moving along: ΣF = ma</th><th>turning: Στ = Iα, I = ⅖mR²</th></tr>
+        <tr><th>поступательное движение: ΣF = ma</th><th>вращение: Στ = Iα, I = ⅖mR²</th></tr>
         <tr><td>v = v<sub>0</sub> − μ<sub>k</sub>g t</td><td>ω = (5μ<sub>k</sub>g / 2R) t</td></tr>
       </table>
-      <p>It rolls once v = Rω:</p>
+      <p>Условие перехода к качению без проскальзывания: v = Rω:</p>
       <div class="eq">t* = 2v<sub>0</sub> / 7μ<sub>k</sub>g,&nbsp; v = <sup>5</sup>⁄<sub>7</sub>v<sub>0</sub></div>
-      <p>With μ<sub>k</sub> = ${f(B.muK, 1)}: t* = ${f(B.tStar)} s and ${f(B.xStar)} m, then it rolls at ${f(B.vf)} m/s. ${f(0.5 * B.m * B.v0 ** 2 - M.bowl(9).K, 1)} J went to heat.</p>
+      <p>При μ<sub>k</sub> = ${f(B.muK, 1)}: переход происходит через t* = ${f(B.tStar)} с и после перемещения на ${f(B.xStar)} м. Затем шар катится со скоростью ${f(B.vf)} м/с. ${f(0.5 * B.m * B.v0 ** 2 - M.bowl(9).K, 1)} Дж превращаются в тепло.</p>
       <div class="charts">${chart({ x0: 0, x1: 1.1, y0: 0, y1: 2.6, xlabel: 'time (s)', ylabel: 'speed (m/s)', cursors: ['slipV', 'slipW'], label: 'Ball speed v and rim speed R omega against time, meeting at t star',
         series: [{ pts: curvePts(t => M.bowl(t).v, 0, 1.1, 50), tag: [0.22, 2.0, 'v'] }, { pts: curvePts(t => B.R * M.bowl(t).w, 0, 1.1, 50), tag: [0.24, 0.15, 'Rω'] }],
         marks: [[B.tStar, B.vf, 't*', 4, 18]] })}</div>
       <p class="hintline">Click the ball to see how fast its bottom slides. v: ${cm(RACE_V)} per m/s; f: ${cm(F_SLIP)} per newton.</p>`,
     cam: { target: [STATIONS.slip, 0.15, 0], az: -8, el: 18, dist: 7.2 }, lit: 'slip', scene: 'slip', look: {},
-    fig: 'Launched sliding',
+    fig: 'Шар начинает движение скольжением',
   },
   {
-    kicker: '7.11', title: 'The well', sub: 'force and torque together',
+    kicker: '7.11', title: 'Колодезный ворот', sub: 'поступательное и вращательное движение',
     body: `
       <p class="lede">A ${f(M.WELL.m, 1)} kg bucket on a rope wound round an ${f(M.WELL.M, 1)} kg drum, a solid cylinder. Let go: the bucket falls and the drum spins up.</p>
       <table class="data cols">
-        <tr><th>bucket: ΣF = ma</th><th>drum: Στ = Iα, a = rα</th></tr>
+        <tr><th>ведро: ΣF = ma</th><th>барабан: Στ = Iα, a = rα</th></tr>
         <tr><td>mg − T = ma</td><td>rT = ½Mr²·(a/r), so T = ½Ma</td></tr>
       </table>
       <div class="eq">a = mg / (m + ½M) = ${f(M.WELL.a)} m/s²</div>
-      <p>T = ${f(M.WELL.T)} N, less than the weight. A heavier drum means a slower fall.</p>
+      <p>T = ${f(M.WELL.T)} Н, меньше веса ведра. Чем массивнее барабан, тем медленнее падает ведро.</p>
       <div class="charts">${chart({ x0: 0, x1: 1.2, y0: 0, y1: 8, xlabel: 'time (s)', ylabel: 'bucket speed (m/s)', cursors: ['well'], label: 'Bucket speed against time, compared with free fall',
         series: [{ pts: [[0, 0], [M.WELL.run, M.WELL.a * M.WELL.run]], tag: [0.78, M.WELL.a * 0.78 - 1.6, 'on the drum'] }, { cls: 'trend', pts: [[0, 0], [0.64, M.G * 0.64]], tag: [0.5, M.G * 0.5 + 0.6, 'free fall'] }] })}</div>
       <p class="hintline">Click the well to compare with free fall. Arrows ${cm(F_LIGHT)} per newton.</p>`,
     cam: { target: [STATIONS.well + 0.25, 2.05, 0], az: 22, el: 8, dist: 14 }, lit: 'well', scene: 'well', look: {},
-    fig: 'A bucket and a winding drum',
+    fig: 'Ведро и барабан с намотанной верёвкой',
   },
   {
-    kicker: '7.12', title: 'Angular impulse', sub: 'τΔt = ΔL',
+    kicker: '7.12', title: 'Угловой импульс силы', sub: 'τΔt = ΔL',
     body: `
       <p class="lede">A spinning thing carries <b>angular momentum</b> L = Iω. A torque changes it, just as a force changes p:</p>
       <div class="eq">Στ = ΔL/Δt, so τΔt = ΔL</div>
-      <p>τΔt is the <b>angular impulse</b>, the area under the τ–t graph. Two equal merry-go-rounds (I = ½MR² = ${f(M.IMP.I, 0)} kg·m²) get two pushes at the rim: A hard and short, B gentle and long. The areas match, so they end with the same L and the same ω = ${f(IM[0].wf)} rad/s.</p>
+      <p>τΔt — это <b>угловой импульс силы</b>, равный площади под графиком τ–t. Два одинаковых диска (I = ½MR² = ${f(M.IMP.I, 0)} кг·м²) получают два воздействия на обод: A — сильное и короткое, B — слабое и длительное. Площади под графиками равны, поэтому конечные L и ω = ${f(IM[0].wf)} рад/с одинаковы.</p>
       <div class="charts">${chart({ x0: 0, x1: 3, y0: 0, y1: 300, xlabel: 'time (s)', ylabel: 'torque τ (N·m)', cursors: ['impT0', 'impT1'], label: 'Torque against time for the two pushes: equal areas',
         series: [{ cls: 'bar', pts: [[0, 0], [0, IM[1].tau], [IM[1].dt, IM[1].tau], [IM[1].dt, 0]], tag: [1.55, IM[1].tau - 30, `B: ${IM[1].tau} × ${IM[1].dt} = ${IM[1].J}`] }, { pts: [[0, 0], [0, IM[0].tau], [IM[0].dt, IM[0].tau], [IM[0].dt, 0], [3, 0]], tag: [0.65, IM[0].tau - 50, `A: ${IM[0].tau} × ${IM[0].dt} = ${IM[0].J}`] }] })}</div>
       <p class="hintline">Click a merry-go-round for its lever arm. Arrows ${cm(F_HEAVY)} per newton.</p>`,
     cam: { target: [STATIONS.impulse, 0.5, 0.2], az: -10, el: 36, dist: 16.5 }, lit: 'impulse', scene: 'impulse', look: {},
-    fig: 'Hard and short, gentle and long',
+    fig: 'Сильно и коротко, слабо и долго',
   },
   {
-    kicker: '7.13', title: 'The spin', sub: 'angular momentum, L = Iω',
+    kicker: '7.13', title: 'Вращение фигуриста', sub: 'момент импульса L = Iω',
     body: `
       <p class="lede">With no outside torque, <b>angular momentum</b> L = Iω cannot change: I<sub>0</sub>ω<sub>0</sub> = I<sub>f</sub>ω<sub>f</sub>.</p>
-      <p>A skater spins holding ${f(M.SKATE.m, 1)} kg weights out, then lifts them overhead. The ice gives almost no torque. Pulling the mass in shrinks I, so ω grows. L holds, but K<sub>r</sub> rises: her arms do work.</p>
+      <p>Фигуристка вращается, держа в вытянутых руках грузы массой ${f(M.SKATE.m, 1)} кг, а затем поднимает руки над головой. Лёд почти не создаёт момента внешних сил. При приближении грузов к оси момент инерции I уменьшается, поэтому ω возрастает. Момент импульса L сохраняется, а K<sub>r</sub> увеличивается: фигуристка совершает работу руками.</p>
       <table class="data">
-        <tr><th></th><th>arms out</th><th>arms up</th></tr>
+        <tr><th></th><th>руки в стороны</th><th>руки подняты</th></tr>
         <tr><td>I (kg·m²)</td><td>${f(sk0.I)}</td><td>${f(sk1.I)}</td></tr>
-        <tr><td>ω (rad/s)</td><td>${f(sk0.w)}</td><td>${f(sk1.w)}</td></tr>
+        <tr><td>ω (рад/с)</td><td>${f(sk0.w)}</td><td>${f(sk1.w)}</td></tr>
         <tr><td>L = Iω</td><td>${f(sk0.L)}</td><td>${f(sk1.L)}</td></tr>
-        <tr><td>K<sub>r</sub> = ½Iω² (J)</td><td>${f(sk0.K)}</td><td>${f(sk1.K)}</td></tr>
+        <tr><td>K<sub>r</sub> = ½Iω² (Дж)</td><td>${f(sk0.K)}</td><td>${f(sk1.K)}</td></tr>
       </table>
       <div class="charts">${chart({ x0: 0, x1: +M.SKATE.run.toFixed(1), y0: 0, y1: 5, xlabel: 'time (s)', ylabel: 'ω (rad/s)', cursors: ['skater'], label: 'Skater angular velocity against time',
         series: [{ pts: curvePts(t => M.skater(t).w, 0, M.SKATE.run, 120) }] })}</div>
       <p class="hintline">Click the skater to see where the weights started.</p>`,
     cam: { target: [STATIONS.skater, 1.3, 0], az: -16, el: 16, dist: 9.6 }, lit: 'skater', scene: 'skater', look: {},
-    fig: 'Arms in, spin up',
+    fig: 'Руки ближе к телу — вращение быстрее',
   },
   {
-    kicker: '7.14 · AP Physics C', title: 'L of a particle', sub: 'L = r × p',
+    kicker: '7.14 · AP Physics C', title: 'Момент импульса частицы', sub: 'L = r × p',
     body: `
       <p class="lede">A ball sliding in a straight line has angular momentum about a point O:</p>
       <div class="eq">L = r × p, |L| = mvr sin φ = mvr<sub>⊥</sub></div>
       <p>r<sub>⊥</sub> = d is the distance from O to the line of motion. As the ball slides, r and φ change but r sin φ stays d: <b>L is constant</b> along a straight line. Then it hits a ${f(HT.M, 1)} kg rod pinned at O. The pin has no torque about O, so L about O is conserved:</p>
       <div class="eq">mv<sub>0</sub>d = −mv<sub>f</sub>d + ⅓ML²ω</div>
-      <p>Elastic: the ${f(HT.m, 1)} kg ball rebounds at ${f(-HT.v1)} m/s; the rod turns at ${f(HT.w)} rad/s.</p>
+      <p>При упругом ударе шар массой ${f(HT.m, 1)} кг отскакивает со скоростью ${f(-HT.v1)} м/с, а стержень начинает вращаться с угловой скоростью ${f(HT.w)} рад/с.</p>
       <div class="charts">${chart({ x0: 0, x1: 2.1, y0: -0.4, y1: 1.4, zero: true, xlabel: 'time (s)', ylabel: 'L about O (kg·m²/s)', cursors: ['hitB', 'hitR', 'hitL'], label: 'Angular momentum of ball, rod and total against time',
         series: [{ pts: [[0, M.hit(0).Lb], [HT.tHit, M.hit(0).Lb], [HT.tHit, M.hit(9).Lb], [2.1, M.hit(9).Lb]], tag: [1.5, M.hit(9).Lb + 0.01, 'ball'] }, { cls: 'trend', pts: [[0, 0], [HT.tHit, 0], [HT.tHit, HT.I * HT.w], [2.1, HT.I * HT.w]], tag: [1.3, HT.I * HT.w + 0.02, 'rod'] }, { cls: 'curve total', pts: [[0, M.hit(0).L], [2.1, M.hit(0).L]], tag: [0.15, M.hit(0).L - 0.22, 'total'] }] })}</div>
       <p class="hintline">Click to draw L as vectors. p: ${cm(P_SCALE)} per kg·m/s.</p>`,
     cam: { target: [STATIONS.particle - 0.4, 0.15, 0.15], az: -14, el: 52, dist: 8.5 }, lit: 'particle', scene: 'particle', look: {},
-    fig: 'A ball, a pin and a rod',
+    fig: 'Шар, ось и стержень',
   },
 ];
 
