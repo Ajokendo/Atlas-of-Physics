@@ -42,132 +42,132 @@ const sphereChart = (fn, cursor, extra = []) => chart({ ...R.sphere, xlabel: 'r 
 
 export const PAGES = [
   {
-    kicker: 'Chapter 10', title: 'Electric flux', sub: 'how much field passes through',
+    kicker: 'Глава 10', title: 'Поток электрического поля', sub: 'сколько поля проходит через поверхность',
     body: `
-      <p class="lede">The <b>flux</b> Φ of a field through a surface measures how much of the field passes through it. Count the field lines that pierce the surface.</p>
+      <p class="lede"><b>Поток</b> Φ электрического поля через поверхность характеризует, насколько много поля проходит сквозь неё. Его можно представить как число силовых линий, пересекающих поверхность.</p>
       <div class="eq">Φ = <b>E</b> · <b>A</b> = <i>EA</i> cos θ</div>
-      <p>The area vector <b>A</b> is perpendicular to the surface, as long as its area; θ is the angle between <b>E</b> and <b>A</b>. Bigger field, bigger area, or more face-on: more flux. Units: N·m²/C.</p>
-      <p>This ${f(M.FLUX.side * 100, 0)} cm square turns in a uniform ${f(M.FLUX.E / 1000, 1)} kN/C field. Face on, Φ = ${f(M.FLUX.max, 0)} N·m²/C; edge on, 0; turned past 90°, negative. Through any <i>closed</i> surface a uniform field’s flux is 0.</p>
-      <div class="charts">${chart({ ...R.flux, zero: true, xlabel: 'θ (°)', ylabel: 'Φ (N·m²/C)', cursor: 'flux', label: 'Flux against angle', series: [{ pts: curve(M.flux, 0, 180) }] })}</div>
-      <p class="hintline">Click the square to split <b>E</b>. ${arrowNote(SC.flux)}</p>`,
+      <p>Вектор площади <b>A</b> перпендикулярен поверхности, а его модуль равен площади поверхности. θ — угол между <b>E</b> и <b>A</b>. Чем сильнее поле, больше площадь и прямее поверхность обращена к полю, тем больше поток. Единицы: Н·м²/Кл.</p>
+      <p>Квадрат со стороной ${f(M.FLUX.side * 100, 0)} см поворачивается в однородном поле напряжённостью ${f(M.FLUX.E / 1000, 1)} кН/Кл. При перпендикулярном положении поток Φ = ${f(M.FLUX.max, 0)} Н·м²/Кл; при положении ребром к полю он равен нулю; после поворота за 90° становится отрицательным. Поток однородного поля через любую <i>замкнутую</i> поверхность равен нулю.</p>
+      <div class="charts">${chart({ ...R.flux, zero: true, xlabel: 'θ (°)', ylabel: 'Φ (Н·м²/Кл)', cursor: 'flux', label: 'Поток в зависимости от угла поворота', series: [{ pts: curve(M.flux, 0, 180) }] })}</div>
+      <p class="hintline">Нажмите на квадрат, чтобы разложить <b>E</b> на составляющие. ${arrowNote(SC.flux)}</p>`,
     cam: { target: [STATIONS.flux + 0.3, Y0 - 0.2, 0], az: -16, el: 26, dist: 17 }, lit: 'flux', scene: 'flux', look: {},
-    fig: 'A square turning in a uniform field',
+    fig: 'Квадрат поворачивается в однородном поле',
   },
   {
-    kicker: '10.1', title: 'Gauss’s law', sub: 'flux out = charge inside',
+    kicker: '10.1', title: 'Закон Гаусса', sub: 'поток наружу равен заряду внутри',
     body: `
-      <p class="lede">Through any <b>closed</b> surface, the total flux out is the charge enclosed divided by ε<sub>0</sub>.</p>
+      <p class="lede">Через любую <b>замкнутую</b> поверхность полный поток наружу равен заключённому внутри заряду, делённому на ε<sub>0</sub>.</p>
       <div class="eq">∮ <b>E</b> · d<b>A</b> = <i>q</i><sub>enc</sub> / ε<sub>0</sub></div>
-      <p>d<b>A</b> points outward. The sphere breathes, but Φ stays ${f(M.POINT.flux, 0)} N·m²/C: <i>E</i> falls as 1/<i>r</i>², the area 4π<i>r</i>² grows as <i>r</i>². On it <b>E</b> ∥ d<b>A</b> and <i>E</i> is constant, so</p>
+      <p>d<b>A</b> направлен наружу. Радиус сферы меняется, но Φ остаётся равным ${f(M.POINT.flux, 0)} Н·м²/Кл: поле <i>E</i> убывает как 1/<i>r</i>², а площадь 4π<i>r</i>² растёт как <i>r</i>². На сфере <b>E</b> ∥ d<b>A</b>, а <i>E</i> постоянно, поэтому</p>
       <div class="eq"><i>E</i> · 4π<i>r</i>² = <i>q</i>/ε<sub>0</sub> &nbsp;→&nbsp; <i>E</i> = <i>kq</i>/<i>r</i>²</div>
-      <p>which is Coulomb’s law. The box holds no charge: every line that enters it leaves, so its flux is zero.</p>
-      <div class="charts">${chart({ ...R.point, xlabel: 'r (cm)', ylabel: 'E (kN/C)', cursor: 'point', label: 'Point charge field against distance', series: [{ pts: curve(kE(M.pointE), 6.5, 26) }] })}</div>
-      <p class="hintline">Click the sphere for d<b>A</b>, the box for each face. ${arrowNote(SC.point)}</p>`,
+      <p>Это закон Кулона. Внутри коробки нет заряда: каждая силовая линия, входящая в неё, выходит наружу, поэтому поток равен нулю.</p>
+      <div class="charts">${chart({ ...R.point, xlabel: 'r (см)', ylabel: 'E (кН/Кл)', cursor: 'point', label: 'Поле точечного заряда в зависимости от расстояния', series: [{ pts: curve(kE(M.pointE), 6.5, 26) }] })}</div>
+      <p class="hintline">Нажмите на сферу, чтобы увидеть d<b>A</b>, или на коробку, чтобы рассмотреть каждую грань. ${arrowNote(SC.point)}</p>`,
     cam: { target: [STATIONS.gauss + 1.2, Y0, 0], az: -10, el: 14, dist: 29 }, lit: 'gauss', scene: 'gauss', look: {},
-    fig: `q = ${nC(M.POINT.q)} nC, two closed surfaces`,
+    fig: `q = ${nC(M.POINT.q)} нКл, две замкнутые поверхности`,
   },
   {
-    kicker: '10.2', title: 'A line of charge', sub: 'a cylinder around it',
+    kicker: '10.2', title: 'Заряженная нить', sub: 'цилиндрическая поверхность вокруг неё',
     body: `
-      <p class="lede">An infinite line with charge λ per metre. By symmetry <b>E</b> points straight out from the line, so wrap it in a coaxial cylinder of radius <i>r</i> and length <i>L</i>.</p>
-      <p>Split the surface into two caps and a curved side. On the caps <b>E</b> ⊥ d<b>A</b>: no flux. On the side <b>E</b> ∥ d<b>A</b> and <i>E</i> is constant:</p>
+      <p class="lede">Бесконечная линия несёт заряд λ на единицу длины. По симметрии <b>E</b> направлено перпендикулярно от линии, поэтому окружим её соосным цилиндром радиуса <i>r</i> и длины <i>L</i>.</p>
+      <p>Разделим поверхность на две крышки и боковую цилиндрическую часть. На крышках <b>E</b> ⊥ d<b>A</b>, поэтому поток равен нулю. На боковой поверхности <b>E</b> ∥ d<b>A</b>, а <i>E</i> постоянно:</p>
       <div class="eq"><i>E</i> · 2π<i>rL</i> = λ<i>L</i>/ε<sub>0</sub> &nbsp;→&nbsp; <i>E</i> = 2<i>k</i>λ/<i>r</i></div>
-      <p><i>L</i> cancels, and the field falls as 1/<i>r</i>, slower than a point charge’s. Here λ = ${nC(M.LINE.lam)} nC/m, so <i>E</i> = ${f(M.lineE(0.1), 0)} N/C at 10 cm.</p>
-      <div class="charts">${chart({ ...R.line, xlabel: 'r (cm)', ylabel: 'E (kN/C)', cursor: 'line', label: 'Line charge field against distance', series: [{ pts: curve(kE(M.lineE), 4.5, 22) }] })}</div>
-      <p class="hintline">Click the cylinder to take its caps off. ${arrowNote(SC.line)}</p>`,
+      <p><i>L</i> сокращается, а поле убывает как 1/<i>r</i> — медленнее, чем поле точечного заряда. Здесь λ = ${nC(M.LINE.lam)} нКл/м, поэтому на расстоянии 10 см <i>E</i> = ${f(M.lineE(0.1), 0)} Н/Кл.</p>
+      <div class="charts">${chart({ ...R.line, xlabel: 'r (см)', ylabel: 'E (кН/Кл)', cursor: 'line', label: 'Поле заряженной линии в зависимости от расстояния', series: [{ pts: curve(kE(M.lineE), 4.5, 22) }] })}</div>
+      <p class="hintline">Нажмите на цилиндр, чтобы снять его крышки. ${arrowNote(SC.line)}</p>`,
     cam: { target: [STATIONS.line, Y0, 0], az: -32, el: 18, dist: 23 }, lit: 'line', scene: 'line', look: {},
-    fig: 'Caps and side',
+    fig: 'Крышки и боковая поверхность',
   },
   {
-    kicker: '10.3', title: 'Sheets and plates', sub: 'a pillbox through the surface',
+    kicker: '10.3', title: 'Заряженные листы и пластины', sub: 'гауссов цилиндр пересекает поверхность',
     body: `
-      <p class="lede">A pillbox straddles each surface. Its side is parallel to <b>E</b>, so only the caps carry flux, and the enclosed charge is σ<i>A</i>.</p>
+      <p class="lede">Небольшой цилиндр пересекает каждую поверхность. Его боковая часть параллельна <b>E</b>, поэтому поток проходит только через крышки, а заключённый заряд равен σ<i>A</i>.</p>
       <table class="data">
-        <tr><th></th><th>non-conducting sheet</th><th>metal plate</th></tr>
-        <tr><td>flux out of</td><td>both caps: 2<i>EA</i></td><td>one cap: <i>EA</i></td></tr>
-        <tr><td>so <i>E</i> =</td><td>σ/2ε<sub>0</sub> = ${f(M.SHEET.E, 0)} N/C</td><td>σ/ε<sub>0</sub> = ${f(M.PLATE.E, 0)} N/C</td></tr>
+        <tr><th></th><th>непроводящий лист</th><th>металлическая пластина</th></tr>
+        <tr><td>поток наружу</td><td>через обе крышки: 2<i>EA</i></td><td>через одну крышку: <i>EA</i></td></tr>
+        <tr><td>откуда <i>E</i> =</td><td>σ/2ε<sub>0</sub> = ${f(M.SHEET.E, 0)} Н/Кл</td><td>σ/ε<sub>0</sub> = ${f(M.PLATE.E, 0)} Н/Кл</td></tr>
       </table>
-      <p>Inside the metal <i>E</i> = 0, so the plate’s inner cap carries nothing. Here σ = ${nC(M.SHEET.sigma)} nC/m² is the charge per area on the sheet and on <i>each face</i> of the plate. Neither field depends on distance: it is uniform.</p>
-      <div class="charts">${chart({ ...R.sheet, zero: true, xlabel: 'height above the middle (cm)', ylabel: 'E (kN/C, up)', label: 'Field against height for the sheet and the plate',
-        series: [{ cls: 'trend', pts: [[-15, -M.SHEET.E / 1000], [0, -M.SHEET.E / 1000], [0, M.SHEET.E / 1000], [15, M.SHEET.E / 1000]], tag: [-14, -M.SHEET.E / 1000 + 0.1, 'sheet'] },
-          { pts: [[-15, -M.PLATE.E / 1000], [-3, -M.PLATE.E / 1000], [-3, 0], [3, 0], [3, M.PLATE.E / 1000], [15, M.PLATE.E / 1000]], tag: [5, M.PLATE.E / 1000 - 0.16, 'plate'] }] })}</div>
-      <p class="hintline">Click either to open its pillbox. ${arrowNote(SC.sheet)}</p>`,
+      <p>Внутри металла <i>E</i> = 0, поэтому внутренняя крышка цилиндра не несёт потока. Здесь σ = ${nC(M.SHEET.sigma)} нКл/м² — заряд на единицу площади листа и <i>каждой стороны</i> пластины. Ни одно из полей не зависит от расстояния: поле однородно.</p>
+      <div class="charts">${chart({ ...R.sheet, zero: true, xlabel: 'высота над серединой (см)', ylabel: 'E (кН/Кл, вверх)', label: 'Поле листа и пластины в зависимости от высоты',
+        series: [{ cls: 'trend', pts: [[-15, -M.SHEET.E / 1000], [0, -M.SHEET.E / 1000], [0, M.SHEET.E / 1000], [15, M.SHEET.E / 1000]], tag: [-14, -M.SHEET.E / 1000 + 0.1, 'лист'] },
+          { pts: [[-15, -M.PLATE.E / 1000], [-3, -M.PLATE.E / 1000], [-3, 0], [3, 0], [3, M.PLATE.E / 1000], [15, M.PLATE.E / 1000]], tag: [5, M.PLATE.E / 1000 - 0.16, 'пластина'] }] })}</div>
+      <p class="hintline">Нажмите на лист или пластину, чтобы открыть гауссов цилиндр. ${arrowNote(SC.sheet)}</p>`,
     cam: { target: [(STATIONS.sheet + STATIONS.plate) / 2, Y0, 0], az: -10, el: 24, dist: 30 }, lit: 'sheet', scene: 'sheet', look: {},
-    fig: 'A sheet, and a metal plate',
+    fig: 'Непроводящий лист и металлическая пластина',
   },
   {
-    kicker: '10.4', title: 'A metal sphere', sub: 'inside and out',
+    kicker: '10.4', title: 'Металлическая сфера', sub: 'внутри и снаружи',
     body: `
-      <p class="lede">On a conductor, the charge spreads to the <b>surface</b>. A Gaussian sphere inside the metal encloses none of it.</p>
+      <p class="lede">В проводнике заряд распределяется по <b>поверхности</b>. Гауссова сфера внутри металла не заключает внутри себя заряд.</p>
       <table class="data">
         <tr><td><i>r</i> &lt; <i>R</i></td><td><i>q</i><sub>enc</sub> = 0</td><td><i>E</i> = 0</td></tr>
         <tr><td><i>r</i> &gt; <i>R</i></td><td><i>q</i><sub>enc</sub> = <i>Q</i></td><td><i>E</i> · 4π<i>r</i>² = <i>Q</i>/ε<sub>0</sub> → <i>E</i> = <i>kQ</i>/<i>r</i>²</td></tr>
       </table>
-      <p>Outside, the sphere acts like a point charge at its centre. The field jumps from 0 to <i>kQ</i>/<i>R</i>² = ${f(M.cSphere.E(M.SPH.R), 0)} N/C at the surface. Here <i>Q</i> = ${nC(M.SPH.Q)} nC and <i>R</i> = ${f(M.SPH.R * 100, 0)} cm. The wedge is cut away so you can see in.</p>
+      <p>Снаружи сфера действует как точечный заряд, расположенный в её центре. На поверхности поле скачком возрастает от 0 до <i>kQ</i>/<i>R</i>² = ${f(M.cSphere.E(M.SPH.R), 0)} Н/Кл. Здесь <i>Q</i> = ${nC(M.SPH.Q)} нКл и <i>R</i> = ${f(M.SPH.R * 100, 0)} см. Часть сферы удалена, чтобы показать её внутреннее устройство.</p>
       <div class="charts">${sphereChart(M.cSphere.E, 'csphere')}</div>
-      <p class="hintline">Click the sphere to see what the Gaussian sphere encloses. ${arrowNote(SC.sphere)}</p>`,
+      <p class="hintline">Нажмите на сферу, чтобы увидеть заряд, заключённый гауссовой поверхностью. ${arrowNote(SC.sphere)}</p>`,
     cam: { target: [STATIONS.csphere, Y0, 0], az: -24, el: 16, dist: 16 }, lit: 'csphere', scene: 'csphere', look: {},
-    fig: 'Charge on the surface only',
+    fig: 'Заряд только на поверхности',
   },
   {
-    kicker: '10.5', title: 'Insulating sphere', sub: 'charge all the way through',
+    kicker: '10.5', title: 'Диэлектрическая сфера', sub: 'заряд распределён по всему объёму',
     body: `
-      <p class="lede">In an insulator charge stays put: here spread evenly through the volume, ρ = <i>Q</i>/(⁴⁄₃π<i>R</i>³) = ${f(M.SPH.rho * 1e6, 3)} μC/m³.</p>
-      <p>Inside, <i>q</i><sub>enc</sub> = ρ⁴⁄₃π<i>r</i>³: use small <i>r</i> inside, big <i>R</i> outside.</p>
+      <p class="lede">В диэлектрике заряд не перемещается свободно. Здесь он равномерно распределён по объёму: ρ = <i>Q</i>/(⁴⁄₃π<i>R</i>³) = ${f(M.SPH.rho * 1e6, 3)} мкКл/м³.</p>
+      <p>Внутри сферы <i>q</i><sub>enc</sub> = ρ⁴⁄₃π<i>r</i>³: внутри используем текущий радиус <i>r</i>, снаружи — полный радиус <i>R</i>.</p>
       <table class="data eqs">
-        <tr><td><i>E</i> · 4π<i>r</i>² = ρ⁴⁄₃π<i>r</i>³/ε<sub>0</sub></td><td><i>E</i> = ρ<i>r</i>/3ε<sub>0</sub>, inside</td></tr>
-        <tr><td><i>E</i> · 4π<i>r</i>² = ρ⁴⁄₃π<i>R</i>³/ε<sub>0</sub></td><td><i>E</i> = <i>kQ</i>/<i>r</i>², outside</td></tr>
+        <tr><td><i>E</i> · 4π<i>r</i>² = ρ⁴⁄₃π<i>r</i>³/ε<sub>0</sub></td><td><i>E</i> = ρ<i>r</i>/3ε<sub>0</sub>, внутри</td></tr>
+        <tr><td><i>E</i> · 4π<i>r</i>² = ρ⁴⁄₃π<i>R</i>³/ε<sub>0</sub></td><td><i>E</i> = <i>kQ</i>/<i>r</i>², снаружи</td></tr>
       </table>
-      <p><i>E</i> grows linearly to a peak at the surface, then falls as 1/<i>r</i>². Outside, it matches the metal sphere (same <i>Q</i>, <i>R</i>). If hollow, <i>E</i> = 0 in the hollow.</p>
+      <p><i>E</i> линейно растёт до максимума на поверхности, затем убывает как 1/<i>r</i>². Снаружи поле совпадает с полем металлической сферы с теми же <i>Q</i> и <i>R</i>. Если сфера полая, внутри полости <i>E</i> = 0.</p>
       <div class="charts">${sphereChart(M.iSphere.E, 'isphere')}</div>
-      <p class="hintline">Click the sphere to see the enclosed charge. ${arrowNote(SC.sphere)}</p>`,
+      <p class="hintline">Нажмите на сферу, чтобы увидеть заключённый заряд. ${arrowNote(SC.sphere)}</p>`,
     cam: { target: [STATIONS.isphere, Y0, 0], az: -24, el: 16, dist: 16 }, lit: 'isphere', scene: 'isphere', look: {},
-    fig: 'E ∝ r inside, 1/r² outside',
+    fig: 'E ∝ r внутри, 1/r² снаружи',
   },
   {
-    kicker: '10.6', title: 'Charged rods', sub: 'metal and insulating',
+    kicker: '10.6', title: 'Заряженные цилиндры', sub: 'проводник и диэлектрик',
     body: `
-      <p class="lede">Two long rods of radius <i>R</i> = ${f(M.ROD.R * 100, 0)} cm, each with λ = ${nC(M.ROD.lam)} nC per metre. Each gets a coaxial cylinder; its caps carry no flux.</p>
+      <p class="lede">Два длинных цилиндра радиуса <i>R</i> = ${f(M.ROD.R * 100, 0)} см имеют одинаковую линейную плотность заряда λ = ${nC(M.ROD.lam)} нКл/м. Вокруг каждого расположим соосную гауссову цилиндрическую поверхность; через её крышки поток не проходит.</p>
       <table class="data">
-        <tr><th></th><th>metal (σ on the surface)</th><th>insulator (ρ inside)</th></tr>
+        <tr><th></th><th>проводник (σ на поверхности)</th><th>диэлектрик (ρ в объёме)</th></tr>
         <tr><td><i>r</i> &lt; <i>R</i></td><td><i>E</i> = 0</td><td><i>E</i> = ρ<i>r</i>/2ε<sub>0</sub></td></tr>
         <tr><td><i>r</i> &gt; <i>R</i></td><td><i>E</i> = σ<i>R</i>/ε<sub>0</sub><i>r</i></td><td><i>E</i> = ρ<i>R</i>²/2ε<sub>0</sub><i>r</i></td></tr>
       </table>
-      <p>Inside the insulator, <i>q</i><sub>enc</sub> = ρπ<i>r</i>²<i>L</i> and <i>E</i> · 2π<i>rL</i> = <i>q</i><sub>enc</sub>/ε<sub>0</sub>. Outside, both are just 2<i>k</i>λ/<i>r</i>, the line of charge again. A hollow insulating rod or sphere has <i>E</i> = 0 in its hollow.</p>
-      <div class="charts">${chart({ ...R.rod, xlabel: 'r (cm)', ylabel: 'E (kN/C)', cursors: ['crod', 'irod'], label: 'Rod fields against distance', vlines: [[5, 'R']],
-        series: [{ cls: 'trend', pts: curve(kE(M.cRod.E), 0.001, 17, 120), tag: [1.2, 0.07, 'metal'] }, { pts: curve(kE(M.iRod.E), 0.001, 17, 120), tag: [1.6, 0.36, 'insulator'] }] })}</div>
-      <p class="hintline">Click a rod to see what its cylinder encloses. ${arrowNote(SC.rod)}</p>`,
+      <p>Внутри диэлектрика <i>q</i><sub>enc</sub> = ρπ<i>r</i>²<i>L</i>, а <i>E</i> · 2π<i>rL</i> = <i>q</i><sub>enc</sub>/ε<sub>0</sub>. Снаружи поле обоих цилиндров равно 2<i>k</i>λ/<i>r</i>, как у линейного заряда. Внутри полого диэлектрического цилиндра или сферы <i>E</i> = 0.</p>
+      <div class="charts">${chart({ ...R.rod, xlabel: 'r (см)', ylabel: 'E (кН/Кл)', cursors: ['crod', 'irod'], label: 'Поле цилиндров в зависимости от расстояния', vlines: [[5, 'R']],
+        series: [{ cls: 'trend', pts: curve(kE(M.cRod.E), 0.001, 17, 120), tag: [1.2, 0.07, 'проводник'] }, { pts: curve(kE(M.iRod.E), 0.001, 17, 120), tag: [1.6, 0.36, 'диэлектрик'] }] })}</div>
+      <p class="hintline">Нажмите на цилиндр, чтобы увидеть заключённый заряд. ${arrowNote(SC.rod)}</p>`,
     cam: { target: [(STATIONS.crod + STATIONS.irod) / 2, Y0 + 0.3, 0], az: -12, el: 14, dist: 19 }, lit: 'irod', scene: 'rods', look: {},
-    fig: 'Metal left, insulator right',
+    fig: 'Слева проводник, справа диэлектрик',
   },
   {
-    kicker: '10.7', title: 'Uneven charge', sub: 'ρ(r) = br',
+    kicker: '10.7', title: 'Неравномерное распределение заряда', sub: 'ρ(r) = br',
     body: `
-      <p class="lede">When ρ changes with <i>r</i>, add up thin shells, each holding ρ(<i>r</i>) · 4π<i>r</i>² d<i>r</i>.</p>
+      <p class="lede">Если ρ зависит от <i>r</i>, суммируем заряды тонких сферических слоёв, каждый из которых содержит ρ(<i>r</i>) · 4π<i>r</i>² d<i>r</i>.</p>
       <div class="eq"><i>q</i><sub>enc</sub> = ∫<sub>0</sub><sup><i>r</i></sup> <i>br</i>′ · 4π<i>r</i>′² d<i>r</i>′ = π<i>br</i>⁴</div>
-      <p>Inside, <i>E</i> · 4π<i>r</i>² = π<i>br</i>⁴/ε<sub>0</sub> → <i>E</i> = <i>br</i>²/4ε<sub>0</sub>. Outside, <i>E</i> = <i>bR</i>⁴/4ε<sub>0</sub><i>r</i>². Here <i>b</i> = ${f(M.SPH.b * 1e6, 2)} μC/m⁴: the same ${nC(M.SPH.Q)} nC.</p>
-      <table class="data"><tr><th>ρ(r)</th><td>C</td><td>br</td><td>br²</td><td>br³</td></tr><tr><th>E inside ∝</th><td>r</td><td>r²</td><td>r³</td><td>r⁴</td></tr></table>
+      <p>Внутри <i>E</i> · 4π<i>r</i>² = π<i>br</i>⁴/ε<sub>0</sub>, откуда <i>E</i> = <i>br</i>²/4ε<sub>0</sub>. Снаружи <i>E</i> = <i>bR</i>⁴/4ε<sub>0</sub><i>r</i>². Здесь <i>b</i> = ${f(M.SPH.b * 1e6, 2)} мкКл/м⁴; полный заряд тот же — ${nC(M.SPH.Q)} нКл.</p>
+      <table class="data"><tr><th>ρ(r)</th><td>const</td><td>br</td><td>br²</td><td>br³</td></tr><tr><th>E внутри ∝</th><td>r</td><td>r²</td><td>r³</td><td>r⁴</td></tr></table>
       <div class="charts">${sphereChart(M.nSphere.E, 'nsphere', [{ cls: 'trend', pts: curve(kE(M.iSphere.E), 0.001, 10, 40), tag: [3.5, 0.95, 'uniform'] }])}</div>
-      <p class="hintline">The charge dots thin toward the centre. ${arrowNote(SC.sphere)}</p>`,
+      <p class="hintline">К центру сферы точки, обозначающие заряд, становятся реже. ${arrowNote(SC.sphere)}</p>`,
     cam: { target: [STATIONS.nsphere, Y0, 0], az: -24, el: 16, dist: 16 }, lit: 'nsphere', scene: 'nsphere', look: {},
-    fig: 'Denser toward the surface',
+    fig: 'Плотность заряда растёт к поверхности',
   },
   {
-    kicker: '10.8', title: 'Conductors', sub: 'in equilibrium: the Faraday cage',
+    kicker: '10.8', title: 'Проводники', sub: 'электростатическое равновесие: клетка Фарадея',
     body: `
-      <p class="lede">Once the charges in a conductor stop moving:</p>
+      <p class="lede">Когда заряды в проводнике приходят в равновесие:</p>
       <ol class="rules">
-        <li><i>E</i> = 0 everywhere inside the metal.</li>
-        <li>Any excess charge sits on the surface.</li>
-        <li>Just outside, <b>E</b> is perpendicular to the surface, with <i>E</i> = σ/ε<sub>0</sub>.</li>
-        <li>A hollow inside, with no charge in it, has no field: a <b>Faraday cage</b>.</li>
+        <li><i>E</i> = 0 во всех точках внутри металла.</li>
+        <li>Избыточный заряд находится на поверхности.</li>
+        <li>Сразу за поверхностью <b>E</b> перпендикулярно ей, а <i>E</i> = σ/ε<sub>0</sub>.</li>
+        <li>Внутри полой оболочки без зарядов электрического поля нет: это <b>клетка Фарадея</b>.</li>
       </ol>
-      <p>This uncharged shell sits in a uniform ${f(M.CAGE.E0 / 1000, 1)} kN/C field. Electrons crowd to the left, leaving the right positive; their field cancels <b>E</b><sub>0</sub> inside and bends the lines to meet the surface square-on. (With a current flowing, <i>E</i> in a wire is not zero.)</p>
-      <div class="charts">${chart({ ...R.cage, xlabel: 'x (cm)', ylabel: 'E (kN/C)', label: 'Field along the axis through the shell', vlines: [[-14, '−R'], [14, 'R']],
+      <p>Незаряженная оболочка находится в однородном поле ${f(M.CAGE.E0 / 1000, 1)} кН/Кл. Электроны смещаются влево, оставляя правую сторону положительно заряженной. Созданное ими поле компенсирует <b>E</b><sub>0</sub> внутри металла и искривляет силовые линии так, что у поверхности они становятся перпендикулярными ей. (Если по проводу течёт ток, поле <i>E</i> внутри него не равно нулю.)</p>
+      <div class="charts">${chart({ ...R.cage, xlabel: 'x (см)', ylabel: 'E (кН/Кл)', label: 'Поле вдоль оси оболочки', vlines: [[-14, '−R'], [14, 'R']],
         series: [{ pts: curve(x => M.len(M.cageField([x / 100, 0, 0])) / 1000, -40, 40, 400) }] })}</div>
-      <p class="hintline">Click the shell for a Gaussian surface in the metal. ${arrowNote(SC.cage)}</p>`,
+      <p class="hintline">Нажмите на оболочку, чтобы увидеть гауссову поверхность внутри металла. ${arrowNote(SC.cage)}</p>`,
     cam: { target: [STATIONS.cage, Y0, 0], az: -18, el: 14, dist: 21 }, lit: 'cage', scene: 'cage', look: {},
-    fig: 'No field inside the shell',
+    fig: 'Внутри оболочки поля нет',
   },
 ];
 
