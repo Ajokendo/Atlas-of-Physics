@@ -25,19 +25,19 @@ startBook({
   },
   readout(s, page) {
     switch (page.scene) {
-      case 'mom': return `ball p = ${f(M.BALL.m, 1)} × ${f(M.BALL.v, 1)} = ${f(M.p(M.BALL.m, M.BALL.v))} kg·m/s\ncart p = ${f(M.CART.m, 1)} × ${f(M.CART.v, 1)} = ${f(M.p(M.CART.m, M.CART.v))} kg·m/s`;
-      case 'wall': { const w = M.wall(s.wall.t); return `t ${f(s.wall.t, 3)} s   F ${f(Math.abs(w.F), 1)} N\nv ${f(w.v)} m/s   p ${f(w.p)} kg·m/s`; }
-      case 'eggs': { const a = M.egg(s.eggs.t, M.EGG.tauSoft), b = M.egg(s.eggs.t, M.EGG.tauHard); return `pillow: v ${f(a.v)} m/s   F_net ${f(a.Fnet)} N\nfloor: v ${f(b.v)} m/s   F_net ${f(b.Fnet)} N`; }
+      case 'mom': return `шар: p = ${f(M.BALL.m, 1)} × ${f(M.BALL.v, 1)} = ${f(M.p(M.BALL.m, M.BALL.v))} кг·м/с\nтележка: p = ${f(M.CART.m, 1)} × ${f(M.CART.v, 1)} = ${f(M.p(M.CART.m, M.CART.v))} кг·м/с`;
+      case 'wall': { const w = M.wall(s.wall.t); return `t ${f(s.wall.t, 3)} с   F ${f(Math.abs(w.F), 1)} Н\nv ${f(w.v)} м/с   p ${f(w.p)} кг·м/с`; }
+      case 'eggs': { const a = M.egg(s.eggs.t, M.EGG.tauSoft), b = M.egg(s.eggs.t, M.EGG.tauHard); return `подушка: v ${f(a.v)} м/с   F_рез ${f(a.Fnet)} Н\nпол: v ${f(b.v)} м/с   F_рез ${f(b.Fnet)} Н`; }
       case 'stick': case 'bounce': case 'burst': { const c = { stick: M.STICK, bounce: M.BOUNCE, burst: M.BURST }[page.scene], r = M.track(c, s[page.scene].t);
-        return `p₁ ${f(r.p1, 1)}   p₂ ${f(r.p2, 1)}   P ${f(r.P, 1)} kg·m/s\nKE ${f(r.K)} J`; }
-      case 'pend': { const q = M.pend(s.pend.t); return q.stuck ? `θ ${(q.th * 180 / Math.PI).toFixed(1)}°   KE ${f(q.K)} J   Ug ${f(q.U)} J\nKE + Ug = ${f(q.K + q.U)} J` : `clay: v ${f(M.PEND.u, 1)} m/s   p ${f(M.PEND.m * M.PEND.u)} kg·m/s\nKE ${f(q.K)} J`; }
-      case 'crash': { const q = M.crash(s.crash.t), C = M.CRASH; return q.after ? `together: v′ ${f(C.v)} m/s at ${C.angle.toFixed(1)}°\nP ${Math.round(C.P)} kg·m/s` : `car ${f(C.v1, 0)} m/s east   truck ${f(C.v2, 0)} m/s north\nP ${Math.round(C.P)} kg·m/s`; }
-      case 'shell': { const q = M.shell(s.shell.t); return `t ${f(s.shell.t)} s   x_cm ${f(q.cm[0])} m\n${q.burst ? `halves at ${f(q.a[0])} m and ${f(q.b[0])} m` : 'in one piece'}`; }
+        return `p₁ ${f(r.p1, 1)}   p₂ ${f(r.p2, 1)}   P ${f(r.P, 1)} кг·м/с\nКЭ ${f(r.K)} Дж`; }
+      case 'pend': { const q = M.pend(s.pend.t); return q.stuck ? `θ ${(q.th * 180 / Math.PI).toFixed(1)}°   КЭ ${f(q.K)} Дж   U_g ${f(q.U)} Дж\nКЭ + U_g = ${f(q.K + q.U)} Дж` : `пластилин: v ${f(M.PEND.u, 1)} м/с   p ${f(M.PEND.m * M.PEND.u)} кг·м/с\nКЭ ${f(q.K)} Дж`; }
+      case 'crash': { const q = M.crash(s.crash.t), C = M.CRASH; return q.after ? `после сцепления: v′ ${f(C.v)} м/с под углом ${C.angle.toFixed(1)}°\nP ${Math.round(C.P)} кг·м/с` : `автомобиль ${f(C.v1, 0)} м/с на восток   грузовик ${f(C.v2, 0)} м/с на север\nP ${Math.round(C.P)} кг·м/с`; }
+      case 'shell': { const q = M.shell(s.shell.t); return `t ${f(s.shell.t)} с   x_cm ${f(q.cm[0])} м\n${q.burst ? `половины: ${f(q.a[0])} м и ${f(q.b[0])} м` : 'целый снаряд'}`; }
       case 'rods': { const x = M.ROD.L * Math.min(s.sweep.t / M.SWEEP, 1), q = M.rodPiece('N', 0, x);
-        return `slice at x ${f(x)} m   λ ${f(M.lam('N', x))} kg/m\n∫₀ˣ dm ${f(q.dm)} kg   ∫₀ˣ x dm ${f(q.mx)} kg·m`; }
+        return `срез при x = ${f(x)} м   λ ${f(M.lam('N', x))} кг/м\n∫₀ˣ dm ${f(q.dm)} кг   ∫₀ˣ x dm ${f(q.mx)} кг·м`; }
       case 'plates': { const k = Math.min(s.sweep.t / M.SWEEP, 1), u1 = k * M.TRI.h, u2 = k * M.SEMI.R;
-        return `triangle strip: u ${f(u1)} m   w ${f(M.triW(u1))} m\nsemicircle strip: u ${f(u2)} m   w ${f(M.semiW(u2))} m`; }
-      case 'parts': return `L: centre of mass (${f(M.ELL.cm[0])}, ${f(M.ELL.cm[1])}) m, in the gap\nholed plate: (${f(M.HOLE.cm[0], 3)}, ${f(M.HOLE.cm[1], 3)}) m`;
+        return `полоса треугольника: u ${f(u1)} м   w ${f(M.triW(u1))} м\nполоса полукруга: u ${f(u2)} м   w ${f(M.semiW(u2))} м`; }
+      case 'parts': return `L-образная фигура: центр масс (${f(M.ELL.cm[0])}, ${f(M.ELL.cm[1])}) м, в пустоте\nпластина с отверстием: (${f(M.HOLE.cm[0], 3)}, ${f(M.HOLE.cm[1], 3)}) м`;
     }
     return '';
   },
