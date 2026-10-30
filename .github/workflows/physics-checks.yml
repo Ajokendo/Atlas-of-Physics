@@ -1,0 +1,29 @@
+name: Physics engine checks
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check JavaScript syntax
+        run: |
+          for file in original-engine/engine/*.js original-engine/kinematics/*.js original-engine/newton/*.js; do
+            node --check "$file"
+          done
+      - name: Check kinematics physics invariants
+        run: node original-engine/kinematics/checks.mjs
+      - name: Check Newton laws physics invariants
+        run: node original-engine/newton/checks.mjs
