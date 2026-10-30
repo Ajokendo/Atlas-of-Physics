@@ -50,137 +50,137 @@ const Bp = M.BERN.pts;
 
 export const PAGES = [
   {
-    kicker: 'Chapter 8', title: 'Fluids', sub: 'density',
+    kicker: 'Глава 8', title: 'Жидкости', sub: 'плотность',
     body: `
-      <p class="lede">A <b>fluid</b> is anything that flows: a liquid or a gas. Its molecules are not locked in place, so it takes the shape of its container. We describe it by its <b>density</b>, mass per volume:</p>
+      <p class="lede"><b>Текучая среда</b> — это вещество, способное течь: жидкость или газ. Его молекулы не закреплены в определённых положениях, поэтому оно принимает форму сосуда. Основная характеристика — <b>плотность</b>, то есть масса единицы объёма:</p>
       <div class="eq">ρ = <i>m</i> / <i>V</i></div>
-      <p>These five cubes are all 10 cm on a side, 1.0 L each: the same volume, very different masses, from ${f(M.MATERIALS[0].mass)} kg of cork to ${f(M.MATERIALS[4].mass)} kg of iron. On a graph of mass against volume each material is a straight line whose slope is its density.</p>
-      <p>Density belongs to the material, not the object: cut a cube in half and both <i>m</i> and <i>V</i> halve. An <b>ideal fluid</b> is incompressible (its density never changes) and flows without friction. Water is very nearly one.</p>
-      <div class="charts">${chart({ x0: 0, x1: 1, y0: 0, y1: 3, xlabel: 'volume (L)', ylabel: 'mass (kg): slope = ρ', label: 'Mass against volume for five materials: straight lines whose slope is the density', h: 150,
-        series: M.MATERIALS.map(m => ({ pts: [[0, 0], [Math.min(1, 3 / m.mass), Math.min(m.mass, 3)]], tag: { cork: [0.78, 0.24, 'cork'], ice: [0.62, 0.95, 'ice, water'], water: null, al: [0.66, 1.8, 'aluminium'], iron: [0.4, 2.3, 'iron'] }[m.key] })) })}</div>
-      <p class="hintline">Click the cubes to cut each into eight.</p>`,
+      <p>Все пять кубов имеют ребро 10 см и объём 1,0 л: объём одинаков, но массы сильно различаются — от ${f(M.MATERIALS[0].mass)} кг у пробки до ${f(M.MATERIALS[4].mass)} кг у железа. На графике массы от объёма каждому материалу соответствует прямая, наклон которой равен плотности.</p>
+      <p>Плотность — характеристика материала, а не предмета: если разрезать куб пополам, и <i>m</i>, и <i>V</i> уменьшатся вдвое. <b>Идеальная жидкость</b> несжимаема (её плотность не меняется) и течёт без трения. Плотность воды близка к 1000 кг/м³.</p>
+      <div class="charts">${chart({ x0: 0, x1: 1, y0: 0, y1: 3, xlabel: 'объём (л)', ylabel: 'масса (кг): наклон = ρ', label: 'Зависимость массы от объёма для пяти материалов: наклон прямой равен плотности', h: 150,
+        series: M.MATERIALS.map(m => ({ pts: [[0, 0], [Math.min(1, 3 / m.mass), Math.min(m.mass, 3)]], tag: { cork: [0.78, 0.24, 'пробка'], ice: [0.62, 0.95, 'лёд, вода'], water: null, al: [0.66, 1.8, 'алюминий'], iron: [0.4, 2.3, 'железо'] }[m.key] })) })}</div>
+      <p class="hintline">Нажмите на кубы, чтобы разделить каждый на восемь частей.</p>`,
     cam: { target: at('density', 0, 0.06), az: -14, el: 16, dist: 3.4 }, lit: 'blocks', scene: 'density', look: {},
-    fig: 'Five 1-litre cubes',
+    fig: 'Пять кубов объёмом 1 литр',
   },
   {
-    kicker: '8.1', title: 'Pressure', sub: 'force spread over an area',
+    kicker: '8.1', title: 'Давление', sub: 'сила, распределённая по площади',
     body: `
-      <p class="lede"><b>Pressure</b> is the force pushing straight onto a surface, per area:</p>
+      <p class="lede"><b>Давление</b> — это сила, действующая перпендикулярно поверхности, отнесённая к площади:</p>
       <div class="eq"><i>P</i> = <i>F</i><sub>⊥</sub> / <i>A</i></div>
-      <p>It is a scalar, measured in pascals: 1 Pa = 1 N/m². The same ${M.PERSON.m} kg person (${f(M.PERSON.W, 0)} N) stands on snow twice:</p>
+      <p>Давление — скалярная величина, измеряемая в паскалях: 1 Па = 1 Н/м². Один и тот же человек массой ${M.PERSON.m} кг (вес ${f(M.PERSON.W, 0)} Н) стоит на снегу в двух случаях:</p>
       <table class="data">
-        <tr><th></th><th>area</th><th>pressure</th></tr>
-        <tr><td>shoes</td><td>${f(M.SHOE.A, 3)} m²</td><td>${kPa(M.P_SHOE)}</td></tr>
-        <tr><td>snowshoes</td><td>${f(M.SNOWSHOE.A, 2)} m²</td><td>${kPa(M.P_SNOW, 2)}</td></tr>
+        <tr><th></th><th>площадь</th><th>давление</th></tr>
+        <tr><td>обычная обувь</td><td>${f(M.SHOE.A, 3)} m²</td><td>${kPa(M.P_SHOE)}</td></tr>
+        <tr><td>снегоступы</td><td>${f(M.SNOWSHOE.A, 2)} m²</td><td>${kPa(M.P_SNOW, 2)}</td></tr>
       </table>
-      <p>Eight times the area, one eighth of the pressure, so the snow holds. A nail works the other way: push its 1 cm² head with ${M.NAIL.F} N and its 0.5 mm² tip presses on the wood at ${f(M.NAIL.F / M.NAIL.tip / 1e6, 0)} MPa.</p>
-      <div class="charts">${chart({ x0: 0, x1: 0.5, y0: 0, y1: 30, xlabel: 'contact area (m²)', ylabel: 'P = W/A (kPa)', label: 'Pressure against contact area for the same weight: P falls as 1/A', h: 118,
-        series: [{ pts: sample(A => Math.min(M.PERSON.W / A / 1000, 30), 0.0229, 0.5) }], marks: [[M.SHOE.A, M.P_SHOE / 1000, 'shoes'], [M.SNOWSHOE.A, M.P_SNOW / 1000, 'snowshoes', -40, -10]] })}</div>
-      <p class="hintline">Arrows: the push on the snow, one per 125 cm², ${f(SC.shoeP * 1e5, 1)} cm per kPa. Click to lift the people.</p>`,
+      <p>Площадь снегоступов в восемь раз больше, поэтому давление в восемь раз меньше и человек не проваливается в снег. У гвоздя всё наоборот: если на шляпку площадью 1 см² действует сила ${M.NAIL.F} Н, остриё площадью 0,5 мм² давит на дерево с давлением ${f(M.NAIL.F / M.NAIL.tip / 1e6, 0)} МПа.</p>
+      <div class="charts">${chart({ x0: 0, x1: 0.5, y0: 0, y1: 30, xlabel: 'площадь контакта (м²)', ylabel: 'P = W/A (кПа)', label: 'Давление при одинаковом весе обратно пропорционально площади контакта', h: 118,
+        series: [{ pts: sample(A => Math.min(M.PERSON.W / A / 1000, 30), 0.0229, 0.5) }], marks: [[M.SHOE.A, M.P_SHOE / 1000, 'обувь'], [M.SNOWSHOE.A, M.P_SNOW / 1000, 'снегоступы', -40, -10]] })}</div>
+      <p class="hintline">Стрелки показывают давление на снег (одна на 125 см²). Масштаб: ${f(SC.shoeP * 1e5, 1)} см на кПа. Нажмите, чтобы приподнять людей.</p>`,
     cam: { target: at('pressure', 0, 0.9), az: -18, el: 12, dist: 10.5 }, lit: 'feet', scene: 'pressure', look: {},
-    fig: 'Same weight, more area',
+    fig: 'Одинаковый вес, разная площадь опоры',
   },
   {
-    kicker: '8.2', title: 'Pressure and depth', sub: 'the weight of the water above',
+    kicker: '8.2', title: 'Давление и глубина', sub: 'вес столба воды над точкой',
     body: `
-      <p class="lede">Under water, pressure comes from the weight of the water above. A column of height <i>h</i> and area <i>A</i> weighs ρ<i>Ah g</i>, so it adds ρ<i>gh</i> to the pressure on top:</p>
+      <p class="lede">Под водой давление создаётся весом расположенной выше воды. Столб воды высотой <i>h</i> и площадью основания <i>A</i> имеет вес ρ<i>Ahg</i>, поэтому добавляет к давлению на поверхности величину ρ<i>gh</i>:</p>
       <div class="eq"><i>P</i> = <i>P</i><sub>0</sub> + ρ<i>gh</i></div>
-      <p><i>P</i><sub>0</sub> = ${kPa(M.P0)} is the atmosphere pressing on the surface. <i>P</i> is the <b>absolute</b> pressure; ρ<i>gh</i> alone is the <b>gauge</b> pressure, the part above atmospheric. Every ${f(M.P0 / (M.RHO * M.G), 1)} m of water adds about one more atmosphere: at 10 m the diver feels ${kPa(M.pAt(10), 0)}.</p>
-      <p>At one depth the pressure is the same in every direction, whatever the shape of the water around.</p>
-      <div class="charts">${chart({ x0: 0, x1: 12, y0: 0, y1: 240, xlabel: 'depth h (m)', ylabel: 'pressure (kPa)', cursors: ['depth', 'gauge'], label: 'Absolute and gauge pressure against depth: parallel straight lines', h: 150,
-        series: [{ pts: [[0, M.P0 / 1000], [12, M.pAt(12) / 1000]], tag: [7.4, M.pAt(7.4) / 1000 + 4, 'absolute'] }, { cls: 'trend', pts: [[0, 0], [12, M.gauge(12) / 1000]], tag: [8.6, M.gauge(8.6) / 1000 - 32, 'gauge ρgh'] }] })}</div>
-      <p class="hintline">Arrows ${f(SC.lakeP * 1e5, 1)} cm per kPa. Click the diver to see the column of water above.</p>`,
+      <p><i>P</i><sub>0</sub> = ${kPa(M.P0)} — атмосферное давление на поверхности. <i>P</i> — <b>абсолютное</b> давление, а ρ<i>gh</i> — <b>избыточное</b> давление сверх атмосферного. Каждые ${f(M.P0 / (M.RHO * M.G), 1)} м воды добавляют примерно одну атмосферу: на глубине 10 м давление составляет ${kPa(M.pAt(10), 0)}.</p>
+      <p>На одной и той же глубине давление одинаково во всех направлениях и не зависит от формы окружающего объёма жидкости.</p>
+      <div class="charts">${chart({ x0: 0, x1: 12, y0: 0, y1: 240, xlabel: 'глубина h (м)', ylabel: 'давление (кПа)', cursors: ['depth', 'gauge'], label: 'Абсолютное и избыточное давление в зависимости от глубины: параллельные прямые', h: 150,
+        series: [{ pts: [[0, M.P0 / 1000], [12, M.pAt(12) / 1000]], tag: [7.4, M.pAt(7.4) / 1000 + 4, 'абсолютное'] }, { cls: 'trend', pts: [[0, 0], [12, M.gauge(12) / 1000]], tag: [8.6, M.gauge(8.6) / 1000 - 32, 'избыточное ρgh'] }] })}</div>
+      <p class="hintline">Масштаб стрелок: ${f(SC.lakeP * 1e5, 1)} см на кПа. Нажмите на водолаза, чтобы увидеть столб воды над ним.</p>`,
     cam: { target: at('depth', 0.2, 6.4), az: -12, el: 6, dist: 44 }, lit: 'diver', scene: 'depth', look: {},
-    fig: 'A diver, 1 m to 10 m down',
+    fig: 'Водолаз на глубине от 1 до 10 м',
   },
   {
-    kicker: '8.3', title: 'Pascal’s principle', sub: 'a push felt everywhere',
+    kicker: '8.3', title: 'Закон Паскаля', sub: 'давление передаётся во все стороны',
     body: `
-      <p class="lede">Push on a liquid shut in a container and the extra pressure reaches every part of it, and every wall, undiminished. That is <b>Pascal’s principle</b>.</p>
-      <p>A ${M.PASCAL.F1} N push on the small piston adds Δ<i>P</i> = <i>F</i><sub>1</sub>/<i>A</i><sub>1</sub> = ${kPa(M.PASCAL.dP, 2)} everywhere. Under the large piston, ${f(M.PASCAL.A2 / M.PASCAL.A1, 0)} times the area, the same Δ<i>P</i> gives ${f(M.PASCAL.F2, 0)} N, enough to hold up ${f(M.PASCAL.load, 1)} kg:</p>
+      <p class="lede">Если на жидкость в закрытом сосуде оказать дополнительное давление, оно без изменения передаётся каждой части жидкости и всем стенкам сосуда. Это <b>закон Паскаля</b>.</p>
+      <p>Сила ${M.PASCAL.F1} Н, приложенная к малому поршню, создаёт дополнительное давление Δ<i>P</i> = <i>F</i><sub>1</sub>/<i>A</i><sub>1</sub> = ${kPa(M.PASCAL.dP, 2)}, которое передаётся повсюду. На большом поршне, площадь которого в ${f(M.PASCAL.A2 / M.PASCAL.A1, 0)} раз больше, такое же Δ<i>P</i> создаёт силу ${f(M.PASCAL.F2, 0)} Н — её достаточно, чтобы удержать груз массой ${f(M.PASCAL.load, 1)} кг:</p>
       <div class="eq"><i>F</i><sub>1</sub>/<i>A</i><sub>1</sub> = <i>F</i><sub>2</sub>/<i>A</i><sub>2</sub></div>
-      <p>Nothing is free. Water can’t be squeezed, so the volume pushed down on the left comes up on the right: <i>A</i><sub>1</sub><i>d</i><sub>1</sub> = <i>A</i><sub>2</sub><i>d</i><sub>2</sub>. The big piston moves ${f(M.PASCAL.A2 / M.PASCAL.A1, 0)} times less, so the work in equals the work out, <i>F</i><sub>1</sub><i>d</i><sub>1</sub> = <i>F</i><sub>2</sub><i>d</i><sub>2</sub>.</p>
+      <p>Выигрыш в силе сопровождается проигрышем в расстоянии. Вода несжимаема, поэтому объём, вытесненный вниз слева, поднимается справа: <i>A</i><sub>1</sub><i>d</i><sub>1</sub> = <i>A</i><sub>2</sub><i>d</i><sub>2</sub>. Большой поршень перемещается в ${f(M.PASCAL.A2 / M.PASCAL.A1, 0)} раз меньше, поэтому затраченная работа равна полученной: <i>F</i><sub>1</sub><i>d</i><sub>1</sub> = <i>F</i><sub>2</sub><i>d</i><sub>2</sub>.</p>
       <table class="data">
-        <tr><th></th><th>area</th><th>force</th><th>moves</th></tr>
-        <tr><td>small piston</td><td>${f(M.PASCAL.A1 * 1e4, 0)} cm²</td><td>${M.PASCAL.F1} N</td><td>${f(M.PASCAL.stroke * 100, 0)} cm</td></tr>
-        <tr><td>large piston</td><td>${f(M.PASCAL.A2 * 1e4, 0)} cm²</td><td>${f(M.PASCAL.F2, 0)} N</td><td>${f(M.PASCAL.stroke * 100 * M.PASCAL.A1 / M.PASCAL.A2, 0)} cm</td></tr>
+        <tr><th></th><th>площадь</th><th>сила</th><th>перемещение</th></tr>
+        <tr><td>малый поршень</td><td>${f(M.PASCAL.A1 * 1e4, 0)} cm²</td><td>${M.PASCAL.F1} N</td><td>${f(M.PASCAL.stroke * 100, 0)} cm</td></tr>
+        <tr><td>большой поршень</td><td>${f(M.PASCAL.A2 * 1e4, 0)} cm²</td><td>${f(M.PASCAL.F2, 0)} N</td><td>${f(M.PASCAL.stroke * 100 * M.PASCAL.A1 / M.PASCAL.A2, 0)} cm</td></tr>
       </table>
-      <p class="hintline">Each small arrow is Δ<i>P</i> on one ${f(M.PASCAL.A1 * 1e4, 0)} cm² patch: one under the small piston, sixteen under the large. Click to see Δ<i>P</i> on every wall.</p>`,
+      <p class="hintline">Каждая маленькая стрелка показывает Δ<i>P</i> на участке площадью ${f(M.PASCAL.A1 * 1e4, 0)} см²: одна стрелка под малым поршнем и шестнадцать под большим. Нажмите, чтобы увидеть Δ<i>P</i> на всех стенках.</p>`,
     cam: { target: at('pascal', -0.15, 0.8), az: -18, el: 14, dist: 7.2 }, lit: 'pascal', scene: 'pascal', look: {},
-    fig: 'Same ΔP, sixteen times the area',
+    fig: 'Одинаковое ΔP, площадь больше в 16 раз',
   },
   {
-    kicker: '8.4', title: 'Buoyancy', sub: 'Archimedes’ principle',
+    kicker: '8.4', title: 'Архимедова сила', sub: 'закон Архимеда',
     body: `
-      <p class="lede">Water pushes on every face of a submerged object, and it pushes harder lower down. The sideways pushes cancel; the push up on the bottom beats the push down on the top. The difference is the <b>buoyant force</b>.</p>
-      <p>For a cube of side <i>s</i>: (<i>P</i><sub>bottom</sub> − <i>P</i><sub>top</sub>)<i>s</i>² = ρ<i>gs</i>·<i>s</i>² = ρ<i>Vg</i>, the weight of the water it pushes aside:</p>
+      <p class="lede">Вода давит на каждую грань погружённого тела, причём давление увеличивается с глубиной. Боковые силы компенсируются; сила, действующая снизу вверх, больше силы, действующей сверху вниз. Их разность — <b>выталкивающая сила</b>.</p>
+      <p>Для куба с ребром <i>s</i>: (<i>P</i><sub>bottom</sub> − <i>P</i><sub>top</sub>)<i>s</i>² = ρ<i>gs</i>·<i>s</i>² = ρ<i>Vg</i>, то есть вес вытесненной воды:</p>
       <div class="eq"><i>F</i><sub>b</sub> = ρ<sub>fluid</sub> <i>V</i><sub>displaced</sub> <i>g</i></div>
-      <p>It grows as the cube goes in, then stays at ${f(M.BUOY.Fb, 0)} N however deep. The string holds the rest, the <b>apparent weight</b> <i>T</i> = <i>W</i> − <i>F</i><sub>b</sub> = ${f(M.BUOY.W - M.BUOY.Fb, 0)} N instead of ${f(M.BUOY.W, 0)} N.</p>
-      <div class="charts">${chart({ x0: -0.35, x1: 0.75, y0: 0, y1: 900, xlabel: 'depth of the bottom face (m)', ylabel: 'force (N)', cursors: ['fb', 'T'], label: 'Buoyant force and string tension against how deep the cube is', h: 140, xlabels: ['−0.35', '0.75'],
+      <p>По мере погружения куба выталкивающая сила растёт, а затем остаётся равной ${f(M.BUOY.Fb, 0)} Н независимо от глубины. Остальную нагрузку удерживает нить; <b>кажущийся вес</b> равен <i>T</i> = <i>W</i> − <i>F</i><sub>b</sub> = ${f(M.BUOY.W - M.BUOY.Fb, 0)} Н вместо ${f(M.BUOY.W, 0)} Н.</p>
+      <div class="charts">${chart({ x0: -0.35, x1: 0.75, y0: 0, y1: 900, xlabel: 'глубина нижней грани (м)', ylabel: 'сила (Н)', cursors: ['fb', 'T'], label: 'Выталкивающая сила и натяжение нити в зависимости от глубины куба', h: 140, xlabels: ['−0.35', '0.75'],
         series: [{ pts: sample(d => M.buoy(M.BUOY.L0 - d).Fb, -0.35, 0.75), tag: [0.45, M.BUOY.Fb + 10, 'F_b'] }, { pts: sample(d => M.buoy(M.BUOY.L0 - d).T, -0.35, 0.75), tag: [0.45, M.BUOY.W - M.BUOY.Fb + 10, 'T = W − F_b'] }, { cls: 'trend', pts: [[-0.35, M.BUOY.W], [0.75, M.BUOY.W]], tag: [0.6, M.BUOY.W + 10, 'W'] }] })}</div>
-      <p class="hintline">Gauge pressure, ${f(SC.buoyP * 1e5, 1)} cm per kPa; forces ${f(SC.buoyF * 1000, 1)} mm per N. Click for each face’s total push.</p>`,
+      <p class="hintline">Масштаб избыточного давления: ${f(SC.buoyP * 1e5, 1)} см на кПа; сил: ${f(SC.buoyF * 1000, 1)} мм на Н. Нажмите, чтобы увидеть полную силу на каждой грани.</p>`,
     cam: { target: at('buoy', 0, 0.95), az: -20, el: 8, dist: 6.8 }, lit: 'cube', scene: 'buoy', look: {},
-    fig: `A ${f(M.BUOY.s * 100, 0)} cm aluminium cube on a string`,
+    fig: `Алюминиевый куб с ребром ${f(M.BUOY.s * 100, 0)} см на нити`,
   },
   {
-    kicker: '8.5', title: 'Float or sink', sub: 'compare densities',
+    kicker: '8.5', title: 'Плавание и погружение', sub: 'сравнение плотностей',
     body: `
-      <p class="lede">If an object is less dense than water it sinks only until the water it displaces weighs as much as it does: ρ<sub>fluid</sub><i>V</i><sub>under</sub><i>g</i> = ρ<sub>obj</sub><i>Vg</i>, so</p>
+      <p class="lede">Если плотность тела меньше плотности воды, оно погружается лишь до тех пор, пока вес вытесненной воды не сравняется с его собственным весом: ρ<sub>fluid</sub><i>V</i><sub>under</sub><i>g</i> = ρ<sub>obj</sub><i>Vg</i>, so</p>
       <div class="eq"><i>V</i><sub>under</sub> / <i>V</i> = ρ<sub>obj</sub> / ρ<sub>fluid</sub></div>
       <table class="data">
-        <tr><th></th><th>ρ (kg/m³)</th><th>result</th></tr>
-        <tr><td>wooden block</td><td>${M.WOOD.rho}</td><td>floats, ${f(100 * M.WOOD.draft / M.WOOD.s, 0)}% under</td></tr>
-        <tr><td>ice</td><td>${M.ICE.rho}</td><td>floats, ${f(100 * M.ICE.draft / M.ICE.s, 1)}% under</td></tr>
-        <tr><td>steel ball</td><td>${M.BALL.rho}</td><td>sinks</td></tr>
-        <tr><td>steel ship, average</td><td>${f(M.SHIP.avg, 0)}</td><td>floats, ${f(M.SHIP.draft * 100, 1)} cm deep</td></tr>
+        <tr><th></th><th>ρ (кг/м³)</th><th>результат</th></tr>
+        <tr><td>деревянный брусок</td><td>${M.WOOD.rho}</td><td>плавает, погружён на ${f(100 * M.WOOD.draft / M.WOOD.s, 0)}%</td></tr>
+        <tr><td>лёд</td><td>${M.ICE.rho}</td><td>плавает, погружён на ${f(100 * M.ICE.draft / M.ICE.s, 1)}%</td></tr>
+        <tr><td>стальной шар</td><td>${M.BALL.rho}</td><td>тонет</td></tr>
+        <tr><td>стальной корабль, средняя плотность</td><td>${f(M.SHIP.avg, 0)}</td><td>плавает, осадка ${f(M.SHIP.draft * 100, 1)} см</td></tr>
       </table>
-      <p>An iceberg in sea water is ${f(100 * M.fractionUnder(917, M.RHO_SEA), 0)}% under. The ball’s <i>F</i><sub>b</sub> = ${f(M.BALL.Fb, 0)} N can’t match its ${f(M.BALL.W, 0)} N; the floor pushes up the rest. The ship is steel shaped to hold air.</p>
-      <div class="charts">${chart({ x0: 0, x1: 1.5, y0: 0, y1: 1.15, xlabel: 'ρ_object / ρ_water', ylabel: 'fraction under water', label: 'Fraction submerged against density ratio: equal to it, up to 1, where things sink', h: 104, ylabels: ['', '0'],
-        series: [{ pts: [[0, 0], [1, 1], [1.5, 1]], tag: [1.02, 1.0, 'sinks →'] }], marks: [[M.SHIP.avg / 1000, M.SHIP.avg / 1000, 'ship'], [0.6, 0.6, 'wood'], [0.917, 0.917, 'ice', -26, -8]] })}</div>
-      <p class="hintline">Forces ${f(SC.floatF * 1000, 1)} mm per N. Click to lift out the displaced water.</p>`,
+      <p>В морской воде ${f(100 * M.fractionUnder(917, M.RHO_SEA), 0)}% айсберга находится под водой. Выталкивающая сила <i>F</i><sub>b</sub> = ${f(M.BALL.Fb, 0)} Н для стального шара меньше его веса ${f(M.BALL.W, 0)} Н; остальную силу обеспечивает дно. Корабль сделан из стали, но его корпус содержит большой объём воздуха.</p>
+      <div class="charts">${chart({ x0: 0, x1: 1.5, y0: 0, y1: 1.15, xlabel: 'ρ тела / ρ воды', ylabel: 'доля объёма под водой', label: 'Доля погружённого объёма равна отношению плотностей, но не превышает 1', h: 104, ylabels: ['', '0'],
+        series: [{ pts: [[0, 0], [1, 1], [1.5, 1]], tag: [1.02, 1.0, 'тонет →'] }], marks: [[M.SHIP.avg / 1000, M.SHIP.avg / 1000, 'корабль'], [0.6, 0.6, 'дерево'], [0.917, 0.917, 'лёд', -26, -8]] })}</div>
+      <p class="hintline">Масштаб сил: ${f(SC.floatF * 1000, 1)} мм на Н. Нажмите, чтобы поднять вытесненную воду.</p>`,
     cam: { target: at('float', 0.15, 0.55), az: -10, el: 9, dist: 12.5 }, lit: 'float', scene: 'float', look: {},
-    fig: 'Wood, ice, a steel ball, a steel ship',
+    fig: 'Дерево, лёд, стальной шар и стальной корабль',
   },
   {
-    kicker: '8.6', title: 'Continuity', sub: 'what goes in comes out',
+    kicker: '8.6', title: 'Уравнение непрерывности', sub: 'сколько входит, столько выходит',
     body: `
-      <p class="lede">Water can’t be squeezed and the pipe doesn’t leak, so every second the same volume passes every cross-section. That is the <b>volume flow rate</b>, <i>Q</i> = <i>Av</i>:</p>
+      <p class="lede">Вода практически несжимаема, а труба не имеет утечек, поэтому за каждую секунду через любое поперечное сечение проходит одинаковый объём. Это <b>объёмный расход</b>: <i>Q</i> = <i>Av</i>.</p>
       <div class="eq"><i>A</i><sub>1</sub><i>v</i><sub>1</sub> = <i>A</i><sub>2</sub><i>v</i><sub>2</sub></div>
-      <p>The pipe narrows to half the radius, a quarter of the area, so the water speeds up four times: from ${f(M.FLOW.v1, 1)} m/s to ${f(M.FLOW.v2, 1)} m/s. <i>Q</i> = ${f(M.FLOW.Q * 1000, 0)} L/s everywhere.</p>
-      <p>Follow the dark slice of water: in the wide part it is short and fat; in the narrow part the same volume is long and thin. A thumb over a hose does the same thing.</p>
-      <div class="charts">${chart({ x0: 0, x1: 0.3, y0: 0, y1: 3, xlabel: 'cross-section area A (m²)', ylabel: 'speed v = Q/A (m/s)', cursors: ['flow'], label: 'Speed against cross-section area: v falls as 1/A', h: 150,
+      <p>Радиус трубы уменьшается вдвое, а площадь сечения — в четыре раза, поэтому скорость воды возрастает в четыре раза: с ${f(M.FLOW.v1, 1)} до ${f(M.FLOW.v2, 1)} м/с. Объёмный расход <i>Q</i> = ${f(M.FLOW.Q * 1000, 0)} л/с одинаков везде.</p>
+      <p>Следите за тёмным объёмом воды: в широкой части трубы он короткий и широкий, а в узкой — длинный и тонкий. То же происходит, если частично закрыть отверстие шланга пальцем.</p>
+      <div class="charts">${chart({ x0: 0, x1: 0.3, y0: 0, y1: 3, xlabel: 'площадь сечения A (м²)', ylabel: 'скорость v = Q/A (м/с)', cursors: ['flow'], label: 'Скорость обратно пропорциональна площади сечения', h: 150,
         series: [{ pts: sample(A => Math.min(M.FLOW.Q / A, 3), M.FLOW.Q / 3, 0.3) }], marks: [[M.FLOW.A1, M.FLOW.v1, 'A₁', -6, -10], [M.FLOW.A2, M.FLOW.v2, 'A₂']] })}</div>
-      <p class="hintline">Velocity ${f(SC.flowV * 100, 0)} cm per m/s. Click the pipe to pull out its two cross-sections.</p>`,
+      <p class="hintline">Масштаб скорости: ${f(SC.flowV * 100, 0)} см на м/с. Нажмите на трубу, чтобы выделить два поперечных сечения.</p>`,
     cam: { target: at('continuity', 0, PY6 + 0.1), az: -12, el: 14, dist: 14 }, lit: 'pipe', scene: 'continuity', look: {},
-    fig: 'Quarter the area, four times the speed',
+    fig: 'Площадь в 4 раза меньше, скорость в 4 раза больше',
   },
   {
-    kicker: '8.7', title: 'Bernoulli', sub: 'energy conservation for a fluid',
+    kicker: '8.7', title: 'Уравнение Бернулли', sub: 'закон сохранения энергии для жидкости',
     body: `
-      <p class="lede">Follow a bit of water along the pipe. Where it speeds up, something has to push it forward: the pressure behind it must be higher than ahead. So <b>fast flow means low pressure</b>.</p>
-      <p>Energy per volume is conserved along the flow (ideal fluid, steady flow):</p>
+      <p class="lede">Проследим за частицей воды в трубе. Там, где поток ускоряется, должна действовать сила, толкающая его вперёд: давление позади частицы выше, чем впереди. Поэтому <b>быстрому течению соответствует низкое давление</b>.</p>
+      <p>Для идеальной жидкости при установившемся течении сохраняется сумма энергий в единице объёма:</p>
       <div class="eq"><i>P</i> + ½ρ<i>v</i>² + ρ<i>gy</i> = constant</div>
       <table class="data">
-        <tr><th></th><th><i>v</i></th><th><i>y</i></th><th><i>P</i> (gauge)</th></tr>
-        ${Bp.map((p, k) => `<tr><td>${k + 1} ${['wide, low', 'narrow, low', 'wide, high'][k]}</td><td>${f(p.v, 1)} m/s</td><td>${f(p.y, 1)} m</td><td>${kPa(p.P)}</td></tr>`).join('')}
+        <tr><th></th><th><i>v</i></th><th><i>y</i></th><th><i>P</i> (избыточное)</th></tr>
+        ${Bp.map((p, k) => `<tr><td>${k + 1} ${['широкое, низко', 'узкое, низко', 'широкое, высоко'][k]}</td><td>${f(p.v, 1)} м/с</td><td>${f(p.y, 1)} м</td><td>${kPa(p.P)}</td></tr>`).join('')}
       </table>
       <div class="charts">${bernBars()}</div>
-      <p class="hintline">Half speed. Pressure ${f(SC.bernP * 1e5, 1)} cm per kPa. Click to stand the bars beside the pipe.</p>`,
+      <p class="hintline">Скорость анимации уменьшена вдвое. Масштаб давления: ${f(SC.bernP * 1e5, 1)} см на кПа. Нажмите, чтобы расположить столбцы рядом с трубой.</p>`,
     cam: { target: at('bernoulli', 0.8, PY7 + 0.6), az: -12, el: 10, dist: 24.5 }, lit: 'bernoulli', scene: 'bernoulli', look: {},
-    fig: 'Fast where narrow, slow where high',
+    fig: 'Быстро в узком сечении, медленно на высоте',
   },
   {
-    kicker: '8.8', title: 'Torricelli’s law', sub: 'a jet from a hole',
+    kicker: '8.8', title: 'Закон Торричелли', sub: 'струя из отверстия',
     body: `
-      <p class="lede">Water leaves a hole <i>h</i> below the surface. Apply Bernoulli from the open surface (atmospheric, nearly still) to the jet (atmospheric again): the pressure terms cancel, leaving ρ<i>gh</i> = ½ρ<i>v</i>², so</p>
+      <p class="lede">Вода вытекает из отверстия, расположенного на глубине <i>h</i> под поверхностью. Применим уравнение Бернулли между открытой поверхностью (атмосферное давление, скорость почти нулевая) и струёй (также атмосферное давление). Члены с давлением сокращаются, и остаётся ρ<i>gh</i> = ½ρ<i>v</i>², откуда</p>
       <div class="eq"><i>v</i> = √(2<i>gh</i>)</div>
-      <p>The same speed as a drop falling freely through <i>h</i>. Here <i>h</i> starts at ${f(M.TANK.h0, 1)} m, so <i>v</i> = ${f(M.torricelli(M.TANK.h0))} m/s. As the tank drains, <i>h</i> and <i>v</i> fall together.</p>
-      <p>Once out, every drop is a projectile: <i>v</i> across, falling ${f(M.TANK.yh, 2)} m in ${f(M.jetFlight, 3)} s. Its range is <i>v t</i> = 2√(<i>h y</i><sub>hole</sub>), ${f(M.jetRange(M.TANK.h0))} m when full.</p>
-      <div class="charts">${chart({ x0: 0, x1: 1.2, y0: 0, y1: 5, xlabel: 'water height above the hole h (m)', ylabel: 'jet speed v (m/s)', cursors: ['tank'], label: 'Jet speed against water height: the square root of 2gh', h: 150,
+      <p>Это та же скорость, которую приобрела бы капля при свободном падении с высоты <i>h</i>. Вначале <i>h</i> = ${f(M.TANK.h0, 1)} м, поэтому <i>v</i> = ${f(M.torricelli(M.TANK.h0))} м/с. По мере опустошения бака <i>h</i> и <i>v</i> уменьшаются.</p>
+      <p>Вылетев из отверстия, каждая капля движется как брошенное тело: горизонтальная скорость равна <i>v</i>, а вертикально капля падает на ${f(M.TANK.yh, 2)} м за ${f(M.jetFlight, 3)} с. Дальность полёта равна <i>v t</i> = 2√(<i>h y</i><sub>hole</sub>) и составляет ${f(M.jetRange(M.TANK.h0))} м при полном баке.</p>
+      <div class="charts">${chart({ x0: 0, x1: 1.2, y0: 0, y1: 5, xlabel: 'высота воды над отверстием h (м)', ylabel: 'скорость струи v (м/с)', cursors: ['tank'], label: 'Скорость струи пропорциональна квадратному корню из 2gh', h: 150,
         series: [{ pts: sample(h => M.torricelli(h), 0, 1.2) }] })}</div>
-      <p class="hintline">Velocity ${f(SC.jetV * 100, 0)} cm per m/s. Click the tank to split a drop’s velocity.</p>`,
+      <p class="hintline">Масштаб скорости: ${f(SC.jetV * 100, 0)} см на м/с. Нажмите на бак, чтобы разложить скорость капли на составляющие.</p>`,
     cam: { target: at('torricelli', -0.05, 1.15), az: -14, el: 10, dist: 10 }, lit: 'tank', scene: 'torricelli', look: {},
-    fig: 'A tank draining through a hole',
+    fig: 'Бак, из которого вытекает вода',
   },
 ];
 
