@@ -70,7 +70,7 @@ function init(root){
    case "oscillation":{const A=.1+.9*p,T=2;val=A*Math.cos(2*Math.PI*t/T);label="смещение, м";formula="x(t) = A cos(2πt/T), A = "+fmt(A)+" м";series=sample(t=>A*Math.cos(2*Math.PI*t/T));break;}
    case "rotation":{const I=.1+1.9*p,tau=2;val=tau/I;label="угловое ускорение, рад/с²";formula="α = τ / I = 2 / "+fmt(I);series=sample(t=>.5*val*(t/4)**2);break;}
    case "fluid":{const h=.2+4.8*p;val=1000*9.81*h;label="гидростатическое давление, Па";formula="p = ρgh = 1000 · 9,81 · "+fmt(h);series=sample(t=>1000*9.81*h*t/4);break;}
-   case "charges":{const q=1+9*p;val=8.99e9*q;label="напряжённость при r = 1 м, Н/Кл";formula="E = kq/r², q = "+fmt(q)+" нКл";series=sample(t=>val/(1+t));break;}
+   case "charges":{const q=1+9*p;val=8.99*q;label="напряжённость при r = 1 м, Н/Кл";formula="E = kq/r², q = "+fmt(q)+" нКл";series=sample(t=>val/(1+t));break;}
    case "gauss":{const q=1+9*p;val=q*1e-9/8.854e-12;label="поток поля, Н·м²/Кл";formula="Φ = q / ε₀, q = "+fmt(q)+" нКл";series=sample(t=>val);break;}
    case "potential":{const r=.2+4.8*p;val=8.99/r;label="потенциал при q = 1 нКл, В";formula="V = kq/r = 8,99 / "+fmt(r);series=sample(t=>8.99/(r+.5*t));break;}
    case "capacitor":{const C=1+9*p,V=12;val=C*V;label="заряд, мкКл";formula="Q = CV = "+fmt(C)+" · 12";series=sample(t=>val*(1-Math.exp(-t*1.3)));break;}
@@ -78,7 +78,7 @@ function init(root){
    case "magnet":{const B=.1+1.9*p;val=2*B;label="сила Лоренца, Н (q = 1 Кл)";formula="F = qvB = 1 · 2 · "+fmt(B);series=sample(t=>val*Math.sin(t*1.5));break;}
    case "induction":{const d=.01+.19*p;val=d/.1;label="ЭДС индукции, В";formula="|ε| = |ΔΦ| / Δt = "+fmt(d)+" / 0,1";series=sample(t=>val*Math.sin(t*1.6));break;}
   }
-  valueOut.textContent=fmt(val,Math.abs(val)>=100?0:2)+" "+(cfg.kind==="gauss"?"×10⁻³": "");
+  valueOut.textContent=fmt(val,Math.abs(val)>=100?0:2);
   labelOut.textContent=label;formulaOut.textContent=formula;
   if(pctx){const w=plot.clientWidth||320,h=plot.clientHeight||112;plot.width=w*devicePixelRatio;plot.height=h*devicePixelRatio;pctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);pctx.clearRect(0,0,w,h);pctx.strokeStyle="#deded8";pctx.lineWidth=1;for(let j=1;j<4;j++){pctx.beginPath();pctx.moveTo(24,j*h/4);pctx.lineTo(w-5,j*h/4);pctx.stroke();}const max=Math.max(...series.map(Math.abs),1e-9);pctx.strokeStyle="#d95b43";pctx.lineWidth=2;pctx.beginPath();series.forEach((v,i)=>{const x=24+i/60*(w-30),y=h/2-v/max*(h*.38);i?pctx.lineTo(x,y):pctx.moveTo(x,y)});pctx.stroke();pctx.fillStyle="#888";pctx.font="9px monospace";pctx.fillText("t",w-12,h-5);pctx.fillText("0",5,h-5);}
  };
