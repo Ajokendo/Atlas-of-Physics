@@ -274,3 +274,11 @@ The score should increase only when evidence for the relevant checklist items is
 - Added the Ministry-attributed field-patrol record reported by Kabar on 14 October 2026: snow leopard, argali and ibex were observed in mountainous Issyk-Kul Region. The chapter labels this as a dated occurrence record and explicitly does not treat it as an abundance or density estimate.
 - Added bilingual source annotations and regression checks for the new species evidence. No national population total or oblast-wide range claim was inferred from the event report.
 - This is a targeted source update, not a completed expert review of all regional taxa. The working editorial readiness score remains 70/100 pending wider claim-level source mapping, independent bilingual editing and live accessibility/browser QA.
+
+
+## Naryn regional fauna evidence update — 1 November 2026
+- Added two official 2026 records: Ministry-reported camera-trap detections of brown bear and snow leopard in Naryn State Nature Reserve (2 September), and a regional patrol video of snow leopard and ibex from an unnamed valley in Naryn Region (30 September).
+- Explicitly distinguished the Naryn Reserve camera-trap records from the unnamed-valley regional patrol footage; the latter is not assigned to the reserve because the source does not identify its locality.
+- Clarified that the September camera-trap notice confirms detections but does not publish individual counts, sampling effort or density estimates.
+- Corrected the mixed-script spelling of the protected-area name to the official Russian form «Каратал-Жапырык» and expanded the bilingual regional introduction.
+- The regional audit remains in progress. No new population estimate was inferred from either notice; editorial readiness remains 70/100 pending claim-level review of all seven oblast dossiers, broader scientific source mapping, independent bilingual editing and live browser/accessibility QA.
