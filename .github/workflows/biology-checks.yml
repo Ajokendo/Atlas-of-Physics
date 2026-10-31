@@ -1,0 +1,40 @@
+name: Biology atlas checks
+
+on:
+  pull_request:
+    paths:
+      - "biology/**"
+      - ".github/workflows/biology-checks.yml"
+      - "portal.html"
+  push:
+    branches: [main]
+    paths:
+      - "biology/**"
+      - ".github/workflows/biology-checks.yml"
+      - "portal.html"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validate Biology pages, local links and scripts
+        run: node biology/checks.mjs
+      - name: Install Chromium for browser smoke tests
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Start local site server
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/atlas-http.log 2>&1 &
+      - name: Test every Biology page in Chromium
+        run: node biology/browser-smoke.mjs
