@@ -198,4 +198,5 @@ GitHub Pages deployment completed successfully for main commit `39fc80c4f03dd247
 - Added bilingual selected-reference sections to all ten global foundation chapters: Botany, Zoology, Cell Biology, Anatomy and Physiology, Genetics, Microbiology, Ecology, Evolutionary Biology, Biochemistry, and Systematics.
 - The selected references point to topic-matched OpenStax Biology, Microbiology and Anatomy & Physiology materials, plus the NCBI Taxonomy resource for nomenclature and lineage checks. Links were checked on 31 October 2026.
 - The regional Flora and Fauna of Kyrgyzstan chapters were not changed in this pass; their existing source dossiers remain in place.
+- Extended `checks.mjs` so the ten global foundation chapters must each contain a bilingual selected-references section with at least two external source links; the source-section rule was also checked against all ten current pages.
 - This is a bibliography and traceability improvement, not a claim that every individual scientific statement has completed line-by-line peer review. Claim-level source mapping, terminology review and independent bilingual proofreading remain part of the next editorial stage.
