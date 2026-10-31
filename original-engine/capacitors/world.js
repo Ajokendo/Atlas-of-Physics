@@ -239,14 +239,14 @@ export function buildWorld(E) {
     return gap;
   }
   // series, on the left
-  const xs = X5 - 2.2, gS = asm('последовательно', root, { title: 'Последовательное соединение', sub: 'одинаковый заряд Q, напряжение делится' });
+  const xs = X5 - 2.2, gS = asm('series', root, { title: 'Последовательное соединение', sub: 'одинаковый заряд Q, напряжение делится' });
   battery(gS, V(xs, by5, 0), 0.7, 0.12);
   smallCap(gS, xs - 0.6, ty5, M.CIRC.C1, M.SER.Q1, 'C₁ = 2 мкФ'); smallCap(gS, xs + 0.6, ty5, M.CIRC.C2, M.SER.Q2, 'C₂ = 4 мкФ');
   wire(gS, [V(xs - 0.38, by5, 0), V(xs - 1.4, by5, 0), V(xs - 1.4, ty5, 0), V(xs - 0.71, ty5, 0)]);
   wire(gS, [V(xs - 0.49, ty5, 0), V(xs + 0.49, ty5, 0)], 'Нейтральный узел между конденсаторами');
   wire(gS, [V(xs + 0.71, ty5, 0), V(xs + 1.4, ty5, 0), V(xs + 1.4, by5, 0), V(xs + 0.35, by5, 0)]);
   // parallel, on the right
-  const xp = X5 + 2.2, gP = asm('параллельно', root, { title: 'Параллельное соединение', sub: 'одинаковое напряжение, заряд делится' });
+  const xp = X5 + 2.2, gP = asm('parallel', root, { title: 'Параллельное соединение', sub: 'одинаковое напряжение, заряд делится' });
   const my5 = 1.6;
   battery(gP, V(xp, by5, 0), 0.7, 0.12);
   smallCap(gP, xp, ty5, M.CIRC.C1, M.PAR.Q1, 'C₁ = 2 мкФ'); smallCap(gP, xp, my5, M.CIRC.C2, M.PAR.Q2, 'C₂ = 4 мкФ');
