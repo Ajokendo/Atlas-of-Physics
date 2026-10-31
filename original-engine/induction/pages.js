@@ -54,7 +54,7 @@ const two = (l, r, o) => `<div class="charts">${chart({ L: R[l], Rt: R[r], curso
 // Lenz's four cases, from the model at mid-run
 const lenzRows = M.CASES.map(c => {
   const r = M.lenzCase(c, M.LENZ.run * 0.6), Bdir = r.Bx < 0 ? '←' : '→', grows = c.move === 'in';
-  return `<tr><td>${c.name}</td><td>${Bdir} ${grows ? 'growing' : 'shrinking'}</td><td>${f(r.emf * 1e6, 1)} µV</td><td>${r.emf > 0 ? '←' : '→'}</td></tr>`;
+  return `<tr><td>${c.name}</td><td>${Bdir} ${grows ? 'увеличивается' : 'уменьшается'}</td><td>${f(r.emf * 1e6, 1)} µV</td><td>${r.emf > 0 ? '←' : '→'}</td></tr>`;
 }).join('');
 const steps = rows => `<table class="data eqs">${rows.map(([e, n]) => `<tr><td>${e}</td><td>${n}</td></tr>`).join('')}</table>`;
 
@@ -126,7 +126,7 @@ export const PAGES = [
         <tr><td>ε = <i>BLv</i></td><td>${f(M.BAR.emf, 2)} В</td></tr>
       </table>
       <p>Цепь не замкнута, поэтому после разделения зарядов <b>ток не течёт</b>. Когда стержень останавливается, заряды снова распределяются равномерно.</p>
-      <p class="hintline">Нажмите на стержень, чтобы увидеть две силы, действующие на один заряд. 1 м = 4 клетки; ${sq('0.25 V/m')}.</p>`,
+      <p class="hintline">Нажмите на стержень, чтобы увидеть две силы, действующие на один заряд. 1 м = 4 клетки; ${sq('0,25 В/м')}.</p>`,
     cam: { target: [ST.bar, 1.75, 0], az: 8, el: 6, dist: 15 }, lit: 'bar', scene: 'bar', look: {},
     fig: 'Стержень движется со скоростью 0,5 м/с в поле 0,4 Тл',
   },
@@ -153,14 +153,14 @@ export const PAGES = [
       <p class="lede">Рельсы, соединённые резистором, замыкают электрическую цепь. Стержню сообщают начальную скорость ${M.RAIL.v0} м/с, после чего его отпускают.</p>
       ${steps([
         ['Φ = <i>BLx</i>, &nbsp;ε = <i>BLv</i>, &nbsp;<i>I</i> = <i>BLv</i>/<i>R</i>', 'counterclockwise'],
-        ['<i>F</i> = <i>ILB</i> = <i>B</i><sup>2</sup><i>L</i><sup>2</sup><i>v</i>/<i>R</i>', 'backward'],
+        ['<i>F</i> = <i>ILB</i> = <i>B</i><sup>2</sup><i>L</i><sup>2</sup><i>v</i>/<i>R</i>', 'назад'],
         ['<i>v</i> = <i>v</i><sub>0</sub><i>e</i><sup>−<i>t</i>/τ</sup>, &nbsp;τ = <i>mR</i>/<i>B</i><sup>2</sup><i>L</i><sup>2</sup>', `${f(M.RAIL.tau, 1)} s`],
       ])}
       <p>Сила торможения растёт со скоростью, поэтому стержень замедляется экспоненциально и проходит по инерции ещё ${f(M.RAIL.v0 * M.RAIL.tau * 100, 0)} см. Мощность торможения <i>Fv</i> в точности равна <i>I</i><sup>2</sup><i>R</i>: вся кинетическая энергия ${f(0.5 * M.RAIL.m * M.RAIL.v0 ** 2 * 1e3, 0)} мДж превращается в тепло.</p>
       ${two('v', 'pw', { xlabel: 't (с)', ylabel: 'v (м/с)', rlabel: 'P = I²R (Вт)', label: 'Скорость стержня и рассеиваемая мощность в зависимости от времени; заштрихованная площадь — выделившееся тепло',
         under: `<path data-area="pw" style="fill:#e4e4e8"/>`, series: [{ pts: samples(100, 0, 5, t => M.railScene(t).v) }, { r: 1, pts: samples(100, 0, 5, t => M.railScene(t).P) }], marks: [[M.RAIL.tau, M.RAIL.v0 / Math.E, 'v₀/e при τ']] })}
       <p class="live" id="raillive"></p>
-      <p class="hintline">Нажмите на электрическую цепь. ${sq('2 A')}, or 0.25 N.</p>`,
+      <p class="hintline">Нажмите на электрическую цепь. ${sq('2 А')}, или 0,25 Н.</p>`,
     cam: { target: [ST.rails, 1.7, 0], az: 6, el: 7, dist: 15.5 }, lit: 'rails', scene: 'rails', look: {},
     fig: 'Торможение собственным индуцированным током',
   },
@@ -169,7 +169,7 @@ export const PAGES = [
     body: `
       <p class="lede">Ток в катушке создаёт магнитный поток через её собственные витки. При изменении тока меняется и поток, в результате чего возникает <b>ЭДС самоиндукции</b>, препятствующая этому изменению.</p>
       ${steps([
-        ['<i>L</i> = <i>N</i>Φ/<i>I</i>, &nbsp;ε<sub><i>L</i></sub> = −<i>L dI</i>/<i>dt</i>', 'henries, H'],
+        ['<i>L</i> = <i>N</i>Φ/<i>I</i>, &nbsp;ε<sub><i>L</i></sub> = −<i>L dI</i>/<i>dt</i>', 'генри, Гн'],
         ['<i>B</i> = μ<sub>0</sub><i>nI</i> → <i>L</i> = μ<sub>0</sub><i>N</i><sup>2</sup><i>A</i>/ℓ', `${f(M.SOL.L * 1e3, 2)} мГн`],
         ['<i>U</i> = ½<i>LI</i><sup>2</sup>, &nbsp;<i>u</i> = <i>B</i><sup>2</sup>/2μ<sub>0</sub>', 'stored'],
       ])}
@@ -198,7 +198,7 @@ export const PAGES = [
     body: `
       <p class="lede">Зарядим конденсатор ёмкостью ${f(M.LC.C * 1e6, 0)} мкФ до заряда ${f(M.LC.Q * 1e6, 0)} мкКл и подключим его к катушке индуктивностью ${f(M.LC.L * 1e3, 0)} мГн. Заряд начинает проходить через катушку, затем перезаряжает обкладки в противоположном направлении и возвращается обратно.</p>
       ${steps([
-        ['<i>q</i>/<i>C</i> + <i>L dI</i>/<i>dt</i> = 0', 'loop rule'],
+        ['<i>q</i>/<i>C</i> + <i>L dI</i>/<i>dt</i> = 0', 'правило Кирхгофа'],
         ['<i>L d</i><sup>2</sup><i>q</i>/<i>dt</i><sup>2</sup> + <i>q</i>/<i>C</i> = 0', '<i>I</i> = <i>dq</i>/<i>dt</i>'],
         ['<i>q</i> = <i>Q</i> cos ω<i>t</i>, &nbsp;<i>I</i> = −ω<i>Q</i> sin ω<i>t</i>', `ω = 1/√(<i>LC</i>) = ${f(M.LC.w, 0)} rad/s`],
       ])}
