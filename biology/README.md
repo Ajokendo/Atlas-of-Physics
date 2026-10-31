@@ -269,7 +269,7 @@ The score should increase only when evidence for the relevant checklist items is
 
 
 ## Snow leopard evidence update — 1 November 2026
-- Added the 2026 national status assessment of the snow leopard (*Panthera uncia*) in Kyrgyzstan to the regional fauna evidence base. The peer-reviewed contribution summarises the proposed national IUCN range map, drawing on camera trapping, field surveys and community information across the Tien Shan and Pamir–Alai.
+- Added the 2026 national status assessment of the snow leopard (*Panthera uncia*) in Kyrgyzstan to the regional fauna evidence base. The published 2026 scientific contribution summarises the proposed national IUCN range map, drawing on camera trapping, field surveys and community information across the Tien Shan and Pamir–Alai.
 - Updated the western Tien Shan species profile to distinguish this nationwide evidence synthesis from proof of occurrence at a specific locality.
 - Added the Ministry-attributed field-patrol record reported by Kabar on 14 October 2026: snow leopard, argali and ibex were observed in mountainous Issyk-Kul Region. The chapter labels this as a dated occurrence record and explicitly does not treat it as an abundance or density estimate.
 - Added bilingual source annotations and regression checks for the new species evidence. No national population total or oblast-wide range claim was inferred from the event report.
