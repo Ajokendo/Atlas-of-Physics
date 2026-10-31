@@ -31,11 +31,12 @@ Third subject area of the unified **Atlas of Knowledge** portal.
 - Botany now includes a bilingual chloroplast diagram and an interactive photosynthesis model. Learners can toggle light, water and carbon dioxide availability and observe how limiting inputs affect the process.
 - The botany chapter includes the overall oxygenic photosynthesis equation and distinguishes light-dependent reactions in thylakoid membranes from the Calvin cycle in the stroma.
 - Genetics includes an interactive DNA complementary base-pairing module (A–T and G–C).
+- Zoology includes an interactive bilingual explorer for fish, amphibians, reptiles, birds and mammals, comparing body covering, respiration and reproduction while noting group-level exceptions.
 
 ## Next development stages
 1. Scientific review and expansion of chapter content with references and terminology.
 2. Expand original botanical, zoological, anatomy, DNA and ecology illustrations.
-3. Interactive models: plant transport, animal classification, genetics and ecosystems.
+3. Interactive models: plant transport, deeper animal classification, genetics and ecosystems.
 4. Larger question banks, chapter progress and review activities.
 5. Responsive and cross-browser testing, accessibility review and link validation.
 6. Integrate the Biology section into the unified portal release after Physics and Chemistry are ready.
