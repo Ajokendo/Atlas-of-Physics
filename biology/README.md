@@ -230,3 +230,10 @@ The score should increase only when evidence for the relevant checklist items is
 - These are targeted scientific and interaction corrections, not a completed expert review of the three chapters. Live browser, keyboard and assistive-technology testing remains outstanding.
 
 - Extended `biology/checks.mjs` with regression assertions for the ecology builder's ordered trophic choices, bilingual button labels and accessible live feedback, plus the biochemistry enzyme-equilibrium and cellular ATP ΔG qualifications.
+
+
+## Language-state and interaction review — Botany and Genetics — 31 October 2026
+- Botany: language switching now refreshes the selected organ explanation, photosynthesis-condition feedback and all condition-button labels while preserving the selected on/off state. The organ selector exposes its current selection through `aria-pressed` and returns to a translated prompt when no organ is selected.
+- Genetics: the mutation explorer now retains the selected mutation across language changes, translates its explanation and control labels, and restores a translated introductory explanation when no mutation has been selected.
+- The review also checked the active interactive outputs in Zoology, Anatomy & Physiology, Microbiology, Evolution and Systematics; their language-change handlers refresh the currently selected model output.
+- This was a targeted interaction and wording pass. It does not replace full browser, keyboard-only and screen-reader testing.
