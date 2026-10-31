@@ -60,46 +60,46 @@ const steps = rows => `<table class="data eqs">${rows.map(([e, n]) => `<tr><td>$
 
 export const PAGES = [
   {
-    kicker: 'Chapter 15', title: 'Induction', sub: 'changing flux makes an emf',
+    kicker: 'Глава 15', title: 'Электромагнитная индукция', sub: 'изменение магнитного потока создаёт ЭДС',
     body: `
       <p class="lede">Currents make magnetic fields. Faraday found the reverse: a <b>changing</b> magnetic flux through a loop drives a current around it.</p>
       <div class="eq">Φ<sub><i>B</i></sub> = ∫<i>B</i>·<i>dA</i> &nbsp;&nbsp; ε = −<i>d</i>Φ<sub><i>B</i></sub>/<i>dt</i></div>
-      <p>Flux is the field summed over a surface spanning the loop, in webers (T·m²); <i>N</i> turns give ε = −<i>N d</i>Φ/<i>dt</i>. The emf is ∮<i>E</i>·<i>ds</i> of an <b>induced electric field</b> that has no start or end: it is not conservative. Here a magnet comes to a loop and leaves; ε is the negative slope of Φ.</p>
-      ${two('phi0', 'emf0', { xlabel: 't (s)', ylabel: 'Φ (µWb)', rlabel: 'ε (µV)', label: 'Flux through the loop and the emf, against time',
+      <p>Магнитный поток — это интеграл магнитного поля по поверхности, натянутой на контур; измеряется в веберах (Тл·м²). Для катушки с <i>N</i> витками ε = −<i>N d</i>Φ/<i>dt</i>. ЭДС равна циркуляции ∮<i>E</i>·<i>ds</i> <b>индуцированного электрического поля</b>, линии которого замкнуты; такое поле не является потенциальным. Здесь магнит приближается к контуру и удаляется от него, а ЭДС равна отрицательному наклону графика Φ.</p>
+      ${two('phi0', 'emf0', { xlabel: 't (с)', ylabel: 'Φ (мкВб)', rlabel: 'ε (мкВ)', label: 'Магнитный поток через контур и ЭДС в зависимости от времени',
         series: [{ pts: samples(160, 0, 6, t => M.fluxScene(t).Phi * 1e6) }, { r: 1, pts: samples(160, 0, 6, t => M.fluxScene(t).emf * 1e6) }] })}
       <p class="hintline">Click the loop for B·dA patch by patch. 1 m = 10 squares; ${sq('5 mA')}.</p>`,
     cam: { target: [ST.flux + 1.0, 1.7, 0], az: 30, el: 12, dist: 13 }, lit: 'flux', scene: 'flux', look: {},
-    fig: 'A magnet in and out of a loop',
+    fig: 'Магнит входит в контур и выходит из него',
   },
   {
-    kicker: '15.1', title: 'Lenz’s law', sub: 'the current opposes the change',
+    kicker: '15.1', title: 'Правило Ленца', sub: 'индуцированный ток противодействует изменению',
     body: `
       <p class="lede">The minus sign: the induced current makes a field <i>B</i><sub>ind</sub> that <b>opposes the change</b> in flux, not the flux itself.</p>
       <table class="data"><tr><th>case</th><th>B at the loop</th><th>ε</th><th>B<sub>ind</sub></th></tr>${lenzRows}</table>
       <ul class="rules">
-        <li>flux growing: <i>B</i><sub>ind</sub> points against <i>B</i>;</li>
-        <li>flux shrinking: <i>B</i><sub>ind</sub> points with <i>B</i>;</li>
-        <li>the right-hand rule turns <i>B</i><sub>ind</sub> into <i>I</i>.</li>
+        <li>поток увеличивается: <i>B</i><sub>ind</sub> направлено против <i>B</i>;</li>
+        <li>поток уменьшается: <i>B</i><sub>ind</sub> направлено вдоль <i>B</i>;</li>
+        <li>правило правой руки определяет направление тока <i>I</i>, создающего <i>B</i><sub>ind</sub>.</li>
       </ul>
-      <p>It is energy conservation: the loop repels an approaching pole and pulls back a leaving one, so making the current takes work. In solid metal the same braking makes <b>eddy currents</b>, which heat it. Area vector to the left: Φ > 0 when <i>B</i> points left.</p>
+      <p>Это проявление закона сохранения энергии: контур отталкивает приближающийся полюс и притягивает удаляющийся, поэтому для поддержания движения нужно совершать работу. В сплошном металле аналогичное торможение создаёт <b>вихревые токи</b>, нагревающие материал. Вектор площади направлен влево: Φ > 0, когда <i>B</i> направлено влево.</p>
       <p class="hintline">Click a loop for its own field, dashed. <i>I</i> and dashed arrows show direction only; ${sq('10 mT')}.</p>`,
     cam: { target: [ST.lenz - 0.35, 2.1, 0], az: 26, el: 8, dist: 21 }, lit: 'nIn', scene: 'lenz', look: {},
-    fig: 'N or S, approaching or leaving',
+    fig: 'Полюс N или S приближается или удаляется',
   },
   {
-    kicker: '15.2', title: 'Mutual induction', sub: 'one current, another’s emf',
+    kicker: '15.2', title: 'Взаимная индукция', sub: 'изменение одного тока создаёт ЭДС в другой катушке',
     body: `
       <p class="lede">A changing current in coil 1 changes its field through coil 2. That flux is proportional to <i>I</i><sub>1</sub>, so</p>
       <div class="eq">ε<sub>2</sub> = −<i>N</i><sub>2</sub><i>d</i>Φ<sub>2</sub>/<i>dt</i> = −<i>M dI</i><sub>1</sub>/<i>dt</i></div>
       <p>The <b>mutual inductance</b> <i>M</i> is geometry: ${f(M.COILS.M * 1e6, 0)} µH for these 100-turn coils. On an <b>iron core</b> the iron carries the flux through both windings, μ<sub>r</sub> ≈ ${M.CORE.muR} times stronger: <i>M</i> = ${f(M.CORE.M * 1e3, 0)} mH. As <i>I</i>(<i>t</i>) rises, <i>B</i>(<i>t</i>) grows left and <i>B</i><sub>ind</sub> points right.</p>
-      ${two('i1', 'emf2', { xlabel: 't (s)', ylabel: 'I₁ (A)', rlabel: 'ε₂ (mV)', label: 'Current in coil 1 and emf in coil 2 against time',
+      ${two('i1', 'emf2', { xlabel: 't (с)', ylabel: 'I₁ (А)', rlabel: 'ε₂ (мВ)', label: 'Ток в катушке 1 и ЭДС в катушке 2 в зависимости от времени',
         series: [{ pts: samples(120, 0, 6, t => M.coilsScene(t).I1) }, { r: 1, pts: samples(120, 0, 6, t => M.coilsScene(t).emf * 1e3) }] })}
       <p class="hintline">Click either. ${sq('4 A')} in coil 1, 0.5 mA in coil 2, 0.25 T in the iron.</p>`,
     cam: { target: [ST.mutual, 1.95, 0], az: 26, el: 10, dist: 13.5 }, lit: 'mutual', scene: 'mutual', look: {},
-    fig: 'Two coils; an iron core',
+    fig: 'Две катушки и железный сердечник',
   },
   {
-    kicker: '15.3', title: 'Leaving a wire', sub: 'into weaker field',
+    kicker: '15.3', title: 'Контур рядом с проводом', sub: 'движение в область более слабого поля',
     body: `
       <p class="lede">A ${M.WIRE.b * 100} × ${M.WIRE.a * 100} cm loop moves away from a wire carrying ${M.WIRE.I} A at ${M.WIRE.v * 100} cm/s. <i>B</i> = μ<sub>0</sub><i>I</i>/2π<i>r</i> varies, so sum it in strips:</p>
       ${steps([
@@ -107,48 +107,48 @@ export const PAGES = [
         ['&nbsp;&nbsp;&nbsp;= (μ<sub>0</sub><i>Ib</i>/2π) ln((<i>r</i> + <i>a</i>)/<i>r</i>)', ''],
         ['ε = μ<sub>0</sub><i>Iabv</i> / 2π<i>r</i>(<i>r</i> + <i>a</i>)', '−<i>d</i>Φ/<i>dt</i>'],
       ])}
-      <p>Below the wire <i>B</i> points into the page and shrinks, so the current runs clockwise, adding field into the page.</p>
-      ${two('phiW', 'emfW', { xlabel: 't (s)', ylabel: 'Φ (µWb)', rlabel: 'ε (µV)', label: 'Flux and emf against time',
+      <p>Под проводом поле <i>B</i> направлено в плоскость страницы и ослабевает. Поэтому индуцированный ток течёт по часовой стрелке, создавая поле в плоскость страницы.</p>
+      ${two('phiW', 'emfW', { xlabel: 't (с)', ylabel: 'Φ (мкВб)', rlabel: 'ε (мкВ)', label: 'Магнитный поток и ЭДС в зависимости от времени',
         series: [{ pts: samples(90, 0, 3, t => M.wireScene(t).Phi * 1e6) }, { r: 1, pts: samples(90, 0, 2.999, t => M.wireScene(t).emf * 1e6) }] })}
       <p class="hintline">Click the loop for its strips. ⊗ area ∝ <i>B</i>. ${sq('0.4 mA')}.</p>`,
     cam: { target: [ST.wire - 0.3, 2.2, 0], az: 6, el: 6, dist: 17 }, lit: 'wire', scene: 'wire', look: {},
-    fig: 'Long wire, loop moving away',
+    fig: 'Длинный провод и удаляющийся контур',
   },
   {
-    kicker: '15.4', title: 'Motional emf', sub: 'a bar moving through a field',
+    kicker: '15.4', title: 'ЭДС движения', sub: 'проводник движется в магнитном поле',
     body: `
       <p class="lede">A metal bar moves at <i>v</i> through <i>B</i>. Each charge in it moves too, and feels <i>F</i> = <i>qv</i>×<i>B</i> along the bar.</p>
-      <p>Free charge slides until + piles at one end and − at the other. Their field <i>E</i> pushes back; charge stops moving when</p>
+      <p>Свободные заряды перемещаются, пока на одном конце не накопится положительный, а на другом — отрицательный заряд. Созданное ими поле <i>E</i> противодействует дальнейшему разделению; движение зарядов прекращается, когда</p>
       <div class="eq"><i>qE</i> = <i>qvB</i> &nbsp;→&nbsp; ε = <i>EL</i> = <i>BLv</i></div>
       <table class="data">
         <tr><td><i>B</i>, <i>L</i>, <i>v</i></td><td>${M.BAR.B} T, ${M.BAR.L * 100} cm, ${M.BAR.v} m/s</td></tr>
         <tr><td><i>E</i> = <i>vB</i></td><td>${f(M.BAR.E, 2)} V/m</td></tr>
         <tr><td>ε = <i>BLv</i></td><td>${f(M.BAR.emf, 2)} V</td></tr>
       </table>
-      <p>Nothing closes the circuit, so once the charges have separated <b>no current flows</b>. Stop the bar and they spread out again.</p>
+      <p>Цепь не замкнута, поэтому после разделения зарядов <b>ток не течёт</b>. Когда стержень останавливается, заряды снова распределяются равномерно.</p>
       <p class="hintline">Click the bar for one charge’s two forces. 1 m = 4 squares; ${sq('0.25 V/m')}.</p>`,
     cam: { target: [ST.bar, 1.75, 0], az: 8, el: 6, dist: 15 }, lit: 'bar', scene: 'bar', look: {},
-    fig: 'A bar at 0.5 m/s through 0.4 T',
+    fig: 'Стержень движется со скоростью 0,5 м/с в поле 0,4 Тл',
   },
   {
-    kicker: '15.5', title: 'Through a field', sub: 'only the edges count',
+    kicker: '15.5', title: 'Контур пересекает поле', sub: 'вклад дают только стороны на границе поля',
     body: `
       <p class="lede">A ${M.CROSS.w * 100} × ${M.CROSS.h * 100} cm loop crosses a ${M.CROSS.W * 100} cm region of ${M.CROSS.B} T at ${M.CROSS.v} m/s.</p>
       <table class="data">
-        <tr><th>stage</th><th>Φ</th><th>ε</th></tr>
-        <tr><td>entering</td><td>grows</td><td>−<i>Bhv</i> = −${f(M.CROSS.B * M.CROSS.h * M.CROSS.v * 1e3, 0)} mV</td></tr>
-        <tr><td>all inside</td><td>constant <i>Bhw</i></td><td>0</td></tr>
-        <tr><td>leaving</td><td>shrinks</td><td>+${f(M.CROSS.B * M.CROSS.h * M.CROSS.v * 1e3, 0)} mV</td></tr>
+        <tr><th>этап</th><th>Φ</th><th>ε</th></tr>
+        <tr><td>входит</td><td>увеличивается</td><td>−<i>Bhv</i> = −${f(M.CROSS.B * M.CROSS.h * M.CROSS.v * 1e3, 0)} мВ</td></tr>
+        <tr><td>полностью внутри</td><td>постоянен <i>Bhw</i></td><td>0</td></tr>
+        <tr><td>выходит</td><td>уменьшается</td><td>+${f(M.CROSS.B * M.CROSS.h * M.CROSS.v * 1e3, 0)} мВ</td></tr>
       </table>
-      <p>In a uniform field both upright sides carry <i>BLv</i>, pushing the same way; around the loop they cancel. Current flows only while one side is in and the other out: ${f(M.CROSS.B * M.CROSS.h * M.CROSS.v / M.CROSS.R * 1e3, 0)} mA through ${M.CROSS.R} Ω.</p>
-      ${two('phiX', 'emfX', { xlabel: 't (s)', ylabel: 'Φ (mWb)', rlabel: 'ε (mV)', label: 'Flux and emf against time',
+      <p>В однородном поле на обе вертикальные стороны действует ЭДС <i>BLv</i>, причём направления соответствующих эффектов противоположны и в полном контуре компенсируются. Ток течёт только тогда, когда одна сторона находится внутри поля, а другая — снаружи: ${f(M.CROSS.B * M.CROSS.h * M.CROSS.v / M.CROSS.R * 1e3, 0)} мА при сопротивлении ${M.CROSS.R} Ом.</p>
+      ${two('phiX', 'emfX', { xlabel: 't (с)', ylabel: 'Φ (мВб)', rlabel: 'ε (мВ)', label: 'Магнитный поток и ЭДС в зависимости от времени',
         series: [{ pts: samples(200, 0, 2, t => M.crossScene(t).Phi * 1e3) }, { r: 1, pts: samples(400, 0, 1.999, t => M.crossScene(t).emf * 1e3) }] })}
       <p class="hintline">Click the loop for each side’s push. ${sq('0.2 A')}.</p>`,
     cam: { target: [ST.crossing, 1.75, 0], az: 6, el: 6, dist: 15 }, lit: 'crossing', scene: 'crossing', look: {},
-    fig: 'In, through, out',
+    fig: 'Вход в поле, движение внутри и выход',
   },
   {
-    kicker: '15.6', title: 'A bar on rails', sub: 'motional emf with a circuit',
+    kicker: '15.6', title: 'Стержень на рельсах', sub: 'ЭДС движения в замкнутой цепи',
     body: `
       <p class="lede">Rails joined by a resistor close the circuit. The bar is given ${M.RAIL.v0} m/s and let go.</p>
       ${steps([
@@ -156,16 +156,16 @@ export const PAGES = [
         ['<i>F</i> = <i>ILB</i> = <i>B</i><sup>2</sup><i>L</i><sup>2</sup><i>v</i>/<i>R</i>', 'backward'],
         ['<i>v</i> = <i>v</i><sub>0</sub><i>e</i><sup>−<i>t</i>/τ</sup>, &nbsp;τ = <i>mR</i>/<i>B</i><sup>2</sup><i>L</i><sup>2</sup>', `${f(M.RAIL.tau, 1)} s`],
       ])}
-      <p>The brake grows with speed, so the bar slows exponentially and coasts ${f(M.RAIL.v0 * M.RAIL.tau * 100, 0)} cm. The power it takes, <i>Fv</i>, is exactly <i>I</i><sup>2</sup><i>R</i>: all ${f(0.5 * M.RAIL.m * M.RAIL.v0 ** 2 * 1e3, 0)} mJ of kinetic energy ends as heat.</p>
-      ${two('v', 'pw', { xlabel: 't (s)', ylabel: 'v (m/s)', rlabel: 'P = I²R (W)', label: 'Speed of the bar and power dissipated against time; the shaded area is the heat',
+      <p>Сила торможения растёт со скоростью, поэтому стержень замедляется экспоненциально и проходит по инерции ещё ${f(M.RAIL.v0 * M.RAIL.tau * 100, 0)} см. Мощность торможения <i>Fv</i> в точности равна <i>I</i><sup>2</sup><i>R</i>: вся кинетическая энергия ${f(0.5 * M.RAIL.m * M.RAIL.v0 ** 2 * 1e3, 0)} мДж превращается в тепло.</p>
+      ${two('v', 'pw', { xlabel: 't (с)', ylabel: 'v (м/с)', rlabel: 'P = I²R (Вт)', label: 'Скорость стержня и рассеиваемая мощность в зависимости от времени; заштрихованная площадь — выделившееся тепло',
         under: `<path data-area="pw" style="fill:#e4e4e8"/>`, series: [{ pts: samples(100, 0, 5, t => M.railScene(t).v) }, { r: 1, pts: samples(100, 0, 5, t => M.railScene(t).P) }], marks: [[M.RAIL.tau, M.RAIL.v0 / Math.E, 'v₀/e at τ']] })}
       <p class="live" id="raillive"></p>
       <p class="hintline">Click the circuit. ${sq('2 A')}, or 0.25 N.</p>`,
     cam: { target: [ST.rails, 1.7, 0], az: 6, el: 7, dist: 15.5 }, lit: 'rails', scene: 'rails', look: {},
-    fig: 'Braked by its own current',
+    fig: 'Торможение собственным индуцированным током',
   },
   {
-    kicker: '15.7', title: 'Inductance', sub: 'a coil fights its own change',
+    kicker: '15.7', title: 'Индуктивность', sub: 'катушка противодействует изменению собственного тока',
     body: `
       <p class="lede">A coil’s current makes flux through its own turns. Change the current and the flux changes, inducing a <b>back emf</b> that opposes the change.</p>
       ${steps([
@@ -174,19 +174,19 @@ export const PAGES = [
         ['<i>U</i> = ½<i>LI</i><sup>2</sup>, &nbsp;<i>u</i> = <i>B</i><sup>2</sup>/2μ<sub>0</sub>', 'stored'],
       ])}
       <p>${M.SOL.N} turns on ${M.SOL.len * 100} cm, radius ${M.SOL.r * 100} cm (μ<sub>0</sub><i>nI</i> is ${f((1 - M.solCentreB(1) / (M.MU0 * M.SOL.n)) * 100, 0)} % high for a coil this short). Ramping 0 → ${M.SOL.Imax} A in ${M.SOL.ramp} s gives ε<sub><i>L</i></sub> = ${f(-M.SOL.L * M.SOL.Imax / M.SOL.ramp * 1e3, 2)} mV; a steady current, none. Inductors smooth out sudden jumps.</p>
-      ${two('iS', 'eS', { xlabel: 't (s)', ylabel: 'I (A)', rlabel: 'ε_L (mV)', label: 'Current and back emf against time',
+      ${two('iS', 'eS', { xlabel: 't (с)', ylabel: 'I (А)', rlabel: 'ε_L (мВ)', label: 'Ток и ЭДС самоиндукции в зависимости от времени',
         series: [{ pts: samples(200, 0, 4, t => M.solCurrent(t).I) }, { r: 1, pts: samples(400, 0, 3.999, t => M.solScene(t).emfL * 1e3) }] })}
       <p class="hintline">25 of 400 turns drawn. Click for one turn’s flux. ${sq('5 mT')}.</p>`,
     cam: { target: [ST.solenoid, 1.85, 0], az: 22, el: 12, dist: 11.5 }, lit: 'solenoid', scene: 'solenoid', look: {},
-    fig: 'A solenoid, current ramped',
+    fig: 'Соленоид с нарастающим током',
   },
   {
-    kicker: '15.8', title: 'RL circuits', sub: 'growth and decay, τ = L/R',
+    kicker: '15.8', title: 'RL-цепи', sub: 'нарастание и спад тока, τ = L/R',
     body: `
       <p class="lede">${M.RL.E} V, ${M.RL.R} Ω, ${M.RL.L} H. Around the loop ε − <i>IR</i> − <i>L dI</i>/<i>dt</i> = 0, so</p>
       <div class="eq"><i>I</i> = (ε/<i>R</i>)(1 − <i>e</i><sup>−<i>t</i>/τ</sup>), &nbsp;τ = <i>L</i>/<i>R</i></div>
-      <p>At first the inductor is an <b>open switch</b>: <i>I</i> = 0, all ${M.RL.E} V across it. Later it is <b>a plain wire</b>: <i>I</i> = ε/<i>R</i> = ${f(M.RL.Imax, 0)} A. Take the battery out and it keeps the current going, <i>I</i><sub>0</sub><i>e</i><sup>−<i>t</i>/τ</sup>, while ½<i>LI</i><sup>2</sup> = ${f(0.5 * M.RL.L * M.RL.Imax ** 2, 0)} J becomes heat. τ = ${f(M.RL.tau, 1)} s.</p>
-      ${two('iRL', 'vRL', { xlabel: 't (s)', ylabel: 'I (A)', rlabel: 'ΔV (V)', label: 'Current and inductor voltage against time, growth then decay',
+      <p>Вначале катушка ведёт себя как <b>разомкнутый выключатель</b>: <i>I</i> = 0, и всё напряжение ${M.RL.E} В приложено к ней. Через некоторое время она становится <b>обычным проводом</b>: <i>I</i> = ε/<i>R</i> = ${f(M.RL.Imax, 0)} А. Если отключить батарею, катушка поддерживает ток <i>I</i><sub>0</sub><i>e</i><sup>−<i>t</i>/τ</sup>, а энергия ½<i>LI</i><sup>2</sup> = ${f(0.5 * M.RL.L * M.RL.Imax ** 2, 0)} Дж превращается в тепло. τ = ${f(M.RL.tau, 1)} с.</p>
+      ${two('iRL', 'vRL', { xlabel: 't (с)', ylabel: 'I (А)', rlabel: 'ΔV (В)', label: 'Ток и напряжение на катушке в зависимости от времени: нарастание и спад',
         series: [{ pts: samples(320, 0, 7.999, t => M.rlScene(t).I) }, { r: 1, pts: samples(320, 0, 7.999, t => M.rlScene(t).VL), tag: [4.6, -8.5, 'L dI/dt'] }],
         marks: [[M.RL.tau, M.rlScene(M.RL.tau).I, '63 %'], [M.RL.phase + M.RL.tau, M.rlScene(M.RL.phase + M.RL.tau).I, '37 %']] })}
       <p class="hintline">Black: <i>I</i>, and <i>IR</i> on the right scale. Click the circuit for each ΔV. ${sq('4 A')}.</p>`,
@@ -194,7 +194,7 @@ export const PAGES = [
     fig: '12 V, 4 Ω, 2 H',
   },
   {
-    kicker: '15.9', title: 'LC oscillations', sub: 'charge sloshing through a coil',
+    kicker: '15.9', title: 'Колебания в LC-контуре', sub: 'перетекание заряда через катушку',
     body: `
       <p class="lede">Charge a ${f(M.LC.C * 1e6, 0)} µF capacitor to ${f(M.LC.Q * 1e6, 0)} µC and connect it to a ${f(M.LC.L * 1e3, 0)} mH coil. The charge flows off through the coil, overshoots, charges the plates the other way, and flows back.</p>
       ${steps([
@@ -203,7 +203,7 @@ export const PAGES = [
         ['<i>q</i> = <i>Q</i> cos ω<i>t</i>, &nbsp;<i>I</i> = −ω<i>Q</i> sin ω<i>t</i>', `ω = 1/√(<i>LC</i>) = ${f(M.LC.w, 0)} rad/s`],
       ])}
       <p>The period is <i>T</i> = 2π√(<i>LC</i>) = ${f(M.LC.T * 1e3, 2)} ms (${f(M.LC.f, 0)} Hz); the figure runs ${Math.round(M.LC.slow / 10) * 10}× slower. The current peaks, ω<i>Q</i> = ${f(M.LC.Imax * 1e3, 0)} mA, as <i>q</i> passes 0, and is zero when the plates are full: a quarter period apart. The coil’s back emf is what carries the current past <i>q</i> = 0.</p>
-      ${two('qLC', 'iLC', { xlabel: 't (ms)', ylabel: 'q (µC)', rlabel: 'I (mA)', label: 'Charge on the top plate and current against time',
+      ${two('qLC', 'iLC', { xlabel: 't (мс)', ylabel: 'q (мкКл)', rlabel: 'I (мА)', label: 'Заряд верхней обкладки и ток в зависимости от времени',
         series: [{ pts: samples(200, 0, 2 * M.LC.T * 1e3, t => M.lcScene(t * 1e-3).q * 1e6) }, { r: 1, pts: samples(200, 0, 2 * M.LC.T * 1e3, t => M.lcScene(t * 1e-3).I * 1e3) }],
         marks: [[M.LC.T * 1e3, 100, 'T', 6, 14]] })}
       <div class="eq"><i>q</i><sup>2</sup>/2<i>C</i> + ½<i>LI</i><sup>2</sup> = <i>Q</i><sup>2</sup>/2<i>C</i> = ${f(M.LC.U * 1e3, 2)} mJ</div>
