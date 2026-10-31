@@ -31,7 +31,7 @@ const quizBank={ru:[
 {q:"Which feature is shared by all vertebrates?",a:["A vertebral column","Feathers","Lung breathing"],c:0,e:"Vertebrates have a vertebral column; feathers and lungs are not universal."},
 {q:"How do adult amphibians commonly breathe?",a:["Gills only","Lungs and through the skin","Tracheae"],c:1,e:"Many adult amphibians exchange gases through lungs and moist skin."},
 {q:"Which body covering is characteristic of birds?",a:["Feathers","Chitinous exoskeleton","Bare moist skin"],c:0,e:"Feathers are a defining external feature of modern birds."},
-{q:"Which structure produces milk in mammals?",a:["Sweat glands","Mammary glands","Sebaceous glands"],c:1,e,"":""}
+{q:"Which structure produces milk in mammals?",a:["Sweat glands","Mammary glands","Sebaceous glands"],c:1,e:"Mammary glands produce milk to nourish offspring."}
 ]};
 let quizIndex=0,quizScore=0,quizAnswered=false;
 function renderQuiz(){const q=quizBank[lang][quizIndex];document.getElementById("question").textContent=q.q;document.getElementById("answers").innerHTML=q.a.map((x,i)=>'<button data-i="'+i+'">'+x+'</button>').join("");document.getElementById("result").textContent=(lang==="ru"?"Вопрос ":"Question ")+(quizIndex+1)+"/5 · "+(lang==="ru"?"Верно: ":"Correct: ")+quizScore;document.getElementById("quiz-next").textContent=quizIndex===4?(lang==="ru"?"Начать заново":"Start again"):(lang==="ru"?"Следующий вопрос":"Next question");document.getElementById("quiz-next").hidden=true;quizAnswered=false;}
