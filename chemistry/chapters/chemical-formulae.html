@@ -19,6 +19,7 @@ function parseFormula(input){
  if(i>=input.length||!/^[A-Z]/.test(input.slice(i)))throw Error("Start with a valid element symbol");
  const result=group(false);if(i!==input.length)throw Error("Check the brackets or formula syntax");
  for(const element of Object.keys(result)){result[element]*=coefficient;if(!Number.isSafeInteger(result[element]))throw Error("Atom count is too large")}
+ const total=Object.values(result).reduce((sum,count)=>sum+count,0);if(!Number.isSafeInteger(total))throw Error("Total atom count is too large");
  return result
 }
 function calculate(){const feedback=document.getElementById("feedback"),rows=document.getElementById("rows");try{const result=parseFormula(document.getElementById("formula").value.replace(/\s/g,""));const total=Object.values(result).reduce((a,b)=>a+b,0);document.getElementById("total").textContent=(lang==="ru"?"Всего атомов: ":"Total atoms: ")+total;rows.innerHTML=Object.entries(result).map(([e,n])=>"<tr><td>"+e+"</td><td>"+n+"</td></tr>").join("");feedback.textContent=lang==="ru"?"Формула разобрана успешно.":"Formula parsed successfully."}catch(error){document.getElementById("total").textContent="—";rows.innerHTML="";feedback.textContent=error.message}}
