@@ -30,11 +30,11 @@ en:{home:"Chemistry atlas",molecules:"Molecule laboratory",eyebrow:"VIRTUAL LAB 
 };
 let lang="ru";
 const $=id=>document.getElementById(id);
-function state(){const ac=Number($("acidC").value),av=Number($("acidV").value),bc=Number($("baseC").value),bv=Number($("baseV").value);return {ac,av,bc,bv,valid:[ac,av,bc].every(x=>Number.isFinite(x)&&x>0)&&av<=500&&ac<=2&&bc<=2&&bv>=0}}
+function state(){const ac=Number($("acidC").value),av=Number($("acidV").value),bc=Number($("baseC").value),bv=Number($("baseV").value);return {ac,av,bc,bv,valid:Number.isFinite(ac)&&ac>=.01&&ac<=2&&Number.isFinite(av)&&av>=10&&av<=500&&Number.isFinite(bc)&&bc>=.01&&bc<=2&&Number.isFinite(bv)&&bv>=0&&bv<=200}}
 function calculate(){const s=state(),t=translations[lang];$("baseOut").textContent=s.bv+" мл";if(!s.valid){$("ph").textContent="pH = —";$("condition").textContent=t.invalid;$("status").textContent=t.invalid;return}
 const acidMol=s.ac*s.av/1000,baseMol=s.bc*s.bv/1000,volume=(s.av+s.bv)/1000,diff=acidMol-baseMol;let p;
 if(Math.abs(diff)<1e-12)p=7;else if(diff>0)p=-Math.log10(diff/volume);else p=14+Math.log10((-diff)/volume);
-p=Math.max(0,Math.min(14,p));$("ph").textContent="pH = "+p.toFixed(2);$("pin").style.left=(p/14*100)+"%";$("liquid").style.background=p<6.8?"#d6a18f":p>7.2?"#91b5cb":"#9cc8a8";$("liquid").style.height=Math.min(88,65+s.bv/(s.av+s.bv)*18)+"%";$("condition").textContent=Math.abs(diff)<1e-12?t.neutralCondition:p<7?t.acidCondition:t.baseCondition;$("status").textContent=Math.abs(diff)<1e-12?t.equivalence:t.addedMsg+s.bv+" mL";$("beakerLabel").textContent=Math.abs(diff)<1e-12?"H₂O":diff>0?"H₃O⁺ excess":"OH⁻ excess"}
+$("ph").textContent="pH = "+p.toFixed(2);$("pin").style.left=(Math.max(0,Math.min(14,p))/14*100)+"%";$("liquid").style.background=p<6.8?"#d6a18f":p>7.2?"#91b5cb":"#9cc8a8";$("liquid").style.height=Math.min(88,65+s.bv/(s.av+s.bv)*18)+"%";$("condition").textContent=Math.abs(diff)<1e-12?t.neutralCondition:p<7?t.acidCondition:t.baseCondition;$("status").textContent=Math.abs(diff)<1e-12?t.equivalence:t.addedMsg+s.bv+" mL";$("beakerLabel").textContent=Math.abs(diff)<1e-12?"H₂O":diff>0?"H₃O⁺ excess":"OH⁻ excess"}
 function render(){const t=translations[lang];document.documentElement.lang=lang;document.querySelectorAll("[data-i]").forEach(e=>{if(t[e.dataset.i])e.textContent=t[e.dataset.i]});$("lang").textContent=lang==="ru"?"EN":"RU";calculate()}
 ["acidC","acidV","baseC","baseV"].forEach(id=>$(id).addEventListener("input",calculate));
 $("add").addEventListener("click",()=>{const el=$("baseV");el.value=Math.min(Number(el.max),Number(el.value)+5);$("drop").classList.remove("show");void $("drop").offsetWidth;$("drop").classList.add("show");calculate()});
