@@ -166,21 +166,21 @@ import { PRACTICE } from './practice.js';
   { const S = M.STARTS[1], acc = springAcc(M.M1, M.K), dt = 1e-5; let q = S.x0, v = S.v0, A = 0, t = 0, t0 = NaN;
     while (t < M.T0) { const [q1, v1] = M.rk4Step(acc, q, v, dt); if (Number.isNaN(t0) && q > 0 && q1 <= 0) t0 = t + dt * q / (q - q1); A = Math.max(A, Math.abs(q1)); q = q1; v = v1; t += dt; }
     keyed(8, 0, A, 'amplitude, largest |x| over a period (RK4)');
-    states(8, 1, `${t0.toFixed(3)} s`, 'first pass through x = 0 (RK4)');
+    states(8, 1, `${t0.toFixed(3)} с`, 'first pass through x = 0 (RK4)');
     states(8, 1, `${(Math.acos(S.x0 / A) / M.DEG).toFixed(1)}°`, 'φ = arccos(x0/A), A from RK4'); }
   // 9: I by integrating x² dm (rod) and summing r² over the rim (hoop), then the RK4 period of the swing
   { const R = M.ROD, I = sum(x => x * x * R.m / R.L, 0, R.L);
     keyed(9, 0, M.periodNumeric(q => -(R.m * g * R.d / I) * Math.sin(q), 1e-3), 'rod period: I = ∫x² dm, RK4');
     const H = M.HOOP, n = 20000; let Ih = 0;
     for (let i = 0; i < n; i++) { const a = 2 * Math.PI * (i + 0.5) / n; Ih += (H.m / n) * ((H.R * Math.cos(a)) ** 2 + (H.R * Math.sin(a) + H.R) ** 2); }   // nail at (0, −R) from the centre
-    states(9, 1, `${M.periodNumeric(q => -(H.m * g * H.R / Ih) * Math.sin(q), 1e-3).toFixed(2)} s`, 'hoop period: I summed over the rim, RK4'); }
+    states(9, 1, `${M.periodNumeric(q => -(H.m * g * H.R / Ih) * Math.sin(q), 1e-3).toFixed(2)} с`, 'hoop period: I summed over the rim, RK4'); }
   // 10: the wider disc's I by rings, RK4 period; largest torque and spin over a period of RK4
   { const T = M.TORS, R2 = 2 * T.R, I2 = sum(r => r * r * (T.M / (Math.PI * R2 * R2)) * 2 * Math.PI * r, 0, R2);
     keyed(10, 0, M.periodNumeric(q => -T.kappa * q / I2, T.th0), 'twice the radius: I by rings, RK4 period');
     const acc = q => -T.kappa * q / T.I, dt = 1e-4; let q = T.th0, v = 0, tq = 0, w = 0;
     for (let t = 0; t < T.T; t += dt) { tq = Math.max(tq, Math.abs(T.kappa * q)); w = Math.max(w, Math.abs(v)); [q, v] = M.rk4Step(acc, q, v, dt); }
-    states(10, 1, `${tq.toFixed(3)} N·m`, 'largest torque over a period (RK4)');
-    states(10, 1, `${w.toFixed(2)} rad/s`, 'largest angular speed over a period (RK4)'); }
+    states(10, 1, `${tq.toFixed(3)} Н·м`, 'largest torque over a period (RK4)');
+    states(10, 1, `${w.toFixed(2)} рад/с`, 'largest angular speed over a period (RK4)'); }
   // 11: RK4 periods
   keyed(11, 0, M.periodNumeric(springAcc(M.CAR.m + 300, M.CAR.k), M.CAR.A), 'loaded car period, RK4');
   keyed(11, 1, M.periodNumeric(pendAcc(g, M.SWING.L), 1e-3), 'swing period, RK4');
