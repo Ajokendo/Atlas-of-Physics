@@ -272,6 +272,48 @@ Regional geography studies major parts of the world as complex territorial syste
 12. Почему показатели развития следует рассматривать в комплексе?
 13. Для чего используется классификация ООН M49 и чего она не определяет?
 
+### Разобранный пример. Как правильно рассчитать показатель для всего региона / Worked example: Calculating a regional indicator correctly
+
+Представим условный макрорегион, состоящий из двух стран. Все числа ниже вымышлены и нужны только для демонстрации метода.
+
+| Показатель | Страна А | Страна Б |
+|---|---:|---:|
+| Население | 10 млн человек | 30 млн человек |
+| ВВП за год | 200 млрд долл. | 300 млрд долл. |
+| ВВП на душу населения | 20 000 долл. | 10 000 долл. |
+
+**Шаг 1.** Рассчитаем ВВП на душу населения для каждой страны: ВВП делим на численность населения. Для страны А: 200 млрд / 10 млн = 20 000 долл. Для страны Б: 300 млрд / 30 млн = 10 000 долл.
+
+**Шаг 2.** Чтобы получить показатель для всего макрорегиона, сложим ВВП стран и их население: 200 + 300 = 500 млрд долл.; 10 + 30 = 40 млн человек.
+
+**Шаг 3.** Разделим общий ВВП на общее население: 500 млрд / 40 млн = **12 500 долл. на человека**.
+
+Нельзя просто усреднить два национальных показателя: (20 000 + 10 000) / 2 = 15 000 долл. Такой расчёт придаёт каждой стране одинаковый вес, хотя население страны Б втрое больше. Для регионального среднего нужен взвешенный расчёт — общий ВВП, делённый на общее население.
+
+**Что показывает результат?** В этом условном примере средний ВВП на душу населения макрорегиона равен 12 500 долл. Это не означает, что каждый житель получает такую сумму: ВВП на душу населения — средний экономический показатель, а не личный доход и не мера равенства. Для международного сравнения также необходимо проверить, рассчитан ли ВВП в текущих ценах или по паритету покупательной способности, и использовать один и тот же год и методологию.
+
+**Проверьте себя:** если население страны Б было бы не 30, а 10 млн человек при прежнем ВВП, каким стало бы среднее значение для двух стран? Почему простое среднее в таком случае совпало бы с взвешенным?
+
+Imagine a fictional macro-region consisting of two countries. All figures below are invented and are used only to demonstrate the method.
+
+| Indicator | Country A | Country B |
+|---|---:|---:|
+| Population | 10 million | 30 million |
+| Annual GDP | USD 200 billion | USD 300 billion |
+| GDP per capita | USD 20,000 | USD 10,000 |
+
+**Step 1.** Calculate GDP per capita for each country by dividing GDP by population. Country A: USD 200 billion / 10 million = USD 20,000. Country B: USD 300 billion / 30 million = USD 10,000.
+
+**Step 2.** Add the countries' GDP and populations to obtain the totals for the macro-region: USD 200 + 300 = 500 billion; 10 + 30 = 40 million people.
+
+**Step 3.** Divide total GDP by total population: USD 500 billion / 40 million = **USD 12,500 per person**.
+
+Do not simply average the two national indicators: (20,000 + 10,000) / 2 = USD 15,000. That calculation gives each country equal weight even though Country B has three times the population of Country A. A regional average must be weighted: total GDP divided by total population.
+
+**What does the result mean?** In this fictional example, regional GDP per capita is USD 12,500. It does not mean that every resident receives this amount. GDP per capita is an average economic indicator, not personal income or a measure of equality. International comparisons must also check whether GDP is measured at current prices or in purchasing-power-parity terms, and must use the same year and methodology.
+
+**Check your understanding:** If Country B's population were 10 million rather than 30 million, while its GDP stayed the same, what would the regional average become? Why would the simple average then match the weighted average?
+
 ### Практическая работа 1. Сравнение двух регионов / Practical activity 1. Comparing two regions
 
 Выберите два макрорегиона и сравните их по природным условиям, населению, урбанизации, структуре экономики, инфраструктуре и экологическим вызовам. Используйте одинаковые годы и определения показателей.
