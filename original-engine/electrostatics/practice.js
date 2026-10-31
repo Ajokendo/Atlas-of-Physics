@@ -6,13 +6,13 @@ import * as M from './model.js';
 const p = (x, d) => x.toFixed(d);
 const g = (x, n = 3) => x.toPrecision(n);
 const sci = (x, n = 2) => { const e = Math.floor(Math.log10(Math.abs(x))), m = x / 10 ** e; return `${m.toFixed(n)} × 10<sup>${e < 0 ? '−' + -e : e}</sup>`; };
-const K = M.K, нКл = M.нКл, uC = M.uC;
+const K = M.K, nC = M.nC, uC = M.uC;
 
 // ---- page 0: two metal spheres touched; a rod with λ = cx ----
 const P0 = { q1: 6, q2: -2 };                                   // nC
 P0.each = (P0.q1 + P0.q2) / 2;
 P0.nums = [(Math.abs(P0.q1) + Math.abs(P0.q2)) / 2, P0.each, NaN, 0];   // added sizes · right · no flow · cancelled
-const P0b = { c: 40 * нКл, L: 0.50 };                           // λ = c x (C/m², m)
+const P0b = { c: 40 * nC, L: 0.50 };                           // λ = c x (C/m², m)
 P0b.Q = P0b.c * P0b.L ** 2 / 2;
 P0b.nums = [P0b.c * P0b.L ** 3 / 3, P0b.c * P0b.L ** 2, P0b.Q, P0b.c * P0b.L].map(q => q / M.QE);   // ∫x² · forgot ½ · right · λ(L)·1 m
 // ---- page 1: the grounding current ----
@@ -59,7 +59,7 @@ const P8 = { nums: [2 * PL.yExit, 4 * PL.yExit, PL.yProton, PL.yExit].map(y => y
 const P8b = { vy: PL.vyExit / 2 };
 P8b.nums = [PL.vyExit, P8b.vy, PL.vyExit / 3, PL.vyExit / 4].map(v => v / 1e6);
 
-const мм = x => x < 0.01 ? p(x, 5) : g(x);
+const mm = x => x < 0.01 ? p(x, 5) : g(x);
 
 export const PRACTICE = {
   0: [
