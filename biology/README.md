@@ -33,6 +33,7 @@ Third subject area of the unified **Atlas of Knowledge** portal.
 - Genetics includes an interactive DNA complementary base-pairing module (A–T and G–C).
 - Genetics now presents the central dogma with an original bilingual information-flow plate, selectable DNA template-to-RNA transcription examples, a codon-to-amino-acid explorer, and mutation consequence demonstrations (substitution, insertion and deletion).
 - Microbiology now includes an original bilingual comparison plate for a bacterial cell and a virus, an interactive comparison of Bacteria, Archaea and viruses, a bacterial cell-shape explorer, and a selectable bacterial population growth-curve module.
+- Ecology now includes an original bilingual ecosystem trophic-flow plate, a guided food-chain builder, interactive carbon- and nitrogen-cycle explainers, and a qualitative ecosystem-pressure explorer covering drought, pollution, invasive species and conservation.
 - Zoology includes an interactive bilingual explorer for fish, amphibians, reptiles, birds and mammals, comparing body covering, respiration and reproduction while noting group-level exceptions.
 - Anatomy and Physiology includes an original bilingual SVG overview of major organ systems and an interactive explorer for circulation, respiration, digestion, nervous function and urinary function.
 - The anatomy chapter explains homeostasis and negative feedback, with a bilingual knowledge check on the left ventricle and systemic circulation.
