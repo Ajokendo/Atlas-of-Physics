@@ -4,7 +4,7 @@ import * as M from './model.js';
 import { STATIONS, SC, PY6, PY7 } from './world.js';
 
 const f = (x, n = 2) => (x < -1e-9 ? '−' : '') + Math.abs(x).toFixed(n);
-const kPa = (p, n = 1) => `${f(p / 1000, n)} kPa`;
+const kPa = (p, n = 1) => `${f(p / 1000, n)} кПа`;
 
 // ---------- small SVG charts for the left page, with live cursors ----------
 const W = 420, P = { l: 44, r: 14, t: 16, b: 30 };
