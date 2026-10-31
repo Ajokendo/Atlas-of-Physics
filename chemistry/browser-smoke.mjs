@@ -253,11 +253,19 @@ try {
     }
 
     if (file === "periodic-table.html") {
+      if (!await page.locator("#search").getAttribute("aria-label") ||
+          !await page.locator("#category").getAttribute("aria-label") ||
+          !await page.locator("#group").getAttribute("aria-label")) {
+        errors.push(file + ": search and filters need accessible names");
+      }
       await page.locator("#search").fill("oxygen");
       if (await page.locator("#table button[data-id]").count() !== 1) {
         errors.push(file + ": element search did not narrow results to oxygen");
       }
       await page.locator("#search").fill("");
+      if (await page.locator("#table button[data-id]").evaluateAll(items => items.some(button => button.type !== "button"))) {
+        errors.push(file + ": generated element buttons need explicit button type");
+      }
       await page.locator('#table button[data-id="8"]').click();
       if (!(await page.locator("#detail").innerText()).toLowerCase().includes("oxygen")) {
         errors.push(file + ": selecting oxygen did not update element details");
