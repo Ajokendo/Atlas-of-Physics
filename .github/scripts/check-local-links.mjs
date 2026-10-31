@@ -31,6 +31,7 @@ for (const source of htmlFiles) {
 
   for (const match of refs) {
     const rawPath = match[1];
+    if (rawPath.includes("${")) continue;
     const fragment = match[2]?.slice(1);
     if (/^(?:[a-z][a-z0-9+.-]*:|\/\/)/i.test(rawPath)) continue;
 
