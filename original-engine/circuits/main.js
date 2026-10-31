@@ -21,15 +21,15 @@ startBook({
   readout(s, page) {
     const c = s.clock;
     switch (page.scene) {
-      case 'wire': return `I ${f(M.CU.I, 1)} A   v_d ${f(M.CU.vd * 1e3, 4)} mm/s\nJ ${f(M.CU.J / 1e6, 1)} MA/m²   E ${f(M.CU.E * 1e3, 1)} mV/m`;
-      case 'wires': { const L = M.resLength(c); return `L ${f(L)} m   ΔV 1.50 V\nthin R ${f(M.rThin(L))} Ω   thick R ${f(M.rThick(L))} Ω`; }
-      case 'ohm': return `ΔV ${f(M.OHM.E, 1)} V   R ${f(M.OHM.R, 1)} Ω\nI = ΔV/R = ${f(M.OHM.E / M.OHM.R, 2)} A`;
-      case 'bulb': { const t = c % M.BULB.run, P = M.BULB.E ** 2 / M.BULB.R; return `t ${f(t, 1)} s   P ${f(P, 1)} W\nE = Pt = ${f(P * t, 1)} J`; }
-      case 'cell': { const RL = M.cellLoad(c), I = M.cellI(RL); return `R ${f(RL)} Ω   I ${f(I)} A   terminal ${f(M.terminalV(I))} V\nbulb ${f(M.loadP(RL))} W   inside I²r ${f(I * I * M.CELL.r)} W`; }
-      case 'sp': return `series: 6 Ω, 1.50 A\nparallel: ${f(M.parallelR([2, 4, 6]), 3)} Ω, 8.25 A`;
-      case 'combo': return `R_eq ${f(M.COMBO.Req, 1)} Ω\nI ${f(9 / M.COMBO.Req, 2)} A at every stage`;
-      case 'kirch': { const k = M.solve(M.KIRCH.edges, 'bl'), I = n => M.edgeI(M.KIRCH, k, n); return `I₁ ${f(I('R1'), 3)} A   I₂ ${f(I('R5'), 3)} A   I₃ ${f(I('R3'), 3)} A\nI₂ + I₃ = ${f(I('R5') + I('R3'), 3)} A`; }
-      case 'rc': { const r = s.rc; return `${r.charging ? 'charging' : 'discharging'}   t ${f(r.s, 1)} s   q ${f(r.Q * 1e3)} mC\nI ${f(r.I * 1e3, 3)} mA   ΔV_C ${f(r.Vc)} V   ΔV_R ${f(Math.abs(r.VR))} V`; }
+      case 'wire': return `I ${f(M.CU.I, 1)} А   v_d ${f(M.CU.vd * 1e3, 4)} мм/с\nJ ${f(M.CU.J / 1e6, 1)} МА/м²   E ${f(M.CU.E * 1e3, 1)} мВ/м`;
+      case 'wires': { const L = M.resLength(c); return `L ${f(L)} м   ΔV 1,50 В\nтонкий R ${f(M.rThin(L))} Ом   толстый R ${f(M.rThick(L))} Ом`; }
+      case 'ohm': return `ΔV ${f(M.OHM.E, 1)} В   R ${f(M.OHM.R, 1)} Ом\nI = ΔV/R = ${f(M.OHM.E / M.OHM.R, 2)} А`;
+      case 'bulb': { const t = c % M.BULB.run, P = M.BULB.E ** 2 / M.BULB.R; return `t ${f(t, 1)} с   P ${f(P, 1)} Вт\nE = Pt = ${f(P * t, 1)} Дж`; }
+      case 'cell': { const RL = M.cellLoad(c), I = M.cellI(RL); return `R ${f(RL)} Ом   I ${f(I)} А   клеммы ${f(M.terminalV(I))} В\nлампа ${f(M.loadP(RL))} Вт   внутри I²r ${f(I * I * M.CELL.r)} Вт`; }
+      case 'sp': return `последовательно: 6 Ом, 1,50 А\nпараллельно: ${f(M.parallelR([2, 4, 6]), 3)} Ом, 8,25 А`;
+      case 'combo': return `Rэкв ${f(M.COMBO.Req, 1)} Ом\nI ${f(9 / M.COMBO.Req, 2)} А на каждом этапе`;
+      case 'kirch': { const k = M.solve(M.KIRCH.edges, 'bl'), I = n => M.edgeI(M.KIRCH, k, n); return `I₁ ${f(I('R1'), 3)} А   I₂ ${f(I('R5'), 3)} А   I₃ ${f(I('R3'), 3)} А\nI₂ + I₃ = ${f(I('R5') + I('R3'), 3)} А`; }
+      case 'rc': { const r = s.rc; return `${r.charging ? 'зарядка' : 'разрядка'}   t ${f(r.s, 1)} с   q ${f(r.Q * 1e3)} мКл\nI ${f(r.I * 1e3, 3)} мА   ΔV_C ${f(r.Vc)} В   ΔV_R ${f(Math.abs(r.VR))} В`; }
     }
     return '';
   },
