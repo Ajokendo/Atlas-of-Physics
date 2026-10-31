@@ -82,11 +82,22 @@ try {
       if (await stats.getAttribute("aria-live") !== "polite") {
         errors.push(file + ": changing atom statistics are not announced to assistive technology");
       }
-      await page.locator("#element").selectOption("O");
-      if ((await page.locator("#p").innerText()).trim() !== "8" ||
-          (await page.locator("#e").innerText()).trim() !== "8") {
-        errors.push(file + ": selecting oxygen did not update proton and electron counts");
+      const expectedAtoms = { H: ["1", "0", "1"], C: ["6", "6", "6"], O: ["8", "8", "8"], Na: ["11", "12", "11"], Cl: ["17", "18", "17"] };
+      for (const [symbol, expected] of Object.entries(expectedAtoms)) {
+        await page.locator("#element").selectOption(symbol);
+        const actual = await Promise.all(["#p", "#n", "#e"].map(selector => page.locator(selector).innerText().then(value => value.trim())));
+        if (JSON.stringify(actual) !== JSON.stringify(expected)) {
+          errors.push(file + ": incorrect proton, neutron or electron count for " + symbol + " (got " + actual.join("/") + ")");
+        }
       }
+      await page.locator("#element").selectOption("O");
+      await page.locator("#lang").click();
+      if (await page.locator("#element").inputValue() !== "O" ||
+          (await page.locator("#p").innerText()).trim() !== "8" ||
+          (await page.locator("#e").innerText()).trim() !== "8") {
+        errors.push(file + ": changing language reset the selected atom or its statistics");
+      }
+      await page.locator("#lang").click();
     }
 
     if (file === "chapters/chemical-bonding.html") {
