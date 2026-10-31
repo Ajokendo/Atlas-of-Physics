@@ -19,15 +19,15 @@ startBook({
   readout(s, page) {
     const c = s.clock;
     switch (page.scene) {
-      case 'magnet': return `B at the centre ${f(M.magnetB([0, 0, 0])[0] * 1000, 0)} mT\nround the N end: out ${f(MAGFLUX.out * 1e6, 0)} μWb, in ${f(MAGFLUX.in * 1e6, 0)} μWb`;
-      case 'rhr': { const d = M.rhrAngle(c); return `θ ${f(d, 0)}°   v ${sci(M.RHR.v, 1)} m/s   B ${f(M.RHR.B)} T\nF = qvB sin θ = ${sci(Math.max(M.RHR.Fmax * Math.sin(d * deg), 1e-20))} N`; }
-      case 'cyclo': { const t = M.cycTime(c) % M.CYC.T; return `t ${f(t * 1e6, 3)} μs   T = 2πm/qB = ${f(M.CYC.T * 1e6, 3)} μs\nr₁ ${f(M.CYC.r[0] * 100)} cm   r₂ ${f(M.CYC.r[1] * 100)} cm`; }
-      case 'selector': return `E/B = ${sci(M.SEL.v0, 1)} m/s\nE ${f(M.SEL.E, 0)} V/m   B ${f(M.SEL.B, 3)} T`;
-      case 'loop': { const d = M.loopAngle(c); return `θ ${f(d, 0)}°   τ = μB sin θ = ${f(M.len(M.loopTorque(d)), 3)} N·m\nU = −μB cos θ = ${f(M.loopU(d), 3)} J`; }
-      case 'ampere': { const r = M.ampR(c), B = M.ampereB(r); return `r ${f(r * 100, 1)} cm   B ${uT(B)} μT\nB·2πr = ${sci(B * 2 * Math.PI * r)} T·m = μ₀I   Φ ${f(M.FLUX.phi * 1e6)} μWb`; }
-      case 'ring': { const z = M.ringZ(c); return `z ${f(z * 100, 1)} cm   B ${uT(M.ringAxis(z))} μT\ncentre μ₀I/2R = ${uT(M.RING.Bc)} μT`; }
-      case 'wires': return `${f(M.WIRES.I, 0)} A each, ${f(M.WIRES.d * 100, 0)} cm apart\nF/L = ${f(M.WIRES.FL * 1000)} mN/m: attract, repel`;
-      case 'solenoid': { const r = M.torR(c); return `solenoid: B ${uT(M.solB([0, 0, 0])[0])} μT   μ₀nI ${uT(M.SOL.B)} μT\ntoroid: r ${f(r * 100, 1)} cm   B ${uT(M.torIdeal(r))} μT`; }
+      case 'magnet': return `B в центре ${f(M.magnetB([0, 0, 0])[0] * 1000, 0)} мТл\nвокруг полюса N: наружу ${f(MAGFLUX.out * 1e6, 0)} мкВб, внутрь ${f(MAGFLUX.in * 1e6, 0)} мкВб`;
+      case 'rhr': { const d = M.rhrAngle(c); return `θ ${f(d, 0)}°   v ${sci(M.RHR.v, 1)} м/с   B ${f(M.RHR.B)} Тл\nF = qvB sin θ = ${sci(Math.max(M.RHR.Fmax * Math.sin(d * deg), 1e-20))} Н`; }
+      case 'cyclo': { const t = M.cycTime(c) % M.CYC.T; return `t ${f(t * 1e6, 3)} мкс   T = 2πm/qB = ${f(M.CYC.T * 1e6, 3)} мкс\nr₁ ${f(M.CYC.r[0] * 100)} см   r₂ ${f(M.CYC.r[1] * 100)} см`; }
+      case 'selector': return `E/B = ${sci(M.SEL.v0, 1)} м/с\nE ${f(M.SEL.E, 0)} В/м   B ${f(M.SEL.B, 3)} Тл`;
+      case 'loop': { const d = M.loopAngle(c); return `θ ${f(d, 0)}°   τ = μB sin θ = ${f(M.len(M.loopTorque(d)), 3)} Н·м\nU = −μB cos θ = ${f(M.loopU(d), 3)} Дж`; }
+      case 'ampere': { const r = M.ampR(c), B = M.ampereB(r); return `r ${f(r * 100, 1)} см   B ${uT(B)} мкТл\nB·2πr = ${sci(B * 2 * Math.PI * r)} Тл·м = μ₀I   Φ ${f(M.FLUX.phi * 1e6)} мкВб`; }
+      case 'ring': { const z = M.ringZ(c); return `z ${f(z * 100, 1)} см   B ${uT(M.ringAxis(z))} мкТл\nв центре μ₀I/2R = ${uT(M.RING.Bc)} мкТл`; }
+      case 'wires': return `${f(M.WIRES.I, 0)} А в каждом, расстояние ${f(M.WIRES.d * 100, 0)} см\nF/L = ${f(M.WIRES.FL * 1000)} мН/м: притяжение или отталкивание`;
+      case 'solenoid': { const r = M.torR(c); return `соленоид: B ${uT(M.solB([0, 0, 0])[0])} мкТл   μ₀nI ${uT(M.SOL.B)} мкТл\nтороид: r ${f(r * 100, 1)} см   B ${uT(M.torIdeal(r))} мкТл`; }
     }
     return '';
   },
