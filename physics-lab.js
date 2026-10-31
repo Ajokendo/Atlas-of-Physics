@@ -93,6 +93,6 @@ function init(root){
  play.addEventListener("click",()=>{userPaused=running;running=!running&&visible;play.textContent=running?"Пауза":"Продолжить";});
  motionPreference.addEventListener("change",e=>{running=visible&&!userPaused&&!e.matches;play.textContent=running?"Пауза":"Продолжить";});
  speed.addEventListener("input",()=>speedOut.textContent=(+speed.value).toFixed(1).replace(".",",")+"×");phase.addEventListener("input",()=>{phaseOut.textContent=phase.value+"%";calc(+phase.value/100);});
- const observer=new IntersectionObserver(entries=>{for(const e of entries){visible=e.isIntersecting;running=visible&&!userPaused;play.textContent=running?"Пауза":"Продолжить";}},{threshold:.08});observer.observe(root);
+ const observer=new IntersectionObserver(entries=>{for(const e of entries){visible=e.isIntersecting;running=visible&&!userPaused&&!motionPreference.matches;play.textContent=running?"Пауза":"Продолжить";}},{threshold:.08});observer.observe(root);
 }
 document.querySelectorAll("[data-physics-lab]").forEach(init);
