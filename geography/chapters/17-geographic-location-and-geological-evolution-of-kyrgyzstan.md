@@ -246,6 +246,40 @@ The territory is the outcome of a long geological history. Ancient continental b
 
 Особое внимание следует уделять названиям хребтов, перевалов, ледников, рек, озёр и населённых пунктов. Ошибки транслитерации могут приводить к появлению на карте несуществующих объектов или дублированию одного и того же названия.
 
+## 17.14а. Разобранный пример: абсолютная и относительная высота / Worked Example: Absolute and Relative Elevation
+
+Рассмотрим условный профиль горной долины. Высота точки на дне долины составляет 1 800 м над средним уровнем моря, а высота соседнего перевала — 3 200 м.
+
+**Абсолютная высота** показывает положение точки относительно принятой нулевой поверхности (обычно среднего уровня моря). Поэтому абсолютные высоты этих точек равны 1 800 и 3 200 м.
+
+**Относительная высота** показывает превышение одной точки над другой. Для перевала относительно дна долины:
+
+\[
+3\,200\text{ м}-1\,800\text{ м}=1\,400\text{ м}
+\]
+
+Следовательно, перевал расположен на 1 400 м выше дна долины. Это не означает, что путь от долины до перевала обязательно имеет такую длину по вертикали: реальный маршрут может включать подъёмы и спуски, а уклон зависит от расстояния и формы склона.
+
+Пример условный и не описывает конкретный перевал Кыргызстана. При работе с цифровой моделью рельефа необходимо проверять систему высот, разрешение модели, дату и возможные ошибки измерения. Высоты, полученные из разных моделей и вертикальных датумов, могут немного различаться.
+
+**Проверьте себя:** если вершина имеет абсолютную высоту 4 100 м, а соседняя долина — 2 650 м, каково превышение вершины над долиной?
+
+Consider a hypothetical mountain-valley profile. A point on the valley floor is 1,800 m above mean sea level, while a nearby mountain pass is 3,200 m.
+
+**Absolute elevation** describes the height of a point relative to a reference surface (usually mean sea level). The absolute elevations are therefore 1,800 m and 3,200 m.
+
+**Relative elevation** is the vertical difference between two points. The pass rises above the valley floor by:
+
+\[
+3,200\text{ m}-1,800\text{ m}=1,400\text{ m}
+\]
+
+The pass is therefore 1,400 m above the valley floor. This does not mean that the route from the valley to the pass has a single continuous vertical climb of exactly this amount: an actual route may include additional rises and descents, and slope steepness depends on distance and terrain shape.
+
+This is a hypothetical example, not a measurement of a specific Kyrgyz pass. When using a digital elevation model, check its vertical reference system, resolution, date and possible measurement errors. Elevations from different models and vertical datums may differ slightly.
+
+**Check your understanding:** if a summit has an absolute elevation of 4,100 m and the neighbouring valley is at 2,650 m, what is the summit's elevation above the valley?
+
 ## 17.15. Итоги главы / Chapter Summary
 
 1. Кыргызстан расположен в северо-восточной части Центральной Азии и не имеет выхода к Мировому океану.
