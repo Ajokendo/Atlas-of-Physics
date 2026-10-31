@@ -13,12 +13,12 @@ const errors = [];
 
 for (const file of files) {
   const html = readFileSync(file, "utf8");
-  const scripts = html.matchAll(/<script\\b([^>]*)>([\\s\\S]*?)<\\/script>/gi);
+  const scripts = html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi);
   let index = 0;
 
   for (const match of scripts) {
     index += 1;
-    if (/\\bsrc\\s*=/.test(match[1])) continue;
+    if (/\bsrc\s*=/.test(match[1])) continue;
     const source = match[2].trim();
     if (!source) continue;
 
@@ -32,7 +32,7 @@ for (const file of files) {
 }
 
 if (errors.length) {
-  console.error(errors.join("\\n"));
+  console.error(errors.join("\n"));
   process.exitCode = 1;
 } else {
   console.log(`Checked ${checked} inline scripts across ${files.length} physics pages.`);
