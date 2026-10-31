@@ -335,6 +335,62 @@ LiDAR (Light Detection and Ranging) измеряет расстояние по �
 13. Какие факторы могут привести к ложному обнаружению изменений?
 14. Какие этические ограничения следует учитывать при использовании детальных снимков?
 
+### Разобранный пример. Расчёт NDVI / Worked example: Calculating NDVI
+
+Рассмотрим условный пиксель спутникового снимка. После необходимой калибровки и атмосферной коррекции отражение в красном канале (Red) равно 0,10, а в ближнем инфракрасном канале (NIR) — 0,50. Эти числа условны и приведены только для обучения.
+
+Формула нормализованного разностного вегетационного индекса:
+
+\[
+NDVI = \frac{NIR-Red}{NIR+Red}
+\]
+
+**Шаг 1. Подставим значения:**
+
+\[
+NDVI = \frac{0{,}50-0{,}10}{0{,}50+0{,}10}
+= \frac{0{,}40}{0{,}60}
+\]
+
+**Шаг 2. Выполним деление:**
+
+\[
+NDVI \approx 0{,}67
+\]
+
+**Как понимать результат?** Значение около 0,67 указывает на заметный контраст между низким отражением в красном канале и более высоким отражением в ближнем инфракрасном. Такое сочетание часто характерно для участков с зелёной растительностью. Однако по одному значению NDVI нельзя надёжно определить вид растений, урожайность или точное состояние экосистемы.
+
+**Важно:** для корректного сравнения нужно использовать данные одного сенсора или согласованные продукты, проверять дату и сезон съёмки, маскировать облака и тени и учитывать фон почвы. NDVI также может насыщаться в густой растительности.
+
+**Проверьте себя:** если Red = 0,20, а NIR = 0,40, чему будет равен NDVI? Почему он ниже, чем в первом примере?
+
+Consider a hypothetical pixel in a satellite image. After the required calibration and atmospheric correction, reflectance in the red band is 0.10 and reflectance in the near-infrared band (NIR) is 0.50. These values are illustrative and are used for learning only.
+
+The Normalized Difference Vegetation Index is calculated as:
+
+\[
+NDVI = \frac{NIR-Red}{NIR+Red}
+\]
+
+**Step 1. Substitute the values:**
+
+\[
+NDVI = \frac{0.50-0.10}{0.50+0.10}
+= \frac{0.40}{0.60}
+\]
+
+**Step 2. Divide:**
+
+\[
+NDVI \approx 0.67
+\]
+
+**How should the result be interpreted?** A value of about 0.67 indicates a clear contrast between low reflectance in the red band and higher reflectance in the near-infrared band. This combination is often characteristic of areas with green vegetation. However, a single NDVI value cannot reliably identify plant species, crop yield or the exact condition of an ecosystem.
+
+**Important:** for valid comparisons, use data from the same sensor or harmonised products, check the acquisition date and season, mask clouds and shadows, and consider the soil background. NDVI can also become saturated in dense vegetation.
+
+**Check your understanding:** If Red = 0.20 and NIR = 0.40, what is the NDVI? Why is it lower than in the first example?
+
 ### Практическая работа 1. Спектральная сигнатура / Practical Activity 1. Spectral Signature
 
 Сравните спектральные кривые растительности, воды, сухой и влажной почвы. Объясните различия по диапазонам и укажите, почему кривые зависят от условий наблюдения.
