@@ -158,7 +158,7 @@ export const PAGES = [
       ])}
       <p>Сила торможения растёт со скоростью, поэтому стержень замедляется экспоненциально и проходит по инерции ещё ${f(M.RAIL.v0 * M.RAIL.tau * 100, 0)} см. Мощность торможения <i>Fv</i> в точности равна <i>I</i><sup>2</sup><i>R</i>: вся кинетическая энергия ${f(0.5 * M.RAIL.m * M.RAIL.v0 ** 2 * 1e3, 0)} мДж превращается в тепло.</p>
       ${two('v', 'pw', { xlabel: 't (с)', ylabel: 'v (м/с)', rlabel: 'P = I²R (Вт)', label: 'Скорость стержня и рассеиваемая мощность в зависимости от времени; заштрихованная площадь — выделившееся тепло',
-        under: `<path data-area="pw" style="fill:#e4e4e8"/>`, series: [{ pts: samples(100, 0, 5, t => M.railScene(t).v) }, { r: 1, pts: samples(100, 0, 5, t => M.railScene(t).P) }], marks: [[M.RAIL.tau, M.RAIL.v0 / Math.E, 'v₀/e at τ']] })}
+        under: `<path data-area="pw" style="fill:#e4e4e8"/>`, series: [{ pts: samples(100, 0, 5, t => M.railScene(t).v) }, { r: 1, pts: samples(100, 0, 5, t => M.railScene(t).P) }], marks: [[M.RAIL.tau, M.RAIL.v0 / Math.E, 'v₀/e при τ']] })}
       <p class="live" id="raillive"></p>
       <p class="hintline">Нажмите на электрическую цепь. ${sq('2 A')}, or 0.25 N.</p>`,
     cam: { target: [ST.rails, 1.7, 0], az: 6, el: 7, dist: 15.5 }, lit: 'rails', scene: 'rails', look: {},
@@ -170,7 +170,7 @@ export const PAGES = [
       <p class="lede">Ток в катушке создаёт магнитный поток через её собственные витки. При изменении тока меняется и поток, в результате чего возникает <b>ЭДС самоиндукции</b>, препятствующая этому изменению.</p>
       ${steps([
         ['<i>L</i> = <i>N</i>Φ/<i>I</i>, &nbsp;ε<sub><i>L</i></sub> = −<i>L dI</i>/<i>dt</i>', 'henries, H'],
-        ['<i>B</i> = μ<sub>0</sub><i>nI</i> → <i>L</i> = μ<sub>0</sub><i>N</i><sup>2</sup><i>A</i>/ℓ', `${f(M.SOL.L * 1e3, 2)} mH`],
+        ['<i>B</i> = μ<sub>0</sub><i>nI</i> → <i>L</i> = μ<sub>0</sub><i>N</i><sup>2</sup><i>A</i>/ℓ', `${f(M.SOL.L * 1e3, 2)} мГн`],
         ['<i>U</i> = ½<i>LI</i><sup>2</sup>, &nbsp;<i>u</i> = <i>B</i><sup>2</sup>/2μ<sub>0</sub>', 'stored'],
       ])}
       <p>Катушка содержит ${M.SOL.N} витков, её длина — ${M.SOL.len * 100} см, радиус — ${M.SOL.r * 100} см. Для такой короткой катушки приближение μ<sub>0</sub><i>nI</i> завышает поле на ${f((1 - M.solCentreB(1) / (M.MU0 * M.SOL.n)) * 100, 0)} %. При увеличении тока от 0 до ${M.SOL.Imax} А за ${M.SOL.ramp} с ЭДС самоиндукции ε<sub><i>L</i></sub> = ${f(-M.SOL.L * M.SOL.Imax / M.SOL.ramp * 1e3, 2)} мВ; при постоянном токе она равна нулю. Индуктивность сглаживает резкие изменения тока.</p>
@@ -208,7 +208,7 @@ export const PAGES = [
         marks: [[M.LC.T * 1e3, 100, 'T', 6, 14]] })}
       <div class="eq"><i>q</i><sup>2</sup>/2<i>C</i> + ½<i>LI</i><sup>2</sup> = <i>Q</i><sup>2</sup>/2<i>C</i> = ${f(M.LC.U * 1e3, 2)} mJ</div>
       <div class="charts">${barChart('lc', [['UE', 'U_E = q²/2C', '#8fb0f0'], ['UB', 'U_B = ½LI²', '#c4c4c8'], ['U', 'total', '#f7f7f4']], `${f(M.LC.U * 1e3, 2)} mJ`)}</div>
-      <table class="data"><tr><th>mass on a spring</th><th>LC circuit</th></tr>
+      <table class="data"><tr><th>груз на пружине</th><th>колебательный LC-контур</th></tr>
         <tr><td><i>x</i>, &nbsp;<i>v</i></td><td><i>q</i>, &nbsp;<i>I</i></td></tr>
         <tr><td><i>m</i>, &nbsp;<i>k</i></td><td><i>L</i>, &nbsp;1/<i>C</i></td></tr>
         <tr><td>½<i>kx</i><sup>2</sup>, &nbsp;½<i>mv</i><sup>2</sup></td><td><i>q</i><sup>2</sup>/2<i>C</i>, &nbsp;½<i>LI</i><sup>2</sup></td></tr></table>
