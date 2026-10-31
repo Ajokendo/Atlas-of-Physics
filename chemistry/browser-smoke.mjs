@@ -64,9 +64,8 @@ try {
       languageChecks++;
     }
 
-    if (file.startsWith("chapters/")) {
-      if (await page.locator("button").evaluateAll(items => items.some(button => button.type !== "button"))) {
-        errors.push(file + ": a chapter button is missing an explicit button type");
+    if (await page.locator("button").evaluateAll(items => items.some(button => button.type !== "button"))) {
+      errors.push(file + ": a button is missing an explicit button type");
       }
     }
 
