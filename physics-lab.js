@@ -22,7 +22,7 @@ function init(root){
  const id=root.dataset.chapter, cfg=presets[id]||presets["01"], canvas=root.querySelector("canvas"), speed=root.querySelector("[data-speed]"), speedOut=root.querySelector("[data-speed-out]"), play=root.querySelector("button"), phase=root.querySelector("[data-phase]"), phaseOut=root.querySelector("[data-phase-out]");
  const paramName=root.querySelector("[data-phase-name]");if(paramName)paramName.textContent=cfg.param||"Параметр";
  const motionPreference=window.matchMedia("(prefers-reduced-motion: reduce)");
- let renderer,scene,camera,object,group,clock=new THREE.Clock(),running=!motionPreference.matches,elapsed=0,drag=false,lastX=0,lastY=0,rotX=-.28,rotY=.42;
+ let renderer,scene,camera,object,group,clock=new THREE.Clock(),visible=true,userPaused=motionPreference.matches,running=!userPaused,elapsed=0,drag=false,lastX=0,lastY=0,rotX=-.28,rotY=.42;
  play.textContent=running?"Пауза":"Продолжить";
  try{
   renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});renderer.setPixelRatio(Math.min(devicePixelRatio||1,2));renderer.setSize(canvas.clientWidth,canvas.clientHeight,false);renderer.outputColorSpace=THREE.SRGBColorSpace;
@@ -90,9 +90,9 @@ function init(root){
   if(object){if(cfg.kind==="linear")object.position.x=-2+((elapsed*(.3+p*1.8))%4);if(cfg.kind==="force")object.position.x=Math.sin(elapsed*(.2+p))*((.2+p)*.8);if(cfg.kind==="circle"){const r=.5+2.5*p;object.position.x=r*Math.cos(elapsed);object.position.z=r*Math.sin(elapsed);}if(cfg.kind==="energy")object.position.x=-1.55+1.8*p;if(cfg.kind==="collision"){object.position.x=-2+2*p;group.children.find(o=>o.isMesh&&o.material===blue)?.position.set(2-2*p,-.7,0);}if(cfg.kind==="oscillation")object.position.y=-.65+Math.sin(elapsed*(.5+p*3))* (.2+p*.3);if(cfg.kind==="rotation")object.rotation.y=elapsed*(.3+p*2);if(cfg.kind==="fluid")object.position.y=.4+Math.sin(elapsed)*(.05+p*.3);if(cfg.kind==="gauss")object.rotation.y=elapsed*.4;if(cfg.kind==="potential")object.position.y=-.7+Math.sin(elapsed)*.08;if(cfg.kind==="circuit")object.rotation.y=elapsed*.5;if(cfg.kind==="induction")object.position.z=Math.sin(elapsed*(.3+p*3))*.65;}
   renderer.render(scene,camera);
  };calc(+phase.value/100);render();
- play.addEventListener("click",()=>{running=!running;play.textContent=running?"Пауза":"Продолжить";});
- motionPreference.addEventListener("change",e=>{running=!e.matches;play.textContent=running?"Пауза":"Продолжить";});
+ play.addEventListener("click",()=>{userPaused=running;running=!running&&visible;play.textContent=running?"Пауза":"Продолжить";});
+ motionPreference.addEventListener("change",e=>{if(e.matches)userPaused=true;running=visible&&!userPaused;play.textContent=running?"Пауза":"Продолжить";});
  speed.addEventListener("input",()=>speedOut.textContent=(+speed.value).toFixed(1).replace(".",",")+"×");phase.addEventListener("input",()=>{phaseOut.textContent=phase.value+"%";calc(+phase.value/100);});
- const observer=new IntersectionObserver(entries=>{for(const e of entries)if(e.isIntersecting)running=!motionPreference.matches;else running=false;},{threshold:.08});observer.observe(root);
+ const observer=new IntersectionObserver(entries=>{for(const e of entries){visible=e.isIntersecting;running=visible&&!userPaused;play.textContent=running?"Пауза":"Продолжить";}},{threshold:.08});observer.observe(root);
 }
 document.querySelectorAll("[data-physics-lab]").forEach(init);
