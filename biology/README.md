@@ -175,3 +175,13 @@ GitHub Pages deployment completed successfully for main commit `39fc80c4f03dd247
 - The flora and fauna chapters now explicitly distinguish project-announcement figures from verified species assessments. National Red Data Book status and IUCN categories remain separate systems and must be dated and sourced independently.
 - The Institute of Biology of the National Academy of Sciences reported on 14 October 2026 that the revision is planned for 2026–2028 and includes field research, updated species accounts, maps and a digital database. The planned publication dates are not evidence that the new edition has already been released.
 - Official references: [Ministry announcement, 9 June 2026](https://mnr.gov.kg/ru/posts/news/ministerstvo-prirodnyx-resursov-ekologii-i-texniceskogo-nadzora-kyrgyzskoi-respubliki-sovmestno-s-nacionalnoi-akademiei-nauk-pristupaet-k-rabote-po-obnovleniyu-krasnoi-knigi); [Institute of Biology, 14 October 2026](https://ibnaskr.org/red-data-book-kyrgyzstan-project-2026-2028/).
+
+
+## Learner experience and editorial enrichment — 31 October 2026
+
+- Added a bilingual “Start with wonder / A minute to explore” opening to all ten global chapters and both Kyrgyzstan biodiversity chapters. Each opening begins with a concrete everyday image or field situation, then invites learners to reveal an explanatory answer through a native keyboard-accessible disclosure control.
+- The chapter hooks are subject-specific: plant systems, animal adaptations, cell organisation, coordinated body systems, gene expression, microbial diversity, food-web connections, evolution across generations, cellular chemistry, evolutionary classification, elevation-driven flora and habitat connectivity for wildlife.
+- Added a bilingual learner-orientation panel to the Biology landing page, encouraging observation, questioning and model-based exploration rather than memorisation of isolated definitions.
+- New blocks preserve the Atlas visual language, responsive layout and RU/EN language switching. They supplement existing scientific plates, interactive models, glossaries, learning objectives and five-question knowledge checks.
+- Editorial principle for subsequent revisions: introduce a phenomenon in familiar language, explain the idea, then introduce the precise scientific term; use analogies as entry points and explain their limits. Do not remove necessary scientific vocabulary or overstate simplified models.
+- This is a pedagogical enrichment pass, not a complete line-by-line scientific peer review. Expert review of specialist claims, species accounts, source freshness and terminology remains a separate quality-assurance task.
