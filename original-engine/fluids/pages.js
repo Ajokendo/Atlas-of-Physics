@@ -34,14 +34,14 @@ function bernBars() {
     for (const [val, fill] of [[p.P, '#ecece8'], [p.K / 1000 * 1000, '#8fb0f0'], [p.U, '#9c9ca2']]) {
       const v = val / 1000; if (v > 0.01) out += `<rect x="${x}" y="${sy(y0 + v)}" width="${bw}" height="${sy(y0) - sy(y0 + v)}" fill="${fill}" stroke="#8a8a8f" stroke-width=".8"/>`; y0 += v;
     }
-    return out + `<text class="lab" x="${x + bw / 2}" y="${H - 9}" text-anchor="middle">point ${k + 1}</text>`;
+    return out + `<text class="lab" x="${x + bw / 2}" y="${H - 9}" text-anchor="middle">точка ${k + 1}</text>`;
   }).join('');
   const tot = sy(M.BERN.E / 1000);
   return `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Энергия единицы объёма в трёх точках: сумма энергий давления, кинетической и потенциальной постоянна">
     <line class="grid" x1="${P.l}" x2="${W - P.r}" y1="${sy(0)}" y2="${sy(0)}"/>${cols}
-    <line class="trend" x1="${P.l}" x2="${W - P.r}" y1="${tot}" y2="${tot}"/><text class="lab" x="${W - P.r}" y="${tot - 6}" text-anchor="end">total ${f(M.BERN.E / 1000, 0)} kPa</text>
+    <line class="trend" x1="${P.l}" x2="${W - P.r}" y1="${tot}" y2="${tot}"/><text class="lab" x="${W - P.r}" y="${tot - 6}" text-anchor="end">суммарное давление ${f(M.BERN.E / 1000, 0)} кПа</text>
     <text class="ax" x="${P.l - 6}" y="${sy(top) + 4}" text-anchor="end">${top}</text><text class="ax" x="${P.l - 6}" y="${sy(0) + 4}" text-anchor="end">0</text>
-    <text class="lab" x="${P.l + 6}" y="${P.t + 13}">kPa = kJ/m³: P (pale) + ½ρv² (blue) + ρgy (grey)</text>
+    <text class="lab" x="${P.l + 6}" y="${P.t + 13}">кПа = кДж/м³: P (статическое) + ½ρv² (динамическое) + ρgy (гидростатическое)</text>
   </svg>`;
 }
 
