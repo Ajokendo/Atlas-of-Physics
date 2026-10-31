@@ -301,6 +301,37 @@ try {
     if (file === "virtual-lab.html") {
       await page.locator("#add").click();
       if (!(await page.locator("#status").innerText()).trim()) errors.push(file + ": experiment did not report a result");
+      if (!(await page.locator("#baseOut").innerText()).trim().endsWith("мл") ||
+          !(await page.locator("#status").innerText()).trim().endsWith("5 мл")) {
+        errors.push(file + ": Russian volume units are not localized consistently");
+      }
+      await page.locator("#lang").click();
+      if (!(await page.locator("#baseOut").innerText()).trim().endsWith("mL") ||
+          !(await page.locator("#status").innerText()).trim().endsWith("5 mL")) {
+        errors.push(file + ": English volume units are not localized consistently");
+      }
+      await page.locator("#lang").click();
+      await page.locator("#reset").click();
+      await page.locator("#acidC").fill("0");
+      await page.locator("#acidC").dispatchEvent("input");
+      if (!(await page.locator("#ph").innerText()).includes("—") ||
+          (await page.locator("#pin").evaluate(el => el.style.left)) !== "50%" ||
+          (await page.locator("#beakerLabel").innerText()).trim() !== "—") {
+        errors.push(file + ": invalid input left stale visual results in the beaker");
+      }
+      await page.locator("#acidC").fill("0.1");
+      await page.locator("#acidC").dispatchEvent("input");
+      await page.locator("#baseV").fill("100");
+      await page.locator("#baseV").dispatchEvent("input");
+      if ((await page.locator("#ph").innerText()).trim() !== "pH = 7.00") {
+        errors.push(file + ": exact strong acid/base equivalence did not produce pH 7");
+      }
+      await page.locator("#baseC").fill("0.100000000001");
+      await page.locator("#baseC").dispatchEvent("input");
+      const nearEquivalencePH = Number((await page.locator("#ph").innerText()).replace("pH = ", ""));
+      if (!Number.isFinite(nearEquivalencePH) || nearEquivalencePH < 6.9 || nearEquivalencePH > 7.1) {
+        errors.push(file + ": pH is discontinuous near equivalence because water autoionisation is not represented");
+      }
       await page.locator("#reset").click();
     }
 
@@ -343,6 +374,48 @@ try {
       await page.locator("#na").dispatchEvent("input");
       const after = (await page.locator("#theory").innerText()).trim();
       if (before === after) errors.push(file + ": changing amount did not update calculation");
+
+      await page.locator("#a").fill("1");
+      await page.locator("#b").fill("1");
+      await page.locator("#c").fill("1");
+      await page.locator("#na").fill("0.000000000001");
+      await page.locator("#nb").fill("0.000000001");
+      await page.locator("#actual").fill("");
+      await page.locator("#na").dispatchEvent("input");
+      if ((await page.locator("#limit").innerText()).trim() !== "A" ||
+          !(await page.locator("#left").innerText()).includes("0.000000000999")) {
+        errors.push(file + ": trace mole quantities were misclassified by an absolute tolerance");
+      }
+
+      await page.locator("#na").fill("0");
+      await page.locator("#nb").fill("2");
+      await page.locator("#na").dispatchEvent("input");
+      if ((await page.locator("#limit").innerText()).trim() !== "A" ||
+          !(await page.locator("#left").innerText()).includes("2 mol")) {
+        errors.push(file + ": zero amount of one reactant did not identify it as limiting");
+      }
+
+      await page.locator("#na").fill("0");
+      await page.locator("#nb").fill("0");
+      await page.locator("#actual").fill("0");
+      await page.locator("#na").dispatchEvent("input");
+      if (!(await page.locator("#yield").innerText()).includes("нулю")) {
+        errors.push(file + ": zero theoretical product amount was reported as a numeric percentage");
+      }
+
+      await page.locator("#na").fill("1");
+      await page.locator("#nb").fill("1");
+      await page.locator("#actual").fill("1.01");
+      await page.locator("#na").dispatchEvent("input");
+      if (!(await page.locator("#yield").innerText()).includes("превышает")) {
+        errors.push(file + ": actual yield above theoretical yield was not rejected");
+      }
+
+      await page.locator("#a").fill("0");
+      await page.locator("#a").dispatchEvent("input");
+      if (!(await page.locator("#explain").innerText()).includes("коэффициенты")) {
+        errors.push(file + ": zero stoichiometric coefficient was not rejected");
+      }
     }
 
     if (file === "gas-laws.html") {
