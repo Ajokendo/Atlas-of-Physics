@@ -136,20 +136,20 @@ export function buildWorld(E) {
   const PBR = M.PILLBOX.r * DRAW, PBL = 0.36;
   gauss(pb, xAxis(new THREE.CylinderGeometry(PBR, PBR, PBL, 40)));
   lines(pb, [...ring(V(-PBL / 2, 0, 0), PBR), ...ring(V(PBL / 2, 0, 0), PBR), ...ring(V(0, 0, 0), PBR)], '#6f8fca');
-  part(pb, xAxis(new THREE.CylinderGeometry(PBR, PBR, T, 40)), { tone: 'hi', name: 'Plate inside the pillbox', mat: shadeMat('paper', { opacity: 0.8 }) });
+  part(pb, xAxis(new THREE.CylinderGeometry(PBR, PBR, T, 40)), { tone: 'hi', name: 'Пластина внутри гауссова цилиндра', mat: shadeMat('paper', { opacity: 0.8 }) });
   const pbPlus = marks(pb, RED, 6);
   pbPlus([[0, 0], [0.13, 0.08], [-0.12, 0.1], [0.05, -0.15], [-0.1, -0.12]].map(([y, z]) => ({ p: V(T / 2 + 0.004, y, z), u: Y_, v: Z_, n: X_, s: 0.06 })));
   const pbE = field(pb, 0.02); setArrow(pbE, V(PBL / 2, 0, 0), V(M.E0 * ES, 0, 0));
   label('vec blue', '<i>E</i>·<i>A</i>', when(g1, () => tipOf(pbE)));
   label('tick', '<i>q</i><sub>enc</sub> = σ<i>A</i>', when(g1, () => pb.localToWorld(V(0, PBR + 0.18, 0))));
-  label('tick', 'flux 0', when(g1, () => pb.localToWorld(V(-PBL / 2 - 0.08, 0, 0))));
+  label('tick', 'поток 0', when(g1, () => pb.localToWorld(V(-PBL / 2 - 0.08, 0, 0))));
   const dimD = lines(g1, new Array(18).fill(0), '#6e6e74');
   label('tick', '<i>d</i>', () => V(X1 + 0.06, CY - SIDE / 2 - 0.2, SIDE / 2));
 
   // ---------- 2 · spherical capacitor ----------
   const X2 = STATIONS.sphere, C2y = 2.2, A2 = M.SPH.a * DRAW, B2 = M.SPH.b * DRAW, c2 = V(X2, C2y, 0);
   const g2 = asm('sphere', root, { title: 'Сферический конденсатор', sub: 'шар внутри оболочки' });
-  part(g2, new THREE.SphereGeometry(A2, 48, 32), { tone: 'hi', pos: c2.toArray(), name: 'Inner sphere (+Q)' });
+  part(g2, new THREE.SphereGeometry(A2, 48, 32), { tone: 'hi', pos: c2.toArray(), name: 'Внутренняя сфера (+Q)' });
   // the outer shell cut in half through the centre, the front half removed: a cross-section.
   // The back half is in two quarters that part when opened.
   const shell2 = [0, 1].map(k => {
@@ -182,7 +182,7 @@ export function buildWorld(E) {
   // ---------- 3 · cylindrical (coaxial) capacitor, axis along x ----------
   const X3 = STATIONS.coax, C3y = 1.6, A3 = M.CYL.a * DRAW, B3 = M.CYL.b * DRAW, L3 = M.CYL.L * DRAW, c3 = V(X3, C3y, 0);
   const g3 = asm('coax', root, { title: 'Цилиндрический конденсатор', sub: 'стержень внутри трубки' });
-  part(g3, xAxis(new THREE.CylinderGeometry(A3, A3, L3 + 0.6, 40)), { tone: 'hi', pos: c3.toArray(), name: 'Inner rod (+Q)' });
+  part(g3, xAxis(new THREE.CylinderGeometry(A3, A3, L3 + 0.6, 40)), { tone: 'hi', pos: c3.toArray(), name: 'Внутренний стержень (+Q)' });
   const tube3 = mover(g3, [L3 + 0.8, 0, 0]); tube3.position.copy(c3); tube3.userData.home.copy(c3);
   // cylinder angle θ: x = r sin θ, z = r cos θ; turned to the x axis, θ ∈ [90°, 270°] is the back half (z ≤ 0)
   part(tube3, xAxis(new THREE.CylinderGeometry(B3 + 0.04, B3 + 0.04, L3, 64, 1, true, Math.PI / 2, Math.PI)), { tone: 'hi', name: 'Outer tube (−Q)' });
@@ -213,7 +213,7 @@ export function buildWorld(E) {
   fill4.userData.noEdge = true;
   const vol4 = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(D0, SIDE, SIDE)), new THREE.LineBasicMaterial({ color: '#3d63a8' }));
   vol4.position.set(X4, CY, 0); vol4.userData = { noEdge: true }; g4.add(vol4);
-  label('tick', 'volume <i>Ad</i>', when(g4, () => V(X4 + 0.5, CY - SIDE / 2 - 0.15, SIDE / 2)));
+  label('tick', 'объём <i>Ad</i>', when(g4, () => V(X4 + 0.5, CY - SIDE / 2 - 0.15, SIDE / 2)));
   label('vec blue', '<i>u</i> = ½ε<sub>0</sub><i>E</i><sup>2</sup>', when(g4, () => V(X4 + 0.15, CY + SIDE / 2 + 0.25, SIDE / 2)));
   const dq = part(g4, new THREE.SphereGeometry(0.07, 24, 16), { tone: 'hi', pal: 'red', name: 'A bit of charge dq' });
   const push4 = arrow(g4, 'ink', { r: 0.014, head: 0.08, headR: 0.04, name: 'A bit of charge dq' });
@@ -222,7 +222,7 @@ export function buildWorld(E) {
   const bar4 = part(g4, new THREE.BoxGeometry(0.3, 1, 0.3), { tone: 'hi', pal: 'blue', name: 'Stored energy' });
   lines(g4, [X4 + 0.95, CY - SIDE / 2, 0, X4 + 1.45, CY - SIDE / 2, 0, X4 + 0.95, CY - SIDE / 2 + 1.8, 0, X4 + 1.45, CY - SIDE / 2 + 1.8, 0], '#9a9aa0');
   label('vec', '<i>U</i>', () => V(X4 + 1.2, CY - SIDE / 2 - 0.2, 0.2));
-  label('tick', `${(M.U0 * 1e9).toFixed(1)} nJ`, () => V(X4 + 1.95, CY - SIDE / 2 + 1.8, 0));
+  label('tick', `${(M.U0 * 1e9).toFixed(1)} нДж`, () => V(X4 + 1.95, CY - SIDE / 2 + 1.8, 0));
 
   // ---------- 5 · series and parallel: 2 µF and 4 µF on 9 V ----------
   const X5 = STATIONS.circuits, by5 = 0.4, ty5 = 2.8;
@@ -239,17 +239,17 @@ export function buildWorld(E) {
     return gap;
   }
   // series, on the left
-  const xs = X5 - 2.2, gS = asm('series', root, { title: 'Последовательное соединение', sub: 'одинаковый заряд Q, напряжение делится' });
+  const xs = X5 - 2.2, gS = asm('последовательно', root, { title: 'Последовательное соединение', sub: 'одинаковый заряд Q, напряжение делится' });
   battery(gS, V(xs, by5, 0), 0.7, 0.12);
-  smallCap(gS, xs - 0.6, ty5, M.CIRC.C1, M.SER.Q1, 'C₁ = 2 µF'); smallCap(gS, xs + 0.6, ty5, M.CIRC.C2, M.SER.Q2, 'C₂ = 4 µF');
+  smallCap(gS, xs - 0.6, ty5, M.CIRC.C1, M.SER.Q1, 'C₁ = 2 мкФ'); smallCap(gS, xs + 0.6, ty5, M.CIRC.C2, M.SER.Q2, 'C₂ = 4 мкФ');
   wire(gS, [V(xs - 0.38, by5, 0), V(xs - 1.4, by5, 0), V(xs - 1.4, ty5, 0), V(xs - 0.71, ty5, 0)]);
-  wire(gS, [V(xs - 0.49, ty5, 0), V(xs + 0.49, ty5, 0)], 'The island between them');
+  wire(gS, [V(xs - 0.49, ty5, 0), V(xs + 0.49, ty5, 0)], 'Нейтральный узел между конденсаторами');
   wire(gS, [V(xs + 0.71, ty5, 0), V(xs + 1.4, ty5, 0), V(xs + 1.4, by5, 0), V(xs + 0.35, by5, 0)]);
   // parallel, on the right
-  const xp = X5 + 2.2, gP = asm('parallel', root, { title: 'Параллельное соединение', sub: 'одинаковое напряжение, заряд делится' });
+  const xp = X5 + 2.2, gP = asm('параллельно', root, { title: 'Параллельное соединение', sub: 'одинаковое напряжение, заряд делится' });
   const my5 = 1.6;
   battery(gP, V(xp, by5, 0), 0.7, 0.12);
-  smallCap(gP, xp, ty5, M.CIRC.C1, M.PAR.Q1, 'C₁ = 2 µF'); smallCap(gP, xp, my5, M.CIRC.C2, M.PAR.Q2, 'C₂ = 4 µF');
+  smallCap(gP, xp, ty5, M.CIRC.C1, M.PAR.Q1, 'C₁ = 2 мкФ'); smallCap(gP, xp, my5, M.CIRC.C2, M.PAR.Q2, 'C₂ = 4 мкФ');
   wire(gP, [V(xp - 0.38, by5, 0), V(xp - 1.4, by5, 0), V(xp - 1.4, ty5, 0), V(xp - 0.11, ty5, 0)]);
   wire(gP, [V(xp + 0.11, ty5, 0), V(xp + 1.4, ty5, 0), V(xp + 1.4, by5, 0), V(xp + 0.35, by5, 0)]);
   wire(gP, [V(xp - 1.4, my5, 0), V(xp - 0.11, my5, 0)]); wire(gP, [V(xp + 0.11, my5, 0), V(xp + 1.4, my5, 0)]);
@@ -264,23 +264,23 @@ export function buildWorld(E) {
   };
   capLab(gS, xs - 0.6, ty5, 2, M.SER.Q1, M.SER.V1); capLab(gS, xs + 0.6, ty5, 4, M.SER.Q2, M.SER.V2);
   capLab(gP, xp, ty5, 2, M.PAR.Q1, M.PAR.V1); capLab(gP, xp, my5, 4, M.PAR.Q2, M.PAR.V2, true);
-  label('board', 'series', () => V(xs - 1.4, ty5 + 0.75, 0)); label('board', 'parallel', () => V(xp - 1.4, ty5 + 0.75, 0));
-  label('tick', 'island: −<i>Q</i> + <i>Q</i> = 0', when(gS, () => V(xs + 0.55, ty5 - 0.75, 0)));
+  label('board', 'последовательно', () => V(xs - 1.4, ty5 + 0.75, 0)); label('board', 'параллельно', () => V(xp - 1.4, ty5 + 0.75, 0));
+  label('tick', 'нейтральный узел: −<i>Q</i> + <i>Q</i> = 0', when(gS, () => V(xs + 0.55, ty5 - 0.75, 0)));
 
   // ---------- 6 · a dielectric slab slides in (plates isolated, Q fixed) ----------
   function slabCap(g, cx, molecules) {
     const c = capacitor(g, cx, { lines: false });
     const sl = new THREE.Group(); g.add(sl);
     const sw = D0 - 0.1;
-    part(sl, box(sw, SIDE, SIDE - 0.04, 0.02), { tone: 'mid', name: 'Dielectric slab (κ = 3)', mat: shadeMat('board', { opacity: 0.55 }) });
+    part(sl, box(sw, SIDE, SIDE - 0.04, 0.02), { tone: 'mid', name: 'Диэлектрическая пластина (κ = 3)', mat: shadeMat('board', { opacity: 0.55 }) });
     const mols = [];
     if (molecules) for (let i = 0; i < 2; i++) for (let j = 0; j < 6; j++) for (let k = 0; k < 5; k++) {
       const m = new THREE.Group(); sl.add(m);
       const p = V((i - 0.5) * 0.17, -SIDE / 2 + (j + 0.5) * SIDE / 6, (k - 2) * 0.38 + (j % 2) * 0.1);
       m.position.copy(p);
-      part(m, new THREE.SphereGeometry(0.035, 14, 10), { tone: 'mid', pal: 'red', pos: [0, 0.06, 0], name: 'Polar molecules' });
-      part(m, new THREE.SphereGeometry(0.035, 14, 10), { tone: 'mid', pal: 'blue', pos: [0, -0.06, 0], name: 'Polar molecules' });
-      part(m, new THREE.CylinderGeometry(0.012, 0.012, 0.12, 8), { tone: 'mid', pal: 'ink', name: 'Polar molecules' });
+      part(m, new THREE.SphereGeometry(0.035, 14, 10), { tone: 'mid', pal: 'red', pos: [0, 0.06, 0], name: 'Полярные молекулы' });
+      part(m, new THREE.SphereGeometry(0.035, 14, 10), { tone: 'mid', pal: 'blue', pos: [0, -0.06, 0], name: 'Полярные молекулы' });
+      part(m, new THREE.CylinderGeometry(0.012, 0.012, 0.12, 8), { tone: 'mid', pal: 'ink', name: 'Полярные молекулы' });
       mols.push({ m, h: 1 - (j + 0.5) / 6, th0: (rand() * 2 - 1) * Math.PI * 0.95, psi: rand() * 2 * Math.PI });
     }
     const boundN = marks(sl, BLUE, 40), boundP = marks(sl, RED, 40);
@@ -339,18 +339,18 @@ export function buildWorld(E) {
   const gB = asm('isolated', root, { title: 'Батарея отключена', sub: 'заряд постоянен: напряжение падает' });
   const S7a = slabCap(gA, xa, false), S7b = slabCap(gB, xb, false);
   hookUp(gA, xa, D0);
-  label('board', 'connected', () => V(xa - 1.0, CY + SIDE / 2 + 0.85, -1));
-  label('board', 'disconnected', () => V(xb - 1.0, CY + SIDE / 2 + 0.85, -1));
-  label('tick', '100 V', () => V(xa + 0.1, 0.0, 0.3));
+  label('board', 'подключён', () => V(xa - 1.0, CY + SIDE / 2 + 0.85, -1));
+  label('board', 'отключён', () => V(xb - 1.0, CY + SIDE / 2 + 0.85, -1));
+  label('tick', '100 В', () => V(xa + 0.1, 0.0, 0.3));
 
   // ---------- 8 · a conducting sphere in a uniform field ----------
   const X8 = STATIONS.conductor, C8y = 1.8, R8 = M.COND.R * DRAW, c8 = V(X8, C8y, 0);
   const g8 = asm('conductor', root, { title: 'Проводник во внешнем поле', sub: 'заряды перераспределяются, пока E внутри не станет равным нулю' });
   [0, 1].map(k => {
     const h = mover(g8, [0, k ? -1.2 : 1.2, 0]); h.position.copy(c8); h.userData.home.copy(c8);
-    part(h, new THREE.SphereGeometry(R8, 64, 32, 0, 2 * Math.PI, k ? Math.PI / 2 : 0, Math.PI / 2), { tone: 'hi', name: 'Conducting sphere' });
+    part(h, new THREE.SphereGeometry(R8, 64, 32, 0, 2 * Math.PI, k ? Math.PI / 2 : 0, Math.PI / 2), { tone: 'hi', name: 'Проводящая сфера' });
     const cap = new THREE.CircleGeometry(R8, 64); cap.rotateX(k ? Math.PI / 2 : -Math.PI / 2);
-    part(h, cap, { tone: 'hi', pal: 'board', name: 'Conducting sphere' });
+    part(h, cap, { tone: 'hi', pal: 'board', name: 'Проводящая сфера' });
     // induced surface charge σ = 3ε₀E₀ cos θ: + where the field leaves (+x), − where it arrives
     const sites = fib(900, (d, i) => (k ? d.y < 0 : d.y >= 0) && ((i * 0.618034) % 1) < Math.abs(d.x) * 0.9);
     marks(h, RED, 400)(sites.filter(d => d.x > 0).map(n => ({ p: n.clone().multiplyScalar(R8 + 0.004), u: tangents(n)[0], v: tangents(n)[1], n, s: 0.1 })));
@@ -379,8 +379,8 @@ export function buildWorld(E) {
   label('vec blue', '<i>E</i>', () => tipOf(probeE));
   label('vec blue', '<i>E</i><sub>0</sub>', () => c8.clone().add(V(-2.9, 2.9, 0)));
   const inner8 = new THREE.Group(); inner8.position.copy(c8); g8.add(inner8);
-  gauss(inner8, new THREE.SphereGeometry(R8 * 0.65, 40, 24), 'Gaussian surface inside');
-  label('tick', '<i>E</i> = 0 inside', when(g8, () => c8.clone().add(V(0.5, 0, R8))));
+  gauss(inner8, new THREE.SphereGeometry(R8 * 0.65, 40, 24), 'Гауссова поверхность внутри проводника');
+  label('tick', '<i>E</i> = 0 внутри', when(g8, () => c8.clone().add(V(0.5, 0, R8))));
 
   // ---------- per-frame ----------
   function update(s) {
