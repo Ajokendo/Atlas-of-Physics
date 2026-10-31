@@ -362,6 +362,74 @@
 
 **Место для иллюстрации 5.16-A — From Weather Observation to Forecast.** Цепочка наблюдений, ассимиляции данных, численного моделирования, проверки прогноза и выпуска предупреждений.
 
+## 5.16.1. Практический пример: анализ годового хода температуры и осадков / Worked Example: Analysing Annual Temperature and Precipitation
+
+Рассмотрим условные среднемесячные данные одной метеостанции. Они приведены только для учебного расчёта и не описывают конкретный населённый пункт.
+
+| Месяц | Температура, °C | Осадки, мм |
+|---|---:|---:|
+| Январь | −3 | 20 |
+| Февраль | −1 | 22 |
+| Март | 5 | 30 |
+| Апрель | 12 | 45 |
+| Май | 18 | 60 |
+| Июнь | 23 | 40 |
+| Июль | 26 | 25 |
+| Август | 25 | 20 |
+| Сентябрь | 19 | 25 |
+| Октябрь | 11 | 35 |
+| Ноябрь | 4 | 30 |
+| Декабрь | −1 | 25 |
+
+**Шаг 1. Находим годовую амплитуду температуры.**  
+Самая высокая среднемесячная температура — 26 °C в июле, самая низкая — −3 °C в январе. Амплитуда равна разности: 26 − (−3) = **29 °C**.
+
+**Шаг 2. Рассчитываем годовую сумму осадков.**  
+Складываем месячные значения: 20 + 22 + 30 + 45 + 60 + 40 + 25 + 20 + 25 + 35 + 30 + 25 = **377 мм**.
+
+**Шаг 3. Описываем сезонность.**  
+Наибольшее количество осадков в этом условном наборе выпадает в мае (60 мм), наименьшее — в августе (20 мм). Температура достигает максимума в июле. Следовательно, максимум температуры и максимум осадков не совпадают по времени.
+
+**Шаг 4. Ограничиваем вывод.**  
+Эти значения позволяют описать годовой ход температуры и осадков, но сами по себе не дают надёжного основания присвоить территории климатический тип или установить долгосрочную тенденцию. Для этого нужны координаты и высота станции, многолетний сопоставимый ряд наблюдений и выбранная климатическая классификация.
+
+**Проверьте себя:** какова амплитуда температуры, если минимальная среднемесячная температура равна −5 °C, а максимальная — 24 °C?
+
+### Worked Example: Analysing Annual Temperature and Precipitation
+
+Consider hypothetical monthly mean data from one weather station. These figures are for practice only and do not describe a specific settlement.
+
+| Month | Temperature, °C | Precipitation, mm |
+|---|---:|---:|
+| January | −3 | 20 |
+| February | −1 | 22 |
+| March | 5 | 30 |
+| April | 12 | 45 |
+| May | 18 | 60 |
+| June | 23 | 40 |
+| July | 26 | 25 |
+| August | 25 | 20 |
+| September | 19 | 25 |
+| October | 11 | 35 |
+| November | 4 | 30 |
+| December | −1 | 25 |
+
+**Step 1. Calculate the annual temperature range.**  
+The highest monthly mean is 26 °C in July; the lowest is −3 °C in January. The range is 26 − (−3) = **29 °C**.
+
+**Step 2. Calculate annual precipitation.**  
+Add the monthly values: 20 + 22 + 30 + 45 + 60 + 40 + 25 + 20 + 25 + 35 + 30 + 25 = **377 mm**.
+
+**Step 3. Describe seasonality.**  
+In this hypothetical dataset, precipitation peaks in May (60 mm) and is lowest in August (20 mm). Temperature peaks in July. Therefore, the temperature and precipitation maxima do not occur in the same month.
+
+**Step 4. Limit the conclusion.**  
+These values describe the annual cycles of temperature and precipitation, but they are not sufficient on their own to assign a reliable climate type or identify a long-term trend. That requires the station's coordinates and elevation, a comparable long-term observational record and a stated climate classification.
+
+**Check your understanding:** What is the annual temperature range if the lowest monthly mean is −5 °C and the highest is 24 °C?
+
+---
+
 ## 5.17. Практическое чтение климатограмм / Reading Climate Graphs
 
 Климатограмма обычно показывает средние месячные температуры и количество осадков за определённый период. Она позволяет сравнивать сезонность температуры и увлажнения, но не отражает весь диапазон экстремальных явлений.
