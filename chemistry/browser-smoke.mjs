@@ -3,7 +3,7 @@ import { readdir } from "node:fs/promises";
 import path from "node:path";
 
 const root = path.resolve("chemistry");
-const pages = ["portal.html", "catalog.html", "progress.html", "index.html"];
+const pages = ["portal.html", "catalog.html", "progress.html", "index.html", "physics/knowledge-check.html"];
 async function walk(dir) {
   for (const entry of await readdir(dir, { withFileTypes: true })) {
     const full = path.join(dir, entry.name);
@@ -32,16 +32,28 @@ try {
       await lang.click();
       languageChecks++;
     }
+    if (file === "physics/knowledge-check.html") {
+      if (await page.locator(".question").count() !== 10) errors.push(file + ": expected 10 questions");
+      const correct = [1,2,2,0,1,2,0,2,0,1];
+      for (let i = 0; i < correct.length; i++) {
+        await page.locator('input[name="q' + i + '"][value="' + correct[i] + '"]').check();
+      }
+      await page.locator("#finish").click();
+      if (!(await page.locator("#score").innerText()).includes("/ 10")) errors.push(file + ": quiz result was not produced");
+      if (!(await page.evaluate(() => localStorage.getItem("atlas-physics-quiz-v1")))) errors.push(file + ": quiz result was not saved");
+      await page.evaluate(() => localStorage.removeItem("atlas-physics-quiz-v1"));
+    }
     if (file === "progress.html") {
       const checks = page.locator(".item input[type=checkbox]");
       if (await checks.count() !== 27) errors.push(file + ": expected 27 trackable chapters");
       await checks.first().check();
       await page.reload({ waitUntil: "domcontentloaded" });
       if (!(await page.locator(".item input[type=checkbox]").first().isChecked())) errors.push(file + ": chapter progress did not persist after reload");
-      await page.evaluate(() => localStorage.setItem("atlas-chemistry-quiz-v1", JSON.stringify({ score: 8, total: 10, date: new Date().toISOString() })));
+      await page.evaluate(() => { localStorage.setItem("atlas-physics-quiz-v1", JSON.stringify({ score: 9, total: 10, date: new Date().toISOString() })); localStorage.setItem("atlas-chemistry-quiz-v1", JSON.stringify({ score: 8, total: 10, date: new Date().toISOString() })); });
       await page.reload({ waitUntil: "domcontentloaded" });
-      if (!(await page.locator("#quizScore").innerText()).includes("8 / 10")) errors.push(file + ": assessment result was not displayed");
-      await page.evaluate(() => { localStorage.removeItem("atlas-chemistry-quiz-v1"); localStorage.removeItem("atlas-knowledge-completed-v1"); });
+      if (!(await page.locator("#quizScore").innerText()).includes("8 / 10")) errors.push(file + ": chemistry assessment result was not displayed");
+      if (!(await page.locator("#physicsQuizScore").innerText()).includes("9 / 10")) errors.push(file + ": physics assessment result was not displayed");
+      await page.evaluate(() => { localStorage.removeItem("atlas-physics-quiz-v1"); localStorage.removeItem("atlas-chemistry-quiz-v1"); localStorage.removeItem("atlas-knowledge-completed-v1"); });
     }
     if (file === "catalog.html") {
       await page.locator("#q").fill("атом");
