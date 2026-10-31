@@ -124,13 +124,13 @@ if (!faunaKyrgyzstanFile.includes("нельзя автоматически от�
 if (faunaKyrgyzstanFile.includes("Караatal-Жапырыкского")) {
   errors.push("chapters/fauna-kyrgyzstan.html: mixed-script spelling of Karatal-Japyryk reserve name remains");
 }
-if (!faunaKyrgyzstanFile.includes("подвидовое деление архаров остаётся дискуссионным") || !faunaKyrgyzstanFile.includes("subspecies taxonomy within argali remains debated")) {
+if (!faunaKyrgyzstanFile.includes("подвидовое деление архаров остаётся дискуссионным") || !faunaKyrgyzstanFile.includes("Subspecies taxonomy within argali remains debated")) {
   errors.push("chapters/fauna-kyrgyzstan.html: argali must retain the subspecies-taxonomy caveat");
 }
 if (!faunaKyrgyzstanFile.includes("450–500") || !faunaKyrgyzstanFile.includes("около 900") || !faunaKyrgyzstanFile.includes("не численность архара в Кыргызстане") || !faunaKyrgyzstanFile.includes("not the national argali total")) {
   errors.push("chapters/fauna-kyrgyzstan.html: December 2025 argali records must retain site and non-national-estimate caveats");
 }
-if (!faunaKyrgyzstanFile.includes("7–12 октября 2024 года") || !faunaKyrgyzstanFile.includes("160 животных") || !faunaKyrgyzstanFile.includes("не публикует итоговое число") || !faunaKyrgyzstanFile.includes("does not publish a final total")) {
+if (!faunaKyrgyzstanFile.includes("7–12 октября 2024 года") || !faunaKyrgyzstanFile.includes("160 животных") || !faunaKyrgyzstanFile.includes("не публикует итоговое число") || !faunaKyrgyzstanFile.includes("did not publish a final total")) {
   errors.push("chapters/fauna-kyrgyzstan.html: maral 400–600 estimate must be attributed to 2024, not the 2025 census");
 }
 if (!faunaKyrgyzstanFile.includes("35 животных были завезены из Алтая в 2022 году") || !faunaKyrgyzstanFile.includes("отличать от естественных популяций")) {
