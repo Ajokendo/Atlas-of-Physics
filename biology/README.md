@@ -34,6 +34,8 @@ Third subject area of the unified **Atlas of Knowledge** portal.
 - Zoology includes an interactive bilingual explorer for fish, amphibians, reptiles, birds and mammals, comparing body covering, respiration and reproduction while noting group-level exceptions.
 - Anatomy and Physiology includes an original bilingual SVG overview of major organ systems and an interactive explorer for circulation, respiration, digestion, nervous function and urinary function.
 - The anatomy chapter explains homeostasis and negative feedback, with a bilingual knowledge check on the left ventricle and systemic circulation.
+- Cell Biology now includes a bilingual animal-cell vector plate and interactive organelle guide (nucleus, mitochondria, ribosomes, ER, Golgi apparatus and membrane).
+- Cell Biology includes an interactive comparison of simple diffusion, osmosis and active transport, plus a bilingual mitosis stage explorer (interphase, prophase, metaphase, anaphase and telophase).
 
 ## Next development stages
 1. Scientific review and expansion of chapter content with references and terminology.
