@@ -82,6 +82,56 @@ After studying this chapter, readers will be able to explain the extent and func
 **Рисунок 7.3 / Figure 7.3 — Пищевая сеть и пирамида энергии / Food web and energy pyramid.**  
 Техническое задание: слева показать сеть умеренной луговой экосистемы (травы, насекомые, грызуны, птицы, хищники, грибы и бактерии), справа — пирамиду энергии с условными единицами на каждом уровне; стрелки должны идти от пищевого ресурса к потребителю; не задавать универсальную эффективность передачи энергии.
 
+### 7.4.1. Практический пример: передача энергии в пищевой цепи / Worked Example: Energy Transfer in a Food Chain
+
+Рассмотрим условную луговую экосистему. За выбранный период продуценты (растения) накопили 12 000 кДж энергии в новой биомассе. Из этой энергии 1 200 кДж оказалось в биомассе травоядных животных.
+
+**Шаг 1. Рассчитываем долю передачи энергии.**
+
+\[
+\eta = \frac{E_{\text{следующий уровень}}}{E_{\text{предыдущий уровень}}}\times 100\%
+\]
+
+\[
+\eta = \frac{1\,200}{12\,000}\times 100\% = 10\%
+\]
+
+В данном условном примере эффективность передачи энергии от продуцентов к травоядным составляет **10%**.
+
+**Шаг 2. Правильно интерпретируем результат.**  
+Это не означает, что ровно 10% энергии передаётся на каждом следующем уровне во всех экосистемах. Часть энергии не потребляется, часть не усваивается, а значительная доля расходуется организмами на дыхание, движение и другие процессы и рассеивается в виде тепла. Полученная величина относится только к указанным уровням, периоду и способу учёта.
+
+**Шаг 3. Сравниваем другой переход.**  
+Если из 1 200 кДж в биомассе травоядных 90 кДж накопили хищники, эффективность этого перехода равна 90 / 1 200 × 100% = **7,5%**. Значения для разных переходов могут различаться.
+
+**Проверьте себя:** если хищники накопили 60 кДж из 800 кДж энергии в биомассе добычи, какова эффективность передачи?
+
+### Worked Example: Energy Transfer in a Food Chain
+
+Consider a hypothetical grassland ecosystem. During a selected period, producers (plants) store 12,000 kJ of energy in new biomass. Of this energy, 1,200 kJ is incorporated into the biomass of herbivores.
+
+**Step 1. Calculate the proportion of energy transferred.**
+
+\[
+\eta = \frac{E_{\text{next level}}}{E_{\text{previous level}}}\times 100\%
+\]
+
+\[
+\eta = \frac{1,200}{12,000}\times 100\% = 10\%
+\]
+
+In this hypothetical example, the transfer efficiency from producers to herbivores is **10%**.
+
+**Step 2. Interpret the result correctly.**  
+This does not mean that exactly 10% of energy is transferred at every successive level in all ecosystems. Some energy is not consumed, some is not assimilated, and a substantial share is used for respiration, movement and other processes and dissipated as heat. The calculated value applies only to the stated levels, period and accounting method.
+
+**Step 3. Compare another transfer.**  
+If predators incorporate 90 kJ into their biomass from the 1,200 kJ stored in herbivore biomass, the efficiency of this transfer is 90 / 1,200 × 100% = **7.5%**. Efficiencies can differ between transfers.
+
+**Check your understanding:** If predators incorporate 60 kJ from 800 kJ of energy in prey biomass, what is the transfer efficiency?
+
+---
+
 ## 7.5. Биологическое разнообразие / Biodiversity
 
 Биоразнообразие — изменчивость живого мира на нескольких уровнях:
