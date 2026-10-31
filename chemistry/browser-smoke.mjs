@@ -210,6 +210,34 @@ try {
       }
     }
 
+    if (file === "chapters/acids-and-bases.html") {
+      const ph = page.locator("#ph");
+      const value = page.locator("#value");
+      if (await ph.getAttribute("min") !== "0" || await ph.getAttribute("max") !== "14" ||
+          await value.getAttribute("aria-live") !== "polite") {
+        errors.push(file + ": pH slider bounds or live result announcement are missing");
+      }
+      await ph.fill("0");
+      if (!(await value.innerText()).includes("кислая среда")) {
+        errors.push(file + ": pH 0 was not classified as acidic");
+      }
+      await ph.fill("7");
+      if (!(await value.innerText()).includes("нейтральная среда")) {
+        errors.push(file + ": pH 7 was not classified as neutral");
+      }
+      await ph.fill("14");
+      if (!(await value.innerText()).includes("щелочная среда")) {
+        errors.push(file + ": pH 14 was not classified as alkaline");
+      }
+      await page.locator("#lang").click();
+      if (!(await value.innerText()).includes("alkaline solution") ||
+          await page.locator("html").getAttribute("lang") !== "en") {
+        errors.push(file + ": pH result or document language did not switch to English");
+      }
+      await page.locator("#lang").click();
+      await ph.fill("7");
+    }
+
     if (file === "chapters/solutions.html") {
       await page.locator("#n").fill("1");
       await page.locator("#v").fill("2");
