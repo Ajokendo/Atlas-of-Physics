@@ -200,3 +200,18 @@ GitHub Pages deployment completed successfully for main commit `39fc80c4f03dd247
 - The regional Flora and Fauna of Kyrgyzstan chapters were not changed in this pass; their existing source dossiers remain in place.
 - Extended `checks.mjs` so the ten global foundation chapters must each contain a bilingual selected-references section with at least two external source links; the source-section rule was also checked against all ten current pages.
 - This is a bibliography and traceability improvement, not a claim that every individual scientific statement has completed line-by-line peer review. Claim-level source mapping, terminology review and independent bilingual proofreading remain part of the next editorial stage.
+
+
+## Editorial readiness baseline — 31 October 2026
+
+**Working editorial readiness: 70/100.** This score applies only to the Biology branch and is a staged editorial estimate, not a claim of expert peer-review completion. Five equally weighted dimensions are used so later progress reports can be compared consistently:
+
+| Dimension | Score | Basis |
+|---|---:|---|
+| Course structure and navigation | 18/20 | Landing page, ten global foundations, two regional chapters and sequential chapter navigation are present. |
+| Russian–English editorial parity | 14/20 | Both language layers are present across the pages; independent proofreading and terminology harmonisation remain. |
+| Learning design and content coverage | 16/20 | Learning objectives, glossaries, knowledge checks and multiple interactive models are in place; depth and assessment coverage still vary. |
+| Scientific evidence and traceability | 10/20 | Regional dossiers have substantial sources and the ten global chapters now have selected references; claim-level citation mapping and expert scientific review remain. |
+| Accessibility and technical quality assurance | 12/20 | Static checks cover page structure, local paths, script syntax and controls; live browser, mobile-device and screen-reader testing remain. |
+
+The score should increase only when evidence for the relevant checklist items is recorded. The next priority is claim-level scientific/source review of the ten global chapters, followed by independent bilingual copy-editing and live accessibility testing.
