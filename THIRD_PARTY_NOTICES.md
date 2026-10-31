@@ -23,7 +23,7 @@ This project does **not** claim authorship of Nathan Liow's original English-lan
 
 ## 3. Three.js
 
-The interactive engine imports Three.js version **0.186.1** and its addons from jsDelivr. Three.js is distributed under the MIT License.
+The repository currently imports two versions of Three.js from jsDelivr: **0.186.1** for the original interactive chapter engine and **0.180.0** for the standalone physics laboratory in `physics-lab.js`. Three.js is distributed under the MIT License.
 
 Project: https://github.com/mrdoob/three.js  
 License: https://github.com/mrdoob/three.js/blob/dev/LICENSE
