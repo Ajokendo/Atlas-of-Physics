@@ -34,3 +34,21 @@
 Пути лабораторий: `kinematics/`, `newton/`, `circular/`, `energy/`, `momentum/`, `oscillations/`, `rotation/`, `fluids/`, `electrostatics/`, `gauss/`, `potential/`, `capacitors/`, `circuits/`, `magnetism/`, `induction/`.
 
 Русские главы в корне репозитория остаются основной версией сайта.
+
+## Локальный запуск проверок
+
+Команды выполняются из корня репозитория в Bash или Git Bash (Node.js 22):
+
+```bash
+for file in original-engine/engine/*.js original-engine/kinematics/*.js original-engine/newton/*.js original-engine/circular/*.js original-engine/energy/*.js original-engine/momentum/*.js original-engine/oscillations/*.js original-engine/rotation/*.js original-engine/fluids/*.js original-engine/electrostatics/*.js original-engine/gauss/*.js original-engine/potential/*.js original-engine/capacitors/*.js original-engine/circuits/*.js original-engine/magnetism/*.js original-engine/induction/*.js; do
+  node --input-type=module --check < "$file" || exit 1
+done
+
+for test in original-engine/*/checks.mjs; do
+  node "$test" || exit 1
+done
+```
+
+Первый цикл проверяет синтаксис модулей движка, второй запускает физические инварианты и проверки практических заданий всех лабораторий. Если команда завершается с ненулевым кодом, перед передачей ветки необходимо устранить ошибку и повторить весь набор.
+
+Эти проверки не заменяют браузерную проверку: отдельно следует проверить загрузку 3D-сцен, сенсорное управление, поведение при изменении размера окна и режим reduced motion на реальных мобильных устройствах. Проверка публикации GitHub Pages также остаётся отдельной контрольной точкой.
