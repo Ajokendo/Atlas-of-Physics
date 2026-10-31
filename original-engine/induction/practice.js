@@ -67,7 +67,7 @@ export const PRACTICE = {
   2: [
     { q: 'Two coils share an iron core. If the number of turns on the <b>secondary</b> is doubled, the mutual inductance <i>M</i>',
       choices: ['doubles', 'is unchanged', 'quadruples', 'halves'], answer: 0,
-      why: '<p><i>M</i> = <i>N</i><sub>2</sub>Φ<sub>2</sub>/<i>I</i><sub>1</sub>. The flux per turn, set by the primary’s current and turns, is unchanged; twice as many secondary turns hold twice the flux linkage. <i>M</i> = μ<sub>r</sub>μ<sub>0</sub><i>N</i><sub>1</sub><i>N</i><sub>2</sub><i>A</i>/ℓ is linear in each <i>N</i>; it is a self-inductance that goes as <i>N</i><sup>2</sup>.</p>' },
+      why: '<p><i>M</i> = <i>N</i><sub>2</sub>Φ<sub>2</sub>/<i>I</i><sub>1</sub>. Поток через один виток, определяемый током и числом витков первичной обмотки, не меняется; вдвое большее число витков вторичной обмотки означает вдвое большую потокосцепление. Формула <i>M</i> = μ<sub>r</sub>μ<sub>0</sub><i>N</i><sub>1</sub><i>N</i><sub>2</sub><i>A</i>/ℓ линейна по каждому из <i>N</i>; в отличие от неё собственная индуктивность пропорциональна <i>N</i><sup>2</sup>.</p>' },
     { q: `On the page’s iron core (<i>M</i> = ${p(M.CORE.M * 1e3, 1)} mH, <i>L</i><sub>1</sub> = ${p(M.CORE.L1 * 1e3, 1)} mH) the primary carries <i>I</i><sub>1</sub> = ${p(P2.c, 1)}<i>t</i><sup>2</sup> (A, <i>t</i> in s). The magnitude of the secondary emf at <i>t</i> = ${p(P2.t, 2)} s is`,
       choices: P2.nums.map(x => `${p(x, 1)} mV`), answer: 1, nums: P2.nums,
       why: `<div class="eq">ε<sub>2</sub> = −<i>M dI</i><sub>1</sub>/<i>dt</i> = −<i>M</i>(${p(2 * P2.c, 1)}<i>t</i>) = −${p(M.CORE.M * 1e3, 1)} mH × ${p(P2.dI, 2)} A/s = −${p(P2.nums[1], 1)} mV</div><p>It takes the rate of change, not <i>I</i><sub>1</sub> itself (${p(P2.nums[0], 1)} mV); and the secondary sees <i>M</i>, not the primary’s own <i>L</i><sub>1</sub>.</p>` },
@@ -83,7 +83,7 @@ export const PRACTICE = {
   4: [
     { q: 'A vertical metal bar moves to the right through a uniform field pointing into the page, on no circuit. After a moment,',
       choices: ['the top end is at higher potential, and no current flows', 'the bottom end is at higher potential, and current flows', 'the bottom end is at higher potential, and no current flows', 'the top end is at higher potential, and current flows down the bar'], answer: 0,
-      why: '<p><i>F</i> = <i>qv</i>×<i>B</i>: right × into the page = up, so positive charge collects at the top. Its field pushes back until <i>qE</i> = <i>qvB</i>; then nothing moves along the bar. With no closed path there is an emf <i>BLv</i> but no steady current.</p>' },
+      why: '<p><i>F</i> = <i>qv</i>×<i>B</i>: направление вправо × вглубь страницы даёт вверх, поэтому положительный заряд накапливается в верхней части стержня. Созданное им поле противодействует дальнейшему разделению зарядов, пока <i>qE</i> = <i>qvB</i>. После этого заряды не перемещаются вдоль стержня. При разомкнутой цепи возникает ЭДС <i>BLv</i>, но установившийся ток не течёт.</p>' },
     { q: `A ${p(P4.l * 100, 0)} cm metal rod turns at ${P4.w} rad/s about one end, in a plane perpendicular to a uniform ${p(P4.B, 2)} T field. The emf between its ends is`,
       choices: P4.nums.map(x => `${p(x, 2)} V`), answer: 1, nums: P4.nums,
       why: `<p>Each piece <i>dr</i> moves at <i>v</i> = ω<i>r</i>, so its emf is <i>B</i>ω<i>r dr</i>. Add them along the rod:</p><div class="eq">ε = ∫<sub>0</sub><sup>ℓ</sup> <i>B</i>ω<i>r dr</i> = ½<i>B</i>ωℓ<sup>2</sup> = ½ × ${P4.B} × ${P4.w} × ${P4.l}<sup>2</sup> = ${p(P4.emf, 2)} V</div><p>Using the tip speed ωℓ for the whole rod gives ${p(P4.nums[0], 2)} V, twice too much: the average speed is half the tip’s.</p>` },
@@ -101,7 +101,7 @@ export const PRACTICE = {
       why: `<p>The speed decays exponentially, but its integral is finite:</p><div class="eq"><i>x</i> = ∫<sub>0</sub><sup>∞</sup> <i>v</i><sub>0</sub><i>e</i><sup>−<i>t</i>/τ</sup> <i>dt</i> = <i>v</i><sub>0</sub>τ = ${p(P6.d, 2)} m</div><p>${p(P6.nums[1], 2)} m is only how far it gets by <i>t</i> = τ; ${p(P6.nums[0], 2)} m assumes a constant deceleration.</p>` },
     { q: 'The resistor joining the rails is replaced by one of twice the resistance, and the bar is launched at the same speed. The total heat produced as it comes to rest',
       choices: ['doubles', 'halves', 'is unchanged', 'quadruples'], answer: 2,
-      why: '<p>All the bar’s kinetic energy ½<i>mv</i><sub>0</sub><sup>2</sup> ends as heat whatever <i>R</i> is. A larger <i>R</i> means a smaller current and weaker braking, so τ doubles and the bar coasts twice as far, but the total heat is the same.</p>' },
+      why: '<p>Вся начальная кинетическая энергия стержня ½<i>mv</i><sub>0</sub><sup>2</sup> в итоге превращается в тепло независимо от <i>R</i>. При большем <i>R</i> ток меньше и торможение слабее, поэтому постоянная времени τ удваивается и стержень проходит по инерции вдвое большее расстояние. Однако общее количество выделившегося тепла остаётся тем же.</p>' },
   ],
   7: [
     { q: `A solenoid has ${P7.N} turns on ${p(P7.l * 100, 0)} cm, with radius ${p(P7.r * 100, 1)} cm. Its inductance is about`,
@@ -117,7 +117,7 @@ export const PRACTICE = {
       why: `<p>Solve <i>L dI</i>/<i>dt</i> = ε − <i>IR</i> from <i>I</i> = 0: <i>I</i> = (ε/<i>R</i>)(1 − <i>e</i><sup>−<i>t</i>/τ</sup>), τ = <i>L</i>/<i>R</i> = ${p(M.RL.tau, 2)} s.</p><div class="eq"><i>t</i> = −τ ln(1 − <i>IR</i>/ε) = −${p(M.RL.tau, 2)} ln(1 − ${p(P8.I, 1)}/${p(M.RL.Imax, 1)}) = ${p(P8.t, 3)} s</div><p>${p(P8.I, 1)} A is ${p(P8.I / M.RL.Imax * 100, 0)} % of ${p(M.RL.Imax, 0)} A, more than the 63 % reached at τ, so it takes longer than τ.</p>` },
     { q: 'An RL circuit with a battery has been switched on for a long time when the battery is suddenly taken out of the loop (the loop stays closed through the resistor). Just afterwards,',
       choices: ['the current is ε/<i>R</i>, falling, and the inductor acts as the source', 'the current is zero', 'the current is ε/<i>R</i> and steady', 'the current reverses direction'], answer: 0,
-      why: '<p>An inductor forbids a sudden jump in current, so <i>I</i> starts at ε/<i>R</i> in the same direction. With no battery, <i>L dI</i>/<i>dt</i> = −<i>IR</i>: the inductor’s emf now drives the current through <i>R</i> while it decays as <i>e</i><sup>−<i>t</i>/τ</sup>, turning ½<i>LI</i><sup>2</sup> into heat.</p>' },
+      why: '<p>Индуктивность не позволяет току мгновенно измениться, поэтому в начальный момент ток сохраняет направление и равен ε/<i>R</i>. После отключения батареи выполняется <i>L dI</i>/<i>dt</i> = −<i>IR</i>: ЭДС самоиндукции поддерживает ток через <i>R</i>, пока он экспоненциально уменьшается как <i>e</i><sup>−<i>t</i>/τ</sup>. Энергия ½<i>LI</i><sup>2</sup> превращается в тепло.</p>' },
   ],
   9: [
     { q: `The page’s capacitor (${p(M.LC.C * 1e6, 0)} µF, ${p(M.LC.Q * 1e6, 0)} µC) is connected to the ${p(M.LC.L * 1e3, 0)} mH coil at <i>t</i> = 0. The current is first at its largest at`,
