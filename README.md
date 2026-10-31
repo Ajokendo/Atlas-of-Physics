@@ -57,3 +57,7 @@ python3 -m http.server 8137
 
 Исходный проект Nathan Liow: https://github.com/nathanliow/atlas-of-physics  
 Лицензия MIT и авторские уведомления сохраняются.
+
+## Авторство и сторонние материалы
+
+Происхождение оригинального учебника, условия лицензии, сведения об AI-assisted русскоязычной адаптации и отдельные замечания по сторонним материалам приведены в [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). Полный текст исходной лицензии MIT сохранён в [LICENSE](LICENSE).
