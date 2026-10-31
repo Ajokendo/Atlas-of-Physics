@@ -77,6 +77,18 @@ if (!biochemistryFile.includes("actual ΔG in a cell depends") || !biochemistryF
   errors.push("chapters/biochemistry.html: ATP hydrolysis explanation must qualify cellular ΔG");
 }
 
+const botanyFile = fs.readFileSync(path.join(root, "chapters", "botany.html"), "utf8");
+if (!botanyFile.includes("function updateOrgan()") || !botanyFile.includes("updateOrgan();updatePhoto();updateConditionLabels()")) {
+  errors.push("chapters/botany.html: language switching must refresh organ and photosynthesis model outputs");
+}
+if (!botanyFile.includes('b.setAttribute("aria-pressed",String(b.dataset.organ===selectedOrgan))')) {
+  errors.push("chapters/botany.html: organ selector must expose its selected state");
+}
+const geneticsFile = fs.readFileSync(path.join(root, "chapters", "genetics.html"), "utf8");
+if (!geneticsFile.includes("let selectedMutation=null") || !geneticsFile.includes("updateDynamic();updateMutation()")) {
+  errors.push("chapters/genetics.html: mutation model must preserve and translate selection on language switch");
+}
+
 if (errors.length) {
   console.error("Biology checks failed:\n" + errors.map(x => " - " + x).join("\n"));
   process.exit(1);
