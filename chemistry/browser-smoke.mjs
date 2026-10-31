@@ -169,6 +169,71 @@ try {
       await page.locator("#lang").click();
     }
 
+    if (file === "chapters/amount-of-substance.html") {
+      await page.locator("#mass").fill("18.015");
+      if (!(await page.locator("#moles").innerText()).includes("1,000")) {
+        errors.push(file + ": one mole of water was not calculated correctly");
+      }
+      if (await page.locator(".result").getAttribute("aria-live") !== "polite") {
+        errors.push(file + ": dynamic amount results are not announced to assistive technology");
+      }
+      await page.locator("#substance").selectOption("custom");
+      await page.locator("#molar").fill("10");
+      await page.locator("#mass").fill("20");
+      if (!(await page.locator("#moles").innerText()).includes("2,000")) {
+        errors.push(file + ": custom molar-mass calculation is incorrect");
+      }
+      await page.locator("#lang").click();
+      if (!(await page.locator("#moles").innerText()).endsWith("mol")) {
+        errors.push(file + ": amount-of-substance unit did not switch to English");
+      }
+    }
+
+    if (file === "chapters/chemical-reactions.html") {
+      await page.locator("#answer").selectOption("2,1,2");
+      await page.locator("#check").click();
+      if (!(await page.locator("#feedback").innerText()).includes("Верно")) {
+        errors.push(file + ": balanced water equation was not accepted");
+      }
+    }
+
+    if (file === "chapters/redox.html") {
+      await page.locator("#ans").selectOption("zn");
+      await page.locator("#check").click();
+      if (!(await page.locator("#feedback").innerText()).includes("Верно")) {
+        errors.push(file + ": zinc was not accepted as the reducing agent");
+      }
+    }
+
+    if (file === "chapters/organic-chemistry.html") {
+      await page.locator("#n").fill("4");
+      await page.locator("#calc").click();
+      if ((await page.locator("#result").innerText()).trim() !== "C₄H₁₀") {
+        errors.push(file + ": alkane formula for n=4 is incorrect");
+      }
+      await page.locator("#n").fill("0");
+      await page.locator("#calc").click();
+      if (!(await page.locator("#feedback").innerText()).includes("от 1 до 20")) {
+        errors.push(file + ": invalid alkane input was not rejected clearly");
+      }
+    }
+
+    if (file === "chapters/chemistry-of-life.html") {
+      await page.locator("#fraction").fill("0.05");
+      if ((await page.locator("#ppm").innerText()).trim() !== "500 ppm") {
+        errors.push(file + ": CO2 percent-to-ppm conversion is incorrect");
+      }
+      if (await page.locator("#ppm").getAttribute("aria-live") !== "polite") {
+        errors.push(file + ": changing CO2 model result is not announced to assistive technology");
+      }
+    }
+
+    if (["chapters/amount-of-substance.html", "chapters/chemical-reactions.html", "chapters/redox.html", "chapters/organic-chemistry.html", "chapters/chemistry-of-life.html"].includes(file)) {
+      if (await page.locator("button").evaluateAll(items => items.some(button => button.type !== "button"))) {
+        errors.push(file + ": a button is missing an explicit button type");
+      }
+    }
+
     if (file === "periodic-table.html") {
       await page.locator("#search").fill("oxygen");
       if (await page.locator("#table button[data-id]").count() !== 1) {
