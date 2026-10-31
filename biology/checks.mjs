@@ -89,6 +89,15 @@ if (!geneticsFile.includes("let selectedMutation=null") || !geneticsFile.include
   errors.push("chapters/genetics.html: mutation model must preserve and translate selection on language switch");
 }
 
+const evolutionFile = fs.readFileSync(path.join(root, "chapters", "evolution.html"), "utf8");
+if (!evolutionFile.includes("function localizeControls()") || !evolutionFile.includes("localizeControls();updateModules()")) errors.push("chapters/evolution.html: interactive controls must relabel when the language changes");
+if (!/data-selection="high" aria-pressed="false"/.test(evolutionFile) || !/data-era="human" aria-pressed="false"/.test(evolutionFile)) errors.push("chapters/evolution.html: toggle controls must expose initial pressed states");
+const microbiologyFile = fs.readFileSync(path.join(root, "chapters", "microbiology.html"), "utf8");
+if (!microbiologyFile.includes("function localizeControls()") || !microbiologyFile.includes("localizeControls();updateModules()")) errors.push("chapters/microbiology.html: group, shape and growth-phase controls must relabel when the language changes");
+if (!/data-group="viruses" aria-pressed="false"/.test(microbiologyFile) || !/data-phase="death" aria-pressed="false"/.test(microbiologyFile)) errors.push("chapters/microbiology.html: toggle controls must expose initial pressed states");
+const systematicsFile = fs.readFileSync(path.join(root, "chapters", "systematics.html"), "utf8");
+if (!systematicsFile.includes("function localizeControls()") || !systematicsFile.includes("localizeControls();updateAll()")) errors.push("chapters/systematics.html: rank, domain and identification controls must relabel when the language changes");
+if (!systematicsFile.includes('const allowed=base==="backbone"?["feathers","fur","scales"]:["shell"]') || !systematicsFile.includes('if(id==="key-controls")document.querySelectorAll("#trait-controls [data-trait]").forEach(x=>x.setAttribute("aria-pressed","false"))')) errors.push("chapters/systematics.html: identification key must clear incompatible traits when its first branch changes");
 if (errors.length) {
   console.error("Biology checks failed:\n" + errors.map(x => " - " + x).join("\n"));
   process.exit(1);
