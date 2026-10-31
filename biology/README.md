@@ -24,10 +24,10 @@ Third subject area of the unified **Atlas of Knowledge** portal.
 ## Current foundation
 - Biology has been added as Subject 03 to `portal.html`.
 - Ten bilingual chapter pages have been created.
-- Each chapter has a topic outline, explanatory text and a bilingual multiple-choice knowledge check.
+- Each chapter has a topic outline, explanatory text, bilingual learning objectives, a five-term field glossary, and a bilingual multiple-choice knowledge check.
 - The landing page includes a selectable SVG cell model and a bilingual self-check question.
 - Original responsive vector science plates have been added to Botany (flowering plant morphology), Zoology (major vertebrate groups), Cell Biology (prokaryote/eukaryote comparison), and Genetics (DNA double helix).
-- Botany includes an interactive plant-organ learning module covering root, stem, leaf and flower.
+- Botany includes an interactive plant-organ learning module covering root, stem, leaf and flower. The chapter also has four bilingual learning objectives and a five-entry glossary covering chloroplasts, xylem, phloem, stomata and angiosperms.
 - Botany now includes a bilingual chloroplast diagram and an interactive photosynthesis model. Learners can toggle light, water and carbon dioxide availability and observe how limiting inputs affect the process.
 - The botany chapter includes the overall oxygenic photosynthesis equation and distinguishes light-dependent reactions in thylakoid membranes from the Calvin cycle in the stroma.
 - Genetics includes an interactive DNA complementary base-pairing module (A–T and G–C).
@@ -37,7 +37,7 @@ Third subject area of the unified **Atlas of Knowledge** portal.
 - Evolutionary Biology now includes an original bilingual phylogenetic branching plate, a natural-selection frequency model, interactive mechanism comparisons (selection, drift, gene flow and mutation), homologous/analogous structure comparisons, and a geological life-timeline explorer.
 - Biochemistry now includes an original bilingual biomolecule-class plate, interactive enzyme–substrate compatibility and enzyme-activity factor explainers, ATP hydrolysis/synthesis comparison, and a cellular-respiration stage explorer (glycolysis, citric acid cycle and electron transport chain).
 - Systematics now includes an original bilingual three-domain overview, an interactive taxonomic-rank explorer, comparisons of Bacteria/Archaea/Eukarya, binomial-name examples, and a branching identification-key activity.
-- Zoology includes an interactive bilingual explorer for fish, amphibians, reptiles, birds and mammals, comparing body covering, respiration and reproduction while noting group-level exceptions.
+- Zoology includes an interactive bilingual explorer for fish, amphibians, reptiles, birds and mammals, comparing body covering, respiration and reproduction while noting group-level exceptions. Its learning objectives and glossary cover core zoological concepts, vertebrates, invertebrates, heterotrophy, metamorphosis and adaptation.
 - Anatomy and Physiology includes an original bilingual SVG overview of major organ systems and an interactive explorer for circulation, respiration, digestion, nervous function and urinary function.
 - The anatomy chapter explains homeostasis and negative feedback, with a bilingual knowledge check on the left ventricle and systemic circulation.
 - Cell Biology now includes a bilingual animal-cell vector plate and interactive organelle guide (nucleus, mitochondria, ribosomes, ER, Golgi apparatus and membrane).
@@ -61,6 +61,10 @@ Third subject area of the unified **Atlas of Knowledge** portal.
 - The flora section is planned to cover vegetation zones and altitudinal belts, walnut-fruit and juniper forests, alpine meadows, endemic and rare plants, useful species, protected areas and conservation.
 - The fauna section is planned to cover major animal groups, characteristic mammals and birds, endemic and rare species, habitats and migration, protected areas and conservation.
 - These will be full bilingual regional chapters within the relevant subject pages, supported by maps, original diagrams, species profiles and carefully sourced information. They will be developed after the global subject foundations, and coordinated with the dedicated Kyrgyzstan geography section in the Geography atlas.
+
+## Learning framework
+- All ten subject chapters now include bilingual learning objectives and concise bilingual glossaries, placed before the knowledge check and styled responsively.
+- The objectives describe expected learner outcomes; glossaries define core terms in context. These sections are an introductory framework and will be expanded during scientific review.
 
 ## Next quality-assurance phase
 - Verify every interactive control in both languages, including keyboard operation and state updates.
