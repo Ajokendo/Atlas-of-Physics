@@ -22,3 +22,4 @@ jobs:
           node --check app.js
           node --input-type=module --check < physics-lab.js
           node .github/scripts/check-inline-js.mjs
+          node .github/scripts/check-local-links.mjs
