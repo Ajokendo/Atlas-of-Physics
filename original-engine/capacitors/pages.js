@@ -90,7 +90,7 @@ export const PAGES = [
   {
     kicker: '12.2', title: 'Две сферы', sub: 'шар внутри сферической оболочки',
     body: `
-      <p class="lede">Внутренний шар (<i>a</i> = ${M.SPH.a * 100} см, +<i>Q</i>) находится внутри оболочки (<i>b</i> = ${M.SPH.b * 100} cm, −<i>Q</i>), модель показана в разрезе.</p>
+      <p class="lede">Внутренний шар (<i>a</i> = ${M.SPH.a * 100} см, +<i>Q</i>) находится внутри оболочки (<i>b</i> = ${M.SPH.b * 100} см, −<i>Q</i>), модель показана в разрезе.</p>
       ${steps([
         ['<i>E</i>·4π<i>r</i><sup>2</sup> = <i>Q</i>/ε<sub>0</sub>', 'закон Гаусса, a < r < b'],
         ['Δ<i>V</i> = −∫<sub><i>b</i></sub><sup><i>a</i></sup> <i>Q dr</i>/4πε<sub>0</sub><i>r</i><sup>2</sup>', 'E·ds = E dr'],
@@ -136,7 +136,7 @@ export const PAGES = [
   {
     kicker: '12.5', title: 'Последовательное и параллельное соединения', sub: 'одинаковый Q или одинаковое ΔV',
     body: `
-      <p class="lede">${M.CIRC.C1 * 1e6} мкФ and ${M.CIRC.C2 * 1e6} µF on ${M.CIRC.V} V. Plate area is drawn ∝ <i>C</i>; one mark is 2 µC.</p>
+      <p class="lede">${M.CIRC.C1 * 1e6} мкФ and ${M.CIRC.C2 * 1e6} мкФ on ${M.CIRC.V} В. Plate area is drawn ∝ <i>C</i>; one mark is 2 µC.</p>
       <table class="data cols">
         <tr><th>последовательно</th><th>параллельно</th></tr>
         <tr><td>одинаковый <i>Q</i> на каждом</td><td>одинаковое Δ<i>V</i> на каждом</td></tr>
@@ -169,9 +169,9 @@ export const PAGES = [
       <p class="lede">Когда диэлектрик введён частично, он и воздух рядом с ним образуют два параллельно соединённых конденсатора: <i>C</i> = <i>C</i><sub>0</sub>(1 + (κ − 1)<i>x</i>). При половинном заполнении <i>C</i> = <i>C</i><sub>0</sub>/2 · (1 + κ).</p>
       <table class="data">
         <tr><th>диэлектрик введён полностью</th><th>подключён</th><th>отключён</th></tr>
-        <tr><td>постоянная величина</td><td>Δ<i>V</i> = ${M.V0} V</td><td><i>Q</i> = ${f(M.Q0 * 1e12, 0)} pC</td></tr>
+        <tr><td>постоянная величина</td><td>Δ<i>V</i> = ${M.V0} В</td><td><i>Q</i> = ${f(M.Q0 * 1e12, 0)} pC</td></tr>
         <tr><td><i>Q</i></td><td>κ<i>Q</i><sub>0</sub> = ${f(full.con.Q * 1e12, 0)} пКл</td><td><i>Q</i><sub>0</sub></td></tr>
-        <tr><td>Δ<i>V</i>, <i>E</i></td><td>без изменений</td><td>÷ κ (${f(full.iso.V, 1)} V)</td></tr>
+        <tr><td>Δ<i>V</i>, <i>E</i></td><td>без изменений</td><td>÷ κ (${f(full.iso.V, 1)} В)</td></tr>
         <tr><td><i>U</i></td><td>× κ (${f(full.con.U * 1e9, 1)} нДж)</td><td>÷ κ (${f(full.iso.U * 1e9, 1)} нДж)</td></tr>
       </table>
       <p>При подключённой батарее на обкладки поступает дополнительный заряд в той области, куда входит диэлектрик. Батарея совершает работу Δ<i>V</i>·Δ<i>Q</i>, вдвое превышающую прирост запасённой энергии. В обоих случаях пластины втягивают диэлектрик внутрь.</p>
