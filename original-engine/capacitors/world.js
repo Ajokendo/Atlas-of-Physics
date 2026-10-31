@@ -114,7 +114,7 @@ export function buildWorld(E) {
 
   // ---------- 0 · a capacitor on a battery turned slowly up and down ----------
   const X0 = STATIONS.plates;
-  const g0 = asm('plates', root, { title: 'Two charged plates', sub: 'each plate’s field, then their sum' });
+  const g0 = asm('plates', root, { title: 'Две заряженные пластины', sub: 'поле каждой пластины и их сумма' });
   const c0 = capacitor(g0, X0);
   hookUp(g0, X0, D0);
   plateLabels(X0);
@@ -128,7 +128,7 @@ export function buildWorld(E) {
 
   // ---------- 1 · Gauss's law: the gap opens and closes, Q fixed ----------
   const X1 = STATIONS.pillbox;
-  const g1 = asm('pillbox', root, { title: 'The Gaussian pillbox', sub: 'flux out = charge inside / ε₀' });
+  const g1 = asm('pillbox', root, { title: 'Гауссов цилиндр', sub: 'поток = заключённый заряд / ε₀' });
   const c1 = capacitor(g1, X1);
   plateLabels(X1, D0, () => true);
   label('vec blue', '<i>E</i>', () => V(X1, CY + SIDE / 2 + 0.2, 0.9));
@@ -148,7 +148,7 @@ export function buildWorld(E) {
 
   // ---------- 2 · spherical capacitor ----------
   const X2 = STATIONS.sphere, C2y = 2.2, A2 = M.SPH.a * DRAW, B2 = M.SPH.b * DRAW, c2 = V(X2, C2y, 0);
-  const g2 = asm('sphere', root, { title: 'Spherical capacitor', sub: 'a ball inside a shell' });
+  const g2 = asm('sphere', root, { title: 'Сферический конденсатор', sub: 'шар внутри оболочки' });
   part(g2, new THREE.SphereGeometry(A2, 48, 32), { tone: 'hi', pos: c2.toArray(), name: 'Inner sphere (+Q)' });
   // the outer shell cut in half through the centre, the front half removed: a cross-section.
   // The back half is in two quarters that part when opened.
@@ -181,7 +181,7 @@ export function buildWorld(E) {
 
   // ---------- 3 · cylindrical (coaxial) capacitor, axis along x ----------
   const X3 = STATIONS.coax, C3y = 1.6, A3 = M.CYL.a * DRAW, B3 = M.CYL.b * DRAW, L3 = M.CYL.L * DRAW, c3 = V(X3, C3y, 0);
-  const g3 = asm('coax', root, { title: 'Cylindrical capacitor', sub: 'a rod inside a tube' });
+  const g3 = asm('coax', root, { title: 'Цилиндрический конденсатор', sub: 'стержень внутри трубки' });
   part(g3, xAxis(new THREE.CylinderGeometry(A3, A3, L3 + 0.6, 40)), { tone: 'hi', pos: c3.toArray(), name: 'Inner rod (+Q)' });
   const tube3 = mover(g3, [L3 + 0.8, 0, 0]); tube3.position.copy(c3); tube3.userData.home.copy(c3);
   // cylinder angle θ: x = r sin θ, z = r cos θ; turned to the x axis, θ ∈ [90°, 270°] is the back half (z ≤ 0)
@@ -205,7 +205,7 @@ export function buildWorld(E) {
 
   // ---------- 4 · energy: charging the plates a bit at a time ----------
   const X4 = STATIONS.energy;
-  const g4 = asm('energy', root, { title: 'The energy in the gap', sub: 'u = ½ε₀E², filling the volume Ad' });
+  const g4 = asm('energy', root, { title: 'Энергия в зазоре', sub: 'u = ½ε₀E², объём Ad' });
   const c4 = capacitor(g4, X4);
   plateLabels(X4);
   const fillMat = shadeMat('blue', { opacity: 0.3 });
@@ -239,14 +239,14 @@ export function buildWorld(E) {
     return gap;
   }
   // series, on the left
-  const xs = X5 - 2.2, gS = asm('series', root, { title: 'In series', sub: 'one charge Q, the voltage shared' });
+  const xs = X5 - 2.2, gS = asm('series', root, { title: 'Последовательное соединение', sub: 'одинаковый заряд Q, напряжение делится' });
   battery(gS, V(xs, by5, 0), 0.7, 0.12);
   smallCap(gS, xs - 0.6, ty5, M.CIRC.C1, M.SER.Q1, 'C₁ = 2 µF'); smallCap(gS, xs + 0.6, ty5, M.CIRC.C2, M.SER.Q2, 'C₂ = 4 µF');
   wire(gS, [V(xs - 0.38, by5, 0), V(xs - 1.4, by5, 0), V(xs - 1.4, ty5, 0), V(xs - 0.71, ty5, 0)]);
   wire(gS, [V(xs - 0.49, ty5, 0), V(xs + 0.49, ty5, 0)], 'The island between them');
   wire(gS, [V(xs + 0.71, ty5, 0), V(xs + 1.4, ty5, 0), V(xs + 1.4, by5, 0), V(xs + 0.35, by5, 0)]);
   // parallel, on the right
-  const xp = X5 + 2.2, gP = asm('parallel', root, { title: 'In parallel', sub: 'one voltage, the charge shared' });
+  const xp = X5 + 2.2, gP = asm('parallel', root, { title: 'Параллельное соединение', sub: 'одинаковое напряжение, заряд делится' });
   const my5 = 1.6;
   battery(gP, V(xp, by5, 0), 0.7, 0.12);
   smallCap(gP, xp, ty5, M.CIRC.C1, M.PAR.Q1, 'C₁ = 2 µF'); smallCap(gP, xp, my5, M.CIRC.C2, M.PAR.Q2, 'C₂ = 4 µF');
@@ -324,7 +324,7 @@ export function buildWorld(E) {
     }
   }
   const X6 = STATIONS.slab;
-  const g6 = asm('slab', root, { title: 'A dielectric slab', sub: 'the molecules turn and cancel part of the field' });
+  const g6 = asm('slab', root, { title: 'Пластина диэлектрика', sub: 'диполи ориентируются и ослабляют поле' });
   const S6 = slabCap(g6, X6, true);
   plateLabels(X6);
   label('vec blue', '<i>E</i>', () => V(X6 + 0.05, CY - SIDE / 2 - 0.25, 0.6));
@@ -335,8 +335,8 @@ export function buildWorld(E) {
 
   // ---------- 7 · the same slab, battery connected vs disconnected ----------
   const X7 = STATIONS.compare, xa = X7 - 1.8, xb = X7 + 1.8;
-  const gA = asm('battery', root, { title: 'Battery connected', sub: 'ΔV held at 100 V: more charge flows on' });
-  const gB = asm('isolated', root, { title: 'Battery disconnected', sub: 'Q held: the voltage falls' });
+  const gA = asm('battery', root, { title: 'Батарея подключена', sub: 'ΔV постоянно: на обкладки поступает заряд' });
+  const gB = asm('isolated', root, { title: 'Батарея отключена', sub: 'заряд постоянен: напряжение падает' });
   const S7a = slabCap(gA, xa, false), S7b = slabCap(gB, xb, false);
   hookUp(gA, xa, D0);
   label('board', 'connected', () => V(xa - 1.0, CY + SIDE / 2 + 0.85, -1));
@@ -345,7 +345,7 @@ export function buildWorld(E) {
 
   // ---------- 8 · a conducting sphere in a uniform field ----------
   const X8 = STATIONS.conductor, C8y = 1.8, R8 = M.COND.R * DRAW, c8 = V(X8, C8y, 0);
-  const g8 = asm('conductor', root, { title: 'A conductor in a field', sub: 'charges move until E = 0 inside' });
+  const g8 = asm('conductor', root, { title: 'Проводник во внешнем поле', sub: 'заряды перераспределяются, пока E внутри не станет равным нулю' });
   [0, 1].map(k => {
     const h = mover(g8, [0, k ? -1.2 : 1.2, 0]); h.position.copy(c8); h.userData.home.copy(c8);
     part(h, new THREE.SphereGeometry(R8, 64, 32, 0, 2 * Math.PI, k ? Math.PI / 2 : 0, Math.PI / 2), { tone: 'hi', name: 'Conducting sphere' });
