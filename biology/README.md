@@ -166,3 +166,12 @@ The bilingual Biology Atlas was integrated into `main` through pull request #3 (
 Release validation on the integration branch completed successfully: 13 Biology HTML pages passed static validation (78 local paths, 13 inline scripts, 163 explicitly typed buttons), and Chromium smoke tests passed at mobile (390 px) and desktop (1365 px) viewports, including language-toggle interactions and uncaught page-error checks. JavaScript validation also passed.
 
 GitHub Pages deployment completed successfully for main commit `39fc80c4f03dd247af9dc3331501a30f2ef5698c` on 31 October 2026. Deployment run: https://github.com/Ajokendo/Atlas-of-Physics/actions/runs/41214973040. This confirms a successful Pages build and publish job; independent access from every browser/device should still be checked after publication.
+
+
+## Scientific editorial standard and 2026 Red Data Book revision
+
+- The project-wide bilingual scientific and editorial standard is maintained in [EDITORIAL-AND-SCIENTIFIC-STANDARDS.md](EDITORIAL-AND-SCIENTIFIC-STANDARDS.md). It applies to all chapter text, species profiles, maps, datasets, diagrams, interactive models and assessments.
+- On 9 June 2026, the Ministry of Natural Resources announced a 24-month joint project with the National Academy of Sciences to update the Kyrgyz Red Data Book. The Ministry's announcement reports 89 higher-plant and fungi species, 23 mammals, 57 birds, 2 amphibians, 8 reptiles, 7 fish and 18 arthropods in the figures associated with the ongoing revision. These are announcement figures, not the completed results of the new assessment or a newly published edition.
+- The flora and fauna chapters now explicitly distinguish project-announcement figures from verified species assessments. National Red Data Book status and IUCN categories remain separate systems and must be dated and sourced independently.
+- The Institute of Biology of the National Academy of Sciences reported on 14 October 2026 that the revision is planned for 2026–2028 and includes field research, updated species accounts, maps and a digital database. The planned publication dates are not evidence that the new edition has already been released.
+- Official references: [Ministry announcement, 9 June 2026](https://mnr.gov.kg/ru/posts/news/ministerstvo-prirodnyx-resursov-ekologii-i-texniceskogo-nadzora-kyrgyzskoi-respubliki-sovmestno-s-nacionalnoi-akademiei-nauk-pristupaet-k-rabote-po-obnovleniyu-krasnoi-knigi); [Institute of Biology, 14 October 2026](https://ibnaskr.org/red-data-book-kyrgyzstan-project-2026-2028/).
