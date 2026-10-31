@@ -237,3 +237,5 @@ The score should increase only when evidence for the relevant checklist items is
 - Genetics: the mutation explorer now retains the selected mutation across language changes, translates its explanation and control labels, and restores a translated introductory explanation when no mutation has been selected.
 - The review also checked the active interactive outputs in Zoology, Anatomy & Physiology, Microbiology, Evolution and Systematics; their language-change handlers refresh the currently selected model output.
 - This was a targeted interaction and wording pass. It does not replace full browser, keyboard-only and screen-reader testing.
+
+- Extended the automated checks to guard against regressions in Botany's translated organ and photosynthesis state and Genetics' selected mutation state; corrected the food-chain button matcher so it checks actual button elements.
