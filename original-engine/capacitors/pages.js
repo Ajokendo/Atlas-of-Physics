@@ -45,7 +45,7 @@ const qBars = (() => {
   const bars = [['C₁', S.Q1, 0], ['C₂', S.Q2, 1], ['C₁', PA.Q1, 3], ['C₂', PA.Q2, 4]], base = 140, top = 24, max = 40e-6, bw = 46, x0 = 70;
   return `<svg class="chart" viewBox="0 0 ${W} ${H + 10}" role="img" aria-label="Charge on each capacitor, series and parallel">
     <line class="zero" x1="${x0 - 20}" x2="${x0 + 5.6 * (bw + 16)}" y1="${base}" y2="${base}"/>
-    ${bars.map(([n, q, i]) => { const h = (base - top) * q / max, x = x0 + i * (bw + 16); return `<rect class="bar" x="${x}" y="${base - h}" width="${bw}" height="${h}"/><text class="ax" x="${x + bw / 2}" y="${base - h - 6}" text-anchor="middle">${u(q)} µC</text><text class="lab" x="${x + bw / 2}" y="${base + 16}" text-anchor="middle">${n}</text>`; }).join('')}
+    ${bars.map(([n, q, i]) => { const h = (base - top) * q / max, x = x0 + i * (bw + 16); return `<rect class="bar" x="${x}" y="${base - h}" width="${bw}" height="${h}"/><text class="ax" x="${x + bw / 2}" y="${base - h - 6}" text-anchor="middle">${u(q)} мкКл</text><text class="lab" x="${x + bw / 2}" y="${base + 16}" text-anchor="middle">${n}</text>`; }).join('')}
     <text class="ax" x="${x0 + (bw + 16) - 8}" y="${base + 32}" text-anchor="middle">series: same Q</text>
     <text class="ax" x="${x0 + 3.5 * (bw + 16) + bw / 2}" y="${base + 32}" text-anchor="middle">parallel: Q adds</text>
   </svg>`;
@@ -58,53 +58,53 @@ const steps = rows => `<table class="data eqs">${rows.map(([e, n]) => `<tr><td>$
 
 export const PAGES = [
   {
-    kicker: 'Chapter 12', title: 'Capacitors', sub: 'charge held apart',
+    kicker: 'Глава 12', title: 'Конденсаторы', sub: 'разделённые заряды',
     body: `
-      <p class="lede">A <b>capacitor</b> is two conductors held apart. A battery moves charge from one to the other, leaving +<i>Q</i> and −<i>Q</i> with a field between them.</p>
-      <p>Double the voltage and the charge doubles. Their ratio, the <b>capacitance</b>, stays put:</p>
+      <p class="lede"><b>Конденсатор</b> — это два проводника, разделённые промежутком. Батарея переносит заряд с одного проводника на другой, оставляя на них +<i>Q</i> и −<i>Q</i>; между обкладками возникает электрическое поле.</p>
+      <p>При увеличении напряжения вдвое заряд также удваивается. Их отношение — <b>электроёмкость</b> — остаётся неизменным:</p>
       <div class="eq"><i>C</i> = <i>Q</i> / Δ<i>V</i></div>
-      <p>In farads (1 F = 1 C/V), never negative. It depends only on the <b>geometry</b> and the material in the gap. These plates are 20 cm square, 5 cm apart: <i>C</i> = ${pF(M.C0)} pF.</p>
-      <div class="charts">${chart({ ...R.charge, xlabel: 'ΔV (V)', ylabel: 'Q (pC)', cursors: [['charge']], label: 'Charge against voltage: a straight line of slope C',
-        series: [{ pts: [[0, 0], [100, M.Q0 * 1e12]], tag: [58, M.C0 * 58e12 - 190, `slope = C = ${pF(M.C0)} pF`] }] })}</div>
-      <p class="hintline">One field line per ± pair. Click the plates. Drawn to scale.</p>`,
+      <p>Измеряется в фарадах (1 Ф = 1 Кл/В) и не бывает отрицательной. Электроёмкость зависит только от <b>геометрии</b> проводников и материала между ними. Размер этих пластин — 20 × 20 см, расстояние между ними — 5 см: <i>C</i> = ${pF(M.C0)} pF.</p>
+      <div class="charts">${chart({ ...R.charge, xlabel: 'ΔV (В)', ylabel: 'Q (пКл)', cursors: [['charge']], label: 'Зависимость заряда от напряжения: наклон прямой равен C',
+        series: [{ pts: [[0, 0], [100, M.Q0 * 1e12]], tag: [58, M.C0 * 58e12 - 190, `наклон = C = ${pF(M.C0)} пФ`] }] })}</div>
+      <p class="hintline">Одна силовая линия на пару зарядов ±. Нажмите на пластины. Изображение выполнено в масштабе.</p>`,
     cam: { target: [ST.plates, 1.4, 0], az: 24, el: 16, dist: 10.5 }, lit: 'plates', scene: 'plates', look: {},
-    fig: 'A battery turned up and down',
+    fig: 'Изменение напряжения батареи',
   },
   {
-    kicker: '12.1', title: 'Parallel plates', sub: 'Gauss’s law, then ΔV, then C',
+    kicker: '12.1', title: 'Плоский конденсатор', sub: 'закон Гаусса, затем ΔV и C',
     body: `
-      <p class="lede">Three steps, every time: <i>E</i> by Gauss’s law, Δ<i>V</i> by integrating, <i>C</i> = <i>Q</i>/Δ<i>V</i>.</p>
+      <p class="lede">Всегда три шага: находим <i>E</i> по закону Гаусса, Δ<i>V</i> — интегрированием, затем <i>C</i> = <i>Q</i>/Δ<i>V</i>.</p>
       ${steps([
         ['<i>EA</i> = σ<i>A</i>/ε<sub>0</sub>', 'pillbox'],
         ['<i>E</i> = σ/ε<sub>0</sub> = <i>Q</i>/ε<sub>0</sub><i>A</i>', 'uniform'],
-        ['Δ<i>V</i> = −∫<sub><i>d</i></sub><sup>0</sup> <i>E ds</i> = <i>Ed</i>', 'E constant'],
-        ['<i>C</i> = <i>Q</i>/Δ<i>V</i> = <b>ε<sub>0</sub><i>A</i>/<i>d</i></b>', 'Q cancels'],
+        ['Δ<i>V</i> = −∫<sub><i>d</i></sub><sup>0</sup> <i>E ds</i> = <i>Ed</i>', 'E постоянно'],
+        ['<i>C</i> = <i>Q</i>/Δ<i>V</i> = <b>ε<sub>0</sub><i>A</i>/<i>d</i></b>', 'Q сокращается'],
       ])}
-      <p><i>Q</i> is fixed while the gap changes: <i>E</i> stays ${f(M.E0, 0)} V/m, Δ<i>V</i> = <i>Ed</i> grows, <i>C</i> falls as 1/<i>d</i>.</p>
-      <div class="charts">${chart({ ...R.gap, xlabel: 'gap d (cm)', ylabel: 'C (pF)', cursors: [['gap']], label: 'Capacitance against gap',
+      <p>При изменении расстояния заряд <i>Q</i> остаётся постоянным: <i>E</i> сохраняется равным ${f(M.E0, 0)} В/м, Δ<i>V</i> = <i>Ed</i> увеличивается, а <i>C</i> уменьшается обратно пропорционально <i>d</i>.</p>
+      <div class="charts">${chart({ ...R.gap, xlabel: 'зазор d (см)', ylabel: 'C (пФ)', cursors: [['gap']], label: 'Зависимость электроёмкости от расстояния между пластинами',
         series: [{ pts: samples(80, 1.8, 10, d => M.cPlate(M.PLATE.A, d / 100) * 1e12) }] })}</div>
-      <p class="hintline">Click the pillbox to pull it out.</p>`,
+      <p class="hintline">Нажмите на гауссов цилиндр, чтобы извлечь его.</p>`,
     cam: { target: [ST.pillbox, 1.45, 0], az: 24, el: 15, dist: 11 }, lit: 'pillbox', scene: 'gap', look: {},
-    fig: 'Same charge, the gap changing',
+    fig: 'Постоянный заряд, изменяющийся зазор',
   },
   {
-    kicker: '12.2', title: 'Two spheres', sub: 'a ball inside a shell',
+    kicker: '12.2', title: 'Две сферы', sub: 'шар внутри сферической оболочки',
     body: `
-      <p class="lede">A ball (<i>a</i> = ${M.SPH.a * 100} cm, +<i>Q</i>) inside a shell (<i>b</i> = ${M.SPH.b * 100} cm, −<i>Q</i>), cut in half.</p>
+      <p class="lede">Внутренний шар (<i>a</i> = ${M.SPH.a * 100} cm, +<i>Q</i>) находится внутри оболочки (<i>b</i> = ${M.SPH.b * 100} cm, −<i>Q</i>), cut in half.</p>
       ${steps([
-        ['<i>E</i>·4π<i>r</i><sup>2</sup> = <i>Q</i>/ε<sub>0</sub>', 'Gauss, a < r < b'],
+        ['<i>E</i>·4π<i>r</i><sup>2</sup> = <i>Q</i>/ε<sub>0</sub>', 'закон Гаусса, a < r < b'],
         ['Δ<i>V</i> = −∫<sub><i>b</i></sub><sup><i>a</i></sup> <i>Q dr</i>/4πε<sub>0</sub><i>r</i><sup>2</sup>', 'E·ds = E dr'],
         ['&nbsp;&nbsp;&nbsp;&nbsp;= <i>Q</i>(<i>b</i> − <i>a</i>)/4πε<sub>0</sub><i>ab</i>', ''],
         ['<i>C</i> = <b>4πε<sub>0</sub><i>ab</i>/(<i>b</i> − <i>a</i>)</b>', `${pF(M.SPH.C)} pF`],
       ])}
-      <p>As <i>b</i> → ∞, <i>C</i> → 4πε<sub>0</sub><i>a</i>, a lone sphere. Shaded: Δ<i>V</i> = ${M.V0} V.</p>
-      <div class="charts">${chart({ ...RS, xlabel: 'r (cm)', ylabel: 'E (V/m)', cursors: [['sph']], label: 'Field against radius, zero outside the gap', under: area(RS, sphCurve.filter(([r]) => r >= 10 && r <= 20)), series: [{ pts: sphCurve }] })}</div>
-      <p class="hintline">Click to open the shell. Arrows 2 cm per kV/m.</p>`,
+      <p>При <i>b</i> → ∞ получаем <i>C</i> → 4πε<sub>0</sub><i>a</i> — электроёмкость одиночной сферы. Заштрихованная область соответствует Δ<i>V</i> = ${M.V0} В.</p>
+      <div class="charts">${chart({ ...RS, xlabel: 'r (см)', ylabel: 'E (В/м)', cursors: [['sph']], label: 'Напряжённость в зависимости от радиуса; вне зазора поле равно нулю', under: area(RS, sphCurve.filter(([r]) => r >= 10 && r <= 20)), series: [{ pts: sphCurve }] })}</div>
+      <p class="hintline">Нажмите, чтобы раскрыть оболочку. Масштаб стрелок: 2 см на кВ/м.</p>`,
     cam: { target: [ST.sphere, 2.2, 0], az: 14, el: 12, dist: 17 }, lit: 'sphere', scene: 'sphere', look: {},
-    fig: 'E ∝ 1/r² between the shells',
+    fig: 'E ∝ 1/r² между оболочками',
   },
   {
-    kicker: '12.3', title: 'Two cylinders', sub: 'a rod inside a tube',
+    kicker: '12.3', title: 'Два цилиндра', sub: 'стержень внутри трубки',
     body: `
       <p class="lede">A rod (<i>a</i> = ${M.CYL.a * 100} cm) inside a tube (<i>b</i> = ${M.CYL.b * 100} cm), <i>L</i> = ${M.CYL.L * 100} cm long: a short coaxial cable.</p>
       ${steps([
@@ -114,94 +114,94 @@ export const PAGES = [
         ['<i>C</i> = <b>2πε<sub>0</sub><i>L</i>/ln(<i>b</i>/<i>a</i>)</b>', `${pF(M.CYL.C)} pF`],
       ])}
       <p><i>E</i> ∝ 1/<i>r</i>, gentler than 1/<i>r</i><sup>2</sup>, hence the logarithm. <i>C</i> ∝ length: ${f(M.CYL.C / M.CYL.L * 1e12, 0)} pF per metre.</p>
-      <div class="charts">${chart({ ...RC, xlabel: 'r (cm)', ylabel: 'E (V/m)', cursors: [['cyl']], label: 'Field against radius for the coaxial pair', under: area(RC, cylCurve.filter(([r]) => r >= 2 && r <= 8)), series: [{ pts: cylCurve }] })}</div>
-      <p class="hintline">Click to slide the tube off. Arrows 1 cm per kV/m.</p>`,
+      <div class="charts">${chart({ ...RC, xlabel: 'r (см)', ylabel: 'E (В/м)', cursors: [['cyl']], label: 'Напряжённость в зависимости от радиуса коаксиальной системы', under: area(RC, cylCurve.filter(([r]) => r >= 2 && r <= 8)), series: [{ pts: cylCurve }] })}</div>
+      <p class="hintline">Нажмите, чтобы сдвинуть трубку. Масштаб стрелок: 1 см на кВ/м.</p>`,
     cam: { target: [ST.coax, 1.5, 0], az: 16, el: 14, dist: 14 }, lit: 'coax', scene: 'coax', look: {},
-    fig: 'E ∝ 1/r inside a tube',
+    fig: 'E ∝ 1/r внутри трубки',
   },
   {
-    kicker: '12.4', title: 'Stored energy', sub: 'the work of charging',
+    kicker: '12.4', title: 'Запасённая энергия', sub: 'работа по зарядке конденсатора',
     body: `
-      <p class="lede">Each bit <i>dq</i> is carried from − to + against the field already there, through Δ<i>V</i> = <i>q</i>/<i>C</i>. The first bits are free; the last cost the full ${M.V0} V.</p>
+      <p class="lede">Каждый элемент заряда <i>dq</i> переносится от − к + против уже существующего поля, при разности потенциалов Δ<i>V</i> = <i>q</i>/<i>C</i>. Для первых порций требуется почти нулевая работа, для последних — полное напряжение ${M.V0} В.</p>
       <div class="eq"><i>U</i> = ∫<sub>0</sub><sup><i>Q</i></sup> <i>q</i>/<i>C</i> <i>dq</i> = <i>Q</i><sup>2</sup>/2<i>C</i></div>
-      <p>= ½<i>Q</i>Δ<i>V</i> = ½<i>C</i>Δ<i>V</i><sup>2</sup>: the triangle under the line, ${f(M.U0 * 1e9, 1)} nJ here. The energy lives in the field, at an <b>energy density</b> (J/m³)</p>
+      <p>= ½<i>Q</i>Δ<i>V</i> = ½<i>C</i>Δ<i>V</i><sup>2</sup>: площадь треугольника под графиком равна ${f(M.U0 * 1e9, 1)} нДж. Энергия хранится в электрическом поле с <b>объёмной плотностью энергии</b> (Дж/м³).</p>
       <div class="eq"><i>u</i> = ½ε<sub>0</sub><i>E</i><sup>2</sup></div>
-      <div class="charts">${chart({ ...R.fill, xlabel: 'charge moved q (pC)', ylabel: 'ΔV (V)', cursors: [['fill']], label: 'Voltage against charge moved; the area under it is the stored energy',
+      <div class="charts">${chart({ ...R.fill, xlabel: 'перенесённый заряд q (пКл)', ylabel: 'ΔV (В)', cursors: [['fill']], label: 'Напряжение в зависимости от перенесённого заряда; площадь под графиком — запасённая энергия',
         under: `<path data-area="fill" style="fill:#dfe7f6"/>`, series: [{ pts: [[0, 0], [800, 800e-12 / M.C0]] }] })}</div>
       <p class="live" id="filllive"></p>
-      <p class="hintline">Blue in the gap darkens with u. Click the plates.</p>`,
+      <p class="hintline">Синяя заливка в зазоре темнеет с ростом u. Нажмите на пластины.</p>`,
     cam: { target: [ST.energy + 0.4, 1.45, 0], az: 24, el: 14, dist: 12 }, lit: 'energy', scene: 'energy', look: {},
-    fig: 'Charging, a bit at a time',
+    fig: 'Постепенная зарядка конденсатора',
   },
   {
-    kicker: '12.5', title: 'Series and parallel', sub: 'same Q, or same ΔV',
+    kicker: '12.5', title: 'Последовательное и параллельное соединения', sub: 'одинаковый Q или одинаковое ΔV',
     body: `
-      <p class="lede">${M.CIRC.C1 * 1e6} µF and ${M.CIRC.C2 * 1e6} µF on ${M.CIRC.V} V. Plate area is drawn ∝ <i>C</i>; one mark is 2 µC.</p>
+      <p class="lede">${M.CIRC.C1 * 1e6} мкФ and ${M.CIRC.C2 * 1e6} µF on ${M.CIRC.V} V. Plate area is drawn ∝ <i>C</i>; one mark is 2 µC.</p>
       <table class="data cols">
-        <tr><th>series</th><th>parallel</th></tr>
-        <tr><td>same <i>Q</i> on each</td><td>same Δ<i>V</i> on each</td></tr>
+        <tr><th>последовательно</th><th>параллельно</th></tr>
+        <tr><td>одинаковый <i>Q</i> на каждом</td><td>одинаковое Δ<i>V</i> на каждом</td></tr>
         <tr><td>Δ<i>V</i> = Δ<i>V</i><sub>1</sub> + Δ<i>V</i><sub>2</sub></td><td><i>Q</i> = <i>Q</i><sub>1</sub> + <i>Q</i><sub>2</sub></td></tr>
         <tr><td>1/<i>C</i><sub>eq</sub> = 1/<i>C</i><sub>1</sub> + 1/<i>C</i><sub>2</sub></td><td><i>C</i><sub>eq</sub> = <i>C</i><sub>1</sub> + <i>C</i><sub>2</sub></td></tr>
         <tr><td>${f(S.C * 1e6)} µF: ${f(S.V1, 0)} V + ${f(S.V2, 0)} V</td><td>${f(PA.C * 1e6, 0)} µF: ${u(PA.Q1)} + ${u(PA.Q2)} µC</td></tr>
       </table>
-      <p>In series the wire between them is a neutral island: +<i>Q</i> on one end means −<i>Q</i> on the other. The smaller capacitor takes more of the voltage; in parallel the bigger one takes more charge.</p>
+      <p>При последовательном соединении провод между конденсаторами образует нейтральный участок: заряд +<i>Q</i> на одном конце означает −<i>Q</i> на другом. На меньшем конденсаторе приходится большая часть напряжения; при параллельном соединении больший конденсатор накапливает больше заряда.</p>
       <div class="charts">${qBars}</div>
-      <p class="hintline">Click a circuit for its charges and voltages.</p>`,
+      <p class="hintline">Нажмите на схему, чтобы увидеть заряды и напряжения.</p>`,
     cam: { target: [ST.circuits, 1.6, 0], az: 16, el: 9, dist: 19 }, lit: 'series', scene: 'circuits', look: {},
-    fig: '2 µF and 4 µF on 9 V',
+    fig: '2 мкФ и 4 мкФ при напряжении 9 В',
   },
   {
-    kicker: '12.6', title: 'Dielectrics', sub: 'an insulator in the gap',
+    kicker: '12.6', title: 'Диэлектрики', sub: 'изолятор между обкладками',
     body: `
-      <p class="lede">An insulator in the gap <b>polarizes</b>: each molecular dipole feels τ = <i>p</i>×<i>E</i> = <i>pE</i> sin θ and turns toward <i>U</i> = −<i>p</i>·<i>E</i>, its lowest energy.</p>
-      <p>The lined-up ends leave <b>bound charge</b> on the faces; its field <i>E</i><sub>ind</sub> opposes the plates’:</p>
+      <p class="lede">Диэлектрик между обкладками <b>поляризуется</b>: на каждый молекулярный диполь действует момент сил τ = <i>p</i>×<i>E</i> = <i>pE</i> sin θ, поворачивающий его в положение с минимальной энергией <i>U</i> = −<i>p</i>·<i>E</i>.</p>
+      <p>На поверхностях диэлектрика возникают <b>связанные заряды</b>; созданное ими поле <i>E</i><sub>ind</sub> направлено против поля пластин:</p>
       <div class="eq"><i>E</i> = <i>E</i><sub>0</sub> − <i>E</i><sub>ind</sub> = <i>E</i><sub>0</sub>/κ</div>
-      <p>With <i>Q</i> fixed, Δ<i>V</i> falls by κ and <i>C</i> = κε<sub>0</sub><i>A</i>/<i>d</i> rises by κ ≥ 1.</p>
+      <p>При постоянном <i>Q</i> напряжение Δ<i>V</i> уменьшается в κ раз, а электроёмкость <i>C</i> = κε<sub>0</sub><i>A</i>/<i>d</i> возрастает в κ раз (κ ≥ 1).</p>
       ${dielTable}
-      <div class="charts">${chart({ ...R.slab, xlabel: 'fraction of the gap filled', ylabel: 'E (V/m)', cursors: [['slab']], label: 'Field against how far the slab is in',
+      <div class="charts">${chart({ ...R.slab, xlabel: 'заполненная доля зазора', ylabel: 'E (В/м)', cursors: [['slab']], label: 'Напряжённость в зависимости от глубины введения диэлектрика',
         series: [{ pts: samples(60, 0, 1, x => M.slab(x, false).E) }], marks: [[1, full.iso.E, `E₀/κ`, -46, -8]] })}</div>`,
     cam: { target: [ST.slab, 1.85, 0], az: 26, el: 13, dist: 11.5 }, lit: 'slab', scene: 'slab', look: {},
-    fig: 'A κ = 3 slab, plates isolated',
+    fig: 'Диэлектрик с κ = 3, конденсатор отключён от батареи',
   },
   {
-    kicker: '12.7', title: 'Connected or not', sub: 'what the battery holds fixed',
+    kicker: '12.7', title: 'Подключён или отключён', sub: 'какую величину фиксирует батарея',
     body: `
-      <p class="lede">Partly in, the slab and the air beside it are two capacitors in parallel: <i>C</i> = <i>C</i><sub>0</sub>(1 + (κ − 1)<i>x</i>); half in, <i>C</i><sub>0</sub>/2 · (1 + κ).</p>
+      <p class="lede">Когда диэлектрик введён частично, он и воздух рядом с ним образуют два параллельно соединённых конденсатора: <i>C</i> = <i>C</i><sub>0</sub>(1 + (κ − 1)<i>x</i>). При половинном заполнении <i>C</i> = <i>C</i><sub>0</sub>/2 · (1 + κ).</p>
       <table class="data">
-        <tr><th>slab fully in</th><th>connected</th><th>disconnected</th></tr>
-        <tr><td>held fixed</td><td>Δ<i>V</i> = ${M.V0} V</td><td><i>Q</i> = ${f(M.Q0 * 1e12, 0)} pC</td></tr>
+        <tr><th>диэлектрик введён полностью</th><th>подключён</th><th>отключён</th></tr>
+        <tr><td>постоянная величина</td><td>Δ<i>V</i> = ${M.V0} V</td><td><i>Q</i> = ${f(M.Q0 * 1e12, 0)} pC</td></tr>
         <tr><td><i>Q</i></td><td>κ<i>Q</i><sub>0</sub> = ${f(full.con.Q * 1e12, 0)} pC</td><td><i>Q</i><sub>0</sub></td></tr>
-        <tr><td>Δ<i>V</i>, <i>E</i></td><td>unchanged</td><td>÷ κ (${f(full.iso.V, 1)} V)</td></tr>
+        <tr><td>Δ<i>V</i>, <i>E</i></td><td>без изменений</td><td>÷ κ (${f(full.iso.V, 1)} V)</td></tr>
         <tr><td><i>U</i></td><td>× κ (${f(full.con.U * 1e9, 1)} nJ)</td><td>÷ κ (${f(full.iso.U * 1e9, 1)} nJ)</td></tr>
       </table>
-      <p>Connected, charge flows on where the slab is; the battery does work Δ<i>V</i>·Δ<i>Q</i>, twice the rise in stored energy. Either way the plates pull the slab in.</p>
-      <div class="charts">${chart({ ...R.energy, xlabel: 'fraction of the gap filled', ylabel: 'U / U₀', cursors: [['enA'], ['enB', GREY]], label: 'Stored energy against fraction filled, connected and disconnected',
-        series: [{ pts: samples(60, 0, 1, x => M.slab(x, true).U / M.U0), tag: [0.3, 1.75, 'connected'] }, { pts: samples(60, 0, 1, x => M.slab(x, false).U / M.U0), color: GREY, tag: [0.6, 0.55, 'disconnected'] }] })}</div>
-      <p class="hintline">Click either capacitor.</p>`,
+      <p>При подключённой батарее на обкладки поступает дополнительный заряд в той области, куда входит диэлектрик. Батарея совершает работу Δ<i>V</i>·Δ<i>Q</i>, вдвое превышающую прирост запасённой энергии. В обоих случаях пластины втягивают диэлектрик внутрь.</p>
+      <div class="charts">${chart({ ...R.energy, xlabel: 'заполненная доля зазора', ylabel: 'U / U₀', cursors: [['enA'], ['enB', GREY]], label: 'Запасённая энергия в зависимости от глубины введения диэлектрика: батарея подключена и отключена',
+        series: [{ pts: samples(60, 0, 1, x => M.slab(x, true).U / M.U0), tag: [0.3, 1.75, 'подключён'] }, { pts: samples(60, 0, 1, x => M.slab(x, false).U / M.U0), color: GREY, tag: [0.6, 0.55, 'отключён'] }] })}</div>
+      <p class="hintline">Нажмите на любой из конденсаторов.</p>`,
     cam: { target: [ST.compare, 1.75, 0], az: 24, el: 11, dist: 16.5 }, lit: 'battery', scene: 'compare', look: {},
-    fig: 'Battery on (left), off (right)',
+    fig: 'Батарея подключена (слева) и отключена (справа)',
   },
   {
-    kicker: '12.8', title: 'Conductors', sub: 'in electrostatic equilibrium',
+    kicker: '12.8', title: 'Проводники', sub: 'электростатическое равновесие',
     body: `
-      <p class="lede">A neutral metal sphere in a ${M.COND.E0} V/m field. Its free electrons drift until their own field cancels the outside one within. Then:</p>
+      <p class="lede">Нейтральная металлическая сфера находится в поле ${M.COND.E0} В/м. Свободные электроны перемещаются так, что созданное ими поле внутри металла компенсирует внешнее. В результате:</p>
       <ul class="rules">
-        <li><i>E</i> = 0 everywhere inside the metal;</li>
-        <li>any charge sits on the surface;</li>
-        <li>just outside, <i>E</i> ⊥ surface and <i>E</i> = σ/ε<sub>0</sub>;</li>
-        <li>the whole conductor is one potential.</li>
+        <li>внутри металла <i>E</i> = 0;</li>
+        <li>избыточный заряд находится на поверхности;</li>
+        <li>непосредственно снаружи поле <i>E</i> перпендикулярно поверхности и <i>E</i> = σ/ε<sub>0</sub>;</li>
+        <li>весь проводник имеет одинаковый потенциал.</li>
       </ul>
-      <p>Here σ = 3ε<sub>0</sub><i>E</i><sub>0</sub> cos θ, summing to zero; at the poles <i>E</i> = 3<i>E</i><sub>0</sub>. A metal slab of thickness <i>t</i> in a capacitor leaves two gaps in series: <i>C</i> = ε<sub>0</sub><i>A</i>/(<i>d</i> − <i>t</i>).</p>
-      <div class="charts">${chart({ ...R.probe, xlabel: 'along the axis (cm)', ylabel: 'E (V/m)', cursors: [['probe']], label: 'Field along the axis through the sphere',
+      <p>Здесь σ = 3ε<sub>0</sub><i>E</i><sub>0</sub> cos θ; полный заряд сферы равен нулю, а на полюсах <i>E</i> = 3<i>E</i><sub>0</sub>. Металлическая пластина толщиной <i>t</i>, помещённая в конденсатор, оставляет два последовательно соединённых зазора: <i>C</i> = ε<sub>0</sub><i>A</i>/(<i>d</i> − <i>t</i>).</p>
+      <div class="charts">${chart({ ...R.probe, xlabel: 'координата вдоль оси (см)', ylabel: 'E (В/м)', cursors: [['probe']], label: 'Напряжённость вдоль оси сферы',
         series: [{ pts: samples(160, -28, -10.0001, x => M.condAxisE(x / 100)) }, { pts: [[-10, 0], [10, 0]] }, { pts: samples(160, 10.0001, 28, x => M.condAxisE(x / 100)) }] })}</div>
-      <p class="hintline">Click the sphere to cut it. Field lines traced from the model.</p>`,
+      <p class="hintline">Нажмите на сферу, чтобы сделать разрез. Силовые линии построены по физической модели.</p>`,
     cam: { target: [ST.conductor, 1.8, 0], az: 40, el: 10, dist: 19 }, lit: 'conductor', scene: 'conductor', look: {},
-    fig: 'A neutral metal sphere in a field',
+    fig: 'Нейтральная металлическая сфера во внешнем поле',
   },
 ];
 
 // ---------- click a scene: what it breaks into ----------
-const sph = r => [['Gaussian radius r', `${f(r * 100, 1)} cm`], ['E(r) = Q/4πε₀r²', `${f(M.sphE(r), 0)} V/m`], ['flux E·4πr²', `${f(M.sphE(r) * 4 * Math.PI * r * r, 1)} V·m`], ['Q/ε₀', `${f(M.SPH.Q / M.EPS0, 1)} V·m`]];
+const sph = r => [['Гауссов радиус r', `${f(r * 100, 1)} cm`], ['E(r) = Q/4πε₀r²', `${f(M.sphE(r), 0)} V/m`], ['flux E·4πr²', `${f(M.sphE(r) * 4 * Math.PI * r * r, 1)} V·m`], ['Q/ε₀', `${f(M.SPH.Q / M.EPS0, 1)} V·m`]];
 export const PLATES = {
   plates: { text: `Each plate alone makes a field σ/2ε₀ pointing away from + and toward − (grey). Between the plates the two point the same way and add to σ/ε₀. Outside they point opposite ways and cancel. That is why the field is all in the gap.`,
     facts: s => { const r = M.charging(s.charge.t); return [['ΔV', `${f(r.V, 1)} V`], ['Q = CΔV', `${f(r.Q * 1e12, 0)} pC`], ['each plate σ/2ε₀', `${f(r.E / 2, 0)} V/m`], ['between: sum', `${f(r.E, 0)} V/m`], ['outside: difference', '0 V/m']]; } },
