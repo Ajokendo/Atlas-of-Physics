@@ -32,6 +32,8 @@ Third subject area of the unified **Atlas of Knowledge** portal.
 - The botany chapter includes the overall oxygenic photosynthesis equation and distinguishes light-dependent reactions in thylakoid membranes from the Calvin cycle in the stroma.
 - Genetics includes an interactive DNA complementary base-pairing module (A–T and G–C).
 - Zoology includes an interactive bilingual explorer for fish, amphibians, reptiles, birds and mammals, comparing body covering, respiration and reproduction while noting group-level exceptions.
+- Anatomy and Physiology includes an original bilingual SVG overview of major organ systems and an interactive explorer for circulation, respiration, digestion, nervous function and urinary function.
+- The anatomy chapter explains homeostasis and negative feedback, with a bilingual knowledge check on the left ventricle and systemic circulation.
 
 ## Next development stages
 1. Scientific review and expansion of chapter content with references and terminology.
