@@ -61,3 +61,10 @@ python3 -m http.server 8137
 ## Авторство и сторонние материалы
 
 Происхождение оригинального учебника, условия лицензии, сведения об AI-assisted русскоязычной адаптации и отдельные замечания по сторонним материалам приведены в [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). Полный текст исходной лицензии MIT сохранён в [LICENSE](LICENSE).
+
+
+## Atlas of Knowledge
+
+This repository hosts four coordinated subject atlases: Physics, Chemistry, Biology and Geography. The canonical project inventory is [PROJECT_REGISTRY.md](PROJECT_REGISTRY.md). The unified portal is [portal.html](portal.html).
+
+During the architecture transition, use the `atlas-of-knowledge-integration` branch as the integration workspace. Do not assume the repository has already been renamed; see the registry for current status.
