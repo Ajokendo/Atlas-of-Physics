@@ -4,25 +4,25 @@
 import * as M from './model.js';
 
 const p = (x, d) => x.toFixed(d);
-const { EPS0, K, C0, В0, Q0, U0, PLATE } = M;
+const { EPS0, K, C0, V0, Q0, U0, PLATE } = M;
 const A = PLATE.A, d = PLATE.d;
 
 // ---- page 0: the battery turned up steadily from 20 В to 100 В in 4.0 s ----
-const P0 = { В1: 20, В2: 100, dt: 4.0 };
+const P0 = { V1: 20, V2: 100, dt: 4.0 };
 P0.I = C0 * (P0.V2 - P0.V1) / P0.dt;
 P0.nums = [C0 * P0.V2 / P0.dt, P0.I, P0.I / 2, C0 * P0.V1 / P0.dt].map(x => x * 1e12);   // final В not ΔV · right · halved · starting В
 // ---- page 1: isolated plates pulled from 5 cm to 8 cm; the force between them ----
 const P1 = { d2: 0.08 };
 P1.V = Q0 / M.cPlate(A, P1.d2);
-P1.nums = [V0 * d / P1.d2, В0, В0 * (P1.d2 / d) ** 2, P1.V];        // ΔV ∝ 1/d · battery's · ∝ d² · right
+P1.nums = [V0 * d / P1.d2, V0, V0 * (P1.d2 / d) ** 2, P1.V];        // ΔV ∝ 1/d · battery's · ∝ d² · right
 P1.F = Q0 * Q0 / (2 * EPS0 * A);
 P1.fnums = [Q0 * M.E0, P1.F, K * Q0 * Q0 / d ** 2, P1.F / 2].map(x => x * 1e6);   // full field σ/ε₀ · right · point charges · ¼
 // ---- page 2: the page's spheres, a = 10 cm, b = 20 cm, 100 В ----
 const { a: sa, b: sb } = M.SPH, r2 = 0.15;
 const P2 = { E: K * M.SPH.Q / r2 ** 2 };
 P2.nums = [V0 / (sb - sa), K * M.SPH.Q / sb ** 2, P2.E, K * M.SPH.Q / sa ** 2];   // as if plates · used b · right · used a
-P2.dV = В0 * (1 / sa - 1 / r2) / (1 / sa - 1 / sb);
-P2.vnums = [P2.dV, В0 * (r2 - sa) / (sb - sa), В0 - P2.dV, В0 * (1 / sa ** 2 - 1 / r2 ** 2) / (1 / sa ** 2 - 1 / sb ** 2)];   // right · linear · the other part · 1/r² for В
+P2.dV = V0 * (1 / sa - 1 / r2) / (1 / sa - 1 / sb);
+P2.vnums = [P2.dV, V0 * (r2 - sa) / (sb - sa), V0 - P2.dV, V0 * (1 / sa ** 2 - 1 / r2 ** 2) / (1 / sa ** 2 - 1 / sb ** 2)];   // right · linear · the other part · 1/r² for В
 // ---- page 3: the page's coax; the tube widened to 16 cm; where the energy is ----
 const { a: ca, b: cb, L: cL } = M.CYL, cb2 = 2 * cb;
 const P3 = { C: 2 * Math.PI * EPS0 * cL / Math.log(cb2 / ca) };
@@ -33,18 +33,18 @@ P3.fnums = [((2 * ca) ** 2 - ca ** 2) / (cb ** 2 - ca ** 2), ca / (cb - ca), (1 
 const P4 = { frac: 1 - 0.25 };
 P4.nums = [25, 50, P4.frac * 100, 87.5];
 const P4b = { d2: d / 2 };
-P4b.U = 0.5 * M.cPlate(A, P4b.d2) * В0 * В0;
+P4b.U = 0.5 * M.cPlate(A, P4b.d2) * V0 * V0;
 P4b.nums = [U0 / 2, U0, 4 * U0, P4b.U].map(x => x * 1e9);           // as if Q fixed · unchanged · ×4 · right
 // ---- page 5: 2 мкФ and 4 мкФ in series on 9 В ----
 const { C1, C2, В: CV } = M.CIRC, S = M.SER;
-const P5 = { В1: S.Q / C1 };
+const P5 = { V1: S.Q / C1 };
 P5.nums = [P5.V1, CV * C1 / (C1 + C2), CV, CV / 2];                // right · split the wrong way · all of it · halves
 P5.U = S.Q * S.Q / 2 * (1 / C1 + 1 / C2);
 P5.unums = [S.Q * CV, M.PAR.U, S.Q * S.Q / (2 * C1), P5.U].map(x => x * 1e6);   // forgot ½ · parallel · C₁ only · right
 // ---- page 6: the κ = 3 slab, plates isolated; a graded dielectric ----
 const KA = M.KAPPA;
-const P6 = { В: В0 / KA };
-P6.nums = [V0 * KA, P6.V, В0, В0 / KA ** 2];
+const P6 = { В: V0 / KA };
+P6.nums = [V0 * KA, P6.V, V0, V0 / KA ** 2];
 const P6b = { k1: 1, k2: 3 };
 P6b.C = EPS0 * A * (P6b.k2 - P6b.k1) / (d * Math.log(P6b.k2 / P6b.k1));      // the free-response answer
 // ---- page 7: slab fully in, battery on; half in, battery off ----
@@ -83,7 +83,7 @@ export const PRACTICE = {
       why: `<p><i>Q</i> = <i>C</i>Δ<i>V</i> = ${p(M.SPH.C * 1e12, 1)} пФ × ${V0} В = ${p(M.SPH.Q * 1e9, 3)} нКл; по закону Гаусса поле между сферами такое же, как поле точечного заряда:</p><div class="eq"><i>E</i> = <i>kQ</i>/<i>r</i><sup>2</sup> = ${p(K / 1e9, 2)}×10<sup>9</sup> × ${p(M.SPH.Q * 1e9, 3)}×10<sup>−9</sup> / ${r2}<sup>2</sup> = ${p(P2.E, 0)} В/м</div><p>Формула Δ<i>V</i>/(<i>b</i> − <i>a</i>) = ${p(P2.nums[0], 0)} В/м дала бы ответ только для однородного поля. Здесь же <i>E</i> убывает как 1/<i>r</i><sup>2</sup>.</p>` },
     { q: `Какая часть общего напряжения ${V0} В приходится на внутреннюю половину зазора — от <i>r</i> = ${sa * 100} см до ${r2 * 100} см?`,
       choices: P2.vnums.map(x => `${p(x, 1)} В`), answer: 0, nums: P2.vnums,
-      why: `<p>Проинтегрируем <i>E</i> = <i>kQ</i>/<i>r</i><sup>2</sup> на каждом участке; в отношении интегралов <i>kQ</i> сокращается:</p><div class="eq">Δ<i>V</i><sub>inner</sub> / Δ<i>V</i> = ∫<sub><i>a</i></sub><sup><i>r</i></sup> <i>dr</i>/<i>r</i><sup>2</sup> ÷ ∫<sub><i>a</i></sub><sup><i>b</i></sup> <i>dr</i>/<i>r</i><sup>2</sup> = (1/<i>a</i> − 1/<i>r</i>)/(1/<i>a</i> − 1/<i>b</i>) = (${p(1 / sa, 2)} − ${p(1 / r2, 2)})/(${p(1 / sa, 2)} − ${p(1 / sb, 2)}) =${p(P2.dV / В0, 3)}</div><p>Получаем ${p(P2.dV, 1)} В. Поле сильнее вблизи внутреннего шара, поэтому на внутреннюю половину зазора приходится больше половины напряжения. Значение ${p(P2.vnums[1], 1)} В соответствовало бы однородному полю.</p>` },
+      why: `<p>Проинтегрируем <i>E</i> = <i>kQ</i>/<i>r</i><sup>2</sup> на каждом участке; в отношении интегралов <i>kQ</i> сокращается:</p><div class="eq">Δ<i>V</i><sub>внутр</sub> / Δ<i>V</i> = ∫<sub><i>a</i></sub><sup><i>r</i></sup> <i>dr</i>/<i>r</i><sup>2</sup> ÷ ∫<sub><i>a</i></sub><sup><i>b</i></sup> <i>dr</i>/<i>r</i><sup>2</sup> = (1/<i>a</i> − 1/<i>r</i>)/(1/<i>a</i> − 1/<i>b</i>) = (${p(1 / sa, 2)} − ${p(1 / r2, 2)})/(${p(1 / sa, 2)} − ${p(1 / sb, 2)}) =${p(P2.dV / V0, 3)}</div><p>Получаем ${p(P2.dV, 1)} В. Поле сильнее вблизи внутреннего шара, поэтому на внутреннюю половину зазора приходится больше половины напряжения. Значение ${p(P2.vnums[1], 1)} В соответствовало бы однородному полю.</p>` },
   ],
   3: [
     { q: `В коаксиальном конденсаторе из главы (<i>a</i> = ${ca * 100} см, <i>b</i> = ${cb * 100} см, <i>L</i> = ${cL * 100} см, <i>C</i> = ${p(M.CYL.C * 1e12, 1)} пФ) внешнюю трубку расширяют до <i>b</i> = ${cb2 * 100} см. Чему станет равна ёмкость?`,
@@ -122,7 +122,7 @@ export const PRACTICE = {
       why: `<p>При подключённой батарее Δ<i>V</i> остаётся равным ${V0} В, а <i>C</i> становится κ<i>C</i><sub>0</sub>. Поэтому конечный заряд равен κ<i>Q</i><sub>0</sub> = ${p(P7.nums[0], 0)} пКл. Дополнительно поступивший заряд — это разность:</p><div class="eq">Δ<i>Q</i> = (κ − 1)<i>Q</i><sub>0</sub> = ${KA - 1} × ${p(Q0 * 1e12, 0)} пКл = ${p(P7.dQ * 1e12, 0)} пКл</div><p>${p(P7.nums[0], 0)} пКл — это полный конечный заряд, а не добавочный.</p>` },
     { q: `Квадратные обкладки со стороной ${p(P7b.side * 100, 0)} см (<i>U</i><sub>0</sub> = ${p(U0 * 1e9, 1)} нДж без диэлектрика) заряжены и отключены от батареи. Диэлектрик с κ = ${KA} введён наполовину; ёмкость зависит от глубины <i>s</i> как <i>C</i>(<i>s</i>) = <i>C</i><sub>0</sub>(1 + (κ − 1)<i>s</i>/ℓ). Найдите силу, втягивающую диэлектрик.`,
       choices: P7b.nums.map(x => `${p(x, 1)} нН`), answer: 1, nums: P7b.nums,
-      why: `<p>При постоянном <i>Q</i> энергия равна <i>U</i> = <i>Q</i><sup>2</sup>/2<i>C</i>(<i>s</i>), а сила направлена в сторону уменьшения энергии:</p><div class="eq"><i>F</i> = −<i>dU</i>/<i>ds</i> = (<i>Q</i><sup>2</sup>/2<i>C</i><sup>2</sup>) <i>dC</i>/<i>ds</i> = <i>U</i><sub>0</sub>(κ − 1) / ℓ(1 + (κ − 1)<i>s</i>/ℓ)<sup>2</sup> = ${p(U0 * 1e9, 1)} нДж × ${KA - 1} / (${P7b.side} m × ${p((1 + (KA - 1) * P7b.x) ** 2, 0)}) = ${p(P7b.F * 1e9, 1)} нН</div><p>Сила положительна: при введении диэлектрика энергия <i>U</i> уменьшается, поэтому его втягивает внутрь. Значение ${p(P7b.nums[0], 1)} нН получилось бы при постоянном Δ<i>V</i> = ${V0} В, но после отключения батареи это условие не выполняется.</p>` },
+      why: `<p>При постоянном <i>Q</i> энергия равна <i>U</i> = <i>Q</i><sup>2</sup>/2<i>C</i>(<i>s</i>), а сила направлена в сторону уменьшения энергии:</p><div class="eq"><i>F</i> = −<i>dU</i>/<i>ds</i> = (<i>Q</i><sup>2</sup>/2<i>C</i><sup>2</sup>) <i>dC</i>/<i>ds</i> = <i>U</i><sub>0</sub>(κ − 1) / ℓ(1 + (κ − 1)<i>s</i>/ℓ)<sup>2</sup> = ${p(U0 * 1e9, 1)} нДж × ${KA - 1} / (${P7b.side} м × ${p((1 + (KA - 1) * P7b.x) ** 2, 0)}) = ${p(P7b.F * 1e9, 1)} нН</div><p>Сила положительна: при введении диэлектрика энергия <i>U</i> уменьшается, поэтому его втягивает внутрь. Значение ${p(P7b.nums[0], 1)} нН получилось бы при постоянном Δ<i>V</i> = ${V0} В, но после отключения батареи это условие не выполняется.</p>` },
   ],
   8: [
     { q: 'Точечный заряд +<i>q</i> помещён в центре полости нейтральной полой проводящей сферы. Чему равны заряды на внутренней и внешней поверхностях сферы в состоянии равновесия?',
