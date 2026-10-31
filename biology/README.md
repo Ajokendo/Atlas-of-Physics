@@ -282,3 +282,14 @@ The score should increase only when evidence for the relevant checklist items is
 - Clarified that the September camera-trap notice confirms detections but does not publish individual counts, sampling effort or density estimates.
 - Corrected the mixed-script spelling of the protected-area name to the official Russian form «Каратал-Жапырык» and expanded the bilingual regional introduction.
 - The regional audit remains in progress. No new population estimate was inferred from either notice; editorial readiness remains 70/100 pending claim-level review of all seven oblast dossiers, broader scientific source mapping, independent bilingual editing and live browser/accessibility QA.
+
+
+## Argali and maral taxonomy and population-evidence audit — 1 November 2026
+- Standardised the argali account at species level as *Ovis ammon* and clarified that subspecies boundaries within the argali complex remain disputed; the page no longer implies one uncontested subspecies assignment for all Kyrgyz argali.
+- Added the Ministry's 10 December 2025 report with the correct scope: on 8 December, approximately 450–500 argali were recorded at two Sarychat-Ertash sectors, while about 900 were recorded in a separate hunting area. These are distinct first-day site records, not a national estimate or a single combined population figure.
+- Corrected the Naryn maral chronology. The CAMCA estimate of 400–600 animals for the Naryn River valley and tributaries is based on the combined survey of 7–12 October 2024, which directly recorded 160 animals and extrapolated to account for unexamined habitat. The 15–20 September 2025 repeat census published preliminary positive findings but no final number; the 400–600 estimate is no longer attributed to that 2025 survey.
+- Clarified the maral taxon as subspecies *Cervus canadensis songaricus*, with *Cervus elaphus songaricus* documented as a synonym in NCBI Taxonomy; source notes distinguish database nomenclature from final taxonomic authority.
+- Clarified that Besh-Tash's 60 maral (Ministry notice, 19 September 2025) includes a group of 35 animals brought from Altai in 2022. This park population is not conflated with the naturally occurring Naryn and Issyk-Kul populations.
+- Added bilingual source annotations and regression assertions for taxonomy, dated survey scopes, the 2024/2025 maral chronology and the Besh-Tash introduction history.
+- This remains a targeted evidence audit, not a completed expert review of every mammal record. Editorial readiness remains 70/100 pending broader claim-level source mapping, independent bilingual editing and live accessibility/browser QA.
+
