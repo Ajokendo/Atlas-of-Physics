@@ -258,3 +258,11 @@ The score should increase only when evidence for the relevant checklist items is
 - Static source QA after the edits: 13 HTML pages, 13 inline scripts parsed successfully, 163 buttons all declare `type="button"`, and no duplicate HTML IDs were found. The repository's Node-based check script has not yet been executed in a Node runtime; no browser, keyboard-only or screen-reader run is claimed.
 
 - Editorial refinement: the evolution model labels now identify predation pressure specifically (rather than implying generic selection pressure); the systematics key explicitly tells learners when one trait is insufficient for identification.
+
+
+## Regional species-range evidence review — 31 October 2026
+- Rechecked the Menzbier's marmot (*Marmota menzbieri*) profile in the Jalal-Abad / Besh-Aral section against the Kyrgyz Ministry's 10 March 2025 notice, the Mammal Diversity Database and published historical-range literature.
+- The Ministry directly reports the species in Besh-Aral Reserve; the Mammal Diversity Database recognises Kyrgyzstan in the country-level range. Some older regional accounts disagree about particular Chatkal localities and fine-scale range boundaries. The chapter now distinguishes confirmed reserve-level occurrence from uncertain neighbouring localities and avoids extrapolating national presence to every valley.
+- Added the Mammal Diversity Database taxon record and the 2016 Tokarsky, Atemasov & Shakula paper to the fauna source list.
+- Rechecked the Aygul / *Petilium eduardii* profile and the Sievers' apple (*Malus sieversii*) discussion. The chapter retains the conservative wording: a documented local population at Aygul-Tash, current access restrictions to be verified before visits, and no simplistic claim that *M. sieversii* alone is the ancestor of all cultivated apples.
+- The 2026–2028 Red Data Book revision remains a work in progress; no provisional status is presented as a completed official reassessment.
