@@ -67,6 +67,12 @@ Third subject area of the unified **Atlas of Knowledge** portal.
 - Both regional chapters now include coordinated seven-oblast landscape frameworks for planning deeper species inventories. These tables are explicitly introductory geographic guides, not exhaustive species distributions; future species records must be supported by georeferenced observations, dated surveys, herbarium vouchers or scientific sources.
 - The regional chapters link to the Ministry's official protected-area directory and the UNDP account of the State Programme on Biodiversity Conservation until 2040 (endorsed at a national workshop in November 2025).
 
+## Regional biodiversity field dossiers — Jalal-Abad
+- The Kyrgyzstan flora chapter now contains a bilingual four-site dossier for Arslanbob, Sary-Chelek, Besh-Aral and Padysha-Ata. It distinguishes regional presence, reserve records and plot-level field observations; includes peer-reviewed walnut-forest research and 2022 vegetation monitoring published in 2025; and flags historical Red Data Book references for rechecking against the current edition.
+- The fauna chapter now contains a corresponding bilingual dossier for Besh-Aral, Sary-Chelek and Padysha-Ata, with a sourced profile of Menzbier's marmot, habitat/connectivity context for snow leopard, and explicit treatment of inventory-date and survey-method limitations.
+- Sources added include UNESCO's Sary-Chelek MAB profile, a 2015 walnut-fruit forest study, a 2025 vegetation-monitoring paper, the Kyrgyz Ministry's 2025 Besh-Aral notice, UNEP-WCMC's Western Tien Shan datasheet and UNDP's 2023 protected-area review.
+- These are regional foundations, not complete oblast checklists. Exact distributions, current conservation categories, abundance estimates and coordinates remain subject to taxonomic review and dated field evidence.
+
 ## Learning framework
 - All ten subject chapters now include bilingual learning objectives and concise bilingual glossaries, placed before the knowledge check and styled responsively.
 - The objectives describe expected learner outcomes; glossaries define core terms in context. These sections are an introductory framework and will be expanded during scientific review.
