@@ -382,9 +382,10 @@ try {
       await page.locator("#nb").fill("0.000000001");
       await page.locator("#actual").fill("");
       await page.locator("#na").dispatchEvent("input");
-      if ((await page.locator("#limit").innerText()).trim() !== "A" ||
-          !(await page.locator("#left").innerText()).replace(",", ".").includes("0.000000000999")) {
-        errors.push(file + ": trace mole quantities were misclassified by an absolute tolerance");
+      const traceLimit = (await page.locator("#limit").innerText()).trim();
+      const traceRemainder = (await page.locator("#left").innerText()).trim();
+      if (traceLimit !== "A" || !traceRemainder.replace(",", ".").includes("0.000000000999")) {
+        errors.push(file + ": trace quantities expected limiting A and 9.99e-10 mol B remaining; got " + traceLimit + " / " + traceRemainder);
       }
 
       await page.locator("#na").fill("0");
