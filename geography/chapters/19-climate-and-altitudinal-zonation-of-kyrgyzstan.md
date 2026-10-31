@@ -254,6 +254,48 @@ Seasonal circulation produces cold and often inversion-prone winters, changeable
 
 Погодный рекорд — экстремальное значение за определённый период наблюдений. Его нельзя напрямую сравнивать со среднегодовой температурой или использовать как доказательство долгосрочного тренда без статистического анализа.
 
+## Разобранный пример: оценка изменения температуры с высотой / Worked Example: Estimating Temperature Change with Elevation
+
+Рассмотрим условную ситуацию: на метеостанции в долине на высоте 1 500 м температура воздуха одновременно составляет +18 °C. Нужно приблизительно оценить температуру на склоне на высоте 2 500 м.
+
+Разность высот:
+
+\[
+2\,500-1\,500=1\,000\text{ м}
+\]
+
+Если для учебной оценки применить ориентировочный градиент 6,5 °C на 1 000 м, получим:
+
+\[
+18-6{,}5=11{,}5\ ^\circ\text{C}
+\]
+
+Таким образом, расчётная температура на верхнем пункте составит около +11,5 °C.
+
+**Ограничение:** это упрощённая оценка, а не прогноз и не результат измерения. Реальная температура может отличаться из-за инверсии, облачности, влажности, ветра, времени суток и экспозиции склона. В Кыргызстане особенно важно проверять, не находится ли долина в зоне температурной инверсии. Для практического сравнения следует использовать одновременные наблюдения станций и учитывать их высоту и местоположение.
+
+**Проверьте себя:** если температура в долине +20 °C, а разность высот составляет 500 м, какой результат даст тот же условный градиент?
+
+Consider a hypothetical situation: a weather station in a valley at 1,500 m records an air temperature of +18 °C. We want to make a rough estimate for a slope location at 2,500 m.
+
+The elevation difference is:
+
+\[
+2,500-1,500=1,000\text{ m}
+\]
+
+If we apply the approximate environmental lapse rate of 6.5 °C per 1,000 m for a learning calculation:
+
+\[
+18-6.5=11.5\ ^\circ\text{C}
+\]
+
+The estimated temperature at the higher location is therefore about +11.5 °C.
+
+**Limitation:** this is a simplified estimate, not a forecast or an observed measurement. Actual temperature may differ because of inversions, cloud cover, humidity, wind, time of day and slope aspect. In Kyrgyzstan, it is particularly important to check whether the valley is experiencing a temperature inversion. Practical comparisons should use simultaneous station observations and account for station elevation and location.
+
+**Check your understanding:** if the valley temperature is +20 °C and the elevation difference is 500 m, what estimate does the same approximate lapse rate produce?
+
 ## 19.14. Практические работы / Practical Activities
 
 ### Практическая работа 1. Климатическая диаграмма
