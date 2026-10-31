@@ -69,7 +69,7 @@ function init(root){
    case "force":{const F=2+18*p,m=2;val=F/m;label="ускорение, м/с²";formula="a = F / m = "+fmt(F)+" / "+fmt(m);series=sample(t=>val);break;}
    case "circle":{const r=.5+2.5*p,v=3;val=v*v/r;label="центростремительное ускорение, м/с²";formula="aц = v² / r = 9 / "+fmt(r);series=sample(()=>val);break;}
    case "energy":{const h=1+9*p;val=9.81*h;label="потенциальная энергия на 1 кг, Дж/кг";formula="Eп / m = g · h = 9,81 · "+fmt(h);series=sample(()=>val);break;}
-   case "collision":{const m=.5+4.5*p,v=3;val=m*v;label="импульс, кг·м/с";formula="p = m · v = "+fmt(m)+" · 3";series=sample(t=>t<2?val*(1-t/2):0);break;}
+   case "collision":{const m=.5+4.5*p,v=3;val=m*v;label="импульс первого тела, кг·м/с";formula="p₁ = m₁ · v₁ = "+fmt(m)+" · 3";series=sample(t=>t<2?val*(1-t/2):0);break;}
    case "oscillation":{const A=.1+.9*p,T=2;val=A*Math.cos(2*Math.PI*t/T);label="смещение, м";formula="x(t) = A cos(2πt/T), A = "+fmt(A)+" м";series=sample(t=>A*Math.cos(2*Math.PI*t/T));break;}
    case "rotation":{const I=.1+1.9*p,tau=2;val=tau/I;label="угловое ускорение, рад/с²";formula="α = τ / I = 2 / "+fmt(I);series=sample(()=>val);break;}
    case "fluid":{const h=.2+4.8*p;val=1000*9.81*h;label="гидростатическое давление, Па";formula="p = ρgh = 1000 · 9,81 · "+fmt(h);series=sample(()=>val);break;}
