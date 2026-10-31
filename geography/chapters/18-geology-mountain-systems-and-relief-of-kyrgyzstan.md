@@ -302,6 +302,40 @@ The Paleozoic evolution involved ocean-basin development and closure, arc accret
 | Высокогорья | Крутые склоны, морозное выветривание, кары, троги, морены |
 | Нивально-ледниковый пояс | Ледники, фирновые поля, скальные стены, лавинные и обвальные процессы |
 
+## Разобранный пример: расчёт уклона горного склона / Worked Example: Calculating a Mountain Slope Gradient
+
+Предположим, что на учебном профиле высота нижней точки склона составляет 2 000 м, а верхней — 2 600 м. Горизонтальное расстояние между ними по карте равно 3 км.
+
+1. Находим превышение: 2 600 − 2 000 = 600 м.
+2. Переводим горизонтальное расстояние в метры: 3 км = 3 000 м.
+3. Рассчитываем уклон в процентах:
+
+\[
+I=\frac{600}{3\,000}\times100\%=20\%
+\]
+
+Это означает, что на каждые 100 м горизонтального расстояния приходится 20 м подъёма. Угол наклона можно оценить как \(\arctan(0{,}2)\), то есть примерно 11,3°.
+
+**Важно:** 3 км здесь — горизонтальное расстояние на карте, а не длина пути по поверхности склона. Если измерять извилистый маршрут или фактическую поверхность, результат будет другим. Для инженерных и геоморфологических задач также необходимо учитывать разрешение цифровой модели рельефа, вертикальную точность и выбранную систему высот.
+
+**Проверьте себя:** при превышении 450 м и горизонтальном расстоянии 1 500 м чему равен уклон в процентах?
+
+Assume a learning profile where the lower point of a slope is at 2,000 m and the upper point is at 2,600 m. The horizontal distance between them on the map is 3 km.
+
+1. Calculate the elevation difference: 2,600 − 2,000 = 600 m.
+2. Convert the horizontal distance to metres: 3 km = 3,000 m.
+3. Calculate the gradient as a percentage:
+
+\[
+G=\frac{600}{3,000}\times100\%=20\%
+\]
+
+This means that the land rises by 20 m for every 100 m of horizontal distance. The slope angle can be estimated as \(\arctan(0.2)\), or approximately 11.3°.
+
+**Important:** the 3 km is the horizontal map distance, not the length of a route along the slope surface. Measuring a winding route or the actual terrain surface would produce a different value. Engineering and geomorphological work must also consider digital elevation model resolution, vertical accuracy and the selected height reference system.
+
+**Check your understanding:** if the elevation difference is 450 m and the horizontal distance is 1,500 m, what is the gradient as a percentage?
+
 ## 18.14. Практические работы / Practical Activities
 
 ### Практическая работа 1. Орографическая карта Кыргызстана
