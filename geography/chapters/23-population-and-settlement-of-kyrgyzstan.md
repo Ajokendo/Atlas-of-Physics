@@ -424,6 +424,60 @@ CBR = \frac{B}{P_{mid}} \times 1000
 D = \frac{P}{A}
 \]
 
+## Разобранный пример: плотность населения и неравномерность расселения / Worked Example: Population Density and Uneven Settlement
+
+Рассмотрим условный горный район площадью 2 000 км² с населением 40 000 человек. Средняя плотность населения рассчитывается делением численности населения на площадь:
+
+\[
+D=\frac{40\,000}{2\,000}=20\text{ чел./км}^2
+\]
+
+Полученное значение — **20 человек на 1 км²**. Но оно не означает, что люди равномерно распределены по всей территории.
+
+Предположим, что 30 000 жителей живут в долине площадью 200 км², а остальные 10 000 — на остальной территории площадью 1 800 км². Тогда плотность в долине равна:
+
+\[
+D_1=\frac{30\,000}{200}=150\text{ чел./км}^2
+\]
+
+На остальной территории:
+
+\[
+D_2=\frac{10\,000}{1\,800}\approx5{,}6\text{ чел./км}^2
+\]
+
+Таким образом, общая средняя плотность скрывает сильный контраст между густонаселённой долиной и малонаселёнными горными участками.
+
+**Ограничения:** результат зависит от того, какую площадь используют в знаменателе: всю административную территорию или только пригодную для постоянного проживания. Для географического анализа полезно отдельно показывать населённые пункты, долины, высотные пояса и сезонные пастбища. Средняя плотность сама по себе не описывает доступность дорог, школ, медицинской помощи и рабочих мест.
+
+**Проверьте себя:** в условном районе площадью 500 км² живут 12 500 человек. Какова средняя плотность? Почему она не обязательно показывает плотность в главном селе?
+
+Consider a hypothetical mountain district with an area of 2,000 km² and a population of 40,000. Average population density is calculated by dividing population by area:
+
+\[
+D=\frac{40,000}{2,000}=20\text{ people/km}^2
+\]
+
+The result is **20 people per km²**. It does not mean that people are distributed evenly across the district.
+
+Suppose 30,000 residents live in a valley covering 200 km², while the remaining 10,000 live across the other 1,800 km². The valley's density is:
+
+\[
+D_1=\frac{30,000}{200}=150\text{ people/km}^2
+\]
+
+For the rest of the district:
+
+\[
+D_2=\frac{10,000}{1,800}\approx5.6\text{ people/km}^2
+\]
+
+The overall average therefore hides a strong contrast between a densely populated valley and sparsely populated mountain areas.
+
+**Limitations:** the result depends on the area used in the denominator: the entire administrative district or only land suitable for permanent settlement. Geographic analysis should also show settlements, valleys, elevation zones and seasonal pastures separately. Average density alone does not describe access to roads, schools, healthcare or jobs.
+
+**Check your understanding:** a hypothetical district covers 500 km² and has 12,500 residents. What is its average density? Why might this figure differ from the density in its main village?
+
 ## 23.14. Практические работы
 ## Practical Activities
 
