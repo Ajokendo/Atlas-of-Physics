@@ -22,7 +22,7 @@ function init(root){
  const id=root.dataset.chapter, cfg=presets[id]||presets["01"], canvas=root.querySelector("canvas"), speed=root.querySelector("[data-speed]"), speedOut=root.querySelector("[data-speed-out]"), play=root.querySelector("button"), phase=root.querySelector("[data-phase]"), phaseOut=root.querySelector("[data-phase-out]");
  const paramName=root.querySelector("[data-phase-name]");if(paramName)paramName.textContent=cfg.param||"Параметр";
  const motionPreference=window.matchMedia("(prefers-reduced-motion: reduce)");
- let renderer,scene,camera,object,group,clock=new THREE.Clock(),visible=true,userPaused=motionPreference.matches,running=!userPaused,elapsed=0,drag=false,lastX=0,lastY=0,rotX=-.28,rotY=.42;
+ let renderer,scene,camera,object,group,clock=new THREE.Clock(),visible=true,userPaused=false,running=!motionPreference.matches,elapsed=0,drag=false,lastX=0,lastY=0,rotX=-.28,rotY=.42;
  play.textContent=running?"Пауза":"Продолжить";
  try{
   renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});renderer.setPixelRatio(Math.min(devicePixelRatio||1,2));renderer.setSize(canvas.clientWidth,canvas.clientHeight,false);renderer.outputColorSpace=THREE.SRGBColorSpace;
@@ -91,7 +91,7 @@ function init(root){
   renderer.render(scene,camera);
  };calc(+phase.value/100);render();
  play.addEventListener("click",()=>{userPaused=running;running=!running&&visible;play.textContent=running?"Пауза":"Продолжить";});
- motionPreference.addEventListener("change",e=>{if(e.matches)userPaused=true;running=visible&&!userPaused;play.textContent=running?"Пауза":"Продолжить";});
+ motionPreference.addEventListener("change",e=>{running=visible&&!userPaused&&!e.matches;play.textContent=running?"Пауза":"Продолжить";});
  speed.addEventListener("input",()=>speedOut.textContent=(+speed.value).toFixed(1).replace(".",",")+"×");phase.addEventListener("input",()=>{phaseOut.textContent=phase.value+"%";calc(+phase.value/100);});
  const observer=new IntersectionObserver(entries=>{for(const e of entries){visible=e.isIntersecting;running=visible&&!userPaused;play.textContent=running?"Пауза":"Продолжить";}},{threshold:.08});observer.observe(root);
 }
