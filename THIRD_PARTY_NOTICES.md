@@ -63,3 +63,20 @@ AP® is a trademark of the College Board. The College Board does not endorse thi
 ## 7. Scope and status
 
 This notice reflects the repository files and upstream documentation reviewed so far. It is not a representation that every item in the wider website, every external resource or every future release has been independently rights-cleared. Unverified assets must not be described as freely reusable.
+
+## 7. Font licenses
+
+The upstream HTML references these Google Fonts families: EB Garamond, Inter and JetBrains Mono. The current atlas loads them from Google Fonts rather than storing font binaries in this repository.
+
+- JetBrains Mono: SIL Open Font License 1.1, according to the font publisher: https://github.com/JetBrains/JetBrainsMono
+- EB Garamond and Inter: Google Fonts distributes these families under open font licenses; before bundling or modifying font files locally, retain the exact OFL license files and notices from the corresponding upstream family repositories:
+  - https://github.com/google/fonts/tree/main/ofl/ebgaramond
+  - https://github.com/google/fonts/tree/main/ofl/inter
+
+## 8. College Board publication decision
+
+The College Board's current permission instructions state that AP test materials require a permission request and that other College Board copyrighted content generally requires express written permission unless a specific exception applies. The request process indicates a typical processing period of four to six weeks. See:
+- https://privacy.collegeboard.org/copyright-trademark/request-instructions
+- https://form.collegeboard.org/f/copyright-trademark-permission-request
+
+Until written permission is obtained or the relevant content is independently replaced with original material, the reproduced AP equation-sheet presentation should be treated as **not cleared for republication**. The safer publication path is to remove the transcribed College Board sheet and create an original formula reference using independently authored explanations, notation, ordering and examples. This does not prevent teaching standard mathematical and physical equations as facts; it avoids copying the protected presentation and source text.
