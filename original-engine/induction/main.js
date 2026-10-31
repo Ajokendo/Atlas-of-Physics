@@ -45,14 +45,14 @@ startBook({
     { const Rp = R.pw, X = t => CH.sx(t, Rp.x0, Rp.x1).toFixed(1), Y = p => CH.sy(p, Rp.y0, Rp.y1).toFixed(1), n = 40, pts = [];
       for (let i = 0; i <= n; i++) { const t = s.rail.t * i / n; pts.push(`L${X(t)},${Y(M.railScene(t).P)}`); }
       q('path[data-area="pw"]').forEach(p => p.setAttribute('d', `M${X(0)},${Y(0)}${pts.join('')}L${X(s.rail.t)},${Y(0)}Z`));
-      q('#raillive').forEach(el => { el.textContent = `shaded heat ${f(ra.heat * 1e3, 1)} mJ = kinetic energy lost ½m(v₀² − v²)`; }); }
+      q('#raillive').forEach(el => { el.textContent = `тепло ${f(ra.heat * 1e3, 1)} мДж = потеря кинетической энергии ½m(v₀² − v²)`; }); }
     const so = M.solScene(s.sol.t); put('iS', R.iS, s.sol.t, so.I); put('eS', R.eS, s.sol.t, so.emfL * 1e3);
     const rl = M.rlScene(s.rl.t); put('iRL', R.iRL, s.rl.t, rl.I); put('vR', R.vRL, s.rl.t, rl.VR); put('vL', R.vRL, s.rl.t, rl.VL);
     const lc = M.lcScene(s.lc.t); put('qLC', R.qLC, s.lc.t * 1e3, lc.q * 1e6); put('iLC', R.iLC, s.lc.t * 1e3, lc.I * 1e3);
     for (const [k, v] of [['UE', lc.UE], ['UB', lc.UB], ['U', lc.UE + lc.UB]]) {
       const hh = (BARS.base - BARS.top) * v / M.LC.U;
       q(`rect[data-bar="lc-${k}"]`).forEach(r => { r.setAttribute('y', BARS.base - hh); r.setAttribute('height', hh); });
-      q(`text[data-val="lc-${k}"]`).forEach(t => { t.setAttribute('y', BARS.base - hh - 6); t.textContent = `${f(v * 1e3, 3)} mJ`; });
+      q(`text[data-val="lc-${k}"]`).forEach(t => { t.setAttribute('y', BARS.base - hh - 6); t.textContent = `${f(v * 1e3, 3)} мДж`; });
     }
   },
 });
