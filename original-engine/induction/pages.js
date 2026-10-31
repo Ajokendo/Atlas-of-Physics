@@ -40,7 +40,7 @@ export const R = {
 };
 // live energy bars (the LC circuit): heights set in main.js, full height = the total Q²/2C
 export const BARS = { x: 90, w: 56, gap: 50, base: 112, top: 16 };
-const barChart = (key, items, top) => `<svg class="chart" viewBox="0 0 ${W} ${BARS.base + 26}" role="img" aria-label="Energy bar chart, live">
+const barChart = (key, items, top) => `<svg class="chart" viewBox="0 0 ${W} ${BARS.base + 26}" role="img" aria-label="Динамическая столбчатая диаграмма энергии">
   <line class="zero" x1="${BARS.x - 20}" x2="${BARS.x + items.length * (BARS.w + BARS.gap) - BARS.gap + 20}" y1="${BARS.base}" y2="${BARS.base}"/>
   <line class="grid" x1="${BARS.x - 20}" x2="${BARS.x + items.length * (BARS.w + BARS.gap) - BARS.gap + 20}" y1="${BARS.top}" y2="${BARS.top}" style="stroke:#d4d4d0;stroke-dasharray:3 3"/>
   <text class="ax" x="${BARS.x - 26}" y="${BARS.top + 4}" text-anchor="end">${top}</text><text class="ax" x="${BARS.x - 26}" y="${BARS.base + 4}" text-anchor="end">0</text>
@@ -67,7 +67,7 @@ export const PAGES = [
       <p>Магнитный поток — это интеграл магнитного поля по поверхности, натянутой на контур; измеряется в веберах (Тл·м²). Для катушки с <i>N</i> витками ε = −<i>N d</i>Φ/<i>dt</i>. ЭДС равна циркуляции ∮<i>E</i>·<i>ds</i> <b>индуцированного электрического поля</b>, линии которого замкнуты; такое поле не является потенциальным. Здесь магнит приближается к контуру и удаляется от него, а ЭДС равна отрицательному наклону графика Φ.</p>
       ${two('phi0', 'emf0', { xlabel: 't (с)', ylabel: 'Φ (мкВб)', rlabel: 'ε (мкВ)', label: 'Магнитный поток через контур и ЭДС в зависимости от времени',
         series: [{ pts: samples(160, 0, 6, t => M.fluxScene(t).Phi * 1e6) }, { r: 1, pts: samples(160, 0, 6, t => M.fluxScene(t).emf * 1e6) }] })}
-      <p class="hintline">Click the loop for B·dA patch by patch. 1 m = 10 squares; ${sq('5 mA')}.</p>`,
+      <p class="hintline">Нажмите на контур, чтобы рассмотреть поток B·dA по отдельным участкам. 1 м = 10 клеток; ${sq('5 mA')}.</p>`,
     cam: { target: [ST.flux + 1.0, 1.7, 0], az: 30, el: 12, dist: 13 }, lit: 'flux', scene: 'flux', look: {},
     fig: 'Магнит входит в контур и выходит из него',
   },
@@ -82,7 +82,7 @@ export const PAGES = [
         <li>правило правой руки определяет направление тока <i>I</i>, создающего <i>B</i><sub>ind</sub>.</li>
       </ul>
       <p>Это проявление закона сохранения энергии: контур отталкивает приближающийся полюс и притягивает удаляющийся, поэтому для поддержания движения нужно совершать работу. В сплошном металле аналогичное торможение создаёт <b>вихревые токи</b>, нагревающие материал. Вектор площади направлен влево: Φ > 0, когда <i>B</i> направлено влево.</p>
-      <p class="hintline">Click a loop for its own field, dashed. <i>I</i> and dashed arrows show direction only; ${sq('10 mT')}.</p>`,
+      <p class="hintline">Нажмите на контур, чтобы увидеть его собственное поле (пунктир). <i>I</i> и пунктирные стрелки показывают только направление; ${sq('10 mT')}.</p>`,
     cam: { target: [ST.lenz - 0.35, 2.1, 0], az: 26, el: 8, dist: 21 }, lit: 'nIn', scene: 'lenz', look: {},
     fig: 'Полюс N или S приближается или удаляется',
   },
@@ -94,7 +94,7 @@ export const PAGES = [
       <p>The <b>mutual inductance</b> <i>M</i> is geometry: ${f(M.COILS.M * 1e6, 0)} µH for these 100-turn coils. On an <b>iron core</b> the iron carries the flux through both windings, μ<sub>r</sub> ≈ ${M.CORE.muR} times stronger: <i>M</i> = ${f(M.CORE.M * 1e3, 0)} mH. As <i>I</i>(<i>t</i>) rises, <i>B</i>(<i>t</i>) grows left and <i>B</i><sub>ind</sub> points right.</p>
       ${two('i1', 'emf2', { xlabel: 't (с)', ylabel: 'I₁ (А)', rlabel: 'ε₂ (мВ)', label: 'Ток в катушке 1 и ЭДС в катушке 2 в зависимости от времени',
         series: [{ pts: samples(120, 0, 6, t => M.coilsScene(t).I1) }, { r: 1, pts: samples(120, 0, 6, t => M.coilsScene(t).emf * 1e3) }] })}
-      <p class="hintline">Click either. ${sq('4 A')} in coil 1, 0.5 mA in coil 2, 0.25 T in the iron.</p>`,
+      <p class="hintline">Нажмите на любой из контуров. ${sq('4 A')} in coil 1, 0.5 mA in coil 2, 0.25 T in the iron.</p>`,
     cam: { target: [ST.mutual, 1.95, 0], az: 26, el: 10, dist: 13.5 }, lit: 'mutual', scene: 'mutual', look: {},
     fig: 'Две катушки и железный сердечник',
   },
@@ -110,7 +110,7 @@ export const PAGES = [
       <p>Под проводом поле <i>B</i> направлено в плоскость страницы и ослабевает. Поэтому индуцированный ток течёт по часовой стрелке, создавая поле в плоскость страницы.</p>
       ${two('phiW', 'emfW', { xlabel: 't (с)', ylabel: 'Φ (мкВб)', rlabel: 'ε (мкВ)', label: 'Магнитный поток и ЭДС в зависимости от времени',
         series: [{ pts: samples(90, 0, 3, t => M.wireScene(t).Phi * 1e6) }, { r: 1, pts: samples(90, 0, 2.999, t => M.wireScene(t).emf * 1e6) }] })}
-      <p class="hintline">Click the loop for its strips. ⊗ area ∝ <i>B</i>. ${sq('0.4 mA')}.</p>`,
+      <p class="hintline">Нажмите на контур, чтобы увидеть полосы. ⊗ площадь ∝ <i>B</i>. ${sq('0.4 mA')}.</p>`,
     cam: { target: [ST.wire - 0.3, 2.2, 0], az: 6, el: 6, dist: 17 }, lit: 'wire', scene: 'wire', look: {},
     fig: 'Длинный провод и удаляющийся контур',
   },
@@ -126,7 +126,7 @@ export const PAGES = [
         <tr><td>ε = <i>BLv</i></td><td>${f(M.BAR.emf, 2)} В</td></tr>
       </table>
       <p>Цепь не замкнута, поэтому после разделения зарядов <b>ток не течёт</b>. Когда стержень останавливается, заряды снова распределяются равномерно.</p>
-      <p class="hintline">Click the bar for one charge’s two forces. 1 m = 4 squares; ${sq('0.25 V/m')}.</p>`,
+      <p class="hintline">Нажмите на стержень, чтобы увидеть две силы, действующие на один заряд. 1 м = 4 клетки; ${sq('0.25 V/m')}.</p>`,
     cam: { target: [ST.bar, 1.75, 0], az: 8, el: 6, dist: 15 }, lit: 'bar', scene: 'bar', look: {},
     fig: 'Стержень движется со скоростью 0,5 м/с в поле 0,4 Тл',
   },
@@ -143,7 +143,7 @@ export const PAGES = [
       <p>В однородном поле на обе вертикальные стороны действует ЭДС <i>BLv</i>, причём направления соответствующих эффектов противоположны и в полном контуре компенсируются. Ток течёт только тогда, когда одна сторона находится внутри поля, а другая — снаружи: ${f(M.CROSS.B * M.CROSS.h * M.CROSS.v / M.CROSS.R * 1e3, 0)} мА при сопротивлении ${M.CROSS.R} Ом.</p>
       ${two('phiX', 'emfX', { xlabel: 't (с)', ylabel: 'Φ (мВб)', rlabel: 'ε (мВ)', label: 'Магнитный поток и ЭДС в зависимости от времени',
         series: [{ pts: samples(200, 0, 2, t => M.crossScene(t).Phi * 1e3) }, { r: 1, pts: samples(400, 0, 1.999, t => M.crossScene(t).emf * 1e3) }] })}
-      <p class="hintline">Click the loop for each side’s push. ${sq('0.2 A')}.</p>`,
+      <p class="hintline">Нажмите на контур, чтобы увидеть силу, действующую на каждую его сторону. ${sq('0.2 A')}.</p>`,
     cam: { target: [ST.crossing, 1.75, 0], az: 6, el: 6, dist: 15 }, lit: 'crossing', scene: 'crossing', look: {},
     fig: 'Вход в поле, движение внутри и выход',
   },
@@ -160,7 +160,7 @@ export const PAGES = [
       ${two('v', 'pw', { xlabel: 't (с)', ylabel: 'v (м/с)', rlabel: 'P = I²R (Вт)', label: 'Скорость стержня и рассеиваемая мощность в зависимости от времени; заштрихованная площадь — выделившееся тепло',
         under: `<path data-area="pw" style="fill:#e4e4e8"/>`, series: [{ pts: samples(100, 0, 5, t => M.railScene(t).v) }, { r: 1, pts: samples(100, 0, 5, t => M.railScene(t).P) }], marks: [[M.RAIL.tau, M.RAIL.v0 / Math.E, 'v₀/e at τ']] })}
       <p class="live" id="raillive"></p>
-      <p class="hintline">Click the circuit. ${sq('2 A')}, or 0.25 N.</p>`,
+      <p class="hintline">Нажмите на электрическую цепь. ${sq('2 A')}, or 0.25 N.</p>`,
     cam: { target: [ST.rails, 1.7, 0], az: 6, el: 7, dist: 15.5 }, lit: 'rails', scene: 'rails', look: {},
     fig: 'Торможение собственным индуцированным током',
   },
@@ -176,7 +176,7 @@ export const PAGES = [
       <p>${M.SOL.N} turns on ${M.SOL.len * 100} cm, radius ${M.SOL.r * 100} cm (μ<sub>0</sub><i>nI</i> is ${f((1 - M.solCentreB(1) / (M.MU0 * M.SOL.n)) * 100, 0)} % high for a coil this short). Ramping 0 → ${M.SOL.Imax} A in ${M.SOL.ramp} s gives ε<sub><i>L</i></sub> = ${f(-M.SOL.L * M.SOL.Imax / M.SOL.ramp * 1e3, 2)} mV; a steady current, none. Inductors smooth out sudden jumps.</p>
       ${two('iS', 'eS', { xlabel: 't (с)', ylabel: 'I (А)', rlabel: 'ε_L (мВ)', label: 'Ток и ЭДС самоиндукции в зависимости от времени',
         series: [{ pts: samples(200, 0, 4, t => M.solCurrent(t).I) }, { r: 1, pts: samples(400, 0, 3.999, t => M.solScene(t).emfL * 1e3) }] })}
-      <p class="hintline">25 of 400 turns drawn. Click for one turn’s flux. ${sq('5 mT')}.</p>`,
+      <p class="hintline">Показаны 25 из 400 витков. Нажмите, чтобы увидеть поток через один виток. ${sq('5 mT')}.</p>`,
     cam: { target: [ST.solenoid, 1.85, 0], az: 22, el: 12, dist: 11.5 }, lit: 'solenoid', scene: 'solenoid', look: {},
     fig: 'Соленоид с нарастающим током',
   },
@@ -189,7 +189,7 @@ export const PAGES = [
       ${two('iRL', 'vRL', { xlabel: 't (с)', ylabel: 'I (А)', rlabel: 'ΔV (В)', label: 'Ток и напряжение на катушке в зависимости от времени: нарастание и спад',
         series: [{ pts: samples(320, 0, 7.999, t => M.rlScene(t).I) }, { r: 1, pts: samples(320, 0, 7.999, t => M.rlScene(t).VL), tag: [4.6, -8.5, 'L dI/dt'] }],
         marks: [[M.RL.tau, M.rlScene(M.RL.tau).I, '63 %'], [M.RL.phase + M.RL.tau, M.rlScene(M.RL.phase + M.RL.tau).I, '37 %']] })}
-      <p class="hintline">Black: <i>I</i>, and <i>IR</i> on the right scale. Click the circuit for each ΔV. ${sq('4 A')}.</p>`,
+      <p class="hintline">Чёрная линия: <i>I</i>, а <i>IR</i> показано по правой шкале. Нажмите на цепь, чтобы увидеть каждое ΔV. ${sq('4 A')}.</p>`,
     cam: { target: [ST.rl - 0.15, 1.75, 0], az: 8, el: 8, dist: 14 }, lit: 'rl', scene: 'rl', look: {},
     fig: '12 В, 4 Ом, 2 Гн',
   },
@@ -212,7 +212,7 @@ export const PAGES = [
         <tr><td><i>x</i>, &nbsp;<i>v</i></td><td><i>q</i>, &nbsp;<i>I</i></td></tr>
         <tr><td><i>m</i>, &nbsp;<i>k</i></td><td><i>L</i>, &nbsp;1/<i>C</i></td></tr>
         <tr><td>½<i>kx</i><sup>2</sup>, &nbsp;½<i>mv</i><sup>2</sup></td><td><i>q</i><sup>2</sup>/2<i>C</i>, &nbsp;½<i>LI</i><sup>2</sup></td></tr></table>
-      <p class="hintline">Click the plates or the coil for the energy each holds. ${sq('10 kV/m (E), 2 mT (B), 100 mA (I)')}.</p>`,
+      <p class="hintline">Нажмите на пластины или катушку, чтобы увидеть запасённую в них энергию. ${sq('10 kV/m (E), 2 mT (B), 100 mA (I)')}.</p>`,
     cam: { target: [ST.lc + 0.3, 1.8, 0], az: 8, el: 8, dist: 12.5 }, lit: 'lcCap', scene: 'lc', look: {},
     fig: '25 мкФ, 40 мГн, 100 мкКл',
   },
