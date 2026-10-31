@@ -64,6 +64,55 @@ try {
       languageChecks++;
     }
 
+    if (file === "chapters/chemical-formulae.html") {
+      const formula = page.locator("#formula");
+      const calculate = page.locator("#calc");
+      const rows = page.locator("#rows tr");
+      const total = page.locator("#total");
+
+      await formula.fill("H2O");
+      await calculate.click();
+      let values = await rows.evaluateAll(items => items.map(row => [row.cells[0].textContent.trim(), row.cells[1].textContent.trim()]));
+      if ((await total.innerText()).trim() !== "Всего атомов: 3" ||
+          JSON.stringify(values) !== JSON.stringify([["H", "2"], ["O", "1"]])) {
+        errors.push(file + ": H2O was not parsed into 2 H and 1 O atoms");
+      }
+
+      await formula.fill("Ca(OH)2");
+      await calculate.click();
+      values = await rows.evaluateAll(items => items.map(row => [row.cells[0].textContent.trim(), row.cells[1].textContent.trim()]));
+      if ((await total.innerText()).trim() !== "Всего атомов: 5" ||
+          JSON.stringify(values) !== JSON.stringify([["Ca", "1"], ["O", "2"], ["H", "2"]])) {
+        errors.push(file + ": Ca(OH)2 or group multipliers were calculated incorrectly");
+      }
+
+      await formula.fill("Al2(SO4)3");
+      await calculate.click();
+      values = await rows.evaluateAll(items => items.map(row => [row.cells[0].textContent.trim(), row.cells[1].textContent.trim()]));
+      if ((await total.innerText()).trim() !== "Всего атомов: 17" ||
+          JSON.stringify(values) !== JSON.stringify([["Al", "2"], ["S", "3"], ["O", "12"]])) {
+        errors.push(file + ": nested-group formula Al2(SO4)3 was calculated incorrectly");
+      }
+
+      await formula.fill("H 2 O");
+      await calculate.click();
+      if ((await total.innerText()).trim() !== "Всего атомов: 3") {
+        errors.push(file + ": harmless spaces in a formula were not ignored");
+      }
+
+      await formula.fill("Ca()2");
+      await calculate.click();
+      if ((await page.locator("#feedback").innerText()).trim() === "Формула разобрана успешно.") {
+        errors.push(file + ": empty brackets were incorrectly accepted");
+      }
+
+      await formula.fill("Xx2");
+      await calculate.click();
+      if ((await page.locator("#feedback").innerText()).trim() === "Формула разобрана успешно.") {
+        errors.push(file + ": unknown element symbol was incorrectly accepted");
+      }
+    }
+
     if (file === "periodic-table.html") {
       await page.locator("#search").fill("oxygen");
       if (await page.locator("#table button[data-id]").count() !== 1) {
