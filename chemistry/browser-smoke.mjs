@@ -41,7 +41,12 @@ try {
       await page.locator("#finish").click();
       if (!(await page.locator("#score").innerText()).includes("/ 10")) errors.push(file + ": quiz result was not produced");
       if (!(await page.evaluate(() => localStorage.getItem("atlas-physics-quiz-v1")))) errors.push(file + ": quiz result was not saved");
-      await page.evaluate(() => localStorage.removeItem("atlas-physics-quiz-v1"));
+      await page.locator("#reset").click();
+      for (let i = 0; i < correct.length; i++) await page.locator('input[name="q' + i + '"][value="' + correct[i] + '"]').check();
+      await page.locator("#finish").click();
+      const history = await page.evaluate(() => JSON.parse(localStorage.getItem("atlas-physics-quiz-v1-history-v1") || "[]"));
+      if (history.length !== 2) errors.push(file + ": repeated quiz attempts were not retained");
+      await page.evaluate(() => { localStorage.removeItem("atlas-physics-quiz-v1"); localStorage.removeItem("atlas-physics-quiz-v1-history-v1"); });
     }
     if (file === "progress.html") {
       const checks = page.locator(".item input[type=checkbox]");
