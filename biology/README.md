@@ -10,7 +10,8 @@ Third subject area of the unified **Atlas of Knowledge** portal.
 
 ## Structure
 - `index.html` — Biology landing page, subject navigation and interactive eukaryotic-cell model.
-- `chapters/botany.html` — Botany, with bilingual learning objectives and a field glossary.
+- `chapters/botany.html` — Botany, with bilingual learning objectives, a field glossary and a regional flora feature link.
+- `chapters/flora-kyrgyzstan.html` — Regional bilingual flora chapter: altitudinal vegetation belts, forest ecosystems, characteristic plant profiles, conservation themes and research sources.
 - `chapters/zoology.html` — Zoology, with bilingual learning objectives and a field glossary.
 - `chapters/cell-biology.html` — Cell biology and cytology.
 - `chapters/anatomy.html` — Human anatomy and physiology.
@@ -58,7 +59,7 @@ Third subject area of the unified **Atlas of Knowledge** portal.
 
 ## Regional biodiversity feature: Kyrgyzstan
 - After the global foundations of Botany and Zoology are complete, add a substantial dedicated section on the flora of Kyrgyzstan to Botany and a corresponding section on the fauna of Kyrgyzstan to Zoology.
-- The flora section is planned to cover vegetation zones and altitudinal belts, walnut-fruit and juniper forests, alpine meadows, endemic and rare plants, useful species, protected areas and conservation.
+- The first dedicated regional flora chapter is now created at `chapters/flora-kyrgyzstan.html`. It introduces altitudinal vegetation belts, walnut-fruit, spruce, juniper and riparian woodlands, selected wild plant profiles, conservation pressures, research methods and source links. It is an initial scholarly foundation; detailed verified species accounts, distribution maps, photographs and region-by-region inventories remain future work.
 - The fauna section is planned to cover major animal groups, characteristic mammals and birds, endemic and rare species, habitats and migration, protected areas and conservation.
 - These will be full bilingual regional chapters within the relevant subject pages, supported by maps, original diagrams, species profiles and carefully sourced information. They will be developed after the global subject foundations, and coordinated with the dedicated Kyrgyzstan geography section in the Geography atlas.
 
@@ -72,6 +73,12 @@ Third subject area of the unified **Atlas of Knowledge** portal.
 - Test all internal links, portal integration, mobile layouts and browser console output.
 - Expand knowledge checks into topic-level assessment sets and add learning objectives/glossaries to all remaining chapters. Botany and Zoology now provide the bilingual model sections.
 
+
+## Regional flora chapter — first implementation
+- A standalone bilingual regional chapter has been added and linked from Botany.
+- The chapter includes an original schematic altitudinal vegetation profile, an indicative vegetation-belt table, forest ecosystem profiles, selected botanical portraits, conservation pressures and methods, and an initial source list.
+- Altitudinal limits are explicitly presented as variable rather than universal. Species totals and endemicity percentages are not stated as fixed values without a defined checklist and method.
+- The page has responsive layouts, RU/EN switching, a skip link, semantic headings and a text-based source list. Structural verification is required; full browser and mobile testing remains pending.
 
 ## Knowledge checks
 
