@@ -26,10 +26,13 @@ Third subject area of the unified **Atlas of Knowledge** portal.
 - Ten bilingual chapter pages have been created.
 - Each chapter has a topic outline, explanatory text and a bilingual multiple-choice knowledge check.
 - The landing page includes a selectable SVG cell model and a bilingual self-check question.
+- Original responsive vector science plates have been added to Botany (flowering plant morphology), Zoology (major vertebrate groups), Cell Biology (prokaryote/eukaryote comparison), and Genetics (DNA double helix).
+- Botany includes an interactive plant-organ learning module covering root, stem, leaf and flower.
+- Genetics includes an interactive DNA complementary base-pairing module (A–T and G–C).
 
 ## Next development stages
 1. Scientific review and expansion of chapter content with references and terminology.
-2. Original botanical, zoological, anatomy, DNA and ecology illustrations.
+2. Expand original botanical, zoological, anatomy, DNA and ecology illustrations.
 3. Interactive models: photosynthesis, plant transport, animal classification, genetics and ecosystems.
 4. Larger question banks, chapter progress and review activities.
 5. Responsive and cross-browser testing, accessibility review and link validation.
