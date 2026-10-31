@@ -60,23 +60,40 @@ College Board's published permission instructions state that copyrighted College
 
 AP® is a trademark of the College Board. The College Board does not endorse this project. Do not use College Board logos or imply official affiliation. If AP materials are ever added to this repository, obtain the necessary permission first or replace them with independently authored explanations, formula references and examples.
 
-## 7. Scope and status
+## 7. Scope, verification and publication status
 
-This notice reflects the repository files and upstream documentation reviewed so far. It is not a representation that every item in the wider website, every external resource or every future release has been independently rights-cleared. Unverified assets must not be described as freely reusable.
+This notice reflects the repository files and upstream documentation reviewed so far. It is not legal advice and is not a representation that every item in the wider website, every external resource or every future release has been independently rights-cleared.
 
-## 7. Font licenses
+### Fonts — verified license family
 
-The upstream HTML references these Google Fonts families: EB Garamond, Inter and JetBrains Mono. The current atlas loads them from Google Fonts rather than storing font binaries in this repository.
+The chapter HTML references EB Garamond, Inter and JetBrains Mono through Google Fonts. The upstream font projects publish all three under the SIL Open Font License 1.1 (OFL 1.1):
 
-- JetBrains Mono: SIL Open Font License 1.1, according to the font publisher: https://github.com/JetBrains/JetBrainsMono
-- EB Garamond and Inter: Google Fonts distributes these families under open font licenses; before bundling or modifying font files locally, retain the exact OFL license files and notices from the corresponding upstream family repositories:
-  - https://github.com/google/fonts/tree/main/ofl/ebgaramond
-  - https://github.com/google/fonts/tree/main/ofl/inter
+- EB Garamond: https://github.com/google/fonts/blob/main/ofl/ebgaramond/OFL.txt
+- Inter: https://github.com/google/fonts/blob/main/ofl/inter/OFL.txt
+- JetBrains Mono: https://github.com/JetBrains/JetBrainsMono/blob/master/OFL.txt
 
-## 8. College Board publication decision
+The font binaries are requested from Google Fonts and are not bundled as local font files in this repository. If font files are later downloaded, modified or redistributed locally, include the applicable complete OFL text and comply with its reserved-font-name and redistribution conditions.
 
-The College Board's current permission instructions state that AP test materials require a permission request and that other College Board copyrighted content generally requires express written permission unless a specific exception applies. The request process indicates a typical processing period of four to six weeks. See:
+### Chemistry SVG illustrations — provenance not yet independently confirmed
+
+The current repository contains three local SVG illustrations:
+
+- `chemistry/assets/carbon-cycle.svg`
+- `chemistry/assets/electron-cloud.svg`
+- `chemistry/assets/reaction-schematic.svg`
+
+The SVG source contains no explicit author, source URL or license metadata. The files appear to be project-specific diagrams, but this repository inspection alone does not establish who created them or the rights under which they were supplied. Before treating them as cleared for redistribution, confirm their creation history and retain that record. If their origin cannot be confirmed, replace them with newly authored diagrams whose provenance is documented.
+
+### College Board / AP material — excluded from the current Russian tree
+
+The upstream English project contains an equation-sheet generator whose source comments state that its tables were transcribed from College Board AP Physics 1 and AP Physics C Course and Exam Descriptions (effective fall 2024; sheets © 2025 College Board).
+
+The current Russian repository tree does **not** contain the upstream `equations/` directory or its generated equation-sheet page. This is documented as an upstream provenance issue, not as a claim that those tables are included in this repository.
+
+College Board's permission instructions state that AP test materials require a permission request and that other College Board copyrighted content generally requires express written permission unless a specific exception applies. The request process indicates a typical processing period of four to six weeks. See:
 - https://privacy.collegeboard.org/copyright-trademark/request-instructions
 - https://form.collegeboard.org/f/copyright-trademark-permission-request
 
-Important repository check: the current tree of the Russian repository does **not** contain the upstream `equations/` directory or its College Board equation-sheet page. Therefore, the transcribed equation-sheet presentation was not found in the current Russian repository snapshot. The upstream English repository does contain it. Keep it out of the Russian project unless permission is obtained. If a formula reference is needed, create an original reference using independently authored explanations, organization, examples and visual presentation. Standard mathematical and physical equations themselves can be taught as facts; avoid copying College Board's protected presentation or source text.
+AP® is a trademark of the College Board. The College Board does not endorse this project. Do not use College Board logos or imply official affiliation. Keep the upstream equation-sheet presentation out of this project unless the necessary permission is obtained. If a formula reference is needed, create an independently authored reference with original explanations, organization, examples and visual presentation. Standard mathematical and physical equations can be taught as facts; avoid copying College Board's protected presentation or source text.
+
+Unverified assets must not be described as freely reusable. Record the source, creator, license and required attribution for every third-party image, diagram, dataset or document before including it in a public release.
