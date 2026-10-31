@@ -87,6 +87,13 @@ Third subject area of the unified **Atlas of Knowledge** portal.
 - References include CAMCA, Ramsar Sites Information Service, FAO/CAMP Alatoo, a 2023 waterbird study, and the Kyrgyz Ministry's 2025 Naryn reserve expedition notice.
 - Species lists and totals remain subject to current taxonomic review, survey effort and locality-specific field evidence.
 
+## Regional biodiversity field dossiers — Osh
+- Flora: added a bilingual overview of Kulun-Ata Nature Reserve, Kyrgyz-Ata juniper belt, southern walnut-fruit forests, and the Alay/Chon-Alay highlands.
+- The Kulun-Ata plant totals are explicitly contextualised: a 2026 Osh State University expedition reports 808 species, while a 2026 literature review cites about 394 vascular plant species and flags outdated taxonomy in source lists. These are not presented as directly comparable inventories.
+- Fauna: added camera-trap records from Kulun-Ata reported by the Ministry on 28 August 2026 (Tien Shan brown bear, snow leopard and ibex), plus habitat-based notes for forest mammals, high-mountain ungulates and raptors.
+- The dossiers distinguish confirmed monitoring records from broader regional habitat associations and avoid presenting presence records as population estimates.
+- Sources include the Kyrgyz Ministry of Natural Resources, Osh State University, the National Academy of Sciences journal, Osh Technological University, IICAS and World Bank environmental assessments.
+
 ## Learning framework
 - All ten subject chapters now include bilingual learning objectives and concise bilingual glossaries, placed before the knowledge check and styled responsively.
 - The objectives describe expected learner outcomes; glossaries define core terms in context. These sections are an introductory framework and will be expanded during scientific review.
