@@ -107,7 +107,7 @@ export function buildWorld(E) {
   // 1 · a bar magnet
   // ======================================================================
   const cM = V(STATIONS.magnet, 2.2, 0);
-  const gM = asm('magnet', root, { title: 'A bar magnet', sub: 'every line closes on itself' });
+  const gM = asm('magnet', root, { title: 'Стержневой магнит', sub: 'каждая линия замыкается сама на себя' });
   const magMats = [fadeMat('red'), fadeMat('base')];
   const hl = M.MAG.L / 2 * D, hw = M.MAG.w / 2 * D;
   part(gM, box(hl * 2 / 2, hw * 2, hw * 2, 0.03), { tone: 'hi', name: 'North half', mat: magMats[0], pos: [cM.x + hl / 2, cM.y, 0] });
@@ -136,7 +136,7 @@ export function buildWorld(E) {
   for (const [y, z] of [[0.7, -1.3], [0.7, 1.3], [3.3, -1.3], [3.3, 1.3], [2.0, -1.9], [2.0, 1.9], [3.3, 0], [0.7, 0]])
     bLine(root, V(cR.x - 3.4, y, z), V(cR.x + 3.4, y, z), 1);
   label('vec grey', '<b>B</b>', () => V(cR.x + 3.6, 3.3, 0));
-  const gR = asm('rhr', root, { title: 'Charges moving through B', sub: 'F = qv × B' });
+  const gR = asm('rhr', root, { title: 'Движение зарядов в поле B', sub: 'F = qv × B' });
   const rq = [{ q: M.QE, at: V(cR.x - 1.5, cR.y, 0) }, { q: -M.QE, at: V(cR.x + 1.5, cR.y, 0) }].map(o => {
     const m = charge(gR, o.q > 0 ? 1 : -1); m.position.copy(o.at);
     return { ...o, v: inkArrow(gR, 'Velocity v'), F: redArrow(gR, 'Force F'), B: bArrow(gR), par: thinGrey(gR, 'Parts of v'), perp: thinGrey(gR, 'Parts of v') };
@@ -159,7 +159,7 @@ export function buildWorld(E) {
     bLine(root, V(x, 2.1, z), V(x, 0.2, z), 1);
   }
   label('vec grey', '<b>B</b>', () => V(cC.x + 2.4, 2.3, cC.z + 2.4));
-  const gC = asm('cyclo', root, { title: 'Protons circling', sub: 'same period at any speed' });
+  const gC = asm('cyclo', root, { title: 'Движение протонов по окружности', sub: 'период не зависит от скорости' });
   const cyc = M.CYC.r.map((r, i) => {
     const ring = Array.from({ length: 97 }, (_, k) => { const a = k / 96 * 2 * Math.PI; return V(cC.x + r * DP * Math.sin(a), cC.y, startC.z - r * DP + r * DP * Math.cos(a)); });
     curve(root, ring, trailMat);
@@ -175,7 +175,7 @@ export function buildWorld(E) {
   // 4 · the velocity selector
   // ======================================================================
   const cS = V(STATIONS.selector, 2.6, 0), gapW = M.SEL.gap * DP, LW = M.SEL.L * DP, x0S = cS.x - LW / 2;
-  const gS = asm('selector', root, { title: 'Crossed E and B', sub: 'only v = E/B goes straight' });
+  const gS = asm('selector', root, { title: 'Скрещённые поля E и B', sub: 'прямолинейно движется только при v = E/B' });
   part(gS, box(LW, 0.16, 3, 0.03), { tone: 'mid', pal: 'base', name: 'Plates', pos: [cS.x, cS.y + gapW / 2 + 0.08, 0] });
   part(gS, box(LW, 0.16, 3, 0.03), { tone: 'mid', pal: 'base', name: 'Plates', pos: [cS.x, cS.y - gapW / 2 - 0.08, 0] });
   for (let i = 0; i < 6; i++) {
@@ -219,7 +219,7 @@ export function buildWorld(E) {
   for (const [y, z] of [[0.5, -1.5], [0.5, 0], [0.5, 1.5], [4.3, -1.5], [4.3, 0], [4.3, 1.5], [1.7, -1.7], [3.1, -1.7], [1.7, 1.7], [3.1, 1.7]])
     bLine(root, V(cL.x - 3.6, y, z), V(cL.x + 3.6, y, z), 2);
   label('vec grey', '<b>B</b>', () => V(cL.x + 3.85, 4.3, 0));
-  const gL = asm('loop', root, { title: 'A current loop in B', sub: 'no net force, but a torque' });
+  const gL = asm('loop', root, { title: 'Рамка с током в поле B', sub: 'сила равна нулю, но возникает момент' });
   const loopG = new THREE.Group(); loopG.position.copy(cL); gL.add(loopG);
   const la = M.LOOP.a / 2 * D, lb = M.LOOP.b / 2 * D;
   const LP = [V(0, -lb, -la), V(0, lb, -la), V(0, lb, la), V(0, -lb, la)];
@@ -240,7 +240,7 @@ export function buildWorld(E) {
   // 6 · a long straight wire: Ampère's law, and the flux through a rectangle beside it
   // ======================================================================
   const cA = V(STATIONS.ampere, 0, 0), yAmp = 1.4, yLines = 6.0;
-  const gA = asm('ampere', root, { title: 'A long straight wire', sub: '∮ B · ds = μ₀I' });
+  const gA = asm('ampere', root, { title: 'Длинный прямой провод', sub: '∮ B · ds = μ₀I' });
   rod(gA, V(cA.x, 0, 0), V(cA.x, 2.6, 0), M.AMP.a * D, { name: 'Wire' });
   rod(root, V(cA.x, 2.6, 0), V(cA.x, 6.8, 0), M.AMP.a * D, { name: 'Wire' });   // the top half is not part of the breakdown, so opening it frames the circle
   // kept out of the breakdown so opening the wire frames the circle
@@ -257,7 +257,7 @@ export function buildWorld(E) {
   label('vec grey', '<b>B</b>', () => tip(bA[1])); label('vec grey', 'r', () => tip(rA, 0.05).add(V(0, 0.2, 0)));
   label('vec', 'd<b>s</b>', () => ex(gA) > 0.3 ? tip(dsA[12]) : null);
 
-  const gF = asm('flux', root, { title: 'A rectangle beside the wire', sub: 'Φ = ∫ B b dr' });
+  const gF = asm('flux', root, { title: 'Прямоугольная поверхность рядом с проводом', sub: 'Φ = ∫ B b dr' });
   const fy0 = 2.5, fy1 = fy0 + M.FLUX.b * D, nS = M.FLUX.strips, drW = M.FLUX.c * D / nS;
   const panelMat = shadeMat('paper', { opacity: 0.55 }); panelMat.side = THREE.DoubleSide;
   const strips = Array.from({ length: nS }, (_, i) => {
@@ -281,7 +281,7 @@ export function buildWorld(E) {
   // 7 · a circular loop: Biot–Savart, and the field along its axis
   // ======================================================================
   const cG = V(STATIONS.ring, 2.6, 0), RW = M.RING.R * D;
-  const gG = asm('ring', root, { title: 'A circular current loop', sub: 'each dl adds a dB' });
+  const gG = asm('ring', root, { title: 'Круговой виток с током', sub: 'каждый dl создаёт вклад dB' });
   const ringTor = new THREE.TorusGeometry(RW, 0.05, 12, 128); ringTor.rotateY(Math.PI / 2);
   part(gG, ringTor, { tone: 'hi', name: 'Wire loop', pos: cG.toArray() });
   for (let k = 0; k < 6; k++) { const a = 2 * Math.PI * (k + 0.25) / 6; cone(gG, V(cG.x, cG.y + RW * Math.cos(a), RW * Math.sin(a)), V(0, -Math.sin(a), Math.cos(a)), 'Current I'); }
@@ -338,7 +338,7 @@ export function buildWorld(E) {
   // 9 · a solenoid and a toroid
   // ======================================================================
   const cN = V(STATIONS.solenoid, 2.4, 0), RS = M.SOL.R * D;
-  const gN = asm('solenoid', root, { title: 'A solenoid', sub: 'B = μ₀nI inside, uniform' });
+  const gN = asm('solenoid', root, { title: 'Соленоид', sub: 'внутри однородное поле B = μ₀nI' });
   const solMat = fadeMat('paper');
   const turnGeo = new THREE.TorusGeometry(RS, 0.035, 8, 48); turnGeo.rotateY(Math.PI / 2);
   for (const l of M.SOL.loops) part(gN, turnGeo, { tone: 'hi', name: 'Turns', mat: solMat, pos: [cN.x + l[0][0] * D, cN.y, 0] });
@@ -354,7 +354,7 @@ export function buildWorld(E) {
   label('tick', '∮ <b>B</b>·d<b>s</b> = <i>BL</i>', () => ex(gN) > 0.3 ? toW(cN, D)([0, M.SOL_RECT.Y, 0]).add(V(0.6, 0.25, 0)) : null);
 
   const cT = V(STATIONS.toroid, 1.3, 0), R0 = M.TOR.R0 * D, aT = M.TOR.a * D;
-  const gT = asm('toroid', root, { title: 'A toroid', sub: 'B = μ₀NI/2πr, only inside' });
+  const gT = asm('toroid', root, { title: 'Тороид', sub: 'B = μ₀NI/2πr только внутри' });
   const torMat = fadeMat('paper');
   const coreMat = shadeMat('base', { opacity: 0.35 });
   const core = part(gT, new THREE.TorusGeometry(R0, aT * 0.9, 24, 96).rotateX(Math.PI / 2), { tone: 'faint', name: 'Core', mat: coreMat, pos: cT.toArray() }); core.userData.noEdge = true;
