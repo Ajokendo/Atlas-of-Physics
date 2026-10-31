@@ -122,6 +122,25 @@ After studying this chapter, readers will be able to explain core demographic co
 
 Старение требует адаптации систем здравоохранения, ухода, пенсионного обеспечения, транспорта и городской среды. Молодая возрастная структура, в свою очередь, создаёт потребность в школах, рабочих местах, жилье и услугах для семей.
 
+
+### 9.8.1. Разобранный пример: расчёт демографической нагрузки / Worked Example: Calculating the Age Dependency Ratio
+
+Рассмотрим условное население: 18 000 человек в возрасте 0–14 лет, 50 000 человек в возрасте 15–64 лет и 7 000 человек в возрасте 65 лет и старше.
+
+1. Численность условно зависимых возрастов: 18 000 + 7 000 = **25 000 человек**.
+2. Коэффициент демографической нагрузки: (25 000 / 50 000) × 100 = **50 человек на 100 человек в возрасте 15–64 лет**.
+3. Детская нагрузка: (18 000 / 50 000) × 100 = **36 на 100**; нагрузка старшими возрастами: (7 000 / 50 000) × 100 = **14 на 100**.
+
+Итак, на каждые 100 жителей в возрасте 15–64 лет приходится 50 человек младших и старших возрастов вместе. Это не означает, что каждый из этих 100 человек работает и содержит 50 иждивенцев: расчёт основан только на возрасте. Для оценки реальной экономической нагрузки нужны сведения о занятости, безработице, доходах и участии людей разных возрастов в уходе и оплачиваемом труде.
+
+Consider a hypothetical population with 18,000 people aged 0–14, 50,000 aged 15–64, and 7,000 aged 65 and over.
+
+1. Population in the conventionally dependent age groups: 18,000 + 7,000 = **25,000 people**.
+2. Age dependency ratio: (25,000 / 50,000) × 100 = **50 people per 100 people aged 15–64**.
+3. Child dependency ratio: (18,000 / 50,000) × 100 = **36 per 100**; old-age dependency ratio: (7,000 / 50,000) × 100 = **14 per 100**.
+
+Thus, for every 100 people aged 15–64, there are 50 people in the younger and older age groups combined. This does not mean that all 100 people are employed or that they financially support 50 dependants: the calculation is based on age alone. Assessing the actual economic burden also requires information on employment, unemployment, income, and participation in paid work and care across age groups.
+
 ## 9.9. Миграция: понятия и виды / Migration: Concepts and Types
 
 Миграция — перемещение людей, связанное со сменой места жительства или обычного проживания на определённый срок. Статистические определения международной и внутренней миграции могут различаться по длительности проживания и критерию пересечения административной или государственной границы.
