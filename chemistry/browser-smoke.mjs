@@ -146,6 +146,21 @@ try {
       }
     }
 
+    if (file === "chapters/solutions.html") {
+      await page.locator("#n").fill("1");
+      await page.locator("#v").fill("2");
+      let result = (await page.locator("#result").innerText()).trim();
+      if (!result.endsWith("моль/л")) {
+        errors.push(file + ": Russian molar-concentration unit is not localized");
+      }
+      await page.locator("#lang").click();
+      result = (await page.locator("#result").innerText()).trim();
+      if (!result.endsWith("mol/L")) {
+        errors.push(file + ": English molar-concentration unit is incorrect");
+      }
+      await page.locator("#lang").click();
+    }
+
     if (file === "periodic-table.html") {
       await page.locator("#search").fill("oxygen");
       if (await page.locator("#table button[data-id]").count() !== 1) {
