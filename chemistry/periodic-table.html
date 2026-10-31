@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f2f2ef"><meta name="description" content="Интерактивная периодическая таблица всех 118 химических элементов на русском и английском языках."><title>Периодическая система — Атлас химии</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f2f2ef;--card:#fbfbfa;--ink:#18181a;--text:#57575a;--muted:#8c8c90;--line:#deded9;--accent:#39836f;--serif:'EB Garamond',Georgia,serif;--sans:Inter,system-ui,sans-serif;--mono:'JetBrains Mono',monospace}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--text);font:14px/1.6 var(--sans)}a{color:inherit}.top{max-width:1400px;margin:auto;height:68px;padding:0 24px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.brand{font:500 23px var(--serif);text-decoration:none;color:var(--ink)}.actions{display:flex;gap:10px;align-items:center}.btn{border:1px solid var(--line);background:transparent;padding:8px 11px;font:11px var(--mono);cursor:pointer;color:var(--ink);text-decoration:none}.btn:hover{border-color:var(--accent);color:var(--accent)}main{max-width:1400px;margin:auto;padding:0 24px}.intro{padding:48px 0 26px}.eyebrow,.meta,footer{font:10px var(--mono);letter-spacing:.12em;color:var(--muted)}h1{font:400 clamp(42px,6vw,70px)/1 var(--serif);color:var(--ink);margin:13px 0}.lead{font:italic 19px var(--serif);color:#77736e;max-width:650px;margin:0}.tools{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0 18px}.search{min-width:230px;flex:1;border:1px solid var(--line);background:var(--card);padding:11px 13px;font:13px var(--sans);color:var(--ink);outline:none}.search:focus{border-color:var(--accent)}.filter{border:1px solid var(--line);background:var(--card);padding:9px 12px;color:var(--text);font:12px var(--sans);max-width:100%}.legend{display:flex;flex-wrap:wrap;gap:8px;margin:15px 0 22px}.chip{display:flex;align-items:center;gap:6px;border:1px solid var(--line);padding:5px 8px;font:10px var(--mono);background:#fbfbfa}.dot{width:9px;height:9px;border-radius:2px;display:inline-block}.table-wrap{overflow-x:auto;padding-bottom:12px}.ptable{display:grid;grid-template-columns:repeat(18,minmax(48px,1fr));gap:5px;min-width:1000px}.el{position:relative;min-height:76px;border:1px solid rgba(0,0,0,.08);padding:5px 6px;text-align:left;cursor:pointer;color:#202322;background:var(--elbg);transition:transform .12s,box-shadow .12s;min-width:0}.el:hover,.el.selected{transform:translateY(-2px);box-shadow:0 3px 12px #0002;outline:2px solid var(--accent);z-index:2}.el .num{font:9px var(--mono);opacity:.75;display:block}.el .sym{font:600 23px var(--sans);line-height:1.1;display:block}.el .ename{font:9px/1.2 var(--sans);display:block;overflow-wrap:anywhere;margin-top:3px}.el .mass{font:8px var(--mono);opacity:.7;display:block;margin-top:3px}.placeholder{min-height:76px;display:flex;align-items:center;justify-content:center;text-align:center;border:1px dashed var(--line);color:var(--muted);font:9px var(--mono);padding:4px}.fblock{display:grid;grid-template-columns:repeat(15,minmax(48px,1fr));gap:5px;min-width:800px;margin:10px 0 0 16.2%}.f-label{margin:20px 0 4px;font:10px var(--mono);letter-spacing:.1em;color:var(--muted)}.detail{display:grid;grid-template-columns:150px 1fr;gap:22px;margin:28px 0 50px;padding:24px;background:var(--card);border:1px solid var(--line);min-height:180px}.detail-symbol{display:flex;flex-direction:column;justify-content:center;align-items:center;background:var(--elbg);border:1px solid #0001;padding:15px;color:#202322}.detail-symbol strong{font:600 64px/1 var(--sans)}.detail-symbol span{font:11px var(--mono)}.detail h2{font:400 34px/1.1 var(--serif);color:var(--ink);margin:0 0 5px}.detail .subtitle{color:var(--muted);font-size:12px;margin-bottom:16px}.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.fact{border-top:1px solid var(--line);padding-top:8px}.fact small{display:block;color:var(--muted);font:9px var(--mono);letter-spacing:.08em;text-transform:uppercase}.fact strong{display:block;color:var(--ink);font:16px var(--serif);margin-top:3px}.hint{font-size:12px;color:var(--muted);margin-top:12px}.empty{grid-column:1/-1;padding:30px;text-align:center;color:var(--muted)}footer{max-width:1400px;margin:auto;border-top:1px solid var(--line);padding:20px 24px 35px;display:flex;justify-content:space-between}
+.cat-alkali{--elbg:#f1c7b8}.cat-alkaline{--elbg:#f3d9b9}.cat-transition{--elbg:#f5e6aa}.cat-post{--elbg:#d8e6bb}.cat-metalloid{--elbg:#c4e4d7}.cat-nonmetal{--elbg:#b9dfd4}.cat-halogen{--elbg:#c7ddec}.cat-noble{--elbg:#d5d0e9}.cat-lanthanide{--elbg:#eed0df}.cat-actinide{--elbg:#e8c8c1}.cat-unknown{--elbg:#ddd}
+@media(max-width:700px){.top{padding:0 15px;height:60px}main{padding:0 15px}.intro{padding-top:35px}.lead{font-size:17px}.detail{grid-template-columns:90px 1fr;padding:14px;gap:13px}.detail-symbol strong{font-size:42px}.facts{grid-template-columns:repeat(2,minmax(0,1fr))}.detail h2{font-size:27px}footer{padding:18px 15px;gap:8px;flex-wrap:wrap}}
+</style></head><body>
+<header class="top"><a class="brand" href="index.html">Atlas of Chemistry</a><div class="actions"><a class="btn" href="index.html" data-t="back">← К атласу</a><button class="btn" id="lang">EN</button></div></header>
+<main><section class="intro"><p class="eyebrow" data-t="eyebrow">АТЛАС ХИМИИ · ИНТЕРАКТИВНЫЙ ИНСТРУМЕНТ 01</p><h1 data-t="title">Периодическая система элементов</h1><p class="lead" data-t="lead">Исследуйте все 118 химических элементов. Выберите элемент, чтобы увидеть его основные сведения, или воспользуйтесь поиском и фильтром.</p></section>
+<div class="tools"><input class="search" id="search" type="search" data-placeholder="search" placeholder="Поиск по названию, символу или номеру…"><select class="filter" id="category"><option value="all" data-t="all">Все категории</option></select><select class="filter" id="group"><option value="all" data-t="groups">Все группы</option></select></div>
+<div class="legend" id="legend"></div><div class="table-wrap"><div class="ptable" id="table"></div><div class="f-label" data-t="lanth">ЛАНТАНОИДЫ</div><div class="fblock" id="lanth"></div><div class="f-label" data-t="act">АКТИНОИДЫ</div><div class="fblock" id="act"></div></div>
+<section class="detail" id="detail" aria-live="polite"><div class="detail-symbol"><span>01</span><strong>H</strong><span>1.008</span></div><div><h2>Водород / Hydrogen</h2><div class="subtitle" data-t="selectHint">Выберите элемент в таблице, чтобы изучить его свойства.</div><div class="facts"></div></div></section>
+</main><footer><span>ATLAS OF KNOWLEDGE</span><span data-t="foot">ПЕРИОДИЧЕСКАЯ СИСТЕМА · 118 ЭЛЕМЕНТОВ</span><span>RU / EN</span></footer>
+<script>
+const raw=`
+1|H|Водород|Hydrogen|1.008|nonmetal|1|1
+2|He|Гелий|Helium|4.0026|noble|18|1
+3|Li|Литий|Lithium|6.94|alkali|1|2
+4|Be|Бериллий|Beryllium|9.0122|alkaline|2|2
+5|B|Бор|Boron|10.81|metalloid|13|2
+6|C|Углерод|Carbon|12.011|nonmetal|14|2
+7|N|Азот|Nitrogen|14.007|nonmetal|15|2
+8|O|Кислород|Oxygen|15.999|nonmetal|16|2
+9|F|Фтор|Fluorine|18.998|halogen|17|2
+10|Ne|Неон|Neon|20.180|noble|18|2
+11|Na|Натрий|Sodium|22.990|alkali|1|3
+12|Mg|Магний|Magnesium|24.305|alkaline|2|3
+13|Al|Алюминий|Aluminium|26.982|post|13|3
+14|Si|Кремний|Silicon|28.085|metalloid|14|3
+15|P|Фосфор|Phosphorus|30.974|nonmetal|15|3
+16|S|Сера|Sulfur|32.06|nonmetal|16|3
+17|Cl|Хлор|Chlorine|35.45|halogen|17|3
+18|Ar|Аргон|Argon|39.948|noble|18|3
+19|K|Калий|Potassium|39.098|alkali|1|4
+20|Ca|Кальций|Calcium|40.078|alkaline|2|4
+21|Sc|Скандий|Scandium|44.956|transition|3|4
+22|Ti|Титан|Titanium|47.867|transition|4|4
+23|V|Ванадий|Vanadium|50.942|transition|5|4
+24|Cr|Хром|Chromium|51.996|transition|6|4
+25|Mn|Марганец|Manganese|54.938|transition|7|4
+26|Fe|Железо|Iron|55.845|transition|8|4
+27|Co|Кобальт|Cobalt|58.933|transition|9|4
+28|Ni|Никель|Nickel|58.693|transition|10|4
+29|Cu|Медь|Copper|63.546|transition|11|4
+30|Zn|Цинк|Zinc|65.38|transition|12|4
+31|Ga|Галлий|Gallium|69.723|post|13|4
+32|Ge|Германий|Germanium|72.630|metalloid|14|4
+33|As|Мышьяк|Arsenic|74.922|metalloid|15|4
+34|Se|Селен|Selenium|78.971|nonmetal|16|4
+35|Br|Бром|Bromine|79.904|halogen|17|4
+36|Kr|Криптон|Krypton|83.798|noble|18|4
+37|Rb|Рубидий|Rubidium|85.468|alkali|1|5
+38|Sr|Стронций|Strontium|87.62|alkaline|2|5
+39|Y|Иттрий|Yttrium|88.906|transition|3|5
+40|Zr|Цирконий|Zirconium|91.224|transition|4|5
+41|Nb|Ниобий|Niobium|92.906|transition|5|5
+42|Mo|Молибден|Molybdenum|95.95|transition|6|5
+43|Tc|Технеций|Technetium|[98]|transition|7|5
+44|Ru|Рутений|Ruthenium|101.07|transition|8|5
+45|Rh|Родий|Rhodium|102.91|transition|9|5
+46|Pd|Палладий|Palladium|106.42|transition|10|5
+47|Ag|Серебро|Silver|107.87|transition|11|5
+48|Cd|Кадмий|Cadmium|112.41|transition|12|5
+49|In|Индий|Indium|114.82|post|13|5
+50|Sn|Олово|Tin|118.71|post|14|5
+51|Sb|Сурьма|Antimony|121.76|metalloid|15|5
+52|Te|Теллур|Tellurium|127.60|metalloid|16|5
+53|I|Йод|Iodine|126.90|halogen|17|5
+54|Xe|Ксенон|Xenon|131.29|noble|18|5
+55|Cs|Цезий|Caesium|132.91|alkali|1|6
+56|Ba|Барий|Barium|137.33|alkaline|2|6
+57|La|Лантан|Lanthanum|138.91|lanthanide|3|6
+58|Ce|Церий|Cerium|140.12|lanthanide|4|6
+59|Pr|Празеодим|Praseodymium|140.91|lanthanide|5|6
+60|Nd|Неодим|Neodymium|144.24|lanthanide|6|6
+61|Pm|Прометий|Promethium|[145]|lanthanide|7|6
+62|Sm|Самарий|Samarium|150.36|lanthanide|8|6
+63|Eu|Европий|Europium|151.96|lanthanide|9|6
+64|Gd|Гадолиний|Gadolinium|157.25|lanthanide|10|6
+65|Tb|Тербий|Terbium|158.93|lanthanide|11|6
+66|Dy|Диспрозий|Dysprosium|162.50|lanthanide|12|6
+67|Ho|Гольмий|Holmium|164.93|lanthanide|13|6
+68|Er|Эрбий|Erbium|167.26|lanthanide|14|6
+69|Tm|Тулий|Thulium|168.93|lanthanide|15|6
+70|Yb|Иттербий|Ytterbium|173.05|lanthanide|16|6
+71|Lu|Лютеций|Lutetium|174.97|lanthanide|17|6
+72|Hf|Гафний|Hafnium|178.49|transition|4|6
+73|Ta|Тантал|Tantalum|180.95|transition|5|6
+74|W|Вольфрам|Tungsten|183.84|transition|6|6
+75|Re|Рений|Rhenium|186.21|transition|7|6
+76|Os|Осмий|Osmium|190.23|transition|8|6
+77|Ir|Иридий|Iridium|192.22|transition|9|6
+78|Pt|Платина|Platinum|195.08|transition|10|6
+79|Au|Золото|Gold|196.97|transition|11|6
+80|Hg|Ртуть|Mercury|200.59|transition|12|6
+81|Tl|Таллий|Thallium|204.38|post|13|6
+82|Pb|Свинец|Lead|207.2|post|14|6
+83|Bi|Висмут|Bismuth|208.98|post|15|6
+84|Po|Полоний|Polonium|[209]|post|16|6
+85|At|Астат|Astatine|[210]|halogen|17|6
+86|Rn|Радон|Radon|[222]|noble|18|6
+87|Fr|Франций|Francium|[223]|alkali|1|7
+88|Ra|Радий|Radium|[226]|alkaline|2|7
+89|Ac|Актиний|Actinium|[227]|actinide|3|7
+90|Th|Торий|Thorium|232.04|actinide|4|7
+91|Pa|Протактиний|Protactinium|231.04|actinide|5|7
+92|U|Уран|Uranium|238.03|actinide|6|7
+93|Np|Нептуний|Neptunium|[237]|actinide|7|7
+94|Pu|Плутоний|Plutonium|[244]|actinide|8|7
+95|Am|Америций|Americium|[243]|actinide|9|7
+96|Cm|Кюрий|Curium|[247]|actinide|10|7
+97|Bk|Берклий|Berkelium|[247]|actinide|11|7
+98|Cf|Калифорний|Californium|[251]|actinide|12|7
+99|Es|Эйнштейний|Einsteinium|[252]|actinide|13|7
+100|Fm|Фермий|Fermium|[257]|actinide|14|7
+101|Md|Менделевий|Mendelevium|[258]|actinide|15|7
+102|No|Нобелий|Nobelium|[259]|actinide|16|7
+103|Lr|Лоуренсий|Lawrencium|[266]|actinide|17|7
+104|Rf|Резерфордий|Rutherfordium|[267]|transition|4|7
+105|Db|Дубний|Dubnium|[268]|transition|5|7
+106|Sg|Сиборгий|Seaborgium|[269]|transition|6|7
+107|Bh|Борий|Bohrium|[270]|transition|7|7
+108|Hs|Хассий|Hassium|[277]|transition|8|7
+109|Mt|Мейтнерий|Meitnerium|[278]|transition|9|7
+110|Ds|Дармштадтий|Darmstadtium|[281]|transition|10|7
+111|Rg|Рентгений|Roentgenium|[282]|transition|11|7
+112|Cn|Коперниций|Copernicium|[285]|transition|12|7
+113|Nh|Нихоний|Nihonium|[286]|post|13|7
+114|Fl|Флеровий|Flerovium|[289]|post|14|7
+115|Mc|Московий|Moscovium|[290]|post|15|7
+116|Lv|Ливерморий|Livermorium|[293]|post|16|7
+117|Ts|Теннессин|Tennessine|[294]|halogen|17|7
+118|Og|Оганесон|Oganesson|[294]|noble|18|7
+`.trim();
+const data = raw.split("\n").map(line=>{const [n,sym,ru,en,mass,cat,group,period]=line.split("|");return {n:+n,sym,ru,en,mass,cat,group:+group,period:+period}});
+const names={ru:{alkali:"Щелочные металлы",alkaline:"Щёлочноземельные металлы",transition:"Переходные металлы",post:"Постпереходные металлы",metalloid:"Металлоиды",nonmetal:"Неметаллы",halogen:"Галогены",noble:"Благородные газы",lanthanide:"Лантаноиды",actinide:"Актиноиды",unknown:"Свойства уточняются",number:"Атомный номер",mass:"Относительная атомная масса",group:"Группа",period:"Период",category:"Категория",search:"Поиск по названию, символу или номеру…",all:"Все категории",groups:"Все группы",back:"← К атласу",eyebrow:"АТЛАС ХИМИИ · ИНТЕРАКТИВНЫЙ ИНСТРУМЕНТ 01",title:"Периодическая система элементов",lead:"Исследуйте все 118 химических элементов. Выберите элемент, чтобы увидеть его основные сведения, или воспользуйтесь поиском и фильтром.",lanth:"ЛАНТАНОИДЫ",act:"АКТИНОИДЫ",selectHint:"Выберите элемент в таблице, чтобы изучить его свойства.",foot:"ПЕРИОДИЧЕСКАЯ СИСТЕМА · 118 ЭЛЕМЕНТОВ",element:"ЭЛЕМЕНТ",noResults:"Элементы не найдены",groupWord:"Группа",periodWord:"Период"},en:{alkali:"Alkali metals",alkaline:"Alkaline earth metals",transition:"Transition metals",post:"Post-transition metals",metalloid:"Metalloids",nonmetal:"Nonmetals",halogen:"Halogens",noble:"Noble gases",lanthanide:"Lanthanides",actinide:"Actinides",unknown:"Properties under review",number:"Atomic number",mass:"Relative atomic mass",group:"Group",period:"Period",category:"Category",search:"Search by name, symbol or number…",all:"All categories",groups:"All groups",back:"← Chemistry atlas",eyebrow:"ATLAS OF CHEMISTRY · INTERACTIVE TOOL 01",title:"Periodic table of elements",lead:"Explore all 118 chemical elements. Select an element to view its key data, or use search and filters.",lanth:"LANTHANIDES",act:"ACTINIDES",selectHint:"Select an element in the table to explore its properties.",foot:"PERIODIC TABLE · 118 ELEMENTS",element:"ELEMENT",noResults:"No elements found",groupWord:"Group",periodWord:"Period"}};
+let lang="ru",selected=1,category="all",group="all",query="";
+const cats=["alkali","alkaline","transition","post","metalloid","nonmetal","halogen","noble","lanthanide","actinide"];
+const $=id=>document.getElementById(id);
+function name(e){return lang==="ru"?e.ru:e.en}
+function renderStatic(){document.documentElement.lang=lang;document.querySelectorAll("[data-t]").forEach(el=>{let k=el.dataset.t;if(k==="search")el.placeholder=names[lang][k];else el.textContent=names[lang][k]});$("lang").textContent=lang==="ru"?"EN":"RU";$("category").innerHTML='<option value="all">'+names[lang].all+'</option>'+cats.map(c=>'<option value="'+c+'">'+names[lang][c]+'</option>').join("");$("group").innerHTML='<option value="all">'+names[lang].groups+'</option>'+Array.from({length:18},(_,i)=>'<option value="'+(i+1)+'">'+names[lang].groupWord+' '+(i+1)+'</option>').join("");$("category").value=category;$("group").value=group;$("legend").innerHTML=cats.map(c=>'<span class="chip"><i class="dot cat-'+c+'"></i>'+names[lang][c]+'</span>').join("")}
+function visible(e){return (category==="all"||e.cat===category)&&(group==="all"||e.group===+group)&&(!query||[e.sym,e.ru,e.en,String(e.n)].some(v=>v.toLowerCase().includes(query)))}
+function cell(e){return '<button class="el cat-'+e.cat+(selected===e.n?' selected':'')+'" data-id="'+e.n+'" style="grid-column:'+e.group+';grid-row:'+e.period+'" title="'+e.n+' · '+name(e)+'"><span class="num">'+e.n+'</span><strong class="sym">'+e.sym+'</strong><span class="ename">'+name(e)+'</span><span class="mass">'+e.mass+'</span></button>'}
+function renderTable(){let normal=data.filter(e=>!["lanthanide","actinide"].includes(e.cat));let filtered=normal.filter(visible);let lan=data.filter(e=>e.cat==="lanthanide"&&visible(e));let act=data.filter(e=>e.cat==="actinide"&&visible(e));$("table").innerHTML=filtered.length?filtered.map(cell).join(""):'<div class="empty">'+names[lang].noResults+'</div>';$("lanth").innerHTML=lan.map((e,i)=>'<button class="el cat-lanthanide'+(selected===e.n?' selected':'')+'" data-id="'+e.n+'"><span class="num">'+e.n+'</span><strong class="sym">'+e.sym+'</strong><span class="ename">'+name(e)+'</span><span class="mass">'+e.mass+'</span></button>').join("");$("act").innerHTML=act.map(e=>'<button class="el cat-actinide'+(selected===e.n?' selected':'')+'" data-id="'+e.n+'"><span class="num">'+e.n+'</span><strong class="sym">'+e.sym+'</strong><span class="ename">'+name(e)+'</span><span class="mass">'+e.mass+'</span></button>').join("");document.querySelectorAll("[data-id]").forEach(b=>b.addEventListener("click",()=>{selected=+b.dataset.id;renderTable();renderDetail()}))}
+function renderDetail(){const e=data.find(x=>x.n===selected);const d=$("detail");d.innerHTML='<div class="detail-symbol cat-'+e.cat+'"><span>'+e.n+'</span><strong>'+e.sym+'</strong><span>'+e.mass+'</span></div><div><h2>'+name(e)+' <span style="color:#999;font-size:22px">/ '+(lang==="ru"?e.en:e.ru)+'</span></h2><div class="subtitle">'+names[lang].element+' · '+e.sym+'</div><div class="facts"><div class="fact"><small>'+names[lang].number+'</small><strong>'+e.n+'</strong></div><div class="fact"><small>'+names[lang].mass+'</small><strong>'+e.mass+'</strong></div><div class="fact"><small>'+names[lang].group+'</small><strong>'+e.group+'</strong></div><div class="fact"><small>'+names[lang].period+'</small><strong>'+e.period+'</strong></div><div class="fact"><small>'+names[lang].category+'</small><strong>'+names[lang][e.cat]+'</strong></div></div><p class="hint">'+(lang==="ru"?"Атомный номер равен числу протонов в ядре нейтрального атома. Для радиоактивных элементов в квадратных скобках указано массовое число наиболее долгоживущего или характерного изотопа.":"The atomic number equals the number of protons in the nucleus of a neutral atom. Bracketed values for radioactive elements indicate the mass number of a representative isotope.")+'</p></div>'}
+function render(){renderStatic();renderTable();renderDetail()}
+$("lang").addEventListener("click",()=>{lang=lang==="ru"?"en":"ru";render()});$("search").addEventListener("input",e=>{query=e.target.value.trim().toLowerCase();renderTable()});$("category").addEventListener("change",e=>{category=e.target.value;renderTable()});$("group").addEventListener("change",e=>{group=e.target.value;renderTable()});render();
+</script></body></html>
