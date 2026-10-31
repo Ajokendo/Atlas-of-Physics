@@ -76,6 +76,60 @@ After studying this chapter, readers will be able to explain soil formation and 
 
 **Водные свойства** включают влагоёмкость, водопроницаемость, капиллярный подъём и доступность влаги растениям. Не вся вода, содержащаяся в почве, доступна растениям: часть удерживается слишком сильно, а часть быстро дренируется.
 
+### 8.4.1. Практический пример: расчёт плотности сложения и пористости почвы / Worked Example: Calculating Soil Bulk Density and Porosity
+
+Для оценки физических свойств почвы можно определить плотность сложения — массу сухой почвы, приходящуюся на единицу общего объёма образца.
+
+**Условный пример.** Из ненарушенного образца известного объёма после высушивания получили 1 300 г почвы. Объём цилиндра для отбора образца составлял 1 000 см³.
+
+**Шаг 1. Рассчитываем плотность сложения.**
+
+Плотность сложения = сухая масса / общий объём образца.
+
+1 300 г / 1 000 см³ = **1,3 г/см³**.
+
+**Шаг 2. Оцениваем общую пористость.**
+
+Для ориентировочного расчёта примем плотность твёрдых минеральных частиц равной 2,65 г/см³. Тогда:
+
+Пористость = (1 − плотность сложения / плотность частиц) × 100%.
+
+(1 − 1,3 / 2,65) × 100% ≈ **50,9%**.
+
+Получается, что около половины общего объёма образца приходится на поры. Это оценка, основанная на принятой плотности частиц, а не прямое измерение каждого вида пор.
+
+**Важно учитывать:** расчёт предполагает преимущественно минеральную почву и незначительное содержание крупных камней. В почвах с большим количеством органического вещества или вулканического материала плотность твёрдых частиц может заметно отличаться. Пористость сама по себе также не показывает, сколько воды доступно растениям: важны размеры пор, структура и влажность.
+
+**Проверьте себя:** образец объёмом 500 см³ после высушивания весит 700 г. Рассчитайте его плотность сложения.
+
+### Worked Example: Calculating Soil Bulk Density and Porosity
+
+Soil bulk density is the mass of dry soil per unit of the sample's total volume.
+
+**Hypothetical example.** An undisturbed soil sample has a dry mass of 1,300 g. The sampling cylinder has a volume of 1,000 cm³.
+
+**Step 1. Calculate bulk density.**
+
+Bulk density = dry mass / total sample volume.
+
+1,300 g / 1,000 cm³ = **1.3 g/cm³**.
+
+**Step 2. Estimate total porosity.**
+
+For an approximate calculation, assume a particle density of 2.65 g/cm³ for mineral soil. Then:
+
+Porosity = (1 − bulk density / particle density) × 100%.
+
+(1 − 1.3 / 2.65) × 100% ≈ **50.9%**.
+
+This means that about half of the sample's total volume consists of pores. It is an estimate based on the assumed particle density, not a direct measurement of every pore type.
+
+**Important limitations:** the calculation assumes predominantly mineral soil with few coarse stones. In soils rich in organic matter or volcanic material, particle density may differ substantially. Porosity alone also does not show how much water is available to plants; pore sizes, soil structure and moisture conditions matter.
+
+**Check your understanding:** An oven-dry sample has a volume of 500 cm³ and a mass of 700 g. Calculate its bulk density.
+
+---
+
 ## 8.5. Химические и биологические свойства / Chemical and Biological Properties
 
 Почвенная реакция (pH) характеризует кислотность или щёлочность почвенного раствора. Она влияет на доступность элементов питания, активность микроорганизмов и токсичность некоторых соединений. Оптимальный диапазон pH зависит от культуры и типа экосистемы; универсального значения для всех почв нет.
