@@ -16,7 +16,7 @@ const MU2 = 0.40, V2MAX = Math.sqrt(MU2 * G * M.CAR.r);
 // 3 · the cone at 60°
 const TH3 = 60, R3 = M.CONE.L * Math.sin(rad(TH3)), V3 = Math.sqrt(R3 * G * Math.tan(rad(TH3))), T3 = M.CONE.m * G / Math.cos(rad(TH3));
 // 4 · the loop's top at 9.0 м/с
-const L = M.LOOP, V4 = 9.0, Н4 = L.m * (V4 ** 2 / L.r - G);
+const L = M.LOOP, V4 = 9.0, N4 = L.m * (V4 ** 2 / L.r - G);
 // 5 · a wider banked curve
 const R5 = 40, V5 = Math.sqrt(R5 * G * Math.tan(M.BANK.th));
 // 6 · a record turntable
@@ -33,7 +33,7 @@ const KP = 0.5 * m * M.ELL.vp ** 2, UP = M.Ugrav(M.ELL.rp), UA = M.Ugrav(M.ELL.r
 const W11 = GM * m * (1 / (2 * RE) - 1 / (4 * RE)), H11 = 100e3, DU11 = GM * m * (1 / RE - 1 / (RE + H11)), MGH11 = m * M.EARTH.g * H11;
 // 12 · escape from 4 R_E; from a circular orbit at 2 R_E
 const VE12 = M.vEsc(4 * RE), R12 = 2 * RE;
-const ГДж = x => f(x / 1e9, 2);
+const GJ = x => f(x / 1e9, 2);
 
 export const PRACTICE = {
   0: [
