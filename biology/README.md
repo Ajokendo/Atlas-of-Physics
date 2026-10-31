@@ -215,3 +215,9 @@ GitHub Pages deployment completed successfully for main commit `39fc80c4f03dd247
 | Accessibility and technical quality assurance | 12/20 | Static checks cover page structure, local paths, script syntax and controls; live browser, mobile-device and screen-reader testing remain. |
 
 The score should increase only when evidence for the relevant checklist items is recorded. The next priority is claim-level scientific/source review of the ten global chapters, followed by independent bilingual copy-editing and live accessibility testing.
+
+
+## Scientific wording review — Genetics — 31 October 2026
+- Clarified that not every gene encodes a protein: some genes produce functional non-coding RNAs, including rRNA and tRNA, and some regulatory RNAs. The clarification is bilingual and distinguishes the general DNA → RNA → protein model for protein-coding genes from the broader range of gene products.
+- Added an NCBI Bookshelf reference on transcription and RNA classes. The change was checked for RU/EN parity, source presence, unique IDs and balanced script tags.
+- This is a targeted conceptual correction, not a complete expert review of the Genetics chapter or the remaining Biology chapters.
