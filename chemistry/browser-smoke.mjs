@@ -214,8 +214,9 @@ try {
       const ph = page.locator("#ph");
       const value = page.locator("#value");
       if (await ph.getAttribute("min") !== "0" || await ph.getAttribute("max") !== "14" ||
-          await value.getAttribute("aria-live") !== "polite") {
-        errors.push(file + ": pH slider bounds or live result announcement are missing");
+          await value.getAttribute("aria-live") !== "polite" ||
+          !(await ph.getAttribute("aria-valuetext")).includes("нейтральная среда")) {
+        errors.push(file + ": pH slider bounds, localized accessible value or live result announcement are missing");
       }
       await ph.fill("0");
       if (!(await value.innerText()).includes("кислая среда")) {
@@ -231,8 +232,9 @@ try {
       }
       await page.locator("#lang").click();
       if (!(await value.innerText()).includes("alkaline solution") ||
+          !(await ph.getAttribute("aria-valuetext")).includes("alkaline solution") ||
           await page.locator("html").getAttribute("lang") !== "en") {
-        errors.push(file + ": pH result or document language did not switch to English");
+        errors.push(file + ": pH result, accessible slider value or document language did not switch to English");
       }
       await page.locator("#lang").click();
       await ph.fill("7");
