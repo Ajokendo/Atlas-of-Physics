@@ -9,7 +9,7 @@ const W = M.WHEEL, DS = M.DISC, DR = M.DOOR, PL = M.PLANK, LD = M.LADDER, SH = M
 
 // 0 · turns while speeding up
 const Q0 = { th: 0.5 * W.alpha * W.tUp ** 2 };
-Q0.оборотов = Q0.th / (2 * Math.PI);
+Q0.rev = Q0.th / (2 * Math.PI);
 // 1 · the edge rider at 1.6 s
 const Q1 = { t: 1.6 };
 Q1.p = M.pointAt(DS.r2, M.disc(Q1.t));
