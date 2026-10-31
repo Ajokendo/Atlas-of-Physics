@@ -66,7 +66,6 @@ try {
 
     if (await page.locator("button").evaluateAll(items => items.some(button => button.type !== "button"))) {
       errors.push(file + ": a button is missing an explicit button type");
-      }
     }
 
     if (file === "chapters/atomic-structure.html") {
