@@ -121,3 +121,10 @@ Third subject area of the unified **Atlas of Knowledge** portal.
 ## Knowledge checks
 
 All ten global Biology chapters now include a bilingual five-question knowledge check (50 questions in Russian and 50 in English across the atlas). Each item provides three answer choices and explanatory feedback; learners can move through the set, see their running score, and restart the quiz. The language switch refreshes the active question and choices.
+
+
+## Regional biodiversity field dossiers — Talas
+- Added bilingual Talas Region profiles to both Kyrgyzstan flora and fauna chapters, centred on Besh-Tash State Nature Park and the northern Talas Ala-Too.
+- Flora coverage distinguishes mountain spruce/juniper woodland, riparian habitats, alpine meadows and KBA trigger plant taxa; the reported figure of 800+ higher plants is treated as a richness summary, not a complete checklist.
+- Fauna coverage records Ministry camera-trap detections of snow leopard, argali and ibex (September 2025), the dated Ministry maral estimate (60 in September 2025, with the 2022 Altai reintroduction disclosed), and the regional 2026 marmot count (29,367 across several survey areas, not Besh-Tash alone).
+- Sources include the Kyrgyz Ministry of Natural Resources, Kabar and the Besh-Tash Key Biodiversity Area profile. Survey results are carefully scoped by place, date and method; presence records are not presented as population estimates.
