@@ -42,6 +42,18 @@ try {
       continue;
     }
 
+    if (file === "index.html") {
+      const chapterCount = await page.locator(".chapter").count();
+      if (chapterCount !== 12) errors.push(file + ": expected 12 visible chapter cards, found " + chapterCount);
+      const widths = await page.evaluate(() => ({
+        document: document.documentElement.scrollWidth,
+        viewport: document.documentElement.clientWidth
+      }));
+      if (widths.document > widths.viewport + 1) {
+        errors.push(file + ": horizontal overflow at 390px (" + widths.document + "px > " + widths.viewport + "px)");
+      }
+    }
+
     const lang = page.locator("#lang, #language").first();
     if (await lang.count()) {
       const before = (await lang.innerText()).trim();
@@ -85,6 +97,29 @@ try {
         await fields.first().fill("1");
         await page.locator("#check").click();
         if (!(await page.locator("#feedback").innerText()).trim()) errors.push(file + ": answer feedback was not shown");
+
+        const solutions = [[2, 1, 2], [1, 3, 2], [4, 3, 2], [2, 6, 2, 3], [2, 1, 1, 2], [1, 5, 3, 4]];
+        for (let i = 0; i < solutions.length; i++) {
+          if (i > 0) await page.locator("#next").click();
+          const currentFields = page.locator('#equation input[type="number"]');
+          if (await currentFields.count() !== solutions[i].length) {
+            errors.push(file + ": unexpected coefficient count in task " + (i + 1));
+            break;
+          }
+          for (let j = 0; j < solutions[i].length; j++) {
+            await currentFields.nth(j).fill(String(solutions[i][j]));
+          }
+          await page.locator("#check").click();
+          if (!(await page.locator("#feedback").innerText()).includes("Верно")) {
+            errors.push(file + ": correct solution was rejected in task " + (i + 1));
+            break;
+          }
+        }
+        await page.locator("#next").click();
+        const history = await page.evaluate(() => JSON.parse(localStorage.getItem("atlas-chemistry-trainer-v1-history-v1") || "[]"));
+        if (!Array.isArray(history) || history.length !== 1 || history[0].total !== 6) {
+          errors.push(file + ": completed trainer attempt was not saved exactly once");
+        }
       }
     }
 
@@ -105,13 +140,22 @@ try {
     }
 
     if (file === "knowledge-check.html") {
-      const question = page.locator('#quiz input[type="radio"]').first();
-      if (await question.count()) {
-        await question.check();
+      const questionCount = await page.locator("#quiz .question").count();
+      if (questionCount !== 10) {
+        errors.push(file + ": expected 10 quiz questions, found " + questionCount);
+      } else {
+        for (let i = 0; i < questionCount; i++) {
+          await page.locator("#q" + i + ' input[type="radio"]').first().check();
+        }
         await page.locator("#finish").click();
         if (!(await page.locator("#score").innerText()).trim()) errors.push(file + ": quiz score was not produced");
+        if (!(await page.locator("#finish").isDisabled())) errors.push(file + ": completed quiz finish button was not locked");
+        const history = await page.evaluate(() => JSON.parse(localStorage.getItem("atlas-chemistry-quiz-v1-history-v1") || "[]"));
+        if (!Array.isArray(history) || history.length !== 1 || history[0].total !== 10) {
+          errors.push(file + ": completed quiz attempt was not saved exactly once");
+        }
         await page.locator("#reset").click();
-      } else errors.push(file + ": quiz questions were not rendered");
+      }
     }
   }
 } finally {
