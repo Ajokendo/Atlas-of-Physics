@@ -193,7 +193,7 @@ export function buildWorld(E) {
   // ======================================================================================
   // 0 · a bar magnet slides toward a loop and back: flux and Faraday's law
   const X0 = STATIONS.flux, D0 = DRAW.flux, CY0 = 1.7, c0 = V(X0, CY0, 0), A0 = M.FLUX.a * D0;
-  const g0 = asm('flux', root, { title: 'Flux through the loop', sub: 'Φ = ∫B·dA, summed over little patches dA' });
+  const g0 = asm('flux', root, { title: 'Магнитный поток через контур', sub: 'Φ = ∫B·dA, сумма по элементарным площадкам dA' });
   ring(g0, c0, A0, 0.024, 'Wire loop');
   const mag0 = magnet(g0, D0, true);
   const lineMat0 = shadeMat('dark', { opacity: 0.6 });
@@ -220,7 +220,7 @@ export function buildWorld(E) {
   const X1 = STATIONS.lenz, D1 = DRAW.lenz, A1 = M.LENZ.a * D1;
   const LZ = M.CASES.map((c, i) => {
     const o = V(X1 + (i % 2 ? 0.9 : -3.3), i < 2 ? 3.15 : 1.05, 0);
-    const g = asm(c.key, root, { title: c.name, sub: c.move === 'in' ? 'more flux: the loop’s field pushes back' : 'less flux: the loop’s field tries to keep it' });
+    const g = asm(c.key, root, { title: c.name, sub: c.move === 'in' ? 'поток растёт: поле контура противодействует изменению' : 'поток уменьшается: поле контура стремится его сохранить' });
     ring(g, o, A1, 0.022, 'Wire loop');
     const mg = magnet(g, D1, c.pole === 'N');
     magnetLines(mg, D1, c.pole === 'N', { thetas: [22, 48, 80, 118], phis: [0, 180], box: 0.16, mat: shadeMat('dark', { opacity: 0.8 }), r: 0.01 });
@@ -243,7 +243,7 @@ export function buildWorld(E) {
   // 2a · two coils on one axis: a changing current in one induces a current in the other
   const X2 = STATIONS.mutual, D2 = DRAW.mutual, A2 = M.COILS.a * D2, y2 = 2.95;
   const c21 = V(X2 - M.COILS.sep * D2 / 2, y2, 0), c22 = V(X2 + M.COILS.sep * D2 / 2, y2, 0);
-  const gC = asm('mutual', root, { title: 'Two coils', sub: 'coil 1’s changing field threads coil 2' });
+  const gC = asm('mutual', root, { title: 'Две катушки', sub: 'изменяющееся поле первой катушки пронизывает вторую' });
   ring(gC, c21, A2, 0.06, 'Coil 1 (100 turns, driven)');
   ring(gC, c22, A2, 0.06, 'Coil 2 (100 turns)');
   const lineMatC = shadeMat('dark', { opacity: 0.8 });
@@ -264,7 +264,7 @@ export function buildWorld(E) {
 
   // 2b · two windings on an iron rod
   const DC = DRAW.core, yC = 0.95, RC = M.CORE.r * DC, LC = M.CORE.len * DC;
-  const gK = asm('core', root, { title: 'An iron core', sub: 'the iron carries the flux from one winding to the other' });
+  const gK = asm('core', root, { title: 'Железный сердечник', sub: 'сердечник проводит поток от одной обмотки к другой' });
   part(gK, xAxis(new THREE.CylinderGeometry(RC, RC, LC, 40)), { tone: 'hi', pal: 'dark', pos: [X2, yC, 0], name: 'Iron core', mat: shadeMat('dark', { opacity: 0.55 }) });
   const prim = new THREE.Group(); gK.add(prim);
   helix(prim, V(X2 + 0.3, yC, 0), V(X2 + 1.3, yC, 0), RC + 0.04, 10, 0.022, 'Primary (200 turns)');
@@ -284,7 +284,7 @@ export function buildWorld(E) {
   // ======================================================================================
   // 3 · a rectangular loop moving away from a long straight wire
   const X3 = STATIONS.wire, D3 = DRAW.wire, yW = 3.7, b3 = M.WIRE.b * D3, a3 = M.WIRE.a * D3;
-  const g3 = asm('wire', root, { title: 'A loop leaving a wire', sub: 'Φ = ∫B b dr, with B falling as 1/r' });
+  const g3 = asm('wire', root, { title: 'Контур удаляется от провода', sub: 'Φ = ∫B b dr, поле убывает как 1/r' });
   rod(g3, V(X3 - 3.1, yW, 0), V(X3 + 2.4, yW, 0), 0.035, 'ink', 'Long straight wire (50 A)');
   const Iw = iArrow(g3, 'Long straight wire (50 A)'); setArrow(Iw, V(X3 - 3.05, yW + 0.15, 0), V(0.6, 0, 0));
   label('vec', '<i>I</i> = 50 A', () => V(X3 - 2.75, yW + 0.45, 0));
@@ -313,7 +313,7 @@ export function buildWorld(E) {
   // ======================================================================================
   // 4 · a metal bar moving through a field: the charges separate
   const X4 = STATIONS.bar, D4 = DRAW.bar, yB = 1.75, L4 = M.BAR.L * D4;
-  const g4 = asm('bar', root, { title: 'A moving metal bar', sub: 'qv×B pushes charge until qE balances it' });
+  const g4 = asm('bar', root, { title: 'Движущийся металлический стержень', sub: 'qv×B разделяет заряды до уравновешивания сил qE' });
   { const mk = []; for (let i = 0; i < 8; i++) for (let j = 0; j < 6; j++) mk.push({ p: V(X4 - 1.75 + i * 0.5, 0.5 + j * 0.5, -0.1), r: 0.08 }); bMarkers(g4, mk); }
   label('vec', grey('<i>B</i>'), () => V(X4 - 2.2, 3.05, 0));
   const bar4 = new THREE.Group(); g4.add(bar4);
@@ -334,7 +334,7 @@ export function buildWorld(E) {
   // ======================================================================================
   // 5 · a loop crossing a field region
   const X5 = STATIONS.crossing, D5 = DRAW.crossing, xR0 = X5 - M.CROSS.W * D5 / 2, w5 = M.CROSS.w * D5, h5 = M.CROSS.h * D5, y5 = 1.75;
-  const g5 = asm('crossing', root, { title: 'A loop crossing a field', sub: 'each side in the field carries BLv' });
+  const g5 = asm('crossing', root, { title: 'Контур пересекает магнитное поле', sub: 'каждая сторона внутри поля создаёт ЭДС BLv' });
   { const mk = []; for (let i = 0; i < 5; i++) for (let j = 0; j < 4; j++) mk.push({ p: V(xR0 + 0.2 + i * 0.5, y5 - 0.75 + j * 0.5, -0.06), r: 0.08 }); bMarkers(g5, mk);
     const x1 = xR0 + M.CROSS.W * D5, yb = y5 - 0.95, yt = y5 + 0.95; lines(g5, [xR0, yb, -0.06, x1, yb, -0.06, x1, yb, -0.06, x1, yt, -0.06, x1, yt, -0.06, xR0, yt, -0.06, xR0, yt, -0.06, xR0, yb, -0.06], '#a6a6ac'); }
   label('vec', grey('<i>B</i>'), () => V(xR0 + 0.05, y5 + 1.18, 0));
@@ -352,7 +352,7 @@ export function buildWorld(E) {
   // ======================================================================================
   // 6 · a bar sliding on rails, closed by a resistor
   const X6 = STATIONS.rails, D6 = DRAW.rails, xL6 = X6 - 2.2, yb6 = 1.15, yt6 = yb6 + M.RAIL.L * D6, xEnd6 = xL6 + M.RAIL.len * D6;
-  const g6 = asm('rails', root, { title: 'A bar on rails', sub: 'the current through the bar brakes it' });
+  const g6 = asm('rails', root, { title: 'Стержень на рельсах', sub: 'ток в стержне создаёт тормозящую силу' });
   { const mk = []; for (let i = 0; i < 9; i++) for (const y of [0.75, 1.55, 2.0, 2.75]) mk.push({ p: V(X6 - 1.95 + i * 0.5, y + (y === 1.55 || y === 2.0 ? 0.0 : 0), -0.08), r: 0.08 }); bMarkers(g6, mk); }
   label('vec', grey('<i>B</i>'), () => V(X6 - 2.6, 2.95, 0));
   rod(g6, V(xL6, yb6, 0), V(xEnd6, yb6, 0), 0.03, 'dark', 'Rails'); rod(g6, V(xL6, yt6, 0), V(xEnd6, yt6, 0), 0.03, 'dark', 'Rails');
@@ -376,7 +376,7 @@ export function buildWorld(E) {
   // ======================================================================================
   // 7 · a solenoid: inductance and back emf
   const X7 = STATIONS.solenoid, D7 = DRAW.solenoid, y7 = 1.75, R7 = M.SOL.r * D7, L7 = M.SOL.len * D7;
-  const g7 = asm('solenoid', root, { title: 'Flux through each turn', sub: 'NΦ = LI' });
+  const g7 = asm('solenoid', root, { title: 'Потокосцепление катушки', sub: 'NΦ = LI' });
   helix(g7, V(X7 - L7 / 2, y7, 0), V(X7 + L7 / 2, y7, 0), R7, 25, 0.018, 'Solenoid (400 turns)');
   const hi7 = y7 + R7 + 0.45;
   path(g7, [V(X7 - L7 / 2, y7 + R7, 0), V(X7 - L7 / 2, hi7, 0), V(X7 - L7 / 2 - 0.8, hi7, 0)], 0.022, 'ink', 'Leads');
@@ -399,7 +399,7 @@ export function buildWorld(E) {
   // ======================================================================================
   // 8 · an RL circuit: growth and decay
   const X8 = STATIONS.rl, yb8 = 0.5, yt8 = 2.7, xR8 = X8 + 1.5, xB8 = X8 - 1.9, xS8 = X8 - 1.45, P8 = V(X8 - 0.85, yt8, 0), cA = V(xS8, yt8 + 0.38, 0), cB = V(xS8, yt8 - 0.38, 0);
-  const g8 = asm('rl', root, { title: 'Around the RL loop', sub: 'ε − IR − L dI/dt = 0' });
+  const g8 = asm('rl', root, { title: 'Обход RL-контура', sub: 'ε − IR − L dI/dt = 0' });
   // bottom, right (with the inductor), top (with the resistor)
   path(g8, [V(xB8, yb8, 0), V(xR8, yb8, 0), V(xR8, 1.05, 0), V(xR8 + 0.19, 1.05, 0)]);
   helix(g8, V(xR8, 1.05, 0), V(xR8, 2.15, 0), 0.19, 9, 0.024, 'Inductor (2 H)');
@@ -437,7 +437,7 @@ export function buildWorld(E) {
   const I9 = [0, 1, 2].map(() => iArrow(wires9, 'Current'));
   label('vec', '<i>I</i>', () => tipOf(I9[0], 0.14));
   // the capacitor: two plates, the top one holding q
-  const g9 = asm('lcCap', root, { title: 'The capacitor', sub: 'U_E = q²/2C, in the field between the plates' });
+  const g9 = asm('lcCap', root, { title: 'Конденсатор', sub: 'U_E = q²/2C, энергия в поле между обкладками' });
   part(g9, box(pw9, pt9, pd9, 0.01), { tone: 'hi', pos: [xC9, yTop9 + pt9 / 2, 0], name: 'Plates (25 µF)' });
   part(g9, box(pw9, pt9, pd9, 0.01), { tone: 'hi', pos: [xC9, yBot9 - pt9 / 2, 0], name: 'Plates (25 µF)' });
   const plus9 = marks(g9, RED, 8), minus9 = marks(g9, BLUE, 8);
@@ -451,7 +451,7 @@ export function buildWorld(E) {
   label('tick', '', when(g9, () => V(xC9 - 1.2, yc9 + 0.2, 0)), () => S.lc ? `Δ<i>V</i> = <i>q</i>/<i>C</i> = ${fmt(S.lc.V, 2)} V` : '');
   label('tick', '', when(g9, () => V(xC9 - 1.2, yc9 - 0.12, 0)), () => S.lc ? `<i>U<sub>E</sub></i> = ${fmt(S.lc.UE * 1e3, 3)} mJ` : '');
   // the coil: 1600 turns, 12 drawn
-  const gC9 = asm('lcCoil', root, { title: 'The coil', sub: 'U_B = ½LI², in the field inside the coil' });
+  const gC9 = asm('lcCoil', root, { title: 'Катушка', sub: 'U_B = ½LI², энергия в магнитном поле внутри катушки' });
   helix(gC9, V(xR9, c0y9, 0), V(xR9, c1y9, 0), R9, 9, 0.022, 'Inductor (40 mH)');
   const B9 = [-0.1, 0.1].map(x => ({ x, a: bArrow(gC9, 0.016) }));
   label('vec', grey('<i>B</i>'), () => B9[1].a.visible ? V(xR9 - R9 - 0.2, yc9, 0) : null);
