@@ -22,35 +22,30 @@ for (const file of htmlFiles) {
   const source = fs.readFileSync(file, "utf8");
   const relativeFile = path.relative(root, file);
 
-  if (!/<html\b[^>]*lang=["'][^"']+["']/i.test(source)) {
-    errors.push(\`${relativeFile}: missing html lang attribute\`);
-  }
-  if (!/<meta\s+name=["']viewport["']/i.test(source)) {
-    errors.push(\`${relativeFile}: missing viewport meta tag\`);
-  }
+  if (!/<html\b[^>]*lang=["'][^"']+["']/i.test(source)) errors.push(relativeFile + ": missing html lang attribute");
+  if (!/<meta\s+name=["']viewport["']/i.test(source)) errors.push(relativeFile + ": missing viewport meta tag");
 
   const ids = new Set([...source.matchAll(/\bid=["']([^"']+)["']/gi)].map(m => m[1]));
   for (const match of source.matchAll(/<(?:a|img|script|link|source)[^>]*?\b(href|src)=["']([^"']+)["'][^>]*>/gi)) {
     const attribute = match[1].toLowerCase();
     const value = match[2].trim();
     if (!value || /^(?:https?:|mailto:|tel:|data:|javascript:|#)/i.test(value)) {
-      if (value.startsWith("#") && value.length > 1 && !ids.has(decodeURIComponent(value.slice(1)))) {
-        errors.push(\`${relativeFile}: missing in-page anchor ${value}\`);
-      }
+      if (value.startsWith("#") && value.length > 1 && !ids.has(decodeURIComponent(value.slice(1)))) errors.push(relativeFile + ": missing in-page anchor " + value);
       continue;
     }
-    const [pathname, fragment] = value.split("#", 2);
-    const cleanPath = decodeURIComponent(pathname.split("?")[0]);
+    const parts = value.split("#", 2);
+    const cleanPath = decodeURIComponent(parts[0].split("?")[0]);
+    const fragment = parts[1];
     const target = path.resolve(path.dirname(file), cleanPath);
     checkedLinks++;
     if (!fs.existsSync(target) || !fs.statSync(target).isFile()) {
-      errors.push(\`${relativeFile}: broken ${attribute} path "${value}"\`);
+      errors.push(relativeFile + ': broken ' + attribute + ' path "' + value + '"');
       continue;
     }
     if (fragment && target.endsWith(".html")) {
       const targetSource = fs.readFileSync(target, "utf8");
       const targetIds = new Set([...targetSource.matchAll(/\bid=["']([^"']+)["']/gi)].map(m => m[1]));
-      if (!targetIds.has(decodeURIComponent(fragment))) errors.push(\`${relativeFile}: missing anchor "${fragment}" in ${path.relative(root, target)}\`);
+      if (!targetIds.has(decodeURIComponent(fragment))) errors.push(relativeFile + ': missing anchor "' + fragment + '" in ' + path.relative(root, target));
     }
   }
 
@@ -59,10 +54,10 @@ for (const file of htmlFiles) {
     const code = match[2].trim();
     if (!code || /\bsrc=/i.test(attrs)) continue;
     try {
-      new vm.Script(code, { filename: \`${relativeFile}:inline-script\` });
+      new vm.Script(code, { filename: relativeFile + ":inline-script" });
       checkedScripts++;
     } catch (error) {
-      errors.push(\`${relativeFile}: JavaScript syntax error: ${error.message}\`);
+      errors.push(relativeFile + ": JavaScript syntax error: " + error.message);
     }
   }
 }
@@ -76,4 +71,4 @@ if (errors.length) {
   for (const error of errors) console.error(" - " + error);
   process.exit(1);
 }
-console.log(\`Chemistry atlas checks passed: ${htmlFiles.length} HTML pages, ${checkedLinks} local links/assets, ${checkedScripts} inline scripts.\`);
+console.log("Chemistry atlas checks passed: " + htmlFiles.length + " HTML pages, " + checkedLinks + " local links/assets, " + checkedScripts + " inline scripts.");
