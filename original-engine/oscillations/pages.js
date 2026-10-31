@@ -108,7 +108,7 @@ export const PAGES = [
       <table class="data">
         <tr><th>положение</th><th>сила упругости</th><th>вес</th><th>равнодействующая (красная)</th></tr>
         <tr><td>верхняя точка</td><td>${f(M.K * (M.D - M.HANG.A))} Н</td><td>${f(M.WEIGHT)} Н</td><td>${f(M.K * M.HANG.A)} Н ↓</td></tr>
-        <tr><td>равновесие</td><td>${f(M.WEIGHT)} Н</td><td>${f(M.WEIGHT)} N</td><td>0</td></tr>
+        <tr><td>равновесие</td><td>${f(M.WEIGHT)} Н</td><td>${f(M.WEIGHT)} Н</td><td>0</td></tr>
         <tr><td>нижняя точка</td><td>${f(M.K * (M.D + M.HANG.A))} Н</td><td>${f(M.WEIGHT)} N</td><td>${f(M.K * M.HANG.A)} Н ↑</td></tr>
       </table>
       <p class="hintline">Нажмите на блок, чтобы увидеть диаграмму сил.</p>`,
