@@ -41,7 +41,7 @@ startBook({
     const fi = M.filling(s.fill.t), Rf = R.fill, X = v => CH.sx(v, Rf.x0, Rf.x1), Y = v => CH.sy(v, Rf.y0, Rf.y1), qp = fi.q * 1e12;
     put('fill', Rf, qp, fi.V);
     q('path[data-area="fill"]').forEach(p => p.setAttribute('d', `M${X(0)},${Y(0)}L${X(qp)},${Y(0)}L${X(qp)},${Y(fi.V)}Z`));
-    q('#filllive').forEach(el => { el.textContent = `shaded area ½·${f(qp, 0)} pC·${f(fi.V, 1)} V = ${f(fi.U * 1e9)} nJ = U`; });
+    q('#filllive').forEach(el => { el.textContent = `заштрихованная площадь ½·${f(qp, 0)} пКл·${f(fi.V, 1)} В = ${f(fi.U * 1e9)} нДж = U`; });
     const x = M.fillOf(s.slide.t);
     put('slab', R.slab, x, M.slab(x, false).E);
     put('enA', R.energy, x, M.slab(x, true).U / M.U0); put('enB', R.energy, x, M.slab(x, false).U / M.U0);
