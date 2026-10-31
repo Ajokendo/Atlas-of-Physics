@@ -162,7 +162,7 @@ export const PRACTICE = {
       choices: [`${p3(SK.w0 * SK.rOut / SK.rIn)} рад/с`, `${p3(Q13.wNoBody)} рад/с`, `${p3(Q13.w)} рад/с`, `${p3(SK.w0)} рад/с`], answer: 2,
       why: `${eq(`I<sub>0</sub> = ${f(SK.Ib, 1)} + 2 × ${f(SK.m, 1)} × ${f(SK.rOut, 2)}² = ${f(Q13.I0)} кг·м², I<sub>f</sub> = ${f(SK.Ib, 1)} + 2 × ${f(SK.m, 1)} × ${f(SK.rIn, 2)}² = ${f(Q13.I1, 3)} кг·м²`)}${eq(`ω<sub>f</sub> = I<sub>0</sub>ω<sub>0</sub> / I<sub>f</sub> = ${p3(Q13.w)} рад/с`)}<p>${p3(Q13.wNoBody)} рад/с leaves out her body’s ${f(SK.Ib, 1)} кг·м², which does not change.</p>` },
     { q: `Что происходит с вращательной кинетической энергией фигуристки, когда она подтягивает грузы к оси?`,
-      choices: ['stays the same, because L is conserved', 'decreases, because I decreases', 'increases, because the ice exerts a torque', 'increases, because her arms do work on the weights'], answer: 3,
+      choices: ['не изменяется, поскольку момент импульса L сохраняется', 'уменьшается, поскольку момент инерции I уменьшается', 'увеличивается, поскольку лёд создаёт крутящий момент', 'увеличивается, поскольку при движении рук совершается работа над грузами'], answer: 3,
       why: `<p>K = L²/2I. L is fixed and I falls, so K rises: here from ${f(M.skater(0.5).K)} J to ${f(M.skater(3.5).K)} J. The energy comes from her muscles pulling the weights inward against their tendency to fly out. The ice gives (almost) no torque, which is why L holds.</p>` },
   ],
   14: [
