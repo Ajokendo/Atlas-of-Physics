@@ -121,9 +121,9 @@ export const PAGES = [
       <p>Свободные заряды перемещаются, пока на одном конце не накопится положительный, а на другом — отрицательный заряд. Созданное ими поле <i>E</i> противодействует дальнейшему разделению; движение зарядов прекращается, когда</p>
       <div class="eq"><i>qE</i> = <i>qvB</i> &nbsp;→&nbsp; ε = <i>EL</i> = <i>BLv</i></div>
       <table class="data">
-        <tr><td><i>B</i>, <i>L</i>, <i>v</i></td><td>${M.BAR.B} T, ${M.BAR.L * 100} cm, ${M.BAR.v} m/s</td></tr>
-        <tr><td><i>E</i> = <i>vB</i></td><td>${f(M.BAR.E, 2)} V/m</td></tr>
-        <tr><td>ε = <i>BLv</i></td><td>${f(M.BAR.emf, 2)} V</td></tr>
+        <tr><td><i>B</i>, <i>L</i>, <i>v</i></td><td>${M.BAR.B} Тл, ${M.BAR.L * 100} см, ${M.BAR.v} м/с</td></tr>
+        <tr><td><i>E</i> = <i>vB</i></td><td>${f(M.BAR.E, 2)} В/м</td></tr>
+        <tr><td>ε = <i>BLv</i></td><td>${f(M.BAR.emf, 2)} В</td></tr>
       </table>
       <p>Цепь не замкнута, поэтому после разделения зарядов <b>ток не течёт</b>. Когда стержень останавливается, заряды снова распределяются равномерно.</p>
       <p class="hintline">Click the bar for one charge’s two forces. 1 m = 4 squares; ${sq('0.25 V/m')}.</p>`,
@@ -191,7 +191,7 @@ export const PAGES = [
         marks: [[M.RL.tau, M.rlScene(M.RL.tau).I, '63 %'], [M.RL.phase + M.RL.tau, M.rlScene(M.RL.phase + M.RL.tau).I, '37 %']] })}
       <p class="hintline">Black: <i>I</i>, and <i>IR</i> on the right scale. Click the circuit for each ΔV. ${sq('4 A')}.</p>`,
     cam: { target: [ST.rl - 0.15, 1.75, 0], az: 8, el: 8, dist: 14 }, lit: 'rl', scene: 'rl', look: {},
-    fig: '12 V, 4 Ω, 2 H',
+    fig: '12 В, 4 Ом, 2 Гн',
   },
   {
     kicker: '15.9', title: 'Колебания в LC-контуре', sub: 'перетекание заряда через катушку',
@@ -214,7 +214,7 @@ export const PAGES = [
         <tr><td>½<i>kx</i><sup>2</sup>, &nbsp;½<i>mv</i><sup>2</sup></td><td><i>q</i><sup>2</sup>/2<i>C</i>, &nbsp;½<i>LI</i><sup>2</sup></td></tr></table>
       <p class="hintline">Click the plates or the coil for the energy each holds. ${sq('10 kV/m (E), 2 mT (B), 100 mA (I)')}.</p>`,
     cam: { target: [ST.lc + 0.3, 1.8, 0], az: 8, el: 8, dist: 12.5 }, lit: 'lcCap', scene: 'lc', look: {},
-    fig: '25 µF, 40 mH, 100 µC',
+    fig: '25 мкФ, 40 мГн, 100 мкКл',
   },
 ];
 
@@ -226,27 +226,27 @@ const lenzPlate = c => ({
   facts: s => { const r = M.lenzCase(c, s.lenz.t); return [['distance', `${f(r.d * 100, 1)} cm`], ['B at the centre', `${f(Math.abs(r.Bx) * 1e3, 2)} mT ${r.Bx < 0 ? '←' : '→'}`], ['Φ (area vector ←)', `${f(r.Phi * 1e6, 2)} µWb`], ['ε = −dΦ/dt', `${f(r.emf * 1e6, 2)} µV`], ['I = ε/R (R = 10 mΩ)', `${f(r.I * 1e3, 2)} mA`]]; },
 });
 export const PLATES = {
-  flux: { text: `Spread a flat surface across the loop and split it into little patches dA. Over each, B·dA is the field poking straight through times the patch’s area (grey arrows: the component along the loop’s axis). Add them all up and you have Φ. Near the magnet the arrows are long; as it leaves they shrink to almost nothing.`,
+  flux: { text: `Натяните плоскую поверхность на контур и разделите её на маленькие участки dA. Для каждого участка B·dA равно нормальной составляющей поля, умноженной на площадь участка (серые стрелки показывают компоненту вдоль оси контура). Сумма всех вкладов даёт Φ. Вблизи магнита стрелки длинные; по мере его удаления они почти исчезают.`,
     facts: s => { const r = M.fluxScene(s.flux.t); return [['magnet distance', `${f(r.d * 100, 1)} cm`], ['B at the centre', `${f(r.Bc * 1e3, 2)} mT`], ['Φ = ∫B·dA', `${f(r.Phi * 1e6, 2)} µWb`], ['ε = −dΦ/dt', `${f(r.emf * 1e6, 1)} µV`], ['I = ε/R (R = 10 mΩ)', `${f(r.I * 1e3, 2)} mA`]]; } },
   ...Object.fromEntries(M.CASES.map(c => [c.key, lenzPlate(c)])),
-  mutual: { text: `Coil 1’s field lines (they fade with its current) thread coil 2. The flux through each of coil 2’s turns is MI₁/N₂. While I₁ rises, coil 2’s current makes a field against it (dashed); while I₁ falls, with it.`,
+  mutual: { text: `Силовые линии поля первой катушки (они становятся слабее вместе с её током) проходят через вторую катушку. Поток через каждый виток второй катушки равен MI₁/N₂. Пока I₁ растёт, ток во второй катушке создаёт поле противоположного направления (пунктир); когда I₁ уменьшается, направление поля совпадает с ним.`,
     facts: s => { const r = M.coilsScene(s.coil.t); return [['I₁', `${f(r.I1, 2)} A`], ['dI₁/dt', `${f(r.dI1, 2)} A/s`], ['M', `${f(M.COILS.M * 1e6, 0)} µH`], ['ε₂ = −M dI₁/dt', `${f(r.emf * 1e3, 3)} mV`], ['I₂ (R = 1 Ω)', `${f(r.I2 * 1e3, 3)} mA`]]; } },
-  core: { text: `With the secondary lifted off: the iron guides the flux, so the same Φ = BA runs through every turn of both windings. The secondary’s emf is N₂ times one turn’s, and ε₂/ε₁ = N₂/N₁, which is how a transformer steps voltage.`,
+  core: { text: `Вторичная катушка приподнята, чтобы был виден сердечник. Железо направляет магнитный поток, поэтому одинаковый Φ = BA проходит через каждый виток обеих обмоток. ЭДС вторичной обмотки в N₂ раз больше ЭДС одного витка; ε₂/ε₁ = N₂/N₁ — так трансформатор повышает или понижает напряжение.`,
     facts: s => { const r = M.coreScene(s.coil.t); return [['I₁', `${f(r.I1, 3)} A`], ['B = μᵣμ₀N₁I₁/ℓ', `${f(r.B, 3)} T`], ['without iron', `${f(r.Bair * 1e3, 3)} mT`], ['Φ per turn', `${f(r.Phi * 1e6, 1)} µWb`], ['ε₂ = −N₂ dΦ/dt', `${f(r.emf2 * 1e3, 2)} mV`], ['ε₂/ε₁', `${f(r.emf2 / (r.emf1 || 1e-30), 2)}`]]; } },
-  wire: { text: `B changes across the loop but not along the wire, so cut the loop into strips parallel to the wire, each b wide and dr tall (shaded by its field). Each holds B(r)·b dr of flux; the integral gives the logarithm. Equivalently, the near side cuts field at B_near bv, the far side at B_far bv, and the difference is ε.`,
+  wire: { text: `Поле B меняется поперёк контура, но не вдоль провода. Разделим контур на полосы, параллельные проводу, шириной b и высотой dr (оттенок показывает величину поля). Поток через каждую полоску равен B(r)·b dr; интегрирование даёт логарифм. Иначе говоря, ближняя сторона пересекает поле со скоростью, соответствующей Bближ·bv, дальняя — Bдаль·bv, а разность определяет ЭДС ε.`,
     facts: s => { const r = M.wireScene(s.wire.t); return [['r (near side)', `${f(r.r * 100, 1)} cm`], ['B near', `${f(r.Bnear * 1e6, 0)} µT`], ['B far', `${f(r.Bfar * 1e6, 0)} µT`], ['Φ', `${f(r.Phi * 1e6, 3)} µWb`], ['ε = (B_near − B_far)bv', `${f(r.emf * 1e6, 3)} µV`], ['I (R = 10 mΩ)', `${f(r.I * 1e3, 3)} mA`]]; } },
-  bar: { text: `One + charge in the bar. The magnetic force qv×B pushes it up the bar; the field E of the charges already piled at the ends pushes it down with qE. Balanced, it moves only with the bar. The work per charge along the bar is vB·L = ε.`,
+  bar: { text: `Показан положительный заряд внутри стержня. Магнитная сила qv×B толкает его вверх вдоль стержня; электрическое поле E, созданное зарядами на концах, действует вниз с силой qE. В равновесии заряд движется вместе со стержнем. Работа на единицу заряда вдоль стержня равна vB·L = ε.`,
     facts: s => { const r = M.barScene(s.bar.t, s.bar.resting); return [['v', `${f(r.v, 2)} m/s`], ['qvB (one proton’s charge)', `${(r.Fmag).toExponential(2)} N`], ['qE', `${(M.E_CHARGE * r.E).toExponential(2)} N`], ['E = vB', `${f(r.E, 2)} V/m`], ['ε = BLv', `${f(r.emf, 3)} V`], ['current', '0']]; } },
-  crossing: { text: `On each upright side that is in the field, v×B pushes charge up the side with an emf BLv. When only one side is in, that push drives the current around. With both in, the pushes meet head-on around the loop and cancel: ε = 0, even though the loop is moving through a field.`,
+  crossing: { text: `На каждой вертикальной стороне, находящейся в магнитном поле, сила v×B перемещает заряд вдоль стороны и создаёт ЭДС BLv. Когда в поле находится только одна сторона, эта ЭДС вызывает ток в контуре. Когда обе стороны внутри поля, ЭДС на них направлены противоположно и компенсируются: ε = 0, хотя контур продолжает двигаться.`,
     facts: s => { const r = M.crossScene(s.cross.t); return [['leading side', r.inLead ? 'in the field' : 'outside'], ['trailing side', r.inTrail ? 'in the field' : 'outside'], ['each side BLv', `${f(r.sideEmf * 1e3, 0)} mV`], ['Φ', `${f(r.Phi * 1e3, 1)} mWb`], ['ε around', `${f(r.emf * 1e3, 0)} mV`], ['I = ε/R', `${f(r.I * 1e3, 0)} mA`]]; } },
-  rails: { text: `The shaded area Lx is the loop the flux goes through, growing as the bar moves. The current it induces runs up the bar, and ILB on that current points backward (red: the only horizontal force, the net force). The braking power Fv is what heats the resistor.`,
+  rails: { text: `Закрашенная площадь Lx — часть контура, через которую проходит магнитный поток; она увеличивается при движении стержня. Индуцированный ток течёт вверх по стержню, а сила ILB направлена назад (красная стрелка — единственная горизонтальная сила и равнодействующая). Тормозящая мощность Fv превращается в тепло на резисторе.`,
     facts: s => { const r = M.railScene(s.rail.t); return [['v', `${f(r.v, 3)} m/s`], ['ε = BLv', `${f(r.emf, 3)} V`], ['I = ε/R', `${f(r.I, 3)} A`], ['F = ILB', `${f(r.F, 3)} N`], ['Fv', `${f(r.F * r.v, 4)} W`], ['I²R', `${f(r.P, 4)} W`], ['heat so far', `${f(r.heat * 1e3, 1)} mJ`]]; } },
-  solenoid: { text: `Inside a long coil B = μ₀nI is uniform, so each turn holds Φ = BA (the shaded turn). All N turns together hold NΦ, and NΦ/I is the inductance. When I changes, NΦ changes, and the back emf −L dI/dt points to resist it: + where the current enters while it rises.`,
+  solenoid: { text: `Внутри длинной катушки поле B = μ₀nI однородно, поэтому каждый виток охватывает поток Φ = BA (закрашенный виток). Все N витков вместе охватывают поток NΦ, а отношение NΦ/I равно индуктивности. При изменении I меняется NΦ, и ЭДС самоиндукции −L dI/dt направлена так, чтобы противодействовать этому изменению: при росте тока она положительна на входе тока.`,
     facts: s => { const r = M.solScene(s.sol.t); return [['I', `${f(r.I, 2)} A`], ['B = μ₀nI', `${f(r.B * 1e3, 2)} mT`], ['Φ per turn = BA', `${f(r.Phi * 1e6, 2)} µWb`], ['NΦ = LI', `${f(r.NPhi * 1e3, 3)} mWb`], ['ε_L = −L dI/dt', `${f(r.emfL * 1e3, 2)} mV`], ['U = ½LI²', `${f(r.U * 1e3, 2)} mJ`]]; } },
-  rl: { text: `Walk round the loop with the current: up through the battery (+ε, while it is in), down through the resistor (−IR), down through the inductor (−L dI/dt). They always sum to zero. Growing, the inductor takes what the resistor doesn’t; decaying, it becomes the source.`,
+  rl: { text: `Обойдём контур по направлению тока: подъём потенциала на батарее (+ε, пока она подключена), падение на резисторе (−IR), падение на катушке (−L dI/dt). Сумма всегда равна нулю. При нарастании тока катушка принимает на себя часть напряжения, не приходящуюся на резистор; при спадании сама становится источником тока.`,
     facts: s => { const r = M.rlScene(s.rl.t); return [[r.growing ? 'growing, t' : 'decaying, t', `${f(r.s, 2)} s`], ['I', `${f(r.I, 3)} A`], ['ε (battery)', `${f(r.emfBat, 1)} V`], ['IR', `${f(r.VR, 2)} V`], ['L dI/dt', `${f(r.VL, 2)} V`], ['U = ½LI²', `${f(r.U, 2)} J`], ['heat rate I²R', `${f(r.P, 2)} W`]]; } },
-  lcCap: { text: `The energy is in the field between the plates (shaded: darker with more of it). ΔV = q/C, and U_E = q²/2C = ½CΔV². As the plates empty through the coil the shading fades; it comes back with the plates charged the other way, E reversed.`,
+  lcCap: { text: `Энергия запасена в поле между обкладками (чем темнее заливка, тем больше энергия). ΔV = q/C, а U_E = q²/2C = ½CΔV². Когда конденсатор разряжается через катушку, заливка бледнеет; затем она появляется снова, когда обкладки заряжаются с противоположной полярностью и направление E меняется.`,
     facts: s => { const r = M.lcScene(s.lc.t); return [['t (real)', `${f(s.lc.t * 1e3, 2)} ms`], ['q (top plate)', `${f(r.q * 1e6, 1)} µC`], ['ΔV = q/C', `${f(r.V, 2)} V`], ['E = ΔV/d (d = 1 mm)', `${f(r.E / 1e3, 2)} kV/m`], ['U_E = q²/2C', `${f(r.UE * 1e3, 3)} mJ`], ['U_E + U_B', `${f((r.UE + r.UB) * 1e3, 3)} mJ`]]; } },
-  lcCoil: { text: `The energy is in the coil’s magnetic field (shaded). U_B = ½LI² is greatest as q passes 0. The coil’s back emf equals the capacitor’s ΔV at every instant, so L dI/dt = −q/C: it slows the current while the plates fill, and keeps it going while they empty.`,
+  lcCoil: { text: `Энергия запасена в магнитном поле катушки (закрашенная область). U_B = ½LI² достигает максимума, когда q проходит через ноль. ЭДС самоиндукции катушки в каждый момент уравновешивает ΔV конденсатора, поэтому L dI/dt = −q/C: она замедляет ток во время зарядки обкладок и поддерживает его во время разрядки.`,
     facts: s => { const r = M.lcScene(s.lc.t); return [['I = dq/dt', `${f(r.I * 1e3, 1)} mA`], ['dI/dt = −q/LC', `${f(r.dI, 0)} A/s`], ['L dI/dt', `${f(M.LC.L * r.dI, 2)} V`], ['B = LI/NA (1600 turns)', `${f(r.B * 1e3, 3)} mT`], ['U_B = ½LI²', `${f(r.UB * 1e3, 3)} mJ`], ['U_E + U_B', `${f((r.UE + r.UB) * 1e3, 3)} mJ`]]; } },
 };
