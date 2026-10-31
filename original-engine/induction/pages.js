@@ -54,7 +54,7 @@ const two = (l, r, o) => `<div class="charts">${chart({ L: R[l], Rt: R[r], curso
 // Lenz's four cases, from the model at mid-run
 const lenzRows = M.CASES.map(c => {
   const r = M.lenzCase(c, M.LENZ.run * 0.6), Bdir = r.Bx < 0 ? '←' : '→', grows = c.move === 'in';
-  return `<tr><td>${c.name}</td><td>${Bdir} ${grows ? 'увеличивается' : 'уменьшается'}</td><td>${f(r.emf * 1e6, 1)} µV</td><td>${r.emf > 0 ? '←' : '→'}</td></tr>`;
+  return `<tr><td>${c.name}</td><td>${Bdir} ${grows ? 'увеличивается' : 'уменьшается'}</td><td>${f(r.emf * 1e6, 1 )} мкВ</td><td>${r.emf > 0 ? '←' : '→'}</td></tr>`;
 }).join('');
 const steps = rows => `<table class="data eqs">${rows.map(([e, n]) => `<tr><td>${e}</td><td>${n}</td></tr>`).join('')}</table>`;
 
@@ -154,7 +154,7 @@ export const PAGES = [
       ${steps([
         ['Φ = <i>BLx</i>, &nbsp;ε = <i>BLv</i>, &nbsp;<i>I</i> = <i>BLv</i>/<i>R</i>', 'counterclockwise'],
         ['<i>F</i> = <i>ILB</i> = <i>B</i><sup>2</sup><i>L</i><sup>2</sup><i>v</i>/<i>R</i>', 'назад'],
-        ['<i>v</i> = <i>v</i><sub>0</sub><i>e</i><sup>−<i>t</i>/τ</sup>, &nbsp;τ = <i>mR</i>/<i>B</i><sup>2</sup><i>L</i><sup>2</sup>', `${f(M.RAIL.tau, 1)} s`],
+        ['<i>v</i> = <i>v</i><sub>0</sub><i>e</i><sup>−<i>t</i>/τ</sup>, &nbsp;τ = <i>mR</i>/<i>B</i><sup>2</sup><i>L</i><sup>2</sup>', `${f(M.RAIL.tau, 1 )} с`],
       ])}
       <p>Сила торможения растёт со скоростью, поэтому стержень замедляется экспоненциально и проходит по инерции ещё ${f(M.RAIL.v0 * M.RAIL.tau * 100, 0)} см. Мощность торможения <i>Fv</i> в точности равна <i>I</i><sup>2</sup><i>R</i>: вся кинетическая энергия ${f(0.5 * M.RAIL.m * M.RAIL.v0 ** 2 * 1e3, 0)} мДж превращается в тепло.</p>
       ${two('v', 'pw', { xlabel: 't (с)', ylabel: 'v (м/с)', rlabel: 'P = I²R (Вт)', label: 'Скорость стержня и рассеиваемая мощность в зависимости от времени; заштрихованная площадь — выделившееся тепло',
@@ -200,7 +200,7 @@ export const PAGES = [
       ${steps([
         ['<i>q</i>/<i>C</i> + <i>L dI</i>/<i>dt</i> = 0', 'правило Кирхгофа'],
         ['<i>L d</i><sup>2</sup><i>q</i>/<i>dt</i><sup>2</sup> + <i>q</i>/<i>C</i> = 0', '<i>I</i> = <i>dq</i>/<i>dt</i>'],
-        ['<i>q</i> = <i>Q</i> cos ω<i>t</i>, &nbsp;<i>I</i> = −ω<i>Q</i> sin ω<i>t</i>', `ω = 1/√(<i>LC</i>) = ${f(M.LC.w, 0)} rad/s`],
+        ['<i>q</i> = <i>Q</i> cos ω<i>t</i>, &nbsp;<i>I</i> = −ω<i>Q</i> sin ω<i>t</i>', `ω = 1/√(<i>LC</i>) = ${f(M.LC.w, 0)} рад/с`],
       ])}
       <p>Период колебаний <i>T</i> = 2π√(<i>LC</i>) = ${f(M.LC.T * 1e3, 2)} мс (${f(M.LC.f, 0)} Гц); анимация замедлена в ${Math.round(M.LC.slow / 10) * 10} раз. Сила тока достигает максимума ω<i>Q</i> = ${f(M.LC.Imax * 1e3, 0)} мА, когда заряд <i>q</i> проходит через ноль, и равна нулю, когда конденсатор полностью заряжен. Эти состояния разделены четвертью периода. ЭДС самоиндукции катушки поддерживает ток и не даёт ему остановиться при <i>q</i> = 0.</p>
       ${two('qLC', 'iLC', { xlabel: 't (мс)', ylabel: 'q (мкКл)', rlabel: 'I (мА)', label: 'Заряд верхней обкладки и ток в зависимости от времени',
