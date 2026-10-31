@@ -18,30 +18,30 @@ let links = 0, scripts = 0, buttons = 0;
 for (const file of pages) {
   const html = fs.readFileSync(file, "utf8");
   const rel = path.relative(root, file);
-  if (!/<html\\b[^>]*lang=["'][^"']+["']/i.test(html)) errors.push(rel + ": missing html lang");
-  if (!/<meta\\s+name=["']viewport["']/i.test(html)) errors.push(rel + ": missing viewport");
-  const ids = [...html.matchAll(/\\bid=["']([^"']+)["']/gi)].map(m => m[1]);
+  if (!/<html\b[^>]*lang=["'][^"']+["']/i.test(html)) errors.push(rel + ": missing html lang");
+  if (!/<meta\s+name=["']viewport["']/i.test(html)) errors.push(rel + ": missing viewport");
+  const ids = [...html.matchAll(/\bid=["']([^"']+)["']/gi)].map(m => m[1]);
   if (new Set(ids).size !== ids.length) errors.push(rel + ": duplicate HTML id");
-  for (const m of html.matchAll(/<button\\b([^>]*)>/gi)) {
+  for (const m of html.matchAll(/<button\b([^>]*)>/gi)) {
     buttons++;
-    if (!/\\btype=["']button["']/i.test(m[1])) errors.push(rel + ": button without explicit type=button");
+    if (!/\btype=["']button["']/i.test(m[1])) errors.push(rel + ": button without explicit type=button");
   }
-  for (const m of html.matchAll(/<(?:a|img|script|link|source)[^>]*?\\b(href|src)=["']([^"']+)["'][^>]*>/gi)) {
+  for (const m of html.matchAll(/<(?:a|img|script|link|source)[^>]*?\b(href|src)=["']([^"']+)["'][^>]*>/gi)) {
     const value = m[2].trim();
     if (!value || /^(?:https?:|mailto:|tel:|data:|javascript:|#)/i.test(value)) continue;
     const target = path.resolve(path.dirname(file), decodeURIComponent(value.split("#")[0].split("?")[0]));
     links++;
     if (!fs.existsSync(target)) errors.push(rel + ": broken local path " + value);
   }
-  for (const m of html.matchAll(/<script\\b([^>]*)>([\\s\\S]*?)<\\/script>/gi)) {
-    if (!m[2].trim() || /\\bsrc=/i.test(m[1])) continue;
+  for (const m of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)) {
+    if (!m[2].trim() || /\bsrc=/i.test(m[1])) continue;
     try { new vm.Script(m[2], { filename: rel + ":inline-script" }); scripts++; }
     catch (e) { errors.push(rel + ": JS syntax " + e.message); }
   }
 }
 if (pages.length !== 13) errors.push("Expected 13 Biology HTML pages; found " + pages.length);
 if (errors.length) {
-  console.error("Biology checks failed:\\n" + errors.map(x => " - " + x).join("\\n"));
+  console.error("Biology checks failed:\n" + errors.map(x => " - " + x).join("\n"));
   process.exit(1);
 }
 console.log("Biology checks passed: " + pages.length + " HTML pages, " + links + " local paths, " + scripts + " inline scripts, " + buttons + " typed buttons.");
