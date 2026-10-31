@@ -26,7 +26,7 @@ export const CH = { sx: (x, x0, x1) => P.l + (x - x0) / (x1 - x0) * (W - P.l - P
 const frictionChart = chart({
   x0: 0, x1: 12, y0: 0, y1: 12, xlabel: 'приложенная сила (Н)', ylabel: 'сила трения (Н)', cursor: 'friction', label: 'Зависимость силы трения от приложенной силы',
   series: [{ pts: [[0, 0], [M.F_SMAX, M.F_SMAX]], tag: [2.2, 2.2, 'трение покоя: f = F'] }, { pts: [[M.F_SMAX, M.F_K], [12, M.F_K]], tag: [5.6, M.F_K - 1.6, 'трение скольжения: μk·FN →'] }, { cls: 'trend', pts: [[M.F_SMAX, M.F_SMAX], [M.F_SMAX, M.F_K]] }],
-  marks: [[M.F_SMAX, M.F_SMAX, `${f(M.F_SMAX)} N`]],
+  marks: [[M.F_SMAX, M.F_SMAX, `${f(M.F_SMAX)} Н`]],
 });
 
 export const PAGES = [
