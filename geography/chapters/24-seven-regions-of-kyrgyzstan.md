@@ -255,6 +255,44 @@
 11. **Транспортно-экономические коридоры.** Основные дороги, железнодорожные связи, пункты пропуска и логистические узлы; действующие и планируемые объекты визуально различать.
 12. **Карта экологической уязвимости.** Сели, оползни, засухи, деградация пастбищ, водный стресс, загрязнение и ледниковые риски; легенда должна показывать тип и уровень уверенности данных.
 
+## Разобранный пример: сравнение регионов по относительному показателю / Worked Example: Comparing Regions Using a Rate
+
+Предположим, что два условных региона хотят сравнить по числу медицинских учреждений. В регионе А проживает 120 000 человек и работает 12 учреждений; в регионе Б — 300 000 человек и 20 учреждений.
+
+Сравнение только абсолютных чисел показывает, что в регионе Б учреждений больше. Но население там также значительно больше. Рассчитаем количество учреждений на 10 000 жителей:
+
+\[
+R_A=\frac{12}{120\,000}\times10\,000=1
+\]
+
+\[
+R_B=\frac{20}{300\,000}\times10\,000\approx0{,}67
+\]
+
+Получается, что в регионе А приходится 1 учреждение на 10 000 жителей, а в регионе Б — около 0,67. В этом условном примере относительная обеспеченность выше в регионе А, хотя абсолютное число учреждений там меньше.
+
+**Важное ограничение:** этот показатель не измеряет качество медицинской помощи и реальную доступность учреждений. Для горных регионов необходимо дополнительно учитывать расстояние и время поездки, дорожную доступность, численность персонала, специализацию и сезонные ограничения. Сравнивать следует данные одного года и одинакового определения учреждения.
+
+**Проверьте себя:** в регионе В 15 учреждений обслуживают 150 000 жителей. Сколько учреждений приходится на 10 000 человек? Можно ли только по этому числу заключить, что медицинская помощь доступнее?
+
+Suppose two hypothetical regions are compared by the number of healthcare facilities. Region A has 120,000 residents and 12 facilities; Region B has 300,000 residents and 20 facilities.
+
+A comparison of absolute counts alone shows that Region B has more facilities. However, it also has a much larger population. Calculate the number of facilities per 10,000 residents:
+
+\[
+R_A=\frac{12}{120,000}\times10,000=1
+\]
+
+\[
+R_B=\frac{20}{300,000}\times10,000\approx0.67
+\]
+
+Region A therefore has 1 facility per 10,000 residents, while Region B has about 0.67. In this hypothetical example, the relative provision is higher in Region A, even though it has fewer facilities in total.
+
+**Important limitation:** this indicator does not measure the quality of healthcare or the actual accessibility of facilities. In mountainous regions, analysis should also consider travel distance and time, road access, staffing, specialisation and seasonal restrictions. Comparisons should use data from the same year and the same definition of a facility.
+
+**Check your understanding:** Region C has 15 facilities serving 150,000 residents. How many facilities are there per 10,000 people? Can this figure alone prove that healthcare is more accessible?
+
 ## 24.14. Практические работы / Practical Exercises
 
 ### Работа 1. Сравнительный региональный профиль
