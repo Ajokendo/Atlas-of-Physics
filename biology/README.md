@@ -128,3 +128,10 @@ All ten global Biology chapters now include a bilingual five-question knowledge 
 - Flora coverage distinguishes mountain spruce/juniper woodland, riparian habitats, alpine meadows and KBA trigger plant taxa; the reported figure of 800+ higher plants is treated as a richness summary, not a complete checklist.
 - Fauna coverage records Ministry camera-trap detections of snow leopard, argali and ibex (September 2025), the dated Ministry maral estimate (60 in September 2025, with the 2022 Altai reintroduction disclosed), and the regional 2026 marmot count (29,367 across several survey areas, not Besh-Tash alone).
 - Sources include the Kyrgyz Ministry of Natural Resources, Kabar and the Besh-Tash Key Biodiversity Area profile. Survey results are carefully scoped by place, date and method; presence records are not presented as population estimates.
+
+
+## Regional biodiversity field dossiers — Chuy
+- Added bilingual Chuy Region dossiers to the Kyrgyzstan flora and fauna chapters, covering Ala-Archa, the Kyrgyz Range, Chon-Kemin and the Chuy Valley.
+- Flora coverage explains valley-to-alpine vegetation belts, juniper and spruce woodland, steppe communities and rare plant taxa reported for Chon-Kemin; older species totals are explicitly treated as indicative rather than definitive inventories.
+- Fauna coverage adds dated 2026 reports from Ala-Archa and Chon-Kemin, including NABU/park camera-trap detections and the Ministry's Kök-Oyrok monitoring notice. Detections are not misrepresented as population estimates.
+- Sources include the Kyrgyz Ministry of Natural Resources, Kabar, Turmush/NABU, Chon-Kemin park profiles and a Chuy vegetation overview.
