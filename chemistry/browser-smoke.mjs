@@ -383,7 +383,7 @@ try {
       await page.locator("#actual").fill("");
       await page.locator("#na").dispatchEvent("input");
       if ((await page.locator("#limit").innerText()).trim() !== "A" ||
-          !(await page.locator("#left").innerText()).includes("0.000000000999")) {
+          !(await page.locator("#left").innerText()).replace(",", ".").includes("0.000000000999")) {
         errors.push(file + ": trace mole quantities were misclassified by an absolute tolerance");
       }
 
