@@ -11,7 +11,9 @@
 header,main,footer{max-width:1050px;margin:auto;padding:24px}
 header{border-bottom:1px solid #deded9}a{color:var(--accent)}h1,h2{font-family:Georgia,serif;font-weight:400}h1{font-size:clamp(42px,8vw,76px);line-height:1;margin:48px 0 18px}.lead{max-width:680px;color:var(--muted);font:italic 21px/1.5 Georgia,serif}
 .notice{background:var(--card);border:1px solid #deded9;padding:20px;margin:32px 0}
-ul{padding-left:22px}li{margin:8px 0}footer{border-top:1px solid #deded9;color:var(--muted);font-size:12px}
+.chapter-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;padding:0;list-style:none}
+.chapter-list li{margin:0}.chapter-list a{display:block;height:100%;padding:14px 16px;background:var(--card);border:1px solid #deded9;text-decoration:none;color:var(--ink)}.chapter-list a:hover{border-color:var(--accent);color:var(--accent)}
+small{display:block;color:var(--muted);font-size:12px}footer{border-top:1px solid #deded9;color:var(--muted);font-size:12px}
 </style>
 </head>
 <body>
@@ -21,14 +23,20 @@ ul{padding-left:22px}li{margin:8px 0}footer{border-top:1px solid #deded9;color:v
 <h1>Атлас географии</h1>
 <p class="lead">Земля, природные системы, население и страны мира — от глобальных процессов до подробного географического атласа Кыргызстана.</p>
 <section class="notice">
-<h2>Состояние проекта</h2>
-<p>В репозитории сохранены 25 глав в формате Markdown: главы 02–26. Они включают мировую географию и отдельный большой раздел о Кыргызстане.</p>
-<p>Эта страница — начальная точка проекта. Полноценная веб-навигация, глава 01 и редакционная проверка глав ещё требуют отдельной работы.</p>
+<h2>О географическом атласе</h2>
+<p>Атлас объединяет физическую и социально-экономическую географию, географию регионов мира, современные методы пространственного анализа и энциклопедический раздел о Кыргызстане.</p>
+<p>В рабочей ветке находятся 26 Markdown-глав (01–26). Материалы проходят поэтапную научную и редакционную проверку; наличие главы не означает её финальную готовность к публикации.</p>
 </section>
-<h2>Главы</h2>
-<p>Открыть <a href="chapters/02-geographic-envelope.md">главу 02 — Географическая оболочка</a> и перейти к остальным материалам можно в <a href="chapters/">каталоге глав</a>.</p>
+<h2>Начало изучения</h2>
+<ul class="chapter-list">
+<li><a href="chapters/01-geography-as-a-science.md"><strong>01 · География как наука</strong><small>Земля, пространство и взаимосвязи</small></a></li>
+<li><a href="chapters/02-geographic-envelope.md"><strong>02 · Географическая оболочка Земли</strong><small>Взаимодействие природных сфер</small></a></li>
+<li><a href="chapters/03-lithosphere-and-geological-processes.md"><strong>03 · Литосфера и геологические процессы</strong><small>Внутреннее строение Земли и горные породы</small></a></li>
+<li><a href="chapters/04-earths-landforms-and-relief.md"><strong>04 · Рельеф Земли</strong><small>Формы рельефа и процессы их развития</small></a></li>
+</ul>
 <h2>Кыргызстан</h2>
 <p>Главы 17–26 посвящены географическому положению, геологии, горам, климату, водным ресурсам, природе, населению, семи областям, городам, экономике и экологическому будущему Кыргызстана.</p>
+<p>Все материалы доступны в <a href="chapters/">каталоге глав</a>.</p>
 </main>
 <footer>Atlas of Knowledge · Atlas of Geography</footer>
 </body>
