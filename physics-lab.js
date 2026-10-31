@@ -67,19 +67,19 @@ function init(root){
   switch(cfg.kind){
    case "linear":{const v=1+7*p;val=v;label="скорость, м/с";formula="x(t) = v · t";series=sample(t=>v*t/4);break;}
    case "force":{const F=2+18*p,m=2;val=F/m;label="ускорение, м/с²";formula="a = F / m = "+fmt(F)+" / "+fmt(m);series=sample(t=>val);break;}
-   case "circle":{const r=.5+2.5*p,v=3;val=v*v/r;label="центростремительное ускорение, м/с²";formula="aц = v² / r = 9 / "+fmt(r);series=sample(t=>r*Math.cos(t*1.4));break;}
-   case "energy":{const h=1+9*p;val=9.81*h;label="потенциальная энергия на 1 кг, Дж/кг";formula="Eп / m = g · h = 9,81 · "+fmt(h);series=sample(t=>h*(.5+.5*Math.cos(t*1.3)));break;}
+   case "circle":{const r=.5+2.5*p,v=3;val=v*v/r;label="центростремительное ускорение, м/с²";formula="aц = v² / r = 9 / "+fmt(r);series=sample(()=>val);break;}
+   case "energy":{const h=1+9*p;val=9.81*h;label="потенциальная энергия на 1 кг, Дж/кг";formula="Eп / m = g · h = 9,81 · "+fmt(h);series=sample(()=>val);break;}
    case "collision":{const m=.5+4.5*p,v=3;val=m*v;label="импульс, кг·м/с";formula="p = m · v = "+fmt(m)+" · 3";series=sample(t=>t<2?val*(1-t/2):0);break;}
    case "oscillation":{const A=.1+.9*p,T=2;val=A*Math.cos(2*Math.PI*t/T);label="смещение, м";formula="x(t) = A cos(2πt/T), A = "+fmt(A)+" м";series=sample(t=>A*Math.cos(2*Math.PI*t/T));break;}
-   case "rotation":{const I=.1+1.9*p,tau=2;val=tau/I;label="угловое ускорение, рад/с²";formula="α = τ / I = 2 / "+fmt(I);series=sample(t=>.5*val*(t/4)**2);break;}
-   case "fluid":{const h=.2+4.8*p;val=1000*9.81*h;label="гидростатическое давление, Па";formula="p = ρgh = 1000 · 9,81 · "+fmt(h);series=sample(t=>1000*9.81*h*t/4);break;}
-   case "charges":{const q=1+9*p;val=8.99*q;label="напряжённость при r = 1 м, Н/Кл";formula="E = kq/r², q = "+fmt(q)+" нКл";series=sample(t=>val/(1+t));break;}
+   case "rotation":{const I=.1+1.9*p,tau=2;val=tau/I;label="угловое ускорение, рад/с²";formula="α = τ / I = 2 / "+fmt(I);series=sample(()=>val);break;}
+   case "fluid":{const h=.2+4.8*p;val=1000*9.81*h;label="гидростатическое давление, Па";formula="p = ρgh = 1000 · 9,81 · "+fmt(h);series=sample(()=>val);break;}
+   case "charges":{const q=1+9*p;val=8.99*q;label="напряжённость при r = 1 м, Н/Кл";formula="E = kq/r², q = "+fmt(q)+" нКл";series=sample(()=>val);break;}
    case "gauss":{const q=1+9*p;val=q*1e-9/8.854e-12;label="поток поля, Н·м²/Кл";formula="Φ = q / ε₀, q = "+fmt(q)+" нКл";series=sample(t=>val);break;}
    case "potential":{const r=.2+4.8*p;val=8.99/r;label="потенциал при q = 1 нКл, В";formula="V = kq/r = 8,99 / "+fmt(r);series=sample(t=>8.99/(r+.5*t));break;}
    case "capacitor":{const C=1+9*p,V=12;val=C*V;label="заряд, мкКл";formula="Q = CV = "+fmt(C)+" · 12";series=sample(t=>val*(1-Math.exp(-t*1.3)));break;}
    case "circuit":{const R=1+19*p;val=12/R;label="сила тока, А";formula="I = U / R = 12 / "+fmt(R);series=sample(t=>val);break;}
-   case "magnet":{const B=.1+1.9*p;val=2*B;label="сила Лоренца, Н (q = 1 Кл)";formula="F = qvB = 1 · 2 · "+fmt(B);series=sample(t=>val*Math.sin(t*1.5));break;}
-   case "induction":{const d=.01+.19*p;val=d/.1;label="ЭДС индукции, В";formula="|ε| = |ΔΦ| / Δt = "+fmt(d)+" / 0,1";series=sample(t=>val*Math.sin(t*1.6));break;}
+   case "magnet":{const B=.1+1.9*p;val=2*B;label="модуль силы Лоренца, Н (θ меняется)";formula="F = |q|vB|sin θ|, θ(t) меняется";series=sample(t=>val*Math.abs(Math.sin(t*1.5)));break;}
+   case "induction":{const d=.01+.19*p;val=d/.1;label="ЭДС индукции, В";formula="|ε| = |ΔΦ| / Δt = "+fmt(d)+" / 0,1";series=sample(t=>val*Math.abs(Math.sin(t*1.6)));break;}
   }
   valueOut.textContent=fmt(val,Math.abs(val)>=100?0:2);
   labelOut.textContent=label;formulaOut.textContent=formula;
