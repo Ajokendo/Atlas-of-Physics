@@ -75,7 +75,7 @@ export const PAGES = [
     kicker: '15.1', title: 'Правило Ленца', sub: 'индуцированный ток противодействует изменению',
     body: `
       <p class="lede">Знак минус означает, что индукционный ток создаёт поле <i>B</i><sub>ind</sub>, которое <b>противодействует изменению</b> магнитного потока, а не самому потоку.</p>
-      <table class="data"><tr><th>case</th><th>B at the loop</th><th>ε</th><th>B<sub>ind</sub></th></tr>${lenzRows}</table>
+      <table class="data"><tr><th>случай</th><th>B у контура</th><th>ε</th><th>B<sub>ind</sub></th></tr>${lenzRows}</table>
       <ul class="rules">
         <li>поток увеличивается: <i>B</i><sub>ind</sub> направлено против <i>B</i>;</li>
         <li>поток уменьшается: <i>B</i><sub>ind</sub> направлено вдоль <i>B</i>;</li>
@@ -117,7 +117,7 @@ export const PAGES = [
   {
     kicker: '15.4', title: 'ЭДС движения', sub: 'проводник движется в магнитном поле',
     body: `
-      <p class="lede">A metal bar moves at <i>v</i> through <i>B</i>. Each charge in it moves too, and feels <i>F</i> = <i>qv</i>×<i>B</i> along the bar.</p>
+      <p class="lede">Металлический стержень движется со скоростью <i>v</i> в магнитном поле <i>B</i>. Заряды внутри него также движутся и испытывают силу <i>F</i> = <i>qv</i>×<i>B</i>, направленную вдоль стержня.</p>
       <p>Свободные заряды перемещаются, пока на одном конце не накопится положительный, а на другом — отрицательный заряд. Созданное ими поле <i>E</i> противодействует дальнейшему разделению; движение зарядов прекращается, когда</p>
       <div class="eq"><i>qE</i> = <i>qvB</i> &nbsp;→&nbsp; ε = <i>EL</i> = <i>BLv</i></div>
       <table class="data">
@@ -150,7 +150,7 @@ export const PAGES = [
   {
     kicker: '15.6', title: 'Стержень на рельсах', sub: 'ЭДС движения в замкнутой цепи',
     body: `
-      <p class="lede">Rails joined by a resistor close the circuit. The bar is given ${M.RAIL.v0} m/s and let go.</p>
+      <p class="lede">Рельсы, соединённые резистором, замыкают электрическую цепь. Стержню сообщают начальную скорость ${M.RAIL.v0} м/с, после чего его отпускают.</p>
       ${steps([
         ['Φ = <i>BLx</i>, &nbsp;ε = <i>BLv</i>, &nbsp;<i>I</i> = <i>BLv</i>/<i>R</i>', 'counterclockwise'],
         ['<i>F</i> = <i>ILB</i> = <i>B</i><sup>2</sup><i>L</i><sup>2</sup><i>v</i>/<i>R</i>', 'backward'],
