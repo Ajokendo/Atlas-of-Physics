@@ -316,6 +316,70 @@
 | Города | Доступность общественного транспорта, качество воздуха, охват канализацией |
 | Природный капитал | Состояние пастбищ, лесов, рек и нарушенных земель |
 
+## Разобранный пример: сравнение транспортных маршрутов / Worked Example: Comparing Transport Routes
+
+Предприятие перевозит 12 тонн груза из города А в город Б. Есть два условных маршрута:
+
+- Маршрут 1: 180 км, средняя скорость движения 45 км/ч.
+- Маршрут 2: 150 км, средняя скорость движения 30 км/ч.
+
+Оценим время движения без учёта остановок, пограничных процедур, пробок и погоды:
+
+\[
+t_1=\frac{180}{45}=4\text{ часа}
+\]
+
+\[
+t_2=\frac{150}{30}=5\text{ часов}
+\]
+
+Хотя второй маршрут короче на 30 км, расчётное время движения по нему на один час больше. Поэтому выбор маршрута нельзя основывать только на расстоянии.
+
+Предположим также, что условные эксплуатационные расходы составляют 50 сомов на километр для первого маршрута и 65 сомов на километр для второго:
+
+\[
+C_1=180\times50=9\,000\text{ сомов}
+\]
+
+\[
+C_2=150\times65=9\,750\text{ сомов}
+\]
+
+В этом условном примере первый маршрут и быстрее, и дешевле. Однако для реального решения нужно учитывать состояние дороги, перевалы, ограничения для грузового транспорта, расход топлива, сезонность, безопасность и возможные задержки.
+
+**Проверьте себя:** если маршрут длиной 210 км преодолевается со средней скоростью 35 км/ч, сколько часов займёт движение без остановок? Какие дополнительные сведения нужны для оценки реального времени доставки?
+
+A company transports 12 tonnes of cargo from City A to City B. Two hypothetical routes are available:
+
+- Route 1: 180 km, average travel speed 45 km/h.
+- Route 2: 150 km, average travel speed 30 km/h.
+
+Estimate driving time without stops, border procedures, traffic or weather delays:
+
+\[
+t_1=\frac{180}{45}=4\text{ hours}
+\]
+
+\[
+t_2=\frac{150}{30}=5\text{ hours}
+\]
+
+Although Route 2 is 30 km shorter, its estimated driving time is one hour longer. Route choice should therefore not be based on distance alone.
+
+Suppose the hypothetical operating costs are 50 soms per kilometre for Route 1 and 65 soms per kilometre for Route 2:
+
+\[
+C_1=180\times50=9,000\text{ soms}
+\]
+
+\[
+C_2=150\times65=9,750\text{ soms}
+\]
+
+In this hypothetical example, Route 1 is both faster and less expensive. A real decision must also consider road conditions, mountain passes, freight restrictions, fuel consumption, seasonality, safety and possible delays.
+
+**Check your understanding:** if a 210 km route is travelled at an average speed of 35 km/h, how long will driving take without stops? What additional information is needed to estimate actual delivery time?
+
 ## 25.12. Практические работы / Practical Exercises
 
 ### Работа 1. Функциональная классификация городов
