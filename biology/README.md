@@ -50,3 +50,14 @@ Third subject area of the unified **Atlas of Knowledge** portal.
 4. Larger question banks, chapter progress and review activities.
 5. Responsive and cross-browser testing, accessibility review and link validation.
 6. Integrate the Biology section into the unified portal release after Physics and Chemistry are ready.
+
+## Course navigation and integration
+- All ten chapter pages now include consistent sequential navigation: previous chapter, all chapters/course overview, and next chapter. The navigation labels switch with the RU/EN page language and adapt to narrow screens.
+- The chapter sequence follows the learning path: Botany → Zoology → Cell Biology → Anatomy & Physiology → Genetics → Microbiology → Ecology → Evolution → Biochemistry → Systematics.
+- This navigation pass was checked structurally across all ten HTML pages. It is not a substitute for full browser, keyboard-only, and mobile-device testing.
+
+## Next quality-assurance phase
+- Verify every interactive control in both languages, including keyboard operation and state updates.
+- Review scientific wording, diagrams, dates, terminology and citations/recommended reading.
+- Test all internal links, portal integration, mobile layouts and browser console output.
+- Expand knowledge checks into topic-level assessment sets and add learning objectives/glossaries.
