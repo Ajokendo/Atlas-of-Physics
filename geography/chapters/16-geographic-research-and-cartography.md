@@ -339,6 +339,56 @@ This chapter concludes the general geography section of the atlas. It brings tog
 13. Почему нельзя считать интерактивную карту автоматически более достоверной?
 14. Что необходимо документировать для воспроизводимости исследования?
 
+### Разобранный пример. Выбор показателя для тематической карты / Worked example: Choosing a variable for a thematic map
+
+Предположим, что мы хотим сравнить обеспеченность трёх условных районов медицинскими учреждениями. Известны численность населения и количество поликлиник.
+
+| Район | Население | Поликлиники |
+|---|---:|---:|
+| А | 20 000 | 2 |
+| Б | 60 000 | 3 |
+| В | 100 000 | 4 |
+
+Если нанести на хороплетную карту только абсолютное число поликлиник, район В будет выглядеть наиболее обеспеченным. Но в нём живёт намного больше людей. Для сравнения обеспеченности рассчитаем число поликлиник на 10 000 жителей:
+
+\[
+Показатель = \frac{\text{число поликлиник}}{\text{население}}\times 10\,000
+\]
+
+- Район А: \(2/20\,000\times10\,000=1{,}0\) поликлиника на 10 000 жителей.
+- Район Б: \(3/60\,000\times10\,000=0{,}5\).
+- Район В: \(4/100\,000\times10\,000=0{,}4\).
+
+**Вывод:** по абсолютному числу учреждений лидирует район В, а по числу учреждений относительно населения — район А. Для хороплетной карты подходит нормированный показатель, а абсолютное количество можно показать пропорциональными символами или отдельной диаграммой.
+
+Это учебный пример, а не полноценная оценка доступности медицинской помощи. Количество учреждений не отражает их размер, число врачей, качество услуг, часы работы, расстояние и время поездки. Для реальной оценки потребуются дополнительные данные и анализ транспортной доступности.
+
+**Проверьте себя:** почему нельзя автоматически заключить, что жители района А получают медицинскую помощь лучше, только потому что показатель здесь выше?
+
+Suppose we want to compare healthcare facility provision in three hypothetical districts. We know the population and the number of clinics.
+
+| District | Population | Clinics |
+|---|---:|---:|
+| A | 20,000 | 2 |
+| B | 60,000 | 3 |
+| C | 100,000 | 4 |
+
+If a choropleth map shows only the absolute number of clinics, District C will appear to have the best provision. However, its population is much larger. To compare provision relative to population, calculate the number of clinics per 10,000 residents:
+
+\[
+Rate = \frac{\text{number of clinics}}{\text{population}}\times 10,000
+\]
+
+- District A: \(2/20,000\times10,000=1.0\) clinic per 10,000 residents.
+- District B: \(3/60,000\times10,000=0.5\).
+- District C: \(4/100,000\times10,000=0.4\).
+
+**Conclusion:** District C has the largest absolute number of clinics, while District A has the highest number relative to its population. A normalised rate is suitable for a choropleth map; absolute counts can be shown with proportional symbols or a separate chart.
+
+This is a learning example, not a complete assessment of healthcare access. The number of facilities does not show their size, staffing, service quality, opening hours, distance or travel time. A real assessment requires additional data and transport-accessibility analysis.
+
+**Check your understanding:** Why can we not automatically conclude that residents of District A receive better healthcare just because its rate is higher?
+
 ### Практическая работа 1. План географического исследования / Practical Activity 1. Research Design
 
 Сформулируйте исследовательский вопрос о природном или социально-экономическом явлении. Определите территорию, период, цель, задачи, данные, методы, ожидаемые ограничения и критерии проверки.
