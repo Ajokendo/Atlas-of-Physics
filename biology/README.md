@@ -157,3 +157,12 @@ All ten global Biology chapters now include a bilingual five-question knowledge 
 - Records are distinguished by evidence type: published checklist, dated field observation, camera-trap detection, habitat association or provisional estimate. A presence record is never presented as an abundance estimate.
 - Species names and conservation categories require current taxonomic and national/global status checks. The Ministry and National Academy of Sciences began a 24-month Red Data Book revision in June 2026; the Institute of Biology described the planned field, taxonomic, mapping and digital-database work in October 2026.
 - Official reference: Ministry of Natural Resources, 9 June 2026, [Red Data Book revision announcement](https://mnr.gov.kg/ru/posts/news/ministerstvo-prirodnyx-resursov-ekologii-i-texniceskogo-nadzora-kyrgyzskoi-respubliki-sovmestno-s-nacionalnoi-akademiei-nauk-pristupaet-k-rabote-po-obnovleniyu-krasnoi-knigi). Further project details: [Institute of Biology, NAS KR, 14 October 2026](https://ibnaskr.org/red-data-book-kyrgyzstan-project-2026-2028/).
+
+
+## Mainline integration and publication — 31 October 2026
+
+The bilingual Biology Atlas was integrated into `main` through pull request #3 (merge commit `e48c8e63aac0d8e79fb75895c5311ded331e70e9`). The unified portal now links to the Biology Atlas in Russian and English. The release contains the ten global chapters, the Kyrgyzstan flora and fauna regional chapters, and the Biology README.
+
+Release validation on the integration branch completed successfully: 13 Biology HTML pages passed static validation (78 local paths, 13 inline scripts, 163 explicitly typed buttons), and Chromium smoke tests passed at mobile (390 px) and desktop (1365 px) viewports, including language-toggle interactions and uncaught page-error checks. JavaScript validation also passed.
+
+GitHub Pages deployment completed successfully for main commit `39fc80c4f03dd247af9dc3331501a30f2ef5698c` on 31 October 2026. Deployment run: https://github.com/Ajokendo/Atlas-of-Physics/actions/runs/41214973040. This confirms a successful Pages build and publish job; independent access from every browser/device should still be checked after publication.
