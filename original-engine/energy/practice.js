@@ -45,7 +45,7 @@ export const PRACTICE = {
       choices: [`${f(-Wup)} J`, `${f(0)} J`, `${f(2 * Wup)} J`, `${f(Wup)} J`], answer: 3,
       why: `<p>Gravity points opposite the motion (θ = 180°), so its work is negative, and by the work–energy theorem it removes all the kinetic energy:</p><div class="eq"><i>W</i><sub>g</sub> = Δ<i>K</i> = 0 − ½ × ${f(T.m)} × ${f(T.v0, 1)}² = ${f(Wup)} J</div><p>${f(2 * Wup)} J forgets the ½; +${f(-Wup)} J has the wrong sign.</p>` },
     { q: `Чему равна суммарная работа силы тяжести за весь путь — от момента выпуска мяча до его возвращения на исходную высоту?`,
-      choices: ['положительная', 'отрицательная', 'нулевая', 'equal to <i>mgh</i>, with <i>h</i> the greatest height'], answer: 2,
+      choices: ['положительная', 'отрицательная', 'нулевая', 'равна <i>mgh</i>, где <i>h</i> — максимальная высота подъёма'], answer: 2,
       why: '<p>Negative work on the way up, the same amount of positive work on the way down: the total is zero. That is why the ball comes back to the hand at its launch speed (no air resistance).</p>' },
   ],
   2: [
@@ -77,7 +77,7 @@ export const PRACTICE = {
       choices: [`${f(x5, 3)} m`, `${f(S.xmax / 2, 3)} m`, `${f(S.m * (S.v0 ** 2 - v5 ** 2) / S.k, 3)} m`, `${f(Math.sqrt(S.m * (S.v0 ** 2 - v5 ** 2) / (2 * S.k)), 3)} m`], answer: 0,
       why: `<div class="eq">½<i>mv</i><sub>0</sub>² = ½<i>mv</i>² + ½<i>k</i>Δ<i>x</i>² &nbsp;⇒&nbsp; Δ<i>x</i> = √(<i>m</i>(<i>v</i><sub>0</sub>² − <i>v</i>²)/<i>k</i>) = √(${f(S.m, 1)} × ${f(S.v0 ** 2 - v5 ** 2, 1)} / ${S.k}) = ${f(x5, 3)} m</div><p>Half the speed is not half the compression: three quarters of the kinetic energy is already stored, so Δ<i>x</i> is √¾ of ${f(S.xmax)} m.</p>` },
     { q: `Если бы брусок двигался к пружине с вдвое большей скоростью, максимальное сжатие пружины было бы…`,
-      choices: ['the same', '√2 times as large', 'twice as large', 'four times as large'], answer: 2,
+      choices: ['такая же', 'в √2 раза больше', 'в 2 раза больше', 'в 4 раза больше'], answer: 2,
       why: '<p>½<i>kx</i><sub>max</sub>² = ½<i>mv</i><sub>0</sub>², so <i>x</i><sub>max</sub> = <i>v</i><sub>0</sub>√(<i>m</i>/<i>k</i>): proportional to <i>v</i><sub>0</sub>. Four times the energy, but energy goes as <i>x</i>², so twice the compression.</p>' },
   ],
   6: [
@@ -100,7 +100,7 @@ export const PRACTICE = {
       choices: [`${f(-U8(x8), 1)} N`, `${f(-F8(x8), 1)} N`, `${f(U8(x8), 1)} N`, `+${f(F8(x8), 1)} N`], answer: 3,
       why: `<div class="eq"><i>F</i><sub>x</sub> = −d<i>U</i>/d<i>x</i> = −(6<i>x</i> − 6<i>x</i>²) = −(12 − 24) = +${f(F8(x8), 1)} N</div><p>The slope of <i>U</i> there is negative (<i>U</i> falls toward +<i>x</i>), so the force points in +<i>x</i>: downhill. −${f(F8(x8), 1)} N forgets the minus sign; ±${f(-U8(x8), 1)} N uses <i>U</i> itself, not its slope.</p>` },
     { q: `Для той же функции U(x) = 3x² − 2x³ равновесие возможно при x = 0 и x = 1 м. Какое из этих положений устойчивое, а какое неустойчивое?`,
-      choices: ['both stable', '<i>x</i> = 0 unstable, <i>x</i> = 1 m stable', '<i>x</i> = 0 stable, <i>x</i> = 1 m unstable', 'both unstable'], answer: 2,
+      choices: ['оба устойчивые', '<i>x</i> = 0 — неустойчивое, <i>x</i> = 1 м — устойчивое', '<i>x</i> = 0 — устойчивое, <i>x</i> = 1 м — неустойчивое', 'оба неустойчивые'], answer: 2,
       why: '<p>d<i>U</i>/d<i>x</i> = 6<i>x</i> − 6<i>x</i>² = 0 at <i>x</i> = 0 and 1. The second derivative decides: <i>U</i>″ = 6 − 12<i>x</i> is +6 at <i>x</i> = 0 (a valley, stable) and −6 at <i>x</i> = 1 m (a hump, unstable).</p>' },
   ],
   9: [
@@ -123,7 +123,7 @@ export const PRACTICE = {
       choices: [`${f(m11 * h11 / t11, 1)} W`, `${f(P11, 0)} W`, `${f(m11 * G * h11, 0)} W`, `${f(m11 * G * h11 * t11, 0)} W`], answer: 1,
       why: `<div class="eq"><i>P</i> = <i>W</i>/<i>t</i> = <i>mgh</i>/<i>t</i> = ${m11} × ${f(G)} × ${f(h11, 1)} / ${f(t11, 1)} = ${f(P11, 0)} W</div><p>${f(m11 * G * h11, 0)} is the work in joules, not a power; ${f(m11 * h11 / t11, 1)} W uses mass instead of weight.</p>` },
     { q: `Подъёмный кран поднимает ящик на высоту h с постоянной скоростью 0,5 м/с, а затем такой же ящик на ту же высоту со скоростью 1,0 м/с. По сравнению с медленным подъёмом быстрый требует…`,
-      choices: ['twice the work and twice the power', 'the same work and the same power', 'the same work and twice the power', 'half the work and twice the power'], answer: 2,
+      choices: ['вдвое большую работу и вдвое большую мощность', 'одинаковую работу и одинаковую мощность', 'одинаковую работу и вдвое большую мощность', 'вдвое меньшую работу и вдвое большую мощность'], answer: 2,
       why: '<p>At steady speed the cable pulls with <i>mg</i> either way, so the work <i>mgh</i> is the same. The fast lift takes half the time, so <i>P</i> = <i>W</i>/<i>t</i> = <i>Fv</i> doubles.</p>' },
   ],
 };
