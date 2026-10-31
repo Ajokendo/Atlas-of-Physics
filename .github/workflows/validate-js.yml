@@ -19,3 +19,5 @@ jobs:
       - name: Check JavaScript syntax
         run: |
           find original-engine -type f -name '*.js' -print0 | xargs -0 -r -n1 node --check
+          node --check app.js
+          node --input-type=module --check < physics-lab.js
