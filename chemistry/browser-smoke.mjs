@@ -129,6 +129,23 @@ try {
       }
     }
 
+    if (file === "chapters/chemical-elements.html") {
+      const isotopeButtons = page.locator("[data-iso]");
+      const russianLabels = await isotopeButtons.allInnerTexts();
+      if (JSON.stringify(russianLabels) !== JSON.stringify(["Углерод-12", "Углерод-13", "Углерод-14"])) {
+        errors.push(file + ": isotope selector labels are not localized in Russian");
+      }
+      await page.locator("#lang").click();
+      const englishLabels = await isotopeButtons.allInnerTexts();
+      if (JSON.stringify(englishLabels) !== JSON.stringify(["Carbon-12", "Carbon-13", "Carbon-14"])) {
+        errors.push(file + ": isotope selector labels are not localized in English");
+      }
+      await page.locator("#lang").click();
+      if (await isotopeButtons.evaluateAll(items => items.some(button => button.type !== "button"))) {
+        errors.push(file + ": isotope selector contains a button without explicit button type");
+      }
+    }
+
     if (file === "periodic-table.html") {
       await page.locator("#search").fill("oxygen");
       if (await page.locator("#table button[data-id]").count() !== 1) {
