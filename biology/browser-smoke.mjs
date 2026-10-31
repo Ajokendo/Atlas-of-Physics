@@ -19,7 +19,7 @@ try {
   for (const viewport of [{ width: 390, height: 844 }, { width: 1365, height: 900 }]) {
     const page = await browser.newPage({ viewport });
     let current = "";
-    page.on("pageerror", e => errors.push(current + ": " + e.message));
+    page.on("pageerror", e => errors.push(current + ": " + e.message + " | " + e.stack));
     for (const file of pages) {
       current = file;
       const response = await page.goto("http://127.0.0.1:4173/" + file, { waitUntil: "domcontentloaded" });
