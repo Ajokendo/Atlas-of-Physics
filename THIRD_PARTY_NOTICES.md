@@ -1,49 +1,65 @@
 # Third-party notices and attribution
 
-This file records the known origin and licensing information for material used in the Physics Atlas. It is an attribution and review record, not legal advice.
+This document records the origin and licensing information identified in the repository review. It is not legal advice and does not represent a blanket clearance of every possible use.
 
 ## 1. Original Atlas of Physics
 
-The Physics Atlas includes a Russian-language adaptation and a modified integration of the interactive textbook originally created by **Nathan Liow**.
+The interactive Physics Atlas in this repository is a Russian-language adaptation of the interactive textbook originally created by **Nathan Liow**.
 
-- Original project: https://github.com/nathanliow/atlas-of-physics
-- Original project website: https://atlas-of-physics.vercel.app/
-- Original source license: MIT
-- Copyright notice: Copyright (c) 2026 Nathan Liow
+- Original repository: https://github.com/nathanliow/atlas-of-physics
+- Original website: https://atlas-of-physics.vercel.app/
+- Original software license: MIT
+- Copyright notice required by the upstream license: Copyright (c) 2026 Nathan Liow
 
-The original MIT license is reproduced in the repository's `LICENSE` file. The original copyright and permission notice must remain with copies or substantial portions of the original software.
+The upstream MIT license is reproduced in the repository's `LICENSE` file. It applies to the upstream software and its covered derivative copies, subject to the license conditions. It should not be interpreted as automatically licensing third-party material that the upstream author did not own.
 
-## 2. Nature of this adaptation
+## 2. Russian-language adaptation
 
-The Russian-language edition was prepared with AI-assisted translation and editorial adaptation of the original English-language educational material. The Russian wording, explanations, navigation and integration may have been edited during adaptation.
+The Russian-language edition includes translated and editorially adapted chapter text, labels, practice material and interface text. The translation and adaptation were prepared with AI assistance.
 
-This project does **not** claim authorship of Nathan Liow's original English-language textbook, original interactive engine, or other original material created by him. The attribution above identifies the upstream project and its author; it does not imply that Nathan Liow reviewed, approved, or endorses this Russian-language edition.
+The repository preserves the original chapter structure, interactive models, simulation logic and substantial portions of the upstream code, with modifications and Russian-language content added.
 
-## 3. Third-party libraries and hosted resources
+This project does **not** claim authorship of Nathan Liow's original English-language textbook, original interactive engine, original models or other original work. Attribution does not imply that Nathan Liow reviewed, approved or endorses this adaptation.
 
-The upstream project references Three.js version 0.186.1 from jsDelivr and Google Fonts families EB Garamond, Inter and JetBrains Mono. These are separate third-party resources and are not Nathan Liow's original work.
+## 3. Three.js
 
-- Three.js: https://github.com/mrdoob/three.js — the upstream project identifies the dependency; confirm and retain the exact license notice for the version distributed or bundled by this project before redistributing a local copy.
-- Google Fonts: https://fonts.google.com/ — font families are independently licensed; consult the family-specific license files before bundling font files locally.
+The interactive engine imports Three.js version **0.186.1** and its addons from jsDelivr. Three.js is distributed under the MIT License.
 
-Where these resources are loaded from their respective CDNs rather than copied into this repository, their providers' terms and licenses still apply to those resources.
+Project: https://github.com/mrdoob/three.js  
+License: https://github.com/mrdoob/three.js/blob/dev/LICENSE
 
-## 4. Images and other media
+Copyright © 2010–2026 three.js authors.
 
-The upstream repository contains chapter-cover JPEG files under `img/`. The current Russian repository tree reviewed for this notice does not contain those JPEG files. No separate image-asset license or creator inventory was located in the reviewed upstream documentation.
+The MIT license for Three.js is separate from Nathan Liow's MIT license. The Three.js notice and permission terms apply to Three.js and its covered components, not to the Atlas as a whole.
 
-Do not assume that every image, photograph, illustration, or other media asset is covered by the software MIT license. If any upstream images or other third-party media are later copied into this project, verify the creator and license for each asset and add the required attribution here before publication.
+## 4. Google Fonts
 
-## 5. College Board / AP materials
+The site loads these typefaces from Google Fonts:
 
-The upstream equation-sheet build script states that its equation tables were transcribed from the College Board's AP Physics 1 and AP Physics C Course and Exam Descriptions (effective fall 2024; sheets © 2025 College Board), preserving the sheets' order and notation.
+- **EB Garamond** — SIL Open Font License 1.1 (OFL). Official Google Fonts family metadata: https://github.com/google/fonts/tree/main/ofl/ebgaramond
+- **Inter** — SIL Open Font License 1.1 (OFL). Official project and license: https://github.com/rsms/inter
+- **JetBrains Mono** — SIL Open Font License 1.1 (OFL). Official project and license: https://github.com/JetBrains/JetBrainsMono
 
-College Board is a separate rights holder. Its material is **not** automatically covered by Nathan Liow's MIT license. AP® is a trademark of the College Board; the College Board does not endorse this project.
+The font files are requested from Google Fonts; they are not bundled as local font files in this repository. If font files are later downloaded, modified or redistributed with the site, include the applicable OFL text and comply with its reserved-font-name requirements.
 
-Before redistributing the equation-sheet content, review the applicable College Board terms and permissions. A disclaimer or attribution alone does not create permission to reproduce copyrighted material.
+## 5. Images and other media
 
-Official AP Physics resources: https://apcentral.collegeboard.org/courses/ap-physics
+The upstream repository contains 15 chapter-cover JPEG files under `img/`. The current Russian repository tree reviewed for this notice does not contain those JPEG files. No separate creator or asset-license inventory for those upstream JPEGs was found in the reviewed upstream documentation.
 
-## 6. Scope and status
+Do not assume that every image, photograph, illustration or other media asset is covered by the software MIT license. If any such upstream asset is copied into this project in the future, verify its creator and license individually and add the required attribution before publication.
 
-This notice documents facts visible in the reviewed repository files. It is not a representation that every item in the project has been independently rights-cleared. Items whose provenance or license has not been verified must remain marked as unverified and should not be described as freely reusable.
+## 6. College Board / AP materials
+
+The upstream project contains an equation-sheet generator whose source comments state that its tables were transcribed from College Board AP Physics 1 and AP Physics C Course and Exam Descriptions (effective fall 2024; sheets © 2025 College Board), retaining the sheets' order and notation.
+
+**The College Board equation-sheet generator and its generated equation-sheet page were not found in the current Russian repository tree reviewed for this notice.** The College Board material is therefore documented here as an upstream provenance issue, not as a claim that those tables are included in this repository.
+
+College Board's published permission instructions state that copyrighted College Board material generally may not be reproduced, modified, distributed or reused without express written permission, subject to specifically stated exceptions. The instructions direct users to request permission for AP materials. See:
+- https://privacy.collegeboard.org/copyright-trademark/request-instructions
+- https://form.collegeboard.org/f/copyright-trademark-permission-request
+
+AP® is a trademark of the College Board. The College Board does not endorse this project. Do not use College Board logos or imply official affiliation. If AP materials are ever added to this repository, obtain the necessary permission first or replace them with independently authored explanations, formula references and examples.
+
+## 7. Scope and status
+
+This notice reflects the repository files and upstream documentation reviewed so far. It is not a representation that every item in the wider website, every external resource or every future release has been independently rights-cleared. Unverified assets must not be described as freely reusable.
