@@ -71,3 +71,8 @@ Third subject area of the unified **Atlas of Knowledge** portal.
 - Review scientific wording, diagrams, dates, terminology and citations/recommended reading.
 - Test all internal links, portal integration, mobile layouts and browser console output.
 - Expand knowledge checks into topic-level assessment sets and add learning objectives/glossaries to all remaining chapters. Botany and Zoology now provide the bilingual model sections.
+
+
+## Knowledge checks
+
+All ten global Biology chapters now include a bilingual five-question knowledge check (50 questions in Russian and 50 in English across the atlas). Each item provides three answer choices and explanatory feedback; learners can move through the set, see their running score, and restart the quiz. The language switch refreshes the active question and choices.
