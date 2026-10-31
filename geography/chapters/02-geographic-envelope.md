@@ -389,6 +389,54 @@
 
 **Место для иллюстрации 2.14-A — Planetary Boundaries.** Научная инфографика девяти планетарных процессов с пояснениями и статусами по актуальному научному источнику.
 
+## 2.14.1. Разбор природной системы: изменение растительного покрова в горном водосборе / Worked Example: Vegetation Change in a Mountain Catchment
+
+Рассмотрим условный горный водосбор площадью 10 км². На части его склонов лесной покров сократился. Географическая задача — проследить, какие компоненты природной системы могут отреагировать на это изменение и какие данные нужны, чтобы проверить предполагаемые последствия.
+
+**Шаг 1. Определяем исходное изменение.**  
+Допустим, по сопоставимым спутниковым снимкам установлено, что площадь леса уменьшилась с 6 до 4 км². Сокращение составляет 2 км², или примерно 33% от первоначальной площади леса: (6 − 4) / 6 × 100%.
+
+**Шаг 2. Прослеживаем возможные связи между оболочками.**
+
+| Компонент | Возможное изменение | Что следует измерить |
+|---|---|---|
+| Биосфера | Сокращение площади лесных местообитаний | Площадь и состояние растительного покрова |
+| Почва и литосфера | При определённых условиях возрастает уязвимость почвы к эрозии | Потери почвы, оголённость поверхности, устойчивость склонов |
+| Атмосфера | Меняются затенение, испарение и транспирация | Температура, влажность, осадки |
+| Гидросфера | Может измениться соотношение инфильтрации и поверхностного стока | Расход воды, мутность, инфильтрация |
+
+**Шаг 3. Не делаем вывод без проверки.**  
+Уменьшение лесной площади само по себе не доказывает, что паводки обязательно станут сильнее или что речной сток увеличится. Результат зависит также от интенсивности осадков, крутизны склонов, типа почвы, состояния дорог, сезонности, мерзлоты и других факторов. Для проверки нужны наблюдения до и после изменения, а по возможности — сравнение с похожим водосбором, где лесной покров существенно не менялся.
+
+**Вывод.** Изменение одного компонента географической оболочки может повлиять на другие, но направление и сила воздействия должны подтверждаться данными. Системная схема помогает сформулировать гипотезы и выбрать измерения, а не заменяет наблюдения.
+
+**Проверьте себя:** почему по одному лишь факту сокращения площади леса нельзя точно рассчитать изменение паводкового стока?
+
+### Worked Example: Vegetation Change in a Mountain Catchment
+
+Consider a hypothetical mountain catchment covering 10 km². Forest cover has declined on some slopes. The task is to trace which parts of the natural system may respond and identify the data needed to test the expected effects.
+
+**Step 1. Identify the initial change.**  
+Suppose comparable satellite images show that forest area declined from 6 to 4 km². The loss is 2 km², or about 33% of the original forest area: (6 − 4) / 6 × 100%.
+
+**Step 2. Trace possible links between Earth's spheres.**
+
+| Component | Possible change | What to measure |
+|---|---|---|
+| Biosphere | Reduction in forest habitat | Area and condition of vegetation cover |
+| Soil and lithosphere | Under some conditions, greater soil vulnerability to erosion | Soil loss, exposed ground, slope stability |
+| Atmosphere | Changes in shading, evaporation and transpiration | Temperature, humidity, precipitation |
+| Hydrosphere | The balance between infiltration and surface runoff may change | Streamflow, turbidity, infiltration |
+
+**Step 3. Do not draw a conclusion without testing it.**  
+A reduction in forest area alone does not prove that floods will necessarily become more severe or river flow will increase. The outcome also depends on rainfall intensity, slope steepness, soil type, road conditions, seasonality, frozen ground and other factors. Testing the hypothesis requires observations before and after the change and, where possible, comparison with a similar catchment where forest cover has not changed substantially.
+
+**Conclusion.** A change in one component of the geographic envelope may affect others, but the direction and magnitude of the effect must be supported by evidence. A systems diagram helps formulate hypotheses and select measurements; it does not replace observation.
+
+**Check your understanding:** Why can the change in flood runoff not be calculated precisely from the reduction in forest area alone?
+
+---
+
 ## 2.15. Итоговая модель географической оболочки / Integrated Model
 
 Географическая оболочка — сложная природная система, в которой взаимодействуют вещество, энергия, живые организмы и геологические процессы.
