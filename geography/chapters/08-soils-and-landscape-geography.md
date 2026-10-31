@@ -307,5 +307,18 @@ After studying this chapter, readers will be able to explain soil formation and 
 - В ландшафтных схемах обозначать масштаб и принятую иерархию морфологических единиц.
 - Все иллюстрации пока представлены техническими заданиями. Карты, профили и схемы перед публикацией должны пройти научную и языковую редактуру.
 
+## Основные источники и рекомендуемая литература / Core Sources and Further Reading
+
+1. FAO. **World Reference Base for Soil Resources: International Soil Classification System for Naming Soils and Creating Legends for Soil Maps**, 4th edition (2022) — международная система классификации почв.
+2. FAO and Intergovernmental Technical Panel on Soils. **Status of the World's Soil Resources** (2015) — обзор состояния почв и основных угроз.
+3. FAO. **Voluntary Guidelines for Sustainable Soil Management** (2017) — практические принципы устойчивого управления почвами.
+4. USDA Natural Resources Conservation Service. **Soil Survey Manual** — методические основы описания и обследования почвенных профилей.
+5. Intergovernmental Panel on Climate Change (IPCC). **Climate Change and Land: An IPCC Special Report** (2019) — взаимосвязь землепользования, деградации земель и изменения климата.
+6. United Nations Convention to Combat Desertification (UNCCD). **Global Land Outlook** — материалы о состоянии земель и сценариях их устойчивого использования.
+7. European Commission Joint Research Centre. **European Soil Data Centre (ESDAC)** — примеры открытых почвенных данных и картографических продуктов.
+8. Turner, M. G., Gardner, R. H., O'Neill, R. V. **Landscape Ecology in Theory and Practice: Pattern and Process**. Springer — базовый труд по пространственной структуре ландшафтов и экологическим процессам.
+
+**Примечание:** почвенные классификации, методы отбора проб и показатели деградации могут различаться между странами. В каждом практическом исследовании необходимо указывать применённую методику, глубину отбора проб, дату и источник данных.
+
 ---
 **Конец главы 8 / End of Chapter 8**
