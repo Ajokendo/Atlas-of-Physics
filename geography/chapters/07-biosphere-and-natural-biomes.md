@@ -328,5 +328,18 @@ After studying this chapter, readers will be able to explain the extent and func
 - Для диаграмм биогеохимических циклов строго различать резервуары (запасы) и потоки (скорости переноса), указывать единицы и временные интервалы.
 - Иллюстрации этой главы пока представлены техническими заданиями. Генерируемые карты и схемы должны пройти отдельную научную и языковую редактуру перед публикацией.
 
+## Основные источники и рекомендуемая литература / Core Sources and Further Reading
+
+1. Convention on Biological Diversity. **Convention on Biological Diversity** (1992) — международная правовая основа сохранения биоразнообразия.
+2. Intergovernmental Science-Policy Platform on Biodiversity and Ecosystem Services (IPBES). **Global Assessment Report on Biodiversity and Ecosystem Services** (2019) — глобальная оценка состояния природы и факторов изменений.
+3. IPBES. **Thematic Assessment Report on Invasive Alien Species and their Control** (2023) — научная оценка воздействия инвазивных чужеродных видов.
+4. International Union for Conservation of Nature (IUCN). **The IUCN Red List of Threatened Species** — база данных о риске исчезновения видов; при использовании фиксировать дату обращения и версию данных.
+5. UNESCO. **Man and the Biosphere Programme** — материалы о биосферных резерватах и взаимодействии общества с экосистемами.
+6. Olson, D. M. et al. **Terrestrial Ecoregions of the World: A New Map of Life on Earth**. *BioScience*, 2001 — одна из широко используемых основ картирования наземных экорегионов.
+7. Millennium Ecosystem Assessment. **Ecosystems and Human Well-being: Synthesis** (2005) — связь экосистемных процессов и благополучия людей.
+8. Chapin, F. S. et al. **Principles of Terrestrial Ecosystem Ecology**. Springer — учебное изложение процессов и структуры наземных экосистем.
+
+**Примечание:** классификации биомов и экорегионов различаются по назначению и методике. При сравнении карт необходимо указывать выбранную систему, масштаб и год данных.
+
 ---
 **Конец главы 7 / End of Chapter 7**
