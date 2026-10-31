@@ -266,3 +266,11 @@ The score should increase only when evidence for the relevant checklist items is
 - Added the Mammal Diversity Database taxon record and the 2016 Tokarsky, Atemasov & Shakula paper to the fauna source list.
 - Rechecked the Aygul / *Petilium eduardii* profile and the Sievers' apple (*Malus sieversii*) discussion. The chapter retains the conservative wording: a documented local population at Aygul-Tash, current access restrictions to be verified before visits, and no simplistic claim that *M. sieversii* alone is the ancestor of all cultivated apples.
 - The 2026–2028 Red Data Book revision remains a work in progress; no provisional status is presented as a completed official reassessment.
+
+
+## Snow leopard evidence update — 1 November 2026
+- Added the 2026 national status assessment of the snow leopard (*Panthera uncia*) in Kyrgyzstan to the regional fauna evidence base. The peer-reviewed contribution summarises the proposed national IUCN range map, drawing on camera trapping, field surveys and community information across the Tien Shan and Pamir–Alai.
+- Updated the western Tien Shan species profile to distinguish this nationwide evidence synthesis from proof of occurrence at a specific locality.
+- Added the Ministry-attributed field-patrol record reported by Kabar on 14 October 2026: snow leopard, argali and ibex were observed in mountainous Issyk-Kul Region. The chapter labels this as a dated occurrence record and explicitly does not treat it as an abundance or density estimate.
+- Added bilingual source annotations and regression checks for the new species evidence. No national population total or oblast-wide range claim was inferred from the event report.
+- This is a targeted source update, not a completed expert review of all regional taxa. The working editorial readiness score remains 70/100 pending wider claim-level source mapping, independent bilingual editing and live accessibility/browser QA.
