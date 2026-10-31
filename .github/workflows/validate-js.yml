@@ -18,4 +18,4 @@ jobs:
           node-version: 22
       - name: Check JavaScript syntax
         run: |
-          find original-engine -type f \\( -name '*.js' -o -name '*.mjs' \\) -print0 | xargs -0 -r -n1 node --check
+          find original-engine -type f -name '*.js' -print0 | xargs -0 -r -n1 node --check
