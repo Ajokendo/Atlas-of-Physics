@@ -203,6 +203,46 @@
 
 В энциклопедической части особое внимание уделяется всем семи областям Кыргызстана. Для каждой области важно рассматривать не только административные границы, но и природную основу, население, поселения, экономику, транспорт, культурное наследие, экологические проблемы и перспективы развития. Бишкек и Ош следует учитывать отдельно там, где их административный статус отличается от статуса областных центров.
 
+## 1.10.1. Практический пример: как читать масштаб карты / Worked Example: Reading a Map Scale
+
+Предположим, на карте указан численный масштаб **1:50 000**. Это означает, что 1 единица длины на карте соответствует 50 000 таким же единицам на местности.
+
+**Шаг 1. Переводим масштаб в удобные единицы.**  
+1 см на карте соответствует 50 000 см на местности. Поскольку 100 000 см = 1 км, получаем: 1 см = 0,5 км, или 500 м.
+
+**Шаг 2. Измеряем расстояние.**  
+Если расстояние между двумя точками на карте по прямой составляет 4 см, расстояние на местности по прямой равно:
+
+4 × 0,5 км = **2 км**.
+
+**Шаг 3. Правильно интерпретируем результат.**  
+Полученные 2 км — это расстояние по прямой, а не длина дороги и не время в пути. Реальный маршрут может быть длиннее из-за рельефа, изгибов дороги, рек, мостов и других препятствий. Если карта была изменена в размере при печати или отображении, измерять линейкой по ней можно только после проверки масштаба по масштабной линейке.
+
+**Вывод.** Масштаб позволяет переводить измерения на карте в расстояния на местности, но не даёт автоматически информации о доступности или продолжительности поездки.
+
+**Проверьте себя:** чему соответствует 3 см на карте масштаба 1:100 000?
+
+### Worked Example: Reading a Map Scale
+
+Suppose a map has a representative fraction of **1:50,000**. This means that one unit of length on the map represents 50,000 of the same units on the ground.
+
+**Step 1. Convert the scale into convenient units.**  
+One centimetre on the map represents 50,000 centimetres on the ground. Since 100,000 cm = 1 km, 1 cm represents 0.5 km, or 500 m.
+
+**Step 2. Measure the distance.**  
+If the straight-line distance between two points on the map is 4 cm, the corresponding straight-line ground distance is:
+
+4 × 0.5 km = **2 km**.
+
+**Step 3. Interpret the result correctly.**  
+The 2 km is a straight-line distance, not the length of a road or travel time. The actual route may be longer because of relief, road bends, rivers, bridges and other obstacles. If the map has been resized for printing or display, a ruler measurement is reliable only after checking the scale bar.
+
+**Conclusion.** A map scale converts map measurements into ground distances, but it does not automatically tell us how accessible a place is or how long a journey will take.
+
+**Check your understanding:** What ground distance does 3 cm represent on a map with a scale of 1:100,000?
+
+---
+
 ## 1.11. Практические задания / Practical Activities
 
 ### Задание 1. География одного места
