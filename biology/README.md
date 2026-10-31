@@ -192,3 +192,10 @@ GitHub Pages deployment completed successfully for main commit `39fc80c4f03dd247
 - Added a consistent visible keyboard-focus indicator for the SVG controls and clarified the Tab, Enter and Space interaction in both Russian and English.
 - Preserved the existing model geometry, explanatory biology content, quiz behaviour and language toggle.
 - Static source verification is recorded for this change; live screen-reader and browser/device testing remains part of the outstanding QA phase.
+
+
+## Editorial and source pass — 31 October 2026
+- Added bilingual selected-reference sections to all ten global foundation chapters: Botany, Zoology, Cell Biology, Anatomy and Physiology, Genetics, Microbiology, Ecology, Evolutionary Biology, Biochemistry, and Systematics.
+- The selected references point to topic-matched OpenStax Biology, Microbiology and Anatomy & Physiology materials, plus the NCBI Taxonomy resource for nomenclature and lineage checks. Links were checked on 31 October 2026.
+- The regional Flora and Fauna of Kyrgyzstan chapters were not changed in this pass; their existing source dossiers remain in place.
+- This is a bibliography and traceability improvement, not a claim that every individual scientific statement has completed line-by-line peer review. Claim-level source mapping, terminology review and independent bilingual proofreading remain part of the next editorial stage.
