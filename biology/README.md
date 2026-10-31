@@ -185,3 +185,10 @@ GitHub Pages deployment completed successfully for main commit `39fc80c4f03dd247
 - New blocks preserve the Atlas visual language, responsive layout and RU/EN language switching. They supplement existing scientific plates, interactive models, glossaries, learning objectives and five-question knowledge checks.
 - Editorial principle for subsequent revisions: introduce a phenomenon in familiar language, explain the idea, then introduce the precise scientific term; use analogies as entry points and explain their limits. Do not remove necessary scientific vocabulary or overstate simplified models.
 - This is a pedagogical enrichment pass, not a complete line-by-line scientific peer review. Expert review of specialist claims, species accounts, source freshness and terminology remains a separate quality-assurance task.
+
+## Accessibility follow-up — 31 October 2026
+
+- Improved the landing-page cell model for keyboard and assistive-technology users: each selectable organelle now receives a language-aware accessible name and points to the live description panel.
+- Added a consistent visible keyboard-focus indicator for the SVG controls and clarified the Tab, Enter and Space interaction in both Russian and English.
+- Preserved the existing model geometry, explanatory biology content, quiz behaviour and language toggle.
+- Static source verification is recorded for this change; live screen-reader and browser/device testing remains part of the outstanding QA phase.
