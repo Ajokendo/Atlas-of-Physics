@@ -75,8 +75,8 @@ export const PAGES = [
     body: `
       <p class="lede">Всегда три шага: находим <i>E</i> по закону Гаусса, Δ<i>V</i> — интегрированием, затем <i>C</i> = <i>Q</i>/Δ<i>V</i>.</p>
       ${steps([
-        ['<i>EA</i> = σ<i>A</i>/ε<sub>0</sub>', 'pillbox'],
-        ['<i>E</i> = σ/ε<sub>0</sub> = <i>Q</i>/ε<sub>0</sub><i>A</i>', 'uniform'],
+        ['<i>EA</i> = σ<i>A</i>/ε<sub>0</sub>', undefined],
+        ['<i>E</i> = σ/ε<sub>0</sub> = <i>Q</i>/ε<sub>0</sub><i>A</i>', undefined],
         ['Δ<i>V</i> = −∫<sub><i>d</i></sub><sup>0</sup> <i>E ds</i> = <i>Ed</i>', 'E постоянно'],
         ['<i>C</i> = <i>Q</i>/Δ<i>V</i> = <b>ε<sub>0</sub><i>A</i>/<i>d</i></b>', 'Q сокращается'],
       ])}
@@ -106,14 +106,14 @@ export const PAGES = [
   {
     kicker: '12.3', title: 'Два цилиндра', sub: 'стержень внутри трубки',
     body: `
-      <p class="lede">A rod (<i>a</i> = ${M.CYL.a * 100} cm) inside a tube (<i>b</i> = ${M.CYL.b * 100} cm), <i>L</i> = ${M.CYL.L * 100} cm long: a short coaxial cable.</p>
+      <p class="lede">Стержень радиусом (<i>a</i> = ${M.CYL.a * 100} см) расположен внутри трубки радиусом (<i>b</i> = ${M.CYL.b * 100} см). Длина <i>L</i> = ${M.CYL.L * 100} см. Это модель короткого коаксиального кабеля.</p>
       ${steps([
-        ['<i>E</i>·2π<i>rL</i> = <i>Q</i>/ε<sub>0</sub>', 'Gauss, side only'],
+        ['<i>E</i>·2π<i>rL</i> = <i>Q</i>/ε<sub>0</sub>', 'закон Гаусса, только боковая поверхность'],
         ['Δ<i>V</i> = −∫<sub><i>b</i></sub><sup><i>a</i></sup> <i>Q dr</i>/2πε<sub>0</sub><i>rL</i>', 'E·ds = E dr'],
         ['&nbsp;&nbsp;&nbsp;&nbsp;= (<i>Q</i>/2πε<sub>0</sub><i>L</i>) ln(<i>b</i>/<i>a</i>)', '∫dr/r = ln r'],
         ['<i>C</i> = <b>2πε<sub>0</sub><i>L</i>/ln(<i>b</i>/<i>a</i>)</b>', `${pF(M.CYL.C)} pF`],
       ])}
-      <p><i>E</i> ∝ 1/<i>r</i>, gentler than 1/<i>r</i><sup>2</sup>, hence the logarithm. <i>C</i> ∝ length: ${f(M.CYL.C / M.CYL.L * 1e12, 0)} pF per metre.</p>
+      <p><i>E</i> ∝ 1/<i>r</i> — поле убывает медленнее, чем 1/<i>r</i><sup>2</sup>, поэтому в формуле появляется логарифм. Ёмкость пропорциональна длине: ${f(M.CYL.C / M.CYL.L * 1e12, 0)} пФ на метр.</p>
       <div class="charts">${chart({ ...RC, xlabel: 'r (см)', ylabel: 'E (В/м)', cursors: [['cyl']], label: 'Напряжённость в зависимости от радиуса коаксиальной системы', under: area(RC, cylCurve.filter(([r]) => r >= 2 && r <= 8)), series: [{ pts: cylCurve }] })}</div>
       <p class="hintline">Нажмите, чтобы сдвинуть трубку. Масштаб стрелок: 1 см на кВ/м.</p>`,
     cam: { target: [ST.coax, 1.5, 0], az: 16, el: 14, dist: 14 }, lit: 'coax', scene: 'coax', look: {},
@@ -172,7 +172,7 @@ export const PAGES = [
         <tr><td>постоянная величина</td><td>Δ<i>V</i> = ${M.V0} V</td><td><i>Q</i> = ${f(M.Q0 * 1e12, 0)} pC</td></tr>
         <tr><td><i>Q</i></td><td>κ<i>Q</i><sub>0</sub> = ${f(full.con.Q * 1e12, 0)} pC</td><td><i>Q</i><sub>0</sub></td></tr>
         <tr><td>Δ<i>V</i>, <i>E</i></td><td>без изменений</td><td>÷ κ (${f(full.iso.V, 1)} V)</td></tr>
-        <tr><td><i>U</i></td><td>× κ (${f(full.con.U * 1e9, 1)} nJ)</td><td>÷ κ (${f(full.iso.U * 1e9, 1)} nJ)</td></tr>
+        <tr><td><i>U</i></td><td>× κ (${f(full.con.U * 1e9, 1)} нДж)</td><td>÷ κ (${f(full.iso.U * 1e9, 1)} нДж)</td></tr>
       </table>
       <p>При подключённой батарее на обкладки поступает дополнительный заряд в той области, куда входит диэлектрик. Батарея совершает работу Δ<i>V</i>·Δ<i>Q</i>, вдвое превышающую прирост запасённой энергии. В обоих случаях пластины втягивают диэлектрик внутрь.</p>
       <div class="charts">${chart({ ...R.energy, xlabel: 'заполненная доля зазора', ylabel: 'U / U₀', cursors: [['enA'], ['enB', GREY]], label: 'Запасённая энергия в зависимости от глубины введения диэлектрика: батарея подключена и отключена',
@@ -203,26 +203,26 @@ export const PAGES = [
 // ---------- click a scene: what it breaks into ----------
 const sph = r => [['Гауссов радиус r', `${f(r * 100, 1)} cm`], ['E(r) = Q/4πε₀r²', `${f(M.sphE(r), 0)} V/m`], ['flux E·4πr²', `${f(M.sphE(r) * 4 * Math.PI * r * r, 1)} V·m`], ['Q/ε₀', `${f(M.SPH.Q / M.EPS0, 1)} V·m`]];
 export const PLATES = {
-  plates: { text: `Each plate alone makes a field σ/2ε₀ pointing away from + and toward − (grey). Between the plates the two point the same way and add to σ/ε₀. Outside they point opposite ways and cancel. That is why the field is all in the gap.`,
+  plates: { text: `Каждая пластина создаёт поле σ/2ε₀, направленное от положительной пластины и к отрицательной (серые стрелки). Между пластинами поля сонаправлены и складываются до σ/ε₀. Снаружи они направлены противоположно и компенсируют друг друга. Поэтому поле сосредоточено в зазоре.`,
     facts: s => { const r = M.charging(s.charge.t); return [['ΔV', `${f(r.V, 1)} В`], ['Q = CΔV', `${f(r.Q * 1e12, 0)} пКл`], ['каждая пластина σ/2ε₀', `${f(r.E / 2, 0)} В/м`], ['между пластинами: сумма', `${f(r.E, 0)} В/м`], ['снаружи: разность', '0 В/м']]; } },
-  pillbox: { text: `The pillbox straddles the + plate. Its outer face is in zero field and its side runs along the field, so the only flux is through the face in the gap: E·A. Inside it is the charge σA. Gauss: EA = σA/ε₀.`,
+  pillbox: { text: `Цилиндрическая гауссова поверхность пересекает положительную пластину. На её внешнем основании поле равно нулю, а боковая поверхность параллельна полю. Поэтому поток проходит только через основание внутри зазора: E·A. Внутри поверхности заключён заряд σA. По закону Гаусса: EA = σA/ε₀.`,
     facts: s => { const r = M.gapScene(s.gap.t), A = M.PILLBOX.A; return [['площадь поверхности A', `${f(A * 1e4, 1)} см²`], ['поток E·A', `${f(r.E * A, 3)} В·м`], ['q_внутр/ε₀', `${f(M.Q0 / M.PLATE.A * A / M.EPS0, 3)} В·м`], ['зазор d', `${f(r.d * 100, 1)} см`], ['ΔV = Ed', `${f(r.V, 0)} В`], ['C = ε₀A/d', `${pF(r.C)} пФ`]]; } },
-  sphere: { text: `Opened, the shell shows the ball and the Gaussian sphere between them. Whatever its radius, the flux through it is the same Q/ε₀, so E falls as 1/r².`,
+  sphere: { text: `После раскрытия оболочки видны внутренний шар и гауссова сфера между проводниками. При любом её радиусе поток остаётся равным Q/ε₀, поэтому напряжённость E убывает как 1/r².`,
     facts: s => sph(M.gaussR(s.sweep.t, M.SPH.a, M.SPH.b)) },
-  coax: { text: `With the tube aside, the rod and the Gaussian cylinder. Flux leaves only through the curved side, area 2πrL, so E = Q/2πε₀rL falls as 1/r.`,
+  coax: { text: `После сдвига трубки видны стержень и гауссов цилиндр. Поток проходит только через боковую поверхность площадью 2πrL, поэтому E = Q/2πε₀rL и убывает как 1/r.`,
     facts: s => { const r = M.gaussR(s.sweep.t, M.CYL.a, M.CYL.b); return [['гауссов радиус r', `${f(r * 100, 1)} см`], ['E(r)', `${f(M.cylE(r), 0)} В/м`], ['поток E·2πrL', `${f(M.cylE(r) * 2 * Math.PI * r * M.CYL.L, 1)} В·м`], ['Q/ε₀', `${f(M.CYL.Q / M.EPS0, 1)} В·м`], ['C', `${pF(M.CYL.C)} пФ`]]; } },
-  energy: { text: `The energy is spread through the gap’s volume, A × d, at density u = ½ε₀E². Multiply them and you get ½CΔV² back.`,
+  energy: { text: `Энергия распределена по объёму зазора A × d с плотностью u = ½ε₀E². Умножив плотность на объём, получим ½CΔV².`,
     facts: s => { const r = M.filling(s.fill.t), vol = M.PLATE.A * M.PLATE.d; return [['E', `${f(r.E, 0)} В/м`], ['u = ½ε₀E²', `${f(r.u * 1e6, 2)} мкДж/м³`], ['объём Ad', `${f(vol * 1e6, 0)} см³`], ['u·Ad', `${f(r.u * vol * 1e9, 2)} нДж`], ['Q²/2C', `${f(r.U * 1e9, 2)} нДж`]]; } },
-  series: { text: `The battery moves ${u(S.Q)} µC around the loop. The two inner plates and the wire between them are one neutral island: −${u(S.Q)} µC on one side, +${u(S.Q)} µC on the other. Each capacitor’s voltage is Q/C, and they add to ${M.CIRC.V} V.`,
+  series: { text: `Батарея перемещает по цепи заряд ${u(S.Q)} мкКл. Две внутренние обкладки и соединяющий их провод образуют нейтральный узел: на одной стороне −${u(S.Q)} мкКл, на другой +${u(S.Q)} мкКл. Напряжение на каждом конденсаторе равно Q/C, а их сумма составляет ${M.CIRC.V} В.`,
     facts: () => [['C_экв', `${f(S.C * 1e6)} мкФ`], ['Q на каждом', `${u(S.Q)} мкКл`], ['ΔV₁ = Q/C₁', `${f(S.V1, 1)} В`], ['ΔV₂ = Q/C₂', `${f(S.V2, 1)} В`], ['энергия ½C_эквV²', `${f(S.U * 1e6, 0)} мкДж`]] },
-  parallel: { text: `Both capacitors connect straight across the battery, so each has the full ${M.CIRC.V} V. Each takes Q = CΔV, and the battery supplies the sum.`,
+  parallel: { text: `Оба конденсатора подключены непосредственно к батарее, поэтому напряжение на каждом равно ${M.CIRC.V} В. Заряд каждого определяется формулой Q = CΔV, а батарея обеспечивает суммарный заряд.`,
     facts: () => [['C_экв', `${f(PA.C * 1e6, 0)} мкФ`], ['ΔV на каждом', `${M.CIRC.V} В`], ['Q₁ = C₁ΔV', `${u(PA.Q1)} мкКл`], ['Q₂ = C₂ΔV', `${u(PA.Q2)} мкКл`], ['энергия ½C_эквV²', `${f(PA.U * 1e6, 0)} мкДж`]] },
-  slab: { text: `In the slab: the free charge on the plates alone would make E₀ (grey, right). The bound charge on the slab’s faces makes E_ind (grey, left). What is left is E (blue), the same in the slab and in the air beside it, since both span the same ΔV.`,
+  slab: { text: `Внутри диэлектрика: свободные заряды пластин создавали бы поле E₀ (серая стрелка справа). Связанные заряды на поверхностях диэлектрика создают поле Eинд (серая стрелка слева). Их сумма даёт результирующее поле E (синее). Оно одинаково в диэлектрике и в соседнем воздушном зазоре, поскольку оба участка имеют одну и ту же разность потенциалов ΔV.`,
     facts: s => { const x = M.fillOf(s.slide.t), r = M.slab(x, false); return [['диэлектрик введён', `${f(x * 100, 0)} %`], ['E₀ = σ_своб/ε₀ (вклад пластин)', `${f(r.Efree, 0)} В/м`], ['E_ind = σ_связ/ε₀', `${f(r.Eind, 0)} В/м`], ['E = E₀ − E_ind', `${f(r.E, 0)} В/м`], ['ΔV', `${f(r.V, 1)} В`], ['C', `${pF(r.C)} пФ`]]; } },
-  battery: { text: `The battery holds ΔV at ${M.V0} V, so E = ΔV/d can’t change. As the slab comes in, charge flows on to the plates facing it until there is κ times as much there.`,
+  battery: { text: `Батарея поддерживает постоянное напряжение ΔV = ${M.V0} В, поэтому E = ΔV/d не меняется. По мере введения диэлектрика на обращённые к нему обкладки поступает заряд, пока его количество не увеличится в κ раз.`,
     facts: s => { const r = M.slab(M.fillOf(s.slide.t), true); return [['C', `${pF(r.C)} пФ`], ['Q', `${f(r.Q * 1e12, 0)} пКл`], ['ΔV', `${f(r.V, 1)} В`], ['E', `${f(r.E, 0)} В/м`], ['U', `${f(r.U * 1e9, 1)} нДж`]]; } },
-  isolated: { text: `Nothing can flow on or off, so Q stays. The charge shifts toward the slab, the field falls everywhere in the gap, and so does ΔV.`,
+  isolated: { text: `Заряд не может поступать на обкладки или уходить с них, поэтому Q остаётся постоянным. Заряды перераспределяются ближе к диэлектрику, напряжённость поля во всём зазоре уменьшается, а вместе с ней уменьшается и ΔV.`,
     facts: s => { const r = M.slab(M.fillOf(s.slide.t), false); return [['C', `${pF(r.C)} пФ`], ['Q', `${f(r.Q * 1e12, 0)} пКл`], ['ΔV', `${f(r.V, 1)} В`], ['E', `${f(r.E, 0)} В/м`], ['U', `${f(r.U * 1e9, 1)} нДж`]]; } },
-  conductor: { text: `Cut open: no charge and no field inside, only on the surface. A Gaussian surface anywhere in the metal has E = 0 on it, so it encloses no charge. The same holds for a hollow shell, which is why a metal box shields what is inside.`,
+  conductor: { text: `В разрезе видно: внутри проводника нет избыточного заряда и электрического поля — заряд находится на поверхности. Для гауссовой поверхности, целиком расположенной в металле, E = 0, следовательно, заключённый заряд равен нулю. То же верно для полой оболочки: поэтому металлический корпус экранирует внутреннее пространство.`,
     facts: s => { const x = M.probeX(s.clock); return [['положение пробного заряда', `${f(x * 100, 1)} см`], ['E в этой точке', `${f(M.condAxisE(x), 0)} В/м`], ['E внутри', '0 В/м'], ['σ на полюсах', `±${f(M.condSigma(0) * 1e9, 1)} нКл/м²`], ['E на полюсах = σ/ε₀', `${f(M.condSigma(0) / M.EPS0, 0)} В/м`]]; } },
 };
