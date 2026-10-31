@@ -347,10 +347,16 @@ try {
 
     if (file === "gas-laws.html") {
       const before = (await page.locator("#pressureValue").innerText()).trim();
+      const particle = page.locator(".particle").first();
+      const initialParticleTransform = await particle.evaluate(el => getComputedStyle(el).transform);
       await page.locator("#t").fill("100");
       await page.locator("#t").dispatchEvent("input");
       const after = (await page.locator("#pressureValue").innerText()).trim();
+      const heatedParticleTransform = await particle.evaluate(el => getComputedStyle(el).transform);
       if (before === after) errors.push(file + ": temperature change did not update pressure");
+      if (initialParticleTransform !== heatedParticleTransform) {
+        errors.push(file + ": particle size appears to change with temperature, suggesting molecules expand when heated");
+      }
     }
 
     if (file === "knowledge-check.html") {
