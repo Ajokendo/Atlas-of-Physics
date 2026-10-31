@@ -11,9 +11,9 @@ let lang="ru";
 const symbols=new Set("H He Li Be B C N O F Ne Na Mg Al Si P S Cl Ar K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe Cs Ba La Ce Pr Nd Pm Sm Eu Gd Tb Dy Ho Er Tm Yb Lu Hf Ta W Re Os Ir Pt Au Hg Tl Pb Bi Po At Rn Fr Ra Ac Th Pa U Np Pu Am Cm Bk Cf Es Fm Md No Lr Rf Db Sg Bh Hs Mt Ds Rg Cn Nh Fl Mc Lv Ts Og".split(" "));
 function parseFormula(input){
  let i=0,coefficient=1;
- const leading=input.match(/^(\\d+)/);
+ const leading=input.match(/^(\d+)/);
  if(leading){coefficient=Number(leading[1]);if(!Number.isSafeInteger(coefficient)||coefficient<1)throw Error("Invalid coefficient");i=leading[1].length}
- function number(){const m=input.slice(i).match(/^\\d+/);if(!m)return 1;i+=m[0].length;const n=Number(m[0]);if(!Number.isSafeInteger(n)||n<1)throw Error("Invalid subscript");return n}
+ function number(){const m=input.slice(i).match(/^\d+/);if(!m)return 1;i+=m[0].length;const n=Number(m[0]);if(!Number.isSafeInteger(n)||n<1)throw Error("Invalid subscript");return n}
  function add(target,element,count){const value=(target[element]||0)+count;if(!Number.isSafeInteger(value))throw Error("Atom count is too large");target[element]=value}
  function group(nested){const out={};while(i<input.length&&input[i]!==")"){if(input[i]==="("){i++;const inner=group(true);if(Object.keys(inner).length===0)throw Error("Empty brackets are not valid");if(input[i]!==")")throw Error("Missing closing bracket");i++;const multiplier=number();for(const [element,count] of Object.entries(inner)){const value=count*multiplier;if(!Number.isSafeInteger(value))throw Error("Atom count is too large");add(out,element,value)}}else{const m=input.slice(i).match(/^[A-Z][a-z]?/);if(!m)throw Error("Unexpected character at position "+(i+1));const element=m[0];if(!symbols.has(element))throw Error("Unknown element symbol: "+element);i+=element.length;add(out,element,number())}}if(nested&&i>=input.length)throw Error("Missing closing bracket");return out}
  if(i>=input.length||!/^[A-Z]/.test(input.slice(i)))throw Error("Start with a valid element symbol");
