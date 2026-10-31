@@ -305,6 +305,44 @@
 
 **Место для иллюстрации 3.9-A — Geological Time Scale.** Вертикальная временная шкала от формирования Земли до современности; неравномерный масштаб должен быть явно обозначен.
 
+### Разобранный пример: определение относительного возраста слоёв и интрузии / Worked Example: Establishing the Relative Ages of Layers and an Intrusion
+
+Представим геологический разрез из трёх осадочных слоёв: A находится внизу, B залегает над ним, C — сверху. Магматическое тело D пересекает слои A и B, но не пересекает слой C.
+
+**Шаг 1.** По закону суперпозиции, если последовательность не опрокинута и не нарушена, слой A древнее слоя B, а слой B древнее слоя C.
+
+**Шаг 2.** По принципу пересечения интрузия D моложе слоёв A и B, которые она прорезает.
+
+**Шаг 3.** Поскольку D не пересекает слой C, а C перекрывает участок интрузии, доступные отношения позволяют заключить, что C сформировался после внедрения D.
+
+Итоговая последовательность от древнего к молодому:
+
+\[
+A\;\rightarrow\;B\;\rightarrow\;D\;\rightarrow\;C
+\]
+
+Это относительная последовательность, а не календарные даты. Чтобы определить численный возраст, нужны подходящие образцы и метод датирования. Если слои опрокинуты, разрез разломан или контакты неясны, сначала необходимо установить геологическую структуру.
+
+**Проверьте себя:** разлом пересекает слои A, B и C, но не смещает более молодой слой E, который перекрывает разлом. Что можно сказать о возрасте разлома относительно этих слоёв?
+
+Imagine a geological cross-section with three sedimentary layers: A at the bottom, B above it and C at the top. An igneous body D cuts through layers A and B but does not cut layer C.
+
+**Step 1.** Under the law of superposition, if the sequence has not been overturned or disturbed, layer A is older than B, and B is older than C.
+
+**Step 2.** Under the principle of cross-cutting relationships, intrusion D is younger than layers A and B, which it cuts through.
+
+**Step 3.** Because D does not cut layer C, and C overlies the intrusion, the available relationships indicate that C formed after D was emplaced.
+
+The sequence from oldest to youngest is:
+
+\[
+A\;\rightarrow\;B\;\rightarrow\;D\;\rightarrow\;C
+\]
+
+This is a relative sequence, not a set of calendar dates. Numerical ages require suitable samples and an appropriate dating method. If layers are overturned, the section is faulted or contacts are unclear, the geological structure must be established first.
+
+**Check your understanding:** a fault cuts layers A, B and C but does not displace a younger layer E that overlies the fault. What can you infer about the age of the fault relative to these layers?
+
 ## 3.10. Формирование материков и океанов / Formation of Continents and Oceans
 
 Лик Земли менялся на протяжении геологической истории. Континенты росли за счёт аккреции островных дуг, микроконтинентов и других террейнов, а океанические бассейны открывались и закрывались в результате движения плит.
