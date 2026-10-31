@@ -118,6 +118,14 @@ Third subject area of the unified **Atlas of Knowledge** portal.
 - Taxonomic complexity is acknowledged for argali populations; national Red Data Book categories are not conflated with global IUCN assessments.
 - The page references CMS/CAMI, UNEP, CBD and conservation organisations. Its structure, responsive layout, language switch, skip link and source links require final validation; full browser and mobile testing remains pending.
 
+## Final static validation — 31 October 2026
+- Audited the 13 Biology HTML pages against the complete Git branch tree; all relative/local links resolve to files in the branch.
+- Checked the 12 chapter pages for duplicate HTML IDs and balanced section, article, div and paragraph tags; no duplicate IDs or count mismatches were found.
+- Parsed all 13 inline JavaScript blocks with the JavaScript engine; all scripts passed syntax compilation.
+- Checked static DOM references and data-attribute hooks used by the interactive modules; no missing element IDs or missing data hooks were identified.
+- Confirmed viewport metadata, responsive media-query rules and RU/EN display styles across the chapter pages.
+- This is a static source audit, not a substitute for live browser testing. Cross-browser interaction, keyboard-only operation and real-device mobile rendering still require deployment/browser verification.
+
 ## Knowledge checks
 
 All ten global Biology chapters now include a bilingual five-question knowledge check (50 questions in Russian and 50 in English across the atlas). Each item provides three answer choices and explanatory feedback; learners can move through the set, see their running score, and restart the quiz. The language switch refreshes the active question and choices.
