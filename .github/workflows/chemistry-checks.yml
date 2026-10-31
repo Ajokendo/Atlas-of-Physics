@@ -6,12 +6,17 @@ on:
     paths:
       - "chemistry/**"
       - "catalog.html"
+      - "progress.html"
       - "portal.html"
       - "index.html"
       - ".github/workflows/chemistry-checks.yml"
   pull_request:
     paths:
       - "chemistry/**"
+      - "catalog.html"
+      - "portal.html"
+      - "progress.html"
+      - "index.html"
       - ".github/workflows/chemistry-checks.yml"
   workflow_dispatch:
 
