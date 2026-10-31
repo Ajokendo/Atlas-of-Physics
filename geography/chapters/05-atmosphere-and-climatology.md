@@ -421,6 +421,16 @@
 
 **Место для иллюстрации 5.18-A — Synoptic Map and Climate Analysis.** Учебная синоптическая карта с фронтами, изобарами, ветровыми стрелками и двумя климатограммами; данные должны быть учебными или снабжёнными проверяемым источником.
 
+## Источники и дальнейшее чтение / Sources and Further Reading
+
+1. World Meteorological Organization (WMO). *Guide to Instruments and Methods of Observation* and climate resources. https://wmo.int/
+2. NOAA National Centers for Environmental Information. *Climate Data Online*. https://www.ncei.noaa.gov/cdo-web/
+3. NASA. *The Earth's Energy Budget*. https://earthobservatory.nasa.gov/
+4. IPCC. *Sixth Assessment Report: The Physical Science Basis (AR6 WGI)*. https://www.ipcc.ch/report/ar6/wg1/
+5. Copernicus Climate Change Service. *Climate Data Store*. https://cds.climate.copernicus.eu/
+
+Для климатических норм использовать стандартизированный период и указывать его явно; для оценки современных изменений отдельно обозначать период наблюдений, базовый уровень сравнения и неопределённость данных.
+
 ## Редакционные и научные примечания
 
 - Концентрации атмосферных газов изменяются; при финальной публикации указывать дату и источник значений, особенно для CO₂ и других парниковых газов.
