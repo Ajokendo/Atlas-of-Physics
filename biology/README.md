@@ -124,6 +124,7 @@ Third subject area of the unified **Atlas of Knowledge** portal.
 - Parsed all 13 inline JavaScript blocks with the JavaScript engine; all scripts passed syntax compilation.
 - Checked static DOM references and data-attribute hooks used by the interactive modules; no missing element IDs or missing data hooks were identified.
 - Confirmed viewport metadata, responsive media-query rules and RU/EN display styles across the chapter pages.
+- Added explicit `type="button"` to every button in the Biology portal and chapter pages, including dynamically generated quiz answers; a second pass confirms zero buttons with an implicit submit type.
 - This is a static source audit, not a substitute for live browser testing. Cross-browser interaction, keyboard-only operation and real-device mobile rendering still require deployment/browser verification.
 
 ## Knowledge checks
