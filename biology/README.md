@@ -73,6 +73,13 @@ Third subject area of the unified **Atlas of Knowledge** portal.
 - Sources added include UNESCO's Sary-Chelek MAB profile, a 2015 walnut-fruit forest study, a 2025 vegetation-monitoring paper, the Kyrgyz Ministry's 2025 Besh-Aral notice, UNEP-WCMC's Western Tien Shan datasheet and UNDP's 2023 protected-area review.
 - These are regional foundations, not complete oblast checklists. Exact distributions, current conservation categories, abundance estimates and coordinates remain subject to taxonomic review and dated field evidence.
 
+## Regional biodiversity field dossiers — Issyk-Kul
+- The flora chapter now includes a bilingual regional dossier covering eastern lake deltas and wetlands, western dry foothills, Terskey Ala-Too spruce forests and the Sarychat-Ertash highlands. Plant records are framed at habitat/genera level where a complete locality-specific checklist is not available.
+- The fauna chapter now covers the proposed Kushtar micro-reserve bird observations reported in September 2026, Ramsar importance of Issyk-Kul for waterbirds, the FAO-supported fish-population study reported in December 2024, and the distinct high-mountain context of Sarychat-Ertash.
+- The 2026 Kushtar count is explicitly treated as a dated event observation, not an annual population estimate; Kushtar is described as a proposed micro-reserve. Historical Ramsar and KBA inventory figures are dated and not presented as current annual counts.
+- New references include UNESCO MAB, Ramsar site no. 1231, Key Biodiversity Areas site factsheets, FAO, CAMP Alatoo and peer-reviewed lake-basin research.
+- Current fish totals and endemism estimates remain provisional pending publication of an updated, taxonomically reviewed checklist.
+
 ## Learning framework
 - All ten subject chapters now include bilingual learning objectives and concise bilingual glossaries, placed before the knowledge check and styled responsively.
 - The objectives describe expected learner outcomes; glossaries define core terms in context. These sections are an introductory framework and will be expanded during scientific review.
