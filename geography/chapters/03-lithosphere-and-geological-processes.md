@@ -411,6 +411,16 @@
 
 **Место для иллюстрации 3.12-B — Interpreting a Geological Cross-Section.** Учебный разрез с легендой, слоями разных возрастов, складкой, разломом и интрузивным телом; предусмотреть задания с ответами в отдельном приложении.
 
+## Источники и дальнейшее чтение / Sources and Further Reading
+
+1. U.S. Geological Survey (USGS). *The Interior of the Earth*. https://www.usgs.gov/
+2. USGS. *This Dynamic Earth: The Story of Plate Tectonics*. https://pubs.usgs.gov/gip/dynamic/
+3. Incorporated Research Institutions for Seismology (IRIS). *Earthquake Science*. https://www.iris.edu/
+4. International Union of Geological Sciences (IUGS), International Commission on Stratigraphy. *International Chronostratigraphic Chart*. https://stratigraphy.org/chart
+5. British Geological Survey. *Geology and geological processes*. https://www.bgs.ac.uk/
+
+При подготовке окончательной версии следует сверять геологические термины и численные параметры с актуальной международной стратиграфической шкалой и региональными геологическими картами.
+
 ## Редакционные и научные примечания
 
 - Численные глубины, температуры и скорости процессов должны быть сверены с авторитетными геофизическими и геологическими источниками при финальной научной редактуре.
