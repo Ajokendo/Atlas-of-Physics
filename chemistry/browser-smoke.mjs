@@ -204,6 +204,12 @@ try {
       if (JSON.stringify(englishLabels) !== JSON.stringify(["Carbon-12", "Carbon-13", "Carbon-14"])) {
         errors.push(file + ": isotope selector labels are not localized in English");
       }
+      await isotopeButtons.filter({ hasText: "Углерод-14" }).click();
+      if ((await page.locator("#neutrons").innerText()).trim() !== "8" ||
+          (await page.locator("#mass").innerText()).trim() !== "14") {
+        errors.push(file + ": Carbon-14 model did not show 8 neutrons and mass number 14");
+      }
+      await isotopeButtons.filter({ hasText: "Углерод-12" }).click();
       await page.locator("#lang").click();
       if (await isotopeButtons.evaluateAll(items => items.some(button => button.type !== "button"))) {
         errors.push(file + ": isotope selector contains a button without explicit button type");
@@ -243,6 +249,15 @@ try {
     if (file === "chapters/solutions.html") {
       await page.locator("#n").fill("1");
       await page.locator("#v").fill("2");
+      await page.locator("#n").fill("0");
+      if (!(await page.locator("#result").innerText()).includes("0") ||
+          !(await page.locator("#feedback").innerText()).includes("Расчёт выполнен")) {
+        errors.push(file + ": zero solute amount was not handled as a valid zero concentration");
+      }
+      await page.locator("#v").fill("0");
+      if ((await page.locator("#result").innerText()).trim() !== "c = —") {
+        errors.push(file + ": zero solution volume was accepted");
+      }
       let result = (await page.locator("#result").innerText()).trim();
       if (!result.endsWith("моль/л")) {
         errors.push(file + ": Russian molar-concentration unit is not localized");
