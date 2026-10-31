@@ -183,7 +183,7 @@ export const PAGES = [
   {
     kicker: '15.8', title: 'RL-цепи', sub: 'нарастание и спад тока, τ = L/R',
     body: `
-      <p class="lede">${M.RL.E} V, ${M.RL.R} Ω, ${M.RL.L} H. Around the loop ε − <i>IR</i> − <i>L dI</i>/<i>dt</i> = 0, so</p>
+      <p class="lede">В цепи: источник ${M.RL.E} В, сопротивление ${M.RL.R} Ом и индуктивность ${M.RL.L} Гн. По второму закону Кирхгофа для контура ε − <i>IR</i> − <i>L dI</i>/<i>dt</i> = 0, поэтому</p>
       <div class="eq"><i>I</i> = (ε/<i>R</i>)(1 − <i>e</i><sup>−<i>t</i>/τ</sup>), &nbsp;τ = <i>L</i>/<i>R</i></div>
       <p>Вначале катушка ведёт себя как <b>разомкнутый выключатель</b>: <i>I</i> = 0, и всё напряжение ${M.RL.E} В приложено к ней. Через некоторое время она становится <b>обычным проводом</b>: <i>I</i> = ε/<i>R</i> = ${f(M.RL.Imax, 0)} А. Если отключить батарею, катушка поддерживает ток <i>I</i><sub>0</sub><i>e</i><sup>−<i>t</i>/τ</sup>, а энергия ½<i>LI</i><sup>2</sup> = ${f(0.5 * M.RL.L * M.RL.Imax ** 2, 0)} Дж превращается в тепло. τ = ${f(M.RL.tau, 1)} с.</p>
       ${two('iRL', 'vRL', { xlabel: 't (с)', ylabel: 'I (А)', rlabel: 'ΔV (В)', label: 'Ток и напряжение на катушке в зависимости от времени: нарастание и спад',
@@ -196,13 +196,13 @@ export const PAGES = [
   {
     kicker: '15.9', title: 'Колебания в LC-контуре', sub: 'перетекание заряда через катушку',
     body: `
-      <p class="lede">Charge a ${f(M.LC.C * 1e6, 0)} µF capacitor to ${f(M.LC.Q * 1e6, 0)} µC and connect it to a ${f(M.LC.L * 1e3, 0)} mH coil. The charge flows off through the coil, overshoots, charges the plates the other way, and flows back.</p>
+      <p class="lede">Зарядим конденсатор ёмкостью ${f(M.LC.C * 1e6, 0)} мкФ до заряда ${f(M.LC.Q * 1e6, 0)} мкКл и подключим его к катушке индуктивностью ${f(M.LC.L * 1e3, 0)} мГн. Заряд начинает проходить через катушку, затем перезаряжает обкладки в противоположном направлении и возвращается обратно.</p>
       ${steps([
         ['<i>q</i>/<i>C</i> + <i>L dI</i>/<i>dt</i> = 0', 'loop rule'],
         ['<i>L d</i><sup>2</sup><i>q</i>/<i>dt</i><sup>2</sup> + <i>q</i>/<i>C</i> = 0', '<i>I</i> = <i>dq</i>/<i>dt</i>'],
         ['<i>q</i> = <i>Q</i> cos ω<i>t</i>, &nbsp;<i>I</i> = −ω<i>Q</i> sin ω<i>t</i>', `ω = 1/√(<i>LC</i>) = ${f(M.LC.w, 0)} rad/s`],
       ])}
-      <p>The period is <i>T</i> = 2π√(<i>LC</i>) = ${f(M.LC.T * 1e3, 2)} ms (${f(M.LC.f, 0)} Hz); the figure runs ${Math.round(M.LC.slow / 10) * 10}× slower. The current peaks, ω<i>Q</i> = ${f(M.LC.Imax * 1e3, 0)} mA, as <i>q</i> passes 0, and is zero when the plates are full: a quarter period apart. The coil’s back emf is what carries the current past <i>q</i> = 0.</p>
+      <p>Период колебаний <i>T</i> = 2π√(<i>LC</i>) = ${f(M.LC.T * 1e3, 2)} мс (${f(M.LC.f, 0)} Гц); анимация замедлена в ${Math.round(M.LC.slow / 10) * 10} раз. Сила тока достигает максимума ω<i>Q</i> = ${f(M.LC.Imax * 1e3, 0)} мА, когда заряд <i>q</i> проходит через ноль, и равна нулю, когда конденсатор полностью заряжен. Эти состояния разделены четвертью периода. ЭДС самоиндукции катушки поддерживает ток и не даёт ему остановиться при <i>q</i> = 0.</p>
       ${two('qLC', 'iLC', { xlabel: 't (мс)', ylabel: 'q (мкКл)', rlabel: 'I (мА)', label: 'Заряд верхней обкладки и ток в зависимости от времени',
         series: [{ pts: samples(200, 0, 2 * M.LC.T * 1e3, t => M.lcScene(t * 1e-3).q * 1e6) }, { r: 1, pts: samples(200, 0, 2 * M.LC.T * 1e3, t => M.lcScene(t * 1e-3).I * 1e3) }],
         marks: [[M.LC.T * 1e3, 100, 'T', 6, 14]] })}
