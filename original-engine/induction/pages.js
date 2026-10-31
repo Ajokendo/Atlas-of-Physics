@@ -62,7 +62,7 @@ export const PAGES = [
   {
     kicker: 'Глава 15', title: 'Электромагнитная индукция', sub: 'изменение магнитного потока создаёт ЭДС',
     body: `
-      <p class="lede">Currents make magnetic fields. Faraday found the reverse: a <b>changing</b> magnetic flux through a loop drives a current around it.</p>
+      <p class="lede">Электрический ток создаёт магнитное поле. Фарадей открыл и обратное явление: <b>изменяющийся</b> магнитный поток через контур вызывает в нём электрический ток.</p>
       <div class="eq">Φ<sub><i>B</i></sub> = ∫<i>B</i>·<i>dA</i> &nbsp;&nbsp; ε = −<i>d</i>Φ<sub><i>B</i></sub>/<i>dt</i></div>
       <p>Магнитный поток — это интеграл магнитного поля по поверхности, натянутой на контур; измеряется в веберах (Тл·м²). Для катушки с <i>N</i> витками ε = −<i>N d</i>Φ/<i>dt</i>. ЭДС равна циркуляции ∮<i>E</i>·<i>ds</i> <b>индуцированного электрического поля</b>, линии которого замкнуты; такое поле не является потенциальным. Здесь магнит приближается к контуру и удаляется от него, а ЭДС равна отрицательному наклону графика Φ.</p>
       ${two('phi0', 'emf0', { xlabel: 't (с)', ylabel: 'Φ (мкВб)', rlabel: 'ε (мкВ)', label: 'Магнитный поток через контур и ЭДС в зависимости от времени',
@@ -74,7 +74,7 @@ export const PAGES = [
   {
     kicker: '15.1', title: 'Правило Ленца', sub: 'индуцированный ток противодействует изменению',
     body: `
-      <p class="lede">The minus sign: the induced current makes a field <i>B</i><sub>ind</sub> that <b>opposes the change</b> in flux, not the flux itself.</p>
+      <p class="lede">Знак минус означает, что индукционный ток создаёт поле <i>B</i><sub>ind</sub>, которое <b>противодействует изменению</b> магнитного потока, а не самому потоку.</p>
       <table class="data"><tr><th>case</th><th>B at the loop</th><th>ε</th><th>B<sub>ind</sub></th></tr>${lenzRows}</table>
       <ul class="rules">
         <li>поток увеличивается: <i>B</i><sub>ind</sub> направлено против <i>B</i>;</li>
@@ -89,9 +89,9 @@ export const PAGES = [
   {
     kicker: '15.2', title: 'Взаимная индукция', sub: 'изменение одного тока создаёт ЭДС в другой катушке',
     body: `
-      <p class="lede">A changing current in coil 1 changes its field through coil 2. That flux is proportional to <i>I</i><sub>1</sub>, so</p>
+      <p class="lede">Изменение тока в катушке 1 изменяет магнитное поле, пронизывающее катушку 2. Магнитный поток пропорционален <i>I</i><sub>1</sub>, поэтому</p>
       <div class="eq">ε<sub>2</sub> = −<i>N</i><sub>2</sub><i>d</i>Φ<sub>2</sub>/<i>dt</i> = −<i>M dI</i><sub>1</sub>/<i>dt</i></div>
-      <p>The <b>mutual inductance</b> <i>M</i> is geometry: ${f(M.COILS.M * 1e6, 0)} µH for these 100-turn coils. On an <b>iron core</b> the iron carries the flux through both windings, μ<sub>r</sub> ≈ ${M.CORE.muR} times stronger: <i>M</i> = ${f(M.CORE.M * 1e3, 0)} mH. As <i>I</i>(<i>t</i>) rises, <i>B</i>(<i>t</i>) grows left and <i>B</i><sub>ind</sub> points right.</p>
+      <p><b>Взаимная индуктивность</b> <i>M</i> зависит от геометрии катушек: для этих катушек со 100 витками она равна ${f(M.COILS.M * 1e6, 0)} мкГн. <b>Железный сердечник</b> проводит магнитный поток через обе обмотки; магнитная проницаемость μ<sub>r</sub> ≈ ${M.CORE.muR}, поэтому <i>M</i> = ${f(M.CORE.M * 1e3, 0)} мГн. По мере роста <i>I</i>(<i>t</i>) поле <i>B</i>(<i>t</i>) усиливается и направлено влево, а <i>B</i><sub>ind</sub> — вправо.</p>
       ${two('i1', 'emf2', { xlabel: 't (с)', ylabel: 'I₁ (А)', rlabel: 'ε₂ (мВ)', label: 'Ток в катушке 1 и ЭДС в катушке 2 в зависимости от времени',
         series: [{ pts: samples(120, 0, 6, t => M.coilsScene(t).I1) }, { r: 1, pts: samples(120, 0, 6, t => M.coilsScene(t).emf * 1e3) }] })}
       <p class="hintline">Нажмите на любой из контуров. ${sq('4 А')} в катушке 1, 0,5 мА в катушке 2, 0,25 Тл в сердечнике.</p>`,
@@ -101,7 +101,7 @@ export const PAGES = [
   {
     kicker: '15.3', title: 'Контур рядом с проводом', sub: 'движение в область более слабого поля',
     body: `
-      <p class="lede">A ${M.WIRE.b * 100} × ${M.WIRE.a * 100} cm loop moves away from a wire carrying ${M.WIRE.I} A at ${M.WIRE.v * 100} cm/s. <i>B</i> = μ<sub>0</sub><i>I</i>/2π<i>r</i> varies, so sum it in strips:</p>
+      <p class="lede">Контур размером ${M.WIRE.b * 100} × ${M.WIRE.a * 100} см удаляется от провода, по которому течёт ток ${M.WIRE.I} А, со скоростью ${M.WIRE.v * 100} см/с. Поле <i>B</i> = μ<sub>0</sub><i>I</i>/2π<i>r</i> неоднородно, поэтому просуммируем его вклад по узким полосам:</p>
       ${steps([
         ['Φ = ∫<sub><i>r</i></sub><sup><i>r</i>+<i>a</i></sup> (μ<sub>0</sub><i>I</i>/2π<i>s</i>) <i>b ds</i>', 'strips'],
         ['&nbsp;&nbsp;&nbsp;= (μ<sub>0</sub><i>Ib</i>/2π) ln((<i>r</i> + <i>a</i>)/<i>r</i>)', ''],
@@ -133,7 +133,7 @@ export const PAGES = [
   {
     kicker: '15.5', title: 'Контур пересекает поле', sub: 'вклад дают только стороны на границе поля',
     body: `
-      <p class="lede">A ${M.CROSS.w * 100} × ${M.CROSS.h * 100} cm loop crosses a ${M.CROSS.W * 100} cm region of ${M.CROSS.B} T at ${M.CROSS.v} m/s.</p>
+      <p class="lede">Контур размером ${M.CROSS.w * 100} × ${M.CROSS.h * 100} см пересекает область магнитного поля шириной ${M.CROSS.W * 100} см с индукцией ${M.CROSS.B} Тл. Скорость движения контура — ${M.CROSS.v} м/с.</p>
       <table class="data">
         <tr><th>этап</th><th>Φ</th><th>ε</th></tr>
         <tr><td>входит</td><td>увеличивается</td><td>−<i>Bhv</i> = −${f(M.CROSS.B * M.CROSS.h * M.CROSS.v * 1e3, 0)} мВ</td></tr>
@@ -167,13 +167,13 @@ export const PAGES = [
   {
     kicker: '15.7', title: 'Индуктивность', sub: 'катушка противодействует изменению собственного тока',
     body: `
-      <p class="lede">A coil’s current makes flux through its own turns. Change the current and the flux changes, inducing a <b>back emf</b> that opposes the change.</p>
+      <p class="lede">Ток в катушке создаёт магнитный поток через её собственные витки. При изменении тока меняется и поток, в результате чего возникает <b>ЭДС самоиндукции</b>, препятствующая этому изменению.</p>
       ${steps([
         ['<i>L</i> = <i>N</i>Φ/<i>I</i>, &nbsp;ε<sub><i>L</i></sub> = −<i>L dI</i>/<i>dt</i>', 'henries, H'],
         ['<i>B</i> = μ<sub>0</sub><i>nI</i> → <i>L</i> = μ<sub>0</sub><i>N</i><sup>2</sup><i>A</i>/ℓ', `${f(M.SOL.L * 1e3, 2)} mH`],
         ['<i>U</i> = ½<i>LI</i><sup>2</sup>, &nbsp;<i>u</i> = <i>B</i><sup>2</sup>/2μ<sub>0</sub>', 'stored'],
       ])}
-      <p>${M.SOL.N} turns on ${M.SOL.len * 100} cm, radius ${M.SOL.r * 100} cm (μ<sub>0</sub><i>nI</i> is ${f((1 - M.solCentreB(1) / (M.MU0 * M.SOL.n)) * 100, 0)} % high for a coil this short). Ramping 0 → ${M.SOL.Imax} A in ${M.SOL.ramp} s gives ε<sub><i>L</i></sub> = ${f(-M.SOL.L * M.SOL.Imax / M.SOL.ramp * 1e3, 2)} mV; a steady current, none. Inductors smooth out sudden jumps.</p>
+      <p>Катушка содержит ${M.SOL.N} витков, её длина — ${M.SOL.len * 100} см, радиус — ${M.SOL.r * 100} см. Для такой короткой катушки приближение μ<sub>0</sub><i>nI</i> завышает поле на ${f((1 - M.solCentreB(1) / (M.MU0 * M.SOL.n)) * 100, 0)} %. При увеличении тока от 0 до ${M.SOL.Imax} А за ${M.SOL.ramp} с ЭДС самоиндукции ε<sub><i>L</i></sub> = ${f(-M.SOL.L * M.SOL.Imax / M.SOL.ramp * 1e3, 2)} мВ; при постоянном токе она равна нулю. Индуктивность сглаживает резкие изменения тока.</p>
       ${two('iS', 'eS', { xlabel: 't (с)', ylabel: 'I (А)', rlabel: 'ε_L (мВ)', label: 'Ток и ЭДС самоиндукции в зависимости от времени',
         series: [{ pts: samples(200, 0, 4, t => M.solCurrent(t).I) }, { r: 1, pts: samples(400, 0, 3.999, t => M.solScene(t).emfL * 1e3) }] })}
       <p class="hintline">Показаны 25 из 400 витков. Нажмите, чтобы увидеть поток через один виток. ${sq('5 mT')}.</p>`,
