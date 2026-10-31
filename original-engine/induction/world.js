@@ -225,7 +225,7 @@ export function buildWorld(E) {
     const mg = magnet(g, D1, c.pole === 'N');
     magnetLines(mg, D1, c.pole === 'N', { thetas: [22, 48, 80, 118], phis: [0, 180], box: 0.16, mat: shadeMat('dark', { opacity: 0.8 }), r: 0.01 });
     const B = bArrow(g, 0.018, 'Magnet’s field at the loop'), ind = dashArrow(g), cur = ringArrows(g);
-    const v = arrow(g, 'ink', { r: 0.014, head: 0.09, headR: 0.042, name: 'Velocity' });
+    const v = arrow(g, 'ink', { r: 0.014, head: 0.09, headR: 0.042, name: 'Скорость' });
     label('board', c.name, () => o.clone().add(V(-0.75, 0.82, 0)));
     label('vec', grey('<i>B</i>'), () => tipOf(B, 0.14));
     label('vec', grey('<i>B</i><sub>ind</sub>'), () => ind.tip(-0.22));
@@ -296,7 +296,7 @@ export function buildWorld(E) {
   const loop3 = new THREE.Group(); g3.add(loop3);
   path(loop3, [V(-b3 / 2, 0, 0), V(b3 / 2, 0, 0), V(b3 / 2, -a3, 0), V(-b3 / 2, -a3, 0), V(-b3 / 2, 0, 0)], 0.026, 'ink', 'Moving loop');
   for (const p of [V(-b3 / 2, 0, 0), V(b3 / 2, 0, 0), V(b3 / 2, -a3, 0), V(-b3 / 2, -a3, 0)]) part(loop3, new THREE.SphereGeometry(0.026, 12, 8), { tone: 'hi', pal: 'ink', pos: p.toArray(), name: 'Движущийся контур' });
-  const I3 = rectArrows(g3), v3 = arrow(g3, 'ink', { r: 0.014, head: 0.09, headR: 0.042, name: 'Velocity' });
+  const I3 = rectArrows(g3), v3 = arrow(g3, 'ink', { r: 0.014, head: 0.09, headR: 0.042, name: 'Скорость' });
   label('vec', '<i>I</i>', () => tipOf(I3.sides[3].A, 0.14));
   label('vec', '<i>v</i>', () => tipOf(v3, 0.12));
   const bind3 = new THREE.Group(); g3.add(bind3);
@@ -320,7 +320,7 @@ export function buildWorld(E) {
   part(bar4, box(0.13, L4, 0.13, 0.02), { tone: 'hi', name: 'Металлический стержень' });
   const plus4 = marks(bar4, RED, 8), minus4 = marks(bar4, BLUE, 8);
   const E4 = onTop(arrow(bar4, 'blue', { r: 0.02, head: 0.1, headR: 0.05, name: 'Электрическое поле в стержне' }));
-  const v4 = arrow(g4, 'ink', { r: 0.016, head: 0.1, headR: 0.048, name: 'Velocity' });
+  const v4 = arrow(g4, 'ink', { r: 0.016, head: 0.1, headR: 0.048, name: 'Скорость' });
   label('vec blue', '<i>E</i>', () => tipOf(E4, 0.1)?.add(V(0.22, 0.12, 0)));
   label('vec', '<i>v</i>', () => tipOf(v4, 0.12));
   label('tick', '<i>L</i>', () => bar4.localToWorld(V(-0.18, -L4 / 4, 0)));
@@ -341,7 +341,7 @@ export function buildWorld(E) {
   const loop5 = new THREE.Group(); g5.add(loop5);
   path(loop5, [V(-w5, h5 / 2, 0), V(0, h5 / 2, 0), V(0, -h5 / 2, 0), V(-w5, -h5 / 2, 0), V(-w5, h5 / 2, 0)], 0.026, 'ink', 'Moving loop');
   for (const p of [V(-w5, h5 / 2, 0), V(0, h5 / 2, 0), V(0, -h5 / 2, 0), V(-w5, -h5 / 2, 0)]) part(loop5, new THREE.SphereGeometry(0.026, 12, 8), { tone: 'hi', pal: 'ink', pos: p.toArray(), name: 'Движущийся контур' });
-  const I5 = rectArrows(g5), v5 = arrow(g5, 'ink', { r: 0.014, head: 0.09, headR: 0.042, name: 'Velocity' });
+  const I5 = rectArrows(g5), v5 = arrow(g5, 'ink', { r: 0.014, head: 0.09, headR: 0.042, name: 'Скорость' });
   label('vec', '<i>I</i>', () => tipOf(I5.sides[0].A, 0.14));
   label('vec', '<i>v</i>', () => tipOf(v5, 0.12));
   // breakdown: the push along each side that is in the field, with its charges
@@ -363,7 +363,7 @@ export function buildWorld(E) {
   label('tick', '<i>R</i>', () => V(xL6 - 0.2, (yb6 + yt6) / 2, 0));
   const bar6 = new THREE.Group(); g6.add(bar6);
   part(bar6, box(0.11, yt6 - yb6 + 0.34, 0.11, 0.02), { tone: 'hi', name: 'Скользящий стержень (0,2 кг)' });
-  const v6 = arrow(g6, 'ink', { r: 0.016, head: 0.1, headR: 0.048, name: 'Velocity' });
+  const v6 = arrow(g6, 'ink', { r: 0.016, head: 0.1, headR: 0.048, name: 'Скорость' });
   const F6 = onTop(arrow(g6, 'red', { r: 0.022, head: 0.12, headR: 0.06, name: 'Магнитная сила на стержень' }));
   label('vec', '<i>v</i>', () => tipOf(v6, 0.12));
   label('vec red', '<i>F</i><sub>B</sub>', () => tipOf(F6, 0.16));
@@ -388,13 +388,13 @@ export function buildWorld(E) {
   label('vec', grey('<i>B</i>'), () => tipOf(B7[3].a, 0.12));
   label('vec red', '', () => V(X7 - L7 / 2 + 0.2, hi7 + 0.05, 0), () => (S.sol && S.sol.dI !== 0 ? (S.sol.dI > 0 ? '+' : '−') : ''));
   label('vec blue', '', () => V(X7 + L7 / 2 - 0.2, hi7 + 0.05, 0), () => (S.sol && S.sol.dI !== 0 ? (S.sol.dI > 0 ? '−' : '+') : ''));
-  label('tick', '', () => V(X7 + 0.6, hi7 + 0.05, 0), () => S.sol ? `ε<sub>L</sub> = ${fmt(S.sol.emfL * 1e3, 2)} mV` : '');
+  label('tick', '', () => V(X7 + 0.6, hi7 + 0.05, 0), () => S.sol ? `ε<sub>L</sub> = ${fmt(S.sol.emfL * 1e3, 2)} мВ` : '');
   // breakdown: the cross-section of one turn with B·dA patches
   const disc7 = part(g7, (() => { const d = new THREE.CircleGeometry(R7 - 0.03, 40); d.rotateY(Math.PI / 2); return d; })(), { tone: 'lo', name: 'Площадь одного витка', mat: flatMat('board', 0.7), pos: [X7 + 0.42, y7, 0] });
   disc7.userData.noEdge = true;
   const dA7 = [[0, 0], ...[0, 1, 2, 3, 4, 5].map(i => [0.2 * Math.cos(i * Math.PI / 3), 0.2 * Math.sin(i * Math.PI / 3)])].map(([y, z]) => ({ y, z, a: bArrow(g7, 0.013, 'B·dA through one turn') }));
   g7.userData.focus = () => ({ target: [X7, y7 + 0.2, 0], radius: 1.7 });
-  label('tick', 'Φ = <i>BA</i> per turn', when(g7, () => V(X7 + 0.95, y7 - R7 - 0.35, 0)));
+  label('tick', 'Φ = <i>BA</i> на виток', when(g7, () => V(X7 + 0.95, y7 - R7 - 0.35, 0)));
 
   // ======================================================================================
   // 8 · an RL circuit: growth and decay
@@ -424,8 +424,8 @@ export function buildWorld(E) {
   // breakdown: each ΔV around the loop, live
   label('tick', '', when(g8, () => V(xB8 - 0.25, 1.2, 0)), () => S.rl ? `+${fmt(S.rl.emfBat, 1)} В` : '');
   label('tick', '', when(g8, () => V(X8 + 0.65, yt8 - 0.35, 0)), () => S.rl ? `−<i>IR</i> = −${fmt(S.rl.VR, 1)} В` : '');
-  label('board', '', when(g8, () => V(xR8 + 0.32, 1.25, 0)), () => S.rl ? `−<i>L dI</i>/<i>dt</i> = ${fmt(-S.rl.VL, 1)} V` : '');
-  label('board', '', when(g8, () => V(X8 - 1.2, yb8 - 0.3, 0)), () => S.rl ? `sum: ${fmt(S.rl.emfBat, 1)} − ${fmt(S.rl.VR, 1)} − (${fmt(S.rl.VL, 1)}) = 0` : '');
+  label('board', '', when(g8, () => V(xR8 + 0.32, 1.25, 0)), () => S.rl ? `−<i>L dI</i>/<i>dt</i> = ${fmt(-S.rl.VL, 1)} В` : '');
+  label('board', '', when(g8, () => V(X8 - 1.2, yb8 - 0.3, 0)), () => S.rl ? `сумма: ${fmt(S.rl.emfBat, 1)} − ${fmt(S.rl.VR, 1)} − (${fmt(S.rl.VL, 1)}) = 0` : '');
 
   // ======================================================================================
   // 9 · an LC circuit: the charge sloshes between the plates through the coil
@@ -448,7 +448,7 @@ export function buildWorld(E) {
   const slab9 = part(g9, box(pw9 - 0.04, gap9 - 0.02, pd9 - 0.04, 0.005), { tone: 'lo', name: 'Энергия поля', mat: flatMat('blue', 0.3), pos: [xC9, yc9, 0] });
   slab9.userData.noEdge = true;
   g9.userData.focus = () => ({ target: [xC9, yc9, 0], radius: 1.7 });
-  label('tick', '', when(g9, () => V(xC9 - 1.2, yc9 + 0.2, 0)), () => S.lc ? `Δ<i>V</i> = <i>q</i>/<i>C</i> = ${fmt(S.lc.V, 2)} V` : '');
+  label('tick', '', when(g9, () => V(xC9 - 1.2, yc9 + 0.2, 0)), () => S.lc ? `Δ<i>V</i> = <i>q</i>/<i>C</i> = ${fmt(S.lc.V, 2)} В` : '');
   label('tick', '', when(g9, () => V(xC9 - 1.2, yc9 - 0.12, 0)), () => S.lc ? `<i>U<sub>E</sub></i> = ${fmt(S.lc.UE * 1e3, 3)} mJ` : '');
   // the coil: 1600 turns, 12 drawn
   const gC9 = asm('lcCoil', root, { title: 'Катушка', sub: 'U_B = ½LI², энергия в магнитном поле внутри катушки' });
