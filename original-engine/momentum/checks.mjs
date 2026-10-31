@@ -163,8 +163,8 @@ import { PRACTICE } from './practice.js';
   // 9: x_cm by a midpoint sum of λ(x)·x; the x² rod's mass and x_cm too
   { const L = M.ROD.L, l1 = x => M.lam('N', x), l2 = x => M.ROD.lam0 * x * x / (L * L);
     keyed(9, 0, integrate(x => x * l1(x), 0, L) / integrate(l1, 0, L), 'linear rod x_cm, ∫xλ dx / ∫λ dx');
-    states(9, 1, `${integrate(l2, 0, L).toFixed(2)} kg`, 'x² rod mass, ∫λ dx');
-    states(9, 1, `${(integrate(x => x * l2(x), 0, L) / integrate(l2, 0, L)).toFixed(2)} m`, 'x² rod x_cm, ∫xλ dx / ∫λ dx'); }
+    states(9, 1, `${integrate(l2, 0, L).toFixed(2)} кг`, 'x² rod mass, ∫λ dx');
+    states(9, 1, `${(integrate(x => x * l2(x), 0, L) / integrate(l2, 0, L)).toFixed(2)} м`, 'x² rod x_cm, ∫xλ dx / ∫λ dx'); }
   // 10: plates by a fine strip sum
   keyed(10, 0, M.stripSum(M.semiW, M.SEMI.R, 20000), 'semicircle u_cm, 20 000 strips');
   keyed(10, 1, M.stripSum(M.triW, M.TRI.h, 20000), 'triangle u_cm, 20 000 strips');
@@ -173,7 +173,7 @@ import { PRACTICE } from './practice.js';
     for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) { const p = [(i + 0.5) * d, (j + 0.5) * d]; if (M.inEll(p)) { m += 1; mx += p[0]; } }
     keyed(11, 0, mx / m, 'L x_cm, grid of cells');
     const Ho = M.HOLE, w = x => Ho.s - 2 * Math.sqrt(Math.max(Ho.r ** 2 - (x - Ho.c[0]) ** 2, 0));
-    states(11, 1, `${f2(100 * integrate(x => x * w(x), -Ho.s / 2, Ho.s / 2, 200000) / integrate(w, -Ho.s / 2, Ho.s / 2, 200000))} cm`, 'holed square x_cm, vertical strips'); }
+    states(11, 1, `${f2(100 * integrate(x => x * w(x), -Ho.s / 2, Ho.s / 2, 200000) / integrate(w, -Ho.s / 2, Ho.s / 2, 200000) )} см`, 'holed square x_cm, vertical strips'); }
 }
 
 for (const r of rows) console.log(r.filter(Boolean).join('  '));
