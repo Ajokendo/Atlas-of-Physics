@@ -390,6 +390,36 @@
 5. Проверять таксономические определения экспертами.
 6. Не публиковать точные координаты уязвимых популяций, если это повышает риск браконьерства или незаконного сбора.
 
+## Разобранный пример: оценка проективного покрытия растений / Worked Example: Estimating Plant Cover
+
+Исследователь разместил на пастбище учебную квадратную рамку, разделённую на 25 одинаковых ячеек. В 15 ячейках присутствует растительность. Для упрощённой оценки примем, что каждая ячейка имеет одинаковую площадь и учитывается как занятая, если в ней есть растительный покров.
+
+Доля занятых ячеек:
+
+\[
+C=\frac{15}{25}\times100\%=60\%
+\]
+
+Оценочное проективное покрытие составляет **60%**. Это означает, что при выбранном способе учёта растительность проецируется на 60% площади рамки.
+
+**Ограничения метода:** результат зависит от размера рамки, числа ячеек, сезона, наблюдателя и того, учитываются ли перекрывающиеся ярусы растений. Простое деление числа занятых ячеек даёт грубую оценку, а не точное измерение биомассы или продуктивности пастбища. Для сравнения участков нужно применять одинаковый протокол и делать несколько повторов в разных точках.
+
+**Проверьте себя:** если растительность обнаружена в 18 из 30 одинаковых ячеек, каким будет оценочное покрытие?
+
+A researcher places a square sampling frame in a pasture. The frame is divided into 25 equal cells, and vegetation is present in 15 of them. For this simplified estimate, assume that all cells have equal area and count a cell as occupied when plant cover is present.
+
+The proportion of occupied cells is:
+
+\[
+C=\frac{15}{25}\times100\%=60\%
+\]
+
+The estimated plant cover is **60%**. This means that, under the chosen observation method, vegetation is projected over 60% of the frame’s area.
+
+**Method limitations:** the result depends on frame size, the number of cells, season, observer and whether overlapping vegetation layers are counted separately. Dividing occupied cells by total cells provides a rough estimate, not a direct measurement of biomass or pasture productivity. Comparisons between sites require the same protocol and repeated samples at several locations.
+
+**Check your understanding:** if vegetation is present in 18 of 30 equal cells, what is the estimated cover?
+
 ## 21.14. Практические работы
 ## Practical Activities
 
