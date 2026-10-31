@@ -94,7 +94,7 @@ export const PAGES = [
       <p>The <b>mutual inductance</b> <i>M</i> is geometry: ${f(M.COILS.M * 1e6, 0)} µH for these 100-turn coils. On an <b>iron core</b> the iron carries the flux through both windings, μ<sub>r</sub> ≈ ${M.CORE.muR} times stronger: <i>M</i> = ${f(M.CORE.M * 1e3, 0)} mH. As <i>I</i>(<i>t</i>) rises, <i>B</i>(<i>t</i>) grows left and <i>B</i><sub>ind</sub> points right.</p>
       ${two('i1', 'emf2', { xlabel: 't (с)', ylabel: 'I₁ (А)', rlabel: 'ε₂ (мВ)', label: 'Ток в катушке 1 и ЭДС в катушке 2 в зависимости от времени',
         series: [{ pts: samples(120, 0, 6, t => M.coilsScene(t).I1) }, { r: 1, pts: samples(120, 0, 6, t => M.coilsScene(t).emf * 1e3) }] })}
-      <p class="hintline">Нажмите на любой из контуров. ${sq('4 A')} in coil 1, 0.5 mA in coil 2, 0.25 T in the iron.</p>`,
+      <p class="hintline">Нажмите на любой из контуров. ${sq('4 А')} в катушке 1, 0,5 мА в катушке 2, 0,25 Тл в сердечнике.</p>`,
     cam: { target: [ST.mutual, 1.95, 0], az: 26, el: 10, dist: 13.5 }, lit: 'mutual', scene: 'mutual', look: {},
     fig: 'Две катушки и железный сердечник',
   },
