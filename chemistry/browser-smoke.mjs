@@ -64,6 +64,22 @@ try {
       languageChecks++;
     }
 
+    if (file === "chapters/chemical-bonding.html") {
+      const detail = page.locator(".detail");
+      if (await detail.getAttribute("aria-live") !== "polite") {
+        errors.push(file + ": dynamic bond explanation is not announced to assistive technology");
+      }
+      await page.locator('[data-type="ionic"]').click();
+      if (!(await page.locator("#detailText").innerText()).includes("кристаллическую решётку")) {
+        errors.push(file + ": ionic bonding explanation does not distinguish a crystal lattice from an isolated ion pair");
+      }
+      await page.locator("#lang").click();
+      if (!(await page.locator("#detailText").innerText()).includes("crystal lattice")) {
+        errors.push(file + ": ionic bonding clarification is missing in English");
+      }
+      await page.locator("#lang").click();
+    }
+
     if (file === "chapters/chemical-formulae.html") {
       const formula = page.locator("#formula");
       const calculate = page.locator("#calc");
