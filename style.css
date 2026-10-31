@@ -3,3 +3,8 @@
 /* Accessibility: visible keyboard focus and reduced-motion support. */
 :focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+
+/* Keep long Russian lesson headings readable on narrow screens. */
+.lesson h1{hyphens:auto;overflow-wrap:break-word}
+@media(max-width:560px){.lesson h1{font-size:clamp(38px,11vw,58px)!important}}
