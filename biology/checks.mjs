@@ -58,6 +58,25 @@ for (const chapter of coreChapters) {
   if (!/<span\s+class=["'][^"']*\bru\b/i.test(match[1])) errors.push("chapters/" + chapter + ": references missing Russian description");
   if (!/<span\s+class=["'][^"']*\ben\b/i.test(match[1])) errors.push("chapters/" + chapter + ": references missing English description");
 }
+const ecologyFile = fs.readFileSync(path.join(root, "chapters", "ecology.html"), "utf8");
+const chainButtons = [...ecologyFile.matchAll(/<button\\b[^>]*data-chain="[^"]+"[^>]*>/gi)];
+if (chainButtons.length !== 5) errors.push("chapters/ecology.html: expected five food-chain controls");
+if ((ecologyFile.match(/data-chain="[^"]+" aria-pressed="false"><span class="ru">/g) || []).length !== 5) {
+  errors.push("chapters/ecology.html: food-chain controls must have bilingual labels and initial pressed state");
+}
+if (!ecologyFile.includes("else if(i===selected.length)") || !ecologyFile.includes("const next=chainOrder[selected.length]")) {
+  errors.push("chapters/ecology.html: food-chain builder must enforce sequential trophic choices");
+}
+if (!ecologyFile.includes('role="status" aria-live="polite"')) errors.push("chapters/ecology.html: food-chain feedback must be announced accessibly");
+
+const biochemistryFile = fs.readFileSync(path.join(root, "chapters", "biochemistry.html"), "utf8");
+if (!biochemistryFile.includes("does not shift the equilibrium position") || !biochemistryFile.includes("не меняет его положение")) {
+  errors.push("chapters/biochemistry.html: enzyme explanation must state that enzymes do not shift equilibrium");
+}
+if (!biochemistryFile.includes("actual ΔG in a cell depends") || !biochemistryFile.includes("Фактическое значение ΔG в клетке зависит")) {
+  errors.push("chapters/biochemistry.html: ATP hydrolysis explanation must qualify cellular ΔG");
+}
+
 if (errors.length) {
   console.error("Biology checks failed:\n" + errors.map(x => " - " + x).join("\n"));
   process.exit(1);
