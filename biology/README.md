@@ -135,3 +135,16 @@ All ten global Biology chapters now include a bilingual five-question knowledge 
 - Flora coverage explains valley-to-alpine vegetation belts, juniper and spruce woodland, steppe communities and rare plant taxa reported for Chon-Kemin; older species totals are explicitly treated as indicative rather than definitive inventories.
 - Fauna coverage adds dated 2026 reports from Ala-Archa and Chon-Kemin, including NABU/park camera-trap detections and the Ministry's Kök-Oyrok monitoring notice. Detections are not misrepresented as population estimates.
 - Sources include the Kyrgyz Ministry of Natural Resources, Kabar, Turmush/NABU, Chon-Kemin park profiles and a Chuy vegetation overview.
+
+
+## Regional biodiversity field dossiers — Batken
+- Added bilingual Batken Region profiles to both Kyrgyzstan flora and fauna chapters, covering Aygul-Tash and *Petilium eduardii*, wild tulip conservation, juniper slopes, dry foothills, Surmatash and Sarkan protected landscapes.
+- Fauna coverage includes the dated 30 June 2026 spring marmot survey (4,146 records across surveyed areas, including Surmatash); the source does not identify the marmot species, so the chapter retains *Marmota* spp. and does not treat the result as a population estimate for the whole oblast.
+- Rare-plant locality details are handled cautiously; sensitive coordinates are not published as general visitor information.
+- Sources include the Kyrgyz Ministry of Natural Resources, World Bank environmental assessments and the 2021 Kojo-Kaiyr environmental examination.
+
+## Seven-oblast coverage and evidence standard
+- The flora and fauna regional chapters now contain introductory landscape frameworks for all seven oblasts: Batken, Jalal-Abad, Issyk-Kul, Naryn, Osh, Talas and Chuy. Dedicated dossiers are provided for each oblast; these are regional learning profiles, not exhaustive biodiversity inventories.
+- Records are distinguished by evidence type: published checklist, dated field observation, camera-trap detection, habitat association or provisional estimate. A presence record is never presented as an abundance estimate.
+- Species names and conservation categories require current taxonomic and national/global status checks. The Ministry and National Academy of Sciences began a 24-month Red Data Book revision in June 2026; the Institute of Biology described the planned field, taxonomic, mapping and digital-database work in October 2026.
+- Official reference: Ministry of Natural Resources, 9 June 2026, [Red Data Book revision announcement](https://mnr.gov.kg/ru/posts/news/ministerstvo-prirodnyx-resursov-ekologii-i-texniceskogo-nadzora-kyrgyzskoi-respubliki-sovmestno-s-nacionalnoi-akademiei-nauk-pristupaet-k-rabote-po-obnovleniyu-krasnoi-knigi). Further project details: [Institute of Biology, NAS KR, 14 October 2026](https://ibnaskr.org/red-data-book-kyrgyzstan-project-2026-2028/).
