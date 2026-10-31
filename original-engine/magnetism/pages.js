@@ -48,119 +48,119 @@ export const PAGES = [
   {
     kicker: 'Глава 14', title: 'Магнитные поля', sub: 'создаются движущимися зарядами',
     body: `
-      <p class="lede">A <b>magnetic field</b> <b>B</b> is made by moving charge: a current, or the spinning electrons inside a magnet. It is measured in tesla (1 T = 10<sup>4</sup> gauss).</p>
-      <p>Outside a magnet the lines run from N to S; inside, from S back to N, so every line closes on itself. There are no magnetic monopoles (cut one and you get two magnets), so through any closed surface</p>
+      <p class="lede"><b>Магнитное поле</b> <b>B</b> создаётся движущимися зарядами: электрическим током или движением электронов внутри магнита. Единица измерения — тесла (1 Тл = 10<sup>4</sup> гаусс).</p>
+      <p>Вне магнита силовые линии направлены от N к S, а внутри — от S обратно к N, поэтому каждая линия замкнута. Магнитных монополей не существует: если разрезать магнит, получатся два магнита. Поэтому поток через любую замкнутую поверхность равен нулю:</p>
       <div class="eq">∮ <b>B</b> · d<b>A</b> = 0</div>
-      <p>This ${f(M.MAG.L * 100, 0)} cm magnet is drawn as Ampère pictured it, a sheet of current round its sides. Every line is traced from that current’s Biot–Savart sum.</p>
-      <div class="charts">${chart({ ...R.magnet, xlabel: 'x along the axis (cm)', ylabel: 'B (mT)', label: 'Field along the magnet axis', vlines: [[-10, 'S'], [10, 'N']],
+      <p>Магнит длиной ${f(M.MAG.L * 100, 0)} см показан в представлении Ампера как оболочка с током, текущим по боковой поверхности. Каждая силовая линия построена по сумме вкладов этого тока согласно закону Био — Савара.</p>
+      <div class="charts">${chart({ ...R.magnet, xlabel: 'координата x вдоль оси (см)', ylabel: 'B (мТл)', label: 'Магнитное поле вдоль оси магнита', vlines: [[-10, 'S'], [10, 'N']],
         series: [{ pts: curve(x => M.magnetB([x / 100, 0, 0])[0] * 1000, -40, 40, 120) }] })}</div>
-      <p class="hintline">Click the magnet for a closed box round its N end. One grid square is 10 cm.</p>`,
+      <p class="hintline">Нажмите на магнит, чтобы увидеть замкнутую поверхность вокруг его северного полюса N. Одна клетка сетки соответствует 10 см.</p>`,
     cam: { target: [STATIONS.magnet, 2.0, 0], az: -18, el: 20, dist: 20 }, lit: 'magnet', scene: 'magnet', look: {},
     fig: 'Линии выходят из N и входят в S',
   },
   {
     kicker: '14.1', title: 'Магнитная сила', sub: 'F = qv × B',
     body: `
-      <p class="lede">A magnetic field pushes only on a <b>moving</b> charge, and sideways: at right angles to both <b>v</b> and <b>B</b>.</p>
+      <p class="lede">Магнитное поле действует только на <b>движущийся</b> заряд и отклоняет его в сторону, перпендикулярно и к <b>v</b>, и к <b>B</b>.</p>
       <div class="eq"><b>F</b> = <i>q</i> <b>v</b> × <b>B</b>, &nbsp; <i>F</i> = <i>qvB</i> sin θ</div>
-      <p><b>Right-hand rule:</b> thumb along <b>v</b>, index finger along <b>B</b>; the middle finger gives <b>F</b> on a + charge, reversed for a − charge. Moving along <b>B</b>, there is no force.</p>
+      <p><b>Правило правой руки:</b> направьте большой палец вдоль <b>v</b>, указательный — вдоль <b>B</b>; средний палец укажет направление <b>F</b> для положительного заряда. Для отрицательного заряда направление противоположно. При движении вдоль <b>B</b> сила отсутствует.</p>
       <p><b>F</b> всегда перпендикулярна <b>v</b>, поэтому магнитное поле <b>не совершает работу</b>: оно меняет направление движения заряда, но не его скорость по модулю. При наличии электрического поля <b>E</b> полная сила равна <b>F</b> = <i>q</i><b>E</b> + <i>q</i><b>v</b> × <b>B</b> (сила Лоренца).</p>
-      <div class="charts">${chart({ ...R.rhr, xlabel: 'θ between v and B (°)', ylabel: 'F (10⁻¹⁴ N)', cursor: 'rhr', label: 'Force against angle', series: [{ pts: curve(d => M.RHR.Fmax * Math.sin(d * Math.PI / 180) / 1e-14, 0, 180) }] })}</div>
-      <p class="hintline">Click to split <b>v</b> along and across <b>B</b>. <i>v</i> = ${sci(M.RHR.v, 1)} m/s, <i>B</i> = ${f(M.RHR.B)} T; <b>F</b> is 1.5 squares at ${sci(M.RHR.Fmax, 1)} N.</p>`,
+      <div class="charts">${chart({ ...R.rhr, xlabel: 'θ между v и B (°)', ylabel: 'F (10⁻¹⁴ Н)', cursor: 'rhr', label: 'Зависимость силы от угла', series: [{ pts: curve(d => M.RHR.Fmax * Math.sin(d * Math.PI / 180) / 1e-14, 0, 180) }] })}</div>
+      <p class="hintline">Нажмите, чтобы разложить <b>v</b> на составляющие вдоль и поперёк <b>B</b>. <i>v</i> = ${sci(M.RHR.v, 1)} м/с, <i>B</i> = ${f(M.RHR.B)} Тл; при <b>F</b> = ${sci(M.RHR.Fmax, 1)} Н длина стрелки составляет 1,5 клетки.</p>`,
     cam: { target: [STATIONS.rhr, 1.9, 0], az: -36, el: 22, dist: 17 }, lit: 'rhr', scene: 'rhr', look: {},
     fig: 'Протон и электрон с одинаковой скоростью',
   },
   {
     kicker: '14.2', title: 'Движение по окружности в поле', sub: 'r = mv/qB',
     body: `
-      <p class="lede">Across a uniform <b>B</b> the force stays at right angles to the velocity. It is a centripetal force: the charge circles at constant speed.</p>
+      <p class="lede">В однородном магнитном поле <b>B</b> сила всегда перпендикулярна скорости. Она играет роль центростремительной силы, поэтому заряд движется по окружности с постоянной скоростью.</p>
       <div class="eq"><i>qvB</i> = <i>mv</i>²/<i>r</i> → <i>r</i> = <i>mv</i>/<i>qB</i>, &nbsp;ω = <i>qB</i>/<i>m</i></div>
-      <p>Two protons start from rest through 50 V and 200 V (50 eV and 200 eV, with <i>q</i>Δ<i>V</i> = ½<i>mv</i>²). Four times the energy, twice the speed, twice the radius: ${f(M.CYC.r[0] * 100)} and ${f(M.CYC.r[1] * 100)} cm.</p>
-      <p>Yet <i>T</i> = 2π<i>m</i>/<i>qB</i> = ${f(M.CYC.T * 1e6, 3)} μs for both, so they meet at the start every turn. A <b>cyclotron</b> uses this, kicking them across a gap at ${f(M.CYC.f / 1e6)} MHz.</p>
-      <div class="charts">${chart({ ...R.cyclo, xlabel: 'v (10⁵ m/s)', ylabel: 'r (cm)', label: 'Radius against speed', series: [{ pts: curve(v => M.MP * v * 1e5 / (M.QE * M.CYC.B) * 100, 0, 2.5) }],
+      <p>Два протона разгоняются из состояния покоя разностью потенциалов 50 В и 200 В (энергия 50 эВ и 200 эВ; <i>q</i>Δ<i>V</i> = ½<i>mv</i>²). При увеличении энергии в четыре раза скорость и радиус траектории удваиваются: ${f(M.CYC.r[0] * 100)} и ${f(M.CYC.r[1] * 100)} см.</p>
+      <p>Однако период <i>T</i> = 2π<i>m</i>/<i>qB</i> = ${f(M.CYC.T * 1e6, 3)} мкс одинаков для обоих протонов, поэтому в начале каждого оборота они снова проходят одну точку. На этом основана работа <b>циклотрона</b>, ускоряющего частицы при прохождении зазора с частотой ${f(M.CYC.f / 1e6)} МГц.</p>
+      <div class="charts">${chart({ ...R.cyclo, xlabel: 'v (10⁵ м/с)', ylabel: 'r (см)', label: 'Радиус траектории в зависимости от скорости', series: [{ pts: curve(v => M.MP * v * 1e5 / (M.QE * M.CYC.B) * 100, 0, 2.5) }],
         marks: M.CYC.v.map((v, i) => [v / 1e5, M.CYC.r[i] * 100, `${M.CYC.dV[i]} V`]) })}</div>
-      <p class="hintline">Click for the forces and radii. <i>B</i> = ${f(M.CYC.B)} T, down. One grid square is 1 cm; time runs ${slow(M.CYC.show / M.CYC.T)}× slower.</p>`,
+      <p class="hintline">Нажмите, чтобы увидеть силы и радиусы траекторий. <i>B</i> = ${f(M.CYC.B)} Тл, направлено вниз. Одна клетка сетки — 1 см; время замедлено в ${slow(M.CYC.show / M.CYC.T)} раза.</p>`,
     cam: { target: [STATIONS.cyclo, 0.8, 0], az: -14, el: 40, dist: 17 }, lit: 'cyclo', scene: 'cyclo', look: {},
     fig: 'Скорость и радиус вдвое больше, период тот же',
   },
   {
     kicker: '14.3', title: 'Скрещённые E и B', sub: 'селектор скоростей',
     body: `
-      <p class="lede"><b>E</b> between the plates pushes a proton toward the − plate with <i>qE</i>. <b>B</b> into the page pushes it back with <i>qvB</i>. They cancel at one speed:</p>
+      <p class="lede">Электрическое поле <b>E</b> между пластинами толкает протон к отрицательной пластине с силой <i>qE</i>. Магнитное поле <b>B</b>, направленное вглубь страницы, действует в противоположную сторону с силой <i>qvB</i>. При одной определённой скорости силы уравновешиваются:</p>
       <div class="eq"><i>qE</i> = <i>qvB</i> &nbsp;→&nbsp; <i>v</i> = <i>E</i>/<i>B</i></div>
       <p>Здесь <i>E</i> = ${f(M.SEL.E, 0)} В/м и <i>B</i> = ${f(M.SEL.B, 3)} Тл, поэтому частица со скоростью ${sci(M.SEL.v0, 1)} м/с движется прямо. При меньшей скорости преобладает <i>qE</i>, и частица отклоняется вниз; при большей — <i>qvB</i>, и она отклоняется вверх.</p>
       <p><b>Эффект Холла</b> основан на таком же равновесии в проводнике: заряд накапливается у одного края, пока <i>qE</i> = <i>qv</i><sub>d</sub><i>B</i>. Возникает напряжение Холла Δ<i>V</i><sub>H</sub> = <i>v</i><sub>d</sub><i>Bd</i> = <i>IBd</i>/<i>nqA</i>.</p>
-      <div class="charts">${chart({ ...R.selector, zero: true, xlabel: 'v (10⁵ m/s)', ylabel: 'qvB − qE, up (10⁻¹⁶ N)', label: 'Net force against speed',
+      <div class="charts">${chart({ ...R.selector, zero: true, xlabel: 'v (10⁵ м/с)', ylabel: 'qvB − qE (10⁻¹⁶ Н)', label: 'Равнодействующая сила в зависимости от скорости',
         series: [{ pts: curve(v => M.QE * (v * 1e5 * M.SEL.B - M.SEL.E) / 1e-16, 0, 2) }], marks: M.SEL.k.map((k, i) => [k, M.QE * M.SEL.E * (k - 1) / 1e-16, ['0.8', 'E/B', '1.25'][i], i === 1 ? -26 : 6, i === 1 ? -8 : 14]) })}</div>
-      <p class="hintline">Click for <i>q</i><b>E</b> and <i>q</i><b>v</b> × <b>B</b> on each proton. One grid square is 1 cm.</p>`,
+      <p class="hintline">Нажмите, чтобы увидеть силы <i>q</i><b>E</b> и <i>q</i><b>v</b> × <b>B</b>, действующие на каждый протон. Одна клетка сетки — 1 см.</p>`,
     cam: { target: [STATIONS.selector + 0.4, 2.5, 0], az: -22, el: 13, dist: 31 }, lit: 'selector', scene: 'selector', look: {},
     fig: 'Прямо проходит только частица со скоростью v = E/B',
   },
   {
     kicker: '14.4', title: 'Сила, действующая на ток', sub: 'и момент сил на рамке',
     body: `
-      <p class="lede">A current is many moving charges. With <i>I</i> = <i>nqAv</i><sub>d</sub>, the force on the charge <i>nqAL</i> in a wire becomes</p>
+      <p class="lede">Электрический ток — это упорядоченное движение множества зарядов. Учитывая <i>I</i> = <i>nqAv</i><sub>d</sub>, силу, действующую на заряд <i>nqAL</i> в проводнике, можно записать так:</p>
       <div class="eq"><b>F</b> = <i>I</i> <b>L</b> × <b>B</b></div>
       <p>В однородном поле силы, действующие на противоположные стороны рамки, компенсируются по результирующей, но на двух вертикальных сторонах они направлены противоположно и приложены по разным линиям. Возникает вращающий момент:</p>
       <div class="eq"><b>τ</b> = <b>μ</b> × <b>B</b>, &nbsp; <b>μ</b> = <i>I</i><b>A</b></div>
-      <p>As <i>U</i> = −<b>p</b> · <b>E</b> for a charge dipole, <i>U</i> = −<b>μ</b> · <b>B</b>: lowest along <b>B</b> (stable), highest against it (unstable). Here μ = ${f(M.LOOP.mu, 2)} A·m².</p>
-      <div class="charts">${chart({ ...R.loop, zero: true, xlabel: 'θ between μ and B (°)', ylabel: 'τ (N·m), U (J)', cursor: 'loop', label: 'Torque and energy against angle',
+      <p>Подобно энергии электрического диполя <i>U</i> = −<b>p</b> · <b>E</b>, энергия магнитного диполя равна <i>U</i> = −<b>μ</b> · <b>B</b>: она минимальна при направлении <b>μ</b> вдоль <b>B</b> (устойчивое положение) и максимальна при противоположном направлении (неустойчивое положение). Здесь μ = ${f(M.LOOP.mu, 2)} А·м².</p>
+      <div class="charts">${chart({ ...R.loop, zero: true, xlabel: 'θ между μ и B (°)', ylabel: 'τ (Н·м), U (Дж)', cursor: 'loop', label: 'Момент сил и энергия в зависимости от угла',
         series: [{ pts: curve(d => M.LOOP.tmax * Math.sin(d * Math.PI / 180), 0, 180), tag: [80, M.LOOP.tmax, 'τ'] }, { cls: 'trend', pts: curve(M.loopU, 0, 180), tag: [150, M.loopU(150), 'U'] }] })}</div>
-      <p class="hintline">The loop is turned slowly through every angle. Click it for the force on each side (4 squares per N).</p>`,
+      <p class="hintline">Рамка медленно поворачивается на разные углы. Нажмите на неё, чтобы увидеть силу на каждой стороне (4 клетки на 1 Н).</p>`,
     cam: { target: [STATIONS.loop, 2.3, 0], az: -32, el: 16, dist: 20 }, lit: 'loop', scene: 'loop', look: {},
     fig: `${f(M.LOOP.a * 100, 0)} × ${f(M.LOOP.b * 100, 0)} см, ${f(M.LOOP.I, 1)} А, B = ${f(M.LOOP.B)} Тл`,
   },
   {
     kicker: '14.5', title: 'Закон Ампера', sub: 'магнитное поле длинного провода',
     body: `
-      <p class="lede">Round a long wire the lines are circles: thumb along <i>I</i>, fingers curl with <b>B</b>.</p>
+      <p class="lede">Вокруг длинного прямого провода силовые линии магнитного поля имеют форму окружностей: большой палец направлен по току <i>I</i>, а согнутые пальцы показывают направление <b>B</b>.</p>
       <div class="eq">∮ <b>B</b> · d<b>s</b> = μ<sub>0</sub><i>I</i><sub>enc</sub></div>
       <p>На окружности <b>B</b> ∥ d<b>s</b>, а модуль <i>B</i> постоянен: <i>B</i>(2π<i>r</i>) = μ<sub>0</sub><i>I</i>. Следовательно, <i>B</i> = μ<sub>0</sub><i>I</i>/2π<i>r</i>. Внутри толстого провода <i>B</i> = μ<sub>0</sub><i>Ir</i>/2π<i>a</i>².</p>
       <p>Для прямоугольной поверхности просуммируем поток через полоски: ∫<sub><i>a</i></sub><sup><i>a</i>+<i>c</i></sup> (μ<sub>0</sub><i>I</i>/2π<i>r</i>) <i>b</i> d<i>r</i>, то есть</p>
       <div class="eq">Φ = (μ<sub>0</sub><i>Ib</i>/2π) ln((<i>a</i> + <i>c</i>)/<i>a</i>)</div>
-      <div class="charts">${chart({ ...R.ampere, xlabel: 'r (cm)', ylabel: 'B (μT)', cursor: 'ampere', label: 'Field against distance from a thick wire', vlines: [[1, 'a']],
+      <div class="charts">${chart({ ...R.ampere, xlabel: 'r (см)', ylabel: 'B (мкТл)', cursor: 'ampere', label: 'Магнитное поле в зависимости от расстояния от толстого провода', vlines: [[1, 'a']],
         series: [{ pts: curve(r => M.ampereB(r / 100) * 1e6, 0, 15, 150) }] })}</div>
-      <p class="hintline">Click the wire for d<b>s</b>, the rectangle for its strips. <b>B</b>: 0.8 squares per 100 μT.</p>`,
+      <p class="hintline">Нажмите на провод, чтобы увидеть элемент d<b>s</b>, а на прямоугольник — его полоски. Масштаб <b>B</b>: 0,8 клетки на 100 мкТл.</p>`,
     cam: { target: [STATIONS.ampere + 0.7, 3.3, 0], az: 34, el: 21, dist: 24 }, lit: 'ampere', scene: 'ampere', look: {},
     fig: `Ток ${f(M.AMP.I, 0)} А в длинном проводе`,
   },
   {
     kicker: '14.6', title: 'Закон Био — Савара', sub: 'суммирование вкладов всех элементов',
     body: `
-      <p class="lede">Without symmetry, add up the field of every piece d<b>l</b> of wire, as Coulomb’s law adds up pieces of charge. <b>r̂</b> points from d<b>l</b> to P:</p>
+      <p class="lede">Если симметрии недостаточно, нужно сложить магнитные поля от всех элементов d<b>l</b> проводника — так же, как в законе Кулона суммируются вклады отдельных зарядов. Вектор <b>r̂</b> направлен от d<b>l</b> к точке P:</p>
       <div class="eq">d<b>B</b> = (μ<sub>0</sub><i>I</i>/4π) d<b>l</b> × <b>r̂</b> / <i>r</i>²</div>
       <p>На оси кольца каждый d<b>l</b> ⊥ <b>r</b>. Поперечные составляющие d<b>B</b> взаимно компенсируются по окружности, а составляющие вдоль оси (cos θ = <i>R</i>/<i>r</i>) складываются:</p>
       <div class="eq"><i>B</i> = μ<sub>0</sub><i>IR</i>² / 2(<i>R</i>² + <i>z</i>²)<sup>3/2</sup></div>
       <p>В центре кольца μ<sub>0</sub><i>I</i>/2<i>R</i> = ${uT(M.RING.Bc)} мкТл. На большом расстоянии поле равно μ<sub>0</sub><i>IR</i>²/2<i>z</i>³ и убывает как 1/<i>z</i>³, как поле диполя.</p>
-      <div class="charts">${chart({ ...R.ring, xlabel: 'z along the axis (cm)', ylabel: 'B (μT)', cursor: 'ring', label: 'Field along the axis of a loop',
+      <div class="charts">${chart({ ...R.ring, xlabel: 'координата z вдоль оси (см)', ylabel: 'B (мкТл)', cursor: 'ring', label: 'Магнитное поле вдоль оси кольцевого витка',
         series: [{ cls: 'trend', pts: curve(z => M.ringFar(z / 100) * 1e6, 12, 36), tag: [24, 13, 'μ₀IR²/2z³'] }, { pts: curve(z => M.ringAxis(z / 100) * 1e6, 0, 36) }] })}</div>
-      <p class="hintline">Click the loop for ${M.RING.pieces} pieces d<b>l</b> and their d<b>B</b> (drawn 5× longer). <b>B</b>: 1 square per 20 μT.</p>`,
+      <p class="hintline">Нажмите на виток, чтобы увидеть ${M.RING.pieces} элементов d<b>l</b> и создаваемые ими d<b>B</b> (стрелки увеличены в 5 раз). Масштаб <b>B</b>: 1 клетка на 20 мкТл.</p>`,
     cam: { target: [STATIONS.ring + 1.0, 2.5, 0], az: -38, el: 14, dist: 22 }, lit: 'ring', scene: 'ring', look: {},
     fig: `R = ${f(M.RING.R * 100, 0)} см, I = ${f(M.RING.I, 0)} А`,
   },
   {
     kicker: '14.7', title: 'Параллельные провода', sub: 'однонаправленные токи притягиваются',
     body: `
-      <p class="lede">Each wire sits in the other’s field, so each feels <b>F</b> = <i>I</i> <b>L</b> × <b>B</b>.</p>
+      <p class="lede">Каждый провод находится в магнитном поле другого провода, поэтому на него действует сила <b>F</b> = <i>I</i> <b>L</b> × <b>B</b>.</p>
       <div class="eq"><i>B</i><sub>1</sub> = μ<sub>0</sub><i>I</i><sub>1</sub>/2π<i>d</i> &nbsp;→&nbsp; <i>F</i>/<i>L</i> = μ<sub>0</sub><i>I</i><sub>1</sub><i>I</i><sub>2</sub>/2π<i>d</i></div>
       <p>При токе ${f(M.WIRES.I, 0)} А в каждом проводе и расстоянии ${f(M.WIRES.d * 100, 0)} см сила взаимодействия составляет ${f(M.WIRES.FL * 1000)} мН на метр. Токи, направленные <b>одинаково</b>, притягиваются; направленные <b>противоположно</b> — отталкиваются. Это противоположно взаимодействию одноимённых и разноимённых зарядов.</p>
       <p>Это видно по силовым линиям. При одинаковом направлении токов поля между проводами компенсируются (<i>B</i> = 0 посередине), а внешние линии охватывают оба провода. При противоположных токах линии поля сгущаются между проводами.</p>
-      <div class="charts">${chart({ ...R.wires, xlabel: 'd (cm)', ylabel: 'F/L (mN/m)', label: 'Force per length against separation',
+      <div class="charts">${chart({ ...R.wires, xlabel: 'd (см)', ylabel: 'F/L (мН/м)', label: 'Сила взаимодействия на единицу длины в зависимости от расстояния',
         series: [{ pts: curve(d => M.MU0 * M.WIRES.I ** 2 / (2 * Math.PI * d / 100) * 1000, 2, 40) }], marks: [[M.WIRES.d * 100, M.WIRES.FL * 1000, `${f(M.WIRES.FL * 1000)} mN/m`]] })}</div>
-      <p class="hintline">Click a pair for the field each wire feels from the other. Forces: 2 squares per mN/m.</p>`,
+      <p class="hintline">Нажмите на пару проводов, чтобы увидеть поле, действующее на каждый из них. Масштаб силы: 2 клетки на 1 мН/м.</p>`,
     cam: { target: [(STATIONS.same + STATIONS.opposite) / 2, 2.0, 0], az: -10, el: 30, dist: 34 }, lit: 'same', scene: 'wires', look: {},
     fig: 'Токи направлены одинаково, затем противоположно',
   },
   {
     kicker: '14.8', title: 'Соленоиды', sub: 'и тороиды: однородное магнитное поле',
     body: `
-      <p class="lede">Stack many loops: their fields add inside and nearly cancel outside. That is a <b>solenoid</b>.</p>
+      <p class="lede">Если расположить много витков рядом, их магнитные поля внутри складываются, а снаружи почти компенсируются. Так устроен <b>соленоид</b>.</p>
       <p>Рассмотрим прямоугольный контур, наполовину расположенный внутри соленоида. Вклад даёт только его внутренняя сторона (на торцах <b>B</b> ⊥ d<b>s</b>, снаружи <i>B</i> ≈ 0), поэтому <i>BL</i> = μ<sub>0</sub><i>NI</i>. Если <i>n</i> = <i>N</i>/<i>L</i> — число витков на метр:</p>
-      <div class="eq"><i>B</i> = μ<sub>0</sub><i>nI</i> &nbsp;&nbsp; toroid: <i>B</i> = μ<sub>0</sub><i>NI</i>/2π<i>r</i></div>
+      <div class="eq"><i>B</i> = μ<sub>0</sub><i>nI</i> &nbsp;&nbsp; тороид: <i>B</i> = μ<sub>0</sub><i>NI</i>/2π<i>r</i></div>
       <p>Здесь μ<sub>0</sub><i>nI</i> = ${uT(M.SOL.B)} мкТл; суммирование по закону Био — Савара даёт ${uT(SOLC)} мкТл, поскольку длина катушки составляет всего ${f(M.SOL.L / M.SOL.R, 1)} радиусов. Если согнуть её в кольцо, получится <b>тороид</b>: внутри <i>B</i>(2π<i>r</i>) = μ<sub>0</sub><i>NI</i>, а в отверстии и снаружи поле равно нулю.</p>
-      <div class="charts">${chart({ ...R.solenoid, xlabel: 'x along the axis (cm)', ylabel: 'B (μT)', label: 'Field along the solenoid axis', vlines: [[-20, 'end'], [20, 'end']],
+      <div class="charts">${chart({ ...R.solenoid, xlabel: 'координата x вдоль оси (см)', ylabel: 'B (мкТл)', label: 'Магнитное поле вдоль оси соленоида', vlines: [[-20, 'end'], [20, 'end']],
         series: [{ cls: 'trend', pts: [[-20, M.SOL.B * 1e6], [20, M.SOL.B * 1e6]], tag: [-6, M.SOL.B * 1e6 + 6, 'μ₀nI'] }, { pts: curve(x => M.solB([x / 100, 0, 0])[0] * 1e6, -40, 40, 100) }] })}</div>
-      <p class="hintline">Click the solenoid for its Amperian rectangle, the toroid to see inside. <b>B</b>: 1 square per 100 μT.</p>`,
+      <p class="hintline">Нажмите на соленоид, чтобы увидеть амперов контур, а на тороид — чтобы заглянуть внутрь. Масштаб <b>B</b>: 1 клетка на 100 мкТл.</p>`,
     cam: { target: [(STATIONS.solenoid + STATIONS.toroid) / 2 - 0.4, 1.8, 0], az: -10, el: 30, dist: 31 }, lit: 'solenoid', scene: 'solenoid', look: {},
     fig: `${M.SOL.N} витков и ${M.TOR.N} витков, ток ${f(M.SOL.I, 1)} А`,
   },
