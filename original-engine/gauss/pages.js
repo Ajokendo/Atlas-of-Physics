@@ -37,7 +37,7 @@ export const R = {
   cage: { x0: -40, x1: 40, y0: 0, y1: 3.2 },
 };
 const kE = fn => r => fn(r / 100) / 1000;     // r in cm → E in kN/C
-const sphereChart = (fn, cursor, extra = []) => chart({ ...R.sphere, xlabel: 'r (cm)', ylabel: 'E (kN/C)', cursor, label: 'Field strength against distance from the centre',
+const sphereChart = (fn, cursor, extra = []) => chart({ ...R.sphere, xlabel: 'r (cm)', ylabel: 'E (kN/C)', cursor, label: 'Напряжённость поля в зависимости от расстояния до центра',
   vlines: [[10, 'R']], series: [...extra, { pts: curve(kE(fn), 0.001, 26, 120) }] });
 
 export const PAGES = [
@@ -184,15 +184,15 @@ export const PLATES = {
     facts: () => { const b = M.boxFaces(); return [['ближняя грань (вход)', `${f(b[1], 1)} Н·м²/Кл`], ['дальняя грань', `${f(b[0], 1)} Н·м²/Кл`], ['четыре боковые грани', `${f(b[2] + b[3] + b[4] + b[5], 1)} Н·м²/Кл`], ['суммарный поток', `${f(Math.abs(b.reduce((a, c) => a + c)) < 0.05 ? 0 : b.reduce((a, c) => a + c), 1)} Н·м²/Кл`]]; } },
   line: { text: `Крышки сняты. На крышках поле направлено вдоль их плоскости (серые стрелки), поэтому <b>E</b> ⊥ d<b>A</b> и поток через них равен нулю. Весь поток проходит через боковую цилиндрическую поверхность, где <b>E</b> ∥ d<b>A</b>.`,
     facts: s => { const r = rNow(s, M.LINE); return [['r', `${f(r * 100, 1)} см`], ['площадь боковой поверхности 2πrL', `${f(2 * Math.PI * r * M.LINE.L, 4)} м²`], ['E = 2kλ/r', `${f(M.lineE(r), 0)} Н/Кл`], ['поток через боковую поверхность', `${f(M.lineE(r) * 2 * Math.PI * r * M.LINE.L, 2)} Н·м²/Кл`], ['λL/ε<sub>0</sub>', `${f(M.LINE.lam * M.LINE.L / M.EPS0, 2)} Н·м²/Кл`]]; } },
-  sheet: { text: `The caps lift off. Each carries <i>EA</i> outward; the side carries none. 2<i>EA</i> = σ<i>A</i>/ε<sub>0</sub>, so <i>E</i> = σ/2ε<sub>0</sub>, whatever the height of the pillbox.`,
+  sheet: { text: `Торцевые крышки выступают наружу. Через каждую проходит наружу поток <i>EA</i>; через боковую поверхность поток равен нулю. 2<i>EA</i> = σ<i>A</i>/ε<sub>0</sub>, поэтому <i>E</i> = σ/2ε<sub>0</sub> независимо от высоты цилиндра Гаусса.`,
     facts: () => [['σ', `${nC(M.SHEET.sigma)} нКл/м²`], ['площадь крышки A', `${f(M.SHEET.Abox * 1e4, 1)} см²`], ['q<sub>enc</sub> = σA', `${f(M.SHEET.sigma * M.SHEET.Abox * 1e12, 1)} пКл`], ['E = σ/2ε<sub>0</sub>', `${f(M.SHEET.E, 0)} Н/Кл`]] },
-  plate: { text: `The inner cap sits in the metal, where <i>E</i> = 0, so only the outer cap carries flux: <i>EA</i> = σ<i>A</i>/ε<sub>0</sub>. Same σ as the sheet, twice the field.`,
+  plate: { text: `Внутренняя крышка находится внутри проводника, где <i>E</i> = 0, поэтому поток проходит только через внешнюю крышку: <i>EA</i> = σ<i>A</i>/ε<sub>0</sub>. При той же σ поле вдвое сильнее, чем у одного листа.`,
     facts: () => [['σ на каждой поверхности', `${nC(M.PLATE.sigma)} нКл/м²`], ['E внутри металла', '0'], ['E снаружи = σ/ε<sub>0</sub>', `${f(M.PLATE.E, 0)} Н/Кл`]] },
-  csphere: { text: `The metal fades. Inside, the Gaussian sphere encloses nothing: no flux, no field. Once it is bigger than the metal it encloses all of <i>Q</i> (red shell) and <i>E</i> = <i>kQ</i>/<i>r</i>².`, facts: sphereFacts(M.cSphere) },
-  isphere: { text: `The red ball is the charge the Gaussian sphere encloses. Inside, it grows as <i>r</i>³ while the area grows as <i>r</i>², so <i>E</i> grows as <i>r</i>. Outside, it stops at <i>Q</i>.`, facts: sphereFacts(M.iSphere) },
-  nsphere: { text: `The red ball is the enclosed charge, now π<i>br</i>⁴: the outer shells hold more, so it grows fast as <i>r</i>⁴, and <i>E</i> = <i>q</i><sub>enc</sub>/(4π<i>r</i>²ε<sub>0</sub>) grows as <i>r</i>².`, facts: sphereFacts(M.nSphere) },
-  crod: { text: `The metal fades. A Gaussian cylinder inside the metal encloses no charge. Outside it encloses σ · 2π<i>RL</i> (red), and <i>E</i> · 2π<i>rL</i> = σ2π<i>RL</i>/ε<sub>0</sub>.`, facts: rodFacts(M.cRod) },
-  irod: { text: `The red core is the charge inside the Gaussian cylinder, ρπ<i>r</i>²<i>L</i> while <i>r</i> &lt; <i>R</i>. Divide by ε<sub>0</sub> and by the side area 2π<i>rL</i>: <i>E</i> = ρ<i>r</i>/2ε<sub>0</sub>.`, facts: rodFacts(M.iRod) },
-  cage: { text: `A Gaussian sphere drawn inside the metal (dashed). <i>E</i> = 0 on it, so it encloses no net charge: no charge on the inner wall, and no field in the hollow. The arrows at the surface are perpendicular to it: in on the − side, out on the + side.`,
-    facts: () => [['E<sub>0</sub>', `${f(M.CAGE.E0, 0)} N/C`], ['σ at the + pole', `${f(M.cageSigma(1) * 1e9, 2)} nC/m²`], ['E at the pole = σ/ε<sub>0</sub>', `${f(M.cageSigma(1) / M.EPS0, 0)} N/C`], ['E in the hollow', '0'], ['net charge on the shell', '0']] },
+  csphere: { text: `Металлическая сфера становится прозрачной. Внутри неё гауссова сфера не охватывает заряд: поток и поле равны нулю. Когда гауссова сфера становится больше металлической, она охватывает весь заряд <i>Q</i> (красная оболочка), и <i>E</i> = <i>kQ</i>/<i>r</i>².`, facts: sphereFacts(M.cSphere) },
+  isphere: { text: `Красный шар показывает заряд, охваченный гауссовой сферой. Внутри изолятора он растёт пропорционально <i>r</i>³, тогда как площадь поверхности растёт пропорционально <i>r</i>², поэтому <i>E</i> растёт пропорционально <i>r</i>. Снаружи охваченный заряд равен полному заряду <i>Q</i>.`, facts: sphereFacts(M.iSphere) },
+  nsphere: { text: `Красная область показывает охваченный заряд, равный π<i>br</i>⁴: внешние слои содержат всё больше заряда, поэтому он растёт как <i>r</i>⁴. Следовательно, <i>E</i> = <i>q</i><sub>enc</sub>/(4π<i>r</i>²ε<sub>0</sub>) растёт как <i>r</i>².`, facts: sphereFacts(M.nSphere) },
+  crod: { text: `Металлический цилиндр становится прозрачным. Цилиндр Гаусса внутри проводника не охватывает заряд. Снаружи он охватывает заряд σ · 2π<i>RL</i> (красная область), и <i>E</i> · 2π<i>rL</i> = σ2π<i>RL</i>/ε<sub>0</sub>.`, facts: rodFacts(M.cRod) },
+  irod: { text: `Красная сердцевина — заряд внутри цилиндра Гаусса: ρπ<i>r</i>²<i>L</i> при <i>r</i> &lt; <i>R</i>. Разделив его на ε<sub>0</sub> и площадь боковой поверхности 2π<i>rL</i>, получаем <i>E</i> = ρ<i>r</i>/2ε<sub>0</sub>.`, facts: rodFacts(M.iRod) },
+  cage: { text: `Пунктиром показана гауссова сфера внутри металла. На ней <i>E</i> = 0, поэтому охваченный суммарный заряд равен нулю: на внутренней стенке нет заряда, а в полости отсутствует поле. Стрелки у поверхности перпендикулярны ей: направлены внутрь на стороне − и наружу на стороне +.`,
+    facts: () => [['E<sub>0</sub>', `${f(M.CAGE.E0, 0)} N/C`], ['σ at the + pole', `${f(M.cageSigma(1) * 1e9, 2)} nC/m²`], ['Поле на полюсе: E = σ/ε<sub>0</sub>', `${f(M.cageSigma(1) / M.EPS0, 0)} N/C`], ['E in the hollow', '0'], ['суммарный заряд оболочки', '0']] },
 };
