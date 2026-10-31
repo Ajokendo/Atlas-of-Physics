@@ -48,15 +48,15 @@ const coreChapters = [
 for (const chapter of coreChapters) {
   const file = path.join(root, "chapters", chapter);
   const html = fs.readFileSync(file, "utf8");
-  const match = html.match(/<section\\b[^>]*class=["'][^"']*\\breferences\\b[^"']*["'][^>]*>([\\s\\S]*?)<\\/section>/i);
+  const match = html.match(/<section\b[^>]*class=["'][^"']*\breferences\b[^"']*["'][^>]*>([\s\S]*?)<\/section>/i);
   if (!match) {
     errors.push("chapters/" + chapter + ": missing selected references section");
     continue;
   }
-  const sourceLinks = [...match[1].matchAll(/<a\\b[^>]*href=["']https?:\\/\\//gi)];
+  const sourceLinks = [...match[1].matchAll(/<a\b[^>]*href=["']https?:/gi)];
   if (sourceLinks.length < 2) errors.push("chapters/" + chapter + ": fewer than two external references");
-  if (!/<span\\s+class=["'][^"']*\\bru\\b/i.test(match[1])) errors.push("chapters/" + chapter + ": references missing Russian description");
-  if (!/<span\\s+class=["'][^"']*\\ben\\b/i.test(match[1])) errors.push("chapters/" + chapter + ": references missing English description");
+  if (!/<span\s+class=["'][^"']*\bru\b/i.test(match[1])) errors.push("chapters/" + chapter + ": references missing Russian description");
+  if (!/<span\s+class=["'][^"']*\ben\b/i.test(match[1])) errors.push("chapters/" + chapter + ": references missing English description");
 }
 if (errors.length) {
   console.error("Biology checks failed:\n" + errors.map(x => " - " + x).join("\n"));
