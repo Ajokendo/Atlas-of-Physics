@@ -57,10 +57,19 @@ try {
     const lang = page.locator("#lang, #language").first();
     if (await lang.count()) {
       const before = (await lang.innerText()).trim();
+      const originalDocumentLanguage = await page.locator("html").getAttribute("lang");
       await lang.click();
       const after = (await lang.innerText()).trim();
+      const switchedDocumentLanguage = await page.locator("html").getAttribute("lang");
       if (before === after) errors.push(file + ": language toggle did not change");
+      if (originalDocumentLanguage === "ru" && switchedDocumentLanguage !== "en") {
+        errors.push(file + ": document language was not updated to English after switching");
+      }
       await lang.click();
+      const restoredDocumentLanguage = await page.locator("html").getAttribute("lang");
+      if (restoredDocumentLanguage !== originalDocumentLanguage) {
+        errors.push(file + ": document language was not restored after switching back");
+      }
       languageChecks++;
     }
 
