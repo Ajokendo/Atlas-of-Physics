@@ -17,8 +17,10 @@ const errors = [];
 let languageChecks = 0;
 try {
   const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
-  page.on("pageerror", error => errors.push(error.message));
+  let currentFile = "";
+  page.on("pageerror", error => errors.push(currentFile + ": " + error.message));
   for (const file of pages) {
+    currentFile = file;
     const response = await page.goto("http://127.0.0.1:4173/" + file, { waitUntil: "domcontentloaded" });
     if (!response || !response.ok()) errors.push(file + ": HTTP " + (response?.status() ?? "no response"));
     const lang = page.locator("#lang");
@@ -30,6 +32,17 @@ try {
       await lang.click();
       languageChecks++;
     }
+    if (file.endsWith("molecule-lab.html")) {
+      await page.locator("#choose").selectOption("co2");
+      if (!(await page.locator("#formula").innerText()).includes("CO₂")) errors.push(file + ": molecule selector did not update formula");
+      await page.locator("#reset").click();
+      await page.locator("#spin").click();
+      await page.locator("#spin").click();
+    }
+    if (file.endsWith("virtual-lab.html")) {
+      await page.locator("#add").click();
+      await page.locator("#reset").click();
+    }
   }
 } finally {
   await browser.close();
@@ -39,4 +52,4 @@ if (errors.length) {
   for (const error of errors) console.error(" - " + error);
   process.exit(1);
 }
-console.log("Browser smoke checks passed: " + pages.length + " pages loaded; " + languageChecks + " language toggles exercised at 390px viewport; no uncaught page errors.");
+console.log("Browser smoke checks passed: " + pages.length + " pages loaded at 390px; " + languageChecks + " language toggles and key molecule/neutralisation interactions exercised; no uncaught page errors.");
