@@ -12,7 +12,8 @@ Third subject area of the unified **Atlas of Knowledge** portal.
 - `index.html` — Biology landing page, subject navigation and interactive eukaryotic-cell model.
 - `chapters/botany.html` — Botany, with bilingual learning objectives, a field glossary and a regional flora feature link.
 - `chapters/flora-kyrgyzstan.html` — Regional bilingual flora chapter: altitudinal vegetation belts, forest ecosystems, characteristic plant profiles, conservation themes and research sources.
-- `chapters/zoology.html` — Zoology, with bilingual learning objectives and a field glossary.
+- `chapters/zoology.html` — Zoology, with bilingual learning objectives, a field glossary and a regional fauna feature link.
+- `chapters/fauna-kyrgyzstan.html` — Regional bilingual fauna chapter: habitat gradients, mountain mammals, birds and migration, freshwater ecosystems, conservation and research methods.
 - `chapters/cell-biology.html` — Cell biology and cytology.
 - `chapters/anatomy.html` — Human anatomy and physiology.
 - `chapters/genetics.html` — Genetics.
@@ -79,6 +80,12 @@ Third subject area of the unified **Atlas of Knowledge** portal.
 - The chapter includes an original schematic altitudinal vegetation profile, an indicative vegetation-belt table, forest ecosystem profiles, selected botanical portraits, conservation pressures and methods, and an initial source list.
 - Altitudinal limits are explicitly presented as variable rather than universal. Species totals and endemicity percentages are not stated as fixed values without a defined checklist and method.
 - The page has responsive layouts, RU/EN switching, a skip link, semantic headings and a text-based source list. Structural verification is required; full browser and mobile testing remains pending.
+
+## Regional fauna chapter — first implementation
+- A standalone bilingual regional chapter has been added and linked from Zoology.
+- The chapter includes an original schematic habitat profile, an indicative habitat/fauna table, species profiles for characteristic mountain and forest mammals and birds, freshwater ecology, conservation threats, ecological connectivity and field methods.
+- Taxonomic complexity is acknowledged for argali populations; national Red Data Book categories are not conflated with global IUCN assessments.
+- The page references CMS/CAMI, UNEP, CBD and conservation organisations. Its structure, responsive layout, language switch, skip link and source links require final validation; full browser and mobile testing remains pending.
 
 ## Knowledge checks
 
