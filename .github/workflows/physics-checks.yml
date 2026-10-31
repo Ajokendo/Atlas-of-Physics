@@ -20,7 +20,7 @@ jobs:
           node-version: 22
       - name: Check JavaScript syntax
         run: |
-          for file in original-engine/engine/*.js original-engine/kinematics/*.js original-engine/newton/*.js original-engine/circular/*.js original-engine/energy/*.js original-engine/momentum/*.js original-engine/oscillations/*.js original-engine/rotation/*.js original-engine/fluids/*.js original-engine/electrostatics/*.js original-engine/gauss/*.js original-engine/potential/*.js original-engine/capacitors/*.js original-engine/circuits/*.js original-engine/magnetism/*.js; do
+          for file in original-engine/engine/*.js original-engine/kinematics/*.js original-engine/newton/*.js original-engine/circular/*.js original-engine/energy/*.js original-engine/momentum/*.js original-engine/oscillations/*.js original-engine/rotation/*.js original-engine/fluids/*.js original-engine/electrostatics/*.js original-engine/gauss/*.js original-engine/potential/*.js original-engine/capacitors/*.js original-engine/circuits/*.js original-engine/magnetism/*.js original-engine/induction/*.js; do
             node --input-type=module --check < "$file"
           done
       - name: Check kinematics physics invariants
@@ -51,3 +51,5 @@ jobs:
         run: node original-engine/circuits/checks.mjs
       - name: Check magnetic fields physics invariants
         run: node original-engine/magnetism/checks.mjs
+      - name: Check electromagnetic induction physics invariants
+        run: node original-engine/induction/checks.mjs
