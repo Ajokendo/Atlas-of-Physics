@@ -140,7 +140,7 @@ import { PRACTICE } from './practice.js';
   { const S = M.SPRING, u = Math.acos(1.0 / S.v0) / S.w; keyed(5, 0, M.spring(S.tIn + u).x, 'compression at 1.0 m/s (model, in contact)'); }
   // 6: speed at x = L from the RK4 motion; work over the first half by Simpson
   keyed(6, 0, M.PUSH.vf, 'speed at x = L (RK4 of m dv/dt = F(x))');
-  states(6, 1, `${simpson(M.pushF, 0, M.PUSH.L / 2).toFixed(1)} J`, 'work over the first half (Simpson)');
+  states(6, 1, `${simpson(M.pushF, 0, M.PUSH.L / 2).toFixed(1)} Дж`, 'work over the first half (Simpson)');
   // 7: speed at 20° and tension at the bottom, from the RK4 pendulum
   { const Pd = M.PEND, t20 = root(t => M.pendulum(t).th - 20 * Math.PI / 180, 0, Pd.period / 4);
     keyed(7, 0, Math.abs(M.pendulum(t20).v), 'speed at 20° (RK4 pendulum)');
@@ -149,8 +149,8 @@ import { PRACTICE } from './practice.js';
   { const U = x => 3 * x * x - 2 * x ** 3; keyed(8, 0, -(U(2 + h) - U(2 - h)) / (2 * h), 'F = −dU/dx at 2.0 m (numeric)'); }
   // 9: k = U″(r0) by a numeric second derivative, and the period from it
   { const N = M.BOND, hr = 1e-14, k = (M.bondU(N.r0 + hr) - 2 * M.bondU(N.r0) + M.bondU(N.r0 - hr)) / hr ** 2;
-    states(9, 0, `${k.toFixed(0)} N/m`, 'bond k = U″(r0) (numeric)');
-    states(9, 0, `${(2 * Math.PI * Math.sqrt(N.m / k) * 1e15).toFixed(1)} fs`, 'small-vibration period from the numeric k'); }
+    states(9, 0, `${k.toFixed(0)} Н/м`, 'bond k = U″(r0) (numeric)');
+    states(9, 0, `${(2 * Math.PI * Math.sqrt(N.m / k) * 1e15).toFixed(1)} фс`, 'small-vibration period from the numeric k'); }
   // 10: distance from 8.0 m/s by work–energy with the model's friction; heat after 1.0 m from the model's slide
   keyed(10, 0, 0.5 * M.SLIDE.m * 8 ** 2 / M.SLIDE.f, 'distance from 8.0 m/s, ½mv² = f d');
   keyed(10, 1, M.slide(root(t => M.slide(t).x - 1.0, 0, M.SLIDE.run)).Eth, 'heat after 1.0 m (model slide)');
