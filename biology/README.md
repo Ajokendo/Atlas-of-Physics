@@ -256,3 +256,5 @@ The score should increase only when evidence for the relevant checklist items is
 - Systematics: classification-rank, domain, species-name and identification-key controls now relabel on language switching. The identification key restricts the next trait choices to the selected branch and clears a stale trait when the first branch changes.
 - Added regression assertions for these language-state and branch-reset behaviors in `biology/checks.mjs`.
 - Static source QA after the edits: 13 HTML pages, 13 inline scripts parsed successfully, 163 buttons all declare `type="button"`, and no duplicate HTML IDs were found. The repository's Node-based check script has not yet been executed in a Node runtime; no browser, keyboard-only or screen-reader run is claimed.
+
+- Editorial refinement: the evolution model labels now identify predation pressure specifically (rather than implying generic selection pressure); the systematics key explicitly tells learners when one trait is insufficient for identification.
