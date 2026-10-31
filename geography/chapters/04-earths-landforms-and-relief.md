@@ -399,6 +399,16 @@
 
 **Место для иллюстрации 4.15-A — Topographic Map Exercise.** Учебная карта с горизонталями и координатной сеткой, линией профиля, легендой и отдельным листом ответов.
 
+## Источники и дальнейшее чтение / Sources and Further Reading
+
+1. U.S. Geological Survey (USGS). *Geology, landforms and geomorphology resources*. https://www.usgs.gov/
+2. NASA Earth Observatory. *Earth's Surface and Landforms*. https://earthobservatory.nasa.gov/
+3. NOAA National Centers for Environmental Information. *ETOPO Global Relief Model*. https://www.ncei.noaa.gov/products/etopo-global-relief-model
+4. OpenTopography. *Access to topographic data and digital elevation models*. https://opentopography.org/
+5. British Geological Survey. *Landslides and slope processes*. https://www.bgs.ac.uk/
+
+Для количественных сравнений рельефа необходимо указывать вертикальную систему отсчёта, разрешение цифровой модели высот, дату и источник данных. Классификационные пороги форм рельефа следует применять последовательно в пределах всего атласа.
+
 ## Редакционные и научные примечания
 
 - Высоты и глубины географических экстремумов должны быть сверены с первичными геодезическими и гидрографическими источниками непосредственно перед выпуском.
