@@ -73,9 +73,17 @@ try {
       if (!(await page.locator("#detailText").innerText()).includes("кристаллическую решётку")) {
         errors.push(file + ": ionic bonding explanation does not distinguish a crystal lattice from an isolated ion pair");
       }
+      const ruConductivity = await page.locator('[data-i="ionicFeature"]').innerText();
+      if (!ruConductivity.includes("твёрдом состоянии") || !ruConductivity.includes("подвижными ионами")) {
+        errors.push(file + ": Russian ionic conductivity explanation is incomplete");
+      }
       await page.locator("#lang").click();
       if (!(await page.locator("#detailText").innerText()).includes("crystal lattice")) {
         errors.push(file + ": ionic bonding clarification is missing in English");
+      }
+      const enConductivity = await page.locator('[data-i="ionicFeature"]').innerText();
+      if (!enConductivity.includes("solid state") || !enConductivity.includes("mobile ions")) {
+        errors.push(file + ": English ionic conductivity explanation is incomplete");
       }
       await page.locator("#lang").click();
     }
