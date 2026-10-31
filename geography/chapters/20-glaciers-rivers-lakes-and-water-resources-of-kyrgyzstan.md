@@ -377,6 +377,68 @@ P = ET + Q + \Delta S
 
 Экологический сток — количество и режим воды, необходимые для поддержания речных экосистем и связанных с ними природных процессов. При планировании водозабора и регулирования важно учитывать не только хозяйственные потребности, но и состояние водных местообитаний.
 
+## Разобранный пример: перевод расхода реки в объём стока / Worked Example: Converting River Discharge into Runoff Volume
+
+Предположим, что средний расход воды в реке за условный 30-дневный месяц равен 25 м³/с. Оценим объём воды, прошедший через гидропост за этот период.
+
+Сначала определим число секунд в 30 днях:
+
+\[
+30\times24\times60\times60=2\,592\,000\text{ с}
+\]
+
+Объём стока равен расходу, умноженному на время:
+
+\[
+V=Q\times t=25\times2\,592\,000
+=64\,800\,000\text{ м}^3
+\]
+
+Это **64,8 млн м³ воды** за месяц.
+
+Теперь предположим, что площадь водосбора выше гидропоста составляет 2 000 км². Чтобы выразить этот объём как слой стока, переведём площадь в квадратные метры и разделим объём на площадь:
+
+\[
+h=\frac{64\,800\,000}{2\,000\times1\,000\,000}
+=0{,}0324\text{ м}=32{,}4\text{ мм}
+\]
+
+Следовательно, за этот условный месяц через створ прошло количество воды, эквивалентное слою стока 32,4 мм со всей площади водосбора.
+
+**Важно:** расчёт предполагает, что 25 м³/с — средний расход за весь период. Если расход менялся, нужно использовать средний расход, рассчитанный по более частым измерениям или суточным данным. Слой стока не равен осадкам: часть осадков испаряется, задерживается в почве, снеге, ледниках и озёрах либо поступает в бассейн в другое время.
+
+**Проверьте себя:** каким будет объём стока за 10 суток при постоянном расходе 12 м³/с?
+
+Assume that the river’s mean discharge during a hypothetical 30-day month is 25 m³/s. Calculate the volume of water passing the gauging station during that period.
+
+First, calculate the number of seconds in 30 days:
+
+\[
+30\times24\times60\times60=2,592,000\text{ s}
+\]
+
+Runoff volume equals discharge multiplied by time:
+
+\[
+V=Q\times t=25\times2,592,000
+=64,800,000\text{ m}^3
+\]
+
+That is **64.8 million m³ of water** during the month.
+
+Now assume that the catchment area upstream of the gauging station is 2,000 km². Convert the area to square metres and divide the volume by the area to obtain the runoff depth:
+
+\[
+h=\frac{64,800,000}{2,000\times1,000,000}
+=0.0324\text{ m}=32.4\text{ mm}
+\]
+
+Thus, the monthly flow volume is equivalent to a runoff layer of 32.4 mm across the catchment.
+
+**Important:** this calculation assumes that 25 m³/s is the mean discharge throughout the period. If discharge varied, use a mean calculated from more frequent measurements or daily data. Runoff depth is not the same as precipitation: some precipitation evaporates, remains in soil, snow, glaciers and lakes, or reaches the river later.
+
+**Check your understanding:** what volume of water passes the station in 10 days at a constant discharge of 12 m³/s?
+
 ## 20.14. Практические работы / Practical Activities
 
 ### Практическая работа 1. Карта речных бассейнов
