@@ -6,20 +6,20 @@ import * as M from './model.js';
 const p = (x, d) => x.toFixed(d);
 const g = (x, n = 3) => x.toPrecision(n);
 const sci = (x, n = 2) => { const e = Math.floor(Math.log10(Math.abs(x))), m = x / 10 ** e; return `${m.toFixed(n)} × 10<sup>${e < 0 ? '−' + -e : e}</sup>`; };
-const K = M.K, nC = M.nC, uC = M.uC;
+const K = M.K, нКл = M.нКл, uC = M.uC;
 
 // ---- page 0: two metal spheres touched; a rod with λ = cx ----
-const P0 = { q1: 6, q2: -2 };                                   // nC
+const P0 = { q1: 6, q2: -2 };                                   // нКл
 P0.each = (P0.q1 + P0.q2) / 2;
 P0.nums = [(Math.abs(P0.q1) + Math.abs(P0.q2)) / 2, P0.each, NaN, 0];   // added sizes · right · no flow · cancelled
-const P0b = { c: 40 * nC, L: 0.50 };                           // λ = c x (C/m², m)
+const P0b = { c: 40 * нКл, L: 0.50 };                           // λ = c x (C/m², m)
 P0b.Q = P0b.c * P0b.L ** 2 / 2;
 P0b.nums = [P0b.c * P0b.L ** 3 / 3, P0b.c * P0b.L ** 2, P0b.Q, P0b.c * P0b.L].map(q => q / M.QE);   // ∫x² · forgot ½ · right · λ(L)·1 m
 // ---- page 1: the grounding current ----
 const P1 = { I0: 2.4e-3, tau: 1.5e-6 };
 P1.n = P1.I0 * P1.tau / M.QE;
 P1.nums = [P1.n * (1 - 1 / Math.E), P1.n / 2, P1.n / Math.E, P1.n];   // stopped at τ · triangle · I(τ)·τ · right
-// ---- page 2: the page's pair at 20 cm; work as a like pair flies apart ----
+// ---- page 2: the page's pair at 20 см; work as a like pair flies apart ----
 const P2 = { r: 0.20 };
 P2.F = M.coulomb(M.PAIR.q1, M.PAIR.q2, P2.r);
 P2.nums = [K * M.PAIR.q1 * -M.PAIR.q2 / P2.r, M.coulomb(M.PAIR.q1, M.PAIR.q1, P2.r), P2.F, P2.F / 2];   // 1/r · q1² · right · "smaller charge, smaller force"
@@ -33,7 +33,7 @@ const P3 = { x: M.LINE.xEq };
 P3.nums = [D * Math.sqrt(qB) / (Math.sqrt(qA) + Math.sqrt(qB)), D * qA / (qA + qB), D / 2, P3.x].map(x => x * 100);   // nearer A · no root · midpoint · right
 P3.k = 2 * K * q0 * (qA / P3.x ** 3 + qB / (D - P3.x) ** 3);
 P3.nums2 = [P3.k, P3.k / 2, 2 * K * q0 * Math.abs(qA / P3.x ** 3 - qB / (D - P3.x) ** 3), K * q0 * (qA / P3.x ** 2 + qB / (D - P3.x) ** 2)];   // right · lost the 2 · subtracted · not differentiated
-// ---- page 4: a −1 nC charge; a test charge moving out ----
+// ---- page 4: a −1 нКл charge; a test charge moving out ----
 const P4 = { Q: M.POINT.Q, r: 0.20 };
 P4.E = M.pointMag(P4.Q, P4.r);
 P4.nums = [P4.E, NaN, K * P4.Q / P4.r, K * P4.Q / (P4.r * 100) ** 2];
@@ -48,7 +48,7 @@ P5.nums = [2 * K * dq * da / P5.y ** 3, P5.E, 2 * K * dq / (da * da + P5.y * P5.
 const P6 = { a: 0.10 };
 P6.E = M.rodAxis(P6.a);
 P6.nums = [K * M.RODE.Q / P6.a ** 2, K * M.RODE.Q / (P6.a + M.RODE.L / 2) ** 2, P6.E, K * M.RODE.lambda / P6.a];   // all at the end · all at the middle · right · kλ/a
-// ---- page 7: the page's ring at z = 15 cm; where it peaks ----
+// ---- page 7: the page's ring at z = 15 см; where it peaks ----
 const P7 = { z: 0.15 }, RR = M.RING.R, RQ = M.RING.Q;
 P7.E = M.ringAxis(P7.z);
 P7.nums = [K * RQ / (P7.z ** 2 + RR ** 2), P7.E, K * RQ / P7.z ** 2, K * RQ * RR / (P7.z ** 2 + RR ** 2) ** 1.5];   // no cos φ · right · point charge · sin φ
@@ -59,78 +59,78 @@ const P8 = { nums: [2 * PL.yExit, 4 * PL.yExit, PL.yProton, PL.yExit].map(y => y
 const P8b = { vy: PL.vyExit / 2 };
 P8b.nums = [PL.vyExit, P8b.vy, PL.vyExit / 3, PL.vyExit / 4].map(v => v / 1e6);
 
-const mm = x => x < 0.01 ? p(x, 5) : g(x);
+const мм = x => x < 0.01 ? p(x, 5) : g(x);
 
 export const PRACTICE = {
   0: [
     { q: `Два одинаковых металлических шара имеют заряды +${P0.q1} нКл и −${-P0.q2} нКл. Их приводят в соприкосновение, а затем раздвигают. Какой заряд будет у каждого шара?`,
-      choices: [`+${p(P0.nums[0], 0)} nC`, `+${p(P0.each, 0)} nC`, `+${P0.q1 / 2} nC and −${-P0.q2 / 2} nC`, '0'], answer: 1, nums: P0.nums,
-      why: `<p>Charge is conserved: the total, ${P0.q1} + (−${-P0.q2}) = +${P0.q1 + P0.q2} nC, is shared equally by identical spheres.</p><div class="eq"><i>q</i> = (${P0.q1} − ${-P0.q2})/2 = +${p(P0.each, 0)} nC each</div><p>Adding the sizes (+${p(P0.nums[0], 0)} nC) ignores the signs; electrons from the negative sphere cancel part of the positive one’s charge.</p>` },
-    { q: `Тонкий пластиковый стержень расположен вдоль оси x от 0 до ${p(P0b.L, 2)} м; линейная плотность заряда λ = cx, где c = +${p(P0b.c / nC, 0)} нКл/м². Сколько электронов потерял стержень?`,
+      choices: [`+${p(P0.nums[0], 0)} нКл`, `+${p(P0.each, 0)} нКл`, `+${P0.q1 / 2} нКл and −${-P0.q2 / 2} нКл`, '0'], answer: 1, nums: P0.nums,
+      why: `<p>Заряд сохраняется: суммарный заряд ${P0.q1} + (−${-P0.q2}) = +${P0.q1 + P0.q2} нКл, поровну распределяется между одинаковыми шарами.</p><div class="eq"><i>q</i> = (${P0.q1} − ${-P0.q2})/2 = +${p(P0.each, 0)} нКл each</div><p>Сложение модулей зарядов (+${p(P0.nums[0], 0)} нКл) не учитывает знаки; электроны отрицательно заряженного шара компенсируют часть положительного заряда.</p>` },
+    { q: `Тонкий пластиковый стержень расположен вдоль оси x от 0 до ${p(P0b.L, 2)} м; линейная плотность заряда λ = cx, где c = +${p(P0b.c / нКл, 0)} нКл/м². Сколько электронов потерял стержень?`,
       choices: P0b.nums.map(n => sci(n)), answer: 2, nums: P0b.nums,
-      why: `<p>λ changes along the rod, so add slices d<i>q</i> = λ d<i>x</i>:</p><div class="eq"><i>Q</i> = ∫<sub>0</sub><sup><i>L</i></sup> <i>cx</i> d<i>x</i> = <i>cL</i>²/2 = ${p(P0b.c / nC, 0)} × ${p(P0b.L, 2)}²/2 = ${p(P0b.Q / nC, 2)} nC</div><div class="eq"><i>n</i> = <i>Q</i>/<i>e</i> = ${p(P0b.Q / nC, 2)} × 10<sup>−9</sup>/${sci(M.QE)} = ${sci(P0b.nums[2])}</div><p>Leaving out the ½ (λ at the far end times the length) gives twice too many.</p>` },
+      why: `<p>Линейная плотность заряда λ меняется вдоль стержня, поэтому суммируем заряды малых участков d<i>q</i> = λ d<i>x</i>:</p><div class="eq"><i>Q</i> = ∫<sub>0</sub><sup><i>L</i></sup> <i>cx</i> d<i>x</i> = <i>cL</i>²/2 = ${p(P0b.c / нКл, 0)} × ${p(P0b.L, 2)}²/2 = ${p(P0b.Q / нКл, 2)} нКл</div><div class="eq"><i>n</i> = <i>Q</i>/<i>e</i> = ${p(P0b.Q / нКл, 2)} × 10<sup>−9</sup>/${sci(M.QE)} = ${sci(P0b.nums[2])}</div><p>Если не учитывать множитель ½, результат будет вдвое больше.</p>` },
   ],
   1: [
     { q: `Нейтральный металлический шар показан на рисунке: к нему приближают отрицательно заряженный стержень, шар заземляют, затем отсоединяют провод заземления и убирают стержень. Какой заряд останется на шаре?`,
-      choices: ['neutral', 'negative, spread evenly over its surface', 'positive, spread evenly over its surface', 'positive, crowded on the side where the rod was'], answer: 2,
-      why: `<p>The rod pushes the sphere’s free electrons to the far side, and grounding lets some of them leave. Cutting the ground first traps the deficit: the sphere is positive (+${p(M.QG / nC, 2)} nC here), opposite to the rod. Once the rod is gone nothing holds the charge to one side, so it spreads evenly over the surface.</p>` },
+      choices: ['нейтральный', 'отрицательный, равномерно распределённый по поверхности', 'положительный, равномерно распределённый по поверхности', 'положительный, сосредоточенный на стороне, где находился стержень'], answer: 2,
+      why: `<p>Стержень отталкивает свободные электроны шара на противоположную сторону, а заземление позволяет части электронов уйти. Если сначала отсоединить заземление, недостаток электронов сохранится: шар станет положительным (+${p(M.QG / нКл, 2)} нКл), то есть приобретёт заряд, противоположный заряду стержня. После удаления стержня заряд равномерно распределится по поверхности.</p>` },
     { q: `При другом опыте по электростатической индукции, пока шар заземлён, ток в проводе заземления изменяется по закону I(t) = I0e−t/τ, где I0 = ${p(P1.I0 * 1e3, 1)} мА и τ = ${p(P1.tau * 1e6, 1)} мкс. Сколько электронов в сумме покинет шар?`,
       choices: P1.nums.map(n => sci(n)), answer: 3, nums: P1.nums,
-      why: `<p>Charge is the integral of current:</p><div class="eq"><i>Q</i> = ∫<sub>0</sub><sup>∞</sup> <i>I</i><sub>0</sub><i>e</i><sup>−<i>t</i>/τ</sup> d<i>t</i> = <i>I</i><sub>0</sub>τ = ${p(P1.I0 * P1.tau / nC, 2)} nC, &nbsp;<i>n</i> = <i>Q</i>/<i>e</i> = ${sci(P1.n)}</div><p>Stopping at <i>t</i> = τ counts only 63% of them, ${sci(P1.nums[0])}.</p>` },
+      why: `<p>Заряд равен интегралу силы тока по времени:</p><div class="eq"><i>Q</i> = ∫<sub>0</sub><sup>∞</sup> <i>I</i><sub>0</sub><i>e</i><sup>−<i>t</i>/τ</sup> d<i>t</i> = <i>I</i><sub>0</sub>τ = ${p(P1.I0 * P1.tau / нКл, 2)} нКл, &nbsp;<i>n</i> = <i>Q</i>/<i>e</i> = ${sci(P1.n)}</div><p>Если остановить интегрирование при <i>t</i> = τ, будет учтено только 63% электронов: ${sci(P1.nums[0])}.</p>` },
   ],
   2: [
     { q: `Заряды +${M.PAIR.q1 / uC} мкКл и −${-M.PAIR.q2 / uC} мкКл находятся на расстоянии ${p(P2.r * 100, 0)} см друг от друга. Чему равен модуль силы, действующей на заряд −${-M.PAIR.q2 / uC} мкКл?`,
       choices: P2.nums.map(x => `${g(x)} N`), answer: 2, nums: P2.nums,
-      why: `<div class="eq"><i>F</i> = <i>k</i>|<i>q</i><sub>1</sub><i>q</i><sub>2</sub>|/<i>r</i>² = ${sci(K)} × (${M.PAIR.q1 / uC} × 10<sup>−6</sup>)(${-M.PAIR.q2 / uC} × 10<sup>−6</sup>)/(${p(P2.r, 2)})² = ${g(P2.F)} N</div><p>Both charges feel the same ${g(P2.F)} N, a third-law pair; the smaller charge does not feel half as much (${g(P2.nums[3])} N).</p>` },
+      why: `<div class="eq"><i>F</i> = <i>k</i>|<i>q</i><sub>1</sub><i>q</i><sub>2</sub>|/<i>r</i>² = ${sci(K)} × (${M.PAIR.q1 / uC} × 10<sup>−6</sup>)(${-M.PAIR.q2 / uC} × 10<sup>−6</sup>)/(${p(P2.r, 2)})² = ${g(P2.F)} N</div><p>На оба заряда действует одинаковая сила ${g(P2.F)} N, a third-law pair; the smaller charge does not feel half as much (${g(P2.nums[3])} N).</p>` },
     { q: `Два одноимённых заряда +${P2b.q1 / uC} мкКл и +${P2b.q2 / uC} мкКл расположены на расстоянии ${p(P2b.r1 * 100, 0)} см. Заряд +${P2b.q2 / uC} мкКл отпускают, а второй заряд остаётся неподвижным. Какую работу совершит электрическая сила, когда расстояние между ними станет ${p(P2b.r2 * 100, 0)} см?`,
-      choices: P2b.nums.map(x => `${g(x)} J`), answer: 3, nums: P2b.nums,
-      why: `<p>The force changes as it moves, so integrate:</p><div class="eq"><i>W</i> = ∫<sub><i>r</i><sub>1</sub></sub><sup><i>r</i><sub>2</sub></sup> <i>kq</i><sub>1</sub><i>q</i><sub>2</sub>/<i>r</i>² d<i>r</i> = <i>kq</i><sub>1</sub><i>q</i><sub>2</sub>(1/<i>r</i><sub>1</sub> − 1/<i>r</i><sub>2</sub>) = ${g(K * P2b.q1 * P2b.q2)} × (${p(1 / P2b.r1, 1)} − ${p(1 / P2b.r2, 1)}) = ${g(P2b.W)} J</div><p>Force × distance with the starting force (${g(P2b.nums[0])} J) is too big: the push weakens as 1/<i>r</i>². Averaging the end forces (${g(P2b.nums[2])} J) is also wrong, since <i>F</i> is not linear in <i>r</i>.</p>` },
+      choices: P2b.nums.map(x => `${g(x)} Дж`), answer: 3, nums: P2b.nums,
+      why: `<p>Сила меняется по мере движения заряда, поэтому необходимо выполнить интегрирование:</p><div class="eq"><i>W</i> = ∫<sub><i>r</i><sub>1</sub></sub><sup><i>r</i><sub>2</sub></sup> <i>kq</i><sub>1</sub><i>q</i><sub>2</sub>/<i>r</i>² d<i>r</i> = <i>kq</i><sub>1</sub><i>q</i><sub>2</sub>(1/<i>r</i><sub>1</sub> − 1/<i>r</i><sub>2</sub>) = ${g(K * P2b.q1 * P2b.q2)} × (${p(1 / P2b.r1, 1)} − ${p(1 / P2b.r2, 1)}) = ${g(P2b.W)} Дж</div><p>Произведение начальной силы на расстояние (${g(P2b.nums[0])} Дж) даёт завышенный результат: сила отталкивания уменьшается пропорционально 1/<i>r</i>². Среднее арифметическое конечных сил (${g(P2b.nums[2])} Дж) также неверно, поскольку <i>F</i> не является линейной функцией <i>r</i>.</p>` },
   ],
   3: [
     { q: `На рисунке заряды A (+${qA / uC} мкКл) и B (+${qB / uC} мкКл) находятся на расстоянии ${p(D * 100, 0)} см. На каком расстоянии от A результирующая сила на пробный заряд между ними равна нулю?`,
-      choices: P3.nums.map(x => `${p(x, 1)} cm`), answer: 3, nums: P3.nums,
-      why: `<div class="eq"><i>kq</i><sub>A</sub>/<i>x</i>² = <i>kq</i><sub>B</sub>/(<i>d</i> − <i>x</i>)² &nbsp;→&nbsp; (<i>d</i> − <i>x</i>)/<i>x</i> = √(<i>q</i><sub>B</sub>/<i>q</i><sub>A</sub>) = ${p(Math.sqrt(qB / qA), 2)} &nbsp;→&nbsp; <i>x</i> = ${p(P3.x * 100, 1)} cm</div><p>It sits nearer the <b>smaller</b> charge, B. Splitting <i>d</i> in the ratio of the charges (${p(P3.nums[1], 1)} cm) forgets that force goes as 1/<i>r</i>², so the distances go as the square roots.</p>` },
+      choices: P3.nums.map(x => `${p(x, 1)} см`), answer: 3, nums: P3.nums,
+      why: `<div class="eq"><i>kq</i><sub>A</sub>/<i>x</i>² = <i>kq</i><sub>B</sub>/(<i>d</i> − <i>x</i>)² &nbsp;→&nbsp; (<i>d</i> − <i>x</i>)/<i>x</i> = √(<i>q</i><sub>B</sub>/<i>q</i><sub>A</sub>) = ${p(Math.sqrt(qB / qA), 2)} &nbsp;→&nbsp; <i>x</i> = ${p(P3.x * 100, 1)} см</div><p>Точка равновесия расположена ближе к <b>меньшему</b> заряду B. Деление расстояния <i>d</i> в отношении зарядов (${p(P3.nums[1], 1)} см) не учитывает зависимость силы от 1/<i>r</i>²: расстояния относятся как квадратные корни из зарядов.</p>` },
     { q: `Пробный заряд +${p(q0 / uC, 1)} мкКл смещают на небольшое расстояние s вдоль линии от точки равновесия. Результирующая сила становится F ≈ −κs. Чему равна κ?`,
-      choices: P3.nums2.map(x => `${g(x)} N/m`), answer: 0, nums: P3.nums2,
-      why: `<p>κ = −d<i>F</i>/d<i>x</i> at <i>x</i><sub>eq</sub>, with <i>F</i>(<i>x</i>) = <i>kq</i><sub>0</sub><i>q</i><sub>A</sub>/<i>x</i>² − <i>kq</i><sub>0</sub><i>q</i><sub>B</sub>/(<i>d</i> − <i>x</i>)²:</p><div class="eq">κ = 2<i>kq</i><sub>0</sub>[<i>q</i><sub>A</sub>/<i>x</i>³ + <i>q</i><sub>B</sub>/(<i>d</i> − <i>x</i>)³] = ${g(P3.k)} N/m</div><p>Both terms add: moving toward B, A’s push weakens <i>and</i> B’s push grows, both sending the charge back. Subtracting them gives ${g(P3.nums2[2])} N/m.</p>` },
+      choices: P3.nums2.map(x => `${g(x)} Н/м`), answer: 0, nums: P3.nums2,
+      why: `<p>κ = −d<i>F</i>/d<i>x</i> в точке равновесия <i>x</i><sub>eq</sub>, где <i>F</i>(<i>x</i>) = <i>kq</i><sub>0</sub><i>q</i><sub>A</sub>/<i>x</i>² − <i>kq</i><sub>0</sub><i>q</i><sub>B</sub>/(<i>d</i> − <i>x</i>)²:</p><div class="eq">κ = 2<i>kq</i><sub>0</sub>[<i>q</i><sub>A</sub>/<i>x</i>³ + <i>q</i><sub>B</sub>/(<i>d</i> − <i>x</i>)³] = ${g(P3.k)} Н/м</div><p>Both terms add: moving toward B, A’s push weakens <i>and</i> B’s push grows, both sending the charge back. Subtracting them gives ${g(P3.nums2[2])} Н/м.</p>` },
   ],
   4: [
-    { q: `Точечный заряд −${M.POINT.Q / nC}.0 нКл расположен в начале координат. Чему равен электрический потенциал в точке, находящейся на расстоянии ${p(P4.r * 100, 0)} см к востоку от него?`,
-      choices: [`${p(P4.E, 0)} N/C, west`, `${p(P4.E, 0)} N/C, east`, `${p(P4.nums[2], 1)} N/C, west`, `${p(P4.nums[3], 4)} N/C, west`], answer: 0, nums: P4.nums,
-      why: `<div class="eq"><i>E</i> = <i>k</i>|<i>Q</i>|/<i>r</i>² = ${sci(K)} × 1.0 × 10<sup>−9</sup>/(${p(P4.r, 2)})² = ${p(P4.E, 0)} N/C</div><p>The field of a negative charge points <b>toward</b> it: a positive test charge east of it is pulled west. Using <i>r</i> in cm gives ${p(P4.nums[3], 4)} N/C; <i>kQ</i>/<i>r</i> is a potential, not a field.</p>` },
-    { q: `Пробный заряд удаляется прямо от показанного заряда +${M.POINT.Q / nC} нКл со скоростью ${p(P4b.v * 100, 1)} см/с. Когда он находится на расстоянии ${p(P4b.r * 100, 0)} см, с какой скоростью уменьшается напряжённость поля в его точке?`,
-      choices: P4b.nums.map(x => `${g(x)} N/C per s`), answer: 1, nums: P4b.nums,
-      why: `<p>Chain rule: <i>E</i>(<i>r</i>) = <i>kQ</i>/<i>r</i>², and <i>r</i> grows at <i>v</i>:</p><div class="eq">d<i>E</i>/d<i>t</i> = (d<i>E</i>/d<i>r</i>)(d<i>r</i>/d<i>t</i>) = −(2<i>kQ</i>/<i>r</i>³)<i>v</i> = −2 × ${p(K * M.POINT.Q, 2)} × ${p(P4b.v, 3)}/${p(P4b.r, 2)}³ = −${g(P4b.rate)} N/C per s</div><p>Dropping the 2 from the power rule gives ${g(P4b.nums[0])}.</p>` },
+    { q: `Точечный заряд −${M.POINT.Q / нКл}.0 нКл расположен в начале координат. Чему равен электрический потенциал в точке, находящейся на расстоянии ${p(P4.r * 100, 0)} см к востоку от него?`,
+      choices: [`${p(P4.E, 0)} Н/Кл, west`, `${p(P4.E, 0)} Н/Кл, east`, `${p(P4.nums[2], 1)} Н/Кл, west`, `${p(P4.nums[3], 4)} Н/Кл, west`], answer: 0, nums: P4.nums,
+      why: `<div class="eq"><i>E</i> = <i>k</i>|<i>Q</i>|/<i>r</i>² = ${sci(K)} × 1.0 × 10<sup>−9</sup>/(${p(P4.r, 2)})² = ${p(P4.E, 0)} Н/Кл</div><p>Поле отрицательного заряда направлено <b>к</b> нему: положительный пробный заряд к востоку от него притягивается на запад. Если подставить <i>r</i> в сантиметрах, получится ${p(P4.nums[3], 4)} Н/Кл; выражение <i>kQ</i>/<i>r</i> задаёт потенциал, а не напряжённость поля.</p>` },
+    { q: `Пробный заряд удаляется прямо от показанного заряда +${M.POINT.Q / нКл} нКл со скоростью ${p(P4b.v * 100, 1)} см/с. Когда он находится на расстоянии ${p(P4b.r * 100, 0)} см, с какой скоростью уменьшается напряжённость поля в его точке?`,
+      choices: P4b.nums.map(x => `${g(x)} Н/Кл per s`), answer: 1, nums: P4b.nums,
+      why: `<p>Применим правило цепочки: <i>E</i>(<i>r</i>) = <i>kQ</i>/<i>r</i>², and <i>r</i> grows at <i>v</i>:</p><div class="eq">d<i>E</i>/d<i>t</i> = (d<i>E</i>/d<i>r</i>)(d<i>r</i>/d<i>t</i>) = −(2<i>kQ</i>/<i>r</i>³)<i>v</i> = −2 × ${p(K * M.POINT.Q, 2)} × ${p(P4b.v, 3)}/${p(P4b.r, 2)}³ = −${g(P4b.rate)} Н/Кл per s</div><p>Если забыть множитель 2 при дифференцировании степени, получится ${g(P4b.nums[0])}.</p>` },
   ],
   5: [
-    { q: `Для изображённого диполя (заряды ±${dq / nC} нКл, расстояние между ними ${p(2 * da * 100, 0)} см) найдите модуль поля на перпендикулярной биссектрисе на расстоянии ${p(P5.y * 100, 0)} см от центра.`,
-      choices: P5.nums.map(x => `${p(x, 0)} N/C`), answer: 1, nums: P5.nums,
-      why: `<p>Each charge is √(<i>a</i>² + <i>y</i>²) = ${p(Math.hypot(da, P5.y) * 100, 1)} cm away and gives <i>kq</i>/(<i>a</i>² + <i>y</i>²) = ${p(K * dq / (da * da + P5.y * P5.y), 0)} N/C. The <i>y</i> parts cancel; the <i>x</i> parts, each × cos θ = <i>a</i>/√(<i>a</i>² + <i>y</i>²), add:</p><div class="eq"><i>E</i> = 2<i>kqa</i>/(<i>a</i>² + <i>y</i>²)<sup>3/2</sup> = ${p(P5.E, 0)} N/C, parallel to the axis, from + toward −</div><p>The far-field 2<i>kqa</i>/<i>y</i>³ (${p(P5.nums[0], 0)} N/C) is only good for <i>y</i> ≫ <i>a</i>; here <i>y</i> = <i>a</i>.</p>` },
+    { q: `Для изображённого диполя (заряды ±${dq / нКл} нКл, расстояние между ними ${p(2 * da * 100, 0)} см) найдите модуль поля на перпендикулярной биссектрисе на расстоянии ${p(P5.y * 100, 0)} см от центра.`,
+      choices: P5.nums.map(x => `${p(x, 0)} Н/Кл`), answer: 1, nums: P5.nums,
+      why: `<p>Каждый заряд находится на расстоянии √(<i>a</i>² + <i>y</i>²) = ${p(Math.hypot(da, P5.y) * 100, 1)} см away and gives <i>kq</i>/(<i>a</i>² + <i>y</i>²) = ${p(K * dq / (da * da + P5.y * P5.y), 0)} Н/Кл. Составляющие вдоль <i>y</i> взаимно компенсируются; составляющие вдоль <i>x</i> умножаются на cos θ = <i>a</i>/√(<i>a</i>² + <i>y</i>²), add:</p><div class="eq"><i>E</i> = 2<i>kqa</i>/(<i>a</i>² + <i>y</i>²)<sup>3/2</sup> = ${p(P5.E, 0)} Н/Кл, направлено вдоль оси от положительного заряда к отрицательному</div><p>Приближение для далёкого поля 2<i>kqa</i>/<i>y</i>³ (${p(P5.nums[0], 0)} Н/Кл) применимо только при <i>y</i> ≫ <i>a</i>; здесь <i>y</i> = <i>a</i>.</p>` },
     { q: `Диполь состоит из зарядов +q при x = +a и −q при x = −a. Найдите напряжённость поля на оси при x ≫ a и покажите, что она убывает пропорционально 1/x³.`,
-      solution: `<p>Both fields lie along the axis; the nearer +<i>q</i> wins:</p><div class="eq"><i>E</i> = <i>kq</i>/(<i>x</i> − <i>a</i>)² − <i>kq</i>/(<i>x</i> + <i>a</i>)² = <i>kq</i> · 4<i>ax</i>/(<i>x</i>² − <i>a</i>²)²</div><p>For <i>x</i> ≫ <i>a</i>, (<i>x</i>² − <i>a</i>²)² → <i>x</i>⁴, so <i>E</i> → 4<i>kqa</i>/<i>x</i>³ = 2<i>kp</i>/<i>x</i>³ with <i>p</i> = 2<i>qa</i>, pointing +<i>x</i>. Another way: <i>f</i>(<i>x</i>) = <i>kq</i>/<i>x</i>² changes by about <i>f</i>′(<i>x</i>) · (−2<i>a</i>) between the two charges, so <i>E</i> ≈ −2<i>a</i> · (−2<i>kq</i>/<i>x</i>³) = 4<i>kqa</i>/<i>x</i>³. The two fields nearly cancel, leaving a difference that falls one power faster than either.</p>` },
+      solution: `<p>Оба поля направлены вдоль оси; поле от более близкого заряда +<i>q</i> сильнее:</p><div class="eq"><i>E</i> = <i>kq</i>/(<i>x</i> − <i>a</i>)² − <i>kq</i>/(<i>x</i> + <i>a</i>)² = <i>kq</i> · 4<i>ax</i>/(<i>x</i>² − <i>a</i>²)²</div><p>При <i>x</i> ≫ <i>a</i> (<i>x</i>² − <i>a</i>²)² → <i>x</i>⁴, so <i>E</i> → 4<i>kqa</i>/<i>x</i>³ = 2<i>kp</i>/<i>x</i>³ with <i>p</i> = 2<i>qa</i>, pointing +<i>x</i>. Another way: <i>f</i>(<i>x</i>) = <i>kq</i>/<i>x</i>² changes by about <i>f</i>′(<i>x</i>) · (−2<i>a</i>) between the two charges, so <i>E</i> ≈ −2<i>a</i> · (−2<i>kq</i>/<i>x</i>³) = 4<i>kqa</i>/<i>x</i>³. Два поля почти компенсируют друг друга, и их разность убывает на одну степень расстояния быстрее, чем каждое поле по отдельности.</p>` },
   ],
   6: [
-    { q: `Показанный стержень имеет заряд +${M.RODE.Q / nC} нКл и длину ${p(M.RODE.L * 100, 0)} см. Чему равна напряжённость электрического поля на его оси на расстоянии ${p(P6.a * 100, 0)} см за одним из концов?`,
-      choices: P6.nums.map(x => `${p(x, 0)} N/C`), answer: 2, nums: P6.nums,
-      why: `<div class="eq"><i>E</i> = ∫<sub><i>a</i></sub><sup><i>a</i>+<i>L</i></sup> <i>k</i>λ d<i>x</i>/<i>x</i>² = <i>kQ</i>/(<i>a</i>(<i>a</i> + <i>L</i>)) = ${p(K * M.RODE.Q, 2)}/(${p(P6.a, 2)} × ${p(P6.a + M.RODE.L, 2)}) = ${p(P6.E, 0)} N/C</div><p>Treating all the charge as if at the near end (${p(P6.nums[0], 0)} N/C) or at the middle (${p(P6.nums[1], 0)} N/C) fails: the slices are at different distances and the 1/<i>x</i>² weighting is not linear.</p>` },
+    { q: `Показанный стержень имеет заряд +${M.RODE.Q / нКл} нКл и длину ${p(M.RODE.L * 100, 0)} см. Чему равна напряжённость электрического поля на его оси на расстоянии ${p(P6.a * 100, 0)} см за одним из концов?`,
+      choices: P6.nums.map(x => `${p(x, 0)} Н/Кл`), answer: 2, nums: P6.nums,
+      why: `<div class="eq"><i>E</i> = ∫<sub><i>a</i></sub><sup><i>a</i>+<i>L</i></sup> <i>k</i>λ d<i>x</i>/<i>x</i>² = <i>kQ</i>/(<i>a</i>(<i>a</i> + <i>L</i>)) = ${p(K * M.RODE.Q, 2)}/(${p(P6.a, 2)} × ${p(P6.a + M.RODE.L, 2)}) = ${p(P6.E, 0)} Н/Кл</div><p>Если считать, что весь заряд сосредоточен у ближнего конца (${p(P6.nums[0], 0)} Н/Кл) or at the middle (${p(P6.nums[1], 0)} Н/Кл) результат будет неверным: участки стержня находятся на разных расстояниях, а зависимость 1/<i>x</i>² нелинейна.</p>` },
     { q: `Стержень с линейной плотностью заряда λ и длиной L расположен на оси x от −L/2 до L/2. Какой интеграл задаёт поле в точке на расстоянии a над его серединой?`,
       choices: ['∫ <i>k</i>λ d<i>x</i>/(<i>x</i>² + <i>a</i>²)', '∫ <i>k</i>λ<i>x</i> d<i>x</i>/(<i>x</i>² + <i>a</i>²)<sup>3/2</sup>', '∫ <i>k</i>λ d<i>x</i>/(<i>x</i>² + <i>a</i>²)<sup>1/2</sup>', '∫ <i>k</i>λ<i>a</i> d<i>x</i>/(<i>x</i>² + <i>a</i>²)<sup>3/2</sup>'], answer: 3,
-      why: '<p>Each slice gives d<i>E</i> = <i>k</i>λ d<i>x</i>/(<i>x</i>² + <i>a</i>²). The sideways parts cancel in pairs, so keep only the part along <i>a</i>, × cos θ = <i>a</i>/√(<i>x</i>² + <i>a</i>²):</p><div class="eq"><i>E</i> = ∫<sub>−<i>L</i>/2</sub><sup><i>L</i>/2</sup> <i>k</i>λ<i>a</i> d<i>x</i>/(<i>x</i>² + <i>a</i>²)<sup>3/2</sup> = <i>kQ</i>/(<i>a</i>√(<i>L</i>²/4 + <i>a</i>²))</div><p>The first adds magnitudes without cancelling; the <i>x</i> d<i>x</i> integral is the sideways part, which is zero; the 1/2 power is the potential.</p>' },
+      why: '<p>Каждый элемент стержня создаёт поле d<i>E</i> = <i>k</i>λ d<i>x</i>/(<i>x</i>² + <i>a</i>²). The sideways parts cancel in pairs, so keep only the part along <i>a</i>, × cos θ = <i>a</i>/√(<i>x</i>² + <i>a</i>²):</p><div class="eq"><i>E</i> = ∫<sub>−<i>L</i>/2</sub><sup><i>L</i>/2</sup> <i>k</i>λ<i>a</i> d<i>x</i>/(<i>x</i>² + <i>a</i>²)<sup>3/2</sup> = <i>kQ</i>/(<i>a</i>√(<i>L</i>²/4 + <i>a</i>²))</div><p>Первый вариант складывает модули, не учитывая компенсацию составляющих; интеграл с <i>x</i> d<i>x</i> описывает поперечную составляющую, равную нулю; степень 1/2 соответствует потенциалу.</p>' },
   ],
   7: [
-    { q: `Кольцо на рисунке имеет заряд +${p(RQ / nC, 0)} нКл и радиус R = ${p(RR * 100, 0)} см. Чему равна напряжённость поля на его оси на расстоянии ${p(P7.z * 100, 0)} см от центра?`,
-      choices: P7.nums.map(x => `${p(x, 0)} N/C`), answer: 1, nums: P7.nums,
-      why: `<p>Every piece is √(<i>z</i>² + <i>R</i>²) = ${p(Math.hypot(P7.z, RR) * 100, 0)} cm away; only the axial part, cos φ = <i>z</i>/√(<i>z</i>² + <i>R</i>²) = ${p(P7.z / Math.hypot(P7.z, RR), 2)}, survives:</p><div class="eq"><i>E</i> = <i>kQz</i>/(<i>z</i>² + <i>R</i>²)<sup>3/2</sup> = ${p(P7.E, 0)} N/C</div><p>Without the cos φ it is ${p(P7.nums[0], 0)} N/C; the ring is not a point charge at this distance (${p(P7.nums[2], 0)} N/C).</p>` },
+    { q: `Кольцо на рисунке имеет заряд +${p(RQ / нКл, 0)} нКл и радиус R = ${p(RR * 100, 0)} см. Чему равна напряжённость поля на его оси на расстоянии ${p(P7.z * 100, 0)} см от центра?`,
+      choices: P7.nums.map(x => `${p(x, 0)} Н/Кл`), answer: 1, nums: P7.nums,
+      why: `<p>Каждый элемент кольца находится на расстоянии √(<i>z</i>² + <i>R</i>²) = ${p(Math.hypot(P7.z, RR) * 100, 0)} см away; only the axial part, cos φ = <i>z</i>/√(<i>z</i>² + <i>R</i>²) = ${p(P7.z / Math.hypot(P7.z, RR), 2)}, survives:</p><div class="eq"><i>E</i> = <i>kQz</i>/(<i>z</i>² + <i>R</i>²)<sup>3/2</sup> = ${p(P7.E, 0)} Н/Кл</div><p>Без множителя cos φ получилось бы ${p(P7.nums[0], 0)} Н/Кл; the ring is not a point charge at this distance (${p(P7.nums[2], 0)} Н/Кл).</p>` },
     { q: `На каком расстоянии от центра кольца напряжённость поля на его оси максимальна?`,
-      choices: P7.nums2.map(x => `${p(x, 1)} cm`), answer: 3, nums: P7.nums2,
-      why: `<p>Set d<i>E</i>/d<i>z</i> = 0 for <i>E</i> = <i>kQz</i>(<i>z</i>² + <i>R</i>²)<sup>−3/2</sup>:</p><div class="eq"><i>kQ</i>[(<i>z</i>² + <i>R</i>²) − 3<i>z</i>²]/(<i>z</i>² + <i>R</i>²)<sup>5/2</sup> = 0 &nbsp;→&nbsp; <i>z</i> = <i>R</i>/√2 = ${p(P7.nums2[3], 1)} cm</div><p><i>E</i> is zero at the centre and falls as 1/<i>z</i>² far away, so the peak lies between them.</p>` },
+      choices: P7.nums2.map(x => `${p(x, 1)} см`), answer: 3, nums: P7.nums2,
+      why: `<p>Приравняем d<i>E</i>/d<i>z</i> к нулю для выражения <i>E</i> = <i>kQz</i>(<i>z</i>² + <i>R</i>²)<sup>−3/2</sup>:</p><div class="eq"><i>kQ</i>[(<i>z</i>² + <i>R</i>²) − 3<i>z</i>²]/(<i>z</i>² + <i>R</i>²)<sup>5/2</sup> = 0 &nbsp;→&nbsp; <i>z</i> = <i>R</i>/√2 = ${p(P7.nums2[3], 1)} см</div><p><i>E</i> равно нулю в центре и убывает как 1/<i>z</i>² на большом расстоянии, поэтому максимум находится между этими областями.</p>` },
   ],
   8: [
     { q: `Электрон входит в поле напряжённостью ${M.PLATES.E} Н/Кл со скоростью ${p(PL.v0 / 1e7, 1)} × 10⁷ м/с, двигаясь параллельно пластинам длиной ${p(PL.L * 100, 0)} см. На какое расстояние вбок он сместится к моменту выхода из области пластин?`,
-      choices: P8.nums.map(x => `${mm(x)} mm`), answer: 3, nums: P8.nums,
-      why: `<p>Constant force across, none along: a projectile.</p><div class="eq"><i>a</i> = <i>eE</i>/<i>m</i><sub>e</sub> = ${sci(PL.a)} m/s², &nbsp;<i>t</i> = <i>L</i>/<i>v</i><sub>0</sub> = ${p(PL.tCross * 1e9, 1)} ns, &nbsp;<i>y</i> = ½<i>at</i>² = ${mm(P8.nums[3])} mm</div><p>Forgetting the ½ doubles it. A proton’s mass gives ${mm(P8.nums[2])} mm, ${p(M.MP / M.ME, 0)}× less.</p>` },
+      choices: P8.nums.map(x => `${мм(x)} мм`), answer: 3, nums: P8.nums,
+      why: `<p>Сила действует поперёк направления движения, а вдоль него отсутствует: электрон движется как тело, брошенное под углом.</p><div class="eq"><i>a</i> = <i>eE</i>/<i>m</i><sub>e</sub> = ${sci(PL.a)} м/с², &nbsp;<i>t</i> = <i>L</i>/<i>v</i><sub>0</sub> = ${p(PL.tCross * 1e9, 1)} ns, &nbsp;<i>y</i> = ½<i>at</i>² = ${мм(P8.nums[3])} мм</div><p>Если забыть множитель ½, результат удвоится. Если вместо электрона взять протон, из-за его большей массы смещение составит ${мм(P8.nums[2])} мм, ${p(M.MP / M.ME, 0)}× less.</p>` },
     { q: `Предположим, что вместо однородного поля напряжённость между пластинами возрастает вдоль них по закону E = E0x/L, где E0 = ${M.PLATES.E} Н/Кл у дальнего края. Какова будет поперечная скорость электрона при выходе?`,
-      choices: P8b.nums.map(x => `${p(x, 2)} × 10<sup>6</sup> m/s`), answer: 1, nums: P8b.nums,
-      why: `<p><i>x</i> = <i>v</i><sub>0</sub><i>t</i>, so the sideways acceleration grows with time, <i>a</i>(<i>t</i>) = (<i>eE</i><sub>0</sub>/<i>m</i>)(<i>v</i><sub>0</sub><i>t</i>/<i>L</i>):</p><div class="eq"><i>v<sub>y</sub></i> = ∫<sub>0</sub><sup><i>L</i>/<i>v</i><sub>0</sub></sup> (<i>eE</i><sub>0</sub><i>v</i><sub>0</sub>/<i>mL</i>) <i>t</i> d<i>t</i> = ½(<i>eE</i><sub>0</sub>/<i>m</i>)(<i>L</i>/<i>v</i><sub>0</sub>) = ${p(P8b.vy / 1e6, 2)} × 10<sup>6</sup> m/s</div><p>Half the uniform-field value (${p(PL.vyExit / 1e6, 2)} × 10<sup>6</sup> m/s): on average the field is half as strong.</p>` },
+      choices: P8b.nums.map(x => `${p(x, 2)} × 10<sup>6</sup> м/с`), answer: 1, nums: P8b.nums,
+      why: `<p><i>x</i> = <i>v</i><sub>0</sub><i>t</i>, so the sideways acceleration grows with time, <i>a</i>(<i>t</i>) = (<i>eE</i><sub>0</sub>/<i>m</i>)(<i>v</i><sub>0</sub><i>t</i>/<i>L</i>):</p><div class="eq"><i>v<sub>y</sub></i> = ∫<sub>0</sub><sup><i>L</i>/<i>v</i><sub>0</sub></sup> (<i>eE</i><sub>0</sub><i>v</i><sub>0</sub>/<i>mL</i>) <i>t</i> d<i>t</i> = ½(<i>eE</i><sub>0</sub>/<i>m</i>)(<i>L</i>/<i>v</i><sub>0</sub>) = ${p(P8b.vy / 1e6, 2)} × 10<sup>6</sup> м/с</div><p>Вдвое меньше значения для однородного поля (${p(PL.vyExit / 1e6, 2)} × 10<sup>6</sup> м/с): в среднем напряжённость поля вдвое меньше.</p>` },
   ],
 };
