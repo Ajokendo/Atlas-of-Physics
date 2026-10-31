@@ -91,8 +91,8 @@ export const PAGES = [
       <p>Две последние формулы получаются из Δ<i>V</i> = <i>IR</i>: используйте <i>I</i>²<i>R</i>, если известен ток (например, при последовательном соединении), и Δ<i>V</i>²/<i>R</i>, если известно напряжение (параллельное соединение). Единица мощности — ватт, Дж/с.</p>
       <table class="data">
         <tr><td><i>I</i>Δ<i>V</i></td><td>${f(bulbI, 2)} А × ${M.BULB.E} В = ${f(bulbP, 1)} Вт</td></tr>
-        <tr><td><i>I</i>²<i>R</i></td><td>(${f(bulbI, 2)} A)² × ${M.BULB.R} Ω = ${f(bulbI ** 2 * M.BULB.R, 1)} W</td></tr>
-        <tr><td>Δ<i>V</i>²/<i>R</i></td><td>(${M.BULB.E} V)² / ${M.BULB.R} Ω = ${f(M.BULB.E ** 2 / M.BULB.R, 1)} W</td></tr>
+        <tr><td><i>I</i>²<i>R</i></td><td>(${f(bulbI, 2)} А)² × ${M.BULB.R} Ом = ${f(bulbI ** 2 * M.BULB.R, 1)} Вт</td></tr>
+        <tr><td>Δ<i>V</i>²/<i>R</i></td><td>(${M.BULB.E} В)² / ${M.BULB.R} Ом = ${f(M.BULB.E ** 2 / M.BULB.R, 1)} Вт</td></tr>
       </table>
       <p>Энергия <i>E</i> = <i>Pt</i>: ${f(bulbP * M.BULB.run, 0)} Дж за каждые ${M.BULB.run} с.</p>
       <div class="charts">${chart({ ...R.energy, xlabel: 'время (с)', ylabel: 'энергия (Дж)', cursors: ['energy'], label: 'Переданная энергия в зависимости от времени: наклон прямой равен P', series: [{ pts: [[0, 0], [M.BULB.run, bulbP * M.BULB.run]], tag: [5.2, 25, 'наклон P = 6 Вт'] }] })}</div>
@@ -120,11 +120,11 @@ export const PAGES = [
       <div class="eq"><i>R</i><sub>s</sub> = <i>R</i><sub>1</sub> + <i>R</i><sub>2</sub>,  1/<i>R</i><sub>p</sub> = 1/<i>R</i><sub>1</sub> + 1/<i>R</i><sub>2</sub> + …</div>
       <table class="data cols">
         <tr><th>последовательно, 9 В</th><th>параллельно, 9 В</th></tr>
-        <tr><td><i>R</i><sub>eq</sub> = 2 + 4 = 6 Ω</td><td><i>R</i><sub>eq</sub> = ${f(M.parallelR([2, 4, 6]), 3)} Ω</td></tr>
-        <tr><td><i>I</i> = 9/6 = 1.5 A</td><td><i>I</i><sub>1</sub> = 9/2 = 4.5 A</td></tr>
-        <tr><td>Δ<i>V</i><sub>1</sub> = 1.5 × 2 = 3 V</td><td><i>I</i><sub>2</sub> = 9/4 = 2.25 A</td></tr>
-        <tr><td>Δ<i>V</i><sub>2</sub> = 1.5 × 4 = 6 V</td><td><i>I</i><sub>3</sub> = 9/6 = 1.5 A</td></tr>
-        <tr><td>3 + 6 = 9 V ✓</td><td><i>I</i> = 8.25 A ✓</td></tr>
+        <tr><td><i>R</i><sub>экв</sub> = 2 + 4 = 6 Ом</td><td><i>R</i><sub>экв</sub> = ${f(M.parallelR([2, 4, 6]), 3)} Ом</td></tr>
+        <tr><td><i>I</i> = 9/6 = 1,5 А</td><td><i>I</i><sub>1</sub> = 9/2 = 4,5 А</td></tr>
+        <tr><td>Δ<i>V</i><sub>1</sub> = 1,5 × 2 = 3 В</td><td><i>I</i><sub>2</sub> = 9/4 = 2,25 А</td></tr>
+        <tr><td>Δ<i>V</i><sub>2</sub> = 1,5 × 4 = 6 В</td><td><i>I</i><sub>3</sub> = 9/6 = 1,5 А</td></tr>
+        <tr><td>3 + 6 = 9 В ✓</td><td><i>I</i> = 8,25 А ✓</td></tr>
       </table>
       <p>Добавление резисторов последовательно увеличивает <i>R</i><sub>экв</sub>, а параллельно — уменьшает его ниже сопротивления самой малой ветви. В параллельной схеме точки быстрее движутся по шинам, где складываются токи отдельных ветвей.</p>
       <p class="hintline">Нажмите на любую схему, чтобы поднять её. Скорость точек пропорциональна току (в параллельной схеме на каждый ампер она в ${f(K_DOT.parallel / K_DOT.series, 1)} раза выше).</p>`,
@@ -142,9 +142,9 @@ export const PAGES = [
       </ol>
       <table class="data">
         <tr><th>обратный расчёт</th><th>Δ<i>V</i></th><th><i>I</i></th></tr>
-        <tr><td>R<sub>1</sub></td><td>2.5 × 2 = 5 V</td><td>2.5 A</td></tr>
-        <tr><td>R<sub>3</sub> (parallel part)</td><td>9 − 5 = 4 V</td><td>4/2 = 2.0 A</td></tr>
-        <tr><td>R<sub>2</sub>, R<sub>4</sub>, R<sub>5</sub></td><td>2, 1, 1 V</td><td>4/8 = 0.5 A</td></tr>
+        <tr><td>R<sub>1</sub></td><td>2,5 × 2 = 5 В</td><td>2,5 А</td></tr>
+        <tr><td>R<sub>3</sub> (параллельная часть)</td><td>9 − 5 = 4 В</td><td>4/2 = 2,0 А</td></tr>
+        <tr><td>R<sub>2</sub>, R<sub>4</sub>, R<sub>5</sub></td><td>2, 1, 1 В</td><td>4/8 = 0,5 А</td></tr>
       </table>
       <p>Общий участок до разветвления и после него несёт один и тот же ток 2,5 А — в этом и заключается смысл эквивалентного сопротивления. (В исходной схеме-органайзере указаны R<sub>245</sub> = 10 Ом и 3,667 Ом; однако по обозначенным элементам 4 + 2 + 2 = 8 Ом.)</p>
       <p class="hintline">Нажмите на полную схему (1), чтобы поднять её.</p>`,
@@ -190,19 +190,19 @@ export const PLATES = {
   wires: { text: `The thick wire comes apart into four thin strands, each just like the thin wire. Four equal paths side by side carry four times the current at the same voltage: a quarter of the resistance.`,
     facts: s => { const L = M.resLength(s.clock); return [['length L', `${f(L)} m`], ['thin: R = ρL/A', `${f(M.rThin(L))} Ω, I ${f(1.5 / M.rThin(L))} A`], ['thick: R/4', `${f(M.rThick(L))} Ω, I ${f(1.5 / M.rThick(L))} A`], ['ρ (nichrome)', `${sci(M.RES.rho, 2)} Ω·m`]]; } },
   ohm: { text: `Blue arrows: the field in the resistor, pointing down the slope. In the ideal wires there is no slope, so no field is needed: zero resistance, zero voltage. The whole ${M.OHM.E} V is spent across the resistor.`,
-    facts: () => [['battery rise', `+${M.OHM.E} V`], ['wires', '0 V'], ['resistor drop IR', `−${f(ohmI * M.OHM.R, 1)} V`], ['current', `${f(ohmI, 1)} A`], ['round the loop', '0 V']] },
+    facts: () => [['подъём напряжения батареи', `+${M.OHM.E} В`], ['провода', '0 В'], ['падение на резисторе IR', `−${f(ohmI * M.OHM.R, 1)} В`], ['ток', `${f(ohmI, 1)} А`], ['сумма по контуру', '0 В']] },
   bulb: { text: `Under the glass is a coil of thin tungsten wire: a resistor that gets hot enough to glow. The bulb is nothing more than ${M.BULB.R} Ω in the circuit.`,
     facts: s => { const t = s.clock % M.BULB.run; return [['P = IΔV', `${f(bulbP, 1)} W`], ['P = I²R', `${f(bulbI ** 2 * M.BULB.R, 1)} W`], ['P = ΔV²/R', `${f(M.BULB.E ** 2 / M.BULB.R, 1)} W`], ['energy so far E = Pt', `${f(bulbP * t, 1)} J`]]; } },
   cell: { text: `Inside: an ideal ${M.CELL.E} V emf and a ${M.CELL.r} Ω resistor in series. Raised, the battery lifts the charge ${M.CELL.E} V and the internal resistor takes <i>Ir</i> back before the terminal.`,
     facts: s => { const R = M.cellLoad(s.clock), I = M.cellI(R); return [['load R', `${f(R)} Ω`], ['current I = ℰ/(R + r)', `${f(I)} A`], ['lost inside Ir', `${f(I * M.CELL.r)} V`], ['terminal ΔV = ℰ − Ir', `${f(M.terminalV(I))} V`], ['bulb power', `${f(M.loadP(R))} W`], ['wasted inside I²r', `${f(I * I * M.CELL.r)} W`]]; } },
   series: { text: `Raised, the battery lifts 9 V and the current walks down two ramps in turn: 3 V down the 2 Ω, 6 V down the 4 Ω. Bigger resistor, bigger share of the voltage.`,
-    facts: () => [['R_eq', '6 Ω'], ['I (everywhere)', '1.5 A'], ['ΔV₁', '3.0 V'], ['ΔV₂', '6.0 V'], ['sum', '9.0 V']] },
+    facts: () => [['Rэкв', '6 Ом'], ['ток везде', '1,5 А'], ['ΔV₁', '3,0 В'], ['ΔV₂', '6,0 В'], ['сумма напряжений', '9,0 В']] },
   parallel: { text: `Raised, the left rail sits at 9 V and the right at 0 V, so every branch drops the full 9 V. Each takes its own current, ΔV/R; the rails carry the sum.`,
-    facts: () => [['ΔV on each branch', '9.0 V'], ['I₁ (2 Ω)', '4.50 A'], ['I₂ (4 Ω)', '2.25 A'], ['I₃ (6 Ω)', '1.50 A'], ['battery', '8.25 A'], ['R_eq', `${f(M.parallelR([2, 4, 6]), 3)} Ω`]] },
+    facts: () => [['напряжение на каждой ветви', '9,0 В'], ['I₁ (2 Ом)', '4,50 А'], ['I₂ (4 Ом)', '2,25 А'], ['I₃ (6 Ом)', '1,50 А'], ['ток батареи', '8,25 А'], ['Rэкв', `${f(M.parallelR([2, 4, 6]), 3)} Ом`]] },
   combo: { text: `Raised: 5 V down R<sub>1</sub>, then the remaining 4 V two ways at once: all at once down R<sub>3</sub>, or in three steps of 2, 1 and 1 V down R<sub>2</sub>, R<sub>4</sub>, R<sub>5</sub>.`,
-    facts: () => [['R_eq', `${f(M.COMBO.Req, 1)} Ω`], ['battery current', '2.5 A'], ['across R₁', '5.0 V'], ['across R₃', '4.0 V, 2.0 A'], ['R₂, R₄, R₅', '2.0, 1.0, 1.0 V at 0.5 A']] },
+    facts: () => [['Rэкв', `${f(M.COMBO.Req, 1)} Ом`], ['ток батареи', '2,5 А'], ['на R₁', '5,0 В'], ['на R₃', '4,0 В, 2,0 А'], ['R₂, R₄, R₅', '2,0; 1,0; 1,0 В при токе 0,5 А']] },
   kirch: { text: `Raised, each point at its potential. The blue ball walks loop 1, then loop 2, adding up every rise and drop. It always comes back to where it started: ΣΔV = 0.`,
-    facts: s => [['V at A', `${f(kr.V.a)} V`], ['V at B', `${f(kr.V.b)} V`], ['I₁ = I₂ + I₃', `${f(kI('R1'), 3)} = ${f(kI('R5'), 3)} + ${f(kI('R3'), 3)} A`], ['walking loop', `${s.walk.loop}`], ['ΣΔV so far', `${f(s.walk.sum)} V`]] },
+    facts: s => [['потенциал в A', `${f(kr.V.a)} В`], ['потенциал в B', `${f(kr.V.b)} В`], ['I₁ = I₂ + I₃', `${f(kI('R1'), 3)} = ${f(kI('R5'), 3)} + ${f(kI('R3'), 3)} А`], ['обход контура', `${s.walk.loop}`], ['текущая сумма ΣΔV', `${f(s.walk.sum)} В`]] },
   rc: { text: `Raised: the battery lifts 12 V; the resistor’s ramp is <i>IR</i>, the capacitor’s step is <i>q</i>/<i>C</i>. Charging, the resistor’s share shrinks as the capacitor’s grows; they always add to 12 V. Discharging, the battery is cut out and the capacitor’s step drives the current back.`,
     facts: s => { const r = s.rc; return [['switch', r.charging ? 'a: charging' : 'b: discharging'], ['t since switching', `${f(r.s, 1)} s = ${f(r.s / RC.tau, 2)} τ`], ['q', `${vC(r.Q * 1e3)} mC (${f(100 * r.Q / RC.Qmax, 1)}%)`], ['I', `${f(r.I * 1e3, 3)} mA`], ['ΔV_R', `${f(Math.abs(r.VR))} V`], ['ΔV_C', `${f(r.Vc)} V`], ['stored q²/2C', `${f(r.Q ** 2 / (2 * RC.C) * 1e3)} mJ`]]; } },
 };
