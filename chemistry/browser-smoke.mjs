@@ -303,7 +303,7 @@ try {
       if (await canvas.getAttribute("tabindex") !== "0" || await canvas.getAttribute("role") !== "img") {
         errors.push(file + ": molecule canvas is not keyboard-focusable and exposed as a graphic");
       }
-      if (!(await canvas.getAttribute("aria-label")).includes("стрелки")) {
+      if (!(await canvas.getAttribute("aria-label")).includes("стрелками")) {
         errors.push(file + ": Russian screen-reader label omits keyboard rotation instructions");
       }
       await page.locator("#lang").click();
