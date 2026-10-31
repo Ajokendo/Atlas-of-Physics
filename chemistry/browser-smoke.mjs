@@ -298,6 +298,26 @@ try {
       await page.locator("#spin").click();
     }
 
+    if (file === "molecule-lab.html") {
+      const canvas = page.locator("#molecule");
+      if (await canvas.getAttribute("tabindex") !== "0" || await canvas.getAttribute("role") !== "img") {
+        errors.push(file + ": molecule canvas is not keyboard-focusable and exposed as a graphic");
+      }
+      if (!(await canvas.getAttribute("aria-label")).includes("стрелки")) {
+        errors.push(file + ": Russian screen-reader label omits keyboard rotation instructions");
+      }
+      await page.locator("#lang").click();
+      if (!(await canvas.getAttribute("aria-label")).includes("arrow keys")) {
+        errors.push(file + ": English screen-reader label omits keyboard rotation instructions");
+      }
+      await page.locator("#lang").click();
+      await canvas.focus();
+      await page.keyboard.press("ArrowRight");
+      if (!(await canvas.evaluate(el => el.matches(":focus")))) {
+        errors.push(file + ": molecule canvas loses keyboard focus during rotation");
+      }
+    }
+
     if (file === "virtual-lab.html") {
       await page.locator("#add").click();
       if (!(await page.locator("#status").innerText()).trim()) errors.push(file + ": experiment did not report a result");
