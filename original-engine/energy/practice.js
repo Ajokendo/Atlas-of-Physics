@@ -37,7 +37,7 @@ export const PRACTICE = {
       choices: [`${f(P.F * d0 * Math.sin(P.th), 1)} J`, `${f(P.F * d0, 1)} J`, `${f(W0, 1)} J`, `${f(P.F * d0 / Math.cos(P.th), 1)} J`], answer: 2,
       why: `<p>Only the component along the displacement does work:</p><div class="eq"><i>W</i> = <i>F</i>Δ<i>x</i> cos θ = ${f(P.F, 0)} × ${f(d0, 1)} × cos ${P.deg}° = ${f(W0, 1)} J</div><p>${f(P.F * d0 * Math.sin(P.th), 1)} J uses sin θ, the part across the motion; ${f(P.F * d0, 1)} J ignores the angle.</p>` },
     { q: `Какую работу совершает нормальная реакция пола над ящиком во время этого перемещения?`,
-      choices: ['Negative, since the normal force is less than <i>mg</i>', 'Zero, since it is perpendicular to the displacement', 'Positive, since it points up', 'Equal and opposite to the work done by the rope'], answer: 1,
+      choices: ['Отрицательная, поскольку реакция опоры меньше <i>mg</i>', 'Нулевая, поскольку сила перпендикулярна перемещению', 'Положительная, поскольку сила направлена вверх', 'Равная по модулю и противоположная работе силы натяжения верёвки'], answer: 1,
       why: '<p>The normal force is vertical and the box moves horizontally: θ = 90°, cos 90° = 0, so <i>W</i> = 0. Its size (smaller than <i>mg</i> because the rope lifts a little) does not matter.</p>' },
   ],
   1: [
@@ -45,7 +45,7 @@ export const PRACTICE = {
       choices: [`${f(-Wup)} J`, `${f(0)} J`, `${f(2 * Wup)} J`, `${f(Wup)} J`], answer: 3,
       why: `<p>Gravity points opposite the motion (θ = 180°), so its work is negative, and by the work–energy theorem it removes all the kinetic energy:</p><div class="eq"><i>W</i><sub>g</sub> = Δ<i>K</i> = 0 − ½ × ${f(T.m)} × ${f(T.v0, 1)}² = ${f(Wup)} J</div><p>${f(2 * Wup)} J forgets the ½; +${f(-Wup)} J has the wrong sign.</p>` },
     { q: `Чему равна суммарная работа силы тяжести за весь путь — от момента выпуска мяча до его возвращения на исходную высоту?`,
-      choices: ['positive', 'negative', 'zero', 'equal to <i>mgh</i>, with <i>h</i> the greatest height'], answer: 2,
+      choices: ['положительная', 'отрицательная', 'нулевая', 'equal to <i>mgh</i>, with <i>h</i> the greatest height'], answer: 2,
       why: '<p>Negative work on the way up, the same amount of positive work on the way down: the total is zero. That is why the ball comes back to the hand at its launch speed (no air resistance).</p>' },
   ],
   2: [
