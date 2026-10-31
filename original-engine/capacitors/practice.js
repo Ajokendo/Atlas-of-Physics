@@ -58,7 +58,7 @@ const { R: cR, E0: cE } = M.COND, sMax = 3 * EPS0 * cE;
 const P8 = { q: sMax * Math.PI * cR * cR };
 P8.nums = [sMax * 2 * Math.PI * cR * cR, 0, sMax * 4 * Math.PI * cR * cR, P8.q].map(x => x * 1e9);   // σ_max × half the area · total · whole area · right
 
-const пФ = x => `${p(x, 1)} пФ`;
+const pF = x => `${p(x, 1)} пФ`;
 
 export const PRACTICE = {
   0: [
