@@ -280,6 +280,36 @@ This chapter introduces core ecological concepts, the geography of human pressur
 11. Что включает экологическая справедливость?
 12. Почему посадка деревьев не всегда равнозначна восстановлению естественного леса?
 
+### Разобранный пример. Простая количественная оценка риска / Worked example: A simple quantitative risk estimate
+
+Рассмотрим условный населённый пункт у реки. По учебной оценке, вероятность крупного паводка в течение одного года составляет 5% (0,05). Если паводок произойдёт, ожидаемый прямой ущерб зданиям и инфраструктуре оценивается в 2 млн условных денежных единиц.
+
+**Шаг 1.** Переведём вероятность в десятичную дробь: 5% = 0,05.
+
+**Шаг 2.** Рассчитаем условный ожидаемый годовой ущерб: вероятность события умножаем на ущерб при его наступлении.
+
+0,05 × 2 000 000 = **100 000 условных денежных единиц в год**.
+
+**Как понимать результат?** Это упрощённая оценка среднего ожидаемого ущерба за длительный период при неизменных предположениях. Она не означает, что населённый пункт будет терять ровно 100 000 единиц каждый год: в большинстве лет ущерба может не быть, а в год паводка он может быть значительно выше.
+
+**Ограничения метода.** В реальной оценке учитывают несколько сценариев разной силы, вероятность их наступления, изменение риска со временем, число людей и объектов в зоне затопления, их уязвимость, возможные косвенные потери и неопределённость данных. Вероятность 5% в этом примере задана условно, а не получена из наблюдений. Для реального планирования необходимы гидрологические данные, карты затопления и оценка последствий.
+
+**Проверьте себя:** если ущерб при паводке останется прежним, но оценённая годовая вероятность возрастёт до 10%, каким станет ожидаемый годовой ущерб? Почему этот расчёт сам по себе ещё не показывает, какие меры защиты наиболее эффективны?
+
+Consider a fictional settlement beside a river. For this learning example, the estimated probability of a major flood in any one year is 5% (0.05). If a flood occurs, the expected direct damage to buildings and infrastructure is estimated at 2 million units of fictional currency.
+
+**Step 1.** Convert the probability into a decimal: 5% = 0.05.
+
+**Step 2.** Estimate the expected annual loss by multiplying the probability of the event by the loss if it occurs:
+
+0.05 × 2,000,000 = **100,000 fictional currency units per year**.
+
+**How should this result be understood?** It is a simplified estimate of average expected loss over a long period under unchanged assumptions. It does not mean that the settlement will lose exactly 100,000 units every year: in most years there may be no flood damage, while losses in a flood year may be much higher.
+
+**Limitations.** A real assessment considers several event scenarios of different severity, their probabilities, changes in risk over time, the number of people and assets in the flood zone, their vulnerability, indirect losses and data uncertainty. The 5% probability in this example is assumed for teaching purposes; it is not derived from observations. Real planning requires hydrological data, flood maps and an assessment of consequences.
+
+**Check your understanding:** If the damage caused by a flood stays the same but the estimated annual probability rises to 10%, what is the expected annual loss? Why does this calculation alone not show which protective measures would be most effective?
+
 ### Практическая работа 1. Карта экологического риска / Practical Activity 1. Environmental Risk Map
 
 Выберите территорию и составьте карту одного риска. Отдельно покажите опасность, подверженность населения и инфраструктуры, а также факторы уязвимости. Объясните ограничения использованных данных.
