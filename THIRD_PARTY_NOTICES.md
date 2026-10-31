@@ -23,7 +23,7 @@ This project does **not** claim authorship of Nathan Liow's original English-lan
 
 ## 3. Three.js
 
-The repository currently imports two versions of Three.js from jsDelivr: **0.186.1** for the original interactive chapter engine and **0.180.0** for the standalone physics laboratory in `physics-lab.js`. Three.js is distributed under the MIT License.
+The repository currently imports two versions of Three.js from jsDelivr: **0.186.1** for the original interactive chapter engine and **0.180.0** for the standalone physics laboratory in `physics-lab.js`. The npm package metadata identifies the `three` package, including version **0.180.0**, as MIT-licensed. The project license is also published in the official Three.js repository. Three.js is distributed under the MIT License.
 
 Project: https://github.com/mrdoob/three.js  
 License: https://github.com/mrdoob/three.js/blob/dev/LICENSE
@@ -82,7 +82,7 @@ The current repository contains three local SVG illustrations:
 - `chemistry/assets/electron-cloud.svg`
 - `chemistry/assets/reaction-schematic.svg`
 
-The SVG source contains no explicit author, source URL or license metadata. The files appear to be project-specific diagrams, but this repository inspection alone does not establish who created them or the rights under which they were supplied. Before treating them as cleared for redistribution, confirm their creation history and retain that record. If their origin cannot be confirmed, replace them with newly authored diagrams whose provenance is documented.
+The SVG source contains no explicit author, source URL or license metadata. Git history shows that all three files first entered this repository in the commit `Add Chemistry Atlas reference data, illustrations and validation` on 2026-10-31, under the repository account Ajokendo: `carbon-cycle.svg` (commit `e772ee79d8`), `electron-cloud.svg` (`afca6cb0ed`) and `reaction-schematic.svg` (`794d5ca15a`). This records who committed the files, but does not independently prove who drew them, whether generative tools were used, or the rights under which any source material was supplied. Therefore their provenance remains unverified. Before claiming them as human-authored or cleared for redistribution, confirm their creation history and retain that record. If their origin cannot be confirmed, replace them with newly authored diagrams whose provenance is documented.
 
 ### College Board / AP material — excluded from the current Russian tree
 
@@ -96,4 +96,4 @@ College Board's permission instructions state that AP test materials require a p
 
 AP® is a trademark of the College Board. The College Board does not endorse this project. Do not use College Board logos or imply official affiliation. Keep the upstream equation-sheet presentation out of this project unless the necessary permission is obtained. If a formula reference is needed, create an independently authored reference with original explanations, organization, examples and visual presentation. Standard mathematical and physical equations can be taught as facts; avoid copying College Board's protected presentation or source text.
 
-Unverified assets must not be described as freely reusable. Record the source, creator, license and required attribution for every third-party image, diagram, dataset or document before including it in a public release.
+Unverified assets must not be described as freely reusable. A Git commit author is not, by itself, proof of the underlying creative authorship or rights ownership. Record the source, creator, license and required attribution for every third-party image, diagram, dataset or document before including it in a public release.
