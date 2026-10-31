@@ -3,7 +3,7 @@ import { readdir } from "node:fs/promises";
 import path from "node:path";
 
 const root = path.resolve("chemistry");
-const pages = ["portal.html", "catalog.html", "index.html"];
+const pages = ["portal.html", "catalog.html", "progress.html", "index.html"];
 async function walk(dir) {
   for (const entry of await readdir(dir, { withFileTypes: true })) {
     const full = path.join(dir, entry.name);
@@ -31,6 +31,17 @@ try {
       if (before === after) errors.push(file + ": language toggle did not change its label");
       await lang.click();
       languageChecks++;
+    }
+    if (file === "progress.html") {
+      const checks = page.locator(".item input[type=checkbox]");
+      if (await checks.count() !== 27) errors.push(file + ": expected 27 trackable chapters");
+      await checks.first().check();
+      await page.reload({ waitUntil: "domcontentloaded" });
+      if (!(await page.locator(".item input[type=checkbox]").first().isChecked())) errors.push(file + ": chapter progress did not persist after reload");
+      await page.evaluate(() => localStorage.setItem("atlas-chemistry-quiz-v1", JSON.stringify({ score: 8, total: 10, date: new Date().toISOString() })));
+      await page.reload({ waitUntil: "domcontentloaded" });
+      if (!(await page.locator("#quizScore").innerText()).includes("8 / 10")) errors.push(file + ": assessment result was not displayed");
+      await page.evaluate(() => { localStorage.removeItem("atlas-chemistry-quiz-v1"); localStorage.removeItem("atlas-knowledge-completed-v1"); });
     }
     if (file === "catalog.html") {
       await page.locator("#q").fill("атом");
