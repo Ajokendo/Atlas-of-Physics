@@ -10,8 +10,8 @@ Third subject area of the unified **Atlas of Knowledge** portal.
 
 ## Structure
 - `index.html` — Biology landing page, subject navigation and interactive eukaryotic-cell model.
-- `chapters/botany.html` — Botany.
-- `chapters/zoology.html` — Zoology.
+- `chapters/botany.html` — Botany, with bilingual learning objectives and a field glossary.
+- `chapters/zoology.html` — Zoology, with bilingual learning objectives and a field glossary.
 - `chapters/cell-biology.html` — Cell biology and cytology.
 - `chapters/anatomy.html` — Human anatomy and physiology.
 - `chapters/genetics.html` — Genetics.
@@ -56,8 +56,14 @@ Third subject area of the unified **Atlas of Knowledge** portal.
 - The chapter sequence follows the learning path: Botany → Zoology → Cell Biology → Anatomy & Physiology → Genetics → Microbiology → Ecology → Evolution → Biochemistry → Systematics.
 - This navigation pass was checked structurally across all ten HTML pages. It is not a substitute for full browser, keyboard-only, and mobile-device testing.
 
+## Regional biodiversity feature: Kyrgyzstan
+- After the global foundations of Botany and Zoology are complete, add a substantial dedicated section on the flora of Kyrgyzstan to Botany and a corresponding section on the fauna of Kyrgyzstan to Zoology.
+- The flora section is planned to cover vegetation zones and altitudinal belts, walnut-fruit and juniper forests, alpine meadows, endemic and rare plants, useful species, protected areas and conservation.
+- The fauna section is planned to cover major animal groups, characteristic mammals and birds, endemic and rare species, habitats and migration, protected areas and conservation.
+- These will be full bilingual regional chapters within the relevant subject pages, supported by maps, original diagrams, species profiles and carefully sourced information. They will be developed after the global subject foundations, and coordinated with the dedicated Kyrgyzstan geography section in the Geography atlas.
+
 ## Next quality-assurance phase
 - Verify every interactive control in both languages, including keyboard operation and state updates.
 - Review scientific wording, diagrams, dates, terminology and citations/recommended reading.
 - Test all internal links, portal integration, mobile layouts and browser console output.
-- Expand knowledge checks into topic-level assessment sets and add learning objectives/glossaries.
+- Expand knowledge checks into topic-level assessment sets and add learning objectives/glossaries to all remaining chapters. Botany and Zoology now provide the bilingual model sections.
