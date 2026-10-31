@@ -64,6 +64,9 @@ Third subject area of the unified **Atlas of Knowledge** portal.
 - The fauna section is planned to cover major animal groups, characteristic mammals and birds, endemic and rare species, habitats and migration, protected areas and conservation.
 - These will be full bilingual regional chapters within the relevant subject pages, supported by maps, original diagrams, species profiles and carefully sourced information. They will be developed after the global subject foundations, and coordinated with the dedicated Kyrgyzstan geography section in the Geography atlas.
 
+- Both regional chapters now include coordinated seven-oblast landscape frameworks for planning deeper species inventories. These tables are explicitly introductory geographic guides, not exhaustive species distributions; future species records must be supported by georeferenced observations, dated surveys, herbarium vouchers or scientific sources.
+- The regional chapters link to the Ministry's official protected-area directory and the UNDP account of the State Programme on Biodiversity Conservation until 2040 (endorsed at a national workshop in November 2025).
+
 ## Learning framework
 - All ten subject chapters now include bilingual learning objectives and concise bilingual glossaries, placed before the knowledge check and styled responsively.
 - The objectives describe expected learner outcomes; glossaries define core terms in context. These sections are an introductory framework and will be expanded during scientific review.
