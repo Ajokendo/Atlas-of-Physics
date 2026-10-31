@@ -86,7 +86,7 @@ export function buildWorld(E) {
     m.scale.set(r, a.distanceTo(b), r);
     m.quaternion.setFromUnitVectors(V(0, 1, 0), b.clone().sub(a).normalize());
   }
-  const cone = (parent, at, dir, name = 'Current', s = 1) => {
+  const cone = (parent, at, dir, name = 'Ток', s = 1) => {
     const m = part(parent, new THREE.ConeGeometry(0.075 * s, 0.22 * s, 16), { tone: 'hi', pal: 'ink', name });
     m.position.copy(at); m.quaternion.setFromUnitVectors(V(0, 1, 0), dir.clone().normalize()); return m;
   };
@@ -110,8 +110,8 @@ export function buildWorld(E) {
   const gM = asm('magnet', root, { title: 'Стержневой магнит', sub: 'каждая линия замыкается сама на себя' });
   const magMats = [fadeMat('red'), fadeMat('base')];
   const hl = M.MAG.L / 2 * D, hw = M.MAG.w / 2 * D;
-  part(gM, box(hl * 2 / 2, hw * 2, hw * 2, 0.03), { tone: 'hi', name: 'North half', mat: magMats[0], pos: [cM.x + hl / 2, cM.y, 0] });
-  part(gM, box(hl * 2 / 2, hw * 2, hw * 2, 0.03), { tone: 'hi', name: 'South half', mat: magMats[1], pos: [cM.x - hl / 2, cM.y, 0] });
+  part(gM, box(hl * 2 / 2, hw * 2, hw * 2, 0.03), { tone: 'hi', name: 'Северная половина', mat: magMats[0], pos: [cM.x + hl / 2, cM.y, 0] });
+  part(gM, box(hl * 2 / 2, hw * 2, hw * 2, 0.03), { tone: 'hi', name: 'Южная половина', mat: magMats[1], pos: [cM.x - hl / 2, cM.y, 0] });
   label('vec', 'N', () => V(cM.x + hl * 0.55, cM.y + hw + 0.22, hw));
   label('vec', 'S', () => V(cM.x - hl * 0.55, cM.y + hw + 0.22, hw));
   {
@@ -125,7 +125,7 @@ export function buildWorld(E) {
   }
   const sphM = new THREE.Group(); sphM.position.copy(toW(cM, D)(M.MAG_BOX.c)); gM.add(sphM);
   { const s = 2 * M.MAG_BOX.h * D, g = new THREE.BoxGeometry(s, s, s);
-    part(sphM, g, { tone: 'lo', name: 'Closed box', mat: glassMat() }).userData.noEdge = true;
+    part(sphM, g, { tone: 'lo', name: 'Замкнутая поверхность', mat: glassMat() }).userData.noEdge = true;
     const rim = new THREE.LineSegments(new THREE.EdgesGeometry(g), dashMat); rim.computeLineDistances(); rim.userData = { noEdge: true }; sphM.add(rim); }
   label('tick', '∮ <b>B</b> · d<b>A</b> = 0', () => ex(gM) > 0.4 ? sphM.position.clone().add(V(0.4, M.MAG_BOX.h * D + 0.35, 0)) : null);
 
@@ -168,28 +168,28 @@ export function buildWorld(E) {
   });
   cyc.forEach((o, i) => { label('vec', '<b>v</b>', () => tip(o.v)); label('vec red', '<b>F</b>', () => ex(gC) > 0.3 ? tip(o.F) : null);
     label('vec grey', `r<sub>${i + 1}</sub>`, () => ex(gC) > 0.3 ? o.centre.clone().lerp(o.m.position, 0.5).add(V(0, 0.25, 0)) : null); });
-  label('tick', '50 V', () => cyc[0].m.position.clone().add(V(-0.25, 0.42, 0)));
-  label('tick', '200 V', () => cyc[1].m.position.clone().add(V(-0.25, 0.42, 0)));
+  label('tick', '50 В', () => cyc[0].m.position.clone().add(V(-0.25, 0.42, 0)));
+  label('tick', '200 В', () => cyc[1].m.position.clone().add(V(-0.25, 0.42, 0)));
 
   // ======================================================================
   // 4 · the velocity selector
   // ======================================================================
   const cS = V(STATIONS.selector, 2.6, 0), gapW = M.SEL.gap * DP, LW = M.SEL.L * DP, x0S = cS.x - LW / 2;
   const gS = asm('selector', root, { title: 'Скрещённые поля E и B', sub: 'прямолинейно движется только при v = E/B' });
-  part(gS, box(LW, 0.16, 3, 0.03), { tone: 'mid', pal: 'base', name: 'Plates', pos: [cS.x, cS.y + gapW / 2 + 0.08, 0] });
-  part(gS, box(LW, 0.16, 3, 0.03), { tone: 'mid', pal: 'base', name: 'Plates', pos: [cS.x, cS.y - gapW / 2 - 0.08, 0] });
+  part(gS, box(LW, 0.16, 3, 0.03), { tone: 'mid', pal: 'base', name: 'Пластины', pos: [cS.x, cS.y + gapW / 2 + 0.08, 0] });
+  part(gS, box(LW, 0.16, 3, 0.03), { tone: 'mid', pal: 'base', name: 'Пластины', pos: [cS.x, cS.y - gapW / 2 - 0.08, 0] });
   for (let i = 0; i < 6; i++) {
     const x = x0S + 0.9 + i * (LW - 1.8) / 5;
     label('vec red', '+', () => V(x, cS.y + gapW / 2 + 0.38, 1.5));
     label('vec blue', '−', () => V(x, cS.y - gapW / 2 - 0.4, 1.5));
   }
-  const eS = [-3.6, -1.2, 1.2, 3.6].map(dx => { const a = arrow(gS, 'blue', { r: 0.024, head: 0.15, headR: 0.065, name: 'Field E', tone: 'mid' }); setArrow(a, V(cS.x + dx, cS.y + gapW / 2 - 0.1, -1.3), V(0, -gapW + 0.2, 0)); return a; });
+  const eS = [-3.6, -1.2, 1.2, 3.6].map(dx => { const a = arrow(gS, 'blue', { r: 0.024, head: 0.15, headR: 0.065, name: 'Поле E', tone: 'mid' }); setArrow(a, V(cS.x + dx, cS.y + gapW / 2 - 0.1, -1.3), V(0, -gapW + 0.2, 0)); return a; });
   label('vec blue', '<b>E</b>', () => V(cS.x + 3.6 + 0.35, cS.y - gapW / 2 + 0.6, -1.3));
   for (const dx of [-4, -2, 0, 2, 4]) for (const dy of [-1.3, 1.3]) {
     bLine(root, V(cS.x + dx, cS.y + dy, 1.2), V(cS.x + dx, cS.y + dy, -1.2), 1);
     label('mark', '⊗', () => V(cS.x + dx, cS.y + dy, 1.2));
   }
-  label('vec grey', '<b>B</b> (into the page)', () => V(cS.x + 4.4, cS.y + 1.65, 1.2));
+  label('vec grey', '<b>B</b> (вглубь страницы)', () => V(cS.x + 4.4, cS.y + 1.65, 1.2));
   const PRE = 0.018;                                           // metres of straight run before and after the plates
   const selPaths = M.SEL.paths.map(P => { const last = P[P.length - 1]; return { P, last, v0: P[0].v[0] }; });
   selPaths.forEach(s => {
@@ -225,7 +225,7 @@ export function buildWorld(E) {
   const LP = [V(0, -lb, -la), V(0, lb, -la), V(0, lb, la), V(0, -lb, la)];
   LP.forEach((p, i) => {
     const q = LP[(i + 1) % 4];
-    rod(loopG, p.clone().add(q.clone().sub(p).normalize().multiplyScalar(-0.05)), q.clone().add(q.clone().sub(p).normalize().multiplyScalar(0.05)), 0.05, { name: 'Wire loop' });
+    rod(loopG, p.clone().add(q.clone().sub(p).normalize().multiplyScalar(-0.05)), q.clone().add(q.clone().sub(p).normalize().multiplyScalar(0.05)), 0.05, { name: 'Виток провода' });
     cone(loopG, p.clone().lerp(q, 0.5), q.clone().sub(p), 'Current I', 1.2);
   });
   label('vec', '<i>I</i>', () => loopG.localToWorld(V(0, 0.2, -la - 0.3)));
@@ -241,8 +241,8 @@ export function buildWorld(E) {
   // ======================================================================
   const cA = V(STATIONS.ampere, 0, 0), yAmp = 1.4, yLines = 6.0;
   const gA = asm('ampere', root, { title: 'Длинный прямой провод', sub: '∮ B · ds = μ₀I' });
-  rod(gA, V(cA.x, 0, 0), V(cA.x, 2.6, 0), M.AMP.a * D, { name: 'Wire' });
-  rod(root, V(cA.x, 2.6, 0), V(cA.x, 6.8, 0), M.AMP.a * D, { name: 'Wire' });   // the top half is not part of the breakdown, so opening it frames the circle
+  rod(gA, V(cA.x, 0, 0), V(cA.x, 2.6, 0), M.AMP.a * D, { name: 'Провод' });
+  rod(root, V(cA.x, 2.6, 0), V(cA.x, 6.8, 0), M.AMP.a * D, { name: 'Провод' });   // the top half is not part of the breakdown, so opening it frames the circle
   // kept out of the breakdown so opening the wire frames the circle
   const curA = inkArrow(root, 'Current I', 0.03); setArrow(curA, V(cA.x - 0.38, 4.9, 0), V(0, 1.3, 0));
   label('vec', '<i>I</i>', () => V(cA.x - 0.62, 5.9, 0));
@@ -262,7 +262,7 @@ export function buildWorld(E) {
   const panelMat = shadeMat('paper', { opacity: 0.55 }); panelMat.side = THREE.DoubleSide;
   const strips = Array.from({ length: nS }, (_, i) => {
     const x = cA.x + M.FLUX.a * D + (i + 0.5) * drW;
-    const m = part(gF, box(drW - 0.02, fy1 - fy0, 0.02, 0.005), { tone: 'mid', name: 'Strips b dr', mat: panelMat, pos: [x, (fy0 + fy1) / 2, 0], ex: [(i - (nS - 1) / 2) * 0.12, 0, 0] });
+    const m = part(gF, box(drW - 0.02, fy1 - fy0, 0.02, 0.005), { tone: 'mid', name: 'Полоски b dr', mat: panelMat, pos: [x, (fy0 + fy1) / 2, 0], ex: [(i - (nS - 1) / 2) * 0.12, 0, 0] });
     return m;
   });
   // ⊗ marks sized by B, as the organizer draws them; opened, each strip shows its B as an arrow through it
@@ -283,7 +283,7 @@ export function buildWorld(E) {
   const cG = V(STATIONS.ring, 2.6, 0), RW = M.RING.R * D;
   const gG = asm('ring', root, { title: 'Круговой виток с током', sub: 'каждый dl создаёт вклад dB' });
   const ringTor = new THREE.TorusGeometry(RW, 0.05, 12, 128); ringTor.rotateY(Math.PI / 2);
-  part(gG, ringTor, { tone: 'hi', name: 'Wire loop', pos: cG.toArray() });
+  part(gG, ringTor, { tone: 'hi', name: 'Виток провода', pos: cG.toArray() });
   for (let k = 0; k < 6; k++) { const a = 2 * Math.PI * (k + 0.25) / 6; cone(gG, V(cG.x, cG.y + RW * Math.cos(a), RW * Math.sin(a)), V(0, -Math.sin(a), Math.cos(a)), 'Current I'); }
   label('vec', '<i>I</i>', () => V(cG.x, cG.y + RW + 0.35, 0.3));
   {
@@ -293,7 +293,7 @@ export function buildWorld(E) {
       fieldCurve(root, pts, cG, D, 2);
     }
   }
-  const PG = part(gG, new THREE.SphereGeometry(0.07, 16, 12), { tone: 'hi', pal: 'ink', name: 'Point P' });
+  const PG = part(gG, new THREE.SphereGeometry(0.07, 16, 12), { tone: 'hi', pal: 'ink', name: 'Точка P' });
   const BG = bArrow(gG);
   label('tick', 'P', () => PG.position.clone().add(V(0.05, -0.3, 0)));
   label('vec grey', '<b>B</b>', () => tip(BG));
@@ -309,7 +309,7 @@ export function buildWorld(E) {
   const pairs = [['same', 1, 'Currents the same way', 'they attract'], ['opposite', -1, 'Currents opposite ways', 'they repel']].map(([key, sign, title, sub]) => {
     const c = V(STATIONS[key], 0, 0), yF = 2.3, hd = M.WIRES.d / 2 * D;
     const g = asm(key, root, { title, sub });
-    const w1 = rod(g, V(c.x - hd, 0, 0), V(c.x - hd, 4.6, 0), 0.07, { name: 'Wire 1' }), w2 = rod(g, V(c.x + hd, 0, 0), V(c.x + hd, 4.6, 0), 0.07, { name: 'Wire 2' });
+    const w1 = rod(g, V(c.x - hd, 0, 0), V(c.x - hd, 4.6, 0), 0.07, { name: 'Провод 1' }), w2 = rod(g, V(c.x + hd, 0, 0), V(c.x + hd, 4.6, 0), 0.07, { name: 'Провод 2' });
     const i1 = inkArrow(g, 'Current I₁', 0.028), i2 = inkArrow(g, 'Current I₂', 0.028);
     setArrow(i1, V(c.x - hd - 0.32, 3.2, 0), V(0, 1.2, 0));
     if (sign > 0) setArrow(i2, V(c.x + hd + 0.32, 3.2, 0), V(0, 1.2, 0)); else setArrow(i2, V(c.x + hd + 0.32, 4.4, 0), V(0, -1.2, 0));
@@ -341,7 +341,7 @@ export function buildWorld(E) {
   const gN = asm('solenoid', root, { title: 'Соленоид', sub: 'внутри однородное поле B = μ₀nI' });
   const solMat = fadeMat('paper');
   const turnGeo = new THREE.TorusGeometry(RS, 0.035, 8, 48); turnGeo.rotateY(Math.PI / 2);
-  for (const l of M.SOL.loops) part(gN, turnGeo, { tone: 'hi', name: 'Turns', mat: solMat, pos: [cN.x + l[0][0] * D, cN.y, 0] });
+  for (const l of M.SOL.loops) part(gN, turnGeo, { tone: 'hi', name: 'Витки', mat: solMat, pos: [cN.x + l[0][0] * D, cN.y, 0] });
   for (const k of [3, 12, 21, 30]) { const x = cN.x + M.SOL.loops[k][0][0] * D + 0.05; cone(gN, V(x, cN.y, RS + 0.02), V(0, -1, 0), 'Current I', 0.8); }
   label('vec', '<i>I</i>', () => V(cN.x - 1.55, cN.y - 0.15, RS + 0.35));
   {
@@ -357,11 +357,11 @@ export function buildWorld(E) {
   const gT = asm('toroid', root, { title: 'Тороид', sub: 'B = μ₀NI/2πr только внутри' });
   const torMat = fadeMat('paper');
   const coreMat = shadeMat('base', { opacity: 0.35 });
-  const core = part(gT, new THREE.TorusGeometry(R0, aT * 0.9, 24, 96).rotateX(Math.PI / 2), { tone: 'faint', name: 'Core', mat: coreMat, pos: cT.toArray() }); core.userData.noEdge = true;
+  const core = part(gT, new THREE.TorusGeometry(R0, aT * 0.9, 24, 96).rotateX(Math.PI / 2), { tone: 'faint', name: 'Сердечник', mat: coreMat, pos: cT.toArray() }); core.userData.noEdge = true;
   const torTurn = new THREE.TorusGeometry(aT, 0.028, 8, 32);
   for (let k = 0; k < M.TOR.N; k++) {
     const ph = 2 * Math.PI * (k + 0.5) / M.TOR.N;
-    const m = part(gT, torTurn, { tone: 'hi', name: 'Turns', mat: torMat, pos: [cT.x + R0 * Math.cos(ph), cT.y, R0 * Math.sin(ph)] });
+    const m = part(gT, torTurn, { tone: 'hi', name: 'Витки', mat: torMat, pos: [cT.x + R0 * Math.cos(ph), cT.y, R0 * Math.sin(ph)] });
     m.rotation.y = -ph;
   }
   for (const r of [0.115, 0.13, 0.145]) fieldCurve(root, M.fieldLine(M.torB, [r, 0, 0], { step: 0.004, max: 600 }), cT, D, 5);
@@ -369,7 +369,7 @@ export function buildWorld(E) {
   ampT.position.copy(cT);
   const bT = Array.from({ length: 8 }, () => bArrow(gT));
   label('vec grey', '<b>B</b>', () => tip(bT[1]));
-  label('tick', '', () => ampT.position.clone().add(V(ampT.scale.x * 0.71 + 0.15, 0.25, ampT.scale.x * 0.71)), () => `r ${(torRNow * 100).toFixed(1)} cm`);
+  label('tick', '', () => ampT.position.clone().add(V(ampT.scale.x * 0.71 + 0.15, 0.25, ampT.scale.x * 0.71)), () => `r ${(torRNow * 100).toFixed(1)} см`);
   let torRNow = M.TOR.R0;
 
   // ---------- per-frame ----------
