@@ -56,7 +56,7 @@ export function buildWorld(E) {
   function body(g, e) {
     const b = new THREE.Group(); g.add(b);
     const k = kindOf(e);
-    if (k === 'R') part(b, e.small ? ZIG_S : ZIG, { tone: 'hi', pal: 'ink', name: e.small ? 'Internal resistance' : 'Resistors' });
+    if (k === 'R') part(b, e.small ? ZIG_S : ZIG, { tone: 'hi', pal: 'ink', name: e.small ? 'Внутреннее сопротивление' : 'Резисторы' });
     if (k === 'bat') {
       part(b, new THREE.CylinderGeometry(0.15, 0.15, 0.5, 32), { tone: 'hi', name: 'Батарея' });
       part(b, new THREE.CylinderGeometry(0.06, 0.06, 0.07, 20), { tone: 'mid', pal: 'dark', pos: [0, 0.285, 0], name: 'Батарея' });
@@ -102,7 +102,7 @@ export function buildWorld(E) {
     }
     for (const it of items) if (it.k === 'bat' && !def.noPlus) label('vec red', '+', () => it.mid.clone().addScaledVector(it.d, 0.42).addScaledVector(it.s, -0.24).add(V(0, 0.12, 0)));
     for (const nd of def.nodes || []) { const [n, dx = -0.08, dz = 0] = [].concat(nd);
-      label('tick', '', () => (C.h > 0.45 ? C.P3[n].clone().add(V(dx, 0.28, dz)) : null), () => `${(C.sol ? C.sol.V[n] : 0).toFixed(1)} V`); }
+      label('tick', '', () => (C.h > 0.45 ? C.P3[n].clone().add(V(dx, 0.28, dz)) : null), () => `${(C.sol ? C.sol.V[n] : 0).toFixed(1)} В`); }
     C.update = (sol, h, dt) => {
       C.sol = sol; C.h = h;
       for (const k in P) C.P3[k].set(P[k].x, Y0 + h * HS * sol.V[k], P[k].z);
@@ -168,7 +168,7 @@ export function buildWorld(E) {
   elec[0].y = 0.05; elec[0].z = RW * 0.55;
   const ePool = dotPool(g0, NE, 'blue', new THREE.SphereGeometry(0.05, 12, 8));
   const eOne = part(g0, new THREE.SphereGeometry(0.075, 16, 12), { tone: 'hi', pal: 'ink', name: 'Электрон' });
-  label('tick', 'one electron', () => eOne.position.clone().add(V(-0.12, 0.62, 0)));
+  label('tick', 'один электрон', () => eOne.position.clone().add(V(-0.12, 0.62, 0)));
   const DRIFT = M.CU.vd * MAG * SPEEDUP;           // drawn drift speed, units/s
   const eArr = [-2, 0.6, 2.4].map(() => arrow(g0, 'blue', { r: 0.03, head: 0.16, headR: 0.08, name: 'Поле E' }));
   eArr.forEach((a, k) => setArrow(a, V(X0 - 2.6 + k * 2.1, WY, -0.05), V(1.0, 0, 0)));
@@ -178,7 +178,7 @@ export function buildWorld(E) {
   label('vec', '<i>I</i>', () => V(X0 + 3.05, WY + RW + 0.35, 0));
   const vArr = arrow(g0, 'dark', { r: 0.022, head: 0.12, headR: 0.06, name: 'Дрейфовая скорость', tone: 'mid' });
   setArrow(vArr, V(X0 + 2.8, WY - RW - 0.35, 0), V(-1.0, 0, 0));
-  label('tick', 'electrons drift ←', () => V(X0 + 1.65, WY - RW - 0.35, 0));
+  label('tick', 'электроны дрейфуют ←', () => V(X0 + 1.65, WY - RW - 0.35, 0));
   // breakdown: the slab of length Δx = v_d Δt just upstream of A; all of it crosses A in Δt
   const SLAB = 1.5;
   const slab = part(g0, xAxis(new THREE.CylinderGeometry(RW * 1.02, RW * 1.02, 1, 48)), { tone: 'lo', name: 'Слой провода AΔx', mat: shadeMat('blue', { opacity: 0.18 }) });
@@ -198,12 +198,12 @@ export function buildWorld(E) {
   const rDots = dotPool(g1, 220);
   let rPhase = 0;
   const xL = X1 - 2.6;
-  label('tick', '+1.5 V', () => V(xL - 0.15, RY + 0.42, ZT));
-  label('tick', '0 V', () => caps[1].position.clone().add(V(0.25, 0.42, 0)));
+  label('tick', '+1,5 В', () => V(xL - 0.15, RY + 0.42, ZT));
+  label('tick', '0 В', () => caps[1].position.clone().add(V(0.25, 0.42, 0)));
   label('tick', '<i>d</i>', () => V(xL + 0.5, RY + 0.25, ZT));
   label('tick', '2<i>d</i>', () => V(xL + 0.5, RY + 0.33, ZK));
-  label('tick', '', () => caps[1].position.clone().add(V(0.9, 0, 0)), () => `R = ${M.rThin(M.resLength(rClock)).toFixed(2)} Ω`);
-  label('tick', '', () => caps[3].position.clone().add(V(0.9, 0, 0)), () => `R = ${M.rThick(M.resLength(rClock)).toFixed(2)} Ω`);
+  label('tick', '', () => caps[1].position.clone().add(V(0.9, 0, 0)), () => `R = ${M.rThin(M.resLength(rClock)).toFixed(2)} Ом`);
+  label('tick', '', () => caps[3].position.clone().add(V(0.9, 0, 0)), () => `R = ${M.rThick(M.resLength(rClock)).toFixed(2)} Ом`);
   let rClock = 0;
 
   // ---------- 2 · Ohm's law, as heights ----------
@@ -226,12 +226,12 @@ export function buildWorld(E) {
   let cellR = M.cellLoad(0);
   const cellDef = { edges: M.cellEdges(cellR), at: [X4, 0], pos: { n0: [-1.5, 1.1], m: [-1.5, 0], p: [-1.5, -1.1], tr: [1.5, -1.1], br: [1.5, 1.1] }, K: K_DOT.cell, IK: K_ARROW.cell, noPlus: false,
     nodes: [['p', -0.1, -0.35]], arrows: [{ n: 'w3', frac: 0.5, off: [0, -0.3], html: '<i>I</i>' }], Pref: 18,
-    tags: [{ n: 'emf', html: 'ЭДС 12 В', side: 0.62 }, { n: 'r', html: '<i>r</i> 2 Ω', side: 0.45 }, { n: 'load', html: '', side: -0.5, up: 0.35, text: () => `R ${cellR.toFixed(2)} Ω` }] };
+    tags: [{ n: 'emf', html: 'ЭДС 12 В', side: 0.62 }, { n: 'r', html: '<i>r</i> 2 Ом', side: 0.45 }, { n: 'load', html: '', side: -0.5, up: 0.35, text: () => `R ${cellR.toFixed(2)} Ом` }] };
   cellDef.edges[2].n = 'w3';
   const cCell = circuit(g4, cellDef);
   const caseG = new THREE.Group(); caseG.userData = { home: V(), ex: V(-1.2, 3.2, 0) }; g4.add(caseG);
-  part(caseG, box(0.62, 0.5, 2.0, 0.08), { tone: 'mid', name: 'Battery case', pos: [X4 - 1.5, Y0, 0], mat: shadeMat('paper', { opacity: 0.3 }) });
-  label('tick', 'the battery', () => (opened(g4) < 0.3 ? V(X4 - 1.85, Y0 + 0.45, -0.95) : null));
+  part(caseG, box(0.62, 0.5, 2.0, 0.08), { tone: 'mid', name: 'Корпус батареи', pos: [X4 - 1.5, Y0, 0], mat: shadeMat('paper', { opacity: 0.3 }) });
+  label('tick', 'батарея', () => (opened(g4) < 0.3 ? V(X4 - 1.85, Y0 + 0.45, -0.95) : null));
 
   // ---------- 5 · series and parallel ----------
   const X5 = STATIONS.sp;
@@ -239,13 +239,13 @@ export function buildWorld(E) {
   const SER = { edges: M.SERIES.edges.map((e, i) => ({ ...e, n: e.n || 'ws' + i })), ground: 'br' };
   const cSer = circuit(g5a, { edges: SER.edges, at: [X5 - 2.15, 0], pos: { bl: [-1.4, 1], tl: [-1.4, -1], tm: [0, -1], tr: [1.4, -1], br: [1.4, 1] }, K: K_DOT.series, IK: K_ARROW.series,
     nodes: ['tl', 'tm', 'tr'], arrows: [{ n: 'ws1', frac: 0.5, off: [-0.28, 0], html: '<i>I</i>' }],
-    tags: [{ n: 'bat', html: '9 V', side: -0.45 }, { n: 'R1', html: 'R₁ 2 Ω', side: -0.3, up: 0.3 }, { n: 'R2', html: 'R₂ 4 Ω', side: -0.3, up: 0.3 }] });
+    tags: [{ n: 'bat', html: '9 В', side: -0.45 }, { n: 'R1', html: 'R₁ 2 Ом', side: -0.3, up: 0.3 }, { n: 'R2', html: 'R₂ 4 Ом', side: -0.3, up: 0.3 }] });
   const g5b = asm('parallel', root, { title: 'Параллельное соединение', sub: 'общее напряжение, токи складываются' });
   const PAR = { edges: M.PARALLEL.edges.map((e, i) => ({ ...e, n: e.n || 'wp' + i })), ground: 'r3' };
   const pp = {}; [-1.2, -0.4, 0.4, 1.25].forEach((z, k) => { pp['l' + k] = [-1.2, z]; pp['r' + k] = [1.2, z]; });
   const cPar = circuit(g5b, { edges: PAR.edges, at: [X5 + 2.3, 0], pos: pp, K: K_DOT.parallel, IK: K_ARROW.parallel,
     nodes: ['l0', 'r0'], arrows: [{ n: 'R1', frac: 0.5, off: [0, 0.26], html: '<i>I</i><sub>1</sub>' }, { n: 'R2', frac: 0.5, off: [0, 0.26], html: '<i>I</i><sub>2</sub>' }, { n: 'R3', frac: 0.5, off: [0, 0.26], html: '<i>I</i><sub>3</sub>' }, { n: 'wp4', frac: 0.5, off: [-0.3, 0], html: '<i>I</i>' }],
-    tags: [{ n: 'bat', html: '9 V', side: -0.45 }, { n: 'R1', html: '2 Ом', side: -0.25, up: 0.25 }, { n: 'R2', html: '4 Ом', side: -0.25, up: 0.25 }, { n: 'R3', html: '6 Ом', side: -0.25, up: 0.25 }] });
+    tags: [{ n: 'bat', html: '9 В', side: -0.45 }, { n: 'R1', html: '2 Ом', side: -0.25, up: 0.25 }, { n: 'R2', html: '4 Ом', side: -0.25, up: 0.25 }, { n: 'R3', html: '6 Ом', side: -0.25, up: 0.25 }] });
 
   // ---------- 6 · a combination, reduced step by step ----------
   const X6 = STATIONS.combo, OFF = [[-2.15, -1.55], [2.15, -1.55], [-2.15, 1.55], [2.15, 1.55]];
@@ -258,7 +258,7 @@ export function buildWorld(E) {
     const g = k === 0 ? g6 : new THREE.Group(); if (k) root.add(g);
     const edges = ed.map((e, i) => ({ ...e, n: e.n || 'w' + i }));
     const c = circuit(g, { edges, at: [X6 + OFF[k][0], OFF[k][1]], pos: POS6[k], K: K_DOT.combo, IK: K_ARROW.combo, scale: 1,
-      nodes: k ? [] : ['tl', 'a', 'tr', 'br'], tags: [{ n: 'bat', html: '9 V', side: 0.38 }, ...edges.filter(e => TAG6[e.n]).map(e => ({ n: e.n, html: TAG6[e.n] + ' Ω', side: SIDE6[e.n], up: 0.25 }))] });
+      nodes: k ? [] : ['tl', 'a', 'tr', 'br'], tags: [{ n: 'bat', html: '9 В', side: 0.38 }, ...edges.filter(e => TAG6[e.n]).map(e => ({ n: e.n, html: TAG6[e.n] + ' Ω', side: SIDE6[e.n], up: 0.25 }))] });
     c.sol = M.solve(edges, 'b');
     label('tick', `${k + 1}`, () => V(X6 + OFF[k][0] - 1.75, Y0 + 0.1, OFF[k][1] - 1.05));
     return c;
@@ -271,7 +271,7 @@ export function buildWorld(E) {
   const KP = { z: [-1.8, -1.05], a: [0, -1.05], tr: [1.8, -1.05], br: [1.8, 1.05], b: [0, 1.05], bl: [-1.8, 1.05] };
   const cK = circuit(g7, { edges: M.KIRCH.edges, at: [X7, 0], pos: KP, K: K_DOT.kirch, IK: K_ARROW.kirch, nodes: ['z', 'a', 'tr', 'br', 'b'],
     arrows: [{ n: 'R1', frac: 0.5, off: [0, -0.42], html: '<i>I</i><sub>1</sub>' }, { n: 'R5', frac: 0.16, off: [0.3, 0], html: '<i>I</i><sub>2</sub>' }, { n: 'R3', frac: 0.5, off: [0, -0.42], html: '<i>I</i><sub>3</sub>' }],
-    tags: [{ n: 'E1', html: '12 В', side: -0.5 }, { n: 'E2', html: '6 V', side: -0.48 }, { n: 'R1', html: 'R₁ 10 Ω', side: 0.32, up: 0.2 }, { n: 'R2', html: 'R₂ 10 Ω', side: -0.32, up: 0.2 }, { n: 'R3', html: 'R₃ 20 Ω', side: 0.32, up: 0.2 }, { n: 'R4', html: 'R₄ 20 Ω', side: -0.32, up: 0.2 }, { n: 'R5', html: 'R₅ 5 Ω', side: 0.32, up: 0.2 }] });
+    tags: [{ n: 'E1', html: '12 В', side: -0.5 }, { n: 'E2', html: '6 В', side: -0.48 }, { n: 'R1', html: 'R₁ 10 Ом', side: 0.32, up: 0.2 }, { n: 'R2', html: 'R₂ 10 Ом', side: -0.32, up: 0.2 }, { n: 'R3', html: 'R₃ 20 Ом', side: 0.32, up: 0.2 }, { n: 'R4', html: 'R₄ 20 Ом', side: -0.32, up: 0.2 }, { n: 'R5', html: 'R₅ 5 Ом', side: 0.32, up: 0.2 }] });
   label('tick', 'A', () => cK.P3.a.clone().add(V(0.12, 0.25, -0.22))); label('tick', 'B', () => cK.P3.b.clone().add(V(0.12, 0.25, 0.25)));
   label('tick', '1', () => V(X7 - 0.9, Y0, 0)); label('tick', '2', () => V(X7 + 1.0, Y0, 0));
   // the loop walker: round loop 1, then loop 2, adding up each ΔV
@@ -287,13 +287,13 @@ export function buildWorld(E) {
   let rcs = M.rc(0);
   const cRC = circuit(g8, { edges: RCE, at: [X8, 0], pos: RCP, K: K_DOT.rc, IK: K_ARROW.rc, nodes: ['sa', 'ct'], I: i => rcs.I_e[i],
     arrows: [{ n: 'R', frac: 0.5, off: [0, -0.3], html: '<i>I</i>' }],
-    tags: [{ n: 'bat', html: '12 В', side: -0.5 }, { n: 'R', html: '20 кОм', side: 0.35, up: 0.22 }, { n: 'C', html: '100 мкФ', side: -0.6 }, { n: 'C', html: '', side: 0.75, cls: 'vec red', text: () => `+${(rcs.Q * 1e3).toFixed(2)} mC` }] });
+    tags: [{ n: 'bat', html: '12 В', side: -0.5 }, { n: 'R', html: '20 кОм', side: 0.35, up: 0.22 }, { n: 'C', html: '100 мкФ', side: -0.6 }, { n: 'C', html: '', side: 0.75, cls: 'vec red', text: () => `+${(rcs.Q * 1e3).toFixed(2)} мКл` }] });
   const capIt = cRC.items.find(i => i.e.n === 'C');
   const plus = dotPool(capIt.body, 12, 'red', new THREE.SphereGeometry(0.035, 10, 8)), minus = dotPool(capIt.body, 12, 'blue', new THREE.SphereGeometry(0.035, 10, 8));
   const SITES = []; for (let i = 0; i < 4; i++) for (let j = 0; j < 3; j++) SITES.push([(i - 1.5) * 0.14, (j - 1) * 0.13]);
   // the switch: a blade from the pivot to contact a (charge) or b (discharge)
   const blade = rod(g8, 0.03, 'Switch');
-  const posts8 = ['pv', 'sa', 'sb'].map(k => ({ k, m: part(g8, new THREE.CylinderGeometry(0.06, 0.06, 0.12, 16), { tone: 'mid', pal: 'dark', name: 'Switch' }) }));
+  const posts8 = ['pv', 'sa', 'sb'].map(k => ({ k, m: part(g8, new THREE.CylinderGeometry(0.06, 0.06, 0.12, 16), { tone: 'mid', pal: 'dark', name: 'Переключатель' }) }));
   label('tick', 'a', () => cRC.P3.sa.clone().add(V(-0.12, 0.25, -0.2))); label('tick', 'b', () => cRC.P3.sb.clone().add(V(-0.12, 0.25, 0.15)));
 
   // ---------- per-frame ----------
