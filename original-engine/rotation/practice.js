@@ -85,7 +85,7 @@ export const PRACTICE = {
       choices: [`${p3(Q3.q.FA)} Н`, `${p3((PL.Wp + PL.Wc) / 2)} Н`, `${p3(Q3.x * PL.Wc / PL.L)} Н`, `${p3(Q3.q.FB)} Н`], answer: 3,
       why: `<p>Запишем моменты сил относительно точки A, где у <i>F</i><sub>A</sub> плечо равно нулю:</p>${eq(`${f(PL.L, 1)}·<i>F</i><sub>B</sub> = ${f(PL.L / 2, 1)} × ${f(PL.Wp, 0)} + ${f(Q3.x, 1)} × ${f(PL.Wc, 0)} → <i>F</i><sub>B</sub> = ${p3(Q3.q.FB)} Н`)}<p>Ящик расположен ближе к A, поэтому опора A воспринимает большую нагрузку (${p3(Q3.q.FA)} Н) а опора B — меньшую. ${p3(Q3.x * PL.Wc / PL.L)} Н не учитывает собственный вес доски.</p>` },
     { q: `Ящик медленно перемещают по доске от опоры A к опоре B. Как изменяются силы реакции опор?`,
-      choices: ['<i>F</i><sub>A</sub> falls, <i>F</i><sub>B</sub> rises, their sum stays the same', '<i>F</i><sub>A</sub> rises, <i>F</i><sub>B</sub> falls', 'обе не изменяются: общий вес остаётся прежним', '<i>F</i><sub>A</sub> falls, <i>F</i><sub>B</sub> rises, their sum rises'], answer: 0,
+      choices: ['<i>F</i><sub>A</sub> уменьшается, <i>F</i><sub>B</sub> увеличивается, их сумма не меняется', '<i>F</i><sub>A</sub> увеличивается, <i>F</i><sub>B</sub> уменьшается', 'обе не изменяются: общий вес остаётся прежним', '<i>F</i><sub>A</sub> уменьшается, <i>F</i><sub>B</sub> увеличивается, их сумма возрастает'], answer: 0,
       why: '<p>Из условия Σ<i>F</i> = 0 сумма реакций равна (M + m)g. Из условия Στ относительно A = 0 получаем <i>F</i><sub>B</sub> = [(L/2)Mg + x·mg]/L, которая увеличивается с ростом x. Поэтому <i>F</i><sub>B</sub> возрастает, а <i>F</i><sub>A</sub> уменьшается на ту же величину.</p>' },
   ],
   4: [
@@ -120,10 +120,10 @@ export const PRACTICE = {
   ],
   8: [
     { q: `Сила ${f(WR.F, 0)} Н, приложенная перпендикулярно к гаечному ключу длиной ${f(WR.r, 2)} м, поворачивает гайку на 120°. Какую работу совершает сила?`,
-      choices: [`${p3(WR.tau)} J`, `${p3(WR.F * WR.stroke)} J`, `${p3(Q8.W)} J`, `${p3(WR.tau * 120)} J`], answer: 2,
+      choices: [`${p3(WR.tau)} Дж`, `${p3(WR.F * WR.stroke)} Дж`, `${p3(Q8.W)} Дж`, `${p3(WR.tau * 120)} Дж`], answer: 2,
       why: `${eq(`W = τΔθ = (${f(WR.r, 2)} × ${f(WR.F, 0)}) × 2π/3 = ${f(WR.tau, 0)} × ${f(WR.stroke, 3)} = ${p3(Q8.W)} J`)}<p>Δθ must be in radians. ${p3(WR.tau * 120)} J multiplies by 120 degrees.</p>` },
     { q: `Для той же гайки требуется тот же крутящий момент. Если длину ключа увеличить вдвое, как изменятся необходимая сила и работа за поворот на 120°?`,
-      choices: ['half the push, half the work', 'half the push, the same work', 'the same push, twice the work', 'half the push, twice the work'], answer: 1,
+      choices: ['вдвое меньшая сила, вдвое меньшая работа', 'вдвое меньшая сила, та же работа', 'та же сила, вдвое большая работа', 'вдвое меньшая сила, вдвое большая работа'], answer: 1,
       why: '<p>τ = rF: double r, halve F. W = τΔθ: same τ, same angle, same work. The hand travels twice as far with half the force.</p>' },
   ],
   9: [
@@ -131,7 +131,7 @@ export const PRACTICE = {
       choices: [`${p3(Math.sqrt(2 * G * Q9.h))} м/с`, `${p3(Math.sqrt(2 * G * Q9.h / 1.4))} м/с`, `${p3(Math.sqrt(G * Q9.h))} м/с`, `${p3(Q9.v)} м/с`], answer: 3,
       why: `<p>h = ${f(M.RACE.len, 1)} sin ${(M.RACE.theta * 180 / Math.PI).toFixed(0)}° = ${f(Q9.h, 3)} m. With ω = v/R:</p>${eq(`mgh = ½mv² + ½(½mR²)(v/R)² = ¾mv² → v = √(4gh/3) = ${p3(Q9.v)} м/с`)}<p>${p3(Math.sqrt(2 * G * Q9.h))} м/с is the sliding box, which spends nothing on spin.</p>` },
     { q: `Сплошной шар (I = ⅖MR²), полый шар (I = ⅔MR²) и кольцо (I = MR²) скатываются без проскальзывания из состояния покоя по одной наклонной плоскости. В каком порядке они достигнут низа?`,
-      choices: ['ring, hollow sphere, solid sphere', 'all together', 'solid sphere, hollow sphere, ring', 'hollow sphere, solid sphere, ring'], answer: 2,
+      choices: ['кольцо, полый шар, сплошной шар', 'одинаковое угловое ускорение', 'сплошной шар, полый шар, кольцо', 'полый шар, сплошной шар, кольцо'], answer: 2,
       why: '<p>a = g sin θ / (1 + f) with I = fMR². Smallest f, least energy spent on spin, fastest: solid (0.4), then hollow (0.67), then ring (1). Mass and radius cancel.</p>' },
   ],
   10: [
@@ -146,16 +146,16 @@ export const PRACTICE = {
       choices: [`${p3(Math.sqrt(2 * G * WL.h))} м/с`, `${p3(Math.sqrt(2 * WL.m * G / (WL.m + WL.M) * WL.h))} м/с`, `${p3(Q11.v)} м/с`, `${p3(Math.sqrt(WL.a * WL.h))} м/с`], answer: 2,
       why: `${eq(`a = mg / (m + ½M) = ${f(WL.m * G, 1)} / ${f(WL.m + WL.M / 2, 1)} = ${f(WL.a)} м/с²`)}${eq(`v = √(2ah) = √(2 × ${f(WL.a)} × ${f(WL.h, 1)}) = ${p3(Q11.v)} м/с`)}<p>${p3(Math.sqrt(2 * G * WL.h))} м/с is free fall, ignoring the energy the drum takes; ${p3(Math.sqrt(2 * WL.m * G / (WL.m + WL.M) * WL.h))} м/с treats the drum like a hoop (I = MR²).</p>` },
     { q: `Чему равно натяжение верёвки во время падения ведра?`,
-      choices: ['equal to the bucket’s weight', 'greater than the bucket’s weight', 'less than the bucket’s weight but more than zero', 'zero, since the bucket is falling'], answer: 2,
+      choices: ['равна весу ведра', 'больше веса ведра', 'меньше веса ведра, но больше нуля', 'равна нулю, поскольку ведро падает'], answer: 2,
       why: `<p>The bucket accelerates downward, so mg − T = ma > 0: T < mg. But the rope must pull on the drum to spin it up (rT = Iα), so T > 0. Here T = ${f(WL.T)} Н against mg = ${f(WL.m * G, 1)} Н.</p>` },
   ],
   12: [
     { q: `Карусель (I = ${f(IM.I, 0)} кг·м², R = ${f(IM.R, 1)} м) начинает вращаться из состояния покоя. К её краю по касательной прикладывают силу ${Q12.F} Н в течение ${f(Q12.dt, 2)} с. Какова конечная угловая скорость?`,
       choices: [`${p3(Q12.F * Q12.dt / IM.I)} рад/с`, `${p3(Q12.w)} рад/с`, `${p3(Q12.F * IM.R * Q12.dt / (IM.M * IM.R ** 2))} рад/с`, `${p3(Q12.F * IM.R / IM.I)} рад/с`], answer: 1,
-      why: `${eq(`ΔL = τΔt = (${Q12.F} × ${f(IM.R, 1)}) × ${f(Q12.dt, 2)} = ${f(Q12.F * IM.R * Q12.dt, 0)} кг·м²/s`)}${eq(`ω = ΔL / I = ${f(Q12.F * IM.R * Q12.dt, 0)} / ${f(IM.I, 0)} = ${p3(Q12.w)} рад/с`)}<p>${p3(Q12.F * Q12.dt / IM.I)} рад/с uses FΔt (linear impulse) instead of τΔt; ${p3(Q12.F * IM.R / IM.I)} is τ/I, the angular acceleration, not ω.</p>` },
+      why: `${eq(`ΔL = τΔt = (${Q12.F} × ${f(IM.R, 1)}) × ${f(Q12.dt, 2)} = ${f(Q12.F * IM.R * Q12.dt, 0)} кг·м²/с`)}${eq(`ω = ΔL / I = ${f(Q12.F * IM.R * Q12.dt, 0)} / ${f(IM.I, 0)} = ${p3(Q12.w)} рад/с`)}<p>${p3(Q12.F * Q12.dt / IM.I)} рад/с uses FΔt (linear impulse) instead of τΔt; ${p3(Q12.F * IM.R / IM.I)} is τ/I, the angular acceleration, not ω.</p>` },
     { q: `Крутящий момент на колесе равномерно возрастает от нуля до ${Q12.peak} Н·м за ${f(Q12.T / 2, 1)} с, а затем равномерно уменьшается до нуля к моменту ${f(Q12.T, 1)} с. На сколько изменится угловой момент колеса?`,
-      choices: [`${p3(Q12.peak)} кг·м²/s`, `${p3(Q12.peak * Q12.T)} кг·м²/s`, `${p3(Q12.peak / Q12.T)} кг·м²/s`, `${p3(Q12.J)} кг·м²/s`], answer: 3,
-      why: `<p>ΔL is the area under the τ–t graph, here a triangle:</p>${eq(`ΔL = ½ × ${f(Q12.T, 1)} s × ${Q12.peak} Н·м = ${p3(Q12.J)} кг·м²/s`)}<p>${p3(Q12.peak * Q12.T)} treats it as a rectangle; ${p3(Q12.peak / Q12.T)} is a slope, not an area.</p>` },
+      choices: [`${p3(Q12.peak)} кг·м²/с`, `${p3(Q12.peak * Q12.T)} кг·м²/с`, `${p3(Q12.peak / Q12.T)} кг·м²/с`, `${p3(Q12.J)} кг·м²/с`], answer: 3,
+      why: `<p>ΔL is the area under the τ–t graph, here a triangle:</p>${eq(`ΔL = ½ × ${f(Q12.T, 1)} s × ${Q12.peak} Н·м = ${p3(Q12.J)} кг·м²/с`)}<p>${p3(Q12.peak * Q12.T)} treats it as a rectangle; ${p3(Q12.peak / Q12.T)} is a slope, not an area.</p>` },
   ],
   13: [
     { q: `Фигуристка с моментом инерции тела Ibody = ${f(SK.Ib, 1)} кг·м² вращается с угловой скоростью ${f(SK.w0, 1)} рад/с, держа грузы массой ${f(SK.m, 1)} кг на расстоянии ${f(SK.rOut, 2)} м от оси, и подтягивает их до расстояния ${f(SK.rIn, 2)} м. Какой станет её угловая скорость?`,
@@ -170,7 +170,7 @@ export const PRACTICE = {
       choices: [`${p3(HT.m * HT.v0 * HT.d / HT.I)} рад/с`, `${p3(Q14.w)} рад/с`, `${p3(HT.m * HT.v0 * HT.d / (HT.M * HT.L ** 2 / 12 + HT.m * HT.d ** 2))} рад/с`, `${p3(HT.m * HT.v0 / (HT.m + HT.M) / HT.d)} рад/с`], answer: 1,
       why: `<p>The pin pushes, so linear momentum is not conserved; but the pin has no torque about O, so L about O is:</p>${eq(`mv<sub>0</sub>d = (I + md²)ω → ω = ${f(HT.m * HT.v0 * HT.d, 2)} / (${f(HT.I, 2)} + ${f(HT.m * HT.d ** 2, 2)}) = ${p3(Q14.w)} рад/с`)}<p>${p3(HT.m * HT.v0 * HT.d / HT.I)} forgets the ball now turns with the rod; ${p3(HT.m * HT.v0 / (HT.m + HT.M) / HT.d)} conserves linear momentum, which the pin spoils.</p>` },
     { q: `Шар массой ${f(HT.m, 1)} кг отпускают из состояния покоя в точке, расположенной на расстоянии ${f(HT.d, 1)} м сбоку от O в той же вертикальной плоскости. С какой скоростью изменяется его угловой момент относительно точки O во время падения?`,
-      choices: [`${p3(Q14.dLdt / 2)} кг·м²/s²`, `${p3(2 * Q14.dLdt)} кг·м²/s²`, `${p3(Q14.dLdt)} кг·м²/s²`, '0: it moves in a straight line'], answer: 2,
-      why: `<p>With O at the origin and the ball at (d, y), p = (0, −mgt). Then</p>${eq(`L = xp<sub>y</sub> − yp<sub>x</sub> = −d·mgt → |dL/dt| = mgd = ${f(HT.m, 1)} × ${f(G)} × ${f(HT.d, 1)} = ${p3(Q14.dLdt)} кг·м²/s²`)}<p>That is the torque of gravity about O, d·mg. A straight line keeps L constant only when no force acts: here the speed grows.</p>` },
+      choices: [`${p3(Q14.dLdt / 2)} кг·м²/с²`, `${p3(2 * Q14.dLdt)} кг·м²/с²`, `${p3(Q14.dLdt)} кг·м²/с²`, '0: it moves in a straight line'], answer: 2,
+      why: `<p>With O at the origin and the ball at (d, y), p = (0, −mgt). Then</p>${eq(`L = xp<sub>y</sub> − yp<sub>x</sub> = −d·mgt → |dL/dt| = mgd = ${f(HT.m, 1)} × ${f(G)} × ${f(HT.d, 1)} = ${p3(Q14.dLdt)} кг·м²/с²`)}<p>That is the torque of gravity about O, d·mg. A straight line keeps L constant only when no force acts: here the speed grows.</p>` },
   ],
 };
