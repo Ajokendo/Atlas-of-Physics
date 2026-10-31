@@ -310,6 +310,48 @@
 
 Данные должны храниться в сопоставимом формате, иметь дату, методику и оценку неопределённости.
 
+## Разобранный пример: расчёт общей площади ООПТ без двойного учёта / Worked Example: Calculating Protected Area without Double Counting
+
+Предположим, что учебный район занимает 1 000 км². На его территории находятся два объекта охраны: природный заповедник площадью 120 км² и природный парк площадью 80 км². Их границы частично совпадают: 30 км² входят одновременно в оба объекта.
+
+Чтобы определить площадь территории, охваченной хотя бы одним из этих двух статусов, нельзя просто сложить 120 и 80 км². Общую часть нужно вычесть один раз:
+
+\[
+S_{\text{общая}}=120+80-30=170\text{ км}^2
+\]
+
+Доля территории, охваченной хотя бы одним из двух статусов:
+
+\[
+P=\frac{170}{1000}\times100\%=17\%
+\]
+
+Итак, совокупная площадь без двойного учёта составляет **170 км²**, или **17%** учебного района.
+
+**Почему это важно:** при суммировании площадей разных категорий ООПТ, биосферных резерватов и международных природоохранных территорий возможен двойной учёт. Для реальной статистики необходимо проверить географическое пересечение полигонов, правовой статус каждого объекта, дату данных и используемую систему координат. Этот пример условный и не описывает фактическую площадь охраняемых территорий Кыргызстана.
+
+**Проверьте себя:** если два объекта имеют площади 90 и 60 км², а их пересечение составляет 10 км², какова общая площадь без двойного учёта?
+
+Assume a study area covers 1,000 km². It contains two protected sites: a nature reserve covering 120 km² and a nature park covering 80 km². Their boundaries overlap: 30 km² belong to both sites.
+
+To calculate the area covered by at least one of the two designations, we must not simply add 120 and 80 km². The overlap must be subtracted once:
+
+\[
+S_{\text{union}}=120+80-30=170\text{ km}^2
+\]
+
+The share of the study area covered by at least one designation is:
+
+\[
+P=\frac{170}{1000}\times100\%=17\%
+\]
+
+The combined area, without double counting, is therefore **170 km²**, or **17%** of the study area.
+
+**Why this matters:** adding areas of different protected-area categories, biosphere reserves and international conservation sites can lead to double counting. Real statistics require checking polygon overlaps, the legal status of each site, the data date and the coordinate reference system. This is a hypothetical example, not a statement about the actual protected-area coverage of Kyrgyzstan.
+
+**Check your understanding:** if two sites cover 90 and 60 km² and overlap by 10 km², what is their combined area without double counting?
+
 ## 22.13. Практические работы
 ## Practical Activities
 
