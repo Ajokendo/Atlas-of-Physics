@@ -6,11 +6,11 @@ const G = M.G, D2R = Math.PI / 180;
 const f = (x, n = 2) => (x < -1e-12 ? '−' : '') + Math.abs(x).toFixed(n);
 
 // 0 · work: the page's pull, 20 N at 30°, over 3.0 m
-const P = M.PULL, d0 = 3.0, Вт0 = P.F * d0 * Math.cos(P.th);
+const P = M.PULL, d0 = 3.0, W0 = P.F * d0 * Math.cos(P.th);
 // 1 · the toss
-const T = M.TOSS, Втup = -0.5 * T.m * T.v0 ** 2;
+const T = M.TOSS, Wup = -0.5 * T.m * T.v0 ** 2;
 // 2 · the whirl, half a lap
-const Втh = M.WHIRL, halfArc = Math.PI * Втh.r;
+const Wh = M.WHIRL, halfArc = Math.PI * Wh.r;
 // 3 · the car over 12 m from rest
 const C = M.CAR, d3 = 12, v3 = Math.sqrt(2 * C.F * d3 / C.m);
 // 4 · the drop, zero on the 1.0 m tabletop; speed 1.0 m above the ground
@@ -18,7 +18,7 @@ const Dr = M.DROP, y4 = 1.0, U4 = Dr.m * G * (Dr.h - Dr.ref2), v4 = Math.sqrt(2 
 // 5 · the spring, compression when the block has slowed to 1.0 м/с
 const S = M.SPRING, v5 = 1.0, x5 = Math.sqrt(S.m * (S.v0 ** 2 - v5 ** 2) / S.k);
 // 6 · the changing push (Physics C)
-const Pu = M.PUSH, v6 = Math.sqrt(2 * Pu.W / Pu.m), Втhalf = Pu.F0 * Pu.L * 13 / 24;
+const Pu = M.PUSH, v6 = Math.sqrt(2 * Pu.W / Pu.m), Whalf = Pu.F0 * Pu.L * 13 / 24;
 // 7 · the pendulum at 20°
 const Pd = M.PEND, th7 = 20 * D2R, v7 = Math.sqrt(2 * G * Pd.L * (Math.cos(th7) - Math.cos(Pd.th0)));
 const vb = Math.sqrt(2 * G * Pd.L * (1 - Math.cos(Pd.th0))), Tb = Pd.m * G + Pd.m * vb ** 2 / Pd.L;
@@ -42,16 +42,16 @@ export const PRACTICE = {
   ],
   1: [
     { q: `Мяч массой ${f(T.m)} кг покидает руку вертикально вверх со скоростью ${f(T.v0, 1)} м/с. Какую работу совершает сила тяжести при движении от руки до верхней точки?`,
-      choices: [`${f(-Wup)} Дж`, `${f(0)} Дж`, `${f(2 * Втup)} Дж`, `${f(Wup)} Дж`], answer: 3,
-      why: `<p>Сила тяжести направлена противоположно движению (θ = 180°), поэтому её работа отрицательна. Согласно теореме о кинетической энергии, она уменьшает кинетическую энергию до нуля:</p><div class="eq"><i>W</i><sub>g</sub> = Δ<i>K</i> = 0 − ½ × ${f(T.m)} × ${f(T.v0, 1)}² = ${f(Wup)} Дж</div><p>${f(2 * Втup)} Дж не учитывает множитель ½; +${f(-Wup)} Дж имеет неверный знак.</p>` },
+      choices: [`${f(-Wup)} Дж`, `${f(0)} Дж`, `${f(2 * Wup)} Дж`, `${f(Wup)} Дж`], answer: 3,
+      why: `<p>Сила тяжести направлена противоположно движению (θ = 180°), поэтому её работа отрицательна. Согласно теореме о кинетической энергии, она уменьшает кинетическую энергию до нуля:</p><div class="eq"><i>W</i><sub>g</sub> = Δ<i>K</i> = 0 − ½ × ${f(T.m)} × ${f(T.v0, 1)}² = ${f(Wup)} Дж</div><p>${f(2 * Wup)} Дж не учитывает множитель ½; +${f(-Wup)} Дж имеет неверный знак.</p>` },
     { q: `Чему равна суммарная работа силы тяжести за весь путь — от момента выпуска мяча до его возвращения на исходную высоту?`,
       choices: ['положительная', 'отрицательная', 'нулевая', 'равна <i>mgh</i>, где <i>h</i> — максимальная высота подъёма'], answer: 2,
       why: '<p>При подъёме сила тяжести совершает отрицательную работу, а при спуске — такую же по модулю положительную. Суммарная работа равна нулю. Поэтому без сопротивления воздуха мяч возвращается к руке с той же скоростью, с которой был брошен.</p>' },
   ],
   2: [
     { q: `Натяжение нити, удерживающей вращающийся по окружности шар, равно ${f(Wh.T, 1)} Н, радиус окружности — ${f(Wh.r, 1)} м. Какую работу совершает сила натяжения за половину оборота?`,
-      choices: [`${f(Wh.T * halfArc, 1)} Дж`, `${f(Wh.T * 2 * Втh.r, 1)} Дж`, `${f(-Wh.T * halfArc, 1)} Дж`, '0 Дж'], answer: 3,
-      why: `<p>At every instant the tension points at the centre and the velocity along the circle: they meet at 90°, so each small step contributes <i>T</i> d<i>s</i> cos 90° = 0. The total is 0 Дж, and the speed never changes.</p><p>${f(Wh.T * halfArc, 1)} Дж умножает силу на длину дуги, как если бы они были параллельны; ${f(Wh.T * 2 * Втh.r, 1)} Дж использует диаметр — полное перемещение, которое всё равно не совпадает с направлением силы в каждый момент.</p>` },
+      choices: [`${f(Wh.T * halfArc, 1)} Дж`, `${f(Wh.T * 2 * Wh.r, 1)} Дж`, `${f(-Wh.T * halfArc, 1)} Дж`, '0 Дж'], answer: 3,
+      why: `<p>At every instant the tension points at the centre and the velocity along the circle: they meet at 90°, so each small step contributes <i>T</i> d<i>s</i> cos 90° = 0. The total is 0 Дж, and the speed never changes.</p><p>${f(Wh.T * halfArc, 1)} Дж умножает силу на длину дуги, как если бы они были параллельны; ${f(Wh.T * 2 * Wh.r, 1)} Дж использует диаметр — полное перемещение, которое всё равно не совпадает с направлением силы в каждый момент.</p>` },
     { q: `Теперь шар вращают на той же нити с вдвое большей скоростью. Во сколько раз изменятся сила натяжения и кинетическая энергия шара?`,
       choices: ['tension ×2, kinetic energy ×4', 'tension ×4, kinetic energy ×4', 'tension ×4, kinetic energy ×2', 'tension ×2, kinetic energy ×2'], answer: 1,
       why: '<p>И <i>T</i> = <i>mv</i>²/<i>r</i>, и <i>K</i> = ½<i>mv</i>² пропорциональны <i>v</i>², поэтому обе величины увеличиваются в 4 раза. Сила натяжения по-прежнему не совершает работу: кинетическая энергия увеличилась из-за силы, которая разогнала шар.</p>' },
@@ -105,7 +105,7 @@ export const PRACTICE = {
   ],
   9: [
     { q: `Развёрнутый ответ. Для связи с потенциальной энергией U(r) = ε[(r0/r)¹² − 2(r0/r)⁶], где ε = ${f(B.eps / M.EV, 1)} эВ и r0 = ${f(B.r0 * 1e9)} нм, покажите, что r0 соответствует равновесию. Найдите жёсткость k = U″(r0) и период малых колебаний атома массой ${f(B.m / M.AMU, 1)} а.е.м.`,
-      solution: `<p>Найдём производную:</p><div class="eq"><i>U</i>′ = ε[−12<i>r</i><sub>0</sub>¹²/<i>r</i>¹³ + 12<i>r</i><sub>0</sub>⁶/<i>r</i>⁷]</div><p>При <i>r</i> = <i>r</i><sub>0</sub> выражение в скобках равно −12/<i>r</i><sub>0</sub> + 12/<i>r</i><sub>0</sub> = 0: сила равна нулю, система находится в равновесии.</p><div class="eq"><i>U</i>″ = ε[156<i>r</i><sub>0</sub>¹²/<i>r</i>¹⁴ − 84<i>r</i><sub>0</sub>⁶/<i>r</i>⁸] &nbsp;⇒&nbsp; <i>U</i>″(<i>r</i><sub>0</sub>) = 72ε/<i>r</i><sub>0</sub>²</div><p>Positive, so it is a stable minimum. Втith ε = ${B.eps.toExponential(3).replace('e-', '×10<sup>−')}</sup> Дж and <i>r</i><sub>0</sub> = ${f(B.r0 * 1e9)}×10<sup>−9</sup> m:</p><div class="eq"><i>k</i> = 72 × ${f(B.eps * 1e19, 3)}×10<sup>−19</sup> / (${f(B.r0 * 1e9)}×10<sup>−9</sup>)² = ${f(kB, 0)} N/m</div><div class="eq"><i>T</i> = 2π√(<i>m</i>/<i>k</i>) = 2π√(${f(B.m * 1e27, 3)}×10<sup>−27</sup> / ${f(kB, 0)}) = ${f(TB * 1e15, 1)} fs</div>` },
+      solution: `<p>Найдём производную:</p><div class="eq"><i>U</i>′ = ε[−12<i>r</i><sub>0</sub>¹²/<i>r</i>¹³ + 12<i>r</i><sub>0</sub>⁶/<i>r</i>⁷]</div><p>При <i>r</i> = <i>r</i><sub>0</sub> выражение в скобках равно −12/<i>r</i><sub>0</sub> + 12/<i>r</i><sub>0</sub> = 0: сила равна нулю, система находится в равновесии.</p><div class="eq"><i>U</i>″ = ε[156<i>r</i><sub>0</sub>¹²/<i>r</i>¹⁴ − 84<i>r</i><sub>0</sub>⁶/<i>r</i>⁸] &nbsp;⇒&nbsp; <i>U</i>″(<i>r</i><sub>0</sub>) = 72ε/<i>r</i><sub>0</sub>²</div><p>Positive, so it is a stable minimum. With ε = ${B.eps.toExponential(3).replace('e-', '×10<sup>−')}</sup> Дж and <i>r</i><sub>0</sub> = ${f(B.r0 * 1e9)}×10<sup>−9</sup> m:</p><div class="eq"><i>k</i> = 72 × ${f(B.eps * 1e19, 3)}×10<sup>−19</sup> / (${f(B.r0 * 1e9)}×10<sup>−9</sup>)² = ${f(kB, 0)} N/m</div><div class="eq"><i>T</i> = 2π√(<i>m</i>/<i>k</i>) = 2π√(${f(B.m * 1e27, 3)}×10<sup>−27</sup> / ${f(kB, 0)}) = ${f(TB * 1e15, 1)} fs</div>` },
     { q: `Частица находится в потенциальной яме, а её полная энергия E ниже уровня края ямы. Что верно в каждой из точек поворота?`,
       choices: ['скорость равна нулю, и сила, действующая на частицу, равна нулю', 'скорость максимальна, а сила равна нулю', 'потенциальная энергия равна нулю', 'скорость равна нулю, а сила направлена обратно внутрь потенциальной ямы'], answer: 3,
       why: '<p>В точке поворота <i>U</i> = <i>E</i>, поэтому <i>K</i> = 0 и частица мгновенно останавливается. Однако наклон потенциальной энергии в этой точке не равен нулю (это стенка ямы, а не её дно), поэтому <i>F</i> = −d<i>U</i>/d<i>x</i> ≠ 0 и сила направлена обратно к минимуму. Именно поэтому частица меняет направление движения.</p>' },
