@@ -103,7 +103,7 @@ export const PAGES = [
     body: `
       <p class="lede">Контур размером ${M.WIRE.b * 100} × ${M.WIRE.a * 100} см удаляется от провода, по которому течёт ток ${M.WIRE.I} А, со скоростью ${M.WIRE.v * 100} см/с. Поле <i>B</i> = μ<sub>0</sub><i>I</i>/2π<i>r</i> неоднородно, поэтому просуммируем его вклад по узким полосам:</p>
       ${steps([
-        ['Φ = ∫<sub><i>r</i></sub><sup><i>r</i>+<i>a</i></sup> (μ<sub>0</sub><i>I</i>/2π<i>s</i>) <i>b ds</i>', 'strips'],
+        ['Φ = ∫<sub><i>r</i></sub><sup><i>r</i>+<i>a</i></sup> (μ<sub>0</sub><i>I</i>/2π<i>s</i>) <i>b ds</i>', 'полосы'],
         ['&nbsp;&nbsp;&nbsp;= (μ<sub>0</sub><i>Ib</i>/2π) ln((<i>r</i> + <i>a</i>)/<i>r</i>)', ''],
         ['ε = μ<sub>0</sub><i>Iabv</i> / 2π<i>r</i>(<i>r</i> + <i>a</i>)', '−<i>d</i>Φ/<i>dt</i>'],
       ])}
@@ -152,7 +152,7 @@ export const PAGES = [
     body: `
       <p class="lede">Рельсы, соединённые резистором, замыкают электрическую цепь. Стержню сообщают начальную скорость ${M.RAIL.v0} м/с, после чего его отпускают.</p>
       ${steps([
-        ['Φ = <i>BLx</i>, &nbsp;ε = <i>BLv</i>, &nbsp;<i>I</i> = <i>BLv</i>/<i>R</i>', 'counterclockwise'],
+        ['Φ = <i>BLx</i>, &nbsp;ε = <i>BLv</i>, &nbsp;<i>I</i> = <i>BLv</i>/<i>R</i>', 'против часовой стрелки'],
         ['<i>F</i> = <i>ILB</i> = <i>B</i><sup>2</sup><i>L</i><sup>2</sup><i>v</i>/<i>R</i>', 'назад'],
         ['<i>v</i> = <i>v</i><sub>0</sub><i>e</i><sup>−<i>t</i>/τ</sup>, &nbsp;τ = <i>mR</i>/<i>B</i><sup>2</sup><i>L</i><sup>2</sup>', `${f(M.RAIL.tau, 1 )} с`],
       ])}
