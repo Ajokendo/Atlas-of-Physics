@@ -138,6 +138,14 @@ try {
         errors.push(file + ": H2O was not parsed into 2 H and 1 O atoms");
       }
 
+      await formula.fill("2H2O");
+      await calculate.click();
+      values = await rows.evaluateAll(items => items.map(row => [row.cells[0].textContent.trim(), row.cells[1].textContent.trim()]));
+      if ((await total.innerText()).trim() !== "Всего атомов: 6" ||
+          JSON.stringify(values) !== JSON.stringify([["H", "4"], ["O", "2"]])) {
+        errors.push(file + ": leading coefficient 2H2O was not applied to the whole formula");
+      }
+
       await formula.fill("Ca(OH)2");
       await calculate.click();
       values = await rows.evaluateAll(items => items.map(row => [row.cells[0].textContent.trim(), row.cells[1].textContent.trim()]));
