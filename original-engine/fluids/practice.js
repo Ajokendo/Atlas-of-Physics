@@ -21,14 +21,14 @@ const D3 = PA.stroke * PA.A1 / PA.A2;
 // 4 · the cube all the way under
 const T4 = BU.W - BU.Fb;
 // 5 · wood in sea water; the steel ball on the floor
-const FR5 = M.WOOD.rho / M.RHO_SEA, Н5 = M.BALL.W - M.BALL.Fb;
+const FR5 = M.WOOD.rho / M.RHO_SEA, N5 = M.BALL.W - M.BALL.Fb;
 // 6 · narrowing to 10 см radius; filling a 1000 L tank from the wide part
 const R6 = 0.10, V6 = FL.v1 * (FL.r1 / R6) ** 2, T6 = 1.0 / FL.Q;
 // 7 · Bernoulli at the three points
 const [B1, B2, B3] = BE.pts;
 // 8 · the jet when the water is 0.60 m above the hole
 const H8 = 0.60, X8 = 2 * Math.sqrt(H8 * TK.yh);
-const кПа = (x, n = 1) => `${(x / 1000).toFixed(n)} кПа`;
+const kPa = (x, n = 1) => `${(x / 1000).toFixed(n)} кПа`;
 
 export const PRACTICE = {
   0: [
