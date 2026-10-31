@@ -5,7 +5,7 @@ import { STATIONS, SC, Y0 } from './world.js';
 
 const f = (x, n = 2) => (x < -1e-12 ? '−' : '') + Math.abs(x).toFixed(n);
 const nC = q => f(q * 1e9, 2);
-const arrowNote = s => `Arrows: ${f(s, 1)} square${s === 1 ? '' : 's'} per kN/C. One grid square is 10 cm.`;
+const arrowNote = s => `Масштаб стрелок: ${f(s, 1)} клетки на кН/Кл. Одна клетка сетки соответствует 10 см.`;
 
 // ---------- small SVG charts for the left page ----------
 const W = 420, H = 170, P = { l: 44, r: 14, t: 16, b: 30 };
@@ -37,7 +37,7 @@ export const R = {
   cage: { x0: -40, x1: 40, y0: 0, y1: 3.2 },
 };
 const kE = fn => r => fn(r / 100) / 1000;     // r in cm → E in kN/C
-const sphereChart = (fn, cursor, extra = []) => chart({ ...R.sphere, xlabel: 'r (cm)', ylabel: 'E (kN/C)', cursor, label: 'Напряжённость поля в зависимости от расстояния до центра',
+const sphereChart = (fn, cursor, extra = []) => chart({ ...R.sphere, xlabel: 'r (см)', ylabel: 'E (кН/Кл)', cursor, label: 'Напряжённость поля в зависимости от расстояния до центра',
   vlines: [[10, 'R']], series: [...extra, { pts: curve(kE(fn), 0.001, 26, 120) }] });
 
 export const PAGES = [
