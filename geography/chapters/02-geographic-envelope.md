@@ -427,6 +427,16 @@
 - характерные водные и прибрежные организмы;
 - воздействие человека на экологическое состояние.
 
+## Источники и дальнейшее чтение / Sources and Further Reading
+
+1. NASA Earth Observatory. *The Earth System*. https://earthobservatory.nasa.gov/
+2. NOAA National Ocean Service. *The Water Cycle*. https://oceanservice.noaa.gov/education/tutorial_water/
+3. NASA Science. *Earth's Atmosphere*. https://science.nasa.gov/earth/facts/
+4. Stockholm Resilience Centre. *The Planetary Boundaries Framework*. https://www.stockholmresilience.org/research/planetary-boundaries.html
+5. Richardson, K. et al. (2023). Earth beyond six of nine planetary boundaries. *Science Advances*, 9(37). https://doi.org/10.1126/sciadv.adh2458
+
+Для концепции планетарных границ важно указывать конкретную публикацию и год оценки: научная оценка состояния границ обновляется, а диаграммы разных лет могут использовать разные методы и уровни детализации.
+
 ## Редакционные и научные примечания
 
 - Все численные значения в этой главе являются ориентировочными и должны быть сверены с актуальными авторитетными источниками при финальной редактуре.
