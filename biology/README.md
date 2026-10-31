@@ -31,6 +31,7 @@ Third subject area of the unified **Atlas of Knowledge** portal.
 - Botany now includes a bilingual chloroplast diagram and an interactive photosynthesis model. Learners can toggle light, water and carbon dioxide availability and observe how limiting inputs affect the process.
 - The botany chapter includes the overall oxygenic photosynthesis equation and distinguishes light-dependent reactions in thylakoid membranes from the Calvin cycle in the stroma.
 - Genetics includes an interactive DNA complementary base-pairing module (A–T and G–C).
+- Genetics now presents the central dogma with an original bilingual information-flow plate, selectable DNA template-to-RNA transcription examples, a codon-to-amino-acid explorer, and mutation consequence demonstrations (substitution, insertion and deletion).
 - Zoology includes an interactive bilingual explorer for fish, amphibians, reptiles, birds and mammals, comparing body covering, respiration and reproduction while noting group-level exceptions.
 - Anatomy and Physiology includes an original bilingual SVG overview of major organ systems and an interactive explorer for circulation, respiration, digestion, nervous function and urinary function.
 - The anatomy chapter explains homeostasis and negative feedback, with a bilingual knowledge check on the left ventricle and systemic circulation.
