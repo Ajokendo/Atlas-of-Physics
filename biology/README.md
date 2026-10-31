@@ -80,6 +80,13 @@ Third subject area of the unified **Atlas of Knowledge** portal.
 - New references include UNESCO MAB, Ramsar site no. 1231, Key Biodiversity Areas site factsheets, FAO, CAMP Alatoo and peer-reviewed lake-basin research.
 - Current fish totals and endemism estimates remain provisional pending publication of an updated, taxonomically reviewed checklist.
 
+## Regional biodiversity field dossiers — Naryn
+- The flora chapter now contains a bilingual dossier on Son-Kul wetlands and meadows, the saline Chatyr-Kul basin, Schrenk spruce forests in Naryn Nature Reserve, and the At-Bashy/Arpa highland vegetation mosaic.
+- The fauna chapter covers the 2025 CAMCA survey estimate for Tien Shan maral in the Naryn River valley, snow leopard habitat and ecological connectivity, and wetland birds of Son-Kul and Chatyr-Kul.
+- Ramsar site descriptions are treated as dated site information, not current annual counts. The maral estimate is limited to the surveyed Naryn River valley; the wider regional snow leopard estimate is not represented as a reserve-only count.
+- References include CAMCA, Ramsar Sites Information Service, FAO/CAMP Alatoo, a 2023 waterbird study, and the Kyrgyz Ministry's 2025 Naryn reserve expedition notice.
+- Species lists and totals remain subject to current taxonomic review, survey effort and locality-specific field evidence.
+
 ## Learning framework
 - All ten subject chapters now include bilingual learning objectives and concise bilingual glossaries, placed before the knowledge check and styled responsively.
 - The objectives describe expected learner outcomes; glossaries define core terms in context. These sections are an introductory framework and will be expanded during scientific review.
