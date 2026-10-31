@@ -82,6 +82,7 @@ Third subject area of the unified **Atlas of Knowledge** portal.
 - The page has responsive layouts, RU/EN switching, a skip link, semantic headings and a text-based source list. Structural verification is required; full browser and mobile testing remains pending.
 
 ## Regional fauna chapter — first implementation
+- Both regional chapters now style their bottom navigation consistently and include an official Ministry of Natural Resources notice dated 9 June 2026: the Kyrgyz Red Data Book is being revised jointly with the National Academy of Sciences over a 24-month period. Species totals and national conservation lists must therefore be presented with edition/date context rather than as timeless current figures.
 - A standalone bilingual regional chapter has been added and linked from Zoology.
 - The chapter includes an original schematic habitat profile, an indicative habitat/fauna table, species profiles for characteristic mountain and forest mammals and birds, freshwater ecology, conservation threats, ecological connectivity and field methods.
 - Taxonomic complexity is acknowledged for argali populations; national Red Data Book categories are not conflated with global IUCN assessments.
