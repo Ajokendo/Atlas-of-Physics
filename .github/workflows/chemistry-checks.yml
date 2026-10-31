@@ -5,6 +5,9 @@ on:
     branches: [main, portal-foundation]
     paths:
       - "chemistry/**"
+      - "catalog.html"
+      - "portal.html"
+      - "index.html"
       - ".github/workflows/chemistry-checks.yml"
   pull_request:
     paths:
