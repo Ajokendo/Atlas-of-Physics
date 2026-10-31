@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f2f2ef">
+<meta name="description" content="Интерактивная молекулярная лаборатория: изучайте пространственную форму молекул воды, углекислого газа, метана и аммиака.">
+<title>Молекулярная лаборатория — Atlas of Chemistry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f2f2ef;--card:#fbfbfa;--ink:#18181a;--text:#57575a;--muted:#888;--line:#deded9;--accent:#39836f;--serif:'EB Garamond',Georgia,serif;--sans:Inter,system-ui,sans-serif;--mono:'JetBrains Mono',monospace}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--text);font:15px/1.7 var(--sans)}a{color:inherit}
+header{height:68px;border-bottom:1px solid var(--line);max-width:1160px;margin:auto;padding:0 26px;display:flex;align-items:center;justify-content:space-between}.brand{font:24px var(--serif);color:var(--ink);text-decoration:none}.nav{display:flex;gap:12px;align-items:center}.nav a,.lang{font:10px var(--mono);text-decoration:none;border:1px solid var(--line);padding:8px 10px;background:transparent;color:var(--ink)}.lang{cursor:pointer}
+main{max-width:1160px;margin:auto;padding:0 26px}.intro{padding:58px 0 34px}.eyebrow,footer,.meta{font:10px var(--mono);letter-spacing:.12em;color:var(--muted)}h1{font:400 clamp(48px,7vw,78px)/.98 var(--serif);color:var(--ink);margin:14px 0}.lead{font:italic 21px/1.5 var(--serif);max-width:760px;color:#77736e}
+.workspace{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(280px,.8fr);gap:16px;align-items:stretch;margin:12px 0 55px}.stage,.info{background:var(--card);border:1px solid var(--line)}.stage{padding:18px;min-width:0}.stage-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}.stage-head span{font:10px var(--mono);letter-spacing:.1em;color:var(--muted)}canvas{display:block;width:100%;height:auto;aspect-ratio:1.5;background:radial-gradient(ellipse at 50% 46%,#fff 0,#f8f8f5 62%,#f1f1ed 100%);border:1px solid #e6e6e0;touch-action:none;cursor:grab}canvas:active{cursor:grabbing}.hint{font-size:11px;color:var(--muted);margin:9px 2px 0}.controls{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin-top:15px}.controls label{font:10px var(--mono);color:var(--muted)}select,button{font:12px var(--sans);padding:10px 12px;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:2px}button{cursor:pointer}.controls select{min-width:170px}.controls button{background:#e7eee9;border-color:#b8cfc4}.info{padding:25px;display:flex;flex-direction:column}.info .meta{color:var(--accent)}h2{font:400 37px/1.05 var(--serif);color:var(--ink);margin:12px 0}.formula{font:32px var(--serif);color:var(--ink);padding:8px 0 14px}.info p{margin:0 0 14px}.fact{border-top:1px solid var(--line);padding:13px 0}.fact b{display:block;font:10px var(--mono);color:var(--muted);letter-spacing:.08em;margin-bottom:4px}.legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:auto;padding-top:20px;border-top:1px solid var(--line)}.legend span{font:10px var(--mono);display:flex;align-items:center;gap:6px}.dot{width:11px;height:11px;border-radius:50%;display:inline-block;border:1px solid #0002}.oxygen{background:#d45d58}.hydrogen{background:#f3f5f5}.carbon{background:#3f4649}.nitrogen{background:#477db4}
+.explain{border-top:1px solid var(--line);padding:25px 0 50px;display:grid;grid-template-columns:1fr 1fr;gap:28px}.explain h3{font:400 30px var(--serif);color:var(--ink);margin:0 0 8px}.explain p{margin:0;max-width:560px}footer{max-width:1160px;margin:auto;border-top:1px solid var(--line);padding:20px 26px 35px;display:flex;justify-content:space-between}
+@media(max-width:800px){.workspace{grid-template-columns:1fr}.info{min-height:300px}.explain{grid-template-columns:1fr;gap:18px}}
+@media(max-width:560px){header{padding:0 15px;height:60px}.nav a:first-child{display:none}main{padding:0 15px}.intro{padding:42px 0 25px}.lead{font-size:19px}.stage{padding:10px}.stage-head{align-items:flex-start;flex-direction:column}.controls{align-items:stretch}.controls select,.controls button{flex:1}.info{padding:19px}footer{padding:18px 15px;gap:8px;flex-wrap:wrap}}
+</style>
+</head>
+<body>
+<header><a class="brand" href="index.html">Atlas of Chemistry</a><nav class="nav"><a href="index.html" data-i="home">Атлас химии</a><a href="periodic-table.html" data-i="ptable">Периодическая таблица</a><button class="lang" id="lang" type="button">EN</button></nav></header>
+<main>
+<section class="intro"><p class="eyebrow" data-i="eyebrow">ВИРТУАЛЬНАЯ ЛАБОРАТОРИЯ · МОЛЕКУЛЯРНАЯ ГЕОМЕТРИЯ</p><h1 data-i="title">Молекулярная лаборатория</h1><p class="lead" data-i="lead">Поверните модель, чтобы увидеть, как атомы располагаются в пространстве. Сравните форму молекул и связь между геометрией и свойствами вещества.</p></section>
+<section class="workspace" aria-label="Molecule explorer">
+<div class="stage"><div class="stage-head"><span data-i="model">ИНТЕРАКТИВНАЯ МОДЕЛЬ</span><span data-i="drag">ПЕРЕТАСКИВАЙТЕ ДЛЯ ПОВОРОТА</span></div>
+<canvas id="molecule" width="900" height="600" tabindex="0" role="img" aria-label="Трёхмерная модель молекулы воды. Используйте мышь, касание или стрелки для вращения.">Модель молекулы отображается на canvas.</canvas>
+<p class="hint" data-i="hint">Научная модель условная: размеры атомов и длины связей показаны не в одном масштабе.</p>
+<div class="controls"><label for="choose" data-i="choose">МОЛЕКУЛА</label><select id="choose"><option value="water">H₂O · Вода</option><option value="co2">CO₂ · Углекислый газ</option><option value="methane">CH₄ · Метан</option><option value="ammonia">NH₃ · Аммиак</option></select><button id="reset" type="button" data-i="reset">Сбросить поворот</button><button id="spin" type="button" data-i="spin">Автоповорот: выкл.</button></div>
+</div>
+<aside class="info"><span class="meta" data-i="geometry">ГЕОМЕТРИЯ МОЛЕКУЛЫ</span><h2 id="name">Вода</h2><div class="formula" id="formula">H₂O</div><p id="description">Молекула воды имеет угловую форму. Две связи O–H образуют угол около 104,5°.</p><div class="fact"><b data-i="shapeLabel">ФОРМА</b><span id="shape">Угловая</span></div><div class="fact"><b data-i="angleLabel">ХАРАКТЕРНЫЙ УГОЛ</b><span id="angle">≈ 104,5°</span></div><div class="fact"><b data-i="polarityLabel">ПОЛЯРНОСТЬ</b><span id="polarity">Полярная молекула</span></div><div class="legend"><span><i class="dot oxygen"></i> O</span><span><i class="dot hydrogen"></i> H</span><span><i class="dot carbon"></i> C</span><span><i class="dot nitrogen"></i> N</span></div></aside>
+</section>
+<section class="explain"><div><h3 data-i="why">Почему важна форма?</h3><p data-i="whyText">Пространственное расположение атомов влияет на распределение электрического заряда, межмолекулярные взаимодействия, растворимость и температуру кипения.</p></div><div><h3 data-i="modelLimits">Как читать модель</h3><p data-i="limitsText">Стереохимические формы показаны в упрощённом виде. Модель помогает увидеть геометрию, но не отображает электронную плотность, колебания связей и реальные относительные размеры атомов.</p></div></section>
+</main>
+<footer><span>ATLAS OF KNOWLEDGE</span><span data-i="foot">МОЛЕКУЛЯРНАЯ ЛАБОРАТОРИЯ · RU / EN</span><span>2026</span></footer>
+<script>
+const data={
+ru:{
+home:"Атлас химии",ptable:"Периодическая таблица",eyebrow:"ВИРТУАЛЬНАЯ ЛАБОРАТОРИЯ · МОЛЕКУЛЯРНАЯ ГЕОМЕТРИЯ",title:"Молекулярная лаборатория",lead:"Поверните модель, чтобы увидеть, как атомы располагаются в пространстве. Сравните форму молекул и связь между геометрией и свойствами вещества.",model:"ИНТЕРАКТИВНАЯ МОДЕЛЬ",drag:"ПЕРЕТАСКИВАЙТЕ ДЛЯ ПОВОРОТА",hint:"Научная модель условная: размеры атомов и длины связей показаны не в одном масштабе.",choose:"МОЛЕКУЛА",reset:"Сбросить поворот",spinOn:"Автоповорот: вкл.",spinOff:"Автоповорот: выкл.",geometry:"ГЕОМЕТРИЯ МОЛЕКУЛЫ",shapeLabel:"ФОРМА",angleLabel:"ХАРАКТЕРНЫЙ УГОЛ",polarityLabel:"ПОЛЯРНОСТЬ",why:"Почему важна форма?",whyText:"Пространственное расположение атомов влияет на распределение электрического заряда, межмолекулярные взаимодействия, растворимость и температуру кипения.",modelLimits:"Как читать модель",limitsText:"Стереохимические формы показаны в упрощённом виде. Модель помогает увидеть геометрию, но не отображает электронную плотность, колебания связей и реальные относительные размеры атомов.",foot:"МОЛЕКУЛЯРНАЯ ЛАБОРАТОРИЯ · RU / EN",
+molecules:{
+water:{name:"Вода",formula:"H₂O",description:"Молекула воды имеет угловую форму. Две связи O–H образуют угол около 104,5°.",shape:"Угловая",angle:"≈ 104,5°",polarity:"Полярная молекула"},
+co2:{name:"Углекислый газ",formula:"CO₂",description:"Атом углерода находится между двумя атомами кислорода. Молекула линейная, угол O–C–O равен 180°.",shape:"Линейная",angle:"180°",polarity:"Неполярная молекула"},
+methane:{name:"Метан",formula:"CH₄",description:"Четыре связи C–H направлены к вершинам тетраэдра. Угол H–C–H составляет около 109,5°.",shape:"Тетраэдрическая",angle:"≈ 109,5°",polarity:"Неполярная молекула"},
+ammonia:{name:"Аммиак",formula:"NH₃",description:"Три связи N–H образуют тригональную пирамиду. Угол H–N–H составляет около 107°.",shape:"Тригональная пирамида",angle:"≈ 107°",polarity:"Полярная молекула"}
+}},
+en:{
+home:"Chemistry atlas",ptable:"Periodic table",eyebrow:"VIRTUAL LAB · MOLECULAR GEOMETRY",title:"Molecule laboratory",lead:"Rotate each model to see how atoms are arranged in space. Compare molecular shapes and explore how geometry relates to substance properties.",model:"INTERACTIVE MODEL",drag:"DRAG TO ROTATE",hint:"This is a schematic scientific model: atom sizes and bond lengths are not shown to one common scale.",choose:"MOLECULE",reset:"Reset rotation",spinOn:"Auto-rotate: on",spinOff:"Auto-rotate: off",geometry:"MOLECULAR GEOMETRY",shapeLabel:"SHAPE",angleLabel:"BOND ANGLE",polarityLabel:"POLARITY",why:"Why does shape matter?",whyText:"The spatial arrangement of atoms affects charge distribution, intermolecular interactions, solubility and boiling point.",modelLimits:"Reading the model",limitsText:"The molecular shapes are simplified. The model helps visualise geometry but does not show electron density, bond vibrations or the true relative sizes of atoms.",foot:"MOLECULE LABORATORY · EN / RU",
+molecules:{
+water:{name:"Water",formula:"H₂O",description:"A water molecule has a bent shape. The two O–H bonds form an angle of about 104.5°.",shape:"Bent",angle:"≈ 104.5°",polarity:"Polar molecule"},
+co2:{name:"Carbon dioxide",formula:"CO₂",description:"The carbon atom lies between two oxygen atoms. The molecule is linear, with an O–C–O angle of 180°.",shape:"Linear",angle:"180°",polarity:"Non-polar molecule"},
+methane:{name:"Methane",formula:"CH₄",description:"Four C–H bonds point towards the vertices of a tetrahedron. The H–C–H angle is about 109.5°.",shape:"Tetrahedral",angle:"≈ 109.5°",polarity:"Non-polar molecule"},
+ammonia:{name:"Ammonia",formula:"NH₃",description:"Three N–H bonds form a trigonal pyramid. The H–N–H angle is about 107°.",shape:"Trigonal pyramidal",angle:"≈ 107°",polarity:"Polar molecule"}
+}}
+};
+const models={
+water:[{e:"O",p:[0,0,0]},{e:"H",p:[-.79,.61,0]},{e:"H",p:[.79,.61,0]}],
+co2:[{e:"C",p:[0,0,0]},{e:"O",p:[-1.35,0,0]},{e:"O",p:[1.35,0,0]}],
+methane:[{e:"C",p:[0,0,0]},{e:"H",p:[.9,.9,.9]},{e:"H",p:[-.9,-.9,.9]},{e:"H",p:[-.9,.9,-.9]},{e:"H",p:[.9,-.9,-.9]}],
+ammonia:[{e:"N",p:[0,0,0]},{e:"H",p:[0,.95,-.42]},{e:"H",p:[-.82,-.47,-.42]},{e:"H",p:[.82,-.47,-.42]}]
+};
+const bonds={water:[[0,1],[0,2]],co2:[[0,1],[0,2]],methane:[[0,1],[0,2],[0,3],[0,4]],ammonia:[[0,1],[0,2],[0,3]]};
+const colors={O:"#d45d58",H:"#f3f5f5",C:"#454b50",N:"#477db4"};
+const canvas=document.getElementById("molecule"),ctx=canvas.getContext("2d");
+let selected="water",rx=-.22,ry=.42,dragging=false,lastX=0,lastY=0,spinning=false,lastFrame=0;
+function rotate(p){let [x,y,z]=p;let cy=Math.cos(ry),sy=Math.sin(ry),cx=Math.cos(rx),sx=Math.sin(rx);let x1=x*cy+z*sy,z1=-x*sy+z*cy;return [x1,y*cx-z1*sx,y*sx+z1*cx]}
+function project(p){const q=rotate(p),perspective=1/(1+q[2]*.12);return {x:450+q[0]*170*perspective,y:295-q[1]*170*perspective,z:q[2],scale:perspective}}
+function sphere(x,y,r,color,label){const g=ctx.createRadialGradient(x-r*.35,y-r*.4,r*.08,x,y,r);g.addColorStop(0,"#ffffff");g.addColorStop(.22,color);g.addColorStop(1,"#222831");ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fillStyle=g;ctx.fill();ctx.strokeStyle="#22283155";ctx.lineWidth=2;ctx.stroke();ctx.fillStyle=label==="H"?"#394047":"#fff";ctx.font="600 21px Inter, sans-serif";ctx.textAlign="center";ctx.textBaseline="middle";ctx.fillText(label,x,y+1)}
+function draw(){ctx.clearRect(0,0,900,600);ctx.save();ctx.strokeStyle="#d9d9d2";ctx.setLineDash([3,8]);ctx.lineWidth=1;ctx.beginPath();ctx.ellipse(450,300,300,205,0,0,Math.PI*2);ctx.stroke();ctx.restore();const atoms=models[selected].map((a,i)=>({...a,index:i,q:project(a.p)}));for(const [a,b] of bonds[selected]){const A=atoms[a].q,B=atoms[b].q;ctx.beginPath();ctx.moveTo(A.x,A.y);ctx.lineTo(B.x,B.y);ctx.lineWidth=15;ctx.lineCap="round";ctx.strokeStyle="#7c858b";ctx.stroke();ctx.beginPath();ctx.moveTo(A.x,A.y);ctx.lineTo(B.x,B.y);ctx.lineWidth=8;ctx.strokeStyle="#d8dcdd";ctx.stroke()}atoms.sort((a,b)=>a.q.z-b.q.z);for(const a of atoms){const r=(a.e==="H"?25:39)*a.q.scale;sphere(a.q.x,a.q.y,r,colors[a.e],a.e)}}
+function render(){const t=data[lang],m=t.molecules[selected];document.documentElement.lang=lang;document.querySelectorAll("[data-i]").forEach(e=>{const v=t[e.dataset.i];if(v!==undefined)e.textContent=v});document.getElementById("lang").textContent=lang==="ru"?"EN":"RU";document.getElementById("name").textContent=m.name;document.getElementById("formula").textContent=m.formula;document.getElementById("description").textContent=m.description;document.getElementById("shape").textContent=m.shape;document.getElementById("angle").textContent=m.angle;document.getElementById("polarity").textContent=m.polarity;document.getElementById("spin").textContent=spinning?t.spinOn:t.spinOff;canvas.setAttribute("aria-label",(lang==="ru"?"Трёхмерная модель молекулы: ":"3D model of molecule: ")+m.name);draw()}
+function animate(time){if(spinning){if(lastFrame)ry+=(time-lastFrame)*.00035;draw()}lastFrame=time;requestAnimationFrame(animate)}
+canvas.addEventListener("pointerdown",e=>{dragging=true;lastX=e.clientX;lastY=e.clientY;canvas.setPointerCapture(e.pointerId)});
+canvas.addEventListener("pointermove",e=>{if(!dragging)return;ry+=(e.clientX-lastX)*.008;rx+=(e.clientY-lastY)*.008;lastX=e.clientX;lastY=e.clientY;draw()});
+canvas.addEventListener("pointerup",()=>dragging=false);canvas.addEventListener("pointercancel",()=>dragging=false);
+canvas.addEventListener("keydown",e=>{if(e.key==="ArrowLeft")ry-=.12;else if(e.key==="ArrowRight")ry+=.12;else if(e.key==="ArrowUp")rx-=.12;else if(e.key==="ArrowDown")rx+=.12;else return;e.preventDefault();draw()});
+document.getElementById("choose").addEventListener("change",e=>{selected=e.target.value;rx=-.22;ry=.42;render()});
+document.getElementById("reset").addEventListener("click",()=>{rx=-.22;ry=.42;draw()});
+document.getElementById("spin").addEventListener("click",()=>{spinning=!spinning;document.getElementById("spin").textContent=spinning?data[lang].spinOn:data[lang].spinOff});
+document.getElementById("lang").addEventListener("click",()=>{lang=lang==="ru"?"en":"ru";render()});
+render();requestAnimationFrame(animate);
+</script>
+</body></html>
