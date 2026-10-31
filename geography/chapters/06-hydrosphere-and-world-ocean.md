@@ -384,6 +384,16 @@
 
 **Место для иллюстрации 6.18-A — Hydrological Basin Exercise.** Учебная карта бассейна, таблица водного баланса и график сезонного расхода реки.
 
+## Источники и дальнейшее чтение / Sources and Further Reading
+
+1. USGS Water Science School. *Water Science Basics*. https://www.usgs.gov/special-topics/water-science-school
+2. NOAA National Ocean Service. *Ocean Facts and Ocean Circulation*. https://oceanservice.noaa.gov/
+3. UNESCO. *World Water Development Report*. https://www.unesco.org/reports/wwdr
+4. UNESCO International Hydrographic Organization (IHO). *Standards and Hydrographic Information*. https://iho.int/
+5. National Snow and Ice Data Center (NSIDC). *All About Glaciers and Sea Ice*. https://nsidc.org/
+
+При использовании численных данных о запасах воды, океанических глубинах, ледниках и речном стоке следует фиксировать год, пространственный охват, методику оценки и единицы измерения. Данные о запасах (например, км³) нельзя смешивать с потоками за период (например, км³/год).
+
 ## Редакционные и научные примечания
 
 - Все оценки мировых запасов воды следует сопровождать источником и датой; округлённые доли не должны создавать впечатление абсолютной точности.
