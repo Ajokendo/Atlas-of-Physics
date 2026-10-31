@@ -3,7 +3,7 @@ import { readdir } from "node:fs/promises";
 import path from "node:path";
 
 const root = path.resolve("chemistry");
-const pages = [];
+const pages = ["portal.html", "catalog.html", "index.html"];
 async function walk(dir) {
   for (const entry of await readdir(dir, { withFileTypes: true })) {
     const full = path.join(dir, entry.name);
@@ -32,7 +32,7 @@ try {
       await lang.click();
       languageChecks++;
     }
-    if (file.endsWith("molecule-lab.html")) {
+    if (file === "catalog.html") {\n      await page.locator("#q").fill("атом");\n      if (!(await page.locator("#catalog .item").count())) errors.push(file + ": search did not return atom-related resources");\n      await page.locator("[data-filter=chemistry]").click();\n      if (!(await page.locator("#catalog .item").count())) errors.push(file + ": chemistry filter returned no resources");\n      await page.locator("#q").fill("no-such-topic-xyz");\n      if (await page.locator("#empty").evaluate(el => getComputedStyle(el).display === "none")) errors.push(file + ": empty-search message was not shown");\n      await page.locator("#q").fill("");\n      await page.locator("[data-filter=all]").click();\n    }\n    if (file.endsWith("molecule-lab.html")) {
       await page.locator("#choose").selectOption("co2");
       if (!(await page.locator("#formula").innerText()).includes("CO₂")) errors.push(file + ": molecule selector did not update formula");
       await page.locator("#reset").click();
