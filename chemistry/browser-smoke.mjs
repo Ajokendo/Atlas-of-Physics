@@ -204,10 +204,16 @@ try {
       if (JSON.stringify(englishLabels) !== JSON.stringify(["Carbon-12", "Carbon-13", "Carbon-14"])) {
         errors.push(file + ": isotope selector labels are not localized in English");
       }
+      if (await page.locator(".stats").getAttribute("aria-live") !== "polite" ||
+          await isotopeButtons.nth(0).getAttribute("aria-pressed") !== "true") {
+        errors.push(file + ": isotope statistics or selected state are not exposed to assistive technology");
+      }
       await isotopeButtons.filter({ hasText: "Углерод-14" }).click();
       if ((await page.locator("#neutrons").innerText()).trim() !== "8" ||
-          (await page.locator("#mass").innerText()).trim() !== "14") {
-        errors.push(file + ": Carbon-14 model did not show 8 neutrons and mass number 14");
+          (await page.locator("#mass").innerText()).trim() !== "14" ||
+          await isotopeButtons.nth(2).getAttribute("aria-pressed") !== "true" ||
+          await isotopeButtons.nth(0).getAttribute("aria-pressed") !== "false") {
+        errors.push(file + ": Carbon-14 model did not show 8 neutrons, mass number 14 and an announced selected state");
       }
       await isotopeButtons.filter({ hasText: "Углерод-12" }).click();
       await page.locator("#lang").click();
