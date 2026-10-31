@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f2f2ef">
+<meta name="description" content="Интерактивный атлас химии: строение атома, периодическая система, связи, реакции и органическая химия.">
+<title>Атлас химии — Atlas of Knowledge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f2f2ef;--card:#fbfbfa;--ink:#18181a;--text:#57575a;--muted:#8c8c90;--line:#deded9;--accent:#39836f;--serif:'EB Garamond',Georgia,serif;--sans:Inter,system-ui,sans-serif;--mono:'JetBrains Mono',monospace}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--text);font:15px/1.65 var(--sans);-webkit-font-smoothing:antialiased}a{color:inherit}.topbar{height:72px;max-width:1220px;margin:auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.brand{font:500 24px var(--serif);color:var(--ink);text-decoration:none}.topbar nav{display:flex;gap:25px;font-size:12px}.topbar nav a{text-decoration:none}.topbar nav a:hover{color:var(--accent)}.lang{border:1px solid var(--line);background:transparent;padding:7px 10px;font:11px var(--mono);cursor:pointer;color:var(--ink)}main{max-width:1220px;margin:auto;padding:0 28px}.eyebrow,footer,.meta{font:11px var(--mono);letter-spacing:.12em;color:var(--muted)}.hero{max-width:1050px;margin:100px auto 105px;padding:0 30px}.hero h1{font:400 clamp(58px,9vw,108px)/.94 var(--serif);letter-spacing:-.035em;color:var(--ink);margin:26px 0}.hero h1 em{color:#77736e}.lead{font:italic 23px/1.45 var(--serif);max-width:620px;color:#77736e}.hero-note{margin-top:48px;color:var(--muted);font:10px var(--mono)}.hero-note i{padding:0 8px;color:var(--accent)}.section-head{display:flex;justify-content:space-between;align-items:end;border-top:1px solid var(--line);padding-top:25px;margin:0 0 28px}.section-head h2{font:400 48px var(--serif);color:var(--ink);margin:0}.section-head>p{max-width:380px;font:italic 18px var(--serif);color:var(--muted)}.chapter-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-bottom:90px}.chapter{background:var(--card);border:1px solid #e9e9e5;padding:20px;min-height:190px;display:flex;flex-direction:column;transition:transform .2s,border-color .2s}.chapter:hover{transform:translateY(-3px);border-color:#c9c9c3}.chapter .num{font:10px var(--mono);color:var(--muted)}.chapter h3{font:400 28px/1.05 var(--serif);color:var(--ink);margin:22px 0 8px}.chapter p{margin:0;font:italic 16px var(--serif);color:var(--muted)}.chapter .tag{margin-top:auto;padding-top:18px;font:9px var(--mono);letter-spacing:.1em;color:var(--accent);text-transform:uppercase}.portal-note{border-top:1px solid var(--line);padding:22px 0 60px;color:var(--muted);font-size:12px}.portal-note a{color:var(--accent);text-decoration:none}footer{max-width:1220px;margin:auto;border-top:1px solid var(--line);padding:20px 28px 35px;display:flex;justify-content:space-between;font-size:9px}
+@media(max-width:850px){.chapter-grid{grid-template-columns:repeat(2,1fr)}.hero{margin:70px auto 90px}.topbar nav{gap:12px}}
+@media(max-width:560px){.topbar{height:60px;padding:0 16px}.topbar nav{display:none}main{padding:0 16px}.hero{padding:0 4px;margin:60px auto 75px} .hero h1{font-size:62px}.lead{font-size:20px}.section-head{display:block}.section-head h2{font-size:40px}.section-head>p{margin-top:5px}.chapter-grid{grid-template-columns:1fr 1fr;gap:9px;margin-bottom:65px}.chapter{padding:14px;min-height:180px}.chapter h3{font-size:23px;margin:18px 0 6px}.chapter p{font-size:14px}footer{padding:18px 16px;gap:10px;flex-wrap:wrap}}
+</style>
+</head>
+<body>
+<header class="topbar">
+<a class="brand" href="../index.html">Atlas of Knowledge</a>
+<nav><a href="#foundations" data-i18n="nav1">Основы</a><a href="#matter" data-i18n="nav2">Вещество</a><a href="#reactions" data-i18n="nav3">Реакции</a></nav>
+<button class="lang" id="language" type="button" aria-label="Switch language">EN</button>
+</header>
+<main>
+<section class="hero">
+<p class="eyebrow" data-i18n="eyebrow">ATLAS OF KNOWLEDGE · ПРЕДМЕТ 02</p>
+<h1 data-i18n="title">Химия,<br><em>на языке материи.</em></h1>
+<p class="lead" data-i18n="lead">Изучайте строение вещества, периодические закономерности и химические превращения через наглядные объяснения, модели и эксперименты.</p>
+<div class="hero-note"><span data-i18n="note">ДВУЯЗЫЧНЫЙ АТЛАС</span><i>·</i> RU / EN <i>·</i><span data-i18n="note2">АДАПТИВНЫЙ ИНТЕРАКТИВНЫЙ УЧЕБНИК</span></div>
+</section>
+<section class="section-head" id="foundations"><div><p class="eyebrow" data-i18n="part1">ЧАСТЬ I</p><h2 data-i18n="head1">Основы химии</h2></div><p data-i18n="desc1">От атома и элемента к периодическим закономерностям и химической связи.</p></section>
+<div class="chapter-grid" id="grid1"></div>
+<section class="section-head" id="matter"><div><p class="eyebrow" data-i18n="part2">ЧАСТЬ II</p><h2 data-i18n="head2">Вещество и растворы</h2></div><p data-i18n="desc2">Как устроены вещества, почему они обладают разными свойствами и как взаимодействуют.</p></section>
+<div class="chapter-grid" id="grid2"></div>
+<section class="section-head" id="reactions"><div><p class="eyebrow" data-i18n="part3">ЧАСТЬ III</p><h2 data-i18n="head3">Реакции и химия жизни</h2></div><p data-i18n="desc3">Химические превращения, органические соединения и роль химии в природе и технологиях.</p></section>
+<div class="chapter-grid" id="grid3"></div>
+<section class="portal-note"><p data-i18n="footer1">Атлас химии — второй предмет единого образовательного портала Atlas of Knowledge.</p><p><a href="../index.html" data-i18n="back">Вернуться к порталу</a></p></section>
+</main>
+<footer><span>ATLAS OF KNOWLEDGE</span><span data-i18n="footer2">АТЛАС ХИМИИ · RU / EN</span><span>2026</span></footer>
+<script>
+const data={
+ru:{
+nav1:"Основы",nav2:"Вещество",nav3:"Реакции",eyebrow:"ATLAS OF KNOWLEDGE · ПРЕДМЕТ 02",title:"Химия,<br><em>на языке материи.</em>",lead:"Изучайте строение вещества, периодические закономерности и химические превращения через наглядные объяснения, модели и эксперименты.",note:"ДВУЯЗЫЧНЫЙ АТЛАС",note2:"АДАПТИВНЫЙ ИНТЕРАКТИВНЫЙ УЧЕБНИК",part1:"ЧАСТЬ I",head1:"Основы химии",desc1:"От атома и элемента к периодическим закономерностям и химической связи.",part2:"ЧАСТЬ II",head2:"Вещество и растворы",desc2:"Как устроены вещества, почему они обладают разными свойствами и как взаимодействуют.",part3:"ЧАСТЬ III",head3:"Реакции и химия жизни",desc3:"Химические превращения, органические соединения и роль химии в природе и технологиях.",footer1:"Атлас химии — второй предмет единого образовательного портала Atlas of Knowledge.",back:"Вернуться к порталу",footer2:"АТЛАС ХИМИИ · RU / EN",
+chapters:[
+[["01","Строение атома","Протоны, нейтроны, электроны и электронные оболочки."],["02","Химические элементы","Изотопы, атомная масса и символы элементов."],["03","Периодическая система","Группы, периоды и периодические свойства."],["04","Химическая связь","Ионная, ковалентная и металлическая связь."]],
+[["05","Количество вещества","Моль, число Авогадро и молярная масса."],["06","Химические формулы","Состав соединений и расчёты по формулам."],["07","Растворы","Растворимость, концентрация и приготовление растворов."],["08","Кислоты и основания","pH, индикаторы, нейтрализация и соли."]],
+[["09","Химические реакции","Типы реакций и уравнивание уравнений."],["10","Окисление и восстановление","Электронный баланс и степени окисления."],["11","Органическая химия","Углеводороды и основные классы соединений."],["12","Химия жизни и среды","Биомолекулы, атмосфера, вода и устойчивое развитие."]]
+]},
+en:{
+nav1:"Foundations",nav2:"Matter",nav3:"Reactions",eyebrow:"ATLAS OF KNOWLEDGE · SUBJECT 02",title:"Chemistry,<br><em>the language of matter.</em>",lead:"Explore the structure of matter, periodic patterns and chemical transformations through clear explanations, models and experiments.",note:"BILINGUAL ATLAS",note2:"RESPONSIVE INTERACTIVE TEXTBOOK",part1:"PART I",head1:"Foundations of chemistry",desc1:"From atoms and elements to periodic patterns and chemical bonding.",part2:"PART II",head2:"Matter and solutions",desc2:"How substances are structured, why their properties differ and how they interact.",part3:"PART III",head3:"Reactions and the chemistry of life",desc3:"Chemical transformations, organic compounds and chemistry in nature and technology.",footer1:"Atlas of Chemistry is the second subject in the Atlas of Knowledge educational portal.",back:"Back to the portal",footer2:"ATLAS OF CHEMISTRY · EN / RU",
+chapters:[
+[["01","Atomic structure","Protons, neutrons, electrons and electron shells."],["02","Chemical elements","Isotopes, atomic mass and element symbols."],["03","Periodic table","Groups, periods and periodic properties."],["04","Chemical bonding","Ionic, covalent and metallic bonding."]],
+[["05","Amount of substance","The mole, Avogadro constant and molar mass."],["06","Chemical formulae","Composition of compounds and formula calculations."],["07","Solutions","Solubility, concentration and solution preparation."],["08","Acids and bases","pH, indicators, neutralisation and salts."]],
+[["09","Chemical reactions","Reaction types and balancing equations."],["10","Redox chemistry","Electron transfer and oxidation states."],["11","Organic chemistry","Hydrocarbons and major classes of compounds."],["12","Chemistry of life and environment","Biomolecules, air, water and sustainability."]]
+]}
+};
+let lang="ru";
+function render(){const t=data[lang];document.documentElement.lang=lang;document.querySelectorAll("[data-i18n]").forEach(el=>{const k=el.dataset.i18n;if(t[k]!==undefined)el.innerHTML=t[k]});document.getElementById("language").textContent=lang==="ru"?"EN":"RU";["grid1","grid2","grid3"].forEach((id,i)=>{document.getElementById(id).innerHTML=t.chapters[i].map(([n,title,desc])=>'<article class="chapter"><span class="num">'+(lang==="ru"?"ГЛАВА ":"CHAPTER ")+n+'</span><h3>'+title+'</h3><p>'+desc+'</p><span class="tag">'+(lang==="ru"?"СОДЕРЖАНИЕ ГОТОВИТСЯ":"CONTENT IN DEVELOPMENT")+'</span></article>').join("")})}
+document.getElementById("language").addEventListener("click",()=>{lang=lang==="ru"?"en":"ru";render()});render();
+</script>
+</body>
+</html>
