@@ -11,7 +11,8 @@
 <label for="p2"><span>Время работы t</span><output id="o2">10 с</output></label><input id="p2" type="range" min="1" max="120" step="1" value="10"><div class="stats"><div><small>СИЛА ТОКА</small><strong id="r0">—</strong></div><div><small>МОЩНОСТЬ</small><strong id="r1">—</strong></div><div><small>ЭНЕРГИЯ ЗА ЗАДАННОЕ ВРЕМЯ</small><strong id="r2">—</strong></div></div><canvas id="visual" aria-label="Схематическая визуализация физических величин"></canvas></div></section>
 <section><h2>Проверьте себя</h2><div class="quiz"><strong>Резистор 4 Ом подключён к источнику 8 В. Какой ток протекает?</strong><div class="answers"><button data-answer="a">А. 0,5 А</button><button data-answer="b">Б. 2 А</button><button data-answer="c">В. 32 А</button></div><p id="feedback" aria-live="polite"></p></div></section>
 <p class="note">При решении задач сначала запишите известные величины, выберите подходящую физическую модель, проверьте единицы измерения и оцените, разумен ли полученный результат.</p>
-<nav style="display:flex;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding-top:22px;margin-top:45px"><a class="back" href="../index.html#em">← К списку глав</a><a class="back" href="magnetism.html">СЛЕДУЮЩАЯ ГЛАВА →</a></nav></main>
+</main>
+<nav class="chapter-nav" aria-label="Навигация по главам" style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:22px;margin-top:45px"><a class="back" href="capacitors.html">← Конденсаторы</a><a class="back" href="magnetism.html">Магнитные поля →</a></nav>
 <footer><span>АТЛАС ФИЗИКИ</span><span>ГЛАВА 13 · ЭЛЕКТРИЧЕСКИЕ ЦЕПИ</span><a href="../index.html">На главную</a></footer>
 <script>
 const cfg={"id":"13","controls":[["Напряжение U",0,24,0.5,12,"В"],["Сопротивление R",1,100,1,6,"Ом"],["Время работы t",1,120,1,10,"с"]],"calc":"const [U,R,t]=x;const I=U/R,P=U*I,W=P*t;return [[I,'А',3],[P,'Вт',2],[W,'Дж',2]];"};
