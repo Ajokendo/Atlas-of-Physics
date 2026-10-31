@@ -362,6 +362,50 @@
 
 Человеческая деятельность сама меняет рельеф: карьеры, насыпи, дамбы, террасирование склонов, дорожные выемки, городская застройка и водохранилища создают антропогенные формы.
 
+## 4.15.1. Практический пример: определение уклона по горизонталям / Worked Example: Calculating Slope from Contour Lines
+
+Предположим, на топографической карте с масштабом 1:25 000 высота одной горизонтали отличается от следующей на 20 м. Между точками A и B пересекаются пять интервалов горизонталей, а измеренное расстояние между ними на карте составляет 2 см.
+
+**Шаг 1. Определяем разницу высот.**  
+Пять интервалов по 20 м дают превышение: 5 × 20 = **100 м**. Предположим, точка B расположена выше точки A.
+
+**Шаг 2. Переводим расстояние в горизонтальное расстояние на местности.**  
+При масштабе 1:25 000 один сантиметр на карте соответствует 250 м на местности. Следовательно, 2 см соответствуют 500 м.
+
+**Шаг 3. Рассчитываем уклон.**  
+Уклон в процентах рассчитывается как отношение превышения к горизонтальному расстоянию, умноженное на 100%:
+
+100 м / 500 м × 100% = **20%**.
+
+Это означает, что поверхность в среднем поднимается на 20 м на каждые 100 м горизонтального расстояния. Угол наклона составляет примерно 11,3°.
+
+**Важно:** расчёт характеризует средний уклон между двумя точками, а не каждую часть склона. Если горизонтали расположены неравномерно, уклон на отдельных участках может отличаться. Расстояние следует измерять по горизонтали, а не вдоль извилистой линии поверхности.
+
+**Проверьте себя:** как изменится процентный уклон, если при том же превышении 100 м горизонтальное расстояние составит 250 м?
+
+### Worked Example: Calculating Slope from Contour Lines
+
+Suppose a topographic map has a scale of 1:25,000 and a contour interval of 20 m. Five contour intervals lie between points A and B, and the measured map distance between them is 2 cm.
+
+**Step 1. Find the elevation difference.**  
+Five intervals of 20 m give a difference of 5 × 20 = **100 m**. Assume point B is higher than point A.
+
+**Step 2. Convert the map distance to horizontal ground distance.**  
+At a scale of 1:25,000, one centimetre on the map represents 250 m on the ground. Therefore, 2 cm represent 500 m.
+
+**Step 3. Calculate the slope.**  
+Percentage slope is the elevation difference divided by the horizontal distance, multiplied by 100%:
+
+100 m / 500 m × 100% = **20%**.
+
+This means the ground rises by an average of 20 m for every 100 m of horizontal distance. The slope angle is approximately 11.3°.
+
+**Important:** this is the average slope between the two points, not the slope at every location along the route. If contour spacing varies, local slope may also vary. Use horizontal distance, not the length of a winding line along the ground.
+
+**Check your understanding:** How would the percentage slope change if the horizontal distance were 250 m while the elevation difference remained 100 m?
+
+---
+
 ## Итоги главы / Chapter Summary
 
 1. Рельеф — результат длительного взаимодействия внутренних и внешних процессов Земли.
