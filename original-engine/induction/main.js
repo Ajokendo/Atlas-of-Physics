@@ -21,16 +21,16 @@ startBook({
   },
   readout(s, page) {
     switch (page.scene) {
-      case 'flux': { const r = M.fluxScene(s.flux.t); return `Φ ${f(r.Phi * 1e6)} µWb\nε ${f(r.emf * 1e6, 1)} µV   I ${f(r.I * 1e3)} mA`; }
-      case 'lenz': { const r = M.lenzCase(M.CASES[0], s.lenz.t); return `N approaching: Φ ${f(r.Phi * 1e6)} µWb\nε ${f(r.emf * 1e6)} µV`; }
-      case 'mutual': { const a = M.coilsScene(s.coil.t), b = M.coreScene(s.coil.t); return `coils: I₁ ${f(a.I1)} A   ε₂ ${f(a.emf * 1e3, 3)} mV\ncore: B ${f(b.B, 3)} T   ε₂ ${f(b.emf2 * 1e3)} mV`; }
-      case 'wire': { const r = M.wireScene(s.wire.t); return `r ${f(r.r * 100, 1)} cm   Φ ${f(r.Phi * 1e6, 3)} µWb\nε ${f(r.emf * 1e6, 3)} µV`; }
-      case 'bar': { const r = M.barScene(s.bar.t, s.bar.resting); return `v ${f(r.v)} m/s   E ${f(r.E)} V/m\nε = BLv ${f(r.emf, 3)} V   I 0`; }
-      case 'crossing': { const r = M.crossScene(s.cross.t); return `Φ ${f(r.Phi * 1e3, 1)} mWb\nε ${f(r.emf * 1e3, 0)} mV   I ${f(r.I * 1e3, 0)} mA`; }
-      case 'rails': { const r = M.railScene(s.rail.t); return `t ${f(s.rail.t)} s   v ${f(r.v, 3)} m/s\nI ${f(r.I, 3)} A   F ${f(r.F, 3)} N`; }
-      case 'solenoid': { const r = M.solScene(s.sol.t); return `I ${f(r.I)} A   B ${f(r.B * 1e3)} mT\nε_L ${f(r.emfL * 1e3)} mV   U ${f(r.U * 1e3)} mJ`; }
-      case 'rl': { const r = M.rlScene(s.rl.t); return `${r.growing ? 'growth' : 'decay'}: t ${f(r.s)} s   I ${f(r.I, 3)} A\nIR ${f(r.VR)} V   L dI/dt ${f(r.VL)} V`; }
-      case 'lc': { const r = M.lcScene(s.lc.t); return `t ${f(s.lc.t * 1e3)} ms   q ${f(r.q * 1e6, 1)} µC   I ${f(r.I * 1e3, 1)} mA\nU_E ${f(r.UE * 1e3, 3)}  U_B ${f(r.UB * 1e3, 3)}  total ${f((r.UE + r.UB) * 1e3, 3)} mJ`; }
+      case 'flux': { const r = M.fluxScene(s.flux.t); return `Φ ${f(r.Phi * 1e6)} мкВб\nε ${f(r.emf * 1e6, 1)} мкВ   I ${f(r.I * 1e3)} мА`; }
+      case 'lenz': { const r = M.lenzCase(M.CASES[0], s.lenz.t); return `N приближается: Φ ${f(r.Phi * 1e6)} мкВб\nε ${f(r.emf * 1e6)} мкВ`; }
+      case 'mutual': { const a = M.coilsScene(s.coil.t), b = M.coreScene(s.coil.t); return `катушки: I₁ ${f(a.I1)} А   ε₂ ${f(a.emf * 1e3, 3)} мВ\nсердечник: B ${f(b.B, 3)} Тл   ε₂ ${f(b.emf2 * 1e3)} мВ`; }
+      case 'wire': { const r = M.wireScene(s.wire.t); return `r ${f(r.r * 100, 1)} см   Φ ${f(r.Phi * 1e6, 3)} мкВб\nε ${f(r.emf * 1e6, 3)} мкВ`; }
+      case 'bar': { const r = M.barScene(s.bar.t, s.bar.resting); return `v ${f(r.v)} м/с   E ${f(r.E)} В/м\nε = BLv ${f(r.emf, 3)} В   I 0`; }
+      case 'crossing': { const r = M.crossScene(s.cross.t); return `Φ ${f(r.Phi * 1e3, 1)} мВб\nε ${f(r.emf * 1e3, 0)} мВ   I ${f(r.I * 1e3, 0)} мА`; }
+      case 'rails': { const r = M.railScene(s.rail.t); return `t ${f(s.rail.t)} с   v ${f(r.v, 3)} м/с\nI ${f(r.I, 3)} А   F ${f(r.F, 3)} Н`; }
+      case 'solenoid': { const r = M.solScene(s.sol.t); return `I ${f(r.I)} А   B ${f(r.B * 1e3)} мТл\nε_L ${f(r.emfL * 1e3)} мВ   U ${f(r.U * 1e3)} мДж`; }
+      case 'rl': { const r = M.rlScene(s.rl.t); return `${r.growing ? 'нарастание' : 'спад'}: t ${f(r.s)} с   I ${f(r.I, 3)} А\nIR ${f(r.VR)} В   L dI/dt ${f(r.VL)} В`; }
+      case 'lc': { const r = M.lcScene(s.lc.t); return `t ${f(s.lc.t * 1e3)} мс   q ${f(r.q * 1e6, 1)} мкКл   I ${f(r.I * 1e3, 1)} мА\nU_E ${f(r.UE * 1e3, 3)}  U_B ${f(r.UB * 1e3, 3)}  сумма ${f((r.UE + r.UB) * 1e3, 3)} мДж`; }
     }
     return '';
   },
