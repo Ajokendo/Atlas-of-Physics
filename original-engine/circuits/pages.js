@@ -41,144 +41,144 @@ const kr = M.solve(M.KIRCH.edges, 'bl'), kI = n => M.edgeI(M.KIRCH, kr, n), kd =
 
 export const PAGES = [
   {
-    kicker: 'Chapter 13', title: 'Current', sub: 'charge on the move',
+    kicker: 'Глава 13', title: 'Электрический ток', sub: 'движение зарядов',
     body: `
-      <p class="lede">A battery holds two terminals at a fixed potential difference. Join them with a wire and a field inside the metal pushes its free charges along: a <b>current</b>.</p>
+      <p class="lede">Батарея поддерживает постоянную разность потенциалов между двумя клеммами. Если соединить их проводом, электрическое поле внутри металла заставит свободные заряды двигаться — возникнет <b>электрический ток</b>.</p>
       <div class="eq"><i>I</i> = d<i>q</i>/d<i>t</i> = <i>nqAv</i><sub>d</sub>,  <i>J</i> = <i>I</i>/<i>A</i> = <i>nqv</i><sub>d</sub> = σ<i>E</i></div>
-      <p>1 A = 1 C/s, counted as if <i>positive</i> charge moved; electrons drift the other way. A slab Δ<i>x</i> = <i>v</i><sub>d</sub>Δ<i>t</i> long holds <i>nqA</i>Δ<i>x</i>, all of which crosses <i>A</i> in Δ<i>t</i>. In general <i>I</i> = ∫<b>J</b>·d<b>A</b>.</p>
+      <p>1 А = 1 Кл/с; направление условного тока соответствует движению <i>положительного</i> заряда, электроны дрейфуют в противоположную сторону. В слое провода длиной Δ<i>x</i> = <i>v</i><sub>d</sub>Δ<i>t</i> содержится заряд <i>nqA</i>Δ<i>x</i>, который за время Δ<i>t</i> проходит через сечение <i>A</i>. В общем случае <i>I</i> = ∫<b>J</b>·d<b>A</b>.</p>
       <table class="data">
-        <tr><td>1 A in 1 mm² of copper: <i>n</i></td><td>${sci(CU.n, 1)} m⁻³</td></tr>
-        <tr><td>drift speed <i>v</i><sub>d</sub></td><td>${f(CU.vd * 1e3, 3)} mm/s</td></tr>
+        <tr><td>Плотность электронов при токе 1 А в медном проводе сечением 1 мм²: <i>n</i></td><td>${sci(CU.n, 1)} м⁻³</td></tr>
+        <tr><td>дрейфовая скорость <i>v</i><sub>d</sub></td><td>${f(CU.vd * 1e3, 3)} мм/с</td></tr>
       </table>
-      <p>Each electron speeds up, hits an ion, stops, starts again (the Drude model), averaging <i>v</i><sub>d</sub>: ${f(CU.hours, 1)} h per metre. A lamp still lights at once, because the field races down the wire.</p>
-      <div class="charts">${chart({ ...R.drude, xlabel: 'time (collisions)', ylabel: 'one electron’s speed / v_d', cursors: ['drude'], label: 'Sawtooth speed of one electron, averaging the drift speed',
+      <p>Каждый электрон ускоряется, сталкивается с ионом, теряет скорость и снова начинает движение (модель Друде). Средняя скорость равна <i>v</i><sub>d</sub>: прохождение одного метра заняло бы ${f(CU.hours, 1)} ч. Однако лампа загорается почти мгновенно, поскольку электрическое поле распространяется вдоль провода очень быстро.</p>
+      <div class="charts">${chart({ ...R.drude, xlabel: 'время (число столкновений)', ylabel: 'скорость электрона / v_d', cursors: ['drude'], label: 'Пилообразное изменение скорости электрона; среднее значение равно дрейфовой скорости',
         series: [{ pts: curve(t => M.drudeV(t, 1, 1), 0, 3.999, 400) }, { cls: 'trend', pts: [[0, 1], [4, 1]], tag: [3.25, 1, 'v_d'] }] })}</div>
-      <p class="hintline">Click the wire for the slab that crosses <i>A</i>. Drawn ${MAG}× life size; drift ${SPEEDUP}× faster than life.</p>`,
+      <p class="hintline">Нажмите на провод, чтобы увидеть слой, проходящий через сечение <i>A</i>. Размер увеличен в ${MAG} раз; дрейф показан в ${SPEEDUP} раз быстрее реального.</p>`,
     cam: { target: [STATIONS.wire, 0.95, 0], az: -16, el: 14, dist: 21 }, lit: 'wire', scene: 'wire', look: {},
-    fig: 'Electrons drift against the current',
+    fig: 'Электроны дрейфуют против направления условного тока',
   },
   {
-    kicker: '13.1', title: 'Resistance', sub: 'long and thin resists more',
+    kicker: '13.1', title: 'Сопротивление', sub: 'чем длиннее и тоньше провод, тем больше сопротивление',
     body: `
-      <p class="lede"><b>Resistance</b> <i>R</i> = Δ<i>V</i>/<i>I</i>, in ohms (V/A), is how hard it is to push a current through something.</p>
+      <p class="lede"><b>Сопротивление</b> <i>R</i> = Δ<i>V</i>/<i>I</i> измеряется в омах (В/А) и показывает, насколько трудно пропускать ток через проводник.</p>
       <div class="eq"><i>R</i> = ρ<i>L</i>/<i>A</i> = <i>L</i>/σ<i>A</i></div>
-      <p>The material sets the <b>resistivity</b> ρ = 1/σ (copper ${sci(M.RHO.copper, 2)}, nichrome ${sci(M.RHO.nichrome, 2)} Ω·m); the shape sets <i>L</i>/<i>A</i>. Twice as long: two pieces in series, twice <i>R</i>. Twice the diameter: four strands side by side, a quarter of <i>R</i>.</p>
-      <p>Nichrome wires ${f(M.RES.dThin * 1e3, 1)} and ${f(M.RES.dThick * 1e3, 1)} mm across, 1.5 V on each. Carriers drift equally fast in both (same <i>E</i> = Δ<i>V</i>/<i>L</i>); the thick one has four times as many.</p>
-      <div class="charts">${chart({ ...R.res, xlabel: 'length L (m)', ylabel: 'R (Ω)', cursors: ['thin', 'thick'], label: 'Resistance against length for two diameters',
+      <p>Материал определяет <b>удельное сопротивление</b> ρ = 1/σ (медь ${sci(M.RHO.copper, 2)}, нихром ${sci(M.RHO.nichrome, 2)} Ом·м), а геометрия — отношение <i>L</i>/<i>A</i>. Удвоение длины эквивалентно последовательному соединению двух одинаковых проводов и удваивает <i>R</i>. Удвоение диаметра даёт четыре параллельные жилы и уменьшает <i>R</i> в четыре раза.</p>
+      <p>К нихромовым проводам диаметром ${f(M.RES.dThin * 1e3, 1)} и ${f(M.RES.dThick * 1e3, 1)} мм приложено напряжение 1,5 В. Носители заряда дрейфуют с одинаковой скоростью (поле <i>E</i> = Δ<i>V</i>/<i>L</i> одинаково), но в толстом проводе их в четыре раза больше.</p>
+      <div class="charts">${chart({ ...R.res, xlabel: 'длина L (м)', ylabel: 'R (Ом)', cursors: ['thin', 'thick'], label: 'Зависимость сопротивления от длины для двух диаметров провода',
         series: [{ pts: curve(M.rThin, 0, 2, 4), tag: [1.15, M.rThin(1.15), 'd'] }, { pts: curve(M.rThick, 0, 2, 4), tag: [1.5, M.rThick(1.5), '2d'] }] })}</div>
-      <p class="hintline">Click to split the thick wire into four. Lengths ${LEN_SCALE * 100} cm per metre; thickness enlarged.</p>`,
+      <p class="hintline">Нажмите, чтобы разделить толстый провод на четыре жилы. Длина показана в масштабе ${LEN_SCALE * 100} см на метр; толщина увеличена.</p>`,
     cam: { target: [STATIONS.resist - 0.5, 0.35, 0], az: -14, el: 30, dist: 15 }, lit: 'wires', scene: 'wires', look: {},
-    fig: 'Same 1.5 V, different shapes',
+    fig: 'Одинаковые 1,5 В, разная геометрия',
   },
   {
-    kicker: '13.2', title: 'Ohm’s law', sub: 'V = IR',
+    kicker: '13.2', title: 'Закон Ома', sub: 'V = IR',
     body: `
-      <p class="lede">For an ohmic conductor the current is proportional to the voltage across it; the ratio is its resistance.</p>
-      <p>Start from Ohm’s law in the metal, <i>J</i> = σ<i>E</i>, with <i>E</i> = Δ<i>V</i>/<i>L</i> along a wire:</p>
+      <p class="lede">Для омического проводника сила тока прямо пропорциональна напряжению на его концах; коэффициент пропорциональности связан с сопротивлением.</p>
+      <p>Начнём с локальной формы закона Ома для металла: <i>J</i> = σ<i>E</i>, где вдоль провода <i>E</i> = Δ<i>V</i>/<i>L</i>:</p>
       <div class="eq"><i>I</i> = <i>JA</i> = σ<i>A</i>Δ<i>V</i>/<i>L</i>  ⟹  Δ<i>V</i> = <i>IR</i></div>
-      <p>${M.OHM.E} V across ${M.OHM.R} Ω drives ${f(ohmI, 1)} A. Each point is drawn at the height of its potential: the battery lifts charge ${M.OHM.E} V, ideal wires stay level, and the resistor is a ramp down. Following the current through a resistor, you <i>lose</i> potential.</p>
-      <div class="charts">${chart({ x0: 0, x1: 9, y0: 0, y1: 3, xlabel: 'ΔV (V)', ylabel: 'I (A)', label: 'Current against voltage for a 3 ohm resistor: a straight line',
+      <p>Напряжение ${M.OHM.E} В на сопротивлении ${M.OHM.R} Ом создаёт ток ${f(ohmI, 1)} А. Высота каждой точки соответствует её потенциалу: батарея поднимает заряд на ${M.OHM.E} В, потенциал вдоль идеальных проводов не меняется, а на резисторе постепенно падает. При движении тока через резистор потенциал <i>уменьшается</i>.</p>
+      <div class="charts">${chart({ x0: 0, x1: 9, y0: 0, y1: 3, xlabel: 'ΔV (В)', ylabel: 'I (А)', label: 'Зависимость тока от напряжения для резистора 3 Ом: прямая линия',
         series: [{ pts: [[0, 0], [9, 3]], tag: [6.6, 2.15, 'slope 1/R'] }], marks: [[M.OHM.E, ohmI, `${M.OHM.E} V, ${f(ohmI, 1)} A`, 8, 14]] })}</div>
-      <p class="hintline">Click for the field in the resistor. ${heightNote}</p>`,
+      <p class="hintline">Нажмите, чтобы увидеть поле внутри резистора. ${heightNote}</p>`,
     cam: { target: [STATIONS.ohm, 0.8, 0.1], az: -34, el: 16, dist: 14 }, lit: 'ohm', scene: 'ohm', look: { ohm: 1 },
-    fig: 'Up through the battery, down the resistor',
+    fig: 'Подъём потенциала на батарее и падение на резисторе',
   },
   {
-    kicker: '13.3', title: 'Power', sub: 'P = IΔV',
+    kicker: '13.3', title: 'Мощность', sub: 'P = IΔV',
     body: `
-      <p class="lede">Each coulomb gains Δ<i>V</i> joules in the battery and gives them up in the resistor as heat and, in a bulb, light.</p>
+      <p class="lede">Каждый кулон заряда получает в батарее энергию Δ<i>V</i> джоулей и отдаёт её в резисторе в виде тепла, а в лампе — также света.</p>
       <div class="eq"><i>P</i> = d<i>U</i>/d<i>t</i> = <i>I</i>Δ<i>V</i> = <i>I</i>²<i>R</i> = Δ<i>V</i>²/<i>R</i></div>
-      <p>The last two use Δ<i>V</i> = <i>IR</i>: <i>I</i>²<i>R</i> when you know the current (series), Δ<i>V</i>²/<i>R</i> when you know the voltage (parallel). Unit: the watt, J/s.</p>
+      <p>Две последние формулы получаются из Δ<i>V</i> = <i>IR</i>: используйте <i>I</i>²<i>R</i>, если известен ток (например, при последовательном соединении), и Δ<i>V</i>²/<i>R</i>, если известно напряжение (параллельное соединение). Единица мощности — ватт, Дж/с.</p>
       <table class="data">
-        <tr><td><i>I</i>Δ<i>V</i></td><td>${f(bulbI, 2)} A × ${M.BULB.E} V = ${f(bulbP, 1)} W</td></tr>
+        <tr><td><i>I</i>Δ<i>V</i></td><td>${f(bulbI, 2)} А × ${M.BULB.E} В = ${f(bulbP, 1)} Вт</td></tr>
         <tr><td><i>I</i>²<i>R</i></td><td>(${f(bulbI, 2)} A)² × ${M.BULB.R} Ω = ${f(bulbI ** 2 * M.BULB.R, 1)} W</td></tr>
         <tr><td>Δ<i>V</i>²/<i>R</i></td><td>(${M.BULB.E} V)² / ${M.BULB.R} Ω = ${f(M.BULB.E ** 2 / M.BULB.R, 1)} W</td></tr>
       </table>
-      <p>Energy <i>E</i> = <i>Pt</i>: ${f(bulbP * M.BULB.run, 0)} J every ${M.BULB.run} s.</p>
-      <div class="charts">${chart({ ...R.energy, xlabel: 'time (s)', ylabel: 'energy (J)', cursors: ['energy'], label: 'Energy delivered against time: a straight line of slope P', series: [{ pts: [[0, 0], [M.BULB.run, bulbP * M.BULB.run]], tag: [5.2, 25, 'slope P = 6 W'] }] })}</div>
-      <p class="hintline">Click the bulb to lift off the glass.</p>`,
+      <p>Энергия <i>E</i> = <i>Pt</i>: ${f(bulbP * M.BULB.run, 0)} Дж за каждые ${M.BULB.run} с.</p>
+      <div class="charts">${chart({ ...R.energy, xlabel: 'время (с)', ylabel: 'энергия (Дж)', cursors: ['energy'], label: 'Переданная энергия в зависимости от времени: наклон прямой равен P', series: [{ pts: [[0, 0], [M.BULB.run, bulbP * M.BULB.run]], tag: [5.2, 25, 'наклон P = 6 Вт'] }] })}</div>
+      <p class="hintline">Нажмите на лампу, чтобы снять стеклянную колбу.</p>`,
     cam: { target: [STATIONS.power, 0.25, 0.05], az: -14, el: 42, dist: 12.5 }, lit: 'bulb', scene: 'bulb', look: {},
-    fig: 'Six watts of heat and light',
+    fig: 'Шесть ватт тепла и света',
   },
   {
-    kicker: '13.4', title: 'Emf', sub: 'a real battery',
+    kicker: '13.4', title: 'ЭДС', sub: 'реальная батарея',
     body: `
-      <p class="lede">The <b>emf</b> ℰ is the energy a battery’s chemistry gives each coulomb. Not a force, despite the name.</p>
-      <p>A real battery has an <b>internal resistance</b> <i>r</i>, and the current loses <i>Ir</i> inside it:</p>
+      <p class="lede"><b>Электродвижущая сила (ЭДС)</b> ℰ — это энергия, которую химические процессы в батарее сообщают каждому кулону заряда. Несмотря на название, это не механическая сила.</p>
+      <p>У реальной батареи есть <b>внутреннее сопротивление</b> <i>r</i>; при прохождении тока внутри батареи теряется напряжение <i>Ir</i>:</p>
       <div class="eq">Δ<i>V</i><sub>terminal</sub> = ℰ − <i>Ir</i>,  <i>I</i> = ℰ/(<i>R</i> + <i>r</i>)</div>
-      <p>Here ℰ = ${M.CELL.E} V, <i>r</i> = ${M.CELL.r} Ω, and the bulb’s <i>R</i> sweeps ${M.CELL.Rmin}–${M.CELL.Rmax} Ω. More current, lower terminal voltage, and <i>I</i>²<i>r</i> heats the battery. The bulb gets ℰ²<i>R</i>/(<i>R</i> + <i>r</i>)²; d<i>P</i>/d<i>R</i> = 0 at <i>R</i> = <i>r</i>, where it is brightest: ℰ²/4<i>r</i> = ${f(M.CELL.E ** 2 / (4 * M.CELL.r), 0)} W.</p>
-      <div class="charts">${chart({ ...R.pload, xlabel: 'load R (Ω)', ylabel: 'power to the bulb (W)', cursors: ['pload'], vlines: [[M.CELL.r, 'r']], label: 'Load power against load resistance, peaking at R = r',
+      <p>Здесь ℰ = ${M.CELL.E} В, <i>r</i> = ${M.CELL.r} Ом, а сопротивление лампы <i>R</i> изменяется от ${M.CELL.Rmin} до ${M.CELL.Rmax} Ом. Чем больше ток, тем ниже напряжение на клеммах; мощность <i>I</i>²<i>r</i> нагревает батарею. Лампа получает мощность ℰ²<i>R</i>/(<i>R</i> + <i>r</i>)². Производная d<i>P</i>/d<i>R</i> равна нулю при <i>R</i> = <i>r</i>, когда свечение максимально: ℰ²/4<i>r</i> = ${f(M.CELL.E ** 2 / (4 * M.CELL.r), 0)} Вт.</p>
+      <div class="charts">${chart({ ...R.pload, xlabel: 'сопротивление нагрузки R (Ом)', ylabel: 'мощность лампы (Вт)', cursors: ['pload'], vlines: [[M.CELL.r, 'r']], label: 'Мощность нагрузки в зависимости от сопротивления; максимум при R = r',
         series: [{ pts: curve(M.loadP, 0, 8) }] })}</div>
-      <p class="hintline">Click the battery to open it. ${heightNote}</p>`,
+      <p class="hintline">Нажмите на батарею, чтобы открыть её. ${heightNote}</p>`,
     cam: { target: [STATIONS.cell, 0.2, 0.05], az: -14, el: 42, dist: 14 }, lit: 'cell', scene: 'cell', look: {},
-    fig: 'Emf 12 V, internal resistance 2 Ω',
+    fig: 'ЭДС 12 В, внутреннее сопротивление 2 Ом',
   },
   {
-    kicker: '13.5', title: 'Series and parallel', sub: 'one path, or side by side',
+    kicker: '13.5', title: 'Последовательное и параллельное соединения', sub: 'один путь или несколько ветвей',
     body: `
-      <p class="lede">In <b>series</b> the current has one path, so it is the same through each resistor and the voltages add. In <b>parallel</b> every branch spans the same two points, so the voltage is the same and the currents add.</p>
+      <p class="lede">При <b>последовательном соединении</b> ток проходит по одному пути и одинаков во всех резисторах, а напряжения складываются. При <b>параллельном соединении</b> каждая ветвь подключена к одним и тем же двум точкам: напряжение одинаково, а токи складываются.</p>
       <div class="eq"><i>R</i><sub>s</sub> = <i>R</i><sub>1</sub> + <i>R</i><sub>2</sub>,  1/<i>R</i><sub>p</sub> = 1/<i>R</i><sub>1</sub> + 1/<i>R</i><sub>2</sub> + …</div>
       <table class="data cols">
-        <tr><th>series, 9 V</th><th>parallel, 9 V</th></tr>
+        <tr><th>последовательно, 9 В</th><th>параллельно, 9 В</th></tr>
         <tr><td><i>R</i><sub>eq</sub> = 2 + 4 = 6 Ω</td><td><i>R</i><sub>eq</sub> = ${f(M.parallelR([2, 4, 6]), 3)} Ω</td></tr>
         <tr><td><i>I</i> = 9/6 = 1.5 A</td><td><i>I</i><sub>1</sub> = 9/2 = 4.5 A</td></tr>
         <tr><td>Δ<i>V</i><sub>1</sub> = 1.5 × 2 = 3 V</td><td><i>I</i><sub>2</sub> = 9/4 = 2.25 A</td></tr>
         <tr><td>Δ<i>V</i><sub>2</sub> = 1.5 × 4 = 6 V</td><td><i>I</i><sub>3</sub> = 9/6 = 1.5 A</td></tr>
         <tr><td>3 + 6 = 9 V ✓</td><td><i>I</i> = 8.25 A ✓</td></tr>
       </table>
-      <p>More in series raises <i>R</i><sub>eq</sub>; more in parallel lowers it, below the smallest branch. In parallel the dots speed up along the rails, where the branch currents gather.</p>
-      <p class="hintline">Click either circuit to raise it. Dot speed ∝ current (${f(K_DOT.parallel / K_DOT.series, 1)}× as fast per amp in parallel).</p>`,
+      <p>Добавление резисторов последовательно увеличивает <i>R</i><sub>экв</sub>, а параллельно — уменьшает его ниже сопротивления самой малой ветви. В параллельной схеме точки быстрее движутся по шинам, где складываются токи отдельных ветвей.</p>
+      <p class="hintline">Нажмите на любую схему, чтобы поднять её. Скорость точек пропорциональна току (в параллельной схеме на каждый ампер она в ${f(K_DOT.parallel / K_DOT.series, 1)} раза выше).</p>`,
     cam: { target: [STATIONS.sp + 0.07, 0.1, 0.1], az: -5, el: 50, dist: 20.5 }, lit: null, scene: 'sp', look: {},
-    fig: '2 Ω and 4 Ω; 2, 4 and 6 Ω',
+    fig: '2 Ом и 4 Ом; 2, 4 и 6 Ом',
   },
   {
-    kicker: '13.6', title: 'Combinations', sub: 'reduce, then work back',
+    kicker: '13.6', title: 'Смешанные соединения', sub: 'упрощаем схему, затем восстанавливаем значения',
     body: `
-      <p class="lede">A circuit of series and parallel pieces reduces, step by step, to one equivalent resistor. Then work backwards for each voltage and current.</p>
+      <p class="lede">Схему с последовательными и параллельными участками шаг за шагом сводят к одному эквивалентному сопротивлению. Затем, двигаясь в обратном порядке, находят напряжение и ток на каждом участке.</p>
       <ol class="rules">
-        <li>R<sub>2</sub>, R<sub>4</sub>, R<sub>5</sub> carry one current: in series, 4 + 2 + 2 = ${M.COMBO.R245} Ω.</li>
-        <li>R<sub>3</sub> and that ${M.COMBO.R245} Ω span the same two points: in parallel, 1/(½ + ⅛) = ${f(M.COMBO.R2345, 1)} Ω.</li>
-        <li>R<sub>1</sub> in series with it: <i>R</i><sub>eq</sub> = 2 + ${f(M.COMBO.R2345, 1)} = ${f(M.COMBO.Req, 1)} Ω, so <i>I</i> = 9/${f(M.COMBO.Req, 1)} = ${f(9 / M.COMBO.Req, 1)} A.</li>
+        <li>Через R<sub>2</sub>, R<sub>4</sub>, R<sub>5</sub> проходит один ток: они соединены последовательно, 4 + 2 + 2 = ${M.COMBO.R245} Ом.</li>
+        <li>R<sub>3</sub> и участок сопротивлением ${M.COMBO.R245} Ом подключены к одним точкам: соединены параллельно, 1/(½ + ⅛) = ${f(M.COMBO.R2345, 1)} Ом.</li>
+        <li>R<sub>1</sub> соединён с этим участком последовательно: <i>R</i><sub>экв</sub> = 2 + ${f(M.COMBO.R2345, 1)} = ${f(M.COMBO.Req, 1)} Ом, поэтому <i>I</i> = 9/${f(M.COMBO.Req, 1)} = ${f(9 / M.COMBO.Req, 1)} А.</li>
       </ol>
       <table class="data">
-        <tr><th>back out</th><th>Δ<i>V</i></th><th><i>I</i></th></tr>
+        <tr><th>обратный расчёт</th><th>Δ<i>V</i></th><th><i>I</i></th></tr>
         <tr><td>R<sub>1</sub></td><td>2.5 × 2 = 5 V</td><td>2.5 A</td></tr>
         <tr><td>R<sub>3</sub> (parallel part)</td><td>9 − 5 = 4 V</td><td>4/2 = 2.0 A</td></tr>
         <tr><td>R<sub>2</sub>, R<sub>4</sub>, R<sub>5</sub></td><td>2, 1, 1 V</td><td>4/8 = 0.5 A</td></tr>
       </table>
-      <p>Every stage draws the same 2.5 A: that is what “equivalent” means. (The organizer writes R<sub>245</sub> = 10 Ω and 3.667 Ω; as labelled, 4 + 2 + 2 = 8 Ω.)</p>
-      <p class="hintline">Click the full circuit (1) to raise it.</p>`,
+      <p>Общий участок до разветвления и после него несёт один и тот же ток 2,5 А — в этом и заключается смысл эквивалентного сопротивления. (В исходной схеме-органайзере указаны R<sub>245</sub> = 10 Ом и 3,667 Ом; однако по обозначенным элементам 4 + 2 + 2 = 8 Ом.)</p>
+      <p class="hintline">Нажмите на полную схему (1), чтобы поднять её.</p>`,
     cam: { target: [STATIONS.combo, 0.1, 0.15], az: -4, el: 56, dist: 27 }, lit: 'combo', scene: 'combo', look: {},
-    fig: 'Five resistors to one',
+    fig: 'Пять резисторов сведены к одному',
   },
   {
-    kicker: '13.7', title: 'Kirchhoff’s rules', sub: 'charge and energy, kept',
+    kicker: '13.7', title: 'Правила Кирхгофа', sub: 'сохранение заряда и энергии',
     body: `
-      <p class="lede">Two batteries in different branches don’t reduce to one resistor. Kirchhoff’s two rules always work.</p>
-      <ul class="rules"><li><b>Junction rule</b> (charge is conserved): in = out. At A, <i>I</i><sub>1</sub> = <i>I</i><sub>2</sub> + <i>I</i><sub>3</sub>.</li>
-        <li><b>Loop rule</b> (energy is conserved): ΣΔ<i>V</i> = 0 round any loop. With the current through a resistor, −<i>IR</i>; through a battery − to +, +ℰ.</li></ul>
+      <p class="lede">Если в разных ветвях находятся две батареи, схему нельзя свести только к одному резистору. В этом случае применяют два правила Кирхгофа.</p>
+      <ul class="rules"><li><b>Правило узлов</b> (сохранение заряда): сумма входящих токов равна сумме выходящих. В точке A: <i>I</i><sub>1</sub> = <i>I</i><sub>2</sub> + <i>I</i><sub>3</sub>.</li>
+        <li><b>Правило контуров</b> (сохранение энергии): сумма изменений потенциала ΣΔ<i>V</i> в любом замкнутом контуре равна нулю. При движении по току через резистор получаем −<i>IR</i>; при переходе в батарее от − к + — +ℰ.</li></ul>
       <div class="eq">1:  −10<i>I</i><sub>1</sub> − 5<i>I</i><sub>2</sub> − 10<i>I</i><sub>1</sub> + 12 = 0</div>
       <div class="eq">2:  −20<i>I</i><sub>3</sub> + 6 − 20<i>I</i><sub>3</sub> + 5<i>I</i><sub>2</sub> = 0</div>
-      <p>So <i>I</i><sub>1</sub> = ${f(kI('R1'), 2)} A, <i>I</i><sub>2</sub> = ${f(kI('R5'), 2)} A, <i>I</i><sub>3</sub> = ${f(kI('R3'), 2)} A, the organizer’s answers. They need the 6 V battery’s + end at the bottom, as drawn here. Its sheet draws + on top: then loop 2 has −6 and <i>I</i><sub>3</sub> = ${f(kd.I[2], 3)} A, current the other way.</p>
-      <p class="hintline">Click to raise it and walk each loop. ${heightNote}</p>`,
+      <p>Получаем <i>I</i><sub>1</sub> = ${f(kI('R1'), 2)} А, <i>I</i><sub>2</sub> = ${f(kI('R5'), 2)} А, <i>I</i><sub>3</sub> = ${f(kI('R3'), 2)} А — значения из исходной схемы. Для этого положительный вывод батареи 6 В должен находиться снизу, как показано здесь. В исходном листе он нарисован сверху: тогда во втором контуре возникает −6 В, а <i>I</i><sub>3</sub> = ${f(kd.I[2], 3)} А и ток течёт в обратном направлении.</p>
+      <p class="hintline">Нажмите, чтобы поднять схему и пройти каждый контур. ${heightNote}</p>`,
     cam: { target: [STATIONS.kirch, 0.3, 0.1], az: -8, el: 46, dist: 16 }, lit: 'kirch', scene: 'kirch', look: {},
-    fig: 'I₁ = I₂ + I₃; ΣΔV = 0 round each loop',
+    fig: 'I₁ = I₂ + I₃; ΣΔV = 0 для каждого контура',
   },
   {
-    kicker: '13.8', title: 'RC circuits', sub: 'charging and discharging',
+    kicker: '13.8', title: 'RC-цепи', sub: 'зарядка и разрядка конденсатора',
     body: `
-      <p class="lede">At <b>a</b> the battery charges the capacitor through <i>R</i>; at <b>b</b> the capacitor pushes the current back through <i>R</i> until it is empty.</p>
+      <p class="lede">В положении <b>a</b> батарея заряжает конденсатор через <i>R</i>; в положении <b>b</b> конденсатор разряжается через <i>R</i>, поддерживая ток до полного разряда.</p>
       <div class="eq">ℰ − <i>IR</i> − <i>q</i>/<i>C</i> = 0, <i>I</i> = d<i>q</i>/d<i>t</i></div><div class="eq"><i>q</i> = ℰ<i>C</i>(1 − e<sup>−<i>t</i>/<i>RC</i></sup>)</div>
-      <p>(Separate: ∫d<i>q</i>/(ℰ<i>C</i> − <i>q</i>) = ∫d<i>t</i>/<i>RC</i>.) <i>I</i> = (ℰ/<i>R</i>)e<sup>−<i>t</i>/<i>RC</i></sup>. τ = <i>RC</i> = ${f(RC.tau, 1)} s: after one τ, <i>q</i> is 63.2% of ℰ<i>C</i> = ${f(RC.Qmax * 1e3, 1)} mC and <i>I</i> 36.8% of ℰ/<i>R</i> = ${f(RC.Imax * 1e3, 1)} mA. Discharging, <i>q</i> = <i>Q</i><sub>max</sub>e<sup>−<i>t</i>/<i>RC</i></sup>.</p>
-      <p>Empty, a capacitor acts as a wire; full, as a break. Of the battery’s <i>Q</i>ℰ = ${f(RC.Qmax * RC.E * 1e3, 1)} mJ, half is stored, half is heat.</p>
-      <div class="charts">${chart({ ...R.rc, xlabel: 'time (s)', ylabel: '% of max', cursors: ['rcq', 'rci'], vlines: [[RC.tau, 'τ'], [RC.Tch, 'b'], [RC.Tch + RC.tau, 'τ']],
-        label: 'Charge and current against time while charging and discharging',
+      <p>(Разделяя переменные, получаем ∫d<i>q</i>/(ℰ<i>C</i> − <i>q</i>) = ∫d<i>t</i>/<i>RC</i>.) Ток <i>I</i> = (ℰ/<i>R</i>)e<sup>−<i>t</i>/<i>RC</i></sup>. Постоянная времени τ = <i>RC</i> = ${f(RC.tau, 1)} с. Через одну τ заряд <i>q</i> достигает 63,2% от ℰ<i>C</i> = ${f(RC.Qmax * 1e3, 1)} мКл, а ток уменьшается до 36,8% от ℰ/<i>R</i> = ${f(RC.Imax * 1e3, 1)} мА. При разрядке <i>q</i> = <i>Q</i><sub>max</sub>e<sup>−<i>t</i>/<i>RC</i></sup>.</p>
+      <p>Полностью разряженный конденсатор ведёт себя как провод, а полностью заряженный — как разрыв цепи. Из энергии батареи <i>Q</i>ℰ = ${f(RC.Qmax * RC.E * 1e3, 1)} мДж половина запасается в конденсаторе, половина рассеивается в виде тепла.</p>
+      <div class="charts">${chart({ ...R.rc, xlabel: 'время (с)', ylabel: '% от максимума', cursors: ['rcq', 'rci'], vlines: [[RC.tau, 'τ'], [RC.Tch, 'b'], [RC.Tch + RC.tau, 'τ']],
+        label: 'Зависимость заряда и тока от времени при зарядке и разрядке',
         series: [{ cls: 'zero', pts: [[0, 0], [RC.cycle, 0]] }, { pts: curve(t => 100 * M.rc(t).Q / RC.Qmax, 0, RC.cycle - 1e-6, 400), tag: [3.5, 92, 'q'] },
           { cls: 'curve total', pts: curve(t => 100 * M.rc(t).I / RC.Imax, 0, RC.cycle - 1e-6, 400), tag: [3.4, 14, 'I'] }],
         marks: [[RC.tau, 63.2, '63.2%'], [RC.tau, 36.8, '36.8%', 6, -6]] })}</div>
-      <p class="hintline">Click to raise it: Δ<i>V</i><sub>R</sub> shrinks as Δ<i>V</i><sub>C</sub> grows.</p>`,
+      <p class="hintline">Нажмите, чтобы поднять схему: Δ<i>V</i><sub>R</sub> уменьшается по мере роста Δ<i>V</i><sub>C</sub>.</p>`,
     cam: { target: [STATIONS.rc, 0.25, 0.1], az: -10, el: 44, dist: 15 }, lit: 'rc', scene: 'rc', look: {},
-    fig: '20 kΩ, 100 µF: τ = 2.0 s',
+    fig: '20 кОм, 100 мкФ: τ = 2,0 с',
   },
 ];
 
