@@ -323,6 +323,56 @@ R = f(H, E, V)
 | Города | Доступность транспорта, зелёных зон, канализации и питьевой воды |
 | Устойчивость | Ущерб от бедствий, время восстановления услуг, защищённость инфраструктуры |
 
+## Разобранный пример: оценка потерь воды в системе водоснабжения / Worked Example: Estimating Water Losses in a Supply System
+
+Предположим, что условный населённый пункт с населением 10 000 человек получает в систему водоснабжения 1 250 м³ воды в сутки. По расчётам потребителей и учёту отпуска полезно используется 1 000 м³ в сутки. Разница — вода, которая не была учтена как полезное потребление:
+
+\[
+L=1\,250-1\,000=250\text{ м}^3/\text{сутки}
+\]
+
+Доля этой разницы от объёма, поданного в систему:
+
+\[
+L_\%=\frac{250}{1\,250}\times100\%=20\%
+\]
+
+Таким образом, расчётная доля потерь и неучтённой воды составляет **20%**. В пересчёте на год при неизменных суточных значениях:
+
+\[
+250\times365=91\,250\text{ м}^3/\text{год}
+\]
+
+Это значительный объём, но его нельзя автоматически целиком считать утечками из труб. В баланс могут входить ошибки приборов учёта, незаконные подключения, технологические расходы на промывку и пожаротушение, а также реальные утечки.
+
+**Почему это важно для устойчивости:** сокращение реальных утечек может уменьшить нагрузку на источники воды, насосы и энергоснабжение. Но сначала необходимо провести водный аудит, разделить реальные потери и коммерческие/учётные расхождения и проверить надёжность измерений.
+
+**Проверьте себя:** если в систему поступает 800 м³ в сутки, а учтённое полезное потребление составляет 680 м³, какова доля разницы в процентах от поданного объёма? Какие данные нужны, чтобы определить, какая часть этой разницы является физической утечкой?
+
+Assume a hypothetical settlement of 10,000 people receives 1,250 m³ of water per day into its supply system. Metered and accounted-for useful consumption is 1,000 m³ per day. The difference is water not recorded as useful consumption:
+
+\[
+L=1,250-1,000=250\text{ m}^3/\text{day}
+\]
+
+The difference as a share of the volume supplied is:
+
+\[
+L_\%=\frac{250}{1,250}\times100\%=20\%
+\]
+
+The estimated share of water losses and unaccounted-for water is therefore **20%**. If daily values remain unchanged, the annual volume is:
+
+\[
+250\times365=91,250\text{ m}^3/\text{year}
+\]
+
+This is a substantial volume, but it should not automatically be described entirely as leakage from pipes. The water balance may include meter errors, illegal connections, operational uses such as flushing and firefighting, as well as physical leaks.
+
+**Why this matters for sustainability:** reducing real leakage can lower pressure on water sources, pumps and energy supply. However, a water audit is needed first to distinguish physical losses from commercial or accounting discrepancies and to check measurement reliability.
+
+**Check your understanding:** if 800 m³ enters a system each day and recorded useful consumption is 680 m³, what percentage of the supplied volume is the difference? What information is needed to determine how much of it is physical leakage?
+
 ## 26.15. Практические работы / Practical Exercises
 
 ### Работа 1. Климатический тренд
