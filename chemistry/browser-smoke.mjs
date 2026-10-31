@@ -64,6 +64,24 @@ try {
       languageChecks++;
     }
 
+    if (file.startsWith("chapters/")) {
+      if (await page.locator("button").evaluateAll(items => items.some(button => button.type !== "button"))) {
+        errors.push(file + ": a chapter button is missing an explicit button type");
+      }
+    }
+
+    if (file === "chapters/atomic-structure.html") {
+      const stats = page.locator(".atom-stats");
+      if (await stats.getAttribute("aria-live") !== "polite") {
+        errors.push(file + ": changing atom statistics are not announced to assistive technology");
+      }
+      await page.locator("#element").selectOption("O");
+      if ((await page.locator("#p").innerText()).trim() !== "8" ||
+          (await page.locator("#e").innerText()).trim() !== "8") {
+        errors.push(file + ": selecting oxygen did not update proton and electron counts");
+      }
+    }
+
     if (file === "chapters/chemical-bonding.html") {
       const detail = page.locator(".detail");
       if (await detail.getAttribute("aria-live") !== "polite") {
