@@ -267,6 +267,50 @@
 
 **Место для иллюстрации 6.13-A — River Basin Anatomy.** Схема бассейна с водоразделом, истоком, притоками, главным руслом, поймой и устьем.
 
+### 6.13.1. Практический пример: оценка расхода воды в реке / Worked Example: Estimating River Discharge
+
+Расход воды показывает, какой объём воды проходит через поперечное сечение реки за одну секунду. Для упрощённой оценки используют формулу:
+
+\[
+Q = A \times v,
+\]
+
+где Q — расход воды (м³/с), A — площадь поперечного сечения потока (м²), v — средняя скорость течения (м/с).
+
+**Условный пример.** Предположим, что ширина небольшого прямоугольного участка русла равна 8 м, средняя глубина — 0,75 м, а средняя скорость воды по всему сечению — 0,6 м/с.
+
+1. Оценим площадь сечения: A = 8 × 0,75 = 6 м².
+2. Рассчитаем расход: Q = 6 × 0,6 = **3,6 м³/с**.
+
+Это означает, что через выбранное сечение в среднем проходит около 3,6 кубического метра воды каждую секунду.
+
+**Почему это приближение?** Естественное русло редко имеет форму прямоугольника, глубина и скорость меняются от берега к берегу и по глубине. Для точного измерения сечение делят на несколько участков, измеряют глубину и скорость в каждом из них, а затем суммируют частичные расходы. Измерение следует проводить безопасным способом и фиксировать дату, уровень воды и место наблюдения.
+
+**Проверьте себя:** если площадь сечения составляет 4 м², а средняя скорость — 0,5 м/с, чему равен расход?
+
+### Worked Example: Estimating River Discharge
+
+Discharge is the volume of water passing through a river cross-section each second. A simplified estimate uses:
+
+\[
+Q = A \times v,
+\]
+
+where Q is discharge (m³/s), A is the cross-sectional area of flow (m²), and v is the mean flow velocity (m/s).
+
+**Hypothetical example.** Suppose a small river section is approximated as rectangular, 8 m wide and 0.75 m deep on average. The mean velocity across the whole section is 0.6 m/s.
+
+1. Estimate the cross-sectional area: A = 8 × 0.75 = 6 m².
+2. Calculate discharge: Q = 6 × 0.6 = **3.6 m³/s**.
+
+This means that approximately 3.6 cubic metres of water pass through the selected cross-section each second, on average.
+
+**Why is this an approximation?** A natural channel is rarely rectangular, and depth and velocity vary across the channel and with depth. For a more accurate measurement, divide the cross-section into several subsections, measure depth and velocity in each, and add the partial discharges. Measurements must be made safely, with the date, water level and observation location recorded.
+
+**Check your understanding:** If the cross-sectional area is 4 m² and mean velocity is 0.5 m/s, what is the discharge?
+
+---
+
 ## 6.14. Озёра и внутренние водоёмы / Lakes and Inland Waters
 
 Озеро — естественный водоём в углублении суши, не имеющий прямого свободного соединения с океаном. Озёра различаются по происхождению, глубине, солёности, водному балансу и биологической продуктивности.
