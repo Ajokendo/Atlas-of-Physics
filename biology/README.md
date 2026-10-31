@@ -239,3 +239,12 @@ The score should increase only when evidence for the relevant checklist items is
 - This was a targeted interaction and wording pass. It does not replace full browser, keyboard-only and screen-reader testing.
 
 - Extended the automated checks to guard against regressions in Botany's translated organ and photosynthesis state and Genetics' selected mutation state; corrected the food-chain button matcher so it checks actual button elements.
+
+
+## Kyrgyzstan regional biodiversity source audit — 31 October 2026
+- Reviewed the flora and fauna regional dossiers for all seven oblasts, their habitat descriptions, field-count caveats, Red Data Book status language and source lists.
+- Confirmed the 30 June 2026 Batken marmot count against the Ministry's official notice: 4,146 animals were recorded (759 in the surveyed Batken-area sites and 3,387 in Surma-Tash Nature Reserve). The atlas appropriately treats this as a dated survey result, not a permanent region-wide population estimate; added the direct Ministry source.
+- Confirmed that the Ministry's 9 June 2026 Red Data Book figures describe the ongoing 24-month revision project, not a completed new edition. The flora and fauna chapters preserve this distinction.
+- Confirmed the current NCBI Taxonomy record for the Tian Shan maral name `Cervus canadensis songaricus`; it lists `Cervus elaphus songaricus` as a synonym. Added the taxonomic record as a reference, while retaining the current record's name in the chapter.
+- Added the Ministry's 10 March 2026 notice on protection of Aygul-Tash and Madygen to the flora sources.
+- This is a source-verification pass, not a complete species-by-species expert inventory. Taxon-level distribution and conservation status still require specialist review and dated locality evidence.
