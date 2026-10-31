@@ -22,7 +22,7 @@ const { a: sa, b: sb } = M.SPH, r2 = 0.15;
 const P2 = { E: K * M.SPH.Q / r2 ** 2 };
 P2.nums = [V0 / (sb - sa), K * M.SPH.Q / sb ** 2, P2.E, K * M.SPH.Q / sa ** 2];   // as if plates · used b · right · used a
 P2.dV = V0 * (1 / sa - 1 / r2) / (1 / sa - 1 / sb);
-P2.vnums = [P2.dV, V0 * (r2 - sa) / (sb - sa), V0 - P2.dV, V0 * (1 / sa ** 2 - 1 / r2 ** 2) / (1 / sa ** 2 - 1 / sb ** 2)];   // right · linear · the other part · 1/r² for В
+P2.vnums = [P2.dV, V0 * (r2 - sa) / (sb - sa), V0 - P2.dV, V0 * (1 / sa ** 2 - 1 / r2 ** 2) / (1 / sa ** 2 - 1 / sb ** 2)];   // right · linear · the other part · 1/r² for V
 // ---- page 3: the page's coax; the tube widened to 16 cm; where the energy is ----
 const { a: ca, b: cb, L: cL } = M.CYL, cb2 = 2 * cb;
 const P3 = { C: 2 * Math.PI * EPS0 * cL / Math.log(cb2 / ca) };
@@ -36,14 +36,14 @@ const P4b = { d2: d / 2 };
 P4b.U = 0.5 * M.cPlate(A, P4b.d2) * V0 * V0;
 P4b.nums = [U0 / 2, U0, 4 * U0, P4b.U].map(x => x * 1e9);           // as if Q fixed · unchanged · ×4 · right
 // ---- page 5: 2 мкФ and 4 мкФ in series on 9 В ----
-const { C1, C2, В: CV } = M.CIRC, S = M.SER;
+const { C1, C2, V: CV } = M.CIRC, S = M.SER;
 const P5 = { V1: S.Q / C1 };
 P5.nums = [P5.V1, CV * C1 / (C1 + C2), CV, CV / 2];                // right · split the wrong way · all of it · halves
 P5.U = S.Q * S.Q / 2 * (1 / C1 + 1 / C2);
 P5.unums = [S.Q * CV, M.PAR.U, S.Q * S.Q / (2 * C1), P5.U].map(x => x * 1e6);   // forgot ½ · parallel · C₁ only · right
 // ---- page 6: the κ = 3 slab, plates isolated; a graded dielectric ----
 const KA = M.KAPPA;
-const P6 = { В: V0 / KA };
+const P6 = { V: V0 / KA };
 P6.nums = [V0 * KA, P6.V, V0, V0 / KA ** 2];
 const P6b = { k1: 1, k2: 3 };
 P6b.C = EPS0 * A * (P6b.k2 - P6b.k1) / (d * Math.log(P6b.k2 / P6b.k1));      // the free-response answer
