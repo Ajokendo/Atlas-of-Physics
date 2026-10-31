@@ -221,3 +221,10 @@ The score should increase only when evidence for the relevant checklist items is
 - Clarified that not every gene encodes a protein: some genes produce functional non-coding RNAs, including rRNA and tRNA, and some regulatory RNAs. The clarification is bilingual and distinguishes the general DNA → RNA → protein model for protein-coding genes from the broader range of gene products.
 - Added an NCBI Bookshelf reference on transcription and RNA classes. The change was checked for RU/EN parity, source presence, unique IDs and balanced script tags.
 - This is a targeted conceptual correction, not a complete expert review of the Genetics chapter or the remaining Biology chapters.
+
+
+## Scientific wording and interaction review — Ecology, Cell Biology and Biochemistry — 31 October 2026
+- Ecology: made the food-chain builder enforce the intended trophic sequence (producer → primary consumer → secondary consumer → higher consumers). Out-of-order selections now prompt the learner instead of being appended into a misleading chain; selecting an earlier step truncates later choices. Added bilingual organism labels, `aria-pressed` state and a polite live status output.
+- Biochemistry: clarified in both languages that enzymes lower activation energy and speed the approach to equilibrium, but do not shift equilibrium or change the overall Gibbs free-energy change (ΔG). Clarified that the actual ΔG of ATP hydrolysis in cells depends on reactant and product concentrations, while retaining the standard biochemical-condition statement.
+- Cell Biology: reviewed the organelle, membrane-transport and mitosis explanations. The current text correctly distinguishes passive diffusion, osmosis and energy-dependent active transport; explains that interphase is not a mitotic stage; and treats nuclear-envelope breakdown as late prophase/prometaphase depending on staging convention. No wording change was required in this targeted pass.
+- These are targeted scientific and interaction corrections, not a completed expert review of the three chapters. Live browser, keyboard and assistive-technology testing remains outstanding.
