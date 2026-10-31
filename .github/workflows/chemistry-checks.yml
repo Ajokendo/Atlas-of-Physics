@@ -2,7 +2,7 @@ name: Chemistry atlas checks
 
 on:
   push:
-    branches: [main, portal-foundation]
+    branches: [main, portal-foundation, workspace/chemistry]
     paths:
       - "chemistry/**"
       - "catalog.html"
