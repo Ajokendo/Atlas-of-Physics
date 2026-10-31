@@ -38,7 +38,7 @@ const GJ = x => f(x / 1e9, 2);
 export const PRACTICE = {
   0: [
     { q: 'Шар движется по окружности с постоянной скоростью. Куда направлено его ускорение?',
-      choices: ['along its velocity, tangent to the circle', 'toward the centre of the circle', 'away from the centre', 'nowhere: constant speed means zero acceleration'], answer: 1,
+      choices: ['по направлению скорости, по касательной к окружности', 'к центру окружности', 'от центра окружности', 'не направлено: постоянная скорость означает нулевое ускорение'], answer: 1,
       why: `<p>Velocity is a vector; its direction keeps turning toward the centre, so Δ<i>v</i> (and <i>a</i>) points to the centre, ⟂ <i>v</i>. Constant <b>speed</b> means no part of <i>a</i> along <i>v</i>, not zero <i>a</i>.</p>` },
     { q: `Шар движется по окружности радиусом ${f(B.r)} м со скоростью ${f(M.V2, 1)} м/с вместо ${f(M.V1, 1)} м/с. Чему равно его центростремительное ускорение?`,
       choices: [`${p3(2 * M.ac(M.V1, B.r))} m/s²`, `${p3(M.ac(M.V1, B.r))} m/s²`, `${p3(AC0)} m/s²`, `${p3(M.ac(M.V1, B.r) / 2)} m/s²`], answer: 2,
@@ -49,7 +49,7 @@ export const PRACTICE = {
       choices: [`${p3(T1)} N`, `${p3(T1 / 4)} N`, `${p3(2 * T1)} N`, `${p3(T1 / 2)} N`], answer: 0,
       why: `<p>On a smooth table the tension is the only horizontal force, so it is the whole centripetal force:</p><div class="eq"><i>T</i> = <i>mv</i>²/<i>r</i> = ${f(B.m)} × (${f(M.V1, 1)})² / ${f(B.r / 2)} = ${p3(T1)} N</div><p>Halving <i>r</i> at the same speed doubles <i>T</i> (from ${f(M.tension(M.V1))} N).</p>` },
     { q: 'Если смотреть сверху, нить обрывается в момент, когда шар движется по окружности. Как будет двигаться шар сразу после обрыва?',
-      choices: ['along a spiral outward', 'straight out from the centre, along the old string', 'in a straight line along the tangent at that point', 'on the same circle, slowing down'], answer: 2,
+      choices: ['по спирали наружу', 'по прямой от центра, вдоль прежнего направления нити', 'по прямой, по касательной к окружности в данной точке', 'по той же окружности, замедляясь'], answer: 2,
       why: `<p>With the string gone there is no horizontal force, so (first law) the ball keeps the velocity it had: tangent to the circle, in a straight line. There is no outward force to fling it radially.</p>` },
   ],
   2: [
@@ -57,7 +57,7 @@ export const PRACTICE = {
       choices: [`${p3(M.CAR.vmax)} m/s`, `${p3(M.CAR.vmax / 2)} m/s`, `${p3(MU2 * G * M.CAR.r)} m/s`, `${p3(V2MAX)} m/s`], answer: 3,
       why: `<p>At the limit, the most static friction can give is exactly the centripetal force needed: μ<sub>s</sub><i>mg</i> = <i>mv</i>²/<i>r</i>.</p><div class="eq"><i>v</i><sub>max</sub> = √(μ<sub>s</sub><i>gr</i>) = √(${f(MU2)} × ${f(G)} × ${M.CAR.r}) = ${p3(V2MAX)} m/s</div><p>Halving μ<sub>s</sub> divides <i>v</i><sub>max</sub> by √2, not 2.</p>` },
     { q: 'Грузовик вдвое тяжелее автомобиля проходит тот же плоский поворот на тех же шинах с максимально возможной скоростью. Как его максимальная скорость соотносится с максимальной скоростью автомобиля?',
-      choices: ['half as large', '1/√2 as large', 'the same', '√2 times as large'], answer: 2,
+      choices: ['в 2 раза меньше', 'в √2 раза меньше', 'одинаковое', 'в √2 раза больше'], answer: 2,
       why: `<p>μ<sub>s</sub><i>mg</i> = <i>mv</i>²/<i>r</i>: the mass is on both sides and cancels, <i>v</i><sub>max</sub> = √(μ<sub>s</sub><i>gr</i>). The truck needs twice the friction, but its doubled weight lets the road supply twice as much.</p>` },
   ],
   3: [
@@ -81,7 +81,7 @@ export const PRACTICE = {
       choices: [`${p3(M.BANK.v)} m/s`, `${p3(Math.sqrt(R5 * G))} m/s`, `${p3(R5 * G * Math.tan(M.BANK.th))} m/s`, `${p3(V5)} m/s`], answer: 3,
       why: `<p>Vertical: <i>F</i><sub>N</sub> cos θ = <i>mg</i>. Horizontal: <i>F</i><sub>N</sub> sin θ = <i>mv</i>²/<i>r</i>. Divide:</p><div class="eq">tan θ = <i>v</i>²/(<i>rg</i>) &nbsp;→ <i>v</i> = √(${R5} × ${f(G)} × tan ${M.BANK.thetaDeg}°) = ${p3(V5)} m/s</div><p>Four times the radius, twice the speed of the ${f(M.BANK.v)} m/s on the ${M.BANK.r} m curve.</p>` },
     { q: 'На обледенелом повороте без трения автомобиль движется быстрее расчётной скорости для данного наклона дороги. Что произойдёт?',
-      choices: ['It drifts up the bank, toward the outside of the curve.', 'It slides down the bank, toward the inside.', 'It follows the curve, because the normal force grows to match.', 'It stops turning and moves straight down the slope.'], answer: 0,
+      choices: ['Автомобиль смещается вверх по виражу, к внешней стороне поворота.', 'Автомобиль скользит вниз по виражу, к внутренней стороне поворота.', 'Автомобиль продолжает двигаться по дуге, поскольку реакция опоры увеличивается до нужного значения.', 'Автомобиль перестаёт поворачивать и движется прямо вниз по наклонной плоскости.'], answer: 0,
       why: `<p>With no friction the normal force must both hold the car up (<i>F</i><sub>N</sub> cos θ = <i>mg</i>) and turn it, so its horizontal part is fixed at <i>mg</i> tan θ. A faster car needs more than that, so it can’t follow the circle and drifts to a larger radius, up the bank.</p>` },
   ],
   6: [
@@ -89,7 +89,7 @@ export const PRACTICE = {
       choices: [`${p3(R6 * RPM6 / 60)} m/s`, `${p3(V6)} m/s`, `${p3(R6 * RPM6)} m/s`, `${p3(2 * R6 * RPM6 * 2 * Math.PI / 60)} m/s`], answer: 1,
       why: `<p>Convert to rad/s first: ω = 33⅓ × 2π/60 = ${f(RPM6 * 2 * Math.PI / 60, 3)} rad/s. Then</p><div class="eq"><i>v</i> = <i>r</i>ω = ${f(R6)} × ${f(RPM6 * 2 * Math.PI / 60, 3)} = ${p3(V6)} m/s</div><p><i>v</i> = <i>r</i>ω only works with ω in rad/s; ${p3(R6 * RPM6)} uses rpm directly, ${p3(R6 * RPM6 / 60)} uses rev/s and forgets 2π.</p>` },
     { q: `Два блока находятся на расстояниях ${f(M.DISC.r1)} м и ${f(M.DISC.r2)} м от центра вращающегося диска. Во сколько раз центростремительное ускорение внешнего блока больше, чем внутреннего?`,
-      choices: ['half as large', 'the same', 'twice as large', 'four times as large'], answer: 2,
+      choices: ['в 2 раза меньше', 'одинаковое', 'в 2 раза больше', 'в 4 раза больше'], answer: 2,
       why: `<p>Both share one ω, so <i>a</i><sub>c</sub> = <i>v</i>²/<i>r</i> = <i>r</i>ω² grows in proportion to <i>r</i>. (Using <i>v</i>²/<i>r</i>, <i>v</i> doubles but so does <i>r</i>: 4/2 = 2, not 4.)</p>` },
   ],
   7: [
@@ -113,7 +113,7 @@ export const PRACTICE = {
       choices: [`${p3(VP9 * (RP9 / RA9) ** 2 / 1000)} km/s`, `${p3(VA9 / 1000)} km/s`, `${p3(VP9 * Math.sqrt(RP9 / RA9) / 1000)} km/s`, `${p3(2 * VP9 / 1000)} km/s`], answer: 1,
       why: `<p>Angular momentum about the Earth is conserved (gravity has no torque about it), and at both ends <i>v</i> ⟂ <i>r</i>:</p><div class="eq"><i>r</i><sub>p</sub><i>v</i><sub>p</sub> = <i>r</i><sub>a</sub><i>v</i><sub>a</sub> &nbsp;→ <i>v</i><sub>a</sub> = ${f(VP9 / 1000)} × 2/4 = ${p3(VA9 / 1000)} km/s</div><p>√(<i>GM</i>/<i>r</i>) scaling (${p3(VP9 * Math.sqrt(RP9 / RA9) / 1000)} km/s) only holds between <b>circular</b> orbits.</p>` },
     { q: 'Какая величина остаётся одинаковой в перигее и апогее спутника, движущегося по эллиптической орбите?',
-      choices: ['its speed', 'its kinetic energy', 'its angular momentum about the Earth’s centre', 'the gravitational force on it'], answer: 2,
+      choices: ['его скорость', 'его кинетическая энергия', 'его момент импульса относительно центра Земли', 'сила гравитационного притяжения, действующая на него'], answer: 2,
       why: `<p>Gravity points at the Earth’s centre, so it exerts no torque about it and <i>L</i> = <i>mvr</i><sub>⊥</sub> stays constant. Speed and kinetic energy are largest at perigee; the force is largest there too (smaller <i>r</i>).</p>` },
   ],
   10: [
@@ -121,7 +121,7 @@ export const PRACTICE = {
       choices: [`${p3(KP / 1e9)} GJ`, `${p3(KP / 3 / 1e9)} GJ`, `${p3(KA / 1e9)} GJ`, `${p3((KP - UP + UA) / 1e9)} GJ`], answer: 2,
       why: `<p>Only gravity acts and it is conservative, so <i>K</i> + <i>U</i> is the same at both ends:</p><div class="eq"><i>K</i><sub>a</sub> = <i>K</i><sub>p</sub> + <i>U</i><sub>p</sub> − <i>U</i><sub>a</sub> = ${GJ(KP)} + (${GJ(UP)}) − (${GJ(UA)}) = ${p3(KA / 1e9)} GJ</div><p>Check: a third the speed, so a ninth the kinetic energy. ${p3((KP - UP + UA) / 1e9)} GJ comes from a sign slip on the negative <i>U</i>’s.</p>` },
     { q: 'Что происходит с энергиями системы «спутник — Земля», когда спутник движется от перигея к апогею?',
-      choices: ['K decreases, U increases (gets less negative), E stays the same', 'K decreases, U decreases, E decreases', 'K stays the same, U increases, E increases', 'K and U both increase, so E increases'], answer: 0,
+      choices: ['K уменьшается, U увеличивается (становится менее отрицательной), E остаётся неизменной', 'K уменьшается, U уменьшается, E уменьшается', 'K не изменяется, U увеличивается, E увеличивается', 'K и U увеличиваются, поэтому E увеличивается'], answer: 0,
       why: `<p>Climbing out, gravity has a part against <i>v</i> and does negative work, so <i>K</i> falls. <i>U</i> = −<i>GMm</i>/<i>r</i> rises toward zero by the same amount. No outside force does work, so <i>E</i> = <i>K</i> + <i>U</i> is constant.</p>` },
   ],
   11: [
